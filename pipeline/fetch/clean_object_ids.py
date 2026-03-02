@@ -1,0 +1,1 @@
+# look through reject_object_ids and remove any that are in that file from object_ids.json
