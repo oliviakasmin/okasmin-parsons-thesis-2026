@@ -58,6 +58,21 @@ data/raw/
 data/derived/
 data/published/
 pipeline/outputs/
+test_assets/
+
+
+# ─────────────────────────────────────────────
+# Ignore ALL json by default
+# ─────────────────────────────────────────────
+*.json
+
+
+# Re-allow pipeline data JSON files 
+!object_ids.json
+!objects.json
+!reject_object_ids.json
+!api_errors_object_ids.json
+!manual_reject_object_ids.json
 
 # ─────────────────────────────────────────────
 # Ignore ALL images by default

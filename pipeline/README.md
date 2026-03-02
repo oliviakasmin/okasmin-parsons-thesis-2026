@@ -1,58 +1,56 @@
-# Python: builds the dataset + exports web-ready artifacts
+# Pipeline
 
-pipeline/ # Python: builds the dataset + exports web-ready artifacts
-requirements.txt  
- README.md # how to run stages, expected outputs
+Python pipeline for building the object dataset from the Met API.
 
-    src/
-      config.py                 # paths, bucket names, model refs, feature settings
+## Current structure
 
-      fetch/
-        get_object_ids.py
-        download_images.py
+- `pipeline/fetch/get_object_ids.py`
+  - Builds `pipeline/data/object_ids.json` from Met search queries.
+- `pipeline/fetch/get_objects.py`
+  - Fetches object details, applies filters, and writes:
+    - `pipeline/data/objects.json`
+    - `pipeline/data/reject_object_ids.json`
+    - `pipeline/data/api_errors_object_ids.json`
+- `pipeline/clean/clean_object_ids.py`
+  - Removes rejected IDs from `pipeline/data/object_ids.json`.
+- `pipeline/clean/clean_objects.py`
+  - Runs post-fetch cleaning steps on `pipeline/data/objects.json`.
 
-      preprocess/
-        remove_bg.py            # uses HF model locally (or your customized pipeline logic)
-        crop_standardize.py
+See `pipeline/data/README.md` for data file definitions and filter rules.
 
-      features/
-        extract_features.py     # outputs features.parquet (or similar)
+## Environment setup
 
-      cluster/
-        run_clustering.py       # outputs clusters + assignments + centroids
-        build_index.py          # OPTIONAL: annoy/faiss/knn index for later use
+From the repo root:
 
-      export/
-        make_thumbnails.py      # outputs thumbs/ (local) + optional upload
-        make_previews.py        # outputs previews/ (for S3)
-        build_manifest.py
-        build_clusters_json.py
-        build_objects_json.py   # optionally chunk-by-cluster
-
-      publish/
-        upload_to_s3.py         # uploads derived assets + JSON to S3 paths
-        invalidate_cdn.py       # optional if you use CloudFront invalidations
-
-    scripts/
-      run_all.sh                # stage runner
-      run_stage.sh              # per-stage runner
-      clean_outputs.sh
-
-    outputs/                    # NOT in git (symlink to ../data/derived recommended)
-      README.md
-
-Create and activate a virtual environment
-
+```bash
 cd /Users/oliviakasmin/Desktop/okasmin-parsons-thesis-2026
 python3 -m venv .venv
 source .venv/bin/activate
-
-From the repo root (while the venv is active):
 pip install --upgrade pip
 pip install -r pipeline/requirements.txt
+```
 
-to activate enviornment again later:
+To activate again later:
+
+```bash
 cd /Users/oliviakasmin/Desktop/okasmin-parsons-thesis-2026
 source .venv/bin/activate
+```
 
-pip install -r pipeline/requirements.txt
+## Run commands
+
+Run all scripts from the repo root using module mode:
+
+```bash
+python -m pipeline.fetch.get_object_ids
+python -m pipeline.fetch.get_objects
+python -m pipeline.clean.clean_object_ids
+python -m pipeline.clean.clean_objects
+```
+
+## Recommended workflow
+
+1. Run `get_object_ids` to generate/update raw IDs.
+2. Run `get_objects` in batches (it limits each run and stops on 403).
+3. Run `clean_object_ids` to remove rejected IDs from the raw ID list.
+4. Run `clean_objects` after rule changes or manual review passes.

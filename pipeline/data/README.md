@@ -1,44 +1,31 @@
-object_ids.json is a json list of all raw object IDs from the MET api call
+# Pipeline Data Files
 
-reject_object_ids.json is a list of all objects that should not be included for various purposes (ie just a fragment, or multiple vessels in one image, etc.)
+This folder stores intermediate and cleaned JSON outputs for the fetch/clean pipeline.
 
-objects.json is a json list of an object with its relevant properties:
+## Files
 
-- objectID
-- accessionYear
-- isPublicDomain - reject if not true
-- primaryImage
-- primaryImageSmall - reject if not true
-- additionalImages
-- constituents
-- department
-- objectName
-- title - reject if includes plural version of search q, ie "vases", "vessels", "pots", "jugs"
-- culture
-- dynasty
-- reign
-- portfolio
-- artistRole
-- artistPrefix
-- artistDisplayName
-- artistDisplayBio
-- objectDate
-- objectBeginDate
-- objectEndDate
-- medium
-- dimensions
-- dimensionsParsed
-- measurements
-- geographyType
-- city
-- state
-- county
-- country
-- region
-- subregion
-- locale
-- locus
-- excavation
-- classification - reject if doesn't include "Ceramics"
-- linkResource
-- tags
+- `object_ids.json`
+  - JSON array of raw object IDs returned by Met search queries.
+
+- `objects.json`
+  - JSON object keyed by `objectID`:
+    - `{ "<objectID>": { ...full object data... }, ... }`
+  - Includes objects that pass filtering rules.
+  - Empty-string fields (`""`) are removed before saving.
+
+- `reject_object_ids.json`
+  - JSON array of object IDs rejected by content filters.
+
+- `api_errors_object_ids.json`
+  - JSON array of object IDs that failed due to API/network errors (kept separate from content-based rejects).
+
+## Current Filter Rules (content-based rejects)
+
+An object ID is added to `reject_object_ids.json` when any of the following are true:
+
+- `isPublicDomain` is not `true`
+- `primaryImageSmall` is missing or empty
+- `classification` does not include `"Ceramics"`
+- `objectName` or `title` includes plural search terms (derived from `QUERIES` in `get_object_ids.py`, e.g. `"vases"`, `"vessels"`, `"pots"`, `"jugs"`)
+- `objectName` or `title` includes one of:
+  - `"shard"`, `"plate"`, `"bowl"`, `"cup"`, `"set of"`
