@@ -1,0 +1,92 @@
+#!/usr/bin/env sh
+
+green="\033[0;32m"
+red="\033[0;31m"
+reset="\033[0m"
+
+pass_log() {
+  printf "${green}✅ PASS${reset} %s\n" "$1"
+}
+
+fail_log() {
+  printf "${red}❌ FAIL${reset} %s\n" "$1"
+}
+
+ask_yes_no() {
+  prompt="$1"
+  default_answer="$2"
+
+  printf "%s" "$prompt"
+
+  if [ -t 0 ]; then
+    read -r answer
+  else
+    # When stdin is not attached (common in hooks), read from the terminal directly.
+    read -r answer < /dev/tty || answer="$default_answer"
+  fi
+
+  case "$answer" in
+    [Yy] | [Yy][Ee][Ss])
+      return 0
+      ;;
+    "" | [Nn] | [Nn][Oo])
+      return 1
+      ;;
+    *)
+      echo "Invalid response. Enter 'y' or 'n'. Push aborted."
+      exit 1
+      ;;
+  esac
+}
+
+# Git passes push updates on stdin (local_ref local_sha remote_ref remote_sha).
+# Capture them first so we can inspect target refs and still prompt interactively.
+refs_payload="$(cat)"
+
+if ask_yes_no "Run vite build before push? [y/N]: " "n"; then
+  if npm run build; then
+    pass_log "Vite build"
+  else
+    fail_log "Vite build"
+    printf "${red}Push blocked.${reset}\n"
+    exit 1
+  fi
+else
+  echo "Skipping vite build before push."
+fi
+
+pushes_main="0"
+has_refs="0"
+while IFS=' ' read -r local_ref local_sha remote_ref remote_sha; do
+  [ -z "$local_ref" ] && continue
+  has_refs="1"
+
+  case "$local_ref" in
+    refs/heads/main | main)
+      pushes_main="1"
+      break
+      ;;
+  esac
+
+  case "$remote_ref" in
+    refs/heads/main | main)
+      pushes_main="1"
+      break
+      ;;
+  esac
+done <<EOF
+$refs_payload
+EOF
+
+if [ "$has_refs" = "0" ]; then
+  echo "No refs to push (likely everything up-to-date); skipping main-target detection."
+fi
+
+if [ "$pushes_main" = "1" ]; then
+  if ! ask_yes_no "You are pushing to 'main'. Continue anyway? [y/N]: " "n"; then
+    fail_log "Main branch push confirmation"
+    echo "Push to 'main' cancelled."
+    exit 1
+  fi
+  pass_log "Main branch push confirmation"
+fi
