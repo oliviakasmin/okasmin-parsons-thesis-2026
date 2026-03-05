@@ -1,3 +1,5 @@
+Deployed link: https://okasmin-thesis-vessels.netlify.app/
+
 # okasmin-parsons-thesis-2026
 
 This repository contains the thesis project codebase, including:
