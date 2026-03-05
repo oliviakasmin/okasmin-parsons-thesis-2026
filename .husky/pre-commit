@@ -1,0 +1,66 @@
+#!/usr/bin/env sh
+
+green="\033[0;32m"
+red="\033[0;31m"
+reset="\033[0m"
+
+run_check() {
+  label="$1"
+  command="$2"
+
+  printf "Running %s...\n" "$label"
+  if eval "$command"; then
+    printf "${green}✅ PASS${reset} %s\n\n" "$label"
+  else
+    printf "${red}❌ FAIL${reset} %s\n" "$label"
+    printf "${red}Commit blocked.${reset}\n"
+    exit 1
+  fi
+}
+
+run_ruff_staged() {
+  mode="$1" # format|lint
+  staged_files="$(git diff --cached --name-only --diff-filter=ACMR)"
+  python_files=""
+
+  while IFS= read -r file; do
+    case "$file" in
+      pipeline/* | hf_space/*)
+        case "$file" in
+          *.py)
+            python_files="${python_files}
+$file"
+            ;;
+        esac
+        ;;
+    esac
+  done <<EOF
+$staged_files
+EOF
+
+  if [ -z "$python_files" ]; then
+    printf "No staged Python files in pipeline/hf_space. Skipping Ruff %s.\n" "$mode"
+    return 0
+  fi
+
+  old_ifs="$IFS"
+  IFS='
+'
+  set -- $python_files
+  IFS="$old_ifs"
+
+  if [ "$mode" = "format" ]; then
+    python3 -m ruff format --check "$@"
+  else
+    python3 -m ruff check "$@"
+  fi
+}
+
+run_check "Prettier" "npm run format"
+run_check "ESLint" "npm run lint"
+run_check "Ruff format (staged Python files)" "run_ruff_staged format"
+run_check "Ruff lint (staged Python files)" "run_ruff_staged lint"
+run_check "TypeScript" "npm run typecheck"
+run_check "Vite build" "npm run build"
+
+printf "${green}✅ All pre-commit checks passed.${reset}\n"
