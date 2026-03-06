@@ -8,6 +8,7 @@ url = f"https://collectionapi.metmuseum.org/public/collection/v1/objects/{id}"
 # function to verify if want to include object based on certain properties. if keep, then save to objecst.json, otherwise save object id to reject-object-ids.json and don't save additional info to objects.json for that object
 
 import json
+import random
 import time
 from pathlib import Path
 from typing import Any, Dict, List
@@ -36,8 +37,8 @@ API_ERRORS_PATH = DATA_DIR / "api_errors_object_ids.json"
 # Throttling / batching
 REQUEST_TIMEOUT = 30
 SLEEP_BETWEEN_REQUESTS = 0.05  # seconds; bump up if you hit rate limits
-SAVE_EVERY_N_OBJECTS = 200     # how often to flush to disk
-MAX_NEW_IDS_PER_RUN = 1000     # cap per run to avoid over-fetching
+SAVE_EVERY_N_OBJECTS = 200  # how often to flush to disk
+MAX_NEW_IDS_PER_RUN = 500  # hard cap per run to avoid over-fetching
 
 
 def load_json_list(path: Path) -> List[Any]:
@@ -101,8 +102,15 @@ def main() -> None:
     rejected_ids: List[int] = load_json_list(REJECT_IDS_PATH)
     api_error_ids: List[int] = load_json_list(API_ERRORS_PATH)
 
-    # Build processed set from both kept and rejected so we don't re-hit the API
-    processed_ids = set(int(k) for k in objects_by_id.keys()) | set(rejected_ids)
+    # Build processed set from kept/rejected/API-error IDs so we don't re-hit the API.
+    processed_ids = (
+        set(int(k) for k in objects_by_id.keys()) | set(rejected_ids) | set(api_error_ids)
+    )
+
+    # Preselect a random batch of unprocessed IDs so each run fetches at most
+    # MAX_NEW_IDS_PER_RUN objects total.
+    remaining_ids = [object_id for object_id in object_ids if object_id not in processed_ids]
+    run_ids = random.sample(remaining_ids, k=min(MAX_NEW_IDS_PER_RUN, len(remaining_ids)))
 
     print(f"Loaded {len(object_ids)} IDs from {OBJECT_IDS_PATH}")
     print(
@@ -110,15 +118,18 @@ def main() -> None:
         f"{len(rejected_ids)} rejected, "
         f"{len(api_error_ids)} with API errors."
     )
+    print(
+        f"Selected {len(run_ids)} random unprocessed IDs (max {MAX_NEW_IDS_PER_RUN}) for this run."
+    )
+
+    start_kept_count = len(objects_by_id)
+    start_rejected_count = len(rejected_ids)
+    start_api_error_count = len(api_error_ids)
 
     processed_since_save = 0
     new_ids_this_run = 0
 
-    for object_id in tqdm(object_ids, desc="Fetching object details"):
-        # 1. Skip API call entirely if we've already processed this ID
-        if object_id in processed_ids:
-            continue
-
+    for object_id in tqdm(run_ids, desc="Fetching object details"):
         try:
             obj = fetch_object(object_id)
         except ForbiddenError as exc:
@@ -165,10 +176,16 @@ def main() -> None:
     save_json(REJECT_IDS_PATH, rejected_ids)
     save_json(API_ERRORS_PATH, api_error_ids)
 
+    new_kept_count = len(objects_by_id) - start_kept_count
+    new_rejected_count = len(rejected_ids) - start_rejected_count
+    new_api_error_count = len(api_error_ids) - start_api_error_count
+
     print(
-        f"Done. Kept {len(objects_by_id)} objects, "
-        f"rejected {len(rejected_ids)}, "
-        f"{len(api_error_ids)} with API errors. "
+        f"Done. New this run -"
+        f"➕kept: {new_kept_count}, "
+        f"rejected: {new_rejected_count}, "
+        f"API errors: {new_api_error_count}"
+        f"✅Totals: kept {len(objects_by_id)} "
         f"Saved to {OBJECTS_PATH}, {REJECT_IDS_PATH}, and {API_ERRORS_PATH}."
     )
 

@@ -41,11 +41,35 @@ source .venv/bin/activate
 
 Run all scripts from the repo root using module mode:
 
+Fetch and save deduplicated Met object IDs:
 ```bash
 python -m pipeline.fetch.get_object_ids
+```
+
+Fetch details for up to 100 random unprocessed IDs and update output files:
+```bash
 python -m pipeline.fetch.get_objects
+```
+
+Remove rejected IDs from `pipeline/data/object_ids.json`:
+```bash
 python -m pipeline.clean.clean_object_ids
+```
+
+Clean stored object records (for example, remove empty-string fields):
+```bash
 python -m pipeline.clean.clean_objects
+```
+
+Print how many objects are currently saved in `pipeline/data/objects.json`:
+```bash
+python -m pipeline.utils
+```
+
+You can also run the object count utility from the repo root with:
+
+```bash
+npm run count:objects
 ```
 
 ## Recommended workflow

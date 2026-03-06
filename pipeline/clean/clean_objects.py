@@ -77,12 +77,14 @@ def clean_objects_with_filters() -> None:
         f"(removed {removed_count} objects that failed filters)"
     )
 
+
 def remove_empty_string_fields_from_object(obj: Dict[str, Any]) -> Dict[str, Any]:
     """
     Return a new object dict with any top-level fields removed when value == "".
     Keeps all other values (including 0, False, [], {}, and None).
     """
     return {k: v for k, v in obj.items() if v != ""}
+
 
 def clean_empty_string_fields() -> None:
     """
@@ -102,16 +104,16 @@ def clean_empty_string_fields() -> None:
     save_json(OBJECTS_PATH, cleaned_objects)
 
     print(
-        f"Removed {removed_field_count} empty-string fields across "
-        f"{original_object_count} objects."
+        f"Removed {removed_field_count} empty-string fields across {original_object_count} objects."
     )
+
 
 def run_all() -> None:
     """
     Entry point for cleaning steps.
     """
     clean_objects_with_filters()
-    clean_empty_string_fields() # run after cleaning with filters to remove any fields that are now empty
+    clean_empty_string_fields()  # run after cleaning with filters to remove any fields that are now empty
 
 
 if __name__ == "__main__":

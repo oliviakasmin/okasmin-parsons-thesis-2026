@@ -16,6 +16,7 @@
     "format:fix": "prettier \"app/**/*.{ts,tsx,css,html}\" \"*.{js,ts,json}\" --write",
     "format:py": "python3 -m ruff format pipeline hf_space --check",
     "format:py:fix": "python3 -m ruff format pipeline hf_space",
+    "count:objects": "python3 -m pipeline.utils",
     "typecheck": "tsc -b",
     "check:commit": "npm run format && npm run format:py && npm run lint && npm run lint:py && npm run typecheck && npm run build"
   },

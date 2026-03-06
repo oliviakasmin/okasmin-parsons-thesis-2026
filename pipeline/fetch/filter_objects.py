@@ -17,7 +17,7 @@ CLASSIFICATION_REQUIRED_SUBSTRING = "Ceramics"
 PLURAL_TERMS = [q.lower() + "s" for q in QUERIES]
 
 # Additional exclusion terms that should cause rejection
-EXCLUDED_TERMS = ["shard", "plate", "bowl", "cup", "set of"]
+EXCLUDED_TERMS = ["shard", "plate", "bowl", "cup", "set of", "service"]
 
 
 def _contains_any_term(text: str, terms: list[str]) -> bool:
