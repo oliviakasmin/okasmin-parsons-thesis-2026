@@ -67,7 +67,7 @@ test_assets/
 *.json
 
 
-# Re-allow pipeline data JSON files 
+# Re-allow required JSON/config files
 !object_ids.json
 !objects.json
 !reject_object_ids.json
