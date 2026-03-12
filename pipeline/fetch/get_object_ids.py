@@ -8,13 +8,10 @@ from pathlib import Path
 import requests
 from tqdm import tqdm
 
-# search Met API for object IDs
-QUERIES = ["vessel", "vase", "pot", "jug"]
+# Search Met API for object IDs using tighter vessel/object terms.
+QUERIES = ["vase", "bottle", "jar", "jug", "ewer", "amphora", "urn", "flask", "pitcher"]
 
-BASE_URL = (
-    "https://collectionapi.metmuseum.org/public/collection/v1/search"
-    "?material=Ceramics&hasImages=true&isPublicDomain=true&q={query}"
-)
+BASE_URL = "https://collectionapi.metmuseum.org/public/collection/v1/search"
 
 # where to save the combined list of IDs
 ROOT = Path(__file__).resolve().parents[2]  # repo root: .../okasmin-parsons-thesis-2026
@@ -25,8 +22,11 @@ OBJECT_IDS_PATH = DATA_DIR / "object_ids.json"
 
 def fetch_ids_for_query(query: str) -> list[int]:
     """Fetch object IDs from the Met API for a single query string."""
-    url = BASE_URL.format(query=query)
-    resp = requests.get(url, timeout=30)
+    resp = requests.get(
+        BASE_URL,
+        params={"medium": "Ceramics", "hasImages": "true", "q": query},
+        timeout=30,
+    )
     resp.raise_for_status()
     data = resp.json()
 
@@ -57,5 +57,3 @@ if __name__ == "__main__":
 
 # to run this file:
 # python pipeline/fetch/get_object_ids.py
-
-# Saved 48260 unique object IDs

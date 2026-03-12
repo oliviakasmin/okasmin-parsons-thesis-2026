@@ -3,9 +3,7 @@
 
 
 # loop through object_ids and save relevant info for each object
-url = f"https://collectionapi.metmuseum.org/public/collection/v1/objects/{id}"
-
-# function to verify if want to include object based on certain properties. if keep, then save to objecst.json, otherwise save object id to reject-object-ids.json and don't save additional info to objects.json for that object
+# function to verify if want to include object based on certain properties. if keep, then save to objects.json, otherwise save object id to reject-object-ids.json and don't save additional info to objects.json for that object
 
 import json
 import random
@@ -61,6 +59,17 @@ def save_json(path: Path, data: Any) -> None:
         json.dump(data, f, indent=2)
 
 
+def dedupe_ids_preserve_order(ids: List[int]) -> List[int]:
+    seen: set[int] = set()
+    unique_ids: List[int] = []
+    for object_id in ids:
+        if object_id in seen:
+            continue
+        seen.add(object_id)
+        unique_ids.append(object_id)
+    return unique_ids
+
+
 def fetch_object(object_id: int) -> Dict[str, Any]:
     url = f"https://collectionapi.metmuseum.org/public/collection/v1/objects/{object_id}"
     resp = requests.get(url, timeout=REQUEST_TIMEOUT)
@@ -99,8 +108,10 @@ def main() -> None:
 
     # Existing data (for resume)
     objects_by_id: Dict[str, Any] = load_json_dict(OBJECTS_PATH)
-    rejected_ids: List[int] = load_json_list(REJECT_IDS_PATH)
-    api_error_ids: List[int] = load_json_list(API_ERRORS_PATH)
+    rejected_ids: List[int] = dedupe_ids_preserve_order(load_json_list(REJECT_IDS_PATH))
+    api_error_ids: List[int] = dedupe_ids_preserve_order(load_json_list(API_ERRORS_PATH))
+    rejected_id_set = set(rejected_ids)
+    api_error_id_set = set(api_error_ids)
 
     # Build processed set from kept/rejected/API-error IDs so we don't re-hit the API.
     processed_ids = (
@@ -135,13 +146,17 @@ def main() -> None:
         except ForbiddenError as exc:
             # Record this ID as having an API error, then stop the run.
             print(exc)
-            api_error_ids.append(object_id)
+            if object_id not in api_error_id_set:
+                api_error_ids.append(object_id)
+                api_error_id_set.add(object_id)
             new_ids_this_run += 1
             break
         except requests.RequestException as exc:
             # Other API/network errors: record and continue, but do NOT mark as rejected.
             print(f"API error for object {object_id}: {exc}")
-            api_error_ids.append(object_id)
+            if object_id not in api_error_id_set:
+                api_error_ids.append(object_id)
+                api_error_id_set.add(object_id)
             processed_ids.add(object_id)
             new_ids_this_run += 1
             continue
@@ -151,6 +166,8 @@ def main() -> None:
             key = str(cleaned_obj.get("objectID", object_id))
             objects_by_id[key] = cleaned_obj
             # apply_filters function will append any rejected object ids to the rejected list
+        elif object_id not in rejected_id_set:
+            rejected_id_set.add(object_id)
 
         processed_ids.add(object_id)
         processed_since_save += 1
@@ -159,6 +176,8 @@ def main() -> None:
         time.sleep(SLEEP_BETWEEN_REQUESTS)
 
         if processed_since_save >= SAVE_EVERY_N_OBJECTS or new_ids_this_run >= MAX_NEW_IDS_PER_RUN:
+            rejected_ids = dedupe_ids_preserve_order(rejected_ids)
+            api_error_ids = dedupe_ids_preserve_order(api_error_ids)
             save_json(OBJECTS_PATH, objects_by_id)
             save_json(REJECT_IDS_PATH, rejected_ids)
             save_json(API_ERRORS_PATH, api_error_ids)
@@ -172,6 +191,8 @@ def main() -> None:
                 break
 
     # Final save at the end of the run
+    rejected_ids = dedupe_ids_preserve_order(rejected_ids)
+    api_error_ids = dedupe_ids_preserve_order(api_error_ids)
     save_json(OBJECTS_PATH, objects_by_id)
     save_json(REJECT_IDS_PATH, rejected_ids)
     save_json(API_ERRORS_PATH, api_error_ids)

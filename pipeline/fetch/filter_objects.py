@@ -7,17 +7,40 @@ from typing import Any, Dict
 # - objectName or title includes plural version of search q, ie "vases", "vessels", "pots", "jugs"
 # - objectName or title includes ["shard", "plate", "bowl", "cup", "set of"]
 
-# Import the search terms from get_object_ids so they stay in sync.
-from .get_object_ids import QUERIES  # type: ignore[import]
-
-
 CLASSIFICATION_REQUIRED_SUBSTRING = "Ceramics"
 
-# Derive plural search terms like "vases", "vessels", "pots", "jugs".
-PLURAL_TERMS = [q.lower() + "s" for q in QUERIES]
+# Keep this list explicit so fetch-query tuning does not silently alter filter behavior.
+# We still reject pluralized vessel/object words in objectName/title.
+PLURAL_TERMS = [
+    "vases",
+    "bottles",
+    "jars",
+    "jugs",
+    "ewers",
+    "urns",
+    "flasks",
+    "pitchers",
+    "vessels",
+    "pots",
+    "teapots",
+    "tea pots",
+    # Irregular plural
+    "amphorae",
+]
 
 # Additional exclusion terms that should cause rejection
-EXCLUDED_TERMS = ["shard", "plate", "bowl", "cup", "set of", "service"]
+EXCLUDED_TERMS = [
+    "shard",
+    "plate",
+    "bowl",
+    "cup",
+    "set of",
+    "service",
+    "a pair",
+    "a set",
+    "tea pot",
+    "teapot",
+]
 
 
 def _contains_any_term(text: str, terms: list[str]) -> bool:
