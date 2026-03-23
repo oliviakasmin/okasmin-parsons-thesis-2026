@@ -1,0 +1,5663 @@
+{
+  "top_k_candidates": 20,
+  "criteria_order": [
+    "closest_shape",
+    "furthest_date",
+    "closest_different_culture",
+    "closest_different_department"
+  ],
+  "results": {
+    "185901": {
+      "closest_shape": "210743",
+      "furthest_date": "314688",
+      "closest_different_culture": null,
+      "closest_different_department": "45987"
+    },
+    "185914": {
+      "closest_shape": "208409",
+      "furthest_date": "309388",
+      "closest_different_culture": null,
+      "closest_different_department": "42278"
+    },
+    "187805": {
+      "closest_shape": "201028",
+      "furthest_date": "78006",
+      "closest_different_culture": null,
+      "closest_different_department": "49366"
+    },
+    "187854": {
+      "closest_shape": "62711",
+      "furthest_date": null,
+      "closest_different_culture": null,
+      "closest_different_department": "63137"
+    },
+    "187857": {
+      "closest_shape": "46092",
+      "furthest_date": "45849",
+      "closest_different_culture": null,
+      "closest_different_department": "50944"
+    },
+    "188534": {
+      "closest_shape": "188535",
+      "furthest_date": "44422",
+      "closest_different_culture": null,
+      "closest_different_department": "45970"
+    },
+    "188535": {
+      "closest_shape": "188534",
+      "furthest_date": "44422",
+      "closest_different_culture": null,
+      "closest_different_department": "45970"
+    },
+    "188538": {
+      "closest_shape": "47922",
+      "furthest_date": "239506",
+      "closest_different_culture": null,
+      "closest_different_department": "44862"
+    },
+    "188777": {
+      "closest_shape": "187805",
+      "furthest_date": "46809",
+      "closest_different_culture": null,
+      "closest_different_department": "46536"
+    },
+    "188900": {
+      "closest_shape": "47172",
+      "furthest_date": "49896",
+      "closest_different_culture": null,
+      "closest_different_department": "452853"
+    },
+    "188908": {
+      "closest_shape": "45964",
+      "furthest_date": "45529",
+      "closest_different_culture": null,
+      "closest_different_department": "45962"
+    },
+    "188972": {
+      "closest_shape": "200885",
+      "furthest_date": "49553",
+      "closest_different_culture": null,
+      "closest_different_department": "46076"
+    },
+    "190600": {
+      "closest_shape": "47892",
+      "furthest_date": "314688",
+      "closest_different_culture": null,
+      "closest_different_department": "487245"
+    },
+    "190732": {
+      "closest_shape": "47809",
+      "furthest_date": "308507",
+      "closest_different_culture": null,
+      "closest_different_department": "46131"
+    },
+    "191142": {
+      "closest_shape": "310645",
+      "furthest_date": "309498",
+      "closest_different_culture": null,
+      "closest_different_department": "446222"
+    },
+    "191344": {
+      "closest_shape": "45986",
+      "furthest_date": "45849",
+      "closest_different_culture": null,
+      "closest_different_department": "52659"
+    },
+    "191375": {
+      "closest_shape": "202183",
+      "furthest_date": "46809",
+      "closest_different_culture": null,
+      "closest_different_department": "46536"
+    },
+    "191780": {
+      "closest_shape": "204512",
+      "furthest_date": "50213",
+      "closest_different_culture": null,
+      "closest_different_department": "46116"
+    },
+    "192802": {
+      "closest_shape": "45930",
+      "furthest_date": "314680",
+      "closest_different_culture": null,
+      "closest_different_department": "48625"
+    },
+    "192803": {
+      "closest_shape": "47259",
+      "furthest_date": "446222",
+      "closest_different_culture": null,
+      "closest_different_department": "62711"
+    },
+    "193020": {
+      "closest_shape": "39511",
+      "furthest_date": "39510",
+      "closest_different_culture": null,
+      "closest_different_department": "63097"
+    },
+    "193093": {
+      "closest_shape": "204355",
+      "furthest_date": "308486",
+      "closest_different_culture": null,
+      "closest_different_department": "471751"
+    },
+    "193355": {
+      "closest_shape": "199026",
+      "furthest_date": "450494",
+      "closest_different_culture": null,
+      "closest_different_department": "465875"
+    },
+    "194235": {
+      "closest_shape": "46075",
+      "furthest_date": "451855",
+      "closest_different_culture": null,
+      "closest_different_department": "46087"
+    },
+    "194238": {
+      "closest_shape": "46087",
+      "furthest_date": "314680",
+      "closest_different_culture": null,
+      "closest_different_department": "46075"
+    },
+    "194248": {
+      "closest_shape": "42333",
+      "furthest_date": "312158",
+      "closest_different_culture": null,
+      "closest_different_department": "52461"
+    },
+    "194256": {
+      "closest_shape": "46531",
+      "furthest_date": "49216",
+      "closest_different_culture": null,
+      "closest_different_department": "45923"
+    },
+    "194289": {
+      "closest_shape": "201610",
+      "furthest_date": "46104",
+      "closest_different_culture": null,
+      "closest_different_department": "46517"
+    },
+    "194304": {
+      "closest_shape": "46077",
+      "furthest_date": "477749",
+      "closest_different_culture": null,
+      "closest_different_department": "42436"
+    },
+    "194432": {
+      "closest_shape": "188972",
+      "furthest_date": "49553",
+      "closest_different_culture": null,
+      "closest_different_department": "446886"
+    },
+    "194433": {
+      "closest_shape": "45964",
+      "furthest_date": "37649",
+      "closest_different_culture": null,
+      "closest_different_department": "477266"
+    },
+    "194586": {
+      "closest_shape": "487245",
+      "furthest_date": "48390",
+      "closest_different_culture": null,
+      "closest_different_department": "63141"
+    },
+    "194589": {
+      "closest_shape": "203276",
+      "furthest_date": "450747",
+      "closest_different_culture": null,
+      "closest_different_department": "47892"
+    },
+    "194632": {
+      "closest_shape": "204374",
+      "furthest_date": "49924",
+      "closest_different_culture": null,
+      "closest_different_department": "46110"
+    },
+    "195013": {
+      "closest_shape": "50349",
+      "furthest_date": "46092",
+      "closest_different_culture": null,
+      "closest_different_department": "46539"
+    },
+    "195021": {
+      "closest_shape": "63007",
+      "furthest_date": "45849",
+      "closest_different_culture": null,
+      "closest_different_department": "73676"
+    },
+    "195041": {
+      "closest_shape": "51023",
+      "furthest_date": "52568",
+      "closest_different_culture": null,
+      "closest_different_department": "37449"
+    },
+    "195277": {
+      "closest_shape": "51023",
+      "furthest_date": "46033",
+      "closest_different_culture": null,
+      "closest_different_department": "62711"
+    },
+    "195500": {
+      "closest_shape": "308386",
+      "furthest_date": "309138",
+      "closest_different_culture": null,
+      "closest_different_department": "309442"
+    },
+    "195774": {
+      "closest_shape": "37433",
+      "furthest_date": "44974",
+      "closest_different_culture": null,
+      "closest_different_department": "52659"
+    },
+    "196553": {
+      "closest_shape": "46985",
+      "furthest_date": "42278",
+      "closest_different_culture": null,
+      "closest_different_department": "46158"
+    },
+    "196741": {
+      "closest_shape": "63007",
+      "furthest_date": "312158",
+      "closest_different_culture": null,
+      "closest_different_department": "47922"
+    },
+    "197018": {
+      "closest_shape": "200928",
+      "furthest_date": "49216",
+      "closest_different_culture": null,
+      "closest_different_department": "46047"
+    },
+    "197222": {
+      "closest_shape": "63007",
+      "furthest_date": "45849",
+      "closest_different_culture": null,
+      "closest_different_department": "73676"
+    },
+    "197233": {
+      "closest_shape": "48636",
+      "furthest_date": "57400",
+      "closest_different_culture": null,
+      "closest_different_department": "47722"
+    },
+    "197558": {
+      "closest_shape": "206742",
+      "furthest_date": "46092",
+      "closest_different_culture": null,
+      "closest_different_department": "45907"
+    },
+    "197572": {
+      "closest_shape": "460128",
+      "furthest_date": "310517",
+      "closest_different_culture": null,
+      "closest_different_department": "44973"
+    },
+    "197613": {
+      "closest_shape": "460128",
+      "furthest_date": "310517",
+      "closest_different_culture": null,
+      "closest_different_department": "447285"
+    },
+    "197614": {
+      "closest_shape": "199026",
+      "furthest_date": "44973",
+      "closest_different_culture": null,
+      "closest_different_department": "310675"
+    },
+    "197824": {
+      "closest_shape": "453896",
+      "furthest_date": "39506",
+      "closest_different_culture": null,
+      "closest_different_department": "46105"
+    },
+    "198433": {
+      "closest_shape": "45554",
+      "furthest_date": "37649",
+      "closest_different_culture": null,
+      "closest_different_department": "45553"
+    },
+    "199021": {
+      "closest_shape": "49896",
+      "furthest_date": "308291",
+      "closest_different_culture": null,
+      "closest_different_department": "308457"
+    },
+    "199026": {
+      "closest_shape": "193355",
+      "furthest_date": "44973",
+      "closest_different_culture": null,
+      "closest_different_department": "465875"
+    },
+    "199039": {
+      "closest_shape": "453896",
+      "furthest_date": "39506",
+      "closest_different_culture": null,
+      "closest_different_department": "448981"
+    },
+    "199271": {
+      "closest_shape": "194433",
+      "furthest_date": "45529",
+      "closest_different_culture": null,
+      "closest_different_department": "312586"
+    },
+    "199332": {
+      "closest_shape": "203297",
+      "furthest_date": "42278",
+      "closest_different_culture": null,
+      "closest_different_department": "46533"
+    },
+    "199335": {
+      "closest_shape": "200726",
+      "furthest_date": "312158",
+      "closest_different_culture": null,
+      "closest_different_department": "314681"
+    },
+    "199384": {
+      "closest_shape": "201028",
+      "furthest_date": "46139",
+      "closest_different_culture": null,
+      "closest_different_department": "46163"
+    },
+    "199461": {
+      "closest_shape": "46330",
+      "furthest_date": "50567",
+      "closest_different_culture": null,
+      "closest_different_department": "45998"
+    },
+    "199719": {
+      "closest_shape": "44862",
+      "furthest_date": "208036",
+      "closest_different_culture": null,
+      "closest_different_department": "47922"
+    },
+    "199730": {
+      "closest_shape": "49924",
+      "furthest_date": "309470",
+      "closest_different_culture": null,
+      "closest_different_department": "45844"
+    },
+    "199751": {
+      "closest_shape": "208006",
+      "furthest_date": "449481",
+      "closest_different_culture": null,
+      "closest_different_department": "52797"
+    },
+    "200726": {
+      "closest_shape": "45900",
+      "furthest_date": "314681",
+      "closest_different_culture": null,
+      "closest_different_department": "46063"
+    },
+    "200772": {
+      "closest_shape": "203149",
+      "furthest_date": "45900",
+      "closest_different_culture": null,
+      "closest_different_department": "46481"
+    },
+    "200823": {
+      "closest_shape": "39512",
+      "furthest_date": "39510",
+      "closest_different_culture": null,
+      "closest_different_department": "45484"
+    },
+    "200841": {
+      "closest_shape": "52546",
+      "furthest_date": "49896",
+      "closest_different_culture": null,
+      "closest_different_department": "48012"
+    },
+    "200862": {
+      "closest_shape": "200726",
+      "furthest_date": "314681",
+      "closest_different_culture": null,
+      "closest_different_department": "42255"
+    },
+    "200880": {
+      "closest_shape": "200885",
+      "furthest_date": "194432",
+      "closest_different_culture": null,
+      "closest_different_department": "50948"
+    },
+    "200885": {
+      "closest_shape": "188972",
+      "furthest_date": "49553",
+      "closest_different_culture": null,
+      "closest_different_department": "471800"
+    },
+    "200886": {
+      "closest_shape": "46055",
+      "furthest_date": "76733",
+      "closest_different_culture": null,
+      "closest_different_department": "46047"
+    },
+    "200895": {
+      "closest_shape": "194235",
+      "furthest_date": "46315",
+      "closest_different_culture": null,
+      "closest_different_department": "42360"
+    },
+    "200928": {
+      "closest_shape": "203149",
+      "furthest_date": "49216",
+      "closest_different_culture": null,
+      "closest_different_department": "53826"
+    },
+    "201028": {
+      "closest_shape": "49366",
+      "furthest_date": "46353",
+      "closest_different_culture": null,
+      "closest_different_department": "45923"
+    },
+    "201031": {
+      "closest_shape": "46378",
+      "furthest_date": "48204",
+      "closest_different_culture": null,
+      "closest_different_department": "47389"
+    },
+    "201052": {
+      "closest_shape": "42218",
+      "furthest_date": "239494",
+      "closest_different_culture": null,
+      "closest_different_department": "50891"
+    },
+    "201610": {
+      "closest_shape": "194289",
+      "furthest_date": "199384",
+      "closest_different_culture": null,
+      "closest_different_department": "49366"
+    },
+    "201716": {
+      "closest_shape": "204360",
+      "furthest_date": "44729",
+      "closest_different_culture": null,
+      "closest_different_department": "37563"
+    },
+    "201729": {
+      "closest_shape": "46001",
+      "furthest_date": "49896",
+      "closest_different_culture": null,
+      "closest_different_department": "45553"
+    },
+    "201733": {
+      "closest_shape": "57436",
+      "furthest_date": "49896",
+      "closest_different_culture": null,
+      "closest_different_department": "47172"
+    },
+    "201753": {
+      "closest_shape": "47443",
+      "furthest_date": "45849",
+      "closest_different_culture": null,
+      "closest_different_department": "46675"
+    },
+    "202183": {
+      "closest_shape": "191375",
+      "furthest_date": "46809",
+      "closest_different_culture": null,
+      "closest_different_department": "46536"
+    },
+    "203149": {
+      "closest_shape": "200928",
+      "furthest_date": "46799",
+      "closest_different_culture": null,
+      "closest_different_department": "50948"
+    },
+    "203276": {
+      "closest_shape": "46773",
+      "furthest_date": "487245",
+      "closest_different_culture": null,
+      "closest_different_department": "50502"
+    },
+    "203297": {
+      "closest_shape": "199332",
+      "furthest_date": "308381",
+      "closest_different_culture": null,
+      "closest_different_department": "47920"
+    },
+    "203299": {
+      "closest_shape": "47158",
+      "furthest_date": "312158",
+      "closest_different_culture": null,
+      "closest_different_department": "449066"
+    },
+    "203377": {
+      "closest_shape": "197018",
+      "furthest_date": "48390",
+      "closest_different_culture": null,
+      "closest_different_department": "460675"
+    },
+    "203378": {
+      "closest_shape": "194235",
+      "furthest_date": "314680",
+      "closest_different_culture": null,
+      "closest_different_department": "46087"
+    },
+    "204071": {
+      "closest_shape": "46110",
+      "furthest_date": "49896",
+      "closest_different_culture": null,
+      "closest_different_department": "52032"
+    },
+    "204355": {
+      "closest_shape": "231768",
+      "furthest_date": "308486",
+      "closest_different_culture": null,
+      "closest_different_department": "471751"
+    },
+    "204360": {
+      "closest_shape": "201716",
+      "furthest_date": "308486",
+      "closest_different_culture": null,
+      "closest_different_department": "37563"
+    },
+    "204364": {
+      "closest_shape": "204355",
+      "furthest_date": "308486",
+      "closest_different_culture": null,
+      "closest_different_department": "471751"
+    },
+    "204374": {
+      "closest_shape": "461338",
+      "furthest_date": "308486",
+      "closest_different_culture": null,
+      "closest_different_department": "460681"
+    },
+    "204385": {
+      "closest_shape": "46110",
+      "furthest_date": "44426",
+      "closest_different_culture": null,
+      "closest_different_department": "52032"
+    },
+    "204386": {
+      "closest_shape": "231768",
+      "furthest_date": "45529",
+      "closest_different_culture": null,
+      "closest_different_department": "477266"
+    },
+    "204403": {
+      "closest_shape": "46110",
+      "furthest_date": "37537",
+      "closest_different_culture": null,
+      "closest_different_department": "49924"
+    },
+    "204414": {
+      "closest_shape": "49924",
+      "furthest_date": "45529",
+      "closest_different_culture": null,
+      "closest_different_department": "46110"
+    },
+    "204512": {
+      "closest_shape": "191780",
+      "furthest_date": "44727",
+      "closest_different_culture": null,
+      "closest_different_department": "451695"
+    },
+    "204524": {
+      "closest_shape": "448981",
+      "furthest_date": "49262",
+      "closest_different_culture": null,
+      "closest_different_department": "449066"
+    },
+    "204760": {
+      "closest_shape": "308520",
+      "furthest_date": "314688",
+      "closest_different_culture": null,
+      "closest_different_department": "47892"
+    },
+    "205096": {
+      "closest_shape": "199026",
+      "furthest_date": "37649",
+      "closest_different_culture": null,
+      "closest_different_department": "52568"
+    },
+    "205321": {
+      "closest_shape": "42243",
+      "furthest_date": "49216",
+      "closest_different_culture": null,
+      "closest_different_department": "46531"
+    },
+    "205323": {
+      "closest_shape": "644111",
+      "furthest_date": "46315",
+      "closest_different_culture": null,
+      "closest_different_department": "48628"
+    },
+    "205325": {
+      "closest_shape": "45913",
+      "furthest_date": "675861",
+      "closest_different_culture": null,
+      "closest_different_department": "46849"
+    },
+    "205470": {
+      "closest_shape": "62546",
+      "furthest_date": "310197",
+      "closest_different_culture": null,
+      "closest_different_department": "53855"
+    },
+    "205825": {
+      "closest_shape": "471751",
+      "furthest_date": "37649",
+      "closest_different_culture": null,
+      "closest_different_department": "466618"
+    },
+    "205832": {
+      "closest_shape": "192802",
+      "furthest_date": "308386",
+      "closest_different_culture": null,
+      "closest_different_department": "46501"
+    },
+    "205835": {
+      "closest_shape": "192802",
+      "furthest_date": "314680",
+      "closest_different_culture": null,
+      "closest_different_department": "47574"
+    },
+    "205878": {
+      "closest_shape": "46481",
+      "furthest_date": "308518",
+      "closest_different_culture": null,
+      "closest_different_department": "42360"
+    },
+    "205914": {
+      "closest_shape": "205325",
+      "furthest_date": "46809",
+      "closest_different_culture": null,
+      "closest_different_department": "45913"
+    },
+    "205929": {
+      "closest_shape": "188900",
+      "furthest_date": "49896",
+      "closest_different_culture": null,
+      "closest_different_department": "309447"
+    },
+    "206058": {
+      "closest_shape": "199719",
+      "furthest_date": "314681",
+      "closest_different_culture": null,
+      "closest_different_department": "451855"
+    },
+    "206454": {
+      "closest_shape": "46462",
+      "furthest_date": "46809",
+      "closest_different_culture": null,
+      "closest_different_department": "48312"
+    },
+    "206586": {
+      "closest_shape": "48027",
+      "furthest_date": "44426",
+      "closest_different_culture": null,
+      "closest_different_department": "46129"
+    },
+    "206654": {
+      "closest_shape": "49924",
+      "furthest_date": "309470",
+      "closest_different_culture": null,
+      "closest_different_department": "46016"
+    },
+    "206742": {
+      "closest_shape": "197558",
+      "furthest_date": "46092",
+      "closest_different_culture": null,
+      "closest_different_department": "51217"
+    },
+    "207399": {
+      "closest_shape": "45550",
+      "furthest_date": "44729",
+      "closest_different_culture": null,
+      "closest_different_department": "45205"
+    },
+    "207745": {
+      "closest_shape": "63141",
+      "furthest_date": "309327",
+      "closest_different_culture": null,
+      "closest_different_department": "63093"
+    },
+    "207775": {
+      "closest_shape": "871929",
+      "furthest_date": "316177",
+      "closest_different_culture": null,
+      "closest_different_department": "309490"
+    },
+    "207983": {
+      "closest_shape": "670810",
+      "furthest_date": "308451",
+      "closest_different_culture": null,
+      "closest_different_department": "47644"
+    },
+    "207984": {
+      "closest_shape": "200885",
+      "furthest_date": "312158",
+      "closest_different_culture": null,
+      "closest_different_department": "45959"
+    },
+    "208006": {
+      "closest_shape": "199751",
+      "furthest_date": "452610",
+      "closest_different_culture": null,
+      "closest_different_department": "465875"
+    },
+    "208036": {
+      "closest_shape": "48759",
+      "furthest_date": "451855",
+      "closest_different_culture": null,
+      "closest_different_department": "46087"
+    },
+    "208140": {
+      "closest_shape": "49857",
+      "furthest_date": "309442",
+      "closest_different_culture": null,
+      "closest_different_department": "46478"
+    },
+    "208243": {
+      "closest_shape": "48636",
+      "furthest_date": "57400",
+      "closest_different_culture": null,
+      "closest_different_department": "47722"
+    },
+    "208409": {
+      "closest_shape": "185914",
+      "furthest_date": "39510",
+      "closest_different_culture": null,
+      "closest_different_department": "42436"
+    },
+    "210743": {
+      "closest_shape": "45987",
+      "furthest_date": "309519",
+      "closest_different_culture": null,
+      "closest_different_department": "47892"
+    },
+    "210750": {
+      "closest_shape": "449481",
+      "furthest_date": "239486",
+      "closest_different_culture": null,
+      "closest_different_department": "47292"
+    },
+    "231034": {
+      "closest_shape": "314182",
+      "furthest_date": "312158",
+      "closest_different_culture": null,
+      "closest_different_department": "42333"
+    },
+    "231768": {
+      "closest_shape": "204355",
+      "furthest_date": "477266",
+      "closest_different_culture": null,
+      "closest_different_department": "46017"
+    },
+    "231853": {
+      "closest_shape": "231854",
+      "furthest_date": "48629",
+      "closest_different_culture": null,
+      "closest_different_department": "47600"
+    },
+    "231854": {
+      "closest_shape": "231855",
+      "furthest_date": "770974",
+      "closest_different_culture": null,
+      "closest_different_department": "47600"
+    },
+    "231855": {
+      "closest_shape": "231854",
+      "furthest_date": "770974",
+      "closest_different_culture": null,
+      "closest_different_department": "46516"
+    },
+    "232205": {
+      "closest_shape": "44447",
+      "furthest_date": "308507",
+      "closest_different_culture": null,
+      "closest_different_department": "309441"
+    },
+    "239486": {
+      "closest_shape": "47259",
+      "furthest_date": "446222",
+      "closest_different_culture": null,
+      "closest_different_department": "63129"
+    },
+    "239494": {
+      "closest_shape": "830414",
+      "furthest_date": "451855",
+      "closest_different_culture": null,
+      "closest_different_department": "42206"
+    },
+    "239506": {
+      "closest_shape": "42389",
+      "furthest_date": "463086",
+      "closest_different_culture": null,
+      "closest_different_department": "46353"
+    },
+    "307473": {
+      "closest_shape": "314693",
+      "furthest_date": "770999",
+      "closest_different_culture": "45482",
+      "closest_different_department": "46773"
+    },
+    "308291": {
+      "closest_shape": "313301",
+      "furthest_date": "47172",
+      "closest_different_culture": "49896",
+      "closest_different_department": "47786"
+    },
+    "308296": {
+      "closest_shape": "62595",
+      "furthest_date": "37537",
+      "closest_different_culture": "62770",
+      "closest_different_department": "49349"
+    },
+    "308297": {
+      "closest_shape": "49896",
+      "furthest_date": "47172",
+      "closest_different_culture": "49349",
+      "closest_different_department": "62770"
+    },
+    "308362": {
+      "closest_shape": "52032",
+      "furthest_date": "47172",
+      "closest_different_culture": "49896",
+      "closest_different_department": "49349"
+    },
+    "308381": {
+      "closest_shape": "446841",
+      "furthest_date": "487245",
+      "closest_different_culture": "47118",
+      "closest_different_department": "449913"
+    },
+    "308386": {
+      "closest_shape": "47809",
+      "furthest_date": "44447",
+      "closest_different_culture": "47075",
+      "closest_different_department": "190732"
+    },
+    "308404": {
+      "closest_shape": "49296",
+      "furthest_date": "309509",
+      "closest_different_culture": "49293",
+      "closest_different_department": "45938"
+    },
+    "308406": {
+      "closest_shape": "49296",
+      "furthest_date": "670810",
+      "closest_different_culture": "49293",
+      "closest_different_department": "44907"
+    },
+    "308410": {
+      "closest_shape": "316716",
+      "furthest_date": "487245",
+      "closest_different_culture": "62546",
+      "closest_different_department": "201753"
+    },
+    "308411": {
+      "closest_shape": "871929",
+      "furthest_date": "207775",
+      "closest_different_culture": "50335",
+      "closest_different_department": "205470"
+    },
+    "308420": {
+      "closest_shape": "312928",
+      "furthest_date": "37537",
+      "closest_different_culture": "47228",
+      "closest_different_department": "45918"
+    },
+    "308451": {
+      "closest_shape": "451635",
+      "furthest_date": "890336",
+      "closest_different_culture": "47258",
+      "closest_different_department": "46561"
+    },
+    "308457": {
+      "closest_shape": "49896",
+      "furthest_date": "37537",
+      "closest_different_culture": "308652",
+      "closest_different_department": "49349"
+    },
+    "308466": {
+      "closest_shape": "62770",
+      "furthest_date": "63119",
+      "closest_different_culture": "62595",
+      "closest_different_department": "49349"
+    },
+    "308486": {
+      "closest_shape": "42394",
+      "furthest_date": "62601",
+      "closest_different_culture": "52377",
+      "closest_different_department": "47066"
+    },
+    "308507": {
+      "closest_shape": "47809",
+      "furthest_date": "670807",
+      "closest_different_culture": "46057",
+      "closest_different_department": "62528"
+    },
+    "308518": {
+      "closest_shape": "309441",
+      "furthest_date": "670807",
+      "closest_different_culture": "47809",
+      "closest_different_department": "62528"
+    },
+    "308520": {
+      "closest_shape": "51013",
+      "furthest_date": "309509",
+      "closest_different_culture": "46331",
+      "closest_different_department": "76733"
+    },
+    "308531": {
+      "closest_shape": "49349",
+      "furthest_date": "37537",
+      "closest_different_culture": "62770",
+      "closest_different_department": "62595"
+    },
+    "308546": {
+      "closest_shape": "205878",
+      "furthest_date": "309509",
+      "closest_different_culture": "46481",
+      "closest_different_department": "45482"
+    },
+    "308554": {
+      "closest_shape": "318607",
+      "furthest_date": "49896",
+      "closest_different_culture": "309503",
+      "closest_different_department": "47172"
+    },
+    "308561": {
+      "closest_shape": "316177",
+      "furthest_date": "316716",
+      "closest_different_culture": "310466",
+      "closest_different_department": "207745"
+    },
+    "308568": {
+      "closest_shape": "49349",
+      "furthest_date": "49896",
+      "closest_different_culture": "42285",
+      "closest_different_department": "47172"
+    },
+    "308580": {
+      "closest_shape": "310219",
+      "furthest_date": "49896",
+      "closest_different_culture": "712495",
+      "closest_different_department": "62770"
+    },
+    "308582": {
+      "closest_shape": "47172",
+      "furthest_date": "49896",
+      "closest_different_culture": "63125",
+      "closest_different_department": "199021"
+    },
+    "308616": {
+      "closest_shape": "47172",
+      "furthest_date": "193020",
+      "closest_different_culture": "52032",
+      "closest_different_department": "476285"
+    },
+    "308624": {
+      "closest_shape": "49896",
+      "furthest_date": "47172",
+      "closest_different_culture": "310219",
+      "closest_different_department": "712495"
+    },
+    "308628": {
+      "closest_shape": "62595",
+      "furthest_date": "47172",
+      "closest_different_culture": "712495",
+      "closest_different_department": "62770"
+    },
+    "308652": {
+      "closest_shape": "833904",
+      "furthest_date": "37537",
+      "closest_different_culture": "62595",
+      "closest_different_department": "49896"
+    },
+    "308711": {
+      "closest_shape": "62770",
+      "furthest_date": "63119",
+      "closest_different_culture": "712495",
+      "closest_different_department": "62595"
+    },
+    "309138": {
+      "closest_shape": "46057",
+      "furthest_date": "46481",
+      "closest_different_culture": "50187",
+      "closest_different_department": "50338"
+    },
+    "309324": {
+      "closest_shape": "47811",
+      "furthest_date": "232205",
+      "closest_different_culture": "309345",
+      "closest_different_department": "194589"
+    },
+    "309327": {
+      "closest_shape": "308411",
+      "furthest_date": "316716",
+      "closest_different_culture": "460135",
+      "closest_different_department": "207775"
+    },
+    "309339": {
+      "closest_shape": "47172",
+      "furthest_date": "49896",
+      "closest_different_culture": "49349",
+      "closest_different_department": "199021"
+    },
+    "309344": {
+      "closest_shape": "310207",
+      "furthest_date": "49896",
+      "closest_different_culture": "47172",
+      "closest_different_department": "201733"
+    },
+    "309345": {
+      "closest_shape": "42212",
+      "furthest_date": "309509",
+      "closest_different_culture": "45938",
+      "closest_different_department": "45932"
+    },
+    "309346": {
+      "closest_shape": "309339",
+      "furthest_date": "49896",
+      "closest_different_culture": "47172",
+      "closest_different_department": "446878"
+    },
+    "309385": {
+      "closest_shape": "207775",
+      "furthest_date": "871929",
+      "closest_different_culture": "316177",
+      "closest_different_department": "47172"
+    },
+    "309388": {
+      "closest_shape": "194432",
+      "furthest_date": "770999",
+      "closest_different_culture": "49216",
+      "closest_different_department": "185914"
+    },
+    "309396": {
+      "closest_shape": "46016",
+      "furthest_date": "312586",
+      "closest_different_culture": "63565",
+      "closest_different_department": "45432"
+    },
+    "309401": {
+      "closest_shape": "49349",
+      "furthest_date": "49896",
+      "closest_different_culture": "313301",
+      "closest_different_department": "62770"
+    },
+    "309441": {
+      "closest_shape": "62528",
+      "furthest_date": "309509",
+      "closest_different_culture": "42212",
+      "closest_different_department": "46481"
+    },
+    "309442": {
+      "closest_shape": "48516",
+      "furthest_date": "45732",
+      "closest_different_culture": "46057",
+      "closest_different_department": "45930"
+    },
+    "309447": {
+      "closest_shape": "309345",
+      "furthest_date": "57400",
+      "closest_different_culture": "48527",
+      "closest_different_department": "45938"
+    },
+    "309470": {
+      "closest_shape": "46638",
+      "furthest_date": "46317",
+      "closest_different_culture": "47447",
+      "closest_different_department": "52755"
+    },
+    "309486": {
+      "closest_shape": "207983",
+      "furthest_date": "871929",
+      "closest_different_culture": "46054",
+      "closest_different_department": "771072"
+    },
+    "309490": {
+      "closest_shape": "45972",
+      "furthest_date": "871929",
+      "closest_different_culture": "46054",
+      "closest_different_department": "47158"
+    },
+    "309492": {
+      "closest_shape": "871929",
+      "furthest_date": "239486",
+      "closest_different_culture": "46054",
+      "closest_different_department": "445270"
+    },
+    "309494": {
+      "closest_shape": "45972",
+      "furthest_date": "771024",
+      "closest_different_culture": "47350",
+      "closest_different_department": "451363"
+    },
+    "309498": {
+      "closest_shape": "310197",
+      "furthest_date": "770916",
+      "closest_different_culture": "312629",
+      "closest_different_department": "449913"
+    },
+    "309503": {
+      "closest_shape": "308554",
+      "furthest_date": "49896",
+      "closest_different_culture": "318607",
+      "closest_different_department": "446878"
+    },
+    "309509": {
+      "closest_shape": "45938",
+      "furthest_date": "46481",
+      "closest_different_culture": "45482",
+      "closest_different_department": "50338"
+    },
+    "309519": {
+      "closest_shape": "310231",
+      "furthest_date": "871929",
+      "closest_different_culture": "45987",
+      "closest_different_department": "210743"
+    },
+    "309525": {
+      "closest_shape": "312802",
+      "furthest_date": "46561",
+      "closest_different_culture": "712495",
+      "closest_different_department": "467634"
+    },
+    "310197": {
+      "closest_shape": "46306",
+      "furthest_date": "770916",
+      "closest_different_culture": "45959",
+      "closest_different_department": "46076"
+    },
+    "310207": {
+      "closest_shape": "309344",
+      "furthest_date": "670810",
+      "closest_different_culture": "47920",
+      "closest_different_department": "449913"
+    },
+    "310219": {
+      "closest_shape": "62770",
+      "furthest_date": "46249",
+      "closest_different_culture": "310220",
+      "closest_different_department": "712495"
+    },
+    "310220": {
+      "closest_shape": "712495",
+      "furthest_date": "37537",
+      "closest_different_culture": "310219",
+      "closest_different_department": "452853"
+    },
+    "310231": {
+      "closest_shape": "313309",
+      "furthest_date": "890336",
+      "closest_different_culture": "314688",
+      "closest_different_department": "210743"
+    },
+    "310244": {
+      "closest_shape": "45907",
+      "furthest_date": "46033",
+      "closest_different_culture": "37449",
+      "closest_different_department": "187854"
+    },
+    "310466": {
+      "closest_shape": "467634",
+      "furthest_date": "51946",
+      "closest_different_culture": "316177",
+      "closest_different_department": "444501"
+    },
+    "310517": {
+      "closest_shape": "41749",
+      "furthest_date": "62922",
+      "closest_different_culture": "47066",
+      "closest_different_department": "450947"
+    },
+    "310547": {
+      "closest_shape": "63119",
+      "furthest_date": "46249",
+      "closest_different_culture": "752044",
+      "closest_different_department": "73216"
+    },
+    "310550": {
+      "closest_shape": "453896",
+      "furthest_date": "771072",
+      "closest_different_culture": "46074",
+      "closest_different_department": "651290"
+    },
+    "310552": {
+      "closest_shape": "204360",
+      "furthest_date": "658676",
+      "closest_different_culture": "50359",
+      "closest_different_department": "205096"
+    },
+    "310645": {
+      "closest_shape": "47172",
+      "furthest_date": "49896",
+      "closest_different_culture": "49349",
+      "closest_different_department": "199021"
+    },
+    "310675": {
+      "closest_shape": "44973",
+      "furthest_date": "450947",
+      "closest_different_culture": "460128",
+      "closest_different_department": "447285"
+    },
+    "312158": {
+      "closest_shape": "52611",
+      "furthest_date": "45959",
+      "closest_different_culture": "47568",
+      "closest_different_department": "51021"
+    },
+    "312161": {
+      "closest_shape": "196741",
+      "furthest_date": "50884",
+      "closest_different_culture": "48801",
+      "closest_different_department": "46570"
+    },
+    "312586": {
+      "closest_shape": "918706",
+      "furthest_date": "45529",
+      "closest_different_culture": "309396",
+      "closest_different_department": "477266"
+    },
+    "312608": {
+      "closest_shape": "51163",
+      "furthest_date": "207775",
+      "closest_different_culture": "52461",
+      "closest_different_department": "47172"
+    },
+    "312629": {
+      "closest_shape": "204524",
+      "furthest_date": "770916",
+      "closest_different_culture": "309498",
+      "closest_different_department": "205470"
+    },
+    "312802": {
+      "closest_shape": "712495",
+      "furthest_date": "47172",
+      "closest_different_culture": "309525",
+      "closest_different_department": "452853"
+    },
+    "312915": {
+      "closest_shape": "771037",
+      "furthest_date": "239494",
+      "closest_different_culture": "45896",
+      "closest_different_department": "52057"
+    },
+    "312928": {
+      "closest_shape": "44689",
+      "furthest_date": "37537",
+      "closest_different_culture": "47228",
+      "closest_different_department": "50229"
+    },
+    "313009": {
+      "closest_shape": "62677",
+      "furthest_date": "309519",
+      "closest_different_culture": "49349",
+      "closest_different_department": "890336"
+    },
+    "313101": {
+      "closest_shape": "49262",
+      "furthest_date": "310197",
+      "closest_different_culture": "45972",
+      "closest_different_department": "449066"
+    },
+    "313155": {
+      "closest_shape": "49349",
+      "furthest_date": "495466",
+      "closest_different_culture": "42285",
+      "closest_different_department": "49896"
+    },
+    "313241": {
+      "closest_shape": "45977",
+      "furthest_date": "37537",
+      "closest_different_culture": "50334",
+      "closest_different_department": "53616"
+    },
+    "313287": {
+      "closest_shape": "833906",
+      "furthest_date": "49896",
+      "closest_different_culture": "52259",
+      "closest_different_department": "47172"
+    },
+    "313301": {
+      "closest_shape": "49896",
+      "furthest_date": "47172",
+      "closest_different_culture": "57434",
+      "closest_different_department": "47786"
+    },
+    "313309": {
+      "closest_shape": "310231",
+      "furthest_date": "309519",
+      "closest_different_culture": "314688",
+      "closest_different_department": "50037"
+    },
+    "314182": {
+      "closest_shape": "42333",
+      "furthest_date": "310231",
+      "closest_different_culture": "49349",
+      "closest_different_department": "231034"
+    },
+    "314633": {
+      "closest_shape": "761272",
+      "furthest_date": "44689",
+      "closest_different_culture": "45980",
+      "closest_different_department": "49349"
+    },
+    "314635": {
+      "closest_shape": "49896",
+      "furthest_date": "47172",
+      "closest_different_culture": "62770",
+      "closest_different_department": "712495"
+    },
+    "314679": {
+      "closest_shape": "50335",
+      "furthest_date": "871929",
+      "closest_different_culture": "62546",
+      "closest_different_department": "195021"
+    },
+    "314680": {
+      "closest_shape": "48204",
+      "furthest_date": "45930",
+      "closest_different_culture": "46121",
+      "closest_different_department": "48702"
+    },
+    "314681": {
+      "closest_shape": "45959",
+      "furthest_date": "200726",
+      "closest_different_culture": "46060",
+      "closest_different_department": "199335"
+    },
+    "314688": {
+      "closest_shape": "310231",
+      "furthest_date": "871929",
+      "closest_different_culture": "314693",
+      "closest_different_department": "45987"
+    },
+    "314693": {
+      "closest_shape": "307473",
+      "furthest_date": "210743",
+      "closest_different_culture": "314688",
+      "closest_different_department": "45482"
+    },
+    "314955": {
+      "closest_shape": "51163",
+      "furthest_date": "42333",
+      "closest_different_culture": "52461",
+      "closest_different_department": "49349"
+    },
+    "315176": {
+      "closest_shape": "308411",
+      "furthest_date": "871929",
+      "closest_different_culture": "47158",
+      "closest_different_department": "447279"
+    },
+    "316000": {
+      "closest_shape": "52032",
+      "furthest_date": "47172",
+      "closest_different_culture": "49896",
+      "closest_different_department": "752044"
+    },
+    "316177": {
+      "closest_shape": "207775",
+      "furthest_date": "871929",
+      "closest_different_culture": "309385",
+      "closest_different_department": "47172"
+    },
+    "316270": {
+      "closest_shape": "45934",
+      "furthest_date": "771037",
+      "closest_different_culture": "46123",
+      "closest_different_department": "42425"
+    },
+    "316716": {
+      "closest_shape": "45985",
+      "furthest_date": "771024",
+      "closest_different_culture": "62546",
+      "closest_different_department": "46143"
+    },
+    "316719": {
+      "closest_shape": "49349",
+      "furthest_date": "37537",
+      "closest_different_culture": "62770",
+      "closest_different_department": "72737"
+    },
+    "318605": {
+      "closest_shape": "49349",
+      "furthest_date": "49896",
+      "closest_different_culture": "47222",
+      "closest_different_department": "57436"
+    },
+    "318606": {
+      "closest_shape": "49349",
+      "furthest_date": "49896",
+      "closest_different_culture": "45974",
+      "closest_different_department": "45555"
+    },
+    "318607": {
+      "closest_shape": "308554",
+      "furthest_date": "49896",
+      "closest_different_culture": "47172",
+      "closest_different_department": "203297"
+    },
+    "320343": {
+      "closest_shape": "53774",
+      "furthest_date": "57400",
+      "closest_different_culture": "48527",
+      "closest_different_department": "47470"
+    },
+    "37432": {
+      "closest_shape": "46580",
+      "furthest_date": "46058",
+      "closest_different_culture": "46434",
+      "closest_different_department": "447776"
+    },
+    "37433": {
+      "closest_shape": "451363",
+      "furthest_date": "316716",
+      "closest_different_culture": "46675",
+      "closest_different_department": "771024"
+    },
+    "37436": {
+      "closest_shape": "44422",
+      "furthest_date": "44727",
+      "closest_different_culture": "46029",
+      "closest_different_department": "188534"
+    },
+    "37449": {
+      "closest_shape": "51023",
+      "furthest_date": "62601",
+      "closest_different_culture": "63133",
+      "closest_different_department": "187854"
+    },
+    "37450": {
+      "closest_shape": "46955",
+      "furthest_date": "50884",
+      "closest_different_culture": "46131",
+      "closest_different_department": "444893"
+    },
+    "37458": {
+      "closest_shape": "46080",
+      "furthest_date": "320343",
+      "closest_different_culture": "53774",
+      "closest_different_department": "208243"
+    },
+    "37510": {
+      "closest_shape": "712495",
+      "furthest_date": "49896",
+      "closest_different_culture": "62770",
+      "closest_different_department": "452223"
+    },
+    "37524": {
+      "closest_shape": "191780",
+      "furthest_date": "44727",
+      "closest_different_culture": "46235",
+      "closest_different_department": "204512"
+    },
+    "37537": {
+      "closest_shape": "44977",
+      "furthest_date": "72737",
+      "closest_different_culture": "62770",
+      "closest_different_department": "461088"
+    },
+    "37563": {
+      "closest_shape": "45550",
+      "furthest_date": "39511",
+      "closest_different_culture": "47019",
+      "closest_different_department": "444485"
+    },
+    "37649": {
+      "closest_shape": "45964",
+      "furthest_date": "62601",
+      "closest_different_culture": "42394",
+      "closest_different_department": "460139"
+    },
+    "39506": {
+      "closest_shape": "46130",
+      "furthest_date": "239486",
+      "closest_different_culture": "45999",
+      "closest_different_department": "463559"
+    },
+    "39510": {
+      "closest_shape": "193020",
+      "furthest_date": "771025",
+      "closest_different_culture": "62998",
+      "closest_different_department": "444485"
+    },
+    "39511": {
+      "closest_shape": "193020",
+      "furthest_date": "771025",
+      "closest_different_culture": "48223",
+      "closest_different_department": "770986"
+    },
+    "39512": {
+      "closest_shape": "200823",
+      "furthest_date": "49896",
+      "closest_different_culture": "45484",
+      "closest_different_department": "210743"
+    },
+    "39885": {
+      "closest_shape": "46317",
+      "furthest_date": "78432",
+      "closest_different_culture": "50229",
+      "closest_different_department": "460170"
+    },
+    "40074": {
+      "closest_shape": "46110",
+      "furthest_date": "49896",
+      "closest_different_culture": "52032",
+      "closest_different_department": "448017"
+    },
+    "41749": {
+      "closest_shape": "45554",
+      "furthest_date": "308486",
+      "closest_different_culture": "310517",
+      "closest_different_department": "198433"
+    },
+    "42206": {
+      "closest_shape": "46048",
+      "furthest_date": "208036",
+      "closest_different_culture": "46103",
+      "closest_different_department": "623478"
+    },
+    "42211": {
+      "closest_shape": "48086",
+      "furthest_date": "37450",
+      "closest_different_culture": null,
+      "closest_different_department": "446653"
+    },
+    "42212": {
+      "closest_shape": "309441",
+      "furthest_date": "308507",
+      "closest_different_culture": "62528",
+      "closest_different_department": "444495"
+    },
+    "42216": {
+      "closest_shape": "46149",
+      "furthest_date": "42491",
+      "closest_different_culture": "47075",
+      "closest_different_department": "446997"
+    },
+    "42218": {
+      "closest_shape": "46082",
+      "furthest_date": "46094",
+      "closest_different_culture": null,
+      "closest_different_department": "201052"
+    },
+    "42243": {
+      "closest_shape": "47587",
+      "furthest_date": "48629",
+      "closest_different_culture": "46580",
+      "closest_different_department": "447776"
+    },
+    "42250": {
+      "closest_shape": "42251",
+      "furthest_date": "239494",
+      "closest_different_culture": "46103",
+      "closest_different_department": "623467"
+    },
+    "42251": {
+      "closest_shape": "42250",
+      "furthest_date": "239494",
+      "closest_different_culture": "46103",
+      "closest_different_department": "623467"
+    },
+    "42255": {
+      "closest_shape": "47857",
+      "furthest_date": "46538",
+      "closest_different_culture": "460717",
+      "closest_different_department": null
+    },
+    "42278": {
+      "closest_shape": "48395",
+      "furthest_date": "771041",
+      "closest_different_culture": "53777",
+      "closest_different_department": "187854"
+    },
+    "42279": {
+      "closest_shape": "52811",
+      "furthest_date": "48329",
+      "closest_different_culture": "460717",
+      "closest_different_department": null
+    },
+    "42285": {
+      "closest_shape": "49896",
+      "furthest_date": "308291",
+      "closest_different_culture": "49349",
+      "closest_different_department": "313301"
+    },
+    "42324": {
+      "closest_shape": "46830",
+      "furthest_date": "239494",
+      "closest_different_culture": "46103",
+      "closest_different_department": "623478"
+    },
+    "42333": {
+      "closest_shape": "49349",
+      "furthest_date": "495466",
+      "closest_different_culture": "318605",
+      "closest_different_department": "314182"
+    },
+    "42360": {
+      "closest_shape": "45908",
+      "furthest_date": "46315",
+      "closest_different_culture": "46481",
+      "closest_different_department": "194235"
+    },
+    "42389": {
+      "closest_shape": "239506",
+      "furthest_date": "463086",
+      "closest_different_culture": "46849",
+      "closest_different_department": "188538"
+    },
+    "42394": {
+      "closest_shape": "52377",
+      "furthest_date": "308486",
+      "closest_different_culture": "47174",
+      "closest_different_department": "446944"
+    },
+    "42397": {
+      "closest_shape": "48716",
+      "furthest_date": "309442",
+      "closest_different_culture": "46478",
+      "closest_different_department": "446653"
+    },
+    "42425": {
+      "closest_shape": "52922",
+      "furthest_date": "771037",
+      "closest_different_culture": null,
+      "closest_different_department": null
+    },
+    "42436": {
+      "closest_shape": "47077",
+      "furthest_date": "451635",
+      "closest_different_culture": "62998",
+      "closest_different_department": "771065"
+    },
+    "42448": {
+      "closest_shape": "312928",
+      "furthest_date": "37537",
+      "closest_different_culture": "308420",
+      "closest_different_department": "460170"
+    },
+    "42458": {
+      "closest_shape": "49349",
+      "furthest_date": "49896",
+      "closest_different_culture": "308297",
+      "closest_different_department": "449970"
+    },
+    "42491": {
+      "closest_shape": "45915",
+      "furthest_date": "46024",
+      "closest_different_culture": "50187",
+      "closest_different_department": "201031"
+    },
+    "44332": {
+      "closest_shape": "50659",
+      "furthest_date": null,
+      "closest_different_culture": "63119",
+      "closest_different_department": "448017"
+    },
+    "44422": {
+      "closest_shape": "44729",
+      "furthest_date": "770986",
+      "closest_different_culture": "47953",
+      "closest_different_department": "188535"
+    },
+    "44426": {
+      "closest_shape": "833900",
+      "furthest_date": "44450",
+      "closest_different_culture": "460660",
+      "closest_different_department": "460170"
+    },
+    "44431": {
+      "closest_shape": "49349",
+      "furthest_date": null,
+      "closest_different_culture": "62770",
+      "closest_different_department": "771023"
+    },
+    "44447": {
+      "closest_shape": "308518",
+      "furthest_date": "308507",
+      "closest_different_culture": "42216",
+      "closest_different_department": "190732"
+    },
+    "444485": {
+      "closest_shape": "771025",
+      "furthest_date": "39510",
+      "closest_different_culture": null,
+      "closest_different_department": "37563"
+    },
+    "444495": {
+      "closest_shape": "50192",
+      "furthest_date": "57400",
+      "closest_different_culture": null,
+      "closest_different_department": "47722"
+    },
+    "444501": {
+      "closest_shape": "46077",
+      "furthest_date": "44726",
+      "closest_different_culture": null,
+      "closest_different_department": "197824"
+    },
+    "44450": {
+      "closest_shape": "833900",
+      "furthest_date": "37537",
+      "closest_different_culture": "72737",
+      "closest_different_department": "448017"
+    },
+    "444845": {
+      "closest_shape": "37537",
+      "furthest_date": "44426",
+      "closest_different_culture": null,
+      "closest_different_department": "47228"
+    },
+    "444893": {
+      "closest_shape": "46590",
+      "furthest_date": "48204",
+      "closest_different_culture": null,
+      "closest_different_department": "47075"
+    },
+    "445270": {
+      "closest_shape": "309492",
+      "furthest_date": "44907",
+      "closest_different_culture": null,
+      "closest_different_department": "871929"
+    },
+    "446222": {
+      "closest_shape": "63137",
+      "furthest_date": "239486",
+      "closest_different_culture": null,
+      "closest_different_department": "771025"
+    },
+    "446269": {
+      "closest_shape": "447276",
+      "furthest_date": "44907",
+      "closest_different_culture": null,
+      "closest_different_department": "46633"
+    },
+    "446653": {
+      "closest_shape": "47388",
+      "furthest_date": "37450",
+      "closest_different_culture": null,
+      "closest_different_department": "46144"
+    },
+    "446841": {
+      "closest_shape": "448981",
+      "furthest_date": "771024",
+      "closest_different_culture": null,
+      "closest_different_department": "48544"
+    },
+    "446842": {
+      "closest_shape": "465871",
+      "furthest_date": "44426",
+      "closest_different_culture": null,
+      "closest_different_department": "52032"
+    },
+    "446878": {
+      "closest_shape": "49349",
+      "furthest_date": "49896",
+      "closest_different_culture": null,
+      "closest_different_department": "44953"
+    },
+    "446886": {
+      "closest_shape": "46097",
+      "furthest_date": "76733",
+      "closest_different_culture": null,
+      "closest_different_department": "45482"
+    },
+    "44689": {
+      "closest_shape": "312928",
+      "furthest_date": "47949",
+      "closest_different_culture": "47228",
+      "closest_different_department": "460170"
+    },
+    "446929": {
+      "closest_shape": "446944",
+      "furthest_date": "46033",
+      "closest_different_culture": null,
+      "closest_different_department": "47174"
+    },
+    "446935": {
+      "closest_shape": "48172",
+      "furthest_date": "78432",
+      "closest_different_culture": null,
+      "closest_different_department": "45844"
+    },
+    "446944": {
+      "closest_shape": "446929",
+      "furthest_date": "46033",
+      "closest_different_culture": null,
+      "closest_different_department": "45962"
+    },
+    "446997": {
+      "closest_shape": "46021",
+      "furthest_date": "57400",
+      "closest_different_culture": null,
+      "closest_different_department": "46149"
+    },
+    "447230": {
+      "closest_shape": "52461",
+      "furthest_date": "42333",
+      "closest_different_culture": null,
+      "closest_different_department": "49349"
+    },
+    "44726": {
+      "closest_shape": "44422",
+      "furthest_date": "771053",
+      "closest_different_culture": "752044",
+      "closest_different_department": "448261"
+    },
+    "447276": {
+      "closest_shape": "446269",
+      "furthest_date": "44907",
+      "closest_different_culture": null,
+      "closest_different_department": "45938"
+    },
+    "447277": {
+      "closest_shape": "447276",
+      "furthest_date": "44907",
+      "closest_different_culture": null,
+      "closest_different_department": "194432"
+    },
+    "447279": {
+      "closest_shape": "450946",
+      "furthest_date": "316716",
+      "closest_different_culture": null,
+      "closest_different_department": "45999"
+    },
+    "44727": {
+      "closest_shape": "44422",
+      "furthest_date": "770986",
+      "closest_different_culture": "62759",
+      "closest_different_department": "204512"
+    },
+    "447285": {
+      "closest_shape": "460128",
+      "furthest_date": "44974",
+      "closest_different_culture": null,
+      "closest_different_department": "460135"
+    },
+    "447287": {
+      "closest_shape": "450947",
+      "furthest_date": "46033",
+      "closest_different_culture": null,
+      "closest_different_department": "310675"
+    },
+    "447289": {
+      "closest_shape": "476285",
+      "furthest_date": "771073",
+      "closest_different_culture": null,
+      "closest_different_department": "460146"
+    },
+    "44729": {
+      "closest_shape": "44422",
+      "furthest_date": "771053",
+      "closest_different_culture": "46042",
+      "closest_different_department": "188535"
+    },
+    "447776": {
+      "closest_shape": "46425",
+      "furthest_date": "48629",
+      "closest_different_culture": null,
+      "closest_different_department": "47587"
+    },
+    "44793": {
+      "closest_shape": "46714",
+      "furthest_date": "47556",
+      "closest_different_culture": "46021",
+      "closest_different_department": null
+    },
+    "448017": {
+      "closest_shape": "50770",
+      "furthest_date": "310547",
+      "closest_different_culture": null,
+      "closest_different_department": "50313"
+    },
+    "44817": {
+      "closest_shape": "451635",
+      "furthest_date": null,
+      "closest_different_culture": "308451",
+      "closest_different_department": "309525"
+    },
+    "448261": {
+      "closest_shape": "771053",
+      "furthest_date": "44727",
+      "closest_different_culture": null,
+      "closest_different_department": "752044"
+    },
+    "44830": {
+      "closest_shape": "49261",
+      "furthest_date": "44727",
+      "closest_different_culture": "44726",
+      "closest_different_department": "188534"
+    },
+    "448395": {
+      "closest_shape": "50659",
+      "furthest_date": "44426",
+      "closest_different_culture": null,
+      "closest_different_department": "63119"
+    },
+    "448397": {
+      "closest_shape": "771023",
+      "furthest_date": "50213",
+      "closest_different_culture": null,
+      "closest_different_department": "770940"
+    },
+    "44862": {
+      "closest_shape": "199719",
+      "furthest_date": "463086",
+      "closest_different_culture": "49366",
+      "closest_different_department": "188538"
+    },
+    "448981": {
+      "closest_shape": "446841",
+      "furthest_date": "239486",
+      "closest_different_culture": null,
+      "closest_different_department": "204524"
+    },
+    "448984": {
+      "closest_shape": "199039",
+      "furthest_date": "308486",
+      "closest_different_culture": null,
+      "closest_different_department": "466618"
+    },
+    "448987": {
+      "closest_shape": "51946",
+      "furthest_date": "44426",
+      "closest_different_culture": null,
+      "closest_different_department": "191780"
+    },
+    "449041": {
+      "closest_shape": "460146",
+      "furthest_date": "49896",
+      "closest_different_culture": null,
+      "closest_different_department": "476285"
+    },
+    "449066": {
+      "closest_shape": "205470",
+      "furthest_date": "871929",
+      "closest_different_culture": null,
+      "closest_different_department": "770977"
+    },
+    "449071": {
+      "closest_shape": "448984",
+      "furthest_date": "45964",
+      "closest_different_culture": null,
+      "closest_different_department": "310517"
+    },
+    "449073": {
+      "closest_shape": "670810",
+      "furthest_date": "771065",
+      "closest_different_culture": null,
+      "closest_different_department": "478669"
+    },
+    "44907": {
+      "closest_shape": "46953",
+      "furthest_date": "45972",
+      "closest_different_culture": "53855",
+      "closest_different_department": "309490"
+    },
+    "449481": {
+      "closest_shape": "45917",
+      "furthest_date": "239486",
+      "closest_different_culture": null,
+      "closest_different_department": "46675"
+    },
+    "44953": {
+      "closest_shape": "712495",
+      "furthest_date": "49896",
+      "closest_different_culture": "308580",
+      "closest_different_department": "313301"
+    },
+    "449637": {
+      "closest_shape": "449913",
+      "furthest_date": "770977",
+      "closest_different_culture": null,
+      "closest_different_department": "310197"
+    },
+    "44973": {
+      "closest_shape": "310675",
+      "furthest_date": "62601",
+      "closest_different_culture": "460128",
+      "closest_different_department": "450947"
+    },
+    "44974": {
+      "closest_shape": "46130",
+      "furthest_date": "239486",
+      "closest_different_culture": "463559",
+      "closest_different_department": "460182"
+    },
+    "44977": {
+      "closest_shape": "37537",
+      "furthest_date": "49896",
+      "closest_different_culture": "62770",
+      "closest_different_department": "833900"
+    },
+    "449904": {
+      "closest_shape": "460146",
+      "furthest_date": "49896",
+      "closest_different_culture": null,
+      "closest_different_department": "44973"
+    },
+    "449913": {
+      "closest_shape": "449637",
+      "furthest_date": "770977",
+      "closest_different_culture": null,
+      "closest_different_department": "308381"
+    },
+    "449970": {
+      "closest_shape": "49349",
+      "furthest_date": "49896",
+      "closest_different_culture": null,
+      "closest_different_department": "314182"
+    },
+    "450099": {
+      "closest_shape": "47066",
+      "furthest_date": "308486",
+      "closest_different_culture": null,
+      "closest_different_department": "477266"
+    },
+    "450212": {
+      "closest_shape": "50213",
+      "furthest_date": "44426",
+      "closest_different_culture": null,
+      "closest_different_department": "62917"
+    },
+    "450494": {
+      "closest_shape": "446929",
+      "furthest_date": "771025",
+      "closest_different_culture": null,
+      "closest_different_department": "63137"
+    },
+    "450747": {
+      "closest_shape": "45985",
+      "furthest_date": "316716",
+      "closest_different_culture": null,
+      "closest_different_department": "771024"
+    },
+    "450946": {
+      "closest_shape": "447279",
+      "furthest_date": "316716",
+      "closest_different_culture": null,
+      "closest_different_department": "460135"
+    },
+    "450947": {
+      "closest_shape": "447287",
+      "furthest_date": "310517",
+      "closest_different_culture": null,
+      "closest_different_department": "44973"
+    },
+    "451363": {
+      "closest_shape": "47350",
+      "furthest_date": "487245",
+      "closest_different_culture": null,
+      "closest_different_department": "48332"
+    },
+    "451397": {
+      "closest_shape": "46331",
+      "furthest_date": "46058",
+      "closest_different_culture": null,
+      "closest_different_department": "46097"
+    },
+    "451635": {
+      "closest_shape": "308451",
+      "furthest_date": "670810",
+      "closest_different_culture": null,
+      "closest_different_department": "47077"
+    },
+    "451695": {
+      "closest_shape": "204512",
+      "furthest_date": "44727",
+      "closest_different_culture": null,
+      "closest_different_department": "191780"
+    },
+    "451707": {
+      "closest_shape": "449913",
+      "furthest_date": "46058",
+      "closest_different_culture": null,
+      "closest_different_department": "46306"
+    },
+    "451855": {
+      "closest_shape": "208036",
+      "furthest_date": "239494",
+      "closest_different_culture": null,
+      "closest_different_department": "46075"
+    },
+    "451993": {
+      "closest_shape": "308410",
+      "furthest_date": "314688",
+      "closest_different_culture": null,
+      "closest_different_department": "204760"
+    },
+    "45205": {
+      "closest_shape": "63137",
+      "furthest_date": "771025",
+      "closest_different_culture": "52797",
+      "closest_different_department": "446222"
+    },
+    "452223": {
+      "closest_shape": "712495",
+      "furthest_date": "49896",
+      "closest_different_culture": null,
+      "closest_different_department": "313301"
+    },
+    "452610": {
+      "closest_shape": "46033",
+      "furthest_date": "48544",
+      "closest_different_culture": null,
+      "closest_different_department": "63133"
+    },
+    "452853": {
+      "closest_shape": "452223",
+      "furthest_date": "49896",
+      "closest_different_culture": null,
+      "closest_different_department": "310220"
+    },
+    "453454": {
+      "closest_shape": "447285",
+      "furthest_date": "239486",
+      "closest_different_culture": null,
+      "closest_different_department": "651241"
+    },
+    "45365": {
+      "closest_shape": "62917",
+      "furthest_date": "44426",
+      "closest_different_culture": "48451",
+      "closest_different_department": "191780"
+    },
+    "453896": {
+      "closest_shape": "47259",
+      "furthest_date": "310550",
+      "closest_different_culture": null,
+      "closest_different_department": "197824"
+    },
+    "45432": {
+      "closest_shape": "46029",
+      "furthest_date": "45550",
+      "closest_different_culture": "51187",
+      "closest_different_department": "446929"
+    },
+    "454610": {
+      "closest_shape": "451363",
+      "furthest_date": "316716",
+      "closest_different_culture": null,
+      "closest_different_department": "477749"
+    },
+    "45482": {
+      "closest_shape": "46481",
+      "furthest_date": "76733",
+      "closest_different_culture": "51013",
+      "closest_different_department": "460717"
+    },
+    "45484": {
+      "closest_shape": "45987",
+      "furthest_date": "39512",
+      "closest_different_culture": "42436",
+      "closest_different_department": "210743"
+    },
+    "45527": {
+      "closest_shape": "63141",
+      "furthest_date": "39510",
+      "closest_different_culture": "52797",
+      "closest_different_department": "771025"
+    },
+    "45529": {
+      "closest_shape": "918706",
+      "furthest_date": "658676",
+      "closest_different_culture": "49924",
+      "closest_different_department": "204386"
+    },
+    "45550": {
+      "closest_shape": "46029",
+      "furthest_date": "450494",
+      "closest_different_culture": "37563",
+      "closest_different_department": "446929"
+    },
+    "45552": {
+      "closest_shape": "761272",
+      "furthest_date": "49896",
+      "closest_different_culture": "48027",
+      "closest_different_department": "476276"
+    },
+    "45553": {
+      "closest_shape": "46001",
+      "furthest_date": "49896",
+      "closest_different_culture": "310517",
+      "closest_different_department": "198433"
+    },
+    "45554": {
+      "closest_shape": "45553",
+      "furthest_date": "308486",
+      "closest_different_culture": "310517",
+      "closest_different_department": "198433"
+    },
+    "45555": {
+      "closest_shape": "45556",
+      "furthest_date": "49896",
+      "closest_different_culture": "39511",
+      "closest_different_department": "193020"
+    },
+    "45556": {
+      "closest_shape": "49924",
+      "furthest_date": "37537",
+      "closest_different_culture": "48223",
+      "closest_different_department": "193020"
+    },
+    "45732": {
+      "closest_shape": "46057",
+      "furthest_date": "308507",
+      "closest_different_culture": "45930",
+      "closest_different_department": "309442"
+    },
+    "45828": {
+      "closest_shape": "46090",
+      "furthest_date": "46799",
+      "closest_different_culture": "46333",
+      "closest_different_department": "623468"
+    },
+    "45829": {
+      "closest_shape": "46078",
+      "furthest_date": "46084",
+      "closest_different_culture": "47102",
+      "closest_different_department": null
+    },
+    "45830": {
+      "closest_shape": "46084",
+      "furthest_date": "49862",
+      "closest_different_culture": null,
+      "closest_different_department": null
+    },
+    "45832": {
+      "closest_shape": "46330",
+      "furthest_date": "50567",
+      "closest_different_culture": "46021",
+      "closest_different_department": "446997"
+    },
+    "45834": {
+      "closest_shape": "46055",
+      "furthest_date": null,
+      "closest_different_culture": "487245",
+      "closest_different_department": "203276"
+    },
+    "45844": {
+      "closest_shape": "48172",
+      "furthest_date": "49203",
+      "closest_different_culture": "46638",
+      "closest_different_department": "446935"
+    },
+    "45849": {
+      "closest_shape": "73676",
+      "furthest_date": "770916",
+      "closest_different_culture": "63135",
+      "closest_different_department": "201753"
+    },
+    "45882": {
+      "closest_shape": "46150",
+      "furthest_date": "78432",
+      "closest_different_culture": "62703",
+      "closest_different_department": "446935"
+    },
+    "45889": {
+      "closest_shape": "46078",
+      "furthest_date": "46094",
+      "closest_different_culture": null,
+      "closest_different_department": null
+    },
+    "45893": {
+      "closest_shape": "46082",
+      "furthest_date": "45889",
+      "closest_different_culture": null,
+      "closest_different_department": null
+    },
+    "45896": {
+      "closest_shape": "771037",
+      "furthest_date": null,
+      "closest_different_culture": null,
+      "closest_different_department": "208036"
+    },
+    "45900": {
+      "closest_shape": "46063",
+      "furthest_date": "463086",
+      "closest_different_culture": "460717",
+      "closest_different_department": "471800"
+    },
+    "45904": {
+      "closest_shape": "49293",
+      "furthest_date": "44907",
+      "closest_different_culture": "46331",
+      "closest_different_department": "308404"
+    },
+    "45907": {
+      "closest_shape": "51023",
+      "furthest_date": null,
+      "closest_different_culture": "460182",
+      "closest_different_department": "449481"
+    },
+    "45908": {
+      "closest_shape": "42360",
+      "furthest_date": "46315",
+      "closest_different_culture": "460717",
+      "closest_different_department": null
+    },
+    "45909": {
+      "closest_shape": "48625",
+      "furthest_date": "48204",
+      "closest_different_culture": null,
+      "closest_different_department": "201031"
+    },
+    "45912": {
+      "closest_shape": "45913",
+      "furthest_date": "46809",
+      "closest_different_culture": "460675",
+      "closest_different_department": null
+    },
+    "45913": {
+      "closest_shape": "45912",
+      "furthest_date": "46809",
+      "closest_different_culture": "460675",
+      "closest_different_department": null
+    },
+    "45914": {
+      "closest_shape": "44431",
+      "furthest_date": "308652",
+      "closest_different_culture": "316719",
+      "closest_different_department": "201729"
+    },
+    "45915": {
+      "closest_shape": "42491",
+      "furthest_date": "50567",
+      "closest_different_culture": "50187",
+      "closest_different_department": null
+    },
+    "45917": {
+      "closest_shape": "47259",
+      "furthest_date": "449481",
+      "closest_different_culture": "47292",
+      "closest_different_department": "239486"
+    },
+    "45918": {
+      "closest_shape": "45980",
+      "furthest_date": "44689",
+      "closest_different_culture": "761272",
+      "closest_different_department": "312928"
+    },
+    "45919": {
+      "closest_shape": "308507",
+      "furthest_date": null,
+      "closest_different_culture": "47075",
+      "closest_different_department": "670807"
+    },
+    "45923": {
+      "closest_shape": "46353",
+      "furthest_date": null,
+      "closest_different_culture": "46849",
+      "closest_different_department": "201028"
+    },
+    "45929": {
+      "closest_shape": "46147",
+      "furthest_date": "42491",
+      "closest_different_culture": "50187",
+      "closest_different_department": null
+    },
+    "45930": {
+      "closest_shape": "46558",
+      "furthest_date": "48204",
+      "closest_different_culture": "47809",
+      "closest_different_department": "192802"
+    },
+    "45932": {
+      "closest_shape": "446997",
+      "furthest_date": "50567",
+      "closest_different_culture": "46021",
+      "closest_different_department": "199461"
+    },
+    "45934": {
+      "closest_shape": "48840",
+      "furthest_date": "46123",
+      "closest_different_culture": null,
+      "closest_different_department": "201052"
+    },
+    "45937": {
+      "closest_shape": "47988",
+      "furthest_date": "50192",
+      "closest_different_culture": "47722",
+      "closest_different_department": "199461"
+    },
+    "45938": {
+      "closest_shape": "48527",
+      "furthest_date": "309509",
+      "closest_different_culture": "57400",
+      "closest_different_department": "208243"
+    },
+    "45939": {
+      "closest_shape": "47438",
+      "furthest_date": "49351",
+      "closest_different_culture": null,
+      "closest_different_department": "201031"
+    },
+    "45945": {
+      "closest_shape": "42436",
+      "furthest_date": "44422",
+      "closest_different_culture": "46077",
+      "closest_different_department": "446222"
+    },
+    "45959": {
+      "closest_shape": "51021",
+      "furthest_date": "312158",
+      "closest_different_culture": "53855",
+      "closest_different_department": "314681"
+    },
+    "45962": {
+      "closest_shape": "446944",
+      "furthest_date": "46033",
+      "closest_different_culture": "42394",
+      "closest_different_department": "446929"
+    },
+    "45964": {
+      "closest_shape": "45962",
+      "furthest_date": "37649",
+      "closest_different_culture": "47174",
+      "closest_different_department": "446944"
+    },
+    "45965": {
+      "closest_shape": "45939",
+      "furthest_date": "48625",
+      "closest_different_culture": null,
+      "closest_different_department": "201031"
+    },
+    "45967": {
+      "closest_shape": "63120",
+      "furthest_date": "49203",
+      "closest_different_culture": "45882",
+      "closest_different_department": "446935"
+    },
+    "45970": {
+      "closest_shape": "46161",
+      "furthest_date": "188534",
+      "closest_different_culture": "62552",
+      "closest_different_department": "188535"
+    },
+    "45972": {
+      "closest_shape": "463559",
+      "furthest_date": "44907",
+      "closest_different_culture": "53855",
+      "closest_different_department": "770977"
+    },
+    "45974": {
+      "closest_shape": "63097",
+      "furthest_date": "44973",
+      "closest_different_culture": "37449",
+      "closest_different_department": "193020"
+    },
+    "45977": {
+      "closest_shape": "313241",
+      "furthest_date": "49896",
+      "closest_different_culture": "761272",
+      "closest_different_department": "465871"
+    },
+    "45979": {
+      "closest_shape": "46030",
+      "furthest_date": "44727",
+      "closest_different_culture": "45550",
+      "closest_different_department": "207399"
+    },
+    "45980": {
+      "closest_shape": "53616",
+      "furthest_date": "44689",
+      "closest_different_culture": "761272",
+      "closest_different_department": "308420"
+    },
+    "45984": {
+      "closest_shape": "48749",
+      "furthest_date": "46153",
+      "closest_different_culture": null,
+      "closest_different_department": "201031"
+    },
+    "45985": {
+      "closest_shape": "771024",
+      "furthest_date": "42278",
+      "closest_different_culture": "47292",
+      "closest_different_department": "239486"
+    },
+    "45986": {
+      "closest_shape": "46962",
+      "furthest_date": "48629",
+      "closest_different_culture": "46580",
+      "closest_different_department": "447776"
+    },
+    "45987": {
+      "closest_shape": "210743",
+      "furthest_date": "309519",
+      "closest_different_culture": "47892",
+      "closest_different_department": "190600"
+    },
+    "45989": {
+      "closest_shape": "49924",
+      "furthest_date": "46046",
+      "closest_different_culture": "46110",
+      "closest_different_department": "446935"
+    },
+    "45990": {
+      "closest_shape": "37563",
+      "furthest_date": "771025",
+      "closest_different_culture": "45550",
+      "closest_different_department": "460681"
+    },
+    "45992": {
+      "closest_shape": "46147",
+      "furthest_date": "46081",
+      "closest_different_culture": null,
+      "closest_different_department": "190732"
+    },
+    "45994": {
+      "closest_shape": "47228",
+      "furthest_date": "44426",
+      "closest_different_culture": "73217",
+      "closest_different_department": "460660"
+    },
+    "45997": {
+      "closest_shape": "478713",
+      "furthest_date": "44727",
+      "closest_different_culture": "52032",
+      "closest_different_department": "194304"
+    },
+    "45998": {
+      "closest_shape": "47988",
+      "furthest_date": null,
+      "closest_different_culture": "46021",
+      "closest_different_department": "199461"
+    },
+    "45999": {
+      "closest_shape": "463559",
+      "furthest_date": "44907",
+      "closest_different_culture": "39506",
+      "closest_different_department": "309492"
+    },
+    "46000": {
+      "closest_shape": "47350",
+      "furthest_date": "449481",
+      "closest_different_culture": "47292",
+      "closest_different_department": "771024"
+    },
+    "46001": {
+      "closest_shape": "45553",
+      "furthest_date": "49896",
+      "closest_different_culture": "49349",
+      "closest_different_department": "198433"
+    },
+    "46003": {
+      "closest_shape": "46160",
+      "furthest_date": "37450",
+      "closest_different_culture": "47075",
+      "closest_different_department": "444893"
+    },
+    "46004": {
+      "closest_shape": "45832",
+      "furthest_date": "50567",
+      "closest_different_culture": "57400",
+      "closest_different_department": "199461"
+    },
+    "46008": {
+      "closest_shape": "62552",
+      "furthest_date": "446222",
+      "closest_different_culture": "46042",
+      "closest_different_department": "188534"
+    },
+    "46011": {
+      "closest_shape": "46317",
+      "furthest_date": null,
+      "closest_different_culture": "47447",
+      "closest_different_department": "309470"
+    },
+    "460128": {
+      "closest_shape": "447285",
+      "furthest_date": "310517",
+      "closest_different_culture": "460135",
+      "closest_different_department": "197613"
+    },
+    "460135": {
+      "closest_shape": "460128",
+      "furthest_date": "39506",
+      "closest_different_culture": "46130",
+      "closest_different_department": "447285"
+    },
+    "460139": {
+      "closest_shape": "42394",
+      "furthest_date": "37649",
+      "closest_different_culture": "45962",
+      "closest_different_department": "446944"
+    },
+    "460146": {
+      "closest_shape": "476285",
+      "furthest_date": "310517",
+      "closest_different_culture": "63120",
+      "closest_different_department": "450947"
+    },
+    "46016": {
+      "closest_shape": "46017",
+      "furthest_date": "309470",
+      "closest_different_culture": "45432",
+      "closest_different_department": "446935"
+    },
+    "460170": {
+      "closest_shape": "47228",
+      "furthest_date": "44426",
+      "closest_different_culture": "50229",
+      "closest_different_department": "45994"
+    },
+    "460178": {
+      "closest_shape": "465875",
+      "furthest_date": "310517",
+      "closest_different_culture": "45964",
+      "closest_different_department": "194433"
+    },
+    "46017": {
+      "closest_shape": "52798",
+      "furthest_date": "46638",
+      "closest_different_culture": "52377",
+      "closest_different_department": "446935"
+    },
+    "460182": {
+      "closest_shape": "48544",
+      "furthest_date": "44974",
+      "closest_different_culture": "63135",
+      "closest_different_department": "50335"
+    },
+    "46021": {
+      "closest_shape": "46149",
+      "furthest_date": "446997",
+      "closest_different_culture": "46155",
+      "closest_different_department": "199461"
+    },
+    "46022": {
+      "closest_shape": "46149",
+      "furthest_date": "47556",
+      "closest_different_culture": "46021",
+      "closest_different_department": "446997"
+    },
+    "46024": {
+      "closest_shape": "46137",
+      "furthest_date": "50567",
+      "closest_different_culture": "50187",
+      "closest_different_department": null
+    },
+    "46025": {
+      "closest_shape": "771024",
+      "furthest_date": "42436",
+      "closest_different_culture": "47259",
+      "closest_different_department": "239486"
+    },
+    "46029": {
+      "closest_shape": "50317",
+      "furthest_date": "45205",
+      "closest_different_culture": "46042",
+      "closest_different_department": "446929"
+    },
+    "46030": {
+      "closest_shape": "45979",
+      "furthest_date": "44729",
+      "closest_different_culture": "37563",
+      "closest_different_department": "207399"
+    },
+    "46032": {
+      "closest_shape": "448397",
+      "furthest_date": null,
+      "closest_different_culture": "48012",
+      "closest_different_department": "206586"
+    },
+    "46033": {
+      "closest_shape": "63133",
+      "furthest_date": "62601",
+      "closest_different_culture": "47174",
+      "closest_different_department": "450494"
+    },
+    "46040": {
+      "closest_shape": "46518",
+      "furthest_date": "50884",
+      "closest_different_culture": null,
+      "closest_different_department": null
+    },
+    "46042": {
+      "closest_shape": "46965",
+      "furthest_date": "45205",
+      "closest_different_culture": "46029",
+      "closest_different_department": "446944"
+    },
+    "46043": {
+      "closest_shape": "53855",
+      "furthest_date": "44907",
+      "closest_different_culture": "45959",
+      "closest_different_department": "848436"
+    },
+    "46044": {
+      "closest_shape": "50037",
+      "furthest_date": "314688",
+      "closest_different_culture": "45482",
+      "closest_different_department": "848436"
+    },
+    "46045": {
+      "closest_shape": "623479",
+      "furthest_date": "46799",
+      "closest_different_culture": "45482",
+      "closest_different_department": "623470"
+    },
+    "46046": {
+      "closest_shape": "78432",
+      "furthest_date": "309470",
+      "closest_different_culture": "47447",
+      "closest_different_department": "446935"
+    },
+    "46047": {
+      "closest_shape": "52834",
+      "furthest_date": "46055",
+      "closest_different_culture": "45482",
+      "closest_different_department": "200886"
+    },
+    "46048": {
+      "closest_shape": "42206",
+      "furthest_date": "208036",
+      "closest_different_culture": "46103",
+      "closest_different_department": "623467"
+    },
+    "46049": {
+      "closest_shape": "46050",
+      "furthest_date": "47102",
+      "closest_different_culture": null,
+      "closest_different_department": "201031"
+    },
+    "46050": {
+      "closest_shape": "46049",
+      "furthest_date": null,
+      "closest_different_culture": "47102",
+      "closest_different_department": "208036"
+    },
+    "46051": {
+      "closest_shape": "623467",
+      "furthest_date": "239494",
+      "closest_different_culture": "46103",
+      "closest_different_department": "623478"
+    },
+    "46053": {
+      "closest_shape": "46048",
+      "furthest_date": null,
+      "closest_different_culture": "44862",
+      "closest_different_department": "623467"
+    },
+    "46054": {
+      "closest_shape": "309492",
+      "furthest_date": null,
+      "closest_different_culture": "309490",
+      "closest_different_department": "771072"
+    },
+    "46055": {
+      "closest_shape": "487245",
+      "furthest_date": "46106",
+      "closest_different_culture": "63093",
+      "closest_different_department": "200886"
+    },
+    "46057": {
+      "closest_shape": "45732",
+      "furthest_date": null,
+      "closest_different_culture": "62528",
+      "closest_different_department": "308507"
+    },
+    "46058": {
+      "closest_shape": "46083",
+      "furthest_date": "46306",
+      "closest_different_culture": "46580",
+      "closest_different_department": "451397"
+    },
+    "46059": {
+      "closest_shape": "47389",
+      "furthest_date": "46049",
+      "closest_different_culture": null,
+      "closest_different_department": "201031"
+    },
+    "46060": {
+      "closest_shape": "46059",
+      "furthest_date": "463086",
+      "closest_different_culture": "460717",
+      "closest_different_department": "201031"
+    },
+    "46061": {
+      "closest_shape": "46077",
+      "furthest_date": "487245",
+      "closest_different_culture": "47118",
+      "closest_different_department": "190600"
+    },
+    "46062": {
+      "closest_shape": "460717",
+      "furthest_date": "46436",
+      "closest_different_culture": "46481",
+      "closest_different_department": null
+    },
+    "46063": {
+      "closest_shape": "45900",
+      "furthest_date": null,
+      "closest_different_culture": "460717",
+      "closest_different_department": "471800"
+    },
+    "46064": {
+      "closest_shape": "46071",
+      "furthest_date": null,
+      "closest_different_culture": "47447",
+      "closest_different_department": "446935"
+    },
+    "460660": {
+      "closest_shape": "45994",
+      "furthest_date": "44426",
+      "closest_different_culture": "48451",
+      "closest_different_department": "73217"
+    },
+    "46066": {
+      "closest_shape": "46106",
+      "furthest_date": null,
+      "closest_different_culture": "45482",
+      "closest_different_department": "446886"
+    },
+    "460675": {
+      "closest_shape": "46527",
+      "furthest_date": "46809",
+      "closest_different_culture": "45912",
+      "closest_different_department": "46379"
+    },
+    "46067": {
+      "closest_shape": "50834",
+      "furthest_date": "46078",
+      "closest_different_culture": "44862",
+      "closest_different_department": "623467"
+    },
+    "460681": {
+      "closest_shape": "461338",
+      "furthest_date": "49924",
+      "closest_different_culture": "45990",
+      "closest_different_department": "204374"
+    },
+    "46068": {
+      "closest_shape": "46116",
+      "furthest_date": null,
+      "closest_different_culture": "670995",
+      "closest_different_department": "446935"
+    },
+    "460717": {
+      "closest_shape": "46062",
+      "furthest_date": "46436",
+      "closest_different_culture": "47857",
+      "closest_different_department": "46063"
+    },
+    "46071": {
+      "closest_shape": "46064",
+      "furthest_date": null,
+      "closest_different_culture": "46638",
+      "closest_different_department": "446935"
+    },
+    "46074": {
+      "closest_shape": "46105",
+      "furthest_date": "63125",
+      "closest_different_culture": "62552",
+      "closest_different_department": "453896"
+    },
+    "46075": {
+      "closest_shape": "46087",
+      "furthest_date": "451855",
+      "closest_different_culture": null,
+      "closest_different_department": "208036"
+    },
+    "46076": {
+      "closest_shape": "46306",
+      "furthest_date": "314681",
+      "closest_different_culture": "45959",
+      "closest_different_department": "463086"
+    },
+    "46077": {
+      "closest_shape": "46061",
+      "furthest_date": "451635",
+      "closest_different_culture": "47118",
+      "closest_different_department": "444501"
+    },
+    "46078": {
+      "closest_shape": "46084",
+      "furthest_date": "46094",
+      "closest_different_culture": null,
+      "closest_different_department": null
+    },
+    "46080": {
+      "closest_shape": "53774",
+      "furthest_date": "320343",
+      "closest_different_culture": "37458",
+      "closest_different_department": "309490"
+    },
+    "46081": {
+      "closest_shape": "46149",
+      "furthest_date": "48572",
+      "closest_different_culture": "46021",
+      "closest_different_department": "446997"
+    },
+    "46082": {
+      "closest_shape": "45889",
+      "furthest_date": "46084",
+      "closest_different_culture": null,
+      "closest_different_department": null
+    },
+    "46083": {
+      "closest_shape": "46306",
+      "furthest_date": "76733",
+      "closest_different_culture": "45959",
+      "closest_different_department": null
+    },
+    "46084": {
+      "closest_shape": "46078",
+      "furthest_date": "46094",
+      "closest_different_culture": null,
+      "closest_different_department": "208036"
+    },
+    "46086": {
+      "closest_shape": "46083",
+      "furthest_date": "46058",
+      "closest_different_culture": "45959",
+      "closest_different_department": "451397"
+    },
+    "46087": {
+      "closest_shape": "48759",
+      "furthest_date": "208036",
+      "closest_different_culture": null,
+      "closest_different_department": "194235"
+    },
+    "46090": {
+      "closest_shape": "45828",
+      "furthest_date": "46799",
+      "closest_different_culture": "46333",
+      "closest_different_department": "623468"
+    },
+    "46092": {
+      "closest_shape": "46140",
+      "furthest_date": "57357",
+      "closest_different_culture": "50944",
+      "closest_different_department": null
+    },
+    "46094": {
+      "closest_shape": "48840",
+      "furthest_date": "46104",
+      "closest_different_culture": null,
+      "closest_different_department": null
+    },
+    "46097": {
+      "closest_shape": "53826",
+      "furthest_date": "76733",
+      "closest_different_culture": "45482",
+      "closest_different_department": "446886"
+    },
+    "460983": {
+      "closest_shape": "204524",
+      "furthest_date": "310517",
+      "closest_different_culture": "460128",
+      "closest_different_department": "447285"
+    },
+    "46099": {
+      "closest_shape": "76114",
+      "furthest_date": "46033",
+      "closest_different_culture": "45962",
+      "closest_different_department": "187854"
+    },
+    "46103": {
+      "closest_shape": "830414",
+      "furthest_date": "451855",
+      "closest_different_culture": "46830",
+      "closest_different_department": "623478"
+    },
+    "46104": {
+      "closest_shape": "45829",
+      "furthest_date": "46094",
+      "closest_different_culture": "47102",
+      "closest_different_department": null
+    },
+    "46105": {
+      "closest_shape": "46008",
+      "furthest_date": "39510",
+      "closest_different_culture": "62552",
+      "closest_different_department": "188534"
+    },
+    "46106": {
+      "closest_shape": "46066",
+      "furthest_date": "76733",
+      "closest_different_culture": "487245",
+      "closest_different_department": "190600"
+    },
+    "461088": {
+      "closest_shape": "37537",
+      "furthest_date": "44689",
+      "closest_different_culture": "62770",
+      "closest_different_department": "62595"
+    },
+    "46110": {
+      "closest_shape": "52032",
+      "furthest_date": null,
+      "closest_different_culture": "62590",
+      "closest_different_department": "770940"
+    },
+    "46114": {
+      "closest_shape": "63120",
+      "furthest_date": "78432",
+      "closest_different_culture": "46950",
+      "closest_different_department": "466229"
+    },
+    "46116": {
+      "closest_shape": "46068",
+      "furthest_date": "50213",
+      "closest_different_culture": "50317",
+      "closest_different_department": "770986"
+    },
+    "46120": {
+      "closest_shape": "48759",
+      "furthest_date": "45900",
+      "closest_different_culture": null,
+      "closest_different_department": "208036"
+    },
+    "46121": {
+      "closest_shape": "46057",
+      "furthest_date": "309138",
+      "closest_different_culture": "45732",
+      "closest_different_department": "192802"
+    },
+    "46123": {
+      "closest_shape": "48611",
+      "furthest_date": "45934",
+      "closest_different_culture": null,
+      "closest_different_department": "208036"
+    },
+    "46124": {
+      "closest_shape": "45992",
+      "furthest_date": "46081",
+      "closest_different_culture": "46021",
+      "closest_different_department": "446997"
+    },
+    "46125": {
+      "closest_shape": "46508",
+      "furthest_date": "463086",
+      "closest_different_culture": "460717",
+      "closest_different_department": null
+    },
+    "46126": {
+      "closest_shape": "50944",
+      "furthest_date": "46092",
+      "closest_different_culture": "57404",
+      "closest_different_department": null
+    },
+    "46129": {
+      "closest_shape": "53828",
+      "furthest_date": null,
+      "closest_different_culture": "47447",
+      "closest_different_department": "206586"
+    },
+    "46130": {
+      "closest_shape": "39506",
+      "furthest_date": "44974",
+      "closest_different_culture": "47259",
+      "closest_different_department": "460182"
+    },
+    "46131": {
+      "closest_shape": "46955",
+      "furthest_date": null,
+      "closest_different_culture": "47075",
+      "closest_different_department": "444893"
+    },
+    "461338": {
+      "closest_shape": "460681",
+      "furthest_date": "49924",
+      "closest_different_culture": "45990",
+      "closest_different_department": "204374"
+    },
+    "46137": {
+      "closest_shape": "46024",
+      "furthest_date": null,
+      "closest_different_culture": null,
+      "closest_different_department": "201031"
+    },
+    "46138": {
+      "closest_shape": "48665",
+      "furthest_date": null,
+      "closest_different_culture": "47102",
+      "closest_different_department": null
+    },
+    "46139": {
+      "closest_shape": "46163",
+      "furthest_date": "48629",
+      "closest_different_culture": null,
+      "closest_different_department": "201028"
+    },
+    "46140": {
+      "closest_shape": "50944",
+      "furthest_date": "46092",
+      "closest_different_culture": null,
+      "closest_different_department": null
+    },
+    "46141": {
+      "closest_shape": "46550",
+      "furthest_date": "46809",
+      "closest_different_culture": "460675",
+      "closest_different_department": null
+    },
+    "46142": {
+      "closest_shape": "46714",
+      "furthest_date": "44793",
+      "closest_different_culture": "47075",
+      "closest_different_department": null
+    },
+    "46143": {
+      "closest_shape": "51210",
+      "furthest_date": "76733",
+      "closest_different_culture": "46523",
+      "closest_different_department": "451363"
+    },
+    "46144": {
+      "closest_shape": "46380",
+      "furthest_date": "37450",
+      "closest_different_culture": "47075",
+      "closest_different_department": "444893"
+    },
+    "46146": {
+      "closest_shape": "53798",
+      "furthest_date": "42491",
+      "closest_different_culture": "50187",
+      "closest_different_department": "201031"
+    },
+    "46147": {
+      "closest_shape": "45992",
+      "furthest_date": "42491",
+      "closest_different_culture": "46021",
+      "closest_different_department": "190732"
+    },
+    "46148": {
+      "closest_shape": "46151",
+      "furthest_date": "770999",
+      "closest_different_culture": null,
+      "closest_different_department": null
+    },
+    "46149": {
+      "closest_shape": "46022",
+      "furthest_date": "46021",
+      "closest_different_culture": null,
+      "closest_different_department": "446997"
+    },
+    "461502": {
+      "closest_shape": "49349",
+      "furthest_date": "37537",
+      "closest_different_culture": "476276",
+      "closest_different_department": "761272"
+    },
+    "46150": {
+      "closest_shape": "50317",
+      "furthest_date": "770986",
+      "closest_different_culture": "62703",
+      "closest_different_department": null
+    },
+    "46151": {
+      "closest_shape": "46148",
+      "furthest_date": "49216",
+      "closest_different_culture": null,
+      "closest_different_department": "770999"
+    },
+    "46152": {
+      "closest_shape": "46043",
+      "furthest_date": "314681",
+      "closest_different_culture": "45959",
+      "closest_different_department": "446886"
+    },
+    "46153": {
+      "closest_shape": "48749",
+      "furthest_date": "45984",
+      "closest_different_culture": "47102",
+      "closest_different_department": null
+    },
+    "46154": {
+      "closest_shape": "46156",
+      "furthest_date": null,
+      "closest_different_culture": null,
+      "closest_different_department": null
+    },
+    "46155": {
+      "closest_shape": "47988",
+      "furthest_date": null,
+      "closest_different_culture": "46021",
+      "closest_different_department": "446997"
+    },
+    "46156": {
+      "closest_shape": "46162",
+      "furthest_date": null,
+      "closest_different_culture": null,
+      "closest_different_department": null
+    },
+    "46157": {
+      "closest_shape": "46515",
+      "furthest_date": null,
+      "closest_different_culture": "57404",
+      "closest_different_department": null
+    },
+    "46158": {
+      "closest_shape": "46422",
+      "furthest_date": null,
+      "closest_different_culture": "57357",
+      "closest_different_department": null
+    },
+    "46159": {
+      "closest_shape": "48611",
+      "furthest_date": "45934",
+      "closest_different_culture": null,
+      "closest_different_department": "208036"
+    },
+    "46160": {
+      "closest_shape": "46590",
+      "furthest_date": null,
+      "closest_different_culture": "47075",
+      "closest_different_department": "444893"
+    },
+    "46161": {
+      "closest_shape": "45970",
+      "furthest_date": null,
+      "closest_different_culture": "47332",
+      "closest_different_department": "188534"
+    },
+    "46162": {
+      "closest_shape": "48717",
+      "furthest_date": "50884",
+      "closest_different_culture": null,
+      "closest_different_department": null
+    },
+    "46163": {
+      "closest_shape": "48665",
+      "furthest_date": "48629",
+      "closest_different_culture": "47102",
+      "closest_different_department": null
+    },
+    "46205": {
+      "closest_shape": "49924",
+      "furthest_date": "45529",
+      "closest_different_culture": "45977",
+      "closest_different_department": "918706"
+    },
+    "46235": {
+      "closest_shape": "63061",
+      "furthest_date": "309470",
+      "closest_different_culture": "47447",
+      "closest_different_department": null
+    },
+    "46249": {
+      "closest_shape": "62770",
+      "furthest_date": "37537",
+      "closest_different_culture": "72737",
+      "closest_different_department": "833900"
+    },
+    "46250": {
+      "closest_shape": "46114",
+      "furthest_date": "448261",
+      "closest_different_culture": "752044",
+      "closest_different_department": "466229"
+    },
+    "46268": {
+      "closest_shape": "50659",
+      "furthest_date": null,
+      "closest_different_culture": "73216",
+      "closest_different_department": "448395"
+    },
+    "46269": {
+      "closest_shape": "48451",
+      "furthest_date": "44426",
+      "closest_different_culture": "73217",
+      "closest_different_department": "833900"
+    },
+    "46306": {
+      "closest_shape": "47412",
+      "furthest_date": "310197",
+      "closest_different_culture": "45959",
+      "closest_different_department": "770977"
+    },
+    "463086": {
+      "closest_shape": "471800",
+      "furthest_date": "239506",
+      "closest_different_culture": "47922",
+      "closest_different_department": "45900"
+    },
+    "46315": {
+      "closest_shape": "47587",
+      "furthest_date": "42243",
+      "closest_different_culture": "46580",
+      "closest_different_department": "447776"
+    },
+    "46317": {
+      "closest_shape": "47447",
+      "furthest_date": "309470",
+      "closest_different_culture": "39885",
+      "closest_different_department": "460170"
+    },
+    "46330": {
+      "closest_shape": "45832",
+      "furthest_date": "50567",
+      "closest_different_culture": "57400",
+      "closest_different_department": "199461"
+    },
+    "46331": {
+      "closest_shape": "76733",
+      "furthest_date": "451397",
+      "closest_different_culture": "45482",
+      "closest_different_department": null
+    },
+    "46333": {
+      "closest_shape": "46799",
+      "furthest_date": "45828",
+      "closest_different_culture": "46090",
+      "closest_different_department": "623479"
+    },
+    "463532": {
+      "closest_shape": "446842",
+      "furthest_date": "309470",
+      "closest_different_culture": "46017",
+      "closest_different_department": "191780"
+    },
+    "46353": {
+      "closest_shape": "49366",
+      "furthest_date": "199719",
+      "closest_different_culture": "44862",
+      "closest_different_department": "239506"
+    },
+    "463559": {
+      "closest_shape": "46528",
+      "furthest_date": "316716",
+      "closest_different_culture": "45972",
+      "closest_different_department": "45999"
+    },
+    "46378": {
+      "closest_shape": "47389",
+      "furthest_date": "48204",
+      "closest_different_culture": "50187",
+      "closest_different_department": "201031"
+    },
+    "46379": {
+      "closest_shape": "46422",
+      "furthest_date": "48390",
+      "closest_different_culture": "460675",
+      "closest_different_department": null
+    },
+    "46380": {
+      "closest_shape": "46144",
+      "furthest_date": "37450",
+      "closest_different_culture": null,
+      "closest_different_department": "446653"
+    },
+    "46422": {
+      "closest_shape": "46379",
+      "furthest_date": "46809",
+      "closest_different_culture": "460675",
+      "closest_different_department": null
+    },
+    "46425": {
+      "closest_shape": "46315",
+      "furthest_date": "48629",
+      "closest_different_culture": "47102",
+      "closest_different_department": "447776"
+    },
+    "46434": {
+      "closest_shape": "46580",
+      "furthest_date": "42255",
+      "closest_different_culture": null,
+      "closest_different_department": null
+    },
+    "46435": {
+      "closest_shape": "48280",
+      "furthest_date": "42491",
+      "closest_different_culture": null,
+      "closest_different_department": "201031"
+    },
+    "46436": {
+      "closest_shape": "46062",
+      "furthest_date": "45900",
+      "closest_different_culture": "460717",
+      "closest_different_department": null
+    },
+    "46462": {
+      "closest_shape": "48312",
+      "furthest_date": "53777",
+      "closest_different_culture": "57357",
+      "closest_different_department": null
+    },
+    "46478": {
+      "closest_shape": "42397",
+      "furthest_date": "309442",
+      "closest_different_culture": "42211",
+      "closest_different_department": "208140"
+    },
+    "46481": {
+      "closest_shape": "45482",
+      "furthest_date": "309441",
+      "closest_different_culture": "51013",
+      "closest_different_department": "460717"
+    },
+    "46501": {
+      "closest_shape": "45984",
+      "furthest_date": "50187",
+      "closest_different_culture": "46090",
+      "closest_different_department": "201031"
+    },
+    "46507": {
+      "closest_shape": "47688",
+      "furthest_date": "46809",
+      "closest_different_culture": "460675",
+      "closest_different_department": null
+    },
+    "46508": {
+      "closest_shape": "46125",
+      "furthest_date": "463086",
+      "closest_different_culture": "460717",
+      "closest_different_department": "471800"
+    },
+    "46515": {
+      "closest_shape": "46157",
+      "furthest_date": "57404",
+      "closest_different_culture": "57357",
+      "closest_different_department": null
+    },
+    "46516": {
+      "closest_shape": "48311",
+      "furthest_date": "49216",
+      "closest_different_culture": "460675",
+      "closest_different_department": "770999"
+    },
+    "46517": {
+      "closest_shape": "47102",
+      "furthest_date": "48629",
+      "closest_different_culture": "46580",
+      "closest_different_department": null
+    },
+    "46518": {
+      "closest_shape": "46040",
+      "furthest_date": "308507",
+      "closest_different_culture": "309442",
+      "closest_different_department": "446653"
+    },
+    "46519": {
+      "closest_shape": "46462",
+      "furthest_date": "53777",
+      "closest_different_culture": "57357",
+      "closest_different_department": null
+    },
+    "46521": {
+      "closest_shape": "48311",
+      "furthest_date": "239506",
+      "closest_different_culture": null,
+      "closest_different_department": null
+    },
+    "46522": {
+      "closest_shape": "48572",
+      "furthest_date": "46081",
+      "closest_different_culture": "46021",
+      "closest_different_department": "446997"
+    },
+    "46523": {
+      "closest_shape": "46143",
+      "furthest_date": "451363",
+      "closest_different_culture": "45986",
+      "closest_different_department": "770974"
+    },
+    "46525": {
+      "closest_shape": "39510",
+      "furthest_date": "39511",
+      "closest_different_culture": "47019",
+      "closest_different_department": "200823"
+    },
+    "46527": {
+      "closest_shape": "46379",
+      "furthest_date": "46809",
+      "closest_different_culture": "460675",
+      "closest_different_department": null
+    },
+    "46528": {
+      "closest_shape": "463559",
+      "furthest_date": "316716",
+      "closest_different_culture": "45972",
+      "closest_different_department": "771024"
+    },
+    "46529": {
+      "closest_shape": "46533",
+      "furthest_date": "53777",
+      "closest_different_culture": "57357",
+      "closest_different_department": null
+    },
+    "46530": {
+      "closest_shape": "46522",
+      "furthest_date": "42491",
+      "closest_different_culture": "47075",
+      "closest_different_department": null
+    },
+    "46531": {
+      "closest_shape": "48311",
+      "furthest_date": "49216",
+      "closest_different_culture": null,
+      "closest_different_department": "770999"
+    },
+    "46532": {
+      "closest_shape": "46515",
+      "furthest_date": "53777",
+      "closest_different_culture": "57357",
+      "closest_different_department": null
+    },
+    "46533": {
+      "closest_shape": "46529",
+      "furthest_date": "53777",
+      "closest_different_culture": "57357",
+      "closest_different_department": null
+    },
+    "46534": {
+      "closest_shape": "48332",
+      "furthest_date": null,
+      "closest_different_culture": "460675",
+      "closest_different_department": "770974"
+    },
+    "46535": {
+      "closest_shape": "46074",
+      "furthest_date": null,
+      "closest_different_culture": "47259",
+      "closest_different_department": "453896"
+    },
+    "46536": {
+      "closest_shape": "45912",
+      "furthest_date": "49216",
+      "closest_different_culture": "460675",
+      "closest_different_department": null
+    },
+    "46537": {
+      "closest_shape": "42243",
+      "furthest_date": "48629",
+      "closest_different_culture": "46580",
+      "closest_different_department": "447776"
+    },
+    "46538": {
+      "closest_shape": "46436",
+      "furthest_date": "76733",
+      "closest_different_culture": "460717",
+      "closest_different_department": null
+    },
+    "46539": {
+      "closest_shape": "50950",
+      "furthest_date": null,
+      "closest_different_culture": "50349",
+      "closest_different_department": "196741"
+    },
+    "46550": {
+      "closest_shape": "45912",
+      "furthest_date": "46809",
+      "closest_different_culture": "460675",
+      "closest_different_department": null
+    },
+    "46558": {
+      "closest_shape": "46563",
+      "furthest_date": "37450",
+      "closest_different_culture": null,
+      "closest_different_department": "190732"
+    },
+    "46561": {
+      "closest_shape": "308451",
+      "furthest_date": "49896",
+      "closest_different_culture": "44817",
+      "closest_different_department": "451635"
+    },
+    "46563": {
+      "closest_shape": "46558",
+      "furthest_date": "37450",
+      "closest_different_culture": null,
+      "closest_different_department": null
+    },
+    "46569": {
+      "closest_shape": "50884",
+      "furthest_date": "48572",
+      "closest_different_culture": null,
+      "closest_different_department": null
+    },
+    "46570": {
+      "closest_shape": "46522",
+      "furthest_date": "48572",
+      "closest_different_culture": "46021",
+      "closest_different_department": "446997"
+    },
+    "46580": {
+      "closest_shape": "46434",
+      "furthest_date": "37432",
+      "closest_different_culture": "46962",
+      "closest_different_department": "447776"
+    },
+    "465871": {
+      "closest_shape": "46011",
+      "furthest_date": "44426",
+      "closest_different_culture": "46110",
+      "closest_different_department": "446842"
+    },
+    "465872": {
+      "closest_shape": "48451",
+      "furthest_date": "44727",
+      "closest_different_culture": "46110",
+      "closest_different_department": "49924"
+    },
+    "465875": {
+      "closest_shape": "199026",
+      "furthest_date": "46033",
+      "closest_different_culture": "460135",
+      "closest_different_department": "193355"
+    },
+    "46590": {
+      "closest_shape": "444893",
+      "furthest_date": "48204",
+      "closest_different_culture": "47075",
+      "closest_different_department": "446653"
+    },
+    "466229": {
+      "closest_shape": "46114",
+      "furthest_date": "49261",
+      "closest_different_culture": "46250",
+      "closest_different_department": "752044"
+    },
+    "466230": {
+      "closest_shape": "45849",
+      "furthest_date": "49553",
+      "closest_different_culture": "63007",
+      "closest_different_department": "195021"
+    },
+    "46633": {
+      "closest_shape": "46953",
+      "furthest_date": "320343",
+      "closest_different_culture": "44907",
+      "closest_different_department": "445270"
+    },
+    "46638": {
+      "closest_shape": "52755",
+      "furthest_date": "309470",
+      "closest_different_culture": "53828",
+      "closest_different_department": "446935"
+    },
+    "466618": {
+      "closest_shape": "448984",
+      "furthest_date": "46033",
+      "closest_different_culture": "62703",
+      "closest_different_department": "45432"
+    },
+    "46675": {
+      "closest_shape": "47443",
+      "furthest_date": "45849",
+      "closest_different_culture": "46000",
+      "closest_different_department": "449481"
+    },
+    "46714": {
+      "closest_shape": "46142",
+      "furthest_date": "48572",
+      "closest_different_culture": "47075",
+      "closest_different_department": "446997"
+    },
+    "467634": {
+      "closest_shape": "309525",
+      "furthest_date": "44726",
+      "closest_different_culture": "752044",
+      "closest_different_department": "49261"
+    },
+    "46773": {
+      "closest_shape": "46066",
+      "furthest_date": "46106",
+      "closest_different_culture": "45482",
+      "closest_different_department": "203276"
+    },
+    "46779": {
+      "closest_shape": "46590",
+      "furthest_date": "48204",
+      "closest_different_culture": "47075",
+      "closest_different_department": "444893"
+    },
+    "46799": {
+      "closest_shape": "46333",
+      "furthest_date": "46481",
+      "closest_different_culture": "45828",
+      "closest_different_department": "623479"
+    },
+    "46809": {
+      "closest_shape": "46536",
+      "furthest_date": "57357",
+      "closest_different_culture": "460675",
+      "closest_different_department": null
+    },
+    "468271": {
+      "closest_shape": "204524",
+      "furthest_date": "49896",
+      "closest_different_culture": "460983",
+      "closest_different_department": "310517"
+    },
+    "46830": {
+      "closest_shape": "46103",
+      "furthest_date": "239494",
+      "closest_different_culture": null,
+      "closest_different_department": "623478"
+    },
+    "46836": {
+      "closest_shape": "50192",
+      "furthest_date": null,
+      "closest_different_culture": "47722",
+      "closest_different_department": "208243"
+    },
+    "46848": {
+      "closest_shape": "204360",
+      "furthest_date": "78432",
+      "closest_different_culture": "46017",
+      "closest_different_department": "191780"
+    },
+    "46849": {
+      "closest_shape": "188538",
+      "furthest_date": "463086",
+      "closest_different_culture": "42389",
+      "closest_different_department": "239506"
+    },
+    "46927": {
+      "closest_shape": "48702",
+      "furthest_date": "48204",
+      "closest_different_culture": null,
+      "closest_different_department": "190732"
+    },
+    "46928": {
+      "closest_shape": "46024",
+      "furthest_date": "42491",
+      "closest_different_culture": "50187",
+      "closest_different_department": null
+    },
+    "46932": {
+      "closest_shape": "48716",
+      "furthest_date": "50884",
+      "closest_different_culture": "47394",
+      "closest_different_department": null
+    },
+    "46940": {
+      "closest_shape": "51001",
+      "furthest_date": "48204",
+      "closest_different_culture": "37450",
+      "closest_different_department": "201031"
+    },
+    "46947": {
+      "closest_shape": "51138",
+      "furthest_date": "46799",
+      "closest_different_culture": "50187",
+      "closest_different_department": "201031"
+    },
+    "46950": {
+      "closest_shape": "45882",
+      "furthest_date": "78432",
+      "closest_different_culture": "670995",
+      "closest_different_department": "446935"
+    },
+    "46953": {
+      "closest_shape": "46633",
+      "furthest_date": null,
+      "closest_different_culture": "49359",
+      "closest_different_department": "320343"
+    },
+    "46955": {
+      "closest_shape": "46144",
+      "furthest_date": null,
+      "closest_different_culture": "37450",
+      "closest_different_department": "444893"
+    },
+    "46962": {
+      "closest_shape": "48629",
+      "furthest_date": "46315",
+      "closest_different_culture": "46580",
+      "closest_different_department": "447776"
+    },
+    "46965": {
+      "closest_shape": "46042",
+      "furthest_date": "45550",
+      "closest_different_culture": "62703",
+      "closest_different_department": "446929"
+    },
+    "46985": {
+      "closest_shape": "47755",
+      "furthest_date": "48390",
+      "closest_different_culture": "487245",
+      "closest_different_department": "203276"
+    },
+    "47019": {
+      "closest_shape": "37563",
+      "furthest_date": "39511",
+      "closest_different_culture": "48223",
+      "closest_different_department": "770986"
+    },
+    "47066": {
+      "closest_shape": "45967",
+      "furthest_date": "308486",
+      "closest_different_culture": "45882",
+      "closest_different_department": "446935"
+    },
+    "47075": {
+      "closest_shape": "46590",
+      "furthest_date": "48204",
+      "closest_different_culture": "46131",
+      "closest_different_department": "444893"
+    },
+    "47077": {
+      "closest_shape": "42436",
+      "furthest_date": "308451",
+      "closest_different_culture": "853841",
+      "closest_different_department": "451635"
+    },
+    "47102": {
+      "closest_shape": "46517",
+      "furthest_date": "46049",
+      "closest_different_culture": "50036",
+      "closest_different_department": null
+    },
+    "47118": {
+      "closest_shape": "52767",
+      "furthest_date": "42436",
+      "closest_different_culture": "487245",
+      "closest_different_department": "190600"
+    },
+    "47158": {
+      "closest_shape": "871929",
+      "furthest_date": "314688",
+      "closest_different_culture": "309490",
+      "closest_different_department": "309492"
+    },
+    "47172": {
+      "closest_shape": "833906",
+      "furthest_date": "49896",
+      "closest_different_culture": "316000",
+      "closest_different_department": "201733"
+    },
+    "47174": {
+      "closest_shape": "52377",
+      "furthest_date": "46033",
+      "closest_different_culture": "42394",
+      "closest_different_department": "446944"
+    },
+    "471751": {
+      "closest_shape": "308486",
+      "furthest_date": "658676",
+      "closest_different_culture": "46016",
+      "closest_different_department": "204364"
+    },
+    "471800": {
+      "closest_shape": "463086",
+      "furthest_date": "239506",
+      "closest_different_culture": "47922",
+      "closest_different_department": "45900"
+    },
+    "47222": {
+      "closest_shape": "49349",
+      "furthest_date": "49896",
+      "closest_different_culture": "57436",
+      "closest_different_department": "658719"
+    },
+    "47228": {
+      "closest_shape": "45994",
+      "furthest_date": "44426",
+      "closest_different_culture": "460170",
+      "closest_different_department": "312928"
+    },
+    "47258": {
+      "closest_shape": "308451",
+      "furthest_date": "309490",
+      "closest_different_culture": "833906",
+      "closest_different_department": "451635"
+    },
+    "47259": {
+      "closest_shape": "239486",
+      "furthest_date": "446222",
+      "closest_different_culture": "47292",
+      "closest_different_department": "771065"
+    },
+    "47260": {
+      "closest_shape": "49349",
+      "furthest_date": "42333",
+      "closest_different_culture": "314182",
+      "closest_different_department": "449970"
+    },
+    "47292": {
+      "closest_shape": "45985",
+      "furthest_date": "449481",
+      "closest_different_culture": "63129",
+      "closest_different_department": "771024"
+    },
+    "47332": {
+      "closest_shape": "45970",
+      "furthest_date": "44726",
+      "closest_different_culture": "46161",
+      "closest_different_department": "188534"
+    },
+    "47350": {
+      "closest_shape": "46000",
+      "furthest_date": "451363",
+      "closest_different_culture": "62546",
+      "closest_different_department": "771024"
+    },
+    "47388": {
+      "closest_shape": "46144",
+      "furthest_date": "48204",
+      "closest_different_culture": "37450",
+      "closest_different_department": "446653"
+    },
+    "47389": {
+      "closest_shape": "46378",
+      "furthest_date": "46799",
+      "closest_different_culture": "50187",
+      "closest_different_department": "201031"
+    },
+    "47394": {
+      "closest_shape": "45930",
+      "furthest_date": "309442",
+      "closest_different_culture": "48717",
+      "closest_different_department": "192802"
+    },
+    "47412": {
+      "closest_shape": "46306",
+      "furthest_date": "463086",
+      "closest_different_culture": "471800",
+      "closest_different_department": "460717"
+    },
+    "47438": {
+      "closest_shape": "45939",
+      "furthest_date": null,
+      "closest_different_culture": null,
+      "closest_different_department": "201031"
+    },
+    "47443": {
+      "closest_shape": "770974",
+      "furthest_date": "48390",
+      "closest_different_culture": "46000",
+      "closest_different_department": "451363"
+    },
+    "47447": {
+      "closest_shape": "47949",
+      "furthest_date": "309470",
+      "closest_different_culture": "46317",
+      "closest_different_department": "460170"
+    },
+    "47470": {
+      "closest_shape": "48527",
+      "furthest_date": "320343",
+      "closest_different_culture": "45938",
+      "closest_different_department": "208243"
+    },
+    "47490": {
+      "closest_shape": "48329",
+      "furthest_date": "46436",
+      "closest_different_culture": "460717",
+      "closest_different_department": null
+    },
+    "47556": {
+      "closest_shape": "46022",
+      "furthest_date": "446997",
+      "closest_different_culture": "46021",
+      "closest_different_department": null
+    },
+    "47568": {
+      "closest_shape": "45959",
+      "furthest_date": "312158",
+      "closest_different_culture": "53855",
+      "closest_different_department": "314688"
+    },
+    "47574": {
+      "closest_shape": "46940",
+      "furthest_date": "48204",
+      "closest_different_culture": null,
+      "closest_different_department": "201031"
+    },
+    "475761": {
+      "closest_shape": "208036",
+      "furthest_date": "239506",
+      "closest_different_culture": "49366",
+      "closest_different_department": "52802"
+    },
+    "47582": {
+      "closest_shape": "47332",
+      "furthest_date": null,
+      "closest_different_culture": "47953",
+      "closest_different_department": "188534"
+    },
+    "47587": {
+      "closest_shape": "42243",
+      "furthest_date": "48629",
+      "closest_different_culture": null,
+      "closest_different_department": "447776"
+    },
+    "47599": {
+      "closest_shape": "833900",
+      "furthest_date": "37537",
+      "closest_different_culture": "72737",
+      "closest_different_department": "460660"
+    },
+    "47600": {
+      "closest_shape": "46151",
+      "furthest_date": "46809",
+      "closest_different_culture": "460675",
+      "closest_different_department": null
+    },
+    "476256": {
+      "closest_shape": "460170",
+      "furthest_date": "44426",
+      "closest_different_culture": "312928",
+      "closest_different_department": "308420"
+    },
+    "476276": {
+      "closest_shape": "48027",
+      "furthest_date": "44689",
+      "closest_different_culture": "761272",
+      "closest_different_department": "45552"
+    },
+    "476285": {
+      "closest_shape": "447289",
+      "furthest_date": "49896",
+      "closest_different_culture": "651290",
+      "closest_different_department": "460146"
+    },
+    "47644": {
+      "closest_shape": "207983",
+      "furthest_date": "44907",
+      "closest_different_culture": "46080",
+      "closest_different_department": "871929"
+    },
+    "47648": {
+      "closest_shape": "46110",
+      "furthest_date": "44426",
+      "closest_different_culture": "62917",
+      "closest_different_department": "770940"
+    },
+    "47665": {
+      "closest_shape": "46140",
+      "furthest_date": "46092",
+      "closest_different_culture": "46141",
+      "closest_different_department": "747034"
+    },
+    "47688": {
+      "closest_shape": "46507",
+      "furthest_date": "46809",
+      "closest_different_culture": "460675",
+      "closest_different_department": null
+    },
+    "47722": {
+      "closest_shape": "50192",
+      "furthest_date": "57400",
+      "closest_different_culture": "46836",
+      "closest_different_department": "208243"
+    },
+    "477266": {
+      "closest_shape": "194433",
+      "furthest_date": "45529",
+      "closest_different_culture": "312586",
+      "closest_different_department": "918706"
+    },
+    "477270": {
+      "closest_shape": "310197",
+      "furthest_date": "312158",
+      "closest_different_culture": "46306",
+      "closest_different_department": "45959"
+    },
+    "477277": {
+      "closest_shape": "451397",
+      "furthest_date": "46106",
+      "closest_different_culture": "76733",
+      "closest_different_department": "46331"
+    },
+    "477288": {
+      "closest_shape": "47332",
+      "furthest_date": "46561",
+      "closest_different_culture": "47953",
+      "closest_different_department": "52032"
+    },
+    "477291": {
+      "closest_shape": "47292",
+      "furthest_date": "239486",
+      "closest_different_culture": "46000",
+      "closest_different_department": "45985"
+    },
+    "477323": {
+      "closest_shape": "312586",
+      "furthest_date": "46317",
+      "closest_different_culture": "309396",
+      "closest_different_department": "46016"
+    },
+    "47755": {
+      "closest_shape": "46985",
+      "furthest_date": "314688",
+      "closest_different_culture": "47892",
+      "closest_different_department": "194586"
+    },
+    "477749": {
+      "closest_shape": "454610",
+      "furthest_date": "239486",
+      "closest_different_culture": "42436",
+      "closest_different_department": "771024"
+    },
+    "47786": {
+      "closest_shape": "712495",
+      "furthest_date": "49896",
+      "closest_different_culture": "308291",
+      "closest_different_department": "313301"
+    },
+    "47804": {
+      "closest_shape": "46940",
+      "furthest_date": "48204",
+      "closest_different_culture": "37450",
+      "closest_different_department": null
+    },
+    "47809": {
+      "closest_shape": "308507",
+      "furthest_date": "308518",
+      "closest_different_culture": "308386",
+      "closest_different_department": "190732"
+    },
+    "47811": {
+      "closest_shape": "309345",
+      "furthest_date": "314680",
+      "closest_different_culture": "45919",
+      "closest_different_department": "232205"
+    },
+    "47846": {
+      "closest_shape": "48451",
+      "furthest_date": "44727",
+      "closest_different_culture": "46110",
+      "closest_different_department": "204512"
+    },
+    "47857": {
+      "closest_shape": "52811",
+      "furthest_date": null,
+      "closest_different_culture": "460717",
+      "closest_different_department": null
+    },
+    "47858": {
+      "closest_shape": "48027",
+      "furthest_date": "44426",
+      "closest_different_culture": "49349",
+      "closest_different_department": "206586"
+    },
+    "478669": {
+      "closest_shape": "199039",
+      "furthest_date": "239486",
+      "closest_different_culture": "46008",
+      "closest_different_department": "446222"
+    },
+    "478713": {
+      "closest_shape": "52032",
+      "furthest_date": "46250",
+      "closest_different_culture": "44817",
+      "closest_different_department": "310547"
+    },
+    "47892": {
+      "closest_shape": "190600",
+      "furthest_date": null,
+      "closest_different_culture": "45987",
+      "closest_different_department": "210743"
+    },
+    "47908": {
+      "closest_shape": "76114",
+      "furthest_date": "42278",
+      "closest_different_culture": "57404",
+      "closest_different_department": "771041"
+    },
+    "47920": {
+      "closest_shape": "203276",
+      "furthest_date": "308381",
+      "closest_different_culture": "487245",
+      "closest_different_department": "194586"
+    },
+    "47922": {
+      "closest_shape": "44862",
+      "furthest_date": "314681",
+      "closest_different_culture": "463086",
+      "closest_different_department": "188538"
+    },
+    "47949": {
+      "closest_shape": "47447",
+      "furthest_date": "44689",
+      "closest_different_culture": "52755",
+      "closest_different_department": "309470"
+    },
+    "47953": {
+      "closest_shape": "47332",
+      "furthest_date": "44727",
+      "closest_different_culture": "47582",
+      "closest_different_department": "188534"
+    },
+    "47988": {
+      "closest_shape": "45998",
+      "furthest_date": "50567",
+      "closest_different_culture": "46021",
+      "closest_different_department": "199461"
+    },
+    "48012": {
+      "closest_shape": "200841",
+      "furthest_date": "49896",
+      "closest_different_culture": "47582",
+      "closest_different_department": "200823"
+    },
+    "48027": {
+      "closest_shape": "206586",
+      "furthest_date": null,
+      "closest_different_culture": "47858",
+      "closest_different_department": "476276"
+    },
+    "48086": {
+      "closest_shape": "42211",
+      "furthest_date": null,
+      "closest_different_culture": "37450",
+      "closest_different_department": "446653"
+    },
+    "48088": {
+      "closest_shape": "46144",
+      "furthest_date": "48204",
+      "closest_different_culture": "47075",
+      "closest_different_department": "444893"
+    },
+    "48172": {
+      "closest_shape": "45844",
+      "furthest_date": "309470",
+      "closest_different_culture": "46638",
+      "closest_different_department": "446935"
+    },
+    "48204": {
+      "closest_shape": "48702",
+      "furthest_date": "51247",
+      "closest_different_culture": "47075",
+      "closest_different_department": "444893"
+    },
+    "48223": {
+      "closest_shape": "39511",
+      "furthest_date": "49924",
+      "closest_different_culture": "47019",
+      "closest_different_department": "193020"
+    },
+    "48280": {
+      "closest_shape": "46131",
+      "furthest_date": "48204",
+      "closest_different_culture": "37450",
+      "closest_different_department": "201031"
+    },
+    "48281": {
+      "closest_shape": "45972",
+      "furthest_date": "316716",
+      "closest_different_culture": "62546",
+      "closest_different_department": "449913"
+    },
+    "48311": {
+      "closest_shape": "50747",
+      "furthest_date": "49216",
+      "closest_different_culture": "460675",
+      "closest_different_department": "770999"
+    },
+    "48312": {
+      "closest_shape": "46462",
+      "furthest_date": "46809",
+      "closest_different_culture": null,
+      "closest_different_department": null
+    },
+    "48324": {
+      "closest_shape": "50908",
+      "furthest_date": "48204",
+      "closest_different_culture": "37450",
+      "closest_different_department": "444893"
+    },
+    "48329": {
+      "closest_shape": "47490",
+      "furthest_date": "45900",
+      "closest_different_culture": "460717",
+      "closest_different_department": null
+    },
+    "48332": {
+      "closest_shape": "46534",
+      "furthest_date": "451363",
+      "closest_different_culture": "46523",
+      "closest_different_department": "770974"
+    },
+    "48340": {
+      "closest_shape": "46158",
+      "furthest_date": "48390",
+      "closest_different_culture": "460675",
+      "closest_different_department": null
+    },
+    "48390": {
+      "closest_shape": "48340",
+      "furthest_date": "487245",
+      "closest_different_culture": "42278",
+      "closest_different_department": "770974"
+    },
+    "48395": {
+      "closest_shape": "46157",
+      "furthest_date": "47443",
+      "closest_different_culture": "42278",
+      "closest_different_department": null
+    },
+    "48451": {
+      "closest_shape": "73217",
+      "furthest_date": "44426",
+      "closest_different_culture": "39885",
+      "closest_different_department": "460660"
+    },
+    "48509": {
+      "closest_shape": "46110",
+      "furthest_date": "49896",
+      "closest_different_culture": "62770",
+      "closest_different_department": "452853"
+    },
+    "48516": {
+      "closest_shape": "309442",
+      "furthest_date": null,
+      "closest_different_culture": "62528",
+      "closest_different_department": "308507"
+    },
+    "48527": {
+      "closest_shape": "45938",
+      "furthest_date": null,
+      "closest_different_culture": "47470",
+      "closest_different_department": "208243"
+    },
+    "48544": {
+      "closest_shape": "63135",
+      "furthest_date": "45849",
+      "closest_different_culture": "62768",
+      "closest_different_department": "770916"
+    },
+    "48552": {
+      "closest_shape": "47443",
+      "furthest_date": "449481",
+      "closest_different_culture": "46000",
+      "closest_different_department": "451363"
+    },
+    "48566": {
+      "closest_shape": "42425",
+      "furthest_date": "771037",
+      "closest_different_culture": null,
+      "closest_different_department": null
+    },
+    "48572": {
+      "closest_shape": "46522",
+      "furthest_date": "46081",
+      "closest_different_culture": "46021",
+      "closest_different_department": "446997"
+    },
+    "48597": {
+      "closest_shape": "48629",
+      "furthest_date": null,
+      "closest_different_culture": "47102",
+      "closest_different_department": "447776"
+    },
+    "48611": {
+      "closest_shape": "46123",
+      "furthest_date": "45934",
+      "closest_different_culture": null,
+      "closest_different_department": "208036"
+    },
+    "48625": {
+      "closest_shape": "45909",
+      "furthest_date": "45930",
+      "closest_different_culture": "37450",
+      "closest_different_department": "201031"
+    },
+    "48628": {
+      "closest_shape": "46138",
+      "furthest_date": "208036",
+      "closest_different_culture": "47102",
+      "closest_different_department": null
+    },
+    "48629": {
+      "closest_shape": "47587",
+      "furthest_date": "46962",
+      "closest_different_culture": null,
+      "closest_different_department": "447776"
+    },
+    "48636": {
+      "closest_shape": "45998",
+      "furthest_date": "57400",
+      "closest_different_culture": "50192",
+      "closest_different_department": "208243"
+    },
+    "48661": {
+      "closest_shape": "46306",
+      "furthest_date": "463086",
+      "closest_different_culture": "46580",
+      "closest_different_department": "471800"
+    },
+    "48665": {
+      "closest_shape": "46163",
+      "furthest_date": null,
+      "closest_different_culture": "47102",
+      "closest_different_department": null
+    },
+    "48682": {
+      "closest_shape": "50891",
+      "furthest_date": null,
+      "closest_different_culture": "44862",
+      "closest_different_department": "623467"
+    },
+    "48695": {
+      "closest_shape": "48699",
+      "furthest_date": "48329",
+      "closest_different_culture": "46580",
+      "closest_different_department": "460717"
+    },
+    "48699": {
+      "closest_shape": "48695",
+      "furthest_date": "46436",
+      "closest_different_culture": "460717",
+      "closest_different_department": null
+    },
+    "48701": {
+      "closest_shape": "208036",
+      "furthest_date": "451855",
+      "closest_different_culture": "671535",
+      "closest_different_department": null
+    },
+    "48702": {
+      "closest_shape": "51001",
+      "furthest_date": "48204",
+      "closest_different_culture": null,
+      "closest_different_department": "444893"
+    },
+    "48714": {
+      "closest_shape": "46836",
+      "furthest_date": "50567",
+      "closest_different_culture": "50192",
+      "closest_different_department": "208243"
+    },
+    "48716": {
+      "closest_shape": "48717",
+      "furthest_date": "42397",
+      "closest_different_culture": null,
+      "closest_different_department": null
+    },
+    "48717": {
+      "closest_shape": "48716",
+      "furthest_date": "48625",
+      "closest_different_culture": null,
+      "closest_different_department": null
+    },
+    "487245": {
+      "closest_shape": "46055",
+      "furthest_date": "42278",
+      "closest_different_culture": "52767",
+      "closest_different_department": "194586"
+    },
+    "48749": {
+      "closest_shape": "46153",
+      "furthest_date": "47389",
+      "closest_different_culture": null,
+      "closest_different_department": "201031"
+    },
+    "48759": {
+      "closest_shape": "46087",
+      "furthest_date": null,
+      "closest_different_culture": null,
+      "closest_different_department": "208036"
+    },
+    "48801": {
+      "closest_shape": "46539",
+      "furthest_date": "49262",
+      "closest_different_culture": "52659",
+      "closest_different_department": "197222"
+    },
+    "48840": {
+      "closest_shape": "46094",
+      "furthest_date": null,
+      "closest_different_culture": null,
+      "closest_different_department": null
+    },
+    "49201": {
+      "closest_shape": "46110",
+      "furthest_date": "37537",
+      "closest_different_culture": "62917",
+      "closest_different_department": "309470"
+    },
+    "49203": {
+      "closest_shape": "52755",
+      "furthest_date": "309470",
+      "closest_different_culture": "46638",
+      "closest_different_department": "446935"
+    },
+    "49216": {
+      "closest_shape": "770999",
+      "furthest_date": "50747",
+      "closest_different_culture": "460675",
+      "closest_different_department": null
+    },
+    "49261": {
+      "closest_shape": "466229",
+      "furthest_date": "771073",
+      "closest_different_culture": "467634",
+      "closest_different_department": "771053"
+    },
+    "49262": {
+      "closest_shape": "449066",
+      "furthest_date": "770977",
+      "closest_different_culture": "313101",
+      "closest_different_department": "463559"
+    },
+    "49293": {
+      "closest_shape": "49296",
+      "furthest_date": "309509",
+      "closest_different_culture": "48527",
+      "closest_different_department": "308404"
+    },
+    "49296": {
+      "closest_shape": "49293",
+      "furthest_date": "309509",
+      "closest_different_culture": "48527",
+      "closest_different_department": "308404"
+    },
+    "49344": {
+      "closest_shape": "46082",
+      "furthest_date": "46084",
+      "closest_different_culture": null,
+      "closest_different_department": null
+    },
+    "49349": {
+      "closest_shape": "42333",
+      "furthest_date": null,
+      "closest_different_culture": "57436",
+      "closest_different_department": "449970"
+    },
+    "49351": {
+      "closest_shape": "48566",
+      "furthest_date": "45939",
+      "closest_different_culture": null,
+      "closest_different_department": null
+    },
+    "49359": {
+      "closest_shape": "46953",
+      "furthest_date": "57400",
+      "closest_different_culture": "53774",
+      "closest_different_department": "320343"
+    },
+    "49366": {
+      "closest_shape": "46353",
+      "furthest_date": "208036",
+      "closest_different_culture": "44862",
+      "closest_different_department": "201028"
+    },
+    "495466": {
+      "closest_shape": "49349",
+      "furthest_date": "49896",
+      "closest_different_culture": null,
+      "closest_different_department": "42285"
+    },
+    "49553": {
+      "closest_shape": "46306",
+      "furthest_date": "46076",
+      "closest_different_culture": "62546",
+      "closest_different_department": "194432"
+    },
+    "49857": {
+      "closest_shape": "46380",
+      "furthest_date": "208140",
+      "closest_different_culture": "46478",
+      "closest_different_department": "446653"
+    },
+    "49862": {
+      "closest_shape": "208036",
+      "furthest_date": "451855",
+      "closest_different_culture": null,
+      "closest_different_department": "623467"
+    },
+    "49896": {
+      "closest_shape": "42285",
+      "furthest_date": "47786",
+      "closest_different_culture": "313301",
+      "closest_different_department": "308291"
+    },
+    "49924": {
+      "closest_shape": "48172",
+      "furthest_date": "309470",
+      "closest_different_culture": "46638",
+      "closest_different_department": "446935"
+    },
+    "50036": {
+      "closest_shape": "47102",
+      "furthest_date": null,
+      "closest_different_culture": null,
+      "closest_different_department": null
+    },
+    "50037": {
+      "closest_shape": "46044",
+      "furthest_date": null,
+      "closest_different_culture": "314688",
+      "closest_different_department": "312158"
+    },
+    "50187": {
+      "closest_shape": "50338",
+      "furthest_date": "48204",
+      "closest_different_culture": "42491",
+      "closest_different_department": "201031"
+    },
+    "50192": {
+      "closest_shape": "47722",
+      "furthest_date": "57400",
+      "closest_different_culture": "46836",
+      "closest_different_department": "444495"
+    },
+    "50213": {
+      "closest_shape": "52220",
+      "furthest_date": "44426",
+      "closest_different_culture": "45994",
+      "closest_different_department": "450212"
+    },
+    "50229": {
+      "closest_shape": "46317",
+      "furthest_date": "44426",
+      "closest_different_culture": "39885",
+      "closest_different_department": "460170"
+    },
+    "50313": {
+      "closest_shape": "448017",
+      "furthest_date": "44426",
+      "closest_different_culture": "50770",
+      "closest_different_department": "833900"
+    },
+    "50314": {
+      "closest_shape": "48801",
+      "furthest_date": "770942",
+      "closest_different_culture": "46539",
+      "closest_different_department": "449066"
+    },
+    "50317": {
+      "closest_shape": "46150",
+      "furthest_date": "770986",
+      "closest_different_culture": "46029",
+      "closest_different_department": "188534"
+    },
+    "50334": {
+      "closest_shape": "313241",
+      "furthest_date": "37537",
+      "closest_different_culture": "46110",
+      "closest_different_department": "312928"
+    },
+    "50335": {
+      "closest_shape": "48544",
+      "furthest_date": "44974",
+      "closest_different_culture": "460182",
+      "closest_different_department": "770916"
+    },
+    "50338": {
+      "closest_shape": "50192",
+      "furthest_date": "48204",
+      "closest_different_culture": "46836",
+      "closest_different_department": "208243"
+    },
+    "50349": {
+      "closest_shape": "47922",
+      "furthest_date": "199719",
+      "closest_different_culture": "46067",
+      "closest_different_department": "623467"
+    },
+    "50359": {
+      "closest_shape": "46016",
+      "furthest_date": "48223",
+      "closest_different_culture": "52798",
+      "closest_different_department": "191780"
+    },
+    "50502": {
+      "closest_shape": "51025",
+      "furthest_date": null,
+      "closest_different_culture": "62768",
+      "closest_different_department": "203276"
+    },
+    "50567": {
+      "closest_shape": "57400",
+      "furthest_date": "45915",
+      "closest_different_culture": "46021",
+      "closest_different_department": "199461"
+    },
+    "50659": {
+      "closest_shape": "448395",
+      "furthest_date": null,
+      "closest_different_culture": "50313",
+      "closest_different_department": "448017"
+    },
+    "50709": {
+      "closest_shape": "48451",
+      "furthest_date": "44426",
+      "closest_different_culture": "460660",
+      "closest_different_department": "833900"
+    },
+    "50741": {
+      "closest_shape": "46849",
+      "furthest_date": "463086",
+      "closest_different_culture": "471800",
+      "closest_different_department": "239506"
+    },
+    "50747": {
+      "closest_shape": "48311",
+      "furthest_date": "49216",
+      "closest_different_culture": "460717",
+      "closest_different_department": "770999"
+    },
+    "50770": {
+      "closest_shape": "448017",
+      "furthest_date": "44426",
+      "closest_different_culture": "833900",
+      "closest_different_department": "448395"
+    },
+    "50813": {
+      "closest_shape": "46094",
+      "furthest_date": "45934",
+      "closest_different_culture": "47102",
+      "closest_different_department": null
+    },
+    "50834": {
+      "closest_shape": "51010",
+      "furthest_date": null,
+      "closest_different_culture": null,
+      "closest_different_department": "208036"
+    },
+    "50884": {
+      "closest_shape": "46156",
+      "furthest_date": "37450",
+      "closest_different_culture": null,
+      "closest_different_department": null
+    },
+    "50891": {
+      "closest_shape": "48682",
+      "furthest_date": "239494",
+      "closest_different_culture": null,
+      "closest_different_department": "623467"
+    },
+    "50908": {
+      "closest_shape": "48324",
+      "furthest_date": null,
+      "closest_different_culture": "37450",
+      "closest_different_department": "444893"
+    },
+    "50944": {
+      "closest_shape": "46126",
+      "furthest_date": "46092",
+      "closest_different_culture": "57357",
+      "closest_different_department": null
+    },
+    "50948": {
+      "closest_shape": "623479",
+      "furthest_date": "46799",
+      "closest_different_culture": "45828",
+      "closest_different_department": "203149"
+    },
+    "50950": {
+      "closest_shape": "46051",
+      "furthest_date": "239494",
+      "closest_different_culture": "50349",
+      "closest_different_department": "623467"
+    },
+    "50960": {
+      "closest_shape": "51023",
+      "furthest_date": "46033",
+      "closest_different_culture": "63133",
+      "closest_different_department": "187854"
+    },
+    "50989": {
+      "closest_shape": "52059",
+      "furthest_date": null,
+      "closest_different_culture": "308466",
+      "closest_different_department": "308291"
+    },
+    "50995": {
+      "closest_shape": "52059",
+      "furthest_date": null,
+      "closest_different_culture": "62595",
+      "closest_different_department": "308466"
+    },
+    "51001": {
+      "closest_shape": "46940",
+      "furthest_date": null,
+      "closest_different_culture": "37450",
+      "closest_different_department": "201031"
+    },
+    "51010": {
+      "closest_shape": "50834",
+      "furthest_date": null,
+      "closest_different_culture": null,
+      "closest_different_department": null
+    },
+    "51011": {
+      "closest_shape": "46714",
+      "furthest_date": null,
+      "closest_different_culture": "46021",
+      "closest_different_department": "446997"
+    },
+    "51013": {
+      "closest_shape": "46481",
+      "furthest_date": null,
+      "closest_different_culture": "45482",
+      "closest_different_department": "460717"
+    },
+    "51014": {
+      "closest_shape": "48312",
+      "furthest_date": null,
+      "closest_different_culture": "460675",
+      "closest_different_department": null
+    },
+    "51021": {
+      "closest_shape": "45959",
+      "furthest_date": null,
+      "closest_different_culture": "312158",
+      "closest_different_department": null
+    },
+    "51023": {
+      "closest_shape": "37449",
+      "furthest_date": null,
+      "closest_different_culture": "57404",
+      "closest_different_department": "187854"
+    },
+    "51025": {
+      "closest_shape": "46529",
+      "furthest_date": null,
+      "closest_different_culture": "460675",
+      "closest_different_department": null
+    },
+    "51106": {
+      "closest_shape": "42216",
+      "furthest_date": "446997",
+      "closest_different_culture": "46021",
+      "closest_different_department": "199461"
+    },
+    "51138": {
+      "closest_shape": "47389",
+      "furthest_date": null,
+      "closest_different_culture": "50187",
+      "closest_different_department": "201031"
+    },
+    "51163": {
+      "closest_shape": "312608",
+      "furthest_date": null,
+      "closest_different_culture": "45989",
+      "closest_different_department": "308616"
+    },
+    "51187": {
+      "closest_shape": "50317",
+      "furthest_date": null,
+      "closest_different_culture": "45432",
+      "closest_different_department": "770986"
+    },
+    "51210": {
+      "closest_shape": "46143",
+      "furthest_date": "76733",
+      "closest_different_culture": "46000",
+      "closest_different_department": "471800"
+    },
+    "51217": {
+      "closest_shape": "46539",
+      "furthest_date": null,
+      "closest_different_culture": "48801",
+      "closest_different_department": "206742"
+    },
+    "51247": {
+      "closest_shape": "46378",
+      "furthest_date": "48204",
+      "closest_different_culture": "50187",
+      "closest_different_department": "201031"
+    },
+    "51946": {
+      "closest_shape": "49261",
+      "furthest_date": "771073",
+      "closest_different_culture": "46250",
+      "closest_different_department": "448261"
+    },
+    "52032": {
+      "closest_shape": "46110",
+      "furthest_date": null,
+      "closest_different_culture": "62590",
+      "closest_different_department": "448395"
+    },
+    "52057": {
+      "closest_shape": "52922",
+      "furthest_date": null,
+      "closest_different_culture": null,
+      "closest_different_department": "771037"
+    },
+    "52058": {
+      "closest_shape": "50995",
+      "furthest_date": null,
+      "closest_different_culture": "57422",
+      "closest_different_department": "308466"
+    },
+    "52059": {
+      "closest_shape": "50995",
+      "furthest_date": null,
+      "closest_different_culture": "62595",
+      "closest_different_department": "308466"
+    },
+    "52081": {
+      "closest_shape": "448017",
+      "furthest_date": "49896",
+      "closest_different_culture": "50659",
+      "closest_different_department": "448395"
+    },
+    "52220": {
+      "closest_shape": "50213",
+      "furthest_date": "44426",
+      "closest_different_culture": "45994",
+      "closest_different_department": "312928"
+    },
+    "52259": {
+      "closest_shape": "833906",
+      "furthest_date": null,
+      "closest_different_culture": "308451",
+      "closest_different_department": "313287"
+    },
+    "52377": {
+      "closest_shape": "42394",
+      "furthest_date": "62601",
+      "closest_different_culture": "52798",
+      "closest_different_department": "446944"
+    },
+    "52461": {
+      "closest_shape": "47260",
+      "furthest_date": "42333",
+      "closest_different_culture": "49349",
+      "closest_different_department": "194248"
+    },
+    "52546": {
+      "closest_shape": "200841",
+      "furthest_date": null,
+      "closest_different_culture": "48012",
+      "closest_different_department": "771023"
+    },
+    "52563": {
+      "closest_shape": "46110",
+      "furthest_date": "770986",
+      "closest_different_culture": "47332",
+      "closest_different_department": "188534"
+    },
+    "52568": {
+      "closest_shape": "205096",
+      "furthest_date": "45964",
+      "closest_different_culture": "460178",
+      "closest_different_department": "199751"
+    },
+    "52611": {
+      "closest_shape": "312158",
+      "furthest_date": "45959",
+      "closest_different_culture": "47568",
+      "closest_different_department": "446997"
+    },
+    "52659": {
+      "closest_shape": "63007",
+      "furthest_date": null,
+      "closest_different_culture": "47922",
+      "closest_different_department": "770942"
+    },
+    "52755": {
+      "closest_shape": "78432",
+      "furthest_date": null,
+      "closest_different_culture": "47447",
+      "closest_different_department": "446935"
+    },
+    "52767": {
+      "closest_shape": "47118",
+      "furthest_date": null,
+      "closest_different_culture": "487245",
+      "closest_different_department": "194586"
+    },
+    "52797": {
+      "closest_shape": "63137",
+      "furthest_date": null,
+      "closest_different_culture": "63129",
+      "closest_different_department": "187854"
+    },
+    "52798": {
+      "closest_shape": "52377",
+      "furthest_date": "45967",
+      "closest_different_culture": "62703",
+      "closest_different_department": "446935"
+    },
+    "52802": {
+      "closest_shape": "49366",
+      "furthest_date": null,
+      "closest_different_culture": null,
+      "closest_different_department": "208036"
+    },
+    "52807": {
+      "closest_shape": "675861",
+      "furthest_date": "49553",
+      "closest_different_culture": "487245",
+      "closest_different_department": "446886"
+    },
+    "52811": {
+      "closest_shape": "42279",
+      "furthest_date": null,
+      "closest_different_culture": "460717",
+      "closest_different_department": null
+    },
+    "52834": {
+      "closest_shape": "46047",
+      "furthest_date": null,
+      "closest_different_culture": "487245",
+      "closest_different_department": "200886"
+    },
+    "52922": {
+      "closest_shape": "52057",
+      "furthest_date": null,
+      "closest_different_culture": null,
+      "closest_different_department": "771037"
+    },
+    "53616": {
+      "closest_shape": "45980",
+      "furthest_date": "44689",
+      "closest_different_culture": "761272",
+      "closest_different_department": "313241"
+    },
+    "53774": {
+      "closest_shape": "46080",
+      "furthest_date": "320343",
+      "closest_different_culture": "37458",
+      "closest_different_department": "208243"
+    },
+    "53777": {
+      "closest_shape": "46533",
+      "furthest_date": "46126",
+      "closest_different_culture": "63093",
+      "closest_different_department": null
+    },
+    "53798": {
+      "closest_shape": "46146",
+      "furthest_date": null,
+      "closest_different_culture": "50187",
+      "closest_different_department": "190732"
+    },
+    "53826": {
+      "closest_shape": "46097",
+      "furthest_date": null,
+      "closest_different_culture": "45482",
+      "closest_different_department": "200928"
+    },
+    "53828": {
+      "closest_shape": "78432",
+      "furthest_date": "309470",
+      "closest_different_culture": "47447",
+      "closest_different_department": "446935"
+    },
+    "53855": {
+      "closest_shape": "46043",
+      "furthest_date": null,
+      "closest_different_culture": "45959",
+      "closest_different_department": "770977"
+    },
+    "53891": {
+      "closest_shape": "46139",
+      "furthest_date": null,
+      "closest_different_culture": "47102",
+      "closest_different_department": "201028"
+    },
+    "57357": {
+      "closest_shape": "46532",
+      "furthest_date": "53777",
+      "closest_different_culture": "46529",
+      "closest_different_department": null
+    },
+    "57400": {
+      "closest_shape": "46330",
+      "furthest_date": "50567",
+      "closest_different_culture": "48714",
+      "closest_different_department": "199461"
+    },
+    "57404": {
+      "closest_shape": "46126",
+      "furthest_date": "57357",
+      "closest_different_culture": "46157",
+      "closest_different_department": "771041"
+    },
+    "57422": {
+      "closest_shape": "62595",
+      "furthest_date": "49896",
+      "closest_different_culture": "62770",
+      "closest_different_department": "308580"
+    },
+    "57434": {
+      "closest_shape": "712495",
+      "furthest_date": "49896",
+      "closest_different_culture": "313301",
+      "closest_different_department": "308624"
+    },
+    "57436": {
+      "closest_shape": "49349",
+      "furthest_date": "49896",
+      "closest_different_culture": "47222",
+      "closest_different_department": "201733"
+    },
+    "57517": {
+      "closest_shape": "72737",
+      "furthest_date": "37537",
+      "closest_different_culture": "50770",
+      "closest_different_department": "833900"
+    },
+    "623467": {
+      "closest_shape": "46051",
+      "furthest_date": "239494",
+      "closest_different_culture": null,
+      "closest_different_department": "48682"
+    },
+    "623468": {
+      "closest_shape": "623470",
+      "furthest_date": "46799",
+      "closest_different_culture": null,
+      "closest_different_department": "46090"
+    },
+    "623470": {
+      "closest_shape": "623468",
+      "furthest_date": "46799",
+      "closest_different_culture": null,
+      "closest_different_department": "46090"
+    },
+    "623478": {
+      "closest_shape": "239494",
+      "furthest_date": "46103",
+      "closest_different_culture": null,
+      "closest_different_department": "42206"
+    },
+    "623479": {
+      "closest_shape": "46090",
+      "furthest_date": "46799",
+      "closest_different_culture": null,
+      "closest_different_department": "45828"
+    },
+    "62528": {
+      "closest_shape": "46057",
+      "furthest_date": "308507",
+      "closest_different_culture": "309441",
+      "closest_different_department": "308518"
+    },
+    "62546": {
+      "closest_shape": "770916",
+      "furthest_date": "45849",
+      "closest_different_culture": "46043",
+      "closest_different_department": "770977"
+    },
+    "62551": {
+      "closest_shape": "871929",
+      "furthest_date": "312158",
+      "closest_different_culture": "309492",
+      "closest_different_department": "771072"
+    },
+    "62552": {
+      "closest_shape": "46008",
+      "furthest_date": "45205",
+      "closest_different_culture": "46105",
+      "closest_different_department": "188534"
+    },
+    "62590": {
+      "closest_shape": "46110",
+      "furthest_date": "44426",
+      "closest_different_culture": "52032",
+      "closest_different_department": null
+    },
+    "62595": {
+      "closest_shape": "308296",
+      "furthest_date": "49896",
+      "closest_different_culture": "57422",
+      "closest_different_department": "308580"
+    },
+    "62601": {
+      "closest_shape": "47174",
+      "furthest_date": "308486",
+      "closest_different_culture": "42394",
+      "closest_different_department": "446944"
+    },
+    "62677": {
+      "closest_shape": "890336",
+      "furthest_date": "309519",
+      "closest_different_culture": "833906",
+      "closest_different_department": "670810"
+    },
+    "62703": {
+      "closest_shape": "46150",
+      "furthest_date": "62601",
+      "closest_different_culture": "46965",
+      "closest_different_department": "446929"
+    },
+    "62711": {
+      "closest_shape": "63133",
+      "furthest_date": "46033",
+      "closest_different_culture": "52797",
+      "closest_different_department": "187854"
+    },
+    "62759": {
+      "closest_shape": "62917",
+      "furthest_date": "44727",
+      "closest_different_culture": "46110",
+      "closest_different_department": "833900"
+    },
+    "62768": {
+      "closest_shape": "770916",
+      "furthest_date": "42278",
+      "closest_different_culture": "48544",
+      "closest_different_department": "460182"
+    },
+    "62770": {
+      "closest_shape": "310219",
+      "furthest_date": "37537",
+      "closest_different_culture": "308711",
+      "closest_different_department": "308296"
+    },
+    "62917": {
+      "closest_shape": "50213",
+      "furthest_date": "44426",
+      "closest_different_culture": "49201",
+      "closest_different_department": "450212"
+    },
+    "62922": {
+      "closest_shape": "310517",
+      "furthest_date": "46033",
+      "closest_different_culture": "460128",
+      "closest_different_department": "310675"
+    },
+    "62998": {
+      "closest_shape": "46008",
+      "furthest_date": "39510",
+      "closest_different_culture": "46105",
+      "closest_different_department": "771065"
+    },
+    "63007": {
+      "closest_shape": "195021",
+      "furthest_date": "310197",
+      "closest_different_culture": "73676",
+      "closest_different_department": "197222"
+    },
+    "63061": {
+      "closest_shape": "46235",
+      "furthest_date": "37537",
+      "closest_different_culture": "46110",
+      "closest_different_department": "206586"
+    },
+    "63093": {
+      "closest_shape": "53777",
+      "furthest_date": "45849",
+      "closest_different_culture": "487245",
+      "closest_different_department": "203276"
+    },
+    "63097": {
+      "closest_shape": "62601",
+      "furthest_date": "44973",
+      "closest_different_culture": "39511",
+      "closest_different_department": "193020"
+    },
+    "63109": {
+      "closest_shape": "748293",
+      "furthest_date": "37537",
+      "closest_different_culture": "761272",
+      "closest_different_department": "313241"
+    },
+    "63119": {
+      "closest_shape": "448395",
+      "furthest_date": "310547",
+      "closest_different_culture": "57517",
+      "closest_different_department": "308580"
+    },
+    "63120": {
+      "closest_shape": "45967",
+      "furthest_date": "49203",
+      "closest_different_culture": "46950",
+      "closest_different_department": "446935"
+    },
+    "63123": {
+      "closest_shape": "47228",
+      "furthest_date": "44426",
+      "closest_different_culture": "45994",
+      "closest_different_department": "833900"
+    },
+    "63125": {
+      "closest_shape": "453896",
+      "furthest_date": "309492",
+      "closest_different_culture": "46535",
+      "closest_different_department": "871929"
+    },
+    "63129": {
+      "closest_shape": "52797",
+      "furthest_date": "446222",
+      "closest_different_culture": "47292",
+      "closest_different_department": "239486"
+    },
+    "63133": {
+      "closest_shape": "62711",
+      "furthest_date": "46033",
+      "closest_different_culture": "52797",
+      "closest_different_department": "187854"
+    },
+    "63135": {
+      "closest_shape": "48544",
+      "furthest_date": "45849",
+      "closest_different_culture": "73676",
+      "closest_different_department": "460182"
+    },
+    "63137": {
+      "closest_shape": "52797",
+      "furthest_date": "46033",
+      "closest_different_culture": "37449",
+      "closest_different_department": "187854"
+    },
+    "63138": {
+      "closest_shape": "62917",
+      "furthest_date": "50213",
+      "closest_different_culture": "46161",
+      "closest_different_department": "770986"
+    },
+    "63141": {
+      "closest_shape": "194586",
+      "furthest_date": "42278",
+      "closest_different_culture": "487245",
+      "closest_different_department": "771024"
+    },
+    "63142": {
+      "closest_shape": "761272",
+      "furthest_date": "37537",
+      "closest_different_culture": "49349",
+      "closest_different_department": "476276"
+    },
+    "63565": {
+      "closest_shape": "52798",
+      "furthest_date": "78432",
+      "closest_different_culture": "45882",
+      "closest_different_department": "191780"
+    },
+    "644110": {
+      "closest_shape": "644111",
+      "furthest_date": "45934",
+      "closest_different_culture": null,
+      "closest_different_department": "48628"
+    },
+    "644111": {
+      "closest_shape": "644110",
+      "furthest_date": "45934",
+      "closest_different_culture": null,
+      "closest_different_department": "48628"
+    },
+    "651241": {
+      "closest_shape": "310675",
+      "furthest_date": "239486",
+      "closest_different_culture": "460128",
+      "closest_different_department": "453454"
+    },
+    "651290": {
+      "closest_shape": "476285",
+      "furthest_date": "49896",
+      "closest_different_culture": "47172",
+      "closest_different_department": "314635"
+    },
+    "658676": {
+      "closest_shape": "199730",
+      "furthest_date": "309470",
+      "closest_different_culture": null,
+      "closest_different_department": "49924"
+    },
+    "658719": {
+      "closest_shape": "49349",
+      "furthest_date": "49896",
+      "closest_different_culture": null,
+      "closest_different_department": "47222"
+    },
+    "670807": {
+      "closest_shape": "308507",
+      "furthest_date": "48204",
+      "closest_different_culture": null,
+      "closest_different_department": "47809"
+    },
+    "670810": {
+      "closest_shape": "207983",
+      "furthest_date": "309519",
+      "closest_different_culture": null,
+      "closest_different_department": "47258"
+    },
+    "670812": {
+      "closest_shape": "445270",
+      "furthest_date": "39506",
+      "closest_different_culture": null,
+      "closest_different_department": "46054"
+    },
+    "670813": {
+      "closest_shape": "46030",
+      "furthest_date": "44422",
+      "closest_different_culture": null,
+      "closest_different_department": "45979"
+    },
+    "670995": {
+      "closest_shape": "46150",
+      "furthest_date": "49924",
+      "closest_different_culture": "46950",
+      "closest_different_department": "770986"
+    },
+    "671535": {
+      "closest_shape": "208036",
+      "furthest_date": "451855",
+      "closest_different_culture": "50834",
+      "closest_different_department": "49344"
+    },
+    "675861": {
+      "closest_shape": "203149",
+      "furthest_date": "49553",
+      "closest_different_culture": null,
+      "closest_different_department": "46849"
+    },
+    "712495": {
+      "closest_shape": "37510",
+      "furthest_date": "49896",
+      "closest_different_culture": "310220",
+      "closest_different_department": "308580"
+    },
+    "72737": {
+      "closest_shape": "833900",
+      "furthest_date": "37537",
+      "closest_different_culture": "47599",
+      "closest_different_department": "448017"
+    },
+    "73216": {
+      "closest_shape": "448395",
+      "furthest_date": "310220",
+      "closest_different_culture": "50659",
+      "closest_different_department": "310547"
+    },
+    "73217": {
+      "closest_shape": "45994",
+      "furthest_date": "44426",
+      "closest_different_culture": "48451",
+      "closest_different_department": "460660"
+    },
+    "73676": {
+      "closest_shape": "63135",
+      "furthest_date": "310197",
+      "closest_different_culture": "63007",
+      "closest_different_department": "195021"
+    },
+    "747034": {
+      "closest_shape": "46092",
+      "furthest_date": "45849",
+      "closest_different_culture": null,
+      "closest_different_department": "46140"
+    },
+    "748293": {
+      "closest_shape": "50334",
+      "furthest_date": null,
+      "closest_different_culture": "49896",
+      "closest_different_department": "313241"
+    },
+    "752044": {
+      "closest_shape": "310547",
+      "furthest_date": "44726",
+      "closest_different_culture": "46250",
+      "closest_different_department": "448395"
+    },
+    "76114": {
+      "closest_shape": "46099",
+      "furthest_date": "450494",
+      "closest_different_culture": "45962",
+      "closest_different_department": "771041"
+    },
+    "761272": {
+      "closest_shape": "53616",
+      "furthest_date": "44689",
+      "closest_different_culture": "45980",
+      "closest_different_department": "45552"
+    },
+    "76733": {
+      "closest_shape": "46331",
+      "furthest_date": "46538",
+      "closest_different_culture": "45482",
+      "closest_different_department": null
+    },
+    "770916": {
+      "closest_shape": "62768",
+      "furthest_date": "45849",
+      "closest_different_culture": null,
+      "closest_different_department": "62546"
+    },
+    "770938": {
+      "closest_shape": "52032",
+      "furthest_date": "44727",
+      "closest_different_culture": null,
+      "closest_different_department": "752044"
+    },
+    "770940": {
+      "closest_shape": "771023",
+      "furthest_date": "50213",
+      "closest_different_culture": null,
+      "closest_different_department": "47648"
+    },
+    "770942": {
+      "closest_shape": "63007",
+      "furthest_date": "310197",
+      "closest_different_culture": null,
+      "closest_different_department": "73676"
+    },
+    "770974": {
+      "closest_shape": "47443",
+      "furthest_date": "48390",
+      "closest_different_culture": null,
+      "closest_different_department": "46534"
+    },
+    "770977": {
+      "closest_shape": "62546",
+      "furthest_date": "310197",
+      "closest_different_culture": null,
+      "closest_different_department": "45972"
+    },
+    "770986": {
+      "closest_shape": "51187",
+      "furthest_date": "39511",
+      "closest_different_culture": null,
+      "closest_different_department": "50317"
+    },
+    "770999": {
+      "closest_shape": "49216",
+      "furthest_date": "46531",
+      "closest_different_culture": null,
+      "closest_different_department": "50747"
+    },
+    "771023": {
+      "closest_shape": "770940",
+      "furthest_date": "50213",
+      "closest_different_culture": null,
+      "closest_different_department": "47648"
+    },
+    "771024": {
+      "closest_shape": "45985",
+      "furthest_date": "42278",
+      "closest_different_culture": null,
+      "closest_different_department": "47292"
+    },
+    "771025": {
+      "closest_shape": "446222",
+      "furthest_date": "39511",
+      "closest_different_culture": null,
+      "closest_different_department": "63137"
+    },
+    "771037": {
+      "closest_shape": "52057",
+      "furthest_date": "45934",
+      "closest_different_culture": null,
+      "closest_different_department": "46123"
+    },
+    "771039": {
+      "closest_shape": "49349",
+      "furthest_date": "309519",
+      "closest_different_culture": null,
+      "closest_different_department": "318605"
+    },
+    "771041": {
+      "closest_shape": "42278",
+      "furthest_date": "449481",
+      "closest_different_culture": null,
+      "closest_different_department": "76114"
+    },
+    "771053": {
+      "closest_shape": "188535",
+      "furthest_date": "44729",
+      "closest_different_culture": null,
+      "closest_different_department": "448261"
+    },
+    "771065": {
+      "closest_shape": "47259",
+      "furthest_date": "446222",
+      "closest_different_culture": null,
+      "closest_different_department": "63129"
+    },
+    "771072": {
+      "closest_shape": "309492",
+      "furthest_date": "49896",
+      "closest_different_culture": null,
+      "closest_different_department": "46054"
+    },
+    "771073": {
+      "closest_shape": "45970",
+      "furthest_date": "39511",
+      "closest_different_culture": null,
+      "closest_different_department": "46161"
+    },
+    "78006": {
+      "closest_shape": "46353",
+      "furthest_date": "46809",
+      "closest_different_culture": "46849",
+      "closest_different_department": "201028"
+    },
+    "78432": {
+      "closest_shape": "52755",
+      "furthest_date": "47949",
+      "closest_different_culture": "47447",
+      "closest_different_department": "446935"
+    },
+    "830414": {
+      "closest_shape": "239494",
+      "furthest_date": "451855",
+      "closest_different_culture": null,
+      "closest_different_department": "46103"
+    },
+    "833900": {
+      "closest_shape": "44450",
+      "furthest_date": "44426",
+      "closest_different_culture": "47599",
+      "closest_different_department": "72737"
+    },
+    "833904": {
+      "closest_shape": "308652",
+      "furthest_date": "37537",
+      "closest_different_culture": "62770",
+      "closest_different_department": "62595"
+    },
+    "833906": {
+      "closest_shape": "52259",
+      "furthest_date": "49896",
+      "closest_different_culture": "313287",
+      "closest_different_department": "452853"
+    },
+    "848436": {
+      "closest_shape": "446886",
+      "furthest_date": "314681",
+      "closest_different_culture": null,
+      "closest_different_department": "46043"
+    },
+    "853841": {
+      "closest_shape": "47077",
+      "furthest_date": "44422",
+      "closest_different_culture": "47582",
+      "closest_different_department": "451635"
+    },
+    "871929": {
+      "closest_shape": "47158",
+      "furthest_date": "314688",
+      "closest_different_culture": null,
+      "closest_different_department": "309492"
+    },
+    "890336": {
+      "closest_shape": "62677",
+      "furthest_date": "309519",
+      "closest_different_culture": null,
+      "closest_different_department": "308451"
+    },
+    "918706": {
+      "closest_shape": "49924",
+      "furthest_date": "45529",
+      "closest_different_culture": null,
+      "closest_different_department": "312586"
+    }
+  }
+}

@@ -31,6 +31,7 @@ from extract_features import (
 
 DEFAULT_LIMIT = 1
 DEFAULT_OBJECTS_JSON = "pipeline/data/objects.json"
+DEFAULT_MANUAL_REJECT_JSON = "pipeline/data/manual_reject_object_ids.json"
 DEFAULT_OUTPUT_DIR = "hf_space/pipeline/test_images"
 DEFAULT_DRY_RUN = True
 TEST_FEATURES_CSV = "hf_space/pipeline/features/test_silhouette_features.csv"
@@ -57,6 +58,20 @@ def load_objects_json(objects_json_path):
         "Expected objects JSON as a list, a dict with an 'objects' list, "
         "or a dict keyed by object IDs."
     )
+
+
+def load_manual_reject_ids(manual_reject_json_path):
+    if not manual_reject_json_path.exists():
+        return set()
+
+    with manual_reject_json_path.open("r", encoding="utf-8") as file:
+        data = json.load(file)
+
+    if not isinstance(data, list):
+        raise ValueError(
+            f"Expected manual reject JSON to be a list: {manual_reject_json_path}"
+        )
+    return {str(item).strip() for item in data if str(item).strip()}
 
 
 def build_jobs_from_json(objects, limit, process_all):
@@ -183,6 +198,14 @@ def parse_args():
         help=f"Path to objects JSON (default: {DEFAULT_OBJECTS_JSON}).",
     )
     parser.add_argument(
+        "--manual-reject-json",
+        default=DEFAULT_MANUAL_REJECT_JSON,
+        help=(
+            "Path to manual reject object IDs JSON. IDs in this file are skipped "
+            f"(default: {DEFAULT_MANUAL_REJECT_JSON})."
+        ),
+    )
+    parser.add_argument(
         "--output-dir",
         default=DEFAULT_OUTPUT_DIR,
         help=f"Output directory for standardized images (default: {DEFAULT_OUTPUT_DIR}).",
@@ -262,6 +285,16 @@ def main():
     objects_json_path = repo_root / args.objects_json
     objects = load_objects_json(objects_json_path)
     jobs = resolve_jobs(args, objects)
+    manual_reject_ids = load_manual_reject_ids(repo_root / args.manual_reject_json)
+    if manual_reject_ids:
+        original_job_count = len(jobs)
+        jobs = [job for job in jobs if job["object_id"] not in manual_reject_ids]
+        skipped_reject_count = original_job_count - len(jobs)
+        if skipped_reject_count > 0:
+            print(
+                f"Skipping {skipped_reject_count} object(s) from manual reject list "
+                f"({args.manual_reject_json})."
+            )
 
     if not jobs:
         print("No valid jobs to process.")
