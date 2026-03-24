@@ -59,7 +59,9 @@ def load_feature_table(features_csv_path):
             raise ValueError(f"Missing header in CSV: {features_csv_path}")
 
         feature_columns = [
-            col for col in reader.fieldnames if (col.startswith("l") or col.startswith("r")) and is_number(col[1:])
+            col
+            for col in reader.fieldnames
+            if (col.startswith("l") or col.startswith("r")) and is_number(col[1:])
         ]
         if not feature_columns:
             raise ValueError("No silhouette feature columns found (expected l1..lN and r1..rN).")
@@ -127,9 +129,7 @@ def find_most_similar(object_id, rows):
             best_row = candidate
 
     if best_row is None or not math.isfinite(best_distance):
-        raise ValueError(
-            "No comparable object found."
-        )
+        raise ValueError("No comparable object found.")
 
     return best_row["object_id"], best_distance, best_overlap, best_mismatched_rows
 

@@ -99,6 +99,9 @@ test_assets/
 *.gif
 *.bmp
 
+# Keep clay texture asset for frontend modal mask fill.
+!test_assets/clay_texture.png
+
 # ─────────────────────────────────────────────
 # Re-allow ONLY deployable thumbnails
 # ─────────────────────────────────────────────

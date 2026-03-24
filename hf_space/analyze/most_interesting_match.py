@@ -28,7 +28,9 @@ MISSING_ROW_PENALTY = 1.0
 
 
 def parse_args():
-    parser = argparse.ArgumentParser(description="Build interesting silhouette matches for frontend modal.")
+    parser = argparse.ArgumentParser(
+        description="Build interesting silhouette matches for frontend modal."
+    )
     parser.add_argument(
         "--features-csv",
         default=DEFAULT_FEATURES_CSV,

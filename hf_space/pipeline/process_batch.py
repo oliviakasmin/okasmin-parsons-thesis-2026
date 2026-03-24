@@ -68,9 +68,7 @@ def load_manual_reject_ids(manual_reject_json_path):
         data = json.load(file)
 
     if not isinstance(data, list):
-        raise ValueError(
-            f"Expected manual reject JSON to be a list: {manual_reject_json_path}"
-        )
+        raise ValueError(f"Expected manual reject JSON to be a list: {manual_reject_json_path}")
     return {str(item).strip() for item in data if str(item).strip()}
 
 
