@@ -80,6 +80,7 @@ test_assets/
 !test_assets/clusters.json
 !test_assets/most_interesting_matches.json
 !test_assets/manual_interesting_ones.json
+!test_assets/outline_contours.json
 !package.json
 !package-lock.json
 !tsconfig.json

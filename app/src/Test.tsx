@@ -7,6 +7,7 @@ import manualInterestingOnesData from "../../test_assets/manual_interesting_ones
 import clayTextureImage from "../../test_assets/clay_texture.png";
 
 const S3_IMAGE_BASE_URL = "https://vessels-thesis.s3.amazonaws.com/images";
+const S3_OUTLINE_BASE_URL = "https://vessels-thesis.s3.amazonaws.com/outline_images/outline_images";
 const rejectObjectIdSet = new Set(manualRejectObjectIds.map(String));
 const objectMetaById = new Map(
   Object.entries(
@@ -44,10 +45,14 @@ const interestingMatchesByInputId = (
 const manualInterestingObjectIds = Array.from(
   new Set((manualInterestingOnesData as Array<string | number>).map((value) => String(value)))
 );
-type ImageViewMode = "mask_white" | "mask_texture" | "no_bg";
+type ImageViewMode = "mask_white" | "mask_texture" | "outline" | "no_bg";
 
 function buildImageUrl(filename: string) {
   return `${S3_IMAGE_BASE_URL}/${filename}`;
+}
+
+function buildOutlineUrl(filename: string) {
+  return `${S3_OUTLINE_BASE_URL}/${filename}`;
 }
 
 function TexturedMask({ maskSrc, maskId }: { maskSrc: string; maskId: string }) {
@@ -86,17 +91,24 @@ function TexturedMask({ maskSrc, maskId }: { maskSrc: string; maskId: string }) 
 function getImageEntryByObjectId(objectId: string) {
   const maskFilename = `${objectId}_mask_standardized.png`;
   const noBgFilename = `${objectId}_no_bg_standardized.png`;
+  const outlineFilename = `${objectId}_outline.png`;
   return {
     objectId,
     maskFilename,
     noBgFilename,
+    outlineFilename,
     maskSrc: buildImageUrl(maskFilename),
-    noBgSrc: buildImageUrl(noBgFilename)
+    noBgSrc: buildImageUrl(noBgFilename),
+    outlineSrc: buildOutlineUrl(outlineFilename)
   };
 }
 
 function isMaskViewMode(mode: ImageViewMode) {
   return mode === "mask_white" || mode === "mask_texture";
+}
+
+function isOutlineViewMode(mode: ImageViewMode) {
+  return mode === "outline";
 }
 
 function getObjectMeta(objectId: string) {
@@ -276,6 +288,20 @@ function Test() {
         </button>
         <button
           type="button"
+          onClick={() => setGridImageViewMode("outline")}
+          style={{
+            border: "1px solid #fff",
+            borderRadius: "6px",
+            background: gridImageViewMode === "outline" ? "#fff" : "#000",
+            color: gridImageViewMode === "outline" ? "#000" : "#fff",
+            padding: "0.35rem 0.6rem",
+            cursor: "pointer"
+          }}
+        >
+          Outline
+        </button>
+        <button
+          type="button"
           onClick={() => setGridImageViewMode("no_bg")}
           style={{
             border: "1px solid #fff",
@@ -321,8 +347,10 @@ function Test() {
         </button>
       </div>
       <p style={{ margin: "0 0 1rem 0", color: "#fff" }}>
-        Showing {visibleMaskEntries.length} of {maskEntries.length} objects (hover to reveal
-        {isMaskViewMode(gridImageViewMode) ? " bg-removed image" : " mask image"})
+        Showing {visibleMaskEntries.length} of {maskEntries.length} objects
+        {isOutlineViewMode(gridImageViewMode)
+          ? ""
+          : ` (hover to reveal${isMaskViewMode(gridImageViewMode) ? " bg-removed image" : " mask image"})`}
       </p>
 
       <section
@@ -335,13 +363,27 @@ function Test() {
         {visibleMaskEntries.map((entry) => {
           const isHovered = hoveredObjectId === entry.objectId;
           const primarySrc =
-            gridImageViewMode === "no_bg" ? (entry.noBgSrc ?? entry.maskSrc) : entry.maskSrc;
+            gridImageViewMode === "no_bg"
+              ? (entry.noBgSrc ?? entry.maskSrc)
+              : gridImageViewMode === "outline"
+                ? entry.outlineSrc
+                : entry.maskSrc;
           const primaryAlt =
-            gridImageViewMode === "no_bg" ? entry.noBgFilename : entry.maskFilename;
-          const secondarySrc = isMaskViewMode(gridImageViewMode) ? entry.noBgSrc : entry.maskSrc;
-          const secondaryAlt = isMaskViewMode(gridImageViewMode)
-            ? entry.noBgFilename
-            : entry.maskFilename;
+            gridImageViewMode === "no_bg"
+              ? entry.noBgFilename
+              : gridImageViewMode === "outline"
+                ? entry.outlineFilename
+                : entry.maskFilename;
+          const secondarySrc = isOutlineViewMode(gridImageViewMode)
+            ? undefined
+            : isMaskViewMode(gridImageViewMode)
+              ? entry.noBgSrc
+              : entry.maskSrc;
+          const secondaryAlt = isOutlineViewMode(gridImageViewMode)
+            ? ""
+            : isMaskViewMode(gridImageViewMode)
+              ? entry.noBgFilename
+              : entry.maskFilename;
 
           return (
             <figure
@@ -363,11 +405,12 @@ function Test() {
                   width: "100%",
                   aspectRatio: "1 / 1",
                   position: "relative",
-                  backgroundColor: isMaskViewMode(gridImageViewMode)
-                    ? "#000"
-                    : isHovered
+                  backgroundColor:
+                    isMaskViewMode(gridImageViewMode) || isOutlineViewMode(gridImageViewMode)
                       ? "#000"
-                      : "transparent",
+                      : isHovered
+                        ? "#000"
+                        : "transparent",
                   cursor: "pointer"
                 }}
               >
@@ -592,6 +635,20 @@ function Test() {
                 </button>
                 <button
                   type="button"
+                  onClick={() => setModalImageViewMode("outline")}
+                  style={{
+                    border: "1px solid #fff",
+                    borderRadius: "6px",
+                    background: modalImageViewMode === "outline" ? "#fff" : "#000",
+                    color: modalImageViewMode === "outline" ? "#000" : "#fff",
+                    padding: "0.3rem 0.5rem",
+                    cursor: "pointer"
+                  }}
+                >
+                  Outline
+                </button>
+                <button
+                  type="button"
                   onClick={() => setModalImageViewMode("no_bg")}
                   style={{
                     border: "1px solid #fff",
@@ -647,11 +704,12 @@ function Test() {
                   onMouseLeave={() => setHoveredObjectId(null)}
                   onClick={() => openModalForObject(selectedEntry.objectId)}
                   style={{
-                    background: isMaskViewMode(modalImageViewMode)
-                      ? "#000"
-                      : hoveredObjectId === selectedEntry.objectId
+                    background:
+                      isMaskViewMode(modalImageViewMode) || isOutlineViewMode(modalImageViewMode)
                         ? "#000"
-                        : "transparent",
+                        : hoveredObjectId === selectedEntry.objectId
+                          ? "#000"
+                          : "transparent",
                     aspectRatio: "1 / 1",
                     position: "relative",
                     cursor: "pointer"
@@ -660,7 +718,9 @@ function Test() {
                   {(
                     isMaskViewMode(modalImageViewMode)
                       ? selectedEntry.maskSrc
-                      : (selectedEntry.noBgSrc ?? selectedEntry.maskSrc)
+                      : isOutlineViewMode(modalImageViewMode)
+                        ? selectedEntry.outlineSrc
+                        : (selectedEntry.noBgSrc ?? selectedEntry.maskSrc)
                   ) ? (
                     modalImageViewMode === "mask_texture" ? (
                       <TexturedMask
@@ -672,12 +732,16 @@ function Test() {
                         src={
                           isMaskViewMode(modalImageViewMode)
                             ? selectedEntry.maskSrc
-                            : (selectedEntry.noBgSrc ?? selectedEntry.maskSrc)
+                            : isOutlineViewMode(modalImageViewMode)
+                              ? selectedEntry.outlineSrc
+                              : (selectedEntry.noBgSrc ?? selectedEntry.maskSrc)
                         }
                         alt={
                           isMaskViewMode(modalImageViewMode)
                             ? selectedEntry.maskFilename
-                            : selectedEntry.noBgFilename
+                            : isOutlineViewMode(modalImageViewMode)
+                              ? selectedEntry.outlineFilename
+                              : selectedEntry.noBgFilename
                         }
                         style={{
                           width: "100%",
@@ -689,11 +753,10 @@ function Test() {
                       />
                     )
                   ) : null}
-                  {(
-                    isMaskViewMode(modalImageViewMode)
-                      ? selectedEntry.noBgSrc
-                      : selectedEntry.maskSrc
-                  ) ? (
+                  {!isOutlineViewMode(modalImageViewMode) &&
+                  (isMaskViewMode(modalImageViewMode)
+                    ? selectedEntry.noBgSrc
+                    : selectedEntry.maskSrc) ? (
                     <img
                       src={
                         isMaskViewMode(modalImageViewMode)
@@ -730,6 +793,58 @@ function Test() {
                   </figcaption>
                 ) : null}
               </figure>
+              {visibleMatchCards.length > 0 ? (
+                <figure style={{ margin: 0, width: "210px", maxWidth: "210px" }}>
+                  <div
+                    style={{
+                      background:
+                        isMaskViewMode(modalImageViewMode) || isOutlineViewMode(modalImageViewMode)
+                          ? "#000"
+                          : "transparent",
+                      aspectRatio: "1 / 1",
+                      position: "relative",
+                      overflow: "hidden"
+                    }}
+                  >
+                    {visibleMatchCards.map((matchCard, idx) => {
+                      const matchEntry = getImageEntryByObjectId(matchCard.objectId);
+                      const stackSrc = isMaskViewMode(modalImageViewMode)
+                        ? matchEntry.maskSrc
+                        : isOutlineViewMode(modalImageViewMode)
+                          ? matchEntry.outlineSrc
+                          : (matchEntry.noBgSrc ?? matchEntry.maskSrc);
+                      const stackAlt = isMaskViewMode(modalImageViewMode)
+                        ? matchEntry.maskFilename
+                        : isOutlineViewMode(modalImageViewMode)
+                          ? matchEntry.outlineFilename
+                          : matchEntry.noBgFilename;
+                      return (
+                        <img
+                          key={`${matchCard.key}-stack`}
+                          src={stackSrc}
+                          alt={stackAlt}
+                          style={{
+                            width: "100%",
+                            height: "100%",
+                            objectFit: "contain",
+                            position: "absolute",
+                            inset: 0,
+                            opacity: 1 / Math.max(visibleMatchCards.length, 1),
+                            transform: `translate(${idx * 1.2}px, ${idx * 1.2}px)`,
+                            pointerEvents: "none"
+                          }}
+                        />
+                      );
+                    })}
+                  </div>
+                  {showModalCaptions ? (
+                    <figcaption style={{ marginTop: "0.5rem", color: "#fff", fontSize: "0.8rem" }}>
+                      <div style={{ fontWeight: 700 }}>Stacked Matches</div>
+                      <div>Count: {visibleMatchCards.length}</div>
+                    </figcaption>
+                  ) : null}
+                </figure>
+              ) : null}
             </div>
 
             <div
@@ -757,11 +872,13 @@ function Test() {
                       onMouseLeave={() => setHoveredObjectId(null)}
                       onClick={() => openModalForObject(matchCard.objectId)}
                       style={{
-                        background: isMaskViewMode(modalImageViewMode)
-                          ? "#000"
-                          : hoveredObjectId === matchCard.objectId
+                        background:
+                          isMaskViewMode(modalImageViewMode) ||
+                          isOutlineViewMode(modalImageViewMode)
                             ? "#000"
-                            : "transparent",
+                            : hoveredObjectId === matchCard.objectId
+                              ? "#000"
+                              : "transparent",
                         aspectRatio: "1 / 1",
                         position: "relative",
                         cursor: "pointer"
@@ -770,7 +887,9 @@ function Test() {
                       {(
                         isMaskViewMode(modalImageViewMode)
                           ? matchEntry?.maskSrc
-                          : (matchEntry?.noBgSrc ?? matchEntry?.maskSrc)
+                          : isOutlineViewMode(modalImageViewMode)
+                            ? matchEntry?.outlineSrc
+                            : (matchEntry?.noBgSrc ?? matchEntry?.maskSrc)
                       ) ? (
                         modalImageViewMode === "mask_texture" ? (
                           <TexturedMask
@@ -782,12 +901,16 @@ function Test() {
                             src={
                               isMaskViewMode(modalImageViewMode)
                                 ? matchEntry?.maskSrc
-                                : (matchEntry?.noBgSrc ?? matchEntry?.maskSrc)
+                                : isOutlineViewMode(modalImageViewMode)
+                                  ? matchEntry?.outlineSrc
+                                  : (matchEntry?.noBgSrc ?? matchEntry?.maskSrc)
                             }
                             alt={
                               isMaskViewMode(modalImageViewMode)
                                 ? matchEntry?.maskFilename
-                                : matchEntry?.noBgFilename
+                                : isOutlineViewMode(modalImageViewMode)
+                                  ? matchEntry?.outlineFilename
+                                  : matchEntry?.noBgFilename
                             }
                             style={{
                               width: "100%",
@@ -799,11 +922,10 @@ function Test() {
                           />
                         )
                       ) : null}
-                      {(
-                        isMaskViewMode(modalImageViewMode)
-                          ? matchEntry?.noBgSrc
-                          : matchEntry?.maskSrc
-                      ) ? (
+                      {!isOutlineViewMode(modalImageViewMode) &&
+                      (isMaskViewMode(modalImageViewMode)
+                        ? matchEntry?.noBgSrc
+                        : matchEntry?.maskSrc) ? (
                         <img
                           src={
                             isMaskViewMode(modalImageViewMode)

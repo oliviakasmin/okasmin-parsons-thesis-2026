@@ -35,8 +35,8 @@ API_ERRORS_PATH = DATA_DIR / "api_errors_object_ids.json"
 # Throttling / batching
 REQUEST_TIMEOUT = 30
 SLEEP_BETWEEN_REQUESTS = 0.05  # seconds; bump up if you hit rate limits
-SAVE_EVERY_N_OBJECTS = 200  # how often to flush to disk
-MAX_NEW_IDS_PER_RUN = 500  # hard cap per run to avoid over-fetching
+SAVE_EVERY_N_OBJECTS = 50  # how often to flush to disk
+MAX_NEW_IDS_PER_RUN = 80  # hard cap per run to avoid over-fetching
 
 
 def load_json_list(path: Path) -> List[Any]:
