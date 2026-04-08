@@ -11,6 +11,8 @@ from tqdm import tqdm
 # Search Met API for object IDs using tighter vessel/object terms.
 QUERIES = ["vase", "bottle", "jar", "jug", "ewer", "amphora", "urn", "flask", "pitcher"]
 
+# pot, vessel
+
 BASE_URL = "https://collectionapi.metmuseum.org/public/collection/v1/search"
 
 # where to save the combined list of IDs

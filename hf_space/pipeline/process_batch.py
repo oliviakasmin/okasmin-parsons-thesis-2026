@@ -20,7 +20,6 @@ from pathlib import Path
 
 from crop_standardize import (
     DEFAULT_ALPHA_THRESHOLD,
-    DEFAULT_MARGIN_RATIO,
     DEFAULT_TARGET_SIZE,
 )
 from extract_features import (
@@ -119,9 +118,8 @@ def process_job(
     output_dir,
     target_size,
     alpha_threshold,
-    margin_ratio,
     run_remove_background_step,
-    run_crop_standardize_step,
+    standardize_single_image,
     source_image,
 ):
     object_id = job["object_id"]
@@ -129,13 +127,11 @@ def process_job(
     # Step 1) Remove background in memory.
     no_bg_image, model_mask = run_remove_background_step(image=source_image)
     # Step 2) Crop + standardize in memory.
-    standardized_image, standardized_mask, meta = run_crop_standardize_step(
+    standardized_image, standardized_mask = standardize_single_image(
         no_bg_image=no_bg_image,
         model_mask=model_mask,
-        object_id=object_id,
         target_size=target_size,
         alpha_threshold=alpha_threshold,
-        margin_ratio=margin_ratio,
     )
 
     # Step 3) Save final standardized outputs for frontend use.
@@ -144,10 +140,7 @@ def process_job(
     standardized_image.save(standardized_path)
     standardized_mask.save(standardized_mask_path)
 
-    print(
-        f"Saved {standardized_path.name} and {standardized_mask_path.name} "
-        f"(left={meta['left_clearance_px']} right={meta['right_clearance_px']})"
-    )
+    print(f"Saved {standardized_path.name} and {standardized_mask_path.name}")
     return standardized_mask_path
 
 
@@ -232,12 +225,6 @@ def parse_args():
         help=f"Alpha threshold for mask operations (default: {DEFAULT_ALPHA_THRESHOLD}).",
     )
     parser.add_argument(
-        "--margin-ratio",
-        type=float,
-        default=DEFAULT_MARGIN_RATIO,
-        help=f"Margin ratio around standardized vessel (default: {DEFAULT_MARGIN_RATIO}).",
-    )
-    parser.add_argument(
         "--dry-run",
         action=argparse.BooleanOptionalAction,
         default=DEFAULT_DRY_RUN,
@@ -299,7 +286,7 @@ def main():
         return
 
     # Import once so we avoid repeated per-image import overhead.
-    from crop_standardize import run_crop_standardize_step
+    from crop_standardize import standardize_single_image
     from remove_background import download_image_from_url, run_remove_background_step
 
     # 4) Run pipeline per job and track success/failure.
@@ -345,9 +332,8 @@ def main():
                 output_dir=output_dir,
                 target_size=args.target_size,
                 alpha_threshold=args.alpha_threshold,
-                margin_ratio=args.margin_ratio,
                 run_remove_background_step=run_remove_background_step,
-                run_crop_standardize_step=run_crop_standardize_step,
+                standardize_single_image=standardize_single_image,
                 source_image=source_image,
             )
             succeeded += 1
