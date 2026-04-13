@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import manualRejectObjectIds from "../../pipeline/data/manual_reject_object_ids.json";
 import objectsData from "../../pipeline/data/objects.json";
 import clustersData from "../../test_assets/clusters.json";
 import interestingMatchesData from "../../test_assets/most_interesting_matches.json";
 import manualInterestingOnesData from "../../test_assets/manual_interesting_ones.json";
+import dominantColorsData from "../../test_assets/dominant_colors.json";
 import clayTextureImage from "../../test_assets/clay_texture.png";
 
 const S3_IMAGE_BASE_URL = "https://vessels-thesis.s3.amazonaws.com/images";
@@ -46,6 +47,16 @@ const manualInterestingObjectIds = Array.from(
   new Set((manualInterestingOnesData as Array<string | number>).map((value) => String(value)))
 );
 type ImageViewMode = "mask_white" | "mask_texture" | "outline" | "no_bg";
+type DominantColorFilter =
+  | "all"
+  | "red"
+  | "orange"
+  | "yellow"
+  | "green"
+  | "cyan"
+  | "blue"
+  | "purple"
+  | "pink";
 
 function buildImageUrl(filename: string) {
   return `${S3_IMAGE_BASE_URL}/${filename}`;
@@ -53,6 +64,31 @@ function buildImageUrl(filename: string) {
 
 function buildOutlineUrl(filename: string) {
   return `${S3_OUTLINE_BASE_URL}/${filename}`;
+}
+
+function dominantColorFromHue(hue: number): Exclude<DominantColorFilter, "all"> {
+  if (hue < 15 || hue >= 345) {
+    return "red";
+  }
+  if (hue < 45) {
+    return "orange";
+  }
+  if (hue < 70) {
+    return "yellow";
+  }
+  if (hue < 170) {
+    return "green";
+  }
+  if (hue < 200) {
+    return "cyan";
+  }
+  if (hue < 255) {
+    return "blue";
+  }
+  if (hue < 290) {
+    return "purple";
+  }
+  return "pink";
 }
 
 function TexturedMask({ maskSrc, maskId }: { maskSrc: string; maskId: string }) {
@@ -127,12 +163,18 @@ const maskEntries = processedObjectIds
   .filter((entry) => !rejectObjectIdSet.has(entry.objectId))
   .sort((a, b) => a.maskFilename.localeCompare(b.maskFilename));
 const maskEntryByObjectId = new Map(maskEntries.map((entry) => [entry.objectId, entry]));
+const dominantHueByObjectId = new Map<string, number>(
+  Object.entries(
+    (dominantColorsData as { hue_by_object_id?: Record<string, number> }).hue_by_object_id ?? {}
+  ).map(([objectId, hue]) => [String(objectId), Number(hue)])
+);
 
 function Test() {
   const [hoveredObjectId, setHoveredObjectId] = useState<string | null>(null);
   const [selectedObjectId, setSelectedObjectId] = useState<string | null>(null);
   const [selectedClusterId, setSelectedClusterId] = useState<string>("all");
   const [selectedUniqueFilter, setSelectedUniqueFilter] = useState<string>("all");
+  const [selectedDominantColor, setSelectedDominantColor] = useState<DominantColorFilter>("all");
   const [gridImageViewMode, setGridImageViewMode] = useState<ImageViewMode>("mask_white");
   const [modalImageViewMode, setModalImageViewMode] = useState<ImageViewMode>("mask_white");
   const [showGridCaptions, setShowGridCaptions] = useState(false);
@@ -175,7 +217,7 @@ function Test() {
     1280,
     Math.max(520, modalMatchCount * modalCardWidthPx + (modalMatchCount - 1) * modalCardGapPx + 48)
   );
-  const visibleMaskEntries =
+  const filteredMaskEntries =
     selectedUniqueFilter === "manual_interesting"
       ? manualInterestingObjectIds
           .map((objectId) => maskEntryByObjectId.get(objectId))
@@ -192,6 +234,23 @@ function Test() {
           }
           return String(objectIdToClusterId.get(entry.objectId)) === selectedClusterId;
         });
+
+  const visibleMaskEntries = useMemo(() => {
+    if (gridImageViewMode !== "no_bg" || selectedDominantColor === "all") {
+      return filteredMaskEntries;
+    }
+    return filteredMaskEntries.filter((entry) => {
+      const hue = dominantHueByObjectId.get(entry.objectId);
+      if (hue == null) {
+        return false;
+      }
+      return dominantColorFromHue(hue) === selectedDominantColor;
+    });
+  }, [filteredMaskEntries, gridImageViewMode, selectedDominantColor]);
+
+  const dominantColorReadyCount = filteredMaskEntries.filter((entry) =>
+    dominantHueByObjectId.has(entry.objectId)
+  ).length;
 
   const openModalForObject = (objectId: string) => {
     setModalImageViewMode("mask_white");
@@ -255,6 +314,36 @@ function Test() {
           <option value="manual_interesting">
             good matches ({manualInterestingObjectIds.length})
           </option>
+        </select>
+
+        <label
+          htmlFor="dominant-color-filter"
+          style={{ color: "#fff", fontSize: "0.9rem", marginLeft: "0.5rem" }}
+        >
+          Dominant color:
+        </label>
+        <select
+          id="dominant-color-filter"
+          value={selectedDominantColor}
+          onChange={(event) => setSelectedDominantColor(event.target.value as DominantColorFilter)}
+          disabled={gridImageViewMode !== "no_bg"}
+          style={{
+            border: "1px solid #fff",
+            borderRadius: "6px",
+            background: gridImageViewMode !== "no_bg" ? "#222" : "#fff",
+            padding: "0.35rem 0.5rem",
+            color: gridImageViewMode !== "no_bg" ? "#aaa" : "#000"
+          }}
+        >
+          <option value="all">All colors</option>
+          <option value="yellow">Yellow</option>
+          <option value="orange">Orange</option>
+          <option value="red">Red</option>
+          <option value="pink">Pink</option>
+          <option value="purple">Purple</option>
+          <option value="blue">Blue</option>
+          <option value="cyan">Cyan</option>
+          <option value="green">Green</option>
         </select>
 
         <span style={{ color: "#fff", fontSize: "0.9rem", marginLeft: "0.5rem" }}>View:</span>
@@ -348,6 +437,12 @@ function Test() {
       </div>
       <p style={{ margin: "0 0 1rem 0", color: "#fff" }}>
         Showing {visibleMaskEntries.length} of {maskEntries.length} objects
+        {gridImageViewMode === "no_bg"
+          ? ` • Dominant color indexed for ${dominantColorReadyCount}/${filteredMaskEntries.length}`
+          : ""}
+        {gridImageViewMode === "no_bg" && selectedDominantColor !== "all"
+          ? ` • Filter: ${selectedDominantColor}`
+          : ""}
         {isOutlineViewMode(gridImageViewMode)
           ? ""
           : ` (hover to reveal${isMaskViewMode(gridImageViewMode) ? " bg-removed image" : " mask image"})`}
