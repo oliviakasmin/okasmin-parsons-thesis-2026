@@ -40,6 +40,9 @@ EXCLUDED_TERMS = [
     "a set",
     "tea pot",
     "teapot",
+    "dish",
+    "fragment",
+    "box",
 ]
 
 

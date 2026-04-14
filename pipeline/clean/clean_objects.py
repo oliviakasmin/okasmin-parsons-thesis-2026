@@ -25,6 +25,7 @@ ROOT = Path(__file__).resolve().parents[2]  # .../okasmin-parsons-thesis-2026
 DATA_DIR = ROOT / "pipeline" / "data"
 OBJECTS_PATH = DATA_DIR / "objects.json"
 REJECT_IDS_PATH = DATA_DIR / "reject_object_ids.json"
+MANUAL_REJECT_IDS_PATH = DATA_DIR / "manual_reject_object_ids.json"
 
 
 def load_json_dict(path: Path) -> Dict[str, Any]:
@@ -54,9 +55,11 @@ def clean_objects_with_filters() -> None:
     """
     objects_by_id: Dict[str, Any] = load_json_dict(OBJECTS_PATH)
     rejected_ids: list[int] = load_json_list(REJECT_IDS_PATH)
+    manual_reject_ids = {int(object_id) for object_id in load_json_list(MANUAL_REJECT_IDS_PATH)}
 
     original_count = len(objects_by_id)
     removed_count = 0
+    removed_manual_count = 0
 
     # We build a new dict of kept objects
     cleaned_objects: Dict[str, Any] = {}
@@ -64,6 +67,12 @@ def clean_objects_with_filters() -> None:
     for key, obj in objects_by_id.items():
         # objectID in the JSON is an int; keys in objects_by_id are strings
         object_id = int(obj.get("objectID", key))
+        if object_id in manual_reject_ids:
+            removed_count += 1
+            removed_manual_count += 1
+            if object_id not in rejected_ids:
+                rejected_ids.append(object_id)
+            continue
         if apply_filters(obj, object_id, rejected_ids):
             cleaned_objects[key] = obj
         else:
@@ -74,7 +83,7 @@ def clean_objects_with_filters() -> None:
 
     print(
         f"Cleaned objects.json with filters: {original_count} -> {len(cleaned_objects)} "
-        f"(removed {removed_count} objects that failed filters)"
+        f"(removed {removed_count} objects; {removed_manual_count} from manual reject list)"
     )
 
 
