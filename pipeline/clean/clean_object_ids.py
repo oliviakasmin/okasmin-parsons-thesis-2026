@@ -12,6 +12,7 @@ DATA_DIR = ROOT / "pipeline" / "data"
 OBJECT_IDS_PATH = DATA_DIR / "object_ids.json"
 REJECT_IDS_PATH = DATA_DIR / "reject_object_ids.json"
 MANUAL_REJECT_IDS_PATH = DATA_DIR / "manual_reject_object_ids.json"
+API_ERRORS_IDS_PATH = DATA_DIR / "api_errors_object_ids.json"
 
 
 def load_json_list(path: Path) -> list[int]:
@@ -31,7 +32,8 @@ def main() -> None:
     object_ids = load_json_list(OBJECT_IDS_PATH)
     reject_ids = set(load_json_list(REJECT_IDS_PATH))
     manual_reject_ids = set(load_json_list(MANUAL_REJECT_IDS_PATH))
-    excluded_ids = reject_ids | manual_reject_ids
+    api_error_ids = set(load_json_list(API_ERRORS_IDS_PATH))
+    excluded_ids = reject_ids | manual_reject_ids | api_error_ids
 
     original_count = len(object_ids)
     cleaned_ids = [oid for oid in object_ids if oid not in excluded_ids]
@@ -41,7 +43,7 @@ def main() -> None:
 
     print(
         f"Cleaned object_ids.json: {original_count} -> {cleaned_count} "
-        f"(removed {original_count - cleaned_count} IDs present in reject/manual reject lists)"
+        f"(removed {original_count - cleaned_count} IDs present in reject/manual reject/API error lists)"
     )
 
 
