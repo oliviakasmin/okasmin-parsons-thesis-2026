@@ -1,4 +1,5 @@
 import json
+import uuid
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
@@ -35,8 +36,29 @@ def save_images(no_bg_image, model_mask, outline_image, obj_id, output_dir=save_
     no_bg_path = output_dir / f"{obj_id}_no_bg.png"
     mask_path = output_dir / f"{obj_id}_mask.png"
     outline_path = output_dir / f"{obj_id}_outline.png"
+    final_paths = [no_bg_path, mask_path, outline_path]
 
-    no_bg_image.save(no_bg_path)
-    model_mask.save(mask_path)
-    outline_image.save(outline_path)
+    # Write to temporary files first, then commit all outputs together.
+    token = uuid.uuid4().hex
+    temp_paths = [output_dir / f"{path.name}.{token}.tmp" for path in final_paths]
+    try:
+        no_bg_image.save(temp_paths[0], format="PNG")
+        model_mask.save(temp_paths[1], format="PNG")
+        outline_image.save(temp_paths[2], format="PNG")
+
+        for temp_path, final_path in zip(temp_paths, final_paths):
+            temp_path.replace(final_path)
+
+        if not all(path.exists() for path in final_paths):
+            raise RuntimeError(f"Incomplete output set for object_id={obj_id}")
+    except Exception:
+        # Ensure this object is either fully saved or removed.
+        for path in temp_paths + final_paths:
+            try:
+                if path.exists():
+                    path.unlink()
+            except Exception:
+                pass
+        raise
+
     return no_bg_path, mask_path, outline_path
