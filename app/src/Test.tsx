@@ -4,7 +4,6 @@ import objectsData from "../../pipeline/data/objects.json";
 import clustersData from "../../test_assets/clusters.json";
 import interestingMatchesData from "../../test_assets/most_interesting_matches.json";
 import manualInterestingOnesData from "../../test_assets/manual_interesting_ones.json";
-import clayTextureImage from "../../test_assets/clay_texture.png";
 
 const S3_IMAGE_BASE_URL = "https://vessels-thesis.s3.amazonaws.com/images";
 const S3_OUTLINE_BASE_URL = "https://vessels-thesis.s3.amazonaws.com/outline_images/outline_images";
@@ -45,7 +44,7 @@ const interestingMatchesByInputId = (
 const manualInterestingObjectIds = Array.from(
   new Set((manualInterestingOnesData as Array<string | number>).map((value) => String(value)))
 );
-type ImageViewMode = "mask_white" | "mask_texture" | "outline" | "no_bg";
+type ImageViewMode = "mask_white" | "outline" | "no_bg";
 
 function buildImageUrl(filename: string) {
   return `${S3_IMAGE_BASE_URL}/${filename}`;
@@ -53,39 +52,6 @@ function buildImageUrl(filename: string) {
 
 function buildOutlineUrl(filename: string) {
   return `${S3_OUTLINE_BASE_URL}/${filename}`;
-}
-
-function TexturedMask({ maskSrc, maskId }: { maskSrc: string; maskId: string }) {
-  return (
-    <svg
-      viewBox="0 0 768 768"
-      preserveAspectRatio="xMidYMid meet"
-      aria-hidden="true"
-      style={{ width: "100%", height: "100%", position: "absolute", inset: 0 }}
-    >
-      <defs>
-        <mask id={maskId} maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse">
-          <image
-            href={maskSrc}
-            x="0"
-            y="0"
-            width="768"
-            height="768"
-            preserveAspectRatio="xMidYMid meet"
-          />
-        </mask>
-      </defs>
-      <image
-        href={clayTextureImage}
-        x="0"
-        y="0"
-        width="768"
-        height="768"
-        preserveAspectRatio="xMidYMid slice"
-        mask={`url(#${maskId})`}
-      />
-    </svg>
-  );
 }
 
 function getImageEntryByObjectId(objectId: string) {
@@ -104,7 +70,7 @@ function getImageEntryByObjectId(objectId: string) {
 }
 
 function isMaskViewMode(mode: ImageViewMode) {
-  return mode === "mask_white" || mode === "mask_texture";
+  return mode === "mask_white";
 }
 
 function isOutlineViewMode(mode: ImageViewMode) {
@@ -274,20 +240,6 @@ function Test() {
         </button>
         <button
           type="button"
-          onClick={() => setGridImageViewMode("mask_texture")}
-          style={{
-            border: "1px solid #fff",
-            borderRadius: "6px",
-            background: gridImageViewMode === "mask_texture" ? "#fff" : "#000",
-            color: gridImageViewMode === "mask_texture" ? "#000" : "#fff",
-            padding: "0.35rem 0.6rem",
-            cursor: "pointer"
-          }}
-        >
-          Texture Mask
-        </button>
-        <button
-          type="button"
           onClick={() => setGridImageViewMode("outline")}
           style={{
             border: "1px solid #fff",
@@ -414,26 +366,19 @@ function Test() {
                   cursor: "pointer"
                 }}
               >
-                {gridImageViewMode === "mask_texture" ? (
-                  <TexturedMask
-                    maskSrc={entry.maskSrc}
-                    maskId={`grid-texture-mask-${entry.objectId}`}
-                  />
-                ) : (
-                  <img
-                    src={primarySrc}
-                    alt={primaryAlt}
-                    loading="lazy"
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "contain",
-                      display: "block",
-                      position: "absolute",
-                      inset: 0
-                    }}
-                  />
-                )}
+                <img
+                  src={primarySrc}
+                  alt={primaryAlt}
+                  loading="lazy"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "contain",
+                    display: "block",
+                    position: "absolute",
+                    inset: 0
+                  }}
+                />
                 {secondarySrc ? (
                   <img
                     src={secondarySrc}
@@ -621,20 +566,6 @@ function Test() {
                 </button>
                 <button
                   type="button"
-                  onClick={() => setModalImageViewMode("mask_texture")}
-                  style={{
-                    border: "1px solid #fff",
-                    borderRadius: "6px",
-                    background: modalImageViewMode === "mask_texture" ? "#fff" : "#000",
-                    color: modalImageViewMode === "mask_texture" ? "#000" : "#fff",
-                    padding: "0.3rem 0.5rem",
-                    cursor: "pointer"
-                  }}
-                >
-                  Texture Mask
-                </button>
-                <button
-                  type="button"
                   onClick={() => setModalImageViewMode("outline")}
                   style={{
                     border: "1px solid #fff",
@@ -722,36 +653,29 @@ function Test() {
                         ? selectedEntry.outlineSrc
                         : (selectedEntry.noBgSrc ?? selectedEntry.maskSrc)
                   ) ? (
-                    modalImageViewMode === "mask_texture" ? (
-                      <TexturedMask
-                        maskSrc={selectedEntry.maskSrc}
-                        maskId={`modal-selected-texture-mask-${selectedEntry.objectId}`}
-                      />
-                    ) : (
-                      <img
-                        src={
-                          isMaskViewMode(modalImageViewMode)
-                            ? selectedEntry.maskSrc
-                            : isOutlineViewMode(modalImageViewMode)
-                              ? selectedEntry.outlineSrc
-                              : (selectedEntry.noBgSrc ?? selectedEntry.maskSrc)
-                        }
-                        alt={
-                          isMaskViewMode(modalImageViewMode)
-                            ? selectedEntry.maskFilename
-                            : isOutlineViewMode(modalImageViewMode)
-                              ? selectedEntry.outlineFilename
-                              : selectedEntry.noBgFilename
-                        }
-                        style={{
-                          width: "100%",
-                          height: "100%",
-                          objectFit: "contain",
-                          position: "absolute",
-                          inset: 0
-                        }}
-                      />
-                    )
+                    <img
+                      src={
+                        isMaskViewMode(modalImageViewMode)
+                          ? selectedEntry.maskSrc
+                          : isOutlineViewMode(modalImageViewMode)
+                            ? selectedEntry.outlineSrc
+                            : (selectedEntry.noBgSrc ?? selectedEntry.maskSrc)
+                      }
+                      alt={
+                        isMaskViewMode(modalImageViewMode)
+                          ? selectedEntry.maskFilename
+                          : isOutlineViewMode(modalImageViewMode)
+                            ? selectedEntry.outlineFilename
+                            : selectedEntry.noBgFilename
+                      }
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "contain",
+                        position: "absolute",
+                        inset: 0
+                      }}
+                    />
                   ) : null}
                   {!isOutlineViewMode(modalImageViewMode) &&
                   (isMaskViewMode(modalImageViewMode)
@@ -891,36 +815,29 @@ function Test() {
                             ? matchEntry?.outlineSrc
                             : (matchEntry?.noBgSrc ?? matchEntry?.maskSrc)
                       ) ? (
-                        modalImageViewMode === "mask_texture" ? (
-                          <TexturedMask
-                            maskSrc={matchEntry?.maskSrc ?? ""}
-                            maskId={`modal-match-texture-mask-${matchCard.objectId}`}
-                          />
-                        ) : (
-                          <img
-                            src={
-                              isMaskViewMode(modalImageViewMode)
-                                ? matchEntry?.maskSrc
-                                : isOutlineViewMode(modalImageViewMode)
-                                  ? matchEntry?.outlineSrc
-                                  : (matchEntry?.noBgSrc ?? matchEntry?.maskSrc)
-                            }
-                            alt={
-                              isMaskViewMode(modalImageViewMode)
-                                ? matchEntry?.maskFilename
-                                : isOutlineViewMode(modalImageViewMode)
-                                  ? matchEntry?.outlineFilename
-                                  : matchEntry?.noBgFilename
-                            }
-                            style={{
-                              width: "100%",
-                              height: "100%",
-                              objectFit: "contain",
-                              position: "absolute",
-                              inset: 0
-                            }}
-                          />
-                        )
+                        <img
+                          src={
+                            isMaskViewMode(modalImageViewMode)
+                              ? matchEntry?.maskSrc
+                              : isOutlineViewMode(modalImageViewMode)
+                                ? matchEntry?.outlineSrc
+                                : (matchEntry?.noBgSrc ?? matchEntry?.maskSrc)
+                          }
+                          alt={
+                            isMaskViewMode(modalImageViewMode)
+                              ? matchEntry?.maskFilename
+                              : isOutlineViewMode(modalImageViewMode)
+                                ? matchEntry?.outlineFilename
+                                : matchEntry?.noBgFilename
+                          }
+                          style={{
+                            width: "100%",
+                            height: "100%",
+                            objectFit: "contain",
+                            position: "absolute",
+                            inset: 0
+                          }}
+                        />
                       ) : null}
                       {!isOutlineViewMode(modalImageViewMode) &&
                       (isMaskViewMode(modalImageViewMode)
