@@ -37228,65 +37228,6 @@
     ],
     "isTimelineWork": false
   },
-  "495466": {
-    "objectID": 495466,
-    "isHighlight": false,
-    "accessionNumber": "2009.214",
-    "accessionYear": "2009",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/ma/original/DP226016.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/ma/web-large/DP226016.jpg",
-    "additionalImages": [
-      "https://images.metmuseum.org/CRDImages/ma/original/DP230277.jpg"
-    ],
-    "constituents": [
-      {
-        "constituentID": 164931,
-        "role": "Designer",
-        "name": "Walter Scherf",
-        "constituentULAN_URL": "http://vocab.getty.edu/page/ulan/500524436"
-      },
-      {
-        "constituentID": 150801,
-        "role": "Manufacturer",
-        "name": "Walter Scherf &amp; Co., N\u00fcrnberg"
-      }
-    ],
-    "department": "Modern and Contemporary Art",
-    "objectName": "Vase",
-    "title": "Model No. 992",
-    "artistRole": "Designer",
-    "artistDisplayName": "Walter Scherf",
-    "artistDisplayBio": "German, Gr\u00fcnewald 1875\u20131909 Nuremberg",
-    "artistAlphaSort": "Scherf, Walter",
-    "artistNationality": "German",
-    "artistBeginDate": "1875",
-    "artistEndDate": "1909",
-    "artistULAN_URL": "http://vocab.getty.edu/page/ulan/500524436",
-    "objectDate": "ca. 1903",
-    "objectBeginDate": 1898,
-    "objectEndDate": 1908,
-    "medium": "Stoneware, pewter",
-    "dimensions": "10 1/4 \u00d7 10 7/16 in., 5.4 lb. (26 \u00d7 26.5 cm, 2.5 kg)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Diameter": 26.5,
-          "Height": 26.0351,
-          "Weight": 2.45
-        }
-      }
-    ],
-    "creditLine": "Gift of Jacqueline Loewe Fowler, 2009",
-    "classification": "Ceramics-Pottery",
-    "metadataDate": "2025-11-21T10:05:27.96Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/495466",
-    "tags": null,
-    "isTimelineWork": false
-  },
   "446269": {
     "objectID": 446269,
     "isHighlight": false,
@@ -42299,93 +42240,6 @@
     ],
     "isTimelineWork": false
   },
-  "204760": {
-    "objectID": 204760,
-    "isHighlight": false,
-    "accessionNumber": "67.113",
-    "accessionYear": "1967",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/es/original/DP156000.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/DP156000.jpg",
-    "additionalImages": [
-      "https://images.metmuseum.org/CRDImages/es/original/DP155997.jpg",
-      "https://images.metmuseum.org/CRDImages/es/original/DP155998.jpg",
-      "https://images.metmuseum.org/CRDImages/es/original/DP155999.jpg"
-    ],
-    "constituents": [
-      {
-        "constituentID": 38231,
-        "role": "Manufactory",
-        "name": "possibly Orl\u00e9ans Manufactory"
-      }
-    ],
-    "department": "European Sculpture and Decorative Arts",
-    "objectName": "Group",
-    "title": "Rape of Proserpine",
-    "artistRole": "Manufactory",
-    "artistPrefix": "possibly",
-    "artistDisplayName": "Orl\u00e9ans Manufactory",
-    "artistDisplayBio": "French, 1753\u201382",
-    "artistAlphaSort": "Orl\u00e9ans Manufactory",
-    "artistNationality": "French",
-    "artistBeginDate": "1753",
-    "artistEndDate": "1782",
-    "objectDate": "ca. 1760\u20131770",
-    "objectBeginDate": 1755,
-    "objectEndDate": 1770,
-    "medium": "Soft-paste porcelain",
-    "dimensions": "Overall (confirmed): 19 7/8 \u00d7 14 1/4 \u00d7 15 3/4 in. (50.5 \u00d7 36.2 \u00d7 40 cm)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": "confirmed",
-        "elementMeasurements": {
-          "Depth": 40.00508,
-          "Height": 50.4826,
-          "Width": 36.195072
-        }
-      }
-    ],
-    "creditLine": "The Charles E. Sampson Memorial Fund, 1967",
-    "classification": "Ceramics-Porcelain",
-    "metadataDate": "2025-01-31T04:54:36.6Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/204760",
-    "tags": [
-      {
-        "term": "Mythology",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300055985",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q9134"
-      },
-      {
-        "term": "Men",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300025928",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q8441"
-      },
-      {
-        "term": "Women",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300025943",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q467"
-      },
-      {
-        "term": "Cupid",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300380105",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q5011"
-      },
-      {
-        "term": "Horses",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300250148",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q726"
-      },
-      {
-        "term": "Goddess",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300343852",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q205985"
-      }
-    ],
-    "objectWikidata_URL": "https://www.wikidata.org/wiki/Q105100275",
-    "isTimelineWork": false
-  },
   "48329": {
     "objectID": 48329,
     "isHighlight": false,
@@ -46215,90 +46069,6 @@
     ],
     "isTimelineWork": false
   },
-  "202122": {
-    "objectID": 202122,
-    "isHighlight": false,
-    "accessionNumber": "58.60.11",
-    "accessionYear": "1958",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/es/original/DP-20002-001.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/DP-20002-001.jpg",
-    "additionalImages": [
-      "https://images.metmuseum.org/CRDImages/es/original/DP-20002-002.jpg",
-      "https://images.metmuseum.org/CRDImages/es/original/DP-20002-003.jpg",
-      "https://images.metmuseum.org/CRDImages/es/original/ES5941.jpg"
-    ],
-    "constituents": [
-      {
-        "constituentID": 164856,
-        "role": "Manufactory",
-        "name": "S\u00e8vres Manufactory",
-        "constituentULAN_URL": "http://vocab.getty.edu/page/ulan/500054661",
-        "constituentWikidata_URL": "https://www.wikidata.org/wiki/Q653307"
-      },
-      {
-        "constituentID": 33680,
-        "role": "Modeler",
-        "name": "After a model by Etienne-Maurice Falconet",
-        "constituentULAN_URL": "http://vocab.getty.edu/page/ulan/500115285",
-        "constituentWikidata_URL": "https://www.wikidata.org/wiki/Q289246"
-      },
-      {
-        "constituentID": 161703,
-        "role": "Designer",
-        "name": "Based on a design by Fran\u00e7ois Boucher",
-        "constituentULAN_URL": "http://vocab.getty.edu/page/ulan/500032143",
-        "constituentWikidata_URL": "https://www.wikidata.org/wiki/Q180932"
-      }
-    ],
-    "department": "European Sculpture and Decorative Arts",
-    "objectName": "Group",
-    "title": "The Lottery",
-    "artistRole": "Manufactory",
-    "artistDisplayName": "S\u00e8vres Manufactory",
-    "artistDisplayBio": "French, 1740\u2013present",
-    "artistAlphaSort": "S\u00e8vres Manufactory",
-    "artistNationality": "French",
-    "artistBeginDate": "1740",
-    "artistEndDate": "9999",
-    "artistWikidata_URL": "https://www.wikidata.org/wiki/Q653307",
-    "artistULAN_URL": "http://vocab.getty.edu/page/ulan/500054661",
-    "objectDate": "ca. 1757",
-    "objectBeginDate": 1752,
-    "objectEndDate": 1762,
-    "medium": "Soft-paste biscuit porcelain",
-    "dimensions": "confirmed: 5 15/16 \u00d7 7 1/8 \u00d7 5 1/8 in. (15.1 \u00d7 18.1 \u00d7 13 cm)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": "confirmed",
-        "elementMeasurements": {
-          "Depth": 13.017526,
-          "Height": 15.08128,
-          "Width": 18.097536
-        }
-      }
-    ],
-    "creditLine": "Bequest of Ella Morris de Peyster, 1957",
-    "classification": "Ceramics-Porcelain",
-    "metadataDate": "2025-07-24T04:50:20.827Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/202122",
-    "tags": [
-      {
-        "term": "Children",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300025945",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q7569"
-      },
-      {
-        "term": "Dogs",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300265714",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q144"
-      }
-    ],
-    "objectWikidata_URL": "https://www.wikidata.org/wiki/Q116399709",
-    "isTimelineWork": false
-  },
   "200981": {
     "objectID": 200981,
     "isHighlight": false,
@@ -46373,60 +46143,6 @@
     "objectWikidata_URL": "https://www.wikidata.org/wiki/Q116399416",
     "isTimelineWork": false,
     "GalleryNumber": "512"
-  },
-  "199128": {
-    "objectID": 199128,
-    "isHighlight": false,
-    "accessionNumber": "42.205.17",
-    "accessionYear": "1942",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/es/original/DP-12395-009.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/DP-12395-009.jpg",
-    "additionalImages": [
-      "https://images.metmuseum.org/CRDImages/es/original/133537.jpg"
-    ],
-    "constituents": [
-      {
-        "constituentID": 164832,
-        "role": "Manufactory",
-        "name": "Meissen Manufactory",
-        "constituentULAN_URL": "http://vocab.getty.edu/page/ulan/500054662",
-        "constituentWikidata_URL": "https://www.wikidata.org/wiki/Q822407"
-      }
-    ],
-    "department": "European Sculpture and Decorative Arts",
-    "objectName": "Tea caddy",
-    "title": "Tea caddy",
-    "artistRole": "Manufactory",
-    "artistDisplayName": "Meissen Manufactory",
-    "artistDisplayBio": "German, 1710\u2013present",
-    "artistAlphaSort": "Meissen Manufactory",
-    "artistNationality": "German",
-    "artistBeginDate": "1710",
-    "artistEndDate": "9999",
-    "artistWikidata_URL": "https://www.wikidata.org/wiki/Q822407",
-    "artistULAN_URL": "http://vocab.getty.edu/page/ulan/500054662",
-    "objectDate": "ca. 1710\u201313",
-    "objectBeginDate": 1705,
-    "objectEndDate": 1718,
-    "medium": "Red stoneware",
-    "dimensions": "Height: 5 in. (12.7 cm)",
-    "measurements": [
-      {
-        "elementName": "Height",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Height": 12.700026
-        }
-      }
-    ],
-    "creditLine": "The George B. McClellan Collection, Gift of Mrs. George B. McClellan, 1941",
-    "classification": "Ceramics-Pottery",
-    "metadataDate": "2025-01-31T04:54:36.6Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/199128",
-    "tags": null,
-    "isTimelineWork": false
   },
   "460136": {
     "objectID": 460136,
@@ -47395,45 +47111,6 @@
     ],
     "isTimelineWork": false
   },
-  "449392": {
-    "objectID": 449392,
-    "isHighlight": false,
-    "accessionNumber": "38.40.182",
-    "accessionYear": "1938",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/is/original/38.40.182.JPG",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/is/web-large/38.40.182.JPG",
-    "additionalImages": [],
-    "constituents": null,
-    "department": "Islamic Art",
-    "objectName": "Jar",
-    "title": "Jar",
-    "objectDate": "10th\u201311th century",
-    "objectBeginDate": 900,
-    "objectEndDate": 1099,
-    "medium": "Earthenware; slip covered and incised, unglazed",
-    "dimensions": "H. 15 3/8 in. (39.1 cm)\r\nW. 18 1/2 in. (47 cm)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Diameter": 46.9901,
-          "Height": 39.0526
-        }
-      }
-    ],
-    "creditLine": "Rogers Fund, 1938",
-    "geographyType": "Excavated in",
-    "city": "Nishapur",
-    "country": "Iran",
-    "classification": "Ceramics",
-    "metadataDate": "2025-01-30T04:54:21.21Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/449392",
-    "tags": null,
-    "isTimelineWork": false
-  },
   "477280": {
     "objectID": 477280,
     "isHighlight": false,
@@ -47872,71 +47549,6 @@
         "term": "Animals",
         "AAT_URL": "http://vocab.getty.edu/page/aat/300249525",
         "Wikidata_URL": "https://www.wikidata.org/wiki/Q729"
-      }
-    ],
-    "isTimelineWork": false
-  },
-  "205629": {
-    "objectID": 205629,
-    "isHighlight": false,
-    "accessionNumber": "1974.28.123",
-    "accessionYear": "1974",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/es/original/201939.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/201939.jpg",
-    "additionalImages": [],
-    "constituents": [
-      {
-        "constituentID": 164832,
-        "role": "Manufactory",
-        "name": "Meissen Manufactory",
-        "constituentULAN_URL": "http://vocab.getty.edu/page/ulan/500054662",
-        "constituentWikidata_URL": "https://www.wikidata.org/wiki/Q822407"
-      },
-      {
-        "constituentID": 162020,
-        "role": "Modeler",
-        "name": "Johann Joachim K\u00e4ndler",
-        "constituentULAN_URL": "http://vocab.getty.edu/page/ulan/500001959",
-        "constituentWikidata_URL": "https://www.wikidata.org/wiki/Q73593"
-      }
-    ],
-    "department": "European Sculpture and Decorative Arts",
-    "objectName": "Figure",
-    "title": "Peacock",
-    "artistRole": "Manufactory",
-    "artistDisplayName": "Meissen Manufactory",
-    "artistDisplayBio": "German, 1710\u2013present",
-    "artistAlphaSort": "Meissen Manufactory",
-    "artistNationality": "German",
-    "artistBeginDate": "1710",
-    "artistEndDate": "9999",
-    "artistWikidata_URL": "https://www.wikidata.org/wiki/Q822407",
-    "artistULAN_URL": "http://vocab.getty.edu/page/ulan/500054662",
-    "objectDate": "1741",
-    "objectBeginDate": 1741,
-    "objectEndDate": 1741,
-    "medium": "Hard-paste porcelain",
-    "dimensions": "Height: 9 in. (22.9 cm)",
-    "measurements": [
-      {
-        "elementName": "Height",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Height": 22.860046
-        }
-      }
-    ],
-    "creditLine": "Bequest of Irwin Untermyer, 1973",
-    "classification": "Ceramics-Porcelain",
-    "metadataDate": "2023-10-07T04:56:15.567Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/205629",
-    "tags": [
-      {
-        "term": "Peacocks",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300250082",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q201251"
       }
     ],
     "isTimelineWork": false
@@ -48902,66 +48514,6 @@
     "tags": null,
     "isTimelineWork": false
   },
-  "197213": {
-    "objectID": 197213,
-    "isHighlight": false,
-    "accessionNumber": "32.100.364",
-    "accessionYear": "1932",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/es/original/DP302969.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/DP302969.jpg",
-    "additionalImages": [
-      "https://images.metmuseum.org/CRDImages/es/original/DP302965.jpg",
-      "https://images.metmuseum.org/CRDImages/es/original/DP319984.jpg"
-    ],
-    "constituents": null,
-    "department": "European Sculpture and Decorative Arts",
-    "objectName": "Ewer stand",
-    "title": "Ewer stand with male and female profiles and arms of the Orsini family",
-    "objectDate": "ca. 1500\u20131510",
-    "objectBeginDate": 1495,
-    "objectEndDate": 1515,
-    "medium": "Maiolica (tin-glazed earthenware), lustered",
-    "dimensions": "Overall (confirmed): 1 9/16 \u00d7 12 1/8 in. (4 \u00d7 30.8 cm)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": "confirmed",
-        "elementMeasurements": {
-          "Diameter": 30.797562,
-          "Height": 3.9687579
-        }
-      }
-    ],
-    "creditLine": "The Friedsam Collection, Bequest of Michael Friedsam, 1931",
-    "classification": "Ceramics-Pottery",
-    "metadataDate": "2025-01-31T04:54:36.6Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/197213",
-    "tags": [
-      {
-        "term": "Men",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300025928",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q8441"
-      },
-      {
-        "term": "Profiles",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300123319",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q4382010"
-      },
-      {
-        "term": "Women",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300025943",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q467"
-      },
-      {
-        "term": "Coat of Arms",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300126352",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q14659"
-      }
-    ],
-    "isTimelineWork": false
-  },
   "51018": {
     "objectID": 51018,
     "isHighlight": false,
@@ -49693,49 +49245,6 @@
     "tags": null,
     "isTimelineWork": false
   },
-  "461494": {
-    "objectID": 461494,
-    "isHighlight": false,
-    "accessionNumber": "1975.1.1669",
-    "accessionYear": "1975",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/rl/original/SLP1669L_1670R-1.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/rl/web-large/SLP1669L_1670R-1.jpg",
-    "additionalImages": [
-      "https://images.metmuseum.org/CRDImages/rl/original/SLP1669L_1670R-2.jpg",
-      "https://images.metmuseum.org/CRDImages/rl/original/sf-rlc-1975-1-1669.jpg",
-      "https://images.metmuseum.org/CRDImages/rl/original/1669L, 1670R-1.jpg",
-      "https://images.metmuseum.org/CRDImages/rl/original/1669L, 1670R-2.jpg"
-    ],
-    "constituents": [
-      {
-        "constituentID": 14068,
-        "role": "Artist",
-        "name": "Chinese"
-      }
-    ],
-    "department": "Robert Lehman Collection",
-    "objectName": "Vase",
-    "title": "Vase: Qingbai Shufu-type ware (pair with 1975.1.1670)",
-    "culture": "Chinese",
-    "artistRole": "Artist",
-    "artistDisplayName": "Chinese",
-    "artistSuffix": ", probably from the Jingdezhen kilns, Jiangxi Province",
-    "artistAlphaSort": "Chinese",
-    "objectDate": "14th century",
-    "objectBeginDate": 1300,
-    "objectEndDate": 1399,
-    "medium": "Porcelain with bluish-toned glaze.",
-    "dimensions": "Height: 26 cm.",
-    "measurements": null,
-    "creditLine": "Robert Lehman Collection, 1975",
-    "classification": "Ceramics",
-    "metadataDate": "2025-01-29T04:54:03.16Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/461494",
-    "tags": null,
-    "isTimelineWork": false
-  },
   "47505": {
     "objectID": 47505,
     "isHighlight": false,
@@ -50268,89 +49777,6 @@
     "tags": null,
     "isTimelineWork": false
   },
-  "203150": {
-    "objectID": 203150,
-    "isHighlight": false,
-    "accessionNumber": "64.101.154a, b",
-    "accessionYear": "1964",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/es/original/DP169246.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/DP169246.jpg",
-    "additionalImages": [
-      "https://images.metmuseum.org/CRDImages/es/original/DP169245.jpg",
-      "https://images.metmuseum.org/CRDImages/es/original/DP169244.jpg"
-    ],
-    "constituents": [
-      {
-        "constituentID": 164832,
-        "role": "Manufactory",
-        "name": "Meissen Manufactory",
-        "constituentULAN_URL": "http://vocab.getty.edu/page/ulan/500054662",
-        "constituentWikidata_URL": "https://www.wikidata.org/wiki/Q822407"
-      }
-    ],
-    "department": "European Sculpture and Decorative Arts",
-    "objectName": "Vase",
-    "title": "Vase (from a garniture of three)",
-    "artistRole": "Manufactory",
-    "artistDisplayName": "Meissen Manufactory",
-    "artistDisplayBio": "German, 1710\u2013present",
-    "artistAlphaSort": "Meissen Manufactory",
-    "artistNationality": "German",
-    "artistBeginDate": "1710",
-    "artistEndDate": "9999",
-    "artistWikidata_URL": "https://www.wikidata.org/wiki/Q822407",
-    "artistULAN_URL": "http://vocab.getty.edu/page/ulan/500054662",
-    "objectDate": "ca. 1725\u201330",
-    "objectBeginDate": 1725,
-    "objectEndDate": 1730,
-    "medium": "Tinted hard-paste porcelain decorated in polychrome enamels, gold",
-    "dimensions": "Overall (confirmed): 9 3/4 x 4 3/4 x 4 5/8 in. (24.8 x 12.1 x 11.7 cm)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": "confirmed",
-        "elementMeasurements": {
-          "Depth": 11.747523,
-          "Height": 24.765049,
-          "Width": 12.065024
-        }
-      }
-    ],
-    "creditLine": "Gift of Irwin Untermyer, 1964",
-    "classification": "Ceramics-Porcelain",
-    "metadataDate": "2025-06-10T04:50:22.027Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/203150",
-    "tags": [
-      {
-        "term": "Birds",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300266506",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q5113"
-      },
-      {
-        "term": "Chinoiserie",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300021167",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q863679"
-      },
-      {
-        "term": "Grapes",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300379338",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q10978"
-      },
-      {
-        "term": "Men",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300025928",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q8441"
-      },
-      {
-        "term": "Insects",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300310470",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q1390"
-      }
-    ],
-    "isTimelineWork": false
-  },
   "194236": {
     "objectID": 194236,
     "isHighlight": false,
@@ -50451,60 +49877,6 @@
         "term": "Faces",
         "AAT_URL": "http://vocab.getty.edu/page/aat/300251798",
         "Wikidata_URL": "https://www.wikidata.org/wiki/Q37017"
-      }
-    ],
-    "isTimelineWork": false
-  },
-  "460320": {
-    "objectID": 460320,
-    "isHighlight": false,
-    "accessionNumber": "1975.1.1614a,b",
-    "accessionYear": "1975",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/rl/original/SLP1614a_b-1615a_b-front.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/rl/web-large/SLP1614a_b-1615a_b-front.jpg",
-    "additionalImages": [
-      "https://images.metmuseum.org/CRDImages/rl/original/SLP1614a_b-1615a_b-back.jpg",
-      "https://images.metmuseum.org/CRDImages/rl/original/SLP1614a_b-1615a_b-bottom.jpg"
-    ],
-    "constituents": [
-      {
-        "constituentID": 138219,
-        "role": "Artist",
-        "name": "De Porceleyne Bijl (The Porcelain Axe) Factory, Delft"
-      }
-    ],
-    "department": "Robert Lehman Collection",
-    "objectName": "Covered vase",
-    "title": "Covered vase",
-    "culture": "Dutch, Delft",
-    "artistRole": "Artist",
-    "artistDisplayName": "De Porceleyne Bijl (The Porcelain Axe) Factory, Delft",
-    "artistAlphaSort": "De Porceleyne Bijl (The Porcelain Axe) Factory, Delft",
-    "objectDate": "1764\u201388",
-    "objectBeginDate": 1764,
-    "objectEndDate": 1788,
-    "medium": "Tin-glazed earthenware.",
-    "dimensions": "With cover: 8 3/4 in. (22.2 cm)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": "With cover",
-        "elementMeasurements": {
-          "Height": 22.2
-        }
-      }
-    ],
-    "creditLine": "Robert Lehman Collection, 1975",
-    "classification": "Ceramics",
-    "metadataDate": "2025-01-29T04:54:03.16Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/460320",
-    "tags": [
-      {
-        "term": "Landscapes",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300132294",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q191163"
       }
     ],
     "isTimelineWork": false
@@ -51966,68 +51338,6 @@
     "tags": null,
     "isTimelineWork": false
   },
-  "206631": {
-    "objectID": 206631,
-    "isHighlight": false,
-    "accessionNumber": "1977.216.12, .13",
-    "accessionYear": "1977",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/es/original/DP-13079-001.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/DP-13079-001.jpg",
-    "additionalImages": [],
-    "constituents": [
-      {
-        "constituentID": 164832,
-        "role": "Manufactory",
-        "name": "Meissen Manufactory",
-        "constituentULAN_URL": "http://vocab.getty.edu/page/ulan/500054662",
-        "constituentWikidata_URL": "https://www.wikidata.org/wiki/Q822407"
-      }
-    ],
-    "department": "European Sculpture and Decorative Arts",
-    "objectName": "Pitcher and stand",
-    "title": "Pitcher and stand",
-    "artistRole": "Manufactory",
-    "artistDisplayName": "Meissen Manufactory",
-    "artistDisplayBio": "German, 1710\u2013present",
-    "artistAlphaSort": "Meissen Manufactory",
-    "artistNationality": "German",
-    "artistBeginDate": "1710",
-    "artistEndDate": "9999",
-    "artistWikidata_URL": "https://www.wikidata.org/wiki/Q822407",
-    "artistULAN_URL": "http://vocab.getty.edu/page/ulan/500054662",
-    "objectDate": "ca. 1725\u201330",
-    "objectBeginDate": 1720,
-    "objectEndDate": 1735,
-    "medium": "Hard-paste porcelain",
-    "dimensions": "Overall (with handle, pitcher .12): 2 3/8 \u00d7 4 1/4 in. (6 \u00d7 10.8 cm);\r\nWidth (with handle, stand .13): 7 1/2 in. (19.1 cm)",
-    "measurements": [
-      {
-        "elementName": "Width",
-        "elementDescription": "with handle, stand .13",
-        "elementMeasurements": {
-          "Width": 19.050037
-        }
-      },
-      {
-        "elementName": "Overall",
-        "elementDescription": "with handle, pitcher .12",
-        "elementMeasurements": {
-          "Height": 6.032512,
-          "Width": 10.795022
-        }
-      }
-    ],
-    "creditLine": "Bequest of R. Thornton Wilson, in memory of his wife, Florence Ellsworth Wilson, 1977",
-    "classification": "Ceramics-Porcelain",
-    "metadataDate": "2025-01-31T04:54:36.6Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/206631",
-    "tags": null,
-    "objectWikidata_URL": "https://www.wikidata.org/wiki/Q116309883",
-    "isTimelineWork": false,
-    "GalleryNumber": "533"
-  },
   "451694": {
     "objectID": 451694,
     "isHighlight": false,
@@ -52931,41 +52241,6 @@
     "metadataDate": "2025-03-06T04:54:30Z",
     "repository": "Metropolitan Museum of Art, New York, NY",
     "objectURL": "https://www.metmuseum.org/art/collection/search/47103",
-    "tags": null,
-    "isTimelineWork": false
-  },
-  "191729": {
-    "objectID": 191729,
-    "isHighlight": false,
-    "accessionNumber": "11.93.1",
-    "accessionYear": "1911",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/es/original/11076.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/11076.jpg",
-    "additionalImages": [],
-    "constituents": null,
-    "department": "European Sculpture and Decorative Arts",
-    "objectName": "Jug",
-    "title": "Annular jug",
-    "objectDate": "17th century",
-    "objectBeginDate": 1600,
-    "objectEndDate": 1699,
-    "medium": "Salt-glazed stoneware",
-    "dimensions": "Height: 17 3/4 in. (45.1 cm)",
-    "measurements": [
-      {
-        "elementName": "Height",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Height": 45.08509
-        }
-      }
-    ],
-    "creditLine": "Rogers Fund, 1911",
-    "classification": "Ceramics-Pottery",
-    "metadataDate": "2026-02-07T04:59:02.893Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/191729",
     "tags": null,
     "isTimelineWork": false
   },
@@ -54149,63 +53424,6 @@
     ],
     "isTimelineWork": false
   },
-  "447163": {
-    "objectID": 447163,
-    "isHighlight": false,
-    "accessionNumber": "20.120.66",
-    "accessionYear": "1920",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/is/original/DP359734.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/is/web-large/DP359734.jpg",
-    "additionalImages": [
-      "https://images.metmuseum.org/CRDImages/is/original/46880.jpg",
-      "https://images.metmuseum.org/CRDImages/is/original/sf20-120-66a.jpg",
-      "https://images.metmuseum.org/CRDImages/is/original/sf20-120-66b.jpg",
-      "https://images.metmuseum.org/CRDImages/is/original/sf20-120-66c.jpg",
-      "https://images.metmuseum.org/CRDImages/is/original/sf20-120-66d.jpg"
-    ],
-    "constituents": null,
-    "department": "Islamic Art",
-    "objectName": "House model",
-    "title": "Model of a House with Amorous Couple",
-    "objectDate": "12th\u2013early 13th century",
-    "objectBeginDate": 1100,
-    "objectEndDate": 1225,
-    "medium": "Stonepaste; molded, glazed in opaque white, luster-painted",
-    "dimensions": "H. 1 5/8 in. (4.1 cm)\r\nW. 6 3/8 in. (16.2 cm)\r\nD. 4 3/8 in. (11.1 cm)\r\nWt. 18.7 oz. (530.2 g)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Depth": 11.112522,
-          "Height": 4.127508,
-          "Weight": 0.53019565,
-          "Width": 16.192532
-        }
-      }
-    ],
-    "creditLine": "The Grinnell Collection, Bequest of William Milne Grinnell, 1920",
-    "geographyType": "Made in",
-    "country": "Iran",
-    "classification": "Ceramics",
-    "metadataDate": "2025-01-30T04:54:21.21Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/447163",
-    "tags": [
-      {
-        "term": "Houses",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300005433",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q3947"
-      },
-      {
-        "term": "Couples",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300379217",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q219160"
-      }
-    ],
-    "isTimelineWork": false
-  },
   "465870": {
     "objectID": 465870,
     "isHighlight": false,
@@ -54251,58 +53469,6 @@
     "objectWikidata_URL": "https://www.wikidata.org/wiki/Q116246438",
     "isTimelineWork": false,
     "GalleryNumber": "307"
-  },
-  "199728": {
-    "objectID": 199728,
-    "isHighlight": false,
-    "accessionNumber": "46.85.21",
-    "accessionYear": "1946",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/es/original/DP319081.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/DP319081.jpg",
-    "additionalImages": [
-      "https://images.metmuseum.org/CRDImages/es/original/DP319076.jpg",
-      "https://images.metmuseum.org/CRDImages/es/original/DP323237.jpg",
-      "https://images.metmuseum.org/CRDImages/es/original/DP323235.jpg"
-    ],
-    "constituents": null,
-    "department": "European Sculpture and Decorative Arts",
-    "objectName": "Storage jar",
-    "title": "Storage jar (albarello) depicting a dog",
-    "objectDate": "ca. 1470\u20131500",
-    "objectBeginDate": 1465,
-    "objectEndDate": 1505,
-    "medium": "Maiolica (tin-glazed earthenware)",
-    "dimensions": "Overall (confirmed): 11 13/16 \u00d7 5 5/8 \u00d7 5 5/8 in. (30 \u00d7 14.3 \u00d7 14.3 cm)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": "confirmed",
-        "elementMeasurements": {
-          "Depth": 14.287529,
-          "Height": 30.00381,
-          "Width": 14.287529
-        }
-      }
-    ],
-    "creditLine": "Fletcher Fund, 1946",
-    "classification": "Ceramics-Pottery",
-    "metadataDate": "2025-01-31T04:54:36.6Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/199728",
-    "tags": [
-      {
-        "term": "Birds",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300266506",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q5113"
-      },
-      {
-        "term": "Dogs",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300265714",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q144"
-      }
-    ],
-    "isTimelineWork": false
   },
   "199532": {
     "objectID": 199532,
@@ -58019,48 +57185,6 @@
     ],
     "isTimelineWork": false
   },
-  "210147": {
-    "objectID": 210147,
-    "isHighlight": false,
-    "accessionNumber": "27.199.21",
-    "accessionYear": "1927",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/es/original/69491.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/69491.jpg",
-    "additionalImages": [],
-    "constituents": null,
-    "department": "European Sculpture and Decorative Arts",
-    "objectName": "Tile",
-    "title": "Tile",
-    "objectDate": "1580\u20131620",
-    "objectBeginDate": 1580,
-    "objectEndDate": 1620,
-    "medium": "Tin-glazed earthenware",
-    "dimensions": "Overall: 4 3/4 \u00d7 4 3/4 in. (12.1 \u00d7 12.1 cm)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Height": 12.065024,
-          "Width": 12.065024
-        }
-      }
-    ],
-    "creditLine": "Fletcher Fund, 1927",
-    "classification": "Ceramics-Pottery",
-    "metadataDate": "2020-09-16T18:35:19.457Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/210147",
-    "tags": [
-      {
-        "term": "Flowers",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300132399",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q506"
-      }
-    ],
-    "isTimelineWork": false
-  },
   "468523": {
     "objectID": 468523,
     "isHighlight": false,
@@ -58187,82 +57311,6 @@
     "objectURL": "https://www.metmuseum.org/art/collection/search/47854",
     "tags": null,
     "isTimelineWork": false
-  },
-  "236977": {
-    "objectID": 236977,
-    "isHighlight": false,
-    "accessionNumber": "54.147.76",
-    "accessionYear": "1954",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/es/original/DP223291.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/DP223291.jpg",
-    "additionalImages": [
-      "https://images.metmuseum.org/CRDImages/es/original/DP223290.jpg",
-      "https://images.metmuseum.org/CRDImages/es/original/DP223286.jpg",
-      "https://images.metmuseum.org/CRDImages/es/original/DP223287.jpg",
-      "https://images.metmuseum.org/CRDImages/es/original/DP223288.jpg",
-      "https://images.metmuseum.org/CRDImages/es/original/DP223289.jpg",
-      "https://images.metmuseum.org/CRDImages/es/original/ES1711.jpg"
-    ],
-    "constituents": [
-      {
-        "constituentID": 164832,
-        "role": "Manufactory",
-        "name": "Meissen Manufactory",
-        "constituentULAN_URL": "http://vocab.getty.edu/page/ulan/500054662",
-        "constituentWikidata_URL": "https://www.wikidata.org/wiki/Q822407"
-      },
-      {
-        "constituentID": 34162,
-        "role": "Decorator",
-        "name": "Johann Gregor H\u00f6roldt",
-        "constituentULAN_URL": "http://vocab.getty.edu/page/ulan/500027830",
-        "constituentWikidata_URL": "https://www.wikidata.org/wiki/Q875243"
-      }
-    ],
-    "department": "European Sculpture and Decorative Arts",
-    "objectName": "Saucer",
-    "title": "Saucer",
-    "artistRole": "Manufactory",
-    "artistDisplayName": "Meissen Manufactory",
-    "artistDisplayBio": "German, 1710\u2013present",
-    "artistAlphaSort": "Meissen Manufactory",
-    "artistNationality": "German",
-    "artistBeginDate": "1710",
-    "artistEndDate": "9999",
-    "artistWikidata_URL": "https://www.wikidata.org/wiki/Q822407",
-    "artistULAN_URL": "http://vocab.getty.edu/page/ulan/500054662",
-    "objectDate": "1724\u201325",
-    "objectBeginDate": 1724,
-    "objectEndDate": 1725,
-    "medium": "Hard-paste porcelain decorated in polychrome enamels, gold",
-    "dimensions": "Overall (confirmed): 15/16 \u00d7 5 \u00d7 4 15/16 in. (2.4 \u00d7 12.7 \u00d7 12.5 cm)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": "confirmed",
-        "elementMeasurements": {
-          "Depth": 12.541275,
-          "Height": 2.3812547,
-          "Width": 12.700026
-        }
-      }
-    ],
-    "creditLine": "Gift of R. Thornton Wilson, in memory of Florence Ellsworth Wilson, 1954",
-    "classification": "Ceramics-Porcelain",
-    "metadataDate": "2025-01-31T04:54:36.6Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/236977",
-    "tags": [
-      {
-        "term": "Coat of Arms",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300126352",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q14659"
-      }
-    ],
-    "objectWikidata_URL": "https://www.wikidata.org/wiki/Q116305883",
-    "isTimelineWork": false,
-    "GalleryNumber": "533"
   },
   "196344": {
     "objectID": 196344,
@@ -60050,52 +59098,6 @@
     "tags": null,
     "isTimelineWork": false
   },
-  "449877": {
-    "objectID": 449877,
-    "isHighlight": false,
-    "accessionNumber": "40.170.192",
-    "accessionYear": "1940",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/is/original/LC-40_170_192overall.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/is/web-large/LC-40_170_192overall.jpg",
-    "additionalImages": [
-      "https://images.metmuseum.org/CRDImages/is/original/LC-40_170_192bottom.jpg",
-      "https://images.metmuseum.org/CRDImages/is/original/LC-40_170_192sided.jpg",
-      "https://images.metmuseum.org/CRDImages/is/original/LC-40_170_192sidec.jpg",
-      "https://images.metmuseum.org/CRDImages/is/original/LC-40_170_192sideb.jpg",
-      "https://images.metmuseum.org/CRDImages/is/original/LC-40_170_192sidea.jpg"
-    ],
-    "constituents": null,
-    "department": "Islamic Art",
-    "objectName": "Ewer",
-    "title": "Ewer",
-    "objectDate": "9th century",
-    "objectBeginDate": 800,
-    "objectEndDate": 899,
-    "medium": "Earthenware; slip covered and unglazed",
-    "dimensions": "Ht. 8 1/16 in. (20.4 cm)\r\nW. 6 5/8 in. (16.8 cm)\r\nD. 7 3/16 in. (18.2 cm)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Depth": 18.2,
-          "Height": 20.4,
-          "Width": 16.8
-        }
-      }
-    ],
-    "creditLine": "Rogers Fund, 1940",
-    "geographyType": "Excavated in",
-    "city": "Nishapur",
-    "country": "Iran",
-    "classification": "Ceramics",
-    "metadataDate": "2025-01-30T04:54:21.21Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/449877",
-    "tags": null,
-    "isTimelineWork": false
-  },
   "623474": {
     "objectID": 623474,
     "isHighlight": false,
@@ -61007,62 +60009,6 @@
     "tags": null,
     "isTimelineWork": false
   },
-  "191345": {
-    "objectID": 191345,
-    "isHighlight": false,
-    "accessionNumber": "10.81.2",
-    "accessionYear": "1910",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/es/original/7868.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/7868.jpg",
-    "additionalImages": [],
-    "constituents": null,
-    "department": "European Sculpture and Decorative Arts",
-    "objectName": "Jar",
-    "title": "Screw-top jar",
-    "objectDate": "ca. 1630",
-    "objectBeginDate": 1625,
-    "objectEndDate": 1635,
-    "medium": "Earthenware, with dark brown glaze",
-    "dimensions": "Height: 8 1/4 in. (21 cm)",
-    "measurements": [
-      {
-        "elementName": "Height",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Height": 20.955042
-        }
-      }
-    ],
-    "creditLine": "Gift of John Stemme, 1910",
-    "classification": "Ceramics-Pottery",
-    "metadataDate": "2021-06-29T04:39:38.347Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/191345",
-    "tags": [
-      {
-        "term": "Eagles",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300250049",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q2092297"
-      },
-      {
-        "term": "Faces",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300251798",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q37017"
-      },
-      {
-        "term": "Men",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300025928",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q8441"
-      },
-      {
-        "term": "Coat of Arms",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300126352",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q14659"
-      }
-    ],
-    "isTimelineWork": false
-  },
   "194288": {
     "objectID": 194288,
     "isHighlight": false,
@@ -61273,95 +60219,6 @@
         "term": "Leaves",
         "AAT_URL": "http://vocab.getty.edu/page/aat/300011892",
         "Wikidata_URL": "https://www.wikidata.org/wiki/Q33971"
-      }
-    ],
-    "isTimelineWork": false
-  },
-  "202121": {
-    "objectID": 202121,
-    "isHighlight": false,
-    "accessionNumber": "58.60.10",
-    "accessionYear": "1958",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/es/original/DP-19994-001.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/DP-19994-001.jpg",
-    "additionalImages": [
-      "https://images.metmuseum.org/CRDImages/es/original/DP-19994-002.jpg",
-      "https://images.metmuseum.org/CRDImages/es/original/DP-19994-003.jpg",
-      "https://images.metmuseum.org/CRDImages/es/original/DP-19994-004.jpg",
-      "https://images.metmuseum.org/CRDImages/es/original/DP-19994-005.jpg"
-    ],
-    "constituents": [
-      {
-        "constituentID": 164856,
-        "role": "Manufactory",
-        "name": "S\u00e8vres Manufactory",
-        "constituentULAN_URL": "http://vocab.getty.edu/page/ulan/500054661",
-        "constituentWikidata_URL": "https://www.wikidata.org/wiki/Q653307"
-      },
-      {
-        "constituentID": 33680,
-        "role": "Modeler",
-        "name": "After a model by Etienne-Maurice Falconet",
-        "constituentULAN_URL": "http://vocab.getty.edu/page/ulan/500115285",
-        "constituentWikidata_URL": "https://www.wikidata.org/wiki/Q289246"
-      },
-      {
-        "constituentID": 161703,
-        "role": "Artist",
-        "name": "Based on a design by Fran\u00e7ois Boucher",
-        "constituentULAN_URL": "http://vocab.getty.edu/page/ulan/500032143",
-        "constituentWikidata_URL": "https://www.wikidata.org/wiki/Q180932"
-      }
-    ],
-    "department": "European Sculpture and Decorative Arts",
-    "objectName": "Group",
-    "title": "The Magic Lantern",
-    "artistRole": "Manufactory",
-    "artistDisplayName": "S\u00e8vres Manufactory",
-    "artistDisplayBio": "French, 1740\u2013present",
-    "artistAlphaSort": "S\u00e8vres Manufactory",
-    "artistNationality": "French",
-    "artistBeginDate": "1740",
-    "artistEndDate": "9999",
-    "artistWikidata_URL": "https://www.wikidata.org/wiki/Q653307",
-    "artistULAN_URL": "http://vocab.getty.edu/page/ulan/500054661",
-    "objectDate": "ca. 1760",
-    "objectBeginDate": 1755,
-    "objectEndDate": 1765,
-    "medium": "Soft-paste biscuit porcelain",
-    "dimensions": "confirmed: 6 1/8 \u00d7 6 3/4 \u00d7 5 1/4 in. (15.6 \u00d7 17.1 \u00d7 13.3 cm)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": "confirmed",
-        "elementMeasurements": {
-          "Depth": 13.335027,
-          "Height": 15.557531,
-          "Width": 17.145035
-        }
-      }
-    ],
-    "creditLine": "Bequest of Ella Morris de Peyster, 1957",
-    "classification": "Ceramics-Porcelain",
-    "metadataDate": "2025-01-31T04:54:36.6Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/202121",
-    "tags": [
-      {
-        "term": "Boys",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300247598",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q3010"
-      },
-      {
-        "term": "Girls",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300247581",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q3031"
-      },
-      {
-        "term": "Lanterns",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300037647",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q862454"
       }
     ],
     "isTimelineWork": false
@@ -63005,83 +61862,6 @@
     "objectWikidata_URL": "https://www.wikidata.org/wiki/Q20185728",
     "isTimelineWork": false
   },
-  "234910": {
-    "objectID": 234910,
-    "isHighlight": false,
-    "accessionNumber": "2007.243.21",
-    "accessionYear": "2007",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/es/original/LC-2007_243_21-001.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/LC-2007_243_21-001.jpg",
-    "additionalImages": [
-      "https://images.metmuseum.org/CRDImages/es/original/LC-2007_243_21-002.jpg"
-    ],
-    "constituents": [
-      {
-        "constituentID": 164832,
-        "role": "Manufactory",
-        "name": "Meissen Manufactory",
-        "constituentULAN_URL": "http://vocab.getty.edu/page/ulan/500054662",
-        "constituentWikidata_URL": "https://www.wikidata.org/wiki/Q822407"
-      }
-    ],
-    "department": "European Sculpture and Decorative Arts",
-    "objectName": "Charger",
-    "title": "Charger",
-    "artistRole": "Manufactory",
-    "artistDisplayName": "Meissen Manufactory",
-    "artistDisplayBio": "German, 1710\u2013present",
-    "artistAlphaSort": "Meissen Manufactory",
-    "artistNationality": "German",
-    "artistBeginDate": "1710",
-    "artistEndDate": "9999",
-    "artistWikidata_URL": "https://www.wikidata.org/wiki/Q822407",
-    "artistULAN_URL": "http://vocab.getty.edu/page/ulan/500054662",
-    "objectDate": "ca. 1745",
-    "objectBeginDate": 1740,
-    "objectEndDate": 1750,
-    "medium": "Hard-paste porcelain",
-    "dimensions": "Overall: 2 3/8 x 13 1/2 x 13 1/2 in. (6 x 34.3 x 34.3 cm)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Depth": 34.2901,
-          "Height": 6.0325,
-          "Width": 34.2901
-        }
-      }
-    ],
-    "creditLine": "Gift of Mercedes Bass, 2007",
-    "classification": "Ceramics-Porcelain",
-    "metadataDate": "2025-01-31T04:54:36.6Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/234910",
-    "tags": [
-      {
-        "term": "Birds",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300266506",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q5113"
-      },
-      {
-        "term": "Insects",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300310470",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q1390"
-      },
-      {
-        "term": "Butterflies",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300417320",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q11946202"
-      },
-      {
-        "term": "Plants",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300132360",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q756"
-      }
-    ],
-    "isTimelineWork": false
-  },
   "9179": {
     "objectID": 9179,
     "isHighlight": false,
@@ -63818,94 +62598,6 @@
     "repository": "Metropolitan Museum of Art, New York, NY",
     "objectURL": "https://www.metmuseum.org/art/collection/search/199515",
     "tags": null,
-    "isTimelineWork": false
-  },
-  "680960": {
-    "objectID": 680960,
-    "isHighlight": false,
-    "accessionNumber": "2016.126a, b",
-    "accessionYear": "2016",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/as/original/LC-2016_126ab_sr1-001.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/as/web-large/LC-2016_126ab_sr1-001.jpg",
-    "additionalImages": [
-      "https://images.metmuseum.org/CRDImages/as/original/LC-2016_126ab_sr1-003.jpg",
-      "https://images.metmuseum.org/CRDImages/as/original/LC-2016_126ab_sr1-002.jpg",
-      "https://images.metmuseum.org/CRDImages/as/original/LC-2016_126ab_sr1-004.jpg",
-      "https://images.metmuseum.org/CRDImages/as/original/LC-2016_126ab_sr1-005.jpg"
-    ],
-    "constituents": null,
-    "department": "Asian Art",
-    "objectName": "Ewer",
-    "title": "Ewer with peacock and peonies",
-    "culture": "China",
-    "period": "Ming dynasty (1368\u20131644), Jiajing period (1522\u20131566)",
-    "objectDate": "mid-16th century",
-    "objectBeginDate": 1534,
-    "objectEndDate": 1566,
-    "medium": "Porcelain painted in overglaze polychrome enamels and gold (Jingdezhen ware)",
-    "dimensions": "H. 11 1/2 in. (29.2 cm); W. 5 1/2 in. (14 cm); Diam. 5 in. (12.7 cm)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": "CSR Survey",
-        "elementMeasurements": {
-          "Depth": 9.144018,
-          "Height": 28.956059,
-          "Weight": 0.77111495,
-          "Width": 14.605029
-        }
-      },
-      {
-        "elementName": "Diam. of foot",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Diameter": 8.255016
-        }
-      },
-      {
-        "elementName": "Diam. of rim",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Diameter": 6.032512
-        }
-      },
-      {
-        "elementName": "Height",
-        "elementDescription": "without finial",
-        "elementMeasurements": {
-          "Height": 24.44755
-        }
-      },
-      {
-        "elementName": "Storage",
-        "elementDescription": "CSR Survey",
-        "elementMeasurements": {
-          "Depth": 13.9,
-          "Height": 40.13208,
-          "Weight": 2.7215822,
-          "Width": 24.9
-        }
-      }
-    ],
-    "creditLine": "Gift of R. Albuquerque, 2016",
-    "classification": "Ceramics",
-    "metadataDate": "2025-03-06T04:54:30Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/680960",
-    "tags": [
-      {
-        "term": "Peacocks",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300250082",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q201251"
-      },
-      {
-        "term": "Peonies",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300380052",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q147105"
-      }
-    ],
-    "objectWikidata_URL": "https://www.wikidata.org/wiki/Q116444474",
     "isTimelineWork": false
   },
   "44724": {
@@ -65860,71 +64552,6 @@
     ],
     "isTimelineWork": false
   },
-  "205920": {
-    "objectID": 205920,
-    "isHighlight": false,
-    "accessionNumber": "1974.356.361",
-    "accessionYear": "1974",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/es/original/ES2727.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/ES2727.jpg",
-    "additionalImages": [],
-    "constituents": [
-      {
-        "constituentID": 164832,
-        "role": "Manufactory",
-        "name": "Meissen Manufactory",
-        "constituentULAN_URL": "http://vocab.getty.edu/page/ulan/500054662",
-        "constituentWikidata_URL": "https://www.wikidata.org/wiki/Q822407"
-      },
-      {
-        "constituentID": 162020,
-        "role": "Modeler",
-        "name": "Johann Joachim K\u00e4ndler",
-        "constituentULAN_URL": "http://vocab.getty.edu/page/ulan/500001959",
-        "constituentWikidata_URL": "https://www.wikidata.org/wiki/Q73593"
-      }
-    ],
-    "department": "European Sculpture and Decorative Arts",
-    "objectName": "Figure",
-    "title": "Nesting pigeon",
-    "artistRole": "Manufactory",
-    "artistDisplayName": "Meissen Manufactory",
-    "artistDisplayBio": "German, 1710\u2013present",
-    "artistAlphaSort": "Meissen Manufactory",
-    "artistNationality": "German",
-    "artistBeginDate": "1710",
-    "artistEndDate": "9999",
-    "artistWikidata_URL": "https://www.wikidata.org/wiki/Q822407",
-    "artistULAN_URL": "http://vocab.getty.edu/page/ulan/500054662",
-    "objectDate": "1732",
-    "objectBeginDate": 1732,
-    "objectEndDate": 1732,
-    "medium": "Hard-paste porcelain",
-    "dimensions": "Height: 5 3/4 in. (14.6 cm)",
-    "measurements": [
-      {
-        "elementName": "Height",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Height": 14.605029
-        }
-      }
-    ],
-    "creditLine": "The Lesley and Emma Sheafer Collection, Bequest of Emma A. Sheafer, 1973",
-    "classification": "Ceramics-Porcelain",
-    "metadataDate": "2020-11-14T04:40:04.457Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/205920",
-    "tags": [
-      {
-        "term": "Pigeons",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300310557",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q2984138"
-      }
-    ],
-    "isTimelineWork": false
-  },
   "46631": {
     "objectID": 46631,
     "isHighlight": false,
@@ -66425,56 +65052,6 @@
     "tags": null,
     "isTimelineWork": false
   },
-  "42236": {
-    "objectID": 42236,
-    "isHighlight": false,
-    "accessionNumber": "14.40.93",
-    "accessionYear": "1914",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/as/original/23458.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/as/web-large/23458.jpg",
-    "additionalImages": [],
-    "constituents": null,
-    "department": "Asian Art",
-    "objectName": "Vase",
-    "title": "Vase",
-    "culture": "China",
-    "period": "Qing dynasty (1644\u20131911)",
-    "objectDate": "late 18th\u2013early 19th century",
-    "objectBeginDate": 1767,
-    "objectEndDate": 1833,
-    "medium": "Porcelain painted in overglazed rouge de fer enamels",
-    "dimensions": "H. 19 in. (48.3 cm)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": "CSR Survey",
-        "elementMeasurements": {
-          "Diameter": 21.336042,
-          "Height": 48.8951,
-          "Weight": 5.5338836
-        }
-      }
-    ],
-    "creditLine": "Bequest of Benjamin Altman, 1913",
-    "classification": "Ceramics",
-    "metadataDate": "2025-10-06T04:51:04.6Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/42236",
-    "tags": [
-      {
-        "term": "Flowers",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300132399",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q506"
-      },
-      {
-        "term": "Leaves",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300011892",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q33971"
-      }
-    ],
-    "isTimelineWork": false
-  },
   "468397": {
     "objectID": 468397,
     "isHighlight": false,
@@ -66874,57 +65451,6 @@
         "Wikidata_URL": "https://www.wikidata.org/wiki/Q8441"
       }
     ],
-    "isTimelineWork": false
-  },
-  "188389": {
-    "objectID": 188389,
-    "isHighlight": false,
-    "accessionNumber": "98.1.70",
-    "accessionYear": "1898",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/es/original/5869.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/5869.jpg",
-    "additionalImages": [],
-    "constituents": [
-      {
-        "constituentID": 35197,
-        "role": "Maker",
-        "name": "Possibly by Ridgway"
-      },
-      {
-        "constituentID": 35190,
-        "role": "Factory",
-        "name": "Possibly Phillips and Co."
-      }
-    ],
-    "department": "European Sculpture and Decorative Arts",
-    "objectName": "Cream jug",
-    "title": "Cream jug",
-    "artistRole": "Maker",
-    "artistPrefix": "Possibly by",
-    "artistDisplayName": "Ridgway",
-    "artistSuffix": "or",
-    "artistAlphaSort": "Ridgway",
-    "objectDate": "18th\u201319th century",
-    "objectBeginDate": 1700,
-    "objectEndDate": 1899,
-    "medium": "Blue printed ware",
-    "dimensions": "Height: 2 3/4 in. (7 cm)",
-    "measurements": [
-      {
-        "elementName": "Height",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Height": 6.985014
-        }
-      }
-    ],
-    "creditLine": "Gift of Mrs. Isaac Gibson Jaffray, in memory of her husband, 1898",
-    "classification": "Ceramics-Pottery",
-    "metadataDate": "2020-04-01T04:45:34.557Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/188389",
-    "tags": null,
     "isTimelineWork": false
   },
   "42237": {
@@ -67482,59 +66008,6 @@
         "Wikidata_URL": "https://www.wikidata.org/wiki/Q19939"
       }
     ],
-    "isTimelineWork": false
-  },
-  "448542": {
-    "objectID": 448542,
-    "isHighlight": false,
-    "accessionNumber": "30.112.49a, b",
-    "accessionYear": "1930",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/is/original/LC-30_112_49aboverall.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/is/web-large/LC-30_112_49aboverall.jpg",
-    "additionalImages": [
-      "https://images.metmuseum.org/CRDImages/is/original/LC-30_112_49spout.jpg",
-      "https://images.metmuseum.org/CRDImages/is/original/LC-30_112_49overall.jpg",
-      "https://images.metmuseum.org/CRDImages/is/original/LC-30_112_49bside.jpg"
-    ],
-    "constituents": null,
-    "department": "Islamic Art",
-    "objectName": "Pilgrim flask",
-    "title": "Pilgrim Flask",
-    "objectDate": "12th\u201313th century",
-    "objectBeginDate": 1100,
-    "objectEndDate": 1299,
-    "medium": "Earthenware; unglazed",
-    "dimensions": "30.112.49a: Ht. 7 1/2 in. (19.1 cm)\r\n                      W. 6 1/4 in. (15.9 cm)\r\n                      D. 1 1/8 in. (2.9 cm)\r\n30.112.49b: Ht. 6 in. (15.2 cm)\r\n                      W. 2 5/16 in. (5.8 cm)\r\n                       D. 1 3/4 in. (4.4 cm)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": "30.112.49a",
-        "elementMeasurements": {
-          "Depth": 2.8575058,
-          "Height": 19.05,
-          "Width": 15.875031
-        }
-      },
-      {
-        "elementName": "Overall",
-        "elementDescription": "30.112.49b",
-        "elementMeasurements": {
-          "Depth": 5.8,
-          "Length": 4.4450088,
-          "Width": 15.24003
-        }
-      }
-    ],
-    "creditLine": "Purchase, V. Everit Macy Gift, 1930",
-    "geographyType": "Found",
-    "city": "Saveh",
-    "country": "Iran",
-    "classification": "Ceramics",
-    "metadataDate": "2025-11-19T04:51:42.46Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/448542",
-    "tags": null,
     "isTimelineWork": false
   },
   "194624": {
@@ -71681,65 +70154,6 @@
     ],
     "isTimelineWork": false
   },
-  "451741": {
-    "objectID": 451741,
-    "isHighlight": false,
-    "accessionNumber": "64.59",
-    "accessionYear": "1964",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/is/original/DP262924.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/is/web-large/DP262924.jpg",
-    "additionalImages": [
-      "https://images.metmuseum.org/CRDImages/is/original/Ccamel64.59.jpg",
-      "https://images.metmuseum.org/CRDImages/is/original/wb-64.59.JPG",
-      "https://images.metmuseum.org/CRDImages/is/original/wb-64.59b.JPG",
-      "https://images.metmuseum.org/CRDImages/is/original/wb-64.59c.JPG",
-      "https://images.metmuseum.org/CRDImages/is/original/wb-64.59e.JPG",
-      "https://images.metmuseum.org/CRDImages/is/original/wb-64.59d.JPG",
-      "https://images.metmuseum.org/CRDImages/is/original/DP-16473-035.jpg",
-      "https://images.metmuseum.org/CRDImages/is/original/DP-16473-036.jpg",
-      "https://images.metmuseum.org/CRDImages/is/original/DP-16473-045.jpg",
-      "https://images.metmuseum.org/CRDImages/is/original/179496.jpg"
-    ],
-    "constituents": null,
-    "department": "Islamic Art",
-    "objectName": "Figurine",
-    "title": "Figurine in the Form of a Camel Carrying a Palanquin and Two Riders",
-    "objectDate": "12th\u2013early 13th century",
-    "objectBeginDate": 1100,
-    "objectEndDate": 1225,
-    "medium": "Stonepaste; molded in sections, glazed in turquoise",
-    "dimensions": "H. 7 11/16 in. (19.5 cm)\r\nW. 5 9/16 in. (14.1 cm)\r\nD. 2 9/16 in. (6.5 cm)\r\nWt. 21.7 oz. (615.3 g)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Depth": 6.508763,
-          "Height": 19.5263,
-          "Weight": 0.61525375,
-          "Width": 14.128778
-        }
-      }
-    ],
-    "creditLine": "Fletcher Fund, 1964",
-    "geographyType": "Attributed to",
-    "country": "probably Iran or Iraq",
-    "classification": "Ceramics",
-    "metadataDate": "2025-01-30T04:54:21.21Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/451741",
-    "tags": [
-      {
-        "term": "Camels",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300250139",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q7375"
-      }
-    ],
-    "objectWikidata_URL": "https://www.wikidata.org/wiki/Q116243740",
-    "isTimelineWork": false,
-    "GalleryNumber": "453"
-  },
   "208486": {
     "objectID": 208486,
     "isHighlight": false,
@@ -75755,45 +74169,6 @@
     ],
     "isTimelineWork": false
   },
-  "452835": {
-    "objectID": 452835,
-    "isHighlight": false,
-    "accessionNumber": "1977.195",
-    "accessionYear": "1977",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/is/original/sf1977-195a.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/is/web-large/sf1977-195a.jpg",
-    "additionalImages": [],
-    "constituents": null,
-    "department": "Islamic Art",
-    "objectName": "Bottle",
-    "title": "Bottle",
-    "objectDate": "early 15th century",
-    "objectBeginDate": 1400,
-    "objectEndDate": 1425,
-    "medium": "Earthenware; incised and glazed",
-    "dimensions": "H. 13 3/4 in. (34.9 cm)\r\nDiam at rim. 3 1/4 in. (8.3 cm)\r\nWt. 37.7 oz. (1068.9 g)",
-    "measurements": [
-      {
-        "elementName": "Other",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Diameter": 8.255,
-          "Height": 34.92507,
-          "Weight": 1.0688971
-        }
-      }
-    ],
-    "creditLine": "Gift of Charles K. and Irma B. Wilkinson, 1977",
-    "geographyType": "Attributed to",
-    "country": "Iran",
-    "classification": "Ceramics",
-    "metadataDate": "2025-01-30T04:54:21.21Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/452835",
-    "tags": null,
-    "isTimelineWork": false
-  },
   "47218": {
     "objectID": 47218,
     "isHighlight": false,
@@ -77877,93 +76252,6 @@
     "repository": "Metropolitan Museum of Art, New York, NY",
     "objectURL": "https://www.metmuseum.org/art/collection/search/51044",
     "tags": null,
-    "isTimelineWork": false
-  },
-  "205640": {
-    "objectID": 205640,
-    "isHighlight": false,
-    "accessionNumber": "1974.28.137",
-    "accessionYear": "1974",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/es/original/DP-39960-002.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/DP-39960-002.jpg",
-    "additionalImages": [
-      "https://images.metmuseum.org/CRDImages/es/original/DP-39960-001.jpg"
-    ],
-    "constituents": [
-      {
-        "constituentID": 34738,
-        "role": "Factory",
-        "name": "Derby Porcelain Manufactory"
-      },
-      {
-        "constituentID": 39421,
-        "role": "Factory director",
-        "name": "Bloor Period"
-      },
-      {
-        "constituentID": 45415,
-        "role": "Decorator",
-        "name": "Flowers painted by George Hancock"
-      },
-      {
-        "constituentID": 45416,
-        "role": "Decorator",
-        "name": "Architecture and landscape painted by Jesse Mountford"
-      }
-    ],
-    "department": "European Sculpture and Decorative Arts",
-    "objectName": "Plaque",
-    "title": "An urn overflowing with fruit and flowers",
-    "artistRole": "Factory",
-    "artistDisplayName": "Derby Porcelain Manufactory",
-    "artistDisplayBio": "British, 1751\u20131785",
-    "artistAlphaSort": "Derby Porcelain Manufactory",
-    "artistNationality": "British",
-    "artistBeginDate": "1751",
-    "artistEndDate": "1785",
-    "objectDate": "ca. 1825",
-    "objectBeginDate": 1820,
-    "objectEndDate": 1830,
-    "medium": "Bone china",
-    "dimensions": "Overall: 12 3/4 \u00d7 9 3/4 in. (32.4 \u00d7 24.8 cm)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Height": 32.385063,
-          "Width": 24.765049
-        }
-      }
-    ],
-    "creditLine": "Bequest of Irwin Untermyer, 1973",
-    "classification": "Ceramics-Porcelain",
-    "metadataDate": "2025-06-11T04:50:49.767Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/205640",
-    "tags": [
-      {
-        "term": "Apples",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300266417",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q89"
-      },
-      {
-        "term": "Grapes",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300379338",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q10978"
-      },
-      {
-        "term": "Flowers",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300132399",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q506"
-      },
-      {
-        "term": "Urns",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300129425",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q11083119"
-      }
-    ],
     "isTimelineWork": false
   },
   "449068": {
@@ -82460,49 +80748,6 @@
     "isTimelineWork": false,
     "GalleryNumber": "521"
   },
-  "449740": {
-    "objectID": 449740,
-    "isHighlight": false,
-    "accessionNumber": "40.170.44",
-    "accessionYear": "1940",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/is/original/LC-40_170_44overalld.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/is/web-large/LC-40_170_44overalld.jpg",
-    "additionalImages": [
-      "https://images.metmuseum.org/CRDImages/is/original/LC-40_170_44overallc.jpg",
-      "https://images.metmuseum.org/CRDImages/is/original/LC-40_170_44overallb.jpg",
-      "https://images.metmuseum.org/CRDImages/is/original/LC-40_170_44overalla.jpg"
-    ],
-    "constituents": null,
-    "department": "Islamic Art",
-    "objectName": "Ewer",
-    "title": "Ewer",
-    "objectDate": "9th century",
-    "objectBeginDate": 800,
-    "objectEndDate": 899,
-    "medium": "Earthenware; slip covered and unglazed",
-    "dimensions": "Ht. 5 11/16 in. (14.4 cm)\r\nDiam. 3 7/16 in. (8.8 cm)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Diameter": 8.8,
-          "Height": 14.4
-        }
-      }
-    ],
-    "creditLine": "Rogers Fund, 1940",
-    "geographyType": "Excavated in",
-    "city": "Nishapur",
-    "country": "Iran",
-    "classification": "Ceramics",
-    "metadataDate": "2025-01-30T04:54:21.21Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/449740",
-    "tags": null,
-    "isTimelineWork": false
-  },
   "748327": {
     "objectID": 748327,
     "isHighlight": false,
@@ -83759,66 +82004,6 @@
     "repository": "Metropolitan Museum of Art, New York, NY",
     "objectURL": "https://www.metmuseum.org/art/collection/search/47622",
     "tags": [
-      {
-        "term": "Flowers",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300132399",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q506"
-      }
-    ],
-    "isTimelineWork": false
-  },
-  "187847": {
-    "objectID": 187847,
-    "isHighlight": false,
-    "accessionNumber": "94.4.337",
-    "accessionYear": "1894",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/es/original/7041.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/7041.jpg",
-    "additionalImages": [],
-    "constituents": [
-      {
-        "constituentID": 35508,
-        "role": "Manufactory",
-        "name": "De Witte Starre Manufactory"
-      },
-      {
-        "constituentID": 35515,
-        "role": "Factory owner",
-        "name": "Period of Cornelison Janson Brouwer"
-      }
-    ],
-    "department": "European Sculpture and Decorative Arts",
-    "objectName": "Vase",
-    "title": "Vase (part of a garniture)",
-    "artistRole": "Manufactory",
-    "artistDisplayName": "De Witte Starre Manufactory",
-    "artistAlphaSort": "DE WITTE STARRE MANUFACTORY",
-    "objectDate": "1723\u201341",
-    "objectBeginDate": 1723,
-    "objectEndDate": 1741,
-    "medium": "Tin-glazed earthenware",
-    "dimensions": "Height: 7 in. (17.8 cm)",
-    "measurements": [
-      {
-        "elementName": "Height",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Height": 17.780035
-        }
-      }
-    ],
-    "creditLine": "Gift of Henry G. Marquand, 1894",
-    "classification": "Ceramics-Pottery",
-    "metadataDate": "2020-09-16T18:35:19.457Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/187847",
-    "tags": [
-      {
-        "term": "Human Figures",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300404114",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q5937779"
-      },
       {
         "term": "Flowers",
         "AAT_URL": "http://vocab.getty.edu/page/aat/300132399",
@@ -86399,48 +84584,6 @@
     ],
     "isTimelineWork": false
   },
-  "461339": {
-    "objectID": 461339,
-    "isHighlight": false,
-    "accessionNumber": "1975.1.1688",
-    "accessionYear": "1975",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/rl/original/SLP1688_1689-1.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/rl/web-large/SLP1688_1689-1.jpg",
-    "additionalImages": [
-      "https://images.metmuseum.org/CRDImages/rl/original/SLP1688, 1689-1.jpg",
-      "https://images.metmuseum.org/CRDImages/rl/original/1688, 1689-1.jpg",
-      "https://images.metmuseum.org/CRDImages/rl/original/sf-rlc-1975-1-1688-1.jpg"
-    ],
-    "constituents": [
-      {
-        "constituentID": 14068,
-        "role": "Artist",
-        "name": "Chinese"
-      }
-    ],
-    "department": "Robert Lehman Collection",
-    "objectName": "Vase",
-    "title": "Small vase",
-    "culture": "Chinese",
-    "artistRole": "Artist",
-    "artistDisplayName": "Chinese",
-    "artistSuffix": ", Qing Dynasty",
-    "artistAlphaSort": "Chinese",
-    "objectDate": "probably 19th century",
-    "objectBeginDate": 1798,
-    "objectEndDate": 1902,
-    "medium": "Porcelain with dark red glaze.",
-    "dimensions": "Height 3 1/2 in. (8.9 cm.)",
-    "measurements": null,
-    "creditLine": "Robert Lehman Collection, 1975",
-    "classification": "Ceramics",
-    "metadataDate": "2025-01-29T04:54:03.16Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/461339",
-    "tags": null,
-    "isTimelineWork": false
-  },
   "192830": {
     "objectID": 192830,
     "isHighlight": false,
@@ -88794,98 +86937,6 @@
     ],
     "isTimelineWork": false
   },
-  "205043": {
-    "objectID": 205043,
-    "isHighlight": false,
-    "accessionNumber": "68.141.282\u2013.284",
-    "accessionYear": "1968",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/es/original/DP166911.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/DP166911.jpg",
-    "additionalImages": [
-      "https://images.metmuseum.org/CRDImages/es/original/DP166909.jpg",
-      "https://images.metmuseum.org/CRDImages/es/original/DP166908.jpg",
-      "https://images.metmuseum.org/CRDImages/es/original/DP166910.jpg",
-      "https://images.metmuseum.org/CRDImages/es/original/DP166907.jpg",
-      "https://images.metmuseum.org/CRDImages/es/original/LC-68_141_282a-Mar_2018_cond1.jpg",
-      "https://images.metmuseum.org/CRDImages/es/original/LC-68_141_282a-Mar_2018_cond2.jpg"
-    ],
-    "constituents": [
-      {
-        "constituentID": 35103,
-        "role": "Manufactory",
-        "name": "Vienna"
-      },
-      {
-        "constituentID": 34739,
-        "role": "Factory director",
-        "name": "Claudius Innocentius Du Paquier period"
-      }
-    ],
-    "department": "European Sculpture and Decorative Arts",
-    "objectName": "Ensemble for chocolate",
-    "title": "Ensemble for chocolate",
-    "artistRole": "Manufactory",
-    "artistDisplayName": "Vienna",
-    "artistAlphaSort": "Vienna",
-    "objectDate": "1735\u201340",
-    "objectBeginDate": 1735,
-    "objectEndDate": 1740,
-    "medium": "Hard-paste porcelain decorated in polychrome enamels with gold mounts; gold, lapis lazuli; glass",
-    "dimensions": "Tray (confirmed): 8 1/2 x 5 3/8 x 3/4 in. (21.6 x 13.7 x 1.9 cm);\r\nPorcelain beaker (confirmed): 2 11/16 x 2 5/8 x 2 5/8 in. (6.8 x 6.7 x 6.7 cm);\r\nGlass beaker with cover: 4 1/4in. (10.8cm);\r\nAssembled height tray, beaker, cover (confirmed): 4 7/8 in. (12.4 cm)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": "confirmed",
-        "elementMeasurements": {
-          "Height": 12.3825245
-        }
-      },
-      {
-        "elementName": "Overall",
-        "elementDescription": "confirmed",
-        "elementMeasurements": {
-          "Depth": 6.6675134,
-          "Height": 6.8262634,
-          "Width": 6.6675134
-        }
-      },
-      {
-        "elementName": "Other",
-        "elementDescription": "glass beaker with cover",
-        "elementMeasurements": {
-          "Height": 10.8
-        }
-      },
-      {
-        "elementName": "Other",
-        "elementDescription": "confirmed",
-        "elementMeasurements": {
-          "Height": 1.9050038,
-          "Length": 21.590044,
-          "Width": 13.652527
-        }
-      }
-    ],
-    "creditLine": "Gift of Irwin Untermyer, 1968",
-    "classification": "Ceramics-Porcelain",
-    "metadataDate": "2025-01-31T04:54:36.6Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/205043",
-    "tags": [
-      {
-        "term": "Profiles",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300123319",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q4382010"
-      },
-      {
-        "term": "Shells",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300011829",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q213096"
-      }
-    ],
-    "isTimelineWork": false
-  },
   "204377": {
     "objectID": 204377,
     "isHighlight": false,
@@ -89213,48 +87264,6 @@
         "term": "Birds",
         "AAT_URL": "http://vocab.getty.edu/page/aat/300266506",
         "Wikidata_URL": "https://www.wikidata.org/wiki/Q5113"
-      }
-    ],
-    "isTimelineWork": false
-  },
-  "208796": {
-    "objectID": 208796,
-    "isHighlight": false,
-    "accessionNumber": "X.218.1",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/es/original/DP-145-001.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/DP-145-001.jpg",
-    "additionalImages": [],
-    "constituents": null,
-    "department": "European Sculpture and Decorative Arts",
-    "objectName": "Tile",
-    "title": "Tile",
-    "objectDate": "ca. 1530",
-    "objectBeginDate": 1525,
-    "objectEndDate": 1535,
-    "medium": "Maiolica (tin-glazed earthenware)",
-    "dimensions": "Overall (confirmed): 1 \u00d7 7 1/2 \u00d7 3 1/4 in. (2.5 \u00d7 19.1 \u00d7 8.3 cm)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": "confirmed",
-        "elementMeasurements": {
-          "Depth": 8.255016,
-          "Height": 2.540005,
-          "Width": 19.050037
-        }
-      }
-    ],
-    "creditLine": "Museum Accession",
-    "classification": "Ceramics-Pottery",
-    "metadataDate": "2025-01-31T04:54:36.6Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/208796",
-    "tags": [
-      {
-        "term": "Flowers",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300132399",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q506"
       }
     ],
     "isTimelineWork": false
@@ -91304,57 +89313,6 @@
     ],
     "isTimelineWork": false
   },
-  "449776": {
-    "objectID": 449776,
-    "isHighlight": false,
-    "accessionNumber": "40.170.82",
-    "accessionYear": "1940",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/is/original/LC-40_170_82overall.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/is/web-large/LC-40_170_82overall.jpg",
-    "additionalImages": [
-      "https://images.metmuseum.org/CRDImages/is/original/LC-40_170_82detailspout.jpg",
-      "https://images.metmuseum.org/CRDImages/is/original/LC-40_170_82sidea.jpg",
-      "https://images.metmuseum.org/CRDImages/is/original/LC-40_170_82sideb.jpg",
-      "https://images.metmuseum.org/CRDImages/is/original/LC-40_170_82front.jpg"
-    ],
-    "constituents": null,
-    "department": "Islamic Art",
-    "objectName": "Ewer",
-    "title": "Ewer",
-    "objectDate": "9th\u201310th century",
-    "objectBeginDate": 800,
-    "objectEndDate": 999,
-    "medium": "Earthenware; slip-covered under monochrome glaze",
-    "dimensions": "Overall:\r\n            H. 11 13/16 in. (30 cm)\r\n            Diam.  8 3/16 in. (20.8 cm)\r\nBase:  \r\n             Diam. 3 15/16 in. (10 cm)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Diameter": 20.8,
-          "Height": 30
-        }
-      },
-      {
-        "elementName": "Base",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Diameter": 10
-        }
-      }
-    ],
-    "creditLine": "Rogers Fund, 1940",
-    "geographyType": "Attributed to",
-    "city": "Nishapur",
-    "country": "Iran",
-    "classification": "Ceramics",
-    "metadataDate": "2025-01-30T04:54:21.21Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/449776",
-    "tags": null,
-    "isTimelineWork": false
-  },
   "63083": {
     "objectID": 63083,
     "isHighlight": false,
@@ -92991,50 +90949,6 @@
     "metadataDate": "2025-03-06T04:54:30Z",
     "repository": "Metropolitan Museum of Art, New York, NY",
     "objectURL": "https://www.metmuseum.org/art/collection/search/48564",
-    "tags": null,
-    "isTimelineWork": false
-  },
-  "57418": {
-    "objectID": 57418,
-    "isHighlight": false,
-    "accessionNumber": "17.175.2a\u2013c",
-    "accessionYear": "1917",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/as/original/17_175_2a-c.JPG",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/as/web-large/17_175_2a-c.JPG",
-    "additionalImages": [],
-    "constituents": null,
-    "department": "Asian Art",
-    "objectName": "Jar with cover and saucer",
-    "title": "Jar with Cover and Saucer",
-    "culture": "China (?)",
-    "objectDate": "9th\u201310th century",
-    "objectBeginDate": 800,
-    "objectEndDate": 999,
-    "medium": "Porcelain",
-    "dimensions": "H. 2 5/8 in. (6.7 cm); Diam. of saucer 3 7/8 in. (9.8 cm)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": "CSR Survey",
-        "elementMeasurements": {
-          "Height": 6.096012,
-          "Weight": 0.0907194
-        }
-      },
-      {
-        "elementName": "Overall",
-        "elementDescription": "saucer",
-        "elementMeasurements": {
-          "Diameter": 5.8420115
-        }
-      }
-    ],
-    "creditLine": "Rogers Fund, 1917",
-    "classification": "Ceramics",
-    "metadataDate": "2021-10-28T04:38:52.167Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/57418",
     "tags": null,
     "isTimelineWork": false
   },
@@ -95293,65 +93207,6 @@
     ],
     "isTimelineWork": false
   },
-  "52035": {
-    "objectID": 52035,
-    "isHighlight": false,
-    "accessionNumber": "14.40.238",
-    "accessionYear": "1914",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/as/original/23478.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/as/web-large/23478.jpg",
-    "additionalImages": [],
-    "constituents": null,
-    "department": "Asian Art",
-    "objectName": "Vase",
-    "title": "Vase",
-    "culture": "China",
-    "period": "Qing dynasty (1644\u20131911), Kangxi period (1662\u20131722)",
-    "objectBeginDate": 1662,
-    "objectEndDate": 1722,
-    "medium": "Porcelain painted in famille verte enamels",
-    "dimensions": "H. 17 in. (43.2 cm)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Height": 43.2
-        }
-      }
-    ],
-    "creditLine": "Bequest of Benjamin Altman, 1913",
-    "classification": "Ceramics",
-    "metadataDate": "2023-02-07T04:46:51.34Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/52035",
-    "tags": [
-      {
-        "term": "Men",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300025928",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q8441"
-      },
-      {
-        "term": "Women",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300025943",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q467"
-      },
-      {
-        "term": "Flowers",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300132399",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q506"
-      },
-      {
-        "term": "Trees",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300132410",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q10884"
-      }
-    ],
-    "objectWikidata_URL": "https://www.wikidata.org/wiki/Q116396513",
-    "isTimelineWork": false,
-    "GalleryNumber": "531"
-  },
   "771000": {
     "objectID": 771000,
     "isHighlight": false,
@@ -95563,56 +93418,6 @@
     "metadataDate": "2025-01-30T04:54:21.21Z",
     "repository": "Metropolitan Museum of Art, New York, NY",
     "objectURL": "https://www.metmuseum.org/art/collection/search/450945",
-    "tags": null,
-    "isTimelineWork": false
-  },
-  "188397": {
-    "objectID": 188397,
-    "isHighlight": false,
-    "accessionNumber": "98.1.88",
-    "accessionYear": "1898",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/es/original/6590.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/6590.jpg",
-    "additionalImages": [],
-    "constituents": [
-      {
-        "constituentID": 166062,
-        "role": "Factory",
-        "name": "Enoch Wood &amp; Sons",
-        "constituentULAN_URL": "http://vocab.getty.edu/page/ulan/500524525"
-      }
-    ],
-    "department": "European Sculpture and Decorative Arts",
-    "objectName": "Cream jug",
-    "title": "Cream jug",
-    "artistRole": "Factory",
-    "artistDisplayName": "Enoch Wood & Sons",
-    "artistDisplayBio": "British, active Burslem, 1818\u201346",
-    "artistAlphaSort": "Wood & Sons, Enoch",
-    "artistNationality": "British",
-    "artistBeginDate": "1818",
-    "artistEndDate": "1846",
-    "artistULAN_URL": "http://vocab.getty.edu/page/ulan/500524525",
-    "objectDate": "19th century",
-    "objectBeginDate": 1800,
-    "objectEndDate": 1899,
-    "medium": "Dark blue printed ware",
-    "dimensions": "Height: 5 1/2 in. (14 cm)",
-    "measurements": [
-      {
-        "elementName": "Height",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Height": 13.970028
-        }
-      }
-    ],
-    "creditLine": "Gift of Mrs. Isaac Gibson Jaffray, in memory of her husband, 1898",
-    "classification": "Ceramics-Pottery",
-    "metadataDate": "2022-02-09T04:42:08.947Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/188397",
     "tags": null,
     "isTimelineWork": false
   },
@@ -96232,64 +94037,6 @@
     "tags": null,
     "isTimelineWork": false
   },
-  "205962": {
-    "objectID": 205962,
-    "isHighlight": false,
-    "accessionNumber": "1974.356.410",
-    "accessionYear": "1974",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/es/original/205128.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/205128.jpg",
-    "additionalImages": [],
-    "constituents": [
-      {
-        "constituentID": 164832,
-        "role": "Manufactory",
-        "name": "Meissen Manufactory",
-        "constituentULAN_URL": "http://vocab.getty.edu/page/ulan/500054662",
-        "constituentWikidata_URL": "https://www.wikidata.org/wiki/Q822407"
-      }
-    ],
-    "department": "European Sculpture and Decorative Arts",
-    "objectName": "Vase",
-    "title": "Vase",
-    "artistRole": "Manufactory",
-    "artistDisplayName": "Meissen Manufactory",
-    "artistDisplayBio": "German, 1710\u2013present",
-    "artistAlphaSort": "Meissen Manufactory",
-    "artistNationality": "German",
-    "artistBeginDate": "1710",
-    "artistEndDate": "9999",
-    "artistWikidata_URL": "https://www.wikidata.org/wiki/Q822407",
-    "artistULAN_URL": "http://vocab.getty.edu/page/ulan/500054662",
-    "objectDate": "ca. 1730",
-    "objectBeginDate": 1725,
-    "objectEndDate": 1735,
-    "medium": "Hard-paste porcelain",
-    "dimensions": "Height: 10 3/4 in. (27.3 cm)",
-    "measurements": [
-      {
-        "elementName": "Height",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Height": 27.305054
-        }
-      }
-    ],
-    "creditLine": "The Lesley and Emma Sheafer Collection, Bequest of Emma A. Sheafer, 1973",
-    "classification": "Ceramics-Porcelain",
-    "metadataDate": "2020-09-16T18:35:19.457Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/205962",
-    "tags": [
-      {
-        "term": "Flowers",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300132399",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q506"
-      }
-    ],
-    "isTimelineWork": false
-  },
   "57441": {
     "objectID": 57441,
     "isHighlight": false,
@@ -96690,46 +94437,6 @@
     "tags": null,
     "isTimelineWork": false
   },
-  "460127": {
-    "objectID": 460127,
-    "isHighlight": false,
-    "accessionNumber": "1975.1.984",
-    "accessionYear": "1975",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/rl/original/DT3434.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/rl/web-large/DT3434.jpg",
-    "additionalImages": [
-      "https://images.metmuseum.org/CRDImages/rl/original/SF-1975-1-984.jpg"
-    ],
-    "constituents": null,
-    "department": "Robert Lehman Collection",
-    "objectName": "Jug",
-    "title": "Jug (boccale)",
-    "culture": "Italian, probably Tuscany or Umbria",
-    "objectDate": "late 14th or early 15th century",
-    "objectBeginDate": 1371,
-    "objectEndDate": 1435,
-    "medium": "Maiolica (tin-glazed earthenware)",
-    "dimensions": "Height: 9 5/8 in. (24.4cm)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Height": 24.4
-        }
-      }
-    ],
-    "creditLine": "Robert Lehman Collection, 1975",
-    "classification": "Ceramics-Pottery",
-    "metadataDate": "2025-01-29T04:54:03.16Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/460127",
-    "tags": null,
-    "objectWikidata_URL": "https://www.wikidata.org/wiki/Q116246211",
-    "isTimelineWork": false,
-    "GalleryNumber": "950"
-  },
   "475760": {
     "objectID": 475760,
     "isHighlight": false,
@@ -96988,48 +94695,6 @@
     ],
     "isTimelineWork": false
   },
-  "196184": {
-    "objectID": 196184,
-    "isHighlight": false,
-    "accessionNumber": "27.199.20",
-    "accessionYear": "1927",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/es/original/69491.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/69491.jpg",
-    "additionalImages": [],
-    "constituents": null,
-    "department": "European Sculpture and Decorative Arts",
-    "objectName": "Tile",
-    "title": "Tile",
-    "objectDate": "1580\u20131620",
-    "objectBeginDate": 1580,
-    "objectEndDate": 1620,
-    "medium": "Tin-glazed earthenware",
-    "dimensions": "Overall: 4 3/4 \u00d7 4 3/4 in. (12.1 \u00d7 12.1 cm)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Height": 12.065024,
-          "Width": 12.065024
-        }
-      }
-    ],
-    "creditLine": "Fletcher Fund, 1927",
-    "classification": "Ceramics-Pottery",
-    "metadataDate": "2020-09-16T18:35:19.457Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/196184",
-    "tags": [
-      {
-        "term": "Flowers",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300132399",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q506"
-      }
-    ],
-    "isTimelineWork": false
-  },
   "194261": {
     "objectID": 194261,
     "isHighlight": false,
@@ -97067,84 +94732,6 @@
         "term": "Flowers",
         "AAT_URL": "http://vocab.getty.edu/page/aat/300132399",
         "Wikidata_URL": "https://www.wikidata.org/wiki/Q506"
-      }
-    ],
-    "isTimelineWork": false
-  },
-  "203609": {
-    "objectID": 203609,
-    "isHighlight": false,
-    "accessionNumber": "64.101.788a, b",
-    "accessionYear": "1964",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/es/original/DP260828.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/DP260828.jpg",
-    "additionalImages": [
-      "https://images.metmuseum.org/CRDImages/es/original/DT229973.jpg",
-      "https://images.metmuseum.org/CRDImages/es/original/DP260823.jpg",
-      "https://images.metmuseum.org/CRDImages/es/original/DP260833.jpg"
-    ],
-    "constituents": [
-      {
-        "constituentID": 35110,
-        "role": "Factory",
-        "name": "Worcester factory",
-        "constituentULAN_URL": "http://vocab.getty.edu/page/ulan/500332804",
-        "constituentWikidata_URL": "https://www.wikidata.org/wiki/Q668894"
-      },
-      {
-        "constituentID": 34135,
-        "role": "Decorator",
-        "name": "Decoration attributed to Jeffreyes Hammet O&#39;Neale"
-      }
-    ],
-    "department": "European Sculpture and Decorative Arts",
-    "objectName": "Vase with cover",
-    "title": "Covered vase",
-    "artistRole": "Factory",
-    "artistDisplayName": "Worcester factory",
-    "artistDisplayBio": "British, 1751\u20132008",
-    "artistAlphaSort": "Worcester factory",
-    "artistNationality": "British",
-    "artistBeginDate": "1751",
-    "artistEndDate": "2008",
-    "artistWikidata_URL": "https://www.wikidata.org/wiki/Q668894",
-    "artistULAN_URL": "http://vocab.getty.edu/page/ulan/500332804",
-    "objectDate": "ca. 1770",
-    "objectBeginDate": 1765,
-    "objectEndDate": 1775,
-    "medium": "Soft-paste porcelain decorated in polychrome \nenamels, gold",
-    "dimensions": "Overall: 15 1/4 \u00d7 6 1/2 in. (38.7 \u00d7 16.5 cm)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Height": 38.735077,
-          "Width": 16.510033
-        }
-      }
-    ],
-    "creditLine": "Gift of Irwin Untermyer, 1964",
-    "classification": "Ceramics-Porcelain",
-    "metadataDate": "2025-04-09T04:57:24.78Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/203609",
-    "tags": [
-      {
-        "term": "Men",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300025928",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q8441"
-      },
-      {
-        "term": "Women",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300025943",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q467"
-      },
-      {
-        "term": "Landscapes",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300132294",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q191163"
       }
     ],
     "isTimelineWork": false
@@ -102830,78 +100417,6 @@
     "repository": "Metropolitan Museum of Art, New York, NY",
     "objectURL": "https://www.metmuseum.org/art/collection/search/62706",
     "tags": null,
-    "isTimelineWork": false
-  },
-  "203151": {
-    "objectID": 203151,
-    "isHighlight": false,
-    "accessionNumber": "64.101.155a, b",
-    "accessionYear": "1964",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/es/original/DP169245.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/DP169245.jpg",
-    "additionalImages": [
-      "https://images.metmuseum.org/CRDImages/es/original/DP169246.jpg"
-    ],
-    "constituents": [
-      {
-        "constituentID": 164832,
-        "role": "Manufactory",
-        "name": "Meissen Manufactory",
-        "constituentULAN_URL": "http://vocab.getty.edu/page/ulan/500054662",
-        "constituentWikidata_URL": "https://www.wikidata.org/wiki/Q822407"
-      }
-    ],
-    "department": "European Sculpture and Decorative Arts",
-    "objectName": "Vase",
-    "title": "Vase (from a garniture of three)",
-    "artistRole": "Manufactory",
-    "artistDisplayName": "Meissen Manufactory",
-    "artistDisplayBio": "German, 1710\u2013present",
-    "artistAlphaSort": "Meissen Manufactory",
-    "artistNationality": "German",
-    "artistBeginDate": "1710",
-    "artistEndDate": "9999",
-    "artistWikidata_URL": "https://www.wikidata.org/wiki/Q822407",
-    "artistULAN_URL": "http://vocab.getty.edu/page/ulan/500054662",
-    "objectDate": "ca. 1725\u201330",
-    "objectBeginDate": 1725,
-    "objectEndDate": 1730,
-    "medium": "Tinted hard-paste porcelain decorated in polychrome enamels, gold",
-    "dimensions": "Overall (confirmed): 9 1/2 x 4 9/16 x 4 11/16 in. (24.1 x 11.6 x 11.9 cm)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": "confirmed",
-        "elementMeasurements": {
-          "Depth": 11.906274,
-          "Height": 24.130049,
-          "Width": 11.588773
-        }
-      }
-    ],
-    "creditLine": "Gift of Irwin Untermyer, 1964",
-    "classification": "Ceramics-Porcelain",
-    "metadataDate": "2025-06-10T04:50:22.027Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/203151",
-    "tags": [
-      {
-        "term": "Chinoiserie",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300021167",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q863679"
-      },
-      {
-        "term": "Men",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300025928",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q8441"
-      },
-      {
-        "term": "Butterflies",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300417320",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q11946202"
-      }
-    ],
     "isTimelineWork": false
   },
   "48612": {
@@ -109350,62 +106865,6 @@
     "isTimelineWork": false,
     "GalleryNumber": "207"
   },
-  "187849": {
-    "objectID": 187849,
-    "isHighlight": false,
-    "accessionNumber": "94.4.340a, b",
-    "accessionYear": "1894",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/es/original/27598.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/27598.jpg",
-    "additionalImages": [],
-    "constituents": [
-      {
-        "constituentID": 33098,
-        "role": "Factory",
-        "name": "Factory of de Porceleyne Lampetkan"
-      }
-    ],
-    "department": "European Sculpture and Decorative Arts",
-    "objectName": "Vase and coaster",
-    "title": "Vase and coaster",
-    "artistRole": "Factory",
-    "artistPrefix": "Factory of",
-    "artistDisplayName": "de Porceleyne Lampetkan",
-    "artistAlphaSort": "de Porceleyne Lampetkan",
-    "objectDate": "1700\u20131755",
-    "objectBeginDate": 1700,
-    "objectEndDate": 1755,
-    "medium": "Tin-glazed earthenware",
-    "dimensions": "Height: 7 in. (17.8 cm)",
-    "measurements": [
-      {
-        "elementName": "Height",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Height": 17.780035
-        }
-      }
-    ],
-    "creditLine": "Gift of Henry G. Marquand, 1894",
-    "classification": "Ceramics-Pottery",
-    "metadataDate": "2024-03-29T10:36:46.263Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/187849",
-    "tags": [
-      {
-        "term": "Women",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300025943",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q467"
-      },
-      {
-        "term": "Plants",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300132360",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q756"
-      }
-    ],
-    "isTimelineWork": false
-  },
   "201751": {
     "objectID": 201751,
     "isHighlight": false,
@@ -113816,45 +111275,6 @@
     "tags": null,
     "isTimelineWork": false
   },
-  "449804": {
-    "objectID": 449804,
-    "isHighlight": false,
-    "accessionNumber": "40.170.110",
-    "accessionYear": "1940",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/is/original/LC-40_170_110.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/is/web-large/LC-40_170_110.jpg",
-    "additionalImages": [],
-    "constituents": null,
-    "department": "Islamic Art",
-    "objectName": "Ewer",
-    "title": "Ewer",
-    "objectDate": "9th\u201310th century",
-    "objectBeginDate": 800,
-    "objectEndDate": 999,
-    "medium": "Earthenware; buff slip under green glaze",
-    "dimensions": "H. 4 1/8 in. (10.4 cm)\r\nDiam. 3 1/8 in. (8 cm)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Diameter": 8,
-          "Height": 10.4
-        }
-      }
-    ],
-    "creditLine": "Rogers Fund, 1940",
-    "geographyType": "Excavated in",
-    "city": "Nishapur",
-    "country": "Iran",
-    "classification": "Ceramics",
-    "metadataDate": "2025-01-30T04:54:21.21Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/449804",
-    "tags": null,
-    "isTimelineWork": false
-  },
   "52813": {
     "objectID": 52813,
     "isHighlight": false,
@@ -115452,60 +112872,6 @@
     "tags": null,
     "isTimelineWork": false
   },
-  "45869": {
-    "objectID": 45869,
-    "isHighlight": false,
-    "accessionNumber": "93.3.490",
-    "accessionYear": "1893",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/as/original/30172.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/as/web-large/30172.jpg",
-    "additionalImages": [],
-    "constituents": [
-      {
-        "constituentID": 13364,
-        "role": "Artist",
-        "name": "Tsuruzawa Tanzan",
-        "constituentULAN_URL": "(not assigned)",
-        "constituentWikidata_URL": "https://www.wikidata.org/wiki/Q45744817"
-      }
-    ],
-    "department": "Asian Art",
-    "objectName": "Vase",
-    "title": "Vase",
-    "culture": "Japan",
-    "period": "Edo (1615\u20131868) or Meiji period (1868\u20131912)",
-    "artistRole": "Artist",
-    "artistDisplayName": "Tsuruzawa Tanzan",
-    "artistDisplayBio": "Japanese, 1655\u20131729",
-    "artistAlphaSort": "Tsuruzawa Tanzan",
-    "artistNationality": "Japanese",
-    "artistBeginDate": "1655",
-    "artistEndDate": "1729",
-    "artistWikidata_URL": "https://www.wikidata.org/wiki/Q45744817",
-    "artistULAN_URL": "(not assigned)",
-    "objectDate": "19th century",
-    "objectBeginDate": 1800,
-    "objectEndDate": 1899,
-    "medium": "Clay decorated with slip under a transparent glaze andcolored enamels (Nabeshima ware)",
-    "dimensions": "H. 18 1/8 in. (46 cm)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Height": 46
-        }
-      }
-    ],
-    "creditLine": "Gift of Charles Stewart Smith, 1893",
-    "classification": "Ceramics",
-    "metadataDate": "2025-03-06T04:54:30Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/45869",
-    "tags": null,
-    "isTimelineWork": false
-  },
   "47540": {
     "objectID": 47540,
     "isHighlight": false,
@@ -116912,67 +114278,6 @@
     "tags": null,
     "isTimelineWork": false
   },
-  "451908": {
-    "objectID": 451908,
-    "isHighlight": false,
-    "accessionNumber": "67.117",
-    "accessionYear": "1967",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/is/original/DP368497.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/is/web-large/DP368497.jpg",
-    "additionalImages": [
-      "https://images.metmuseum.org/CRDImages/is/original/Ccourtyard scene67.117.jpg",
-      "https://images.metmuseum.org/CRDImages/is/original/wb-67.117.JPG",
-      "https://images.metmuseum.org/CRDImages/is/original/wb-67.117b.JPG",
-      "https://images.metmuseum.org/CRDImages/is/original/wb-67.117c.JPG",
-      "https://images.metmuseum.org/CRDImages/is/original/wb-67.117d.JPG",
-      "https://images.metmuseum.org/CRDImages/is/original/DT260739.jpg",
-      "https://images.metmuseum.org/CRDImages/is/original/DT260741.jpg",
-      "https://images.metmuseum.org/CRDImages/is/original/DP370476.jpg"
-    ],
-    "constituents": null,
-    "department": "Islamic Art",
-    "objectName": "House model",
-    "title": "Model of a House with Festive Scene",
-    "objectDate": "12th\u2013early 13th century",
-    "objectBeginDate": 1100,
-    "objectEndDate": 1225,
-    "medium": "Stonepaste; molded, modeled, glazed in transparent turquoise",
-    "dimensions": "H. 2 3/4 in. (7 cm)\r\nW. 7 1/8 in. (18.1 cm)\r\nD. 4 1/2 in. (11.4 cm)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Depth": 11.430023,
-          "Height": 6.985014,
-          "Width": 18.097536
-        }
-      }
-    ],
-    "creditLine": "Rogers Fund, 1967",
-    "geographyType": "Attributed to",
-    "country": "Iran",
-    "classification": "Ceramics",
-    "metadataDate": "2025-01-30T04:54:21.21Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/451908",
-    "tags": [
-      {
-        "term": "Houses",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300005433",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q3947"
-      },
-      {
-        "term": "Courtyards",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300004095",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q309250"
-      }
-    ],
-    "objectWikidata_URL": "https://www.wikidata.org/wiki/Q96760037",
-    "isTimelineWork": false,
-    "GalleryNumber": "453"
-  },
   "42227": {
     "objectID": 42227,
     "isHighlight": false,
@@ -117258,53 +114563,6 @@
     "objectWikidata_URL": "https://www.wikidata.org/wiki/Q83562291",
     "isTimelineWork": true,
     "GalleryNumber": "201"
-  },
-  "188372": {
-    "objectID": 188372,
-    "isHighlight": false,
-    "accessionNumber": "98.1.39",
-    "accessionYear": "1898",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/es/original/6284.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/6284.jpg",
-    "additionalImages": [],
-    "constituents": [
-      {
-        "constituentID": 35137,
-        "role": "Factory",
-        "name": "Davenport, Longport"
-      }
-    ],
-    "department": "European Sculpture and Decorative Arts",
-    "objectName": "Jug",
-    "title": "Jug",
-    "artistRole": "Factory",
-    "artistDisplayName": "Davenport, Longport",
-    "artistDisplayBio": "1830\u20131876",
-    "artistAlphaSort": "Davenport",
-    "artistBeginDate": "1830",
-    "artistEndDate": "1876",
-    "objectDate": "19th century",
-    "objectBeginDate": 1800,
-    "objectEndDate": 1899,
-    "medium": "Ironstone china",
-    "dimensions": "Height: 7 1/2 in. (19.1 cm)",
-    "measurements": [
-      {
-        "elementName": "Height",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Height": 19.050037
-        }
-      }
-    ],
-    "creditLine": "Gift of Mrs. Isaac Gibson Jaffray, in memory of her husband, 1898",
-    "classification": "Ceramics-Pottery",
-    "metadataDate": "2020-04-01T04:45:34.557Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/188372",
-    "tags": null,
-    "isTimelineWork": false
   },
   "62765": {
     "objectID": 62765,
@@ -118604,47 +115862,6 @@
     "tags": null,
     "isTimelineWork": false
   },
-  "201029": {
-    "objectID": 201029,
-    "isHighlight": false,
-    "accessionNumber": "51.86.41",
-    "accessionYear": "1951",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/es/original/ES6609.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/ES6609.jpg",
-    "additionalImages": [],
-    "constituents": null,
-    "department": "European Sculpture and Decorative Arts",
-    "objectName": "Vase",
-    "title": "Vase (part of a garniture)",
-    "objectDate": "1750\u201360",
-    "objectBeginDate": 1750,
-    "objectEndDate": 1760,
-    "medium": "Hard-paste porcelain",
-    "dimensions": "Height: 11 1/4 in. (28.6 cm)",
-    "measurements": [
-      {
-        "elementName": "Height",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Height": 28.575058
-        }
-      }
-    ],
-    "creditLine": "Helena Woolworth McCann Collection, Gift of Winfield Foundation, 1951",
-    "classification": "Ceramics-Porcelain-Export",
-    "metadataDate": "2020-09-16T18:35:19.457Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/201029",
-    "tags": [
-      {
-        "term": "Coat of Arms",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300126352",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q14659"
-      }
-    ],
-    "isTimelineWork": false
-  },
   "75938": {
     "objectID": 75938,
     "isHighlight": false,
@@ -119548,52 +116765,6 @@
         "term": "Flowers",
         "AAT_URL": "http://vocab.getty.edu/page/aat/300132399",
         "Wikidata_URL": "https://www.wikidata.org/wiki/Q506"
-      }
-    ],
-    "isTimelineWork": false
-  },
-  "446963": {
-    "objectID": 446963,
-    "isHighlight": false,
-    "accessionNumber": "17.120.253",
-    "accessionYear": "1917",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/is/original/sf17-120-253a.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/is/web-large/sf17-120-253a.jpg",
-    "additionalImages": [
-      "https://images.metmuseum.org/CRDImages/is/original/sf17-120-253b.jpg",
-      "https://images.metmuseum.org/CRDImages/is/original/37995.jpg"
-    ],
-    "constituents": null,
-    "department": "Islamic Art",
-    "objectName": "Vase",
-    "title": "Vase",
-    "objectDate": "12th\u201313th century",
-    "objectBeginDate": 1100,
-    "objectEndDate": 1299,
-    "medium": "Stonepaste; overglaze painted and gilded (mina'i)",
-    "dimensions": "H. 6 7/8 in. (17.5 cm)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Height": 17.5
-        }
-      }
-    ],
-    "creditLine": "Mr. and Mrs. Isaac D. Fletcher Collection, Bequest of Isaac D. Fletcher, 1917",
-    "geographyType": "Attributed to",
-    "country": "Iran",
-    "classification": "Ceramics",
-    "metadataDate": "2025-01-30T04:54:21.21Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/446963",
-    "tags": [
-      {
-        "term": "Human Figures",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300404114",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q5937779"
       }
     ],
     "isTimelineWork": false
@@ -121641,50 +118812,6 @@
     "tags": null,
     "isTimelineWork": false
   },
-  "450767": {
-    "objectID": 450767,
-    "isHighlight": false,
-    "accessionNumber": "48.101.11",
-    "accessionYear": "1948",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/is/original/LC-48_101_11overalla.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/is/web-large/LC-48_101_11overalla.jpg",
-    "additionalImages": [
-      "https://images.metmuseum.org/CRDImages/is/original/LC-48_101_11detail.jpg",
-      "https://images.metmuseum.org/CRDImages/is/original/LC-48_101_11overalld.jpg",
-      "https://images.metmuseum.org/CRDImages/is/original/LC-48_101_11overallc.jpg",
-      "https://images.metmuseum.org/CRDImages/is/original/LC-48_101_11overallb.jpg"
-    ],
-    "constituents": null,
-    "department": "Islamic Art",
-    "objectName": "Ewer",
-    "title": "Ewer",
-    "objectDate": "11th century",
-    "objectBeginDate": 1000,
-    "objectEndDate": 1099,
-    "medium": "Earthenware; incised and unglazed",
-    "dimensions": "Ht. 8 9/16 in. (21.7 cm)\r\nDiam. 6 13/16 in. (17.3 cm)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Diameter": 17.3,
-          "Height": 21.7
-        }
-      }
-    ],
-    "creditLine": "Rogers Fund, 1948",
-    "geographyType": "Excavated in",
-    "city": "Nishapur",
-    "country": "Iran",
-    "classification": "Ceramics",
-    "metadataDate": "2025-01-30T04:54:21.21Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/450767",
-    "tags": null,
-    "isTimelineWork": false
-  },
   "47092": {
     "objectID": 47092,
     "isHighlight": false,
@@ -122179,43 +119306,6 @@
     ],
     "isTimelineWork": false
   },
-  "201906": {
-    "objectID": 201906,
-    "isHighlight": false,
-    "accessionNumber": "56.171.96a, b",
-    "accessionYear": "1956",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/es/original/sf56_171_96,97.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/sf56_171_96,97.jpg",
-    "additionalImages": [],
-    "constituents": null,
-    "department": "European Sculpture and Decorative Arts",
-    "objectName": "Vase with cover",
-    "title": "Vase with cover",
-    "objectDate": "late 17th\u2013early 18th century",
-    "objectBeginDate": 1685,
-    "objectEndDate": 1715,
-    "medium": "Tin-glazed and luster-painted earthenware",
-    "dimensions": "Height: 11 in. (27.9 cm)",
-    "measurements": [
-      {
-        "elementName": "Height",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Height": 27.940056
-        }
-      }
-    ],
-    "creditLine": "Cloisters Fund, 1956",
-    "classification": "Ceramics-Pottery",
-    "metadataDate": "2025-01-31T04:54:36.6Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/201906",
-    "tags": null,
-    "objectWikidata_URL": "https://www.wikidata.org/wiki/Q116399634",
-    "isTimelineWork": false,
-    "GalleryNumber": "535"
-  },
   "198778": {
     "objectID": 198778,
     "isHighlight": false,
@@ -122496,59 +119586,6 @@
     "repository": "Metropolitan Museum of Art, New York, NY",
     "objectURL": "https://www.metmuseum.org/art/collection/search/46545",
     "tags": null,
-    "isTimelineWork": false
-  },
-  "444980": {
-    "objectID": 444980,
-    "isHighlight": false,
-    "accessionNumber": "06.1237",
-    "accessionYear": "1906",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/is/original/DP155280.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/is/web-large/DP155280.jpg",
-    "additionalImages": [
-      "https://images.metmuseum.org/CRDImages/is/original/822.jpg",
-      "https://images.metmuseum.org/CRDImages/is/original/sf06-1237.jpg"
-    ],
-    "constituents": null,
-    "department": "Islamic Art",
-    "objectName": "Tile panel",
-    "title": "Tile Panel",
-    "objectDate": "18th century",
-    "objectBeginDate": 1700,
-    "objectEndDate": 1799,
-    "medium": "Stonepaste; painted and glazed",
-    "dimensions": "Ht. 27 in. (68.6 cm)\r\nW. 33 in. (83.8 cm)\r\nWt. 68 lbs. (30.8 kg)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Height": 83.8202,
-          "Weight": 30.8446,
-          "Width": 68.5801
-        }
-      }
-    ],
-    "creditLine": "Rogers Fund, 1906",
-    "geographyType": "Attributed to",
-    "country": "Syria",
-    "classification": "Ceramics-Tiles",
-    "metadataDate": "2025-12-20T04:50:39.43Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/444980",
-    "tags": [
-      {
-        "term": "Ewers",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300045666",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q404785"
-      },
-      {
-        "term": "Lamps",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300037592",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q1138737"
-      }
-    ],
     "isTimelineWork": false
   },
   "48645": {
@@ -126708,54 +123745,6 @@
     "isTimelineWork": false,
     "GalleryNumber": "018"
   },
-  "47278": {
-    "objectID": 47278,
-    "isHighlight": false,
-    "accessionNumber": "91.1.329",
-    "accessionYear": "1891",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/as/original/13553.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/as/web-large/13553.jpg",
-    "additionalImages": [],
-    "constituents": null,
-    "department": "Asian Art",
-    "objectName": "Vase",
-    "title": "Vase",
-    "culture": "Japan",
-    "period": "Edo period (1615\u20131868)",
-    "objectDate": "1664\u20131700",
-    "objectBeginDate": 1664,
-    "objectEndDate": 1700,
-    "medium": "Porcelain with reticulated design and ornamentation in colors and gold (Arita ware, Imari type)",
-    "dimensions": "H. 12 1/2 in. (31.8 cm)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Height": 31.8
-        }
-      }
-    ],
-    "creditLine": "Edward C. Moore Collection, Bequest of Edward C. Moore, 1891",
-    "classification": "Ceramics",
-    "metadataDate": "2025-03-06T04:54:30Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/47278",
-    "tags": [
-      {
-        "term": "Birds",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300266506",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q5113"
-      },
-      {
-        "term": "Leaves",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300011892",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q33971"
-      }
-    ],
-    "isTimelineWork": false
-  },
   "47821": {
     "objectID": 47821,
     "isHighlight": false,
@@ -126962,102 +123951,6 @@
       }
     ],
     "isTimelineWork": false
-  },
-  "455082": {
-    "objectID": 455082,
-    "isHighlight": true,
-    "accessionNumber": "03.9c",
-    "accessionYear": "1903",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/is/original/DP235233.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/is/web-large/DP235233.jpg",
-    "additionalImages": [
-      "https://images.metmuseum.org/CRDImages/is/original/1586.jpg",
-      "https://images.metmuseum.org/CRDImages/is/original/03-9b&c dimensions007.JPG",
-      "https://images.metmuseum.org/CRDImages/is/original/03-9b&c dimensions009.JPG",
-      "https://images.metmuseum.org/CRDImages/is/original/DP236975.jpg",
-      "https://images.metmuseum.org/CRDImages/is/original/03.9c.jpg",
-      "https://images.metmuseum.org/CRDImages/is/original/DT4558.jpg",
-      "https://images.metmuseum.org/CRDImages/is/original/DP236751.jpg",
-      "https://images.metmuseum.org/CRDImages/is/original/DP236749.jpg",
-      "https://images.metmuseum.org/CRDImages/is/original/03.9a.jpg",
-      "https://images.metmuseum.org/CRDImages/is/original/03.9b.jpg"
-    ],
-    "constituents": null,
-    "department": "Islamic Art",
-    "objectName": "Tile panel",
-    "title": "Garden Gathering",
-    "objectDate": "1640\u201350",
-    "objectBeginDate": 1615,
-    "objectEndDate": 1675,
-    "medium": "Stonepaste; painted and polychrome glazed (cuerda seca technique)",
-    "dimensions": "Panel with tabs: H. 41 in. (104.1 cm)\r\n                            W. 74 in. (188 cm)\r\n                            D. 2 1/2 in. (6.4 cm)\r\n                            Wt. 400 lbs.\r\nEach tile: H. 8 7/8 in. (22.5 cm)\r\n                 W. 8 7/8 in. (22.5 cm)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": "Panel",
-        "elementMeasurements": {
-          "Depth": 6.350013,
-          "Height": 96.520195,
-          "Width": 187.96037
-        }
-      },
-      {
-        "elementName": "Overall",
-        "elementDescription": "Each tile",
-        "elementMeasurements": {
-          "Height": 22.5,
-          "Width": 22.5
-        }
-      },
-      {
-        "elementName": "Other",
-        "elementDescription": "Mount",
-        "elementMeasurements": {
-          "Depth": 6.350013,
-          "Height": 104.140205,
-          "Width": 187.96037
-        }
-      }
-    ],
-    "creditLine": "Rogers Fund, 1903",
-    "geographyType": "Attributed to",
-    "city": "probably Isfahan",
-    "country": "Iran",
-    "classification": "Ceramics-Tiles",
-    "metadataDate": "2025-12-20T04:50:39.43Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/455082",
-    "tags": [
-      {
-        "term": "Gardens",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300008090",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q1107656"
-      },
-      {
-        "term": "Men",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300025928",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q8441"
-      },
-      {
-        "term": "Women",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300025943",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q467"
-      },
-      {
-        "term": "Flowers",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300132399",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q506"
-      },
-      {
-        "term": "Trees",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300132410",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q10884"
-      }
-    ],
-    "objectWikidata_URL": "https://www.wikidata.org/wiki/Q29385266",
-    "isTimelineWork": false,
-    "GalleryNumber": "462"
   },
   "204363": {
     "objectID": 204363,
@@ -134959,48 +131852,6 @@
     "tags": null,
     "isTimelineWork": false
   },
-  "449083": {
-    "objectID": 449083,
-    "isHighlight": false,
-    "accessionNumber": "36.20.52",
-    "accessionYear": "1936",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/is/original/LC-36_20_52.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/is/web-large/LC-36_20_52.jpg",
-    "additionalImages": [],
-    "constituents": null,
-    "department": "Islamic Art",
-    "objectName": "Jug",
-    "title": "Jug",
-    "objectDate": "9th\u201310th century",
-    "objectBeginDate": 800,
-    "objectEndDate": 999,
-    "medium": "Earthenware; slip covered and unglazed",
-    "dimensions": "H. 1 in. (2.5 cm)\r\nDiam. 1 1/8 in. (2.8 cm)\r\nW. (with handle): 1 1/4 in. (3.2 cm)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Diameter": 2.8,
-          "Height": 2.5,
-          "Width": 3.2
-        }
-      }
-    ],
-    "creditLine": "Rogers Fund, 1936",
-    "geographyType": "Excavated in",
-    "city": "Nishapur",
-    "country": "Iran",
-    "classification": "Ceramics",
-    "metadataDate": "2026-04-02T04:57:12.827Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/449083",
-    "tags": null,
-    "objectWikidata_URL": "https://www.wikidata.org/wiki/Q116409445",
-    "isTimelineWork": false,
-    "GalleryNumber": "453"
-  },
   "771064": {
     "objectID": 771064,
     "isHighlight": false,
@@ -135628,59 +132479,6 @@
     "repository": "Metropolitan Museum of Art, New York, NY",
     "objectURL": "https://www.metmuseum.org/art/collection/search/478667",
     "tags": null,
-    "isTimelineWork": false
-  },
-  "47279": {
-    "objectID": 47279,
-    "isHighlight": false,
-    "accessionNumber": "91.1.330",
-    "accessionYear": "1891",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/as/original/13553.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/as/web-large/13553.jpg",
-    "additionalImages": [],
-    "constituents": null,
-    "department": "Asian Art",
-    "objectName": "Vase",
-    "title": "Vase",
-    "culture": "Japan",
-    "period": "Edo period (1615\u20131868)",
-    "objectDate": "1664\u20131700",
-    "objectBeginDate": 1664,
-    "objectEndDate": 1700,
-    "medium": "Porcelain with reticulated design and ornamentation in colors and gold (Arita ware, Imari type)",
-    "dimensions": "H. 12 1/2 in. (31.8 cm)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Height": 31.8
-        }
-      }
-    ],
-    "creditLine": "Edward C. Moore Collection, Bequest of Edward C. Moore, 1891",
-    "classification": "Ceramics",
-    "metadataDate": "2025-03-06T04:54:30Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/47279",
-    "tags": [
-      {
-        "term": "Birds",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300266506",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q5113"
-      },
-      {
-        "term": "Flowers",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300132399",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q506"
-      },
-      {
-        "term": "Leaves",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300011892",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q33971"
-      }
-    ],
     "isTimelineWork": false
   },
   "64921": {
@@ -140922,50 +137720,6 @@
     "tags": null,
     "isTimelineWork": false
   },
-  "449485": {
-    "objectID": 449485,
-    "isHighlight": false,
-    "accessionNumber": "38.40.280",
-    "accessionYear": "1938",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/is/original/LC-38_40_280 e.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/is/web-large/LC-38_40_280 e.jpg",
-    "additionalImages": [
-      "https://images.metmuseum.org/CRDImages/is/original/LC-38_40_280 d.jpg",
-      "https://images.metmuseum.org/CRDImages/is/original/LC-38_40_280 c.jpg",
-      "https://images.metmuseum.org/CRDImages/is/original/LC-38_40_280 b.jpg",
-      "https://images.metmuseum.org/CRDImages/is/original/LC-38_40_280 a.jpg"
-    ],
-    "constituents": null,
-    "department": "Islamic Art",
-    "objectName": "Jar",
-    "title": "Jar",
-    "objectDate": "9th century",
-    "objectBeginDate": 800,
-    "objectEndDate": 899,
-    "medium": "Earthenware; slip covered and incised, unglazed",
-    "dimensions": "H. 8 11/16 in. (22.1 cm)\r\nDiam. 6 5/16 in. (16.1 cm)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Diameter": 16.1,
-          "Height": 22.1
-        }
-      }
-    ],
-    "creditLine": "Rogers Fund, 1938",
-    "geographyType": "Excavated in",
-    "city": "Nishapur",
-    "country": "Iran",
-    "classification": "Ceramics",
-    "metadataDate": "2025-01-30T04:54:21.21Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/449485",
-    "tags": null,
-    "isTimelineWork": false
-  },
   "318617": {
     "objectID": 318617,
     "isHighlight": false,
@@ -142308,62 +139062,6 @@
     "repository": "Metropolitan Museum of Art, New York, NY",
     "objectURL": "https://www.metmuseum.org/art/collection/search/449420",
     "tags": null,
-    "isTimelineWork": false
-  },
-  "187848": {
-    "objectID": 187848,
-    "isHighlight": false,
-    "accessionNumber": "94.4.339a, b",
-    "accessionYear": "1894",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/es/original/27599.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/27599.jpg",
-    "additionalImages": [],
-    "constituents": [
-      {
-        "constituentID": 33098,
-        "role": "Factory",
-        "name": "Factory of de Porceleyne Lampetkan"
-      }
-    ],
-    "department": "European Sculpture and Decorative Arts",
-    "objectName": "Vase and coaster",
-    "title": "Vase and coaster",
-    "artistRole": "Factory",
-    "artistPrefix": "Factory of",
-    "artistDisplayName": "de Porceleyne Lampetkan",
-    "artistAlphaSort": "de Porceleyne Lampetkan",
-    "objectDate": "1700\u20131755",
-    "objectBeginDate": 1700,
-    "objectEndDate": 1755,
-    "medium": "Tin-glazed earthenware",
-    "dimensions": "Height: 7 in. (17.8 cm)",
-    "measurements": [
-      {
-        "elementName": "Height",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Height": 17.780035
-        }
-      }
-    ],
-    "creditLine": "Gift of Henry G. Marquand, 1894",
-    "classification": "Ceramics-Pottery",
-    "metadataDate": "2024-03-29T10:36:46.263Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/187848",
-    "tags": [
-      {
-        "term": "Houses",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300005433",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q3947"
-      },
-      {
-        "term": "Trees",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300132410",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q10884"
-      }
-    ],
     "isTimelineWork": false
   },
   "46546": {
@@ -146299,67 +142997,6 @@
     ],
     "isTimelineWork": false
   },
-  "189020": {
-    "objectID": 189020,
-    "isHighlight": false,
-    "accessionNumber": "06.380",
-    "accessionYear": "1906",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/es/original/7364.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/7364.jpg",
-    "additionalImages": [],
-    "constituents": [
-      {
-        "constituentID": 34911,
-        "role": "Factory",
-        "name": "Cozzi Manufactory",
-        "constituentULAN_URL": "http://vocab.getty.edu/page/ulan/500124182"
-      }
-    ],
-    "department": "European Sculpture and Decorative Arts",
-    "objectName": "Vase",
-    "title": "Vase",
-    "artistRole": "Factory",
-    "artistDisplayName": "Cozzi Manufactory",
-    "artistDisplayBio": "Italian, 1764\u20131812",
-    "artistAlphaSort": "Cozzi Manufactory",
-    "artistNationality": "Italian",
-    "artistBeginDate": "1764",
-    "artistEndDate": "1812",
-    "artistULAN_URL": "http://vocab.getty.edu/page/ulan/500124182",
-    "objectDate": "ca. 1770",
-    "objectBeginDate": 1765,
-    "objectEndDate": 1775,
-    "medium": "Hard-paste porcelain",
-    "dimensions": "Height: 8 1/4 in. (21 cm)",
-    "measurements": [
-      {
-        "elementName": "Height",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Height": 20.955042
-        }
-      }
-    ],
-    "creditLine": "Rogers Fund, 1906",
-    "classification": "Ceramics-Porcelain",
-    "metadataDate": "2020-09-16T18:35:19.457Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/189020",
-    "tags": [
-      {
-        "term": "Birds",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300266506",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q5113"
-      },
-      {
-        "term": "Coat of Arms",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300126352",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q14659"
-      }
-    ],
-    "isTimelineWork": false
-  },
   "308456": {
     "objectID": 308456,
     "isHighlight": false,
@@ -147544,60 +144181,6 @@
     "objectWikidata_URL": "https://www.wikidata.org/wiki/Q116395627",
     "isTimelineWork": false
   },
-  "45870": {
-    "objectID": 45870,
-    "isHighlight": false,
-    "accessionNumber": "93.3.491",
-    "accessionYear": "1893",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/as/original/30172.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/as/web-large/30172.jpg",
-    "additionalImages": [],
-    "constituents": [
-      {
-        "constituentID": 13364,
-        "role": "Artist",
-        "name": "Tsuruzawa Tanzan",
-        "constituentULAN_URL": "(not assigned)",
-        "constituentWikidata_URL": "https://www.wikidata.org/wiki/Q45744817"
-      }
-    ],
-    "department": "Asian Art",
-    "objectName": "Vase",
-    "title": "Vase",
-    "culture": "Japan",
-    "period": "Edo (1615\u20131868) or Meiji period (1868\u20131912)",
-    "artistRole": "Artist",
-    "artistDisplayName": "Tsuruzawa Tanzan",
-    "artistDisplayBio": "Japanese, 1655\u20131729",
-    "artistAlphaSort": "Tsuruzawa Tanzan",
-    "artistNationality": "Japanese",
-    "artistBeginDate": "1655",
-    "artistEndDate": "1729",
-    "artistWikidata_URL": "https://www.wikidata.org/wiki/Q45744817",
-    "artistULAN_URL": "(not assigned)",
-    "objectDate": "19th century",
-    "objectBeginDate": 1800,
-    "objectEndDate": 1899,
-    "medium": "Clay decorated with slip under a transparent glaze andcolored enamels (Nabeshima ware)",
-    "dimensions": "H. 18 1/8 in. (46 cm)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Height": 46
-        }
-      }
-    ],
-    "creditLine": "Gift of Charles Stewart Smith, 1893",
-    "classification": "Ceramics",
-    "metadataDate": "2025-10-20T04:51:47.577Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/45870",
-    "tags": null,
-    "isTimelineWork": false
-  },
   "771035": {
     "objectID": 771035,
     "isHighlight": false,
@@ -148663,79 +145246,6 @@
     ],
     "objectWikidata_URL": "https://www.wikidata.org/wiki/Q83562515",
     "isTimelineWork": true
-  },
-  "234882": {
-    "objectID": 234882,
-    "isHighlight": false,
-    "accessionNumber": "2007.243.20",
-    "accessionYear": "2007",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/es/original/DP-17372-025.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/DP-17372-025.jpg",
-    "additionalImages": [
-      "https://images.metmuseum.org/CRDImages/es/original/DP-17372-026.jpg",
-      "https://images.metmuseum.org/CRDImages/es/original/SF2007_243_20_img2.jpg"
-    ],
-    "constituents": [
-      {
-        "constituentID": 164832,
-        "role": "Manufactory",
-        "name": "Meissen Manufactory",
-        "constituentULAN_URL": "http://vocab.getty.edu/page/ulan/500054662",
-        "constituentWikidata_URL": "https://www.wikidata.org/wiki/Q822407"
-      }
-    ],
-    "department": "European Sculpture and Decorative Arts",
-    "objectName": "Charger",
-    "title": "Charger",
-    "artistRole": "Manufactory",
-    "artistDisplayName": "Meissen Manufactory",
-    "artistDisplayBio": "German, 1710\u2013present",
-    "artistAlphaSort": "Meissen Manufactory",
-    "artistNationality": "German",
-    "artistBeginDate": "1710",
-    "artistEndDate": "9999",
-    "artistWikidata_URL": "https://www.wikidata.org/wiki/Q822407",
-    "artistULAN_URL": "http://vocab.getty.edu/page/ulan/500054662",
-    "objectDate": "ca. 1745",
-    "objectBeginDate": 1740,
-    "objectEndDate": 1750,
-    "medium": "Hard-paste porcelain",
-    "dimensions": "Overall: 2 3/8 x 13 5/8 x 13 1/2 in. (6 x 34.6 x 34.3 cm)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Depth": 34.2901,
-          "Height": 6.0452,
-          "Width": 34.6076
-        }
-      }
-    ],
-    "creditLine": "Gift of Mercedes Bass, 2007",
-    "classification": "Ceramics-Porcelain",
-    "metadataDate": "2025-01-31T04:54:36.6Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/234882",
-    "tags": [
-      {
-        "term": "Birds",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300266506",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q5113"
-      },
-      {
-        "term": "Frogs",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300250018",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q3116510"
-      },
-      {
-        "term": "Butterflies",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300417320",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q11946202"
-      }
-    ],
-    "isTimelineWork": false
   },
   "451361": {
     "objectID": 451361,
@@ -151286,78 +147796,6 @@
     "tags": null,
     "isTimelineWork": false
   },
-  "203364": {
-    "objectID": 203364,
-    "isHighlight": false,
-    "accessionNumber": "64.101.496",
-    "accessionYear": "1964",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/es/original/DP-12374-046.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/DP-12374-046.jpg",
-    "additionalImages": [
-      "https://images.metmuseum.org/CRDImages/es/original/DP-12374-088.jpg",
-      "https://images.metmuseum.org/CRDImages/es/original/DP-12374-087.jpg"
-    ],
-    "constituents": [
-      {
-        "constituentID": 35094,
-        "role": "Factory",
-        "name": "Chelsea Porcelain Manufactory",
-        "constituentULAN_URL": "http://vocab.getty.edu/page/ulan/500371694",
-        "constituentWikidata_URL": "https://www.wikidata.org/wiki/Q2072152"
-      }
-    ],
-    "department": "European Sculpture and Decorative Arts",
-    "objectName": "Basin",
-    "title": "Basin",
-    "artistRole": "Factory",
-    "artistDisplayName": "Chelsea Porcelain Manufactory",
-    "artistDisplayBio": "British, 1745\u20131784, Gold Anchor Period, 1759\u201369",
-    "artistAlphaSort": "Chelsea Porcelain Manufactory",
-    "artistNationality": "British",
-    "artistBeginDate": "1744",
-    "artistEndDate": "1784",
-    "artistWikidata_URL": "https://www.wikidata.org/wiki/Q2072152",
-    "artistULAN_URL": "http://vocab.getty.edu/page/ulan/500371694",
-    "objectDate": "ca. 1761",
-    "objectBeginDate": 1756,
-    "objectEndDate": 1766,
-    "medium": "Soft-paste porcelain",
-    "dimensions": "Overall: 10 3/8 \u00d7 13 1/2 in. (26.4 \u00d7 34.3 cm)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Depth": 34.29007,
-          "Width": 26.352552
-        }
-      }
-    ],
-    "creditLine": "Gift of Irwin Untermyer, 1964",
-    "classification": "Ceramics-Porcelain",
-    "metadataDate": "2025-01-31T04:54:36.6Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/203364",
-    "tags": [
-      {
-        "term": "Men",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300025928",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q8441"
-      },
-      {
-        "term": "Women",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300025943",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q467"
-      },
-      {
-        "term": "Fishing",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300239470",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q14373"
-      }
-    ],
-    "isTimelineWork": false
-  },
   "42209": {
     "objectID": 42209,
     "isHighlight": false,
@@ -153853,88 +150291,6 @@
     "isTimelineWork": false,
     "GalleryNumber": "453"
   },
-  "203608": {
-    "objectID": 203608,
-    "isHighlight": false,
-    "accessionNumber": "64.101.787a, b",
-    "accessionYear": "1964",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/es/original/DP260828.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/DP260828.jpg",
-    "additionalImages": [
-      "https://images.metmuseum.org/CRDImages/es/original/DP-13079-032.jpg",
-      "https://images.metmuseum.org/CRDImages/es/original/DT229973.jpg"
-    ],
-    "constituents": [
-      {
-        "constituentID": 35110,
-        "role": "Factory",
-        "name": "Worcester factory",
-        "constituentULAN_URL": "http://vocab.getty.edu/page/ulan/500332804",
-        "constituentWikidata_URL": "https://www.wikidata.org/wiki/Q668894"
-      },
-      {
-        "constituentID": 34135,
-        "role": "Decorator",
-        "name": "Decoration attributed to Jeffreyes Hammet O&#39;Neale"
-      }
-    ],
-    "department": "European Sculpture and Decorative Arts",
-    "objectName": "Vase with cover",
-    "title": "Covered vase",
-    "artistRole": "Factory",
-    "artistDisplayName": "Worcester factory",
-    "artistDisplayBio": "British, 1751\u20132008",
-    "artistAlphaSort": "Worcester factory",
-    "artistNationality": "British",
-    "artistBeginDate": "1751",
-    "artistEndDate": "2008",
-    "artistWikidata_URL": "https://www.wikidata.org/wiki/Q668894",
-    "artistULAN_URL": "http://vocab.getty.edu/page/ulan/500332804",
-    "objectDate": "ca. 1770",
-    "objectBeginDate": 1765,
-    "objectEndDate": 1775,
-    "medium": "Soft-paste porcelain decorated in polychrome \nenamels, gold",
-    "dimensions": "Overall: 15 1/4 \u00d7 6 1/2 in. (38.7 \u00d7 16.5 cm)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Height": 38.735077,
-          "Width": 16.510033
-        }
-      }
-    ],
-    "creditLine": "Gift of Irwin Untermyer, 1964",
-    "classification": "Ceramics-Porcelain",
-    "metadataDate": "2025-04-09T04:57:24.78Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/203608",
-    "tags": [
-      {
-        "term": "Buildings",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300004789",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q41176"
-      },
-      {
-        "term": "Men",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300025928",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q8441"
-      },
-      {
-        "term": "Women",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300025943",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q467"
-      },
-      {
-        "term": "Landscapes",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300132294",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q191163"
-      }
-    ],
-    "isTimelineWork": false
-  },
   "194479": {
     "objectID": 194479,
     "isHighlight": false,
@@ -154519,47 +150875,6 @@
         "term": "Human Figures",
         "AAT_URL": "http://vocab.getty.edu/page/aat/300404114",
         "Wikidata_URL": "https://www.wikidata.org/wiki/Q5937779"
-      }
-    ],
-    "isTimelineWork": false
-  },
-  "186286": {
-    "objectID": 186286,
-    "isHighlight": false,
-    "accessionNumber": "83.6.2a, b",
-    "accessionYear": "1883",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/es/original/35057.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/35057.jpg",
-    "additionalImages": [],
-    "constituents": null,
-    "department": "European Sculpture and Decorative Arts",
-    "objectName": "Pilgrim bottle",
-    "title": "Pilgrim bottle",
-    "objectDate": "19th century",
-    "objectBeginDate": 1800,
-    "objectEndDate": 1899,
-    "medium": "Glazed earthenware",
-    "dimensions": "Height: 15 3/4 in. (40 cm)",
-    "measurements": [
-      {
-        "elementName": "Height",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Height": 40.00508
-        }
-      }
-    ],
-    "creditLine": "Gift of Samuel L. M. Barlow, 1883",
-    "classification": "Ceramics-Pottery",
-    "metadataDate": "2020-09-16T18:35:19.457Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/186286",
-    "tags": [
-      {
-        "term": "Women",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300025943",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q467"
       }
     ],
     "isTimelineWork": false
@@ -156282,47 +152597,6 @@
     "metadataDate": "2025-10-20T04:51:47.577Z",
     "repository": "Metropolitan Museum of Art, New York, NY",
     "objectURL": "https://www.metmuseum.org/art/collection/search/49272",
-    "tags": null,
-    "isTimelineWork": false
-  },
-  "460575": {
-    "objectID": 460575,
-    "isHighlight": false,
-    "accessionNumber": "1975.1.1689",
-    "accessionYear": "1975",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/rl/original/SLP1688_1689-1.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/rl/web-large/SLP1688_1689-1.jpg",
-    "additionalImages": [
-      "https://images.metmuseum.org/CRDImages/rl/original/sf-rlc-1975-1-1689-1.jpg",
-      "https://images.metmuseum.org/CRDImages/rl/original/SLP1688, 1689-1.jpg"
-    ],
-    "constituents": [
-      {
-        "constituentID": 14068,
-        "role": "Artist",
-        "name": "Chinese"
-      }
-    ],
-    "department": "Robert Lehman Collection",
-    "objectName": "Vase",
-    "title": "Small vase",
-    "culture": "Chinese",
-    "artistRole": "Artist",
-    "artistDisplayName": "Chinese",
-    "artistSuffix": ", Qing Dynasty",
-    "artistAlphaSort": "Chinese",
-    "objectDate": "probably 19th century",
-    "objectBeginDate": 1798,
-    "objectEndDate": 1902,
-    "medium": "Porcelain with dark red glaze.",
-    "dimensions": "Height:  3 1/2 in. (8.9 cm.)",
-    "measurements": null,
-    "creditLine": "Robert Lehman Collection, 1975",
-    "classification": "Ceramics",
-    "metadataDate": "2025-01-29T04:54:03.16Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/460575",
     "tags": null,
     "isTimelineWork": false
   },
@@ -158972,59 +155246,6 @@
     "tags": null,
     "isTimelineWork": false
   },
-  "196260": {
-    "objectID": 196260,
-    "isHighlight": false,
-    "accessionNumber": "27.199.205",
-    "accessionYear": "1927",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/es/original/69543.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/69543.jpg",
-    "additionalImages": [
-      "https://images.metmuseum.org/CRDImages/es/original/152087.jpg"
-    ],
-    "constituents": null,
-    "department": "European Sculpture and Decorative Arts",
-    "objectName": "Tile",
-    "title": "Tile",
-    "objectDate": "17th century",
-    "objectBeginDate": 1600,
-    "objectEndDate": 1699,
-    "medium": "Tin-glazed earthenware",
-    "dimensions": "Overall (tile): 5 3/8 \u00d7 5 3/8 \u00d7 9/16 in. (13.7 \u00d7 13.7 \u00d7 1.4 cm);\r\nOverall (whole panel): 26 3/4 \u00d7 21 1/4 in. (67.9 \u00d7 54 cm)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": "whole panel",
-        "elementMeasurements": {
-          "Height": 67.94514,
-          "Width": 53.97511
-        }
-      },
-      {
-        "elementName": "Overall",
-        "elementDescription": "tile",
-        "elementMeasurements": {
-          "Depth": 1.4287529,
-          "Height": 13.652527,
-          "Width": 13.652527
-        }
-      }
-    ],
-    "creditLine": "Fletcher Fund, 1927",
-    "classification": "Ceramics-Pottery",
-    "metadataDate": "2020-09-16T18:35:19.457Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/196260",
-    "tags": [
-      {
-        "term": "Flowers",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300132399",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q506"
-      }
-    ],
-    "isTimelineWork": false
-  },
   "42415": {
     "objectID": 42415,
     "isHighlight": false,
@@ -160475,58 +156696,6 @@
     "isTimelineWork": false,
     "GalleryNumber": "453"
   },
-  "451933": {
-    "objectID": 451933,
-    "isHighlight": false,
-    "accessionNumber": "67.146.1",
-    "accessionYear": "1967",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/is/original/DP262931.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/is/web-large/DP262931.jpg",
-    "additionalImages": [
-      "https://images.metmuseum.org/CRDImages/is/original/sf67-146-1.jpg",
-      "https://images.metmuseum.org/CRDImages/is/original/sf67-146-1b.jpg"
-    ],
-    "constituents": null,
-    "department": "Islamic Art",
-    "objectName": "Head of a figure",
-    "title": "Head of a Figurine with an Elaborate Headdress",
-    "objectDate": "12th\u201313th century",
-    "objectBeginDate": 1100,
-    "objectEndDate": 1299,
-    "medium": "Earthenware; unglazed",
-    "dimensions": "H. 2 1/6 in. (5.2 cm)\r\nW. 1 3/8 in. (3.5 cm)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Height": 5.2388,
-          "Width": 3.4925
-        }
-      }
-    ],
-    "creditLine": "Gift of J. Lionberger Davis, 1967",
-    "geographyType": "Attributed to",
-    "country": "Iran or Iraq",
-    "classification": "Ceramics",
-    "metadataDate": "2025-01-30T04:54:21.21Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/451933",
-    "tags": [
-      {
-        "term": "Heads",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300375054",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q3409626"
-      },
-      {
-        "term": "Men",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300025928",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q8441"
-      }
-    ],
-    "isTimelineWork": false
-  },
   "57403": {
     "objectID": 57403,
     "isHighlight": false,
@@ -160663,49 +156832,6 @@
     "repository": "Metropolitan Museum of Art, New York, NY",
     "objectURL": "https://www.metmuseum.org/art/collection/search/44423",
     "tags": null,
-    "isTimelineWork": false
-  },
-  "196262": {
-    "objectID": 196262,
-    "isHighlight": false,
-    "accessionNumber": "27.199.207",
-    "accessionYear": "1927",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/es/original/69543.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/69543.jpg",
-    "additionalImages": [],
-    "constituents": null,
-    "department": "European Sculpture and Decorative Arts",
-    "objectName": "Tile",
-    "title": "Tile",
-    "objectDate": "1610\u201325",
-    "objectBeginDate": 1610,
-    "objectEndDate": 1625,
-    "medium": "Tin-glazed earthenware",
-    "dimensions": "Overall: 5 3/8 \u00d7 5 3/8 \u00d7 9/16 in. (13.7 \u00d7 13.7 \u00d7 1.4 cm)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Depth": 1.4287529,
-          "Height": 13.652527,
-          "Width": 13.652527
-        }
-      }
-    ],
-    "creditLine": "Fletcher Fund, 1927",
-    "classification": "Ceramics-Pottery",
-    "metadataDate": "2020-09-16T18:35:19.457Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/196262",
-    "tags": [
-      {
-        "term": "Flowers",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300132399",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q506"
-      }
-    ],
     "isTimelineWork": false
   },
   "465888": {
@@ -161753,56 +157879,6 @@
     "tags": null,
     "isTimelineWork": false
   },
-  "42235": {
-    "objectID": 42235,
-    "isHighlight": false,
-    "accessionNumber": "14.40.92",
-    "accessionYear": "1914",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/as/original/23458.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/as/web-large/23458.jpg",
-    "additionalImages": [],
-    "constituents": null,
-    "department": "Asian Art",
-    "objectName": "Vase",
-    "title": "Vase",
-    "culture": "China",
-    "period": "Qing dynasty (1644\u20131911)",
-    "objectDate": "late 18th\u2013early 19th century",
-    "objectBeginDate": 1767,
-    "objectEndDate": 1833,
-    "medium": "Porcelain painted in overglazed rouge de fer enamels",
-    "dimensions": "H. 19 in. (48.3 cm)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": "CSR Survey",
-        "elementMeasurements": {
-          "Diameter": 21.183641,
-          "Height": 48.5776,
-          "Weight": 5.171006
-        }
-      }
-    ],
-    "creditLine": "Bequest of Benjamin Altman, 1913",
-    "classification": "Ceramics",
-    "metadataDate": "2025-10-06T04:51:04.6Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/42235",
-    "tags": [
-      {
-        "term": "Flowers",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300132399",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q506"
-      },
-      {
-        "term": "Leaves",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300011892",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q33971"
-      }
-    ],
-    "isTimelineWork": false
-  },
   "199337": {
     "objectID": 199337,
     "isHighlight": false,
@@ -161885,55 +157961,6 @@
     "repository": "Metropolitan Museum of Art, New York, NY",
     "objectURL": "https://www.metmuseum.org/art/collection/search/451336",
     "tags": null,
-    "isTimelineWork": false
-  },
-  "451441": {
-    "objectID": 451441,
-    "isHighlight": false,
-    "accessionNumber": "57.61.13",
-    "accessionYear": "1957",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/is/original/DP353102.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/is/web-large/DP353102.jpg",
-    "additionalImages": [
-      "https://images.metmuseum.org/CRDImages/is/original/DP365688.jpg",
-      "https://images.metmuseum.org/CRDImages/is/original/sf57-61-13a.jpg",
-      "https://images.metmuseum.org/CRDImages/is/original/sf57-61-13b.jpg"
-    ],
-    "constituents": null,
-    "department": "Islamic Art",
-    "objectName": "Tabouret",
-    "title": "Tabouret with Winged Griffins and Benedictions",
-    "objectDate": "12th century",
-    "objectBeginDate": 1100,
-    "objectEndDate": 1199,
-    "medium": "Earthenware; molded, modeled, glazed in turquoise",
-    "dimensions": "H. 8 1/8 in. (20.6 cm)\r\nW. 11 7/8 in. (30.2 cm)\r\nD. 10 in. (25.4 cm)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Depth": 25.400051,
-          "Height": 20.63754,
-          "Width": 30.16256
-        }
-      }
-    ],
-    "creditLine": "Henry G. Leberthon Collection, Gift of Mr. and Mrs. A. Wallace Chauncey, 1957",
-    "geographyType": "Made in",
-    "country": "Syria",
-    "classification": "Ceramics",
-    "metadataDate": "2025-01-30T04:54:21.21Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/451441",
-    "tags": [
-      {
-        "term": "Griffins",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300379594",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q130223"
-      }
-    ],
     "isTimelineWork": false
   },
   "74426": {
@@ -168302,71 +164329,6 @@
     "tags": null,
     "isTimelineWork": false
   },
-  "187845": {
-    "objectID": 187845,
-    "isHighlight": false,
-    "accessionNumber": "94.4.335",
-    "accessionYear": "1894",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/es/original/7041.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/7041.jpg",
-    "additionalImages": [],
-    "constituents": [
-      {
-        "constituentID": 35508,
-        "role": "Manufactory",
-        "name": "De Witte Starre Manufactory"
-      },
-      {
-        "constituentID": 35515,
-        "role": "Factory owner",
-        "name": "Period of Cornelison Janson Brouwer"
-      }
-    ],
-    "department": "European Sculpture and Decorative Arts",
-    "objectName": "Vase",
-    "title": "Vase (part of a garniture)",
-    "artistRole": "Manufactory",
-    "artistDisplayName": "De Witte Starre Manufactory",
-    "artistAlphaSort": "DE WITTE STARRE MANUFACTORY",
-    "objectDate": "1723\u201341",
-    "objectBeginDate": 1723,
-    "objectEndDate": 1741,
-    "medium": "Tin-glazed earthenware",
-    "dimensions": "Height: 7 3/8 in. (18.7 cm)",
-    "measurements": [
-      {
-        "elementName": "Height",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Height": 18.732538
-        }
-      }
-    ],
-    "creditLine": "Gift of Henry G. Marquand, 1894",
-    "classification": "Ceramics-Pottery",
-    "metadataDate": "2020-09-16T18:35:19.457Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/187845",
-    "tags": [
-      {
-        "term": "Women",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300025943",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q467"
-      },
-      {
-        "term": "Flowers",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300132399",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q506"
-      },
-      {
-        "term": "Trees",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300132410",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q10884"
-      }
-    ],
-    "isTimelineWork": false
-  },
   "309446": {
     "objectID": 309446,
     "isHighlight": false,
@@ -169014,110 +164976,6 @@
     "objectURL": "https://www.metmuseum.org/art/collection/search/445268",
     "tags": null,
     "isTimelineWork": false
-  },
-  "206564": {
-    "objectID": 206564,
-    "isHighlight": false,
-    "accessionNumber": "1986.281.4",
-    "accessionYear": "1986",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/es/original/DP169162.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/DP169162.jpg",
-    "additionalImages": [
-      "https://images.metmuseum.org/CRDImages/es/original/DP169157.jpg",
-      "https://images.metmuseum.org/CRDImages/es/original/DP253190.jpg"
-    ],
-    "constituents": [
-      {
-        "constituentID": 164856,
-        "role": "Manufactory",
-        "name": "S\u00e8vres Manufactory",
-        "constituentULAN_URL": "http://vocab.getty.edu/page/ulan/500054661",
-        "constituentWikidata_URL": "https://www.wikidata.org/wiki/Q653307"
-      },
-      {
-        "constituentID": 34067,
-        "role": "Decorator",
-        "name": "Pictorial decoration by Jean Charles Develly",
-        "constituentULAN_URL": "http://vocab.getty.edu/page/ulan/500019219",
-        "constituentWikidata_URL": "https://www.wikidata.org/wiki/Q596558"
-      },
-      {
-        "constituentID": 36269,
-        "role": "Decorator",
-        "name": "Gilded by Pierre Riton"
-      },
-      {
-        "constituentID": 166344,
-        "role": "Patron",
-        "name": "Commissioned by Louis Philippe, King of France",
-        "constituentULAN_URL": "http://vocab.getty.edu/page/ulan/500236304",
-        "constituentWikidata_URL": "https://www.wikidata.org/wiki/Q7771"
-      }
-    ],
-    "department": "European Sculpture and Decorative Arts",
-    "objectName": "Tray",
-    "title": "Tray",
-    "artistRole": "Manufactory",
-    "artistDisplayName": "S\u00e8vres Manufactory",
-    "artistDisplayBio": "French, 1740\u2013present",
-    "artistAlphaSort": "S\u00e8vres Manufactory",
-    "artistNationality": "French",
-    "artistBeginDate": "1740",
-    "artistEndDate": "9999",
-    "artistWikidata_URL": "https://www.wikidata.org/wiki/Q653307",
-    "artistULAN_URL": "http://vocab.getty.edu/page/ulan/500054661",
-    "objectDate": "1836",
-    "objectBeginDate": 1836,
-    "objectEndDate": 1836,
-    "medium": "Hard-paste porcelain decorated in polychrome enamels, gold",
-    "dimensions": "Overall (confirmed): 3/4 x 17 3/4 x 13 11/16 in. (1.9 x 45.1 x 34.8 cm)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": "confirmed",
-        "elementMeasurements": {
-          "Depth": 34.76632,
-          "Height": 1.9050038,
-          "Width": 45.08509
-        }
-      }
-    ],
-    "creditLine": "Purchase, The Charles E. Sampson Memorial Fund and Gift of Irwin Untermyer, by exchange, 1986",
-    "classification": "Ceramics-Porcelain",
-    "metadataDate": "2025-01-31T04:54:36.6Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/206564",
-    "tags": [
-      {
-        "term": "Men",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300025928",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q8441"
-      },
-      {
-        "term": "Women",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300025943",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q467"
-      },
-      {
-        "term": "Horses",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300250148",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q726"
-      },
-      {
-        "term": "Landscapes",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300132294",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q191163"
-      },
-      {
-        "term": "Trees",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300132410",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q10884"
-      }
-    ],
-    "objectWikidata_URL": "https://www.wikidata.org/wiki/Q116310382",
-    "isTimelineWork": false,
-    "GalleryNumber": "554"
   },
   "309389": {
     "objectID": 309389,
@@ -173866,67 +169724,6 @@
     "isTimelineWork": true,
     "GalleryNumber": "207"
   },
-  "451432": {
-    "objectID": 451432,
-    "isHighlight": false,
-    "accessionNumber": "57.61.4a, b",
-    "accessionYear": "1957",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/is/original/sf57-61-4c.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/is/web-large/sf57-61-4c.jpg",
-    "additionalImages": [
-      "https://images.metmuseum.org/CRDImages/is/original/sf57-61-4d.jpg",
-      "https://images.metmuseum.org/CRDImages/is/original/sf57-61-4b.jpg",
-      "https://images.metmuseum.org/CRDImages/is/original/sf57-61-4a.jpg"
-    ],
-    "constituents": null,
-    "department": "Islamic Art",
-    "objectName": "Jar",
-    "title": "Jar",
-    "objectDate": "14th century",
-    "objectBeginDate": 1300,
-    "objectEndDate": 1399,
-    "medium": "Earthenware; glazed",
-    "dimensions": "a+b:  H. 6 1/4 in. (15.9 cm)\r\n          Diam. 7 3/8 in. (18.7 cm)\r\n          Wt. 29.4 oz. (833.6 g)\r\na:      H. 4 1/8 in. (10.5 cm)\r\n         Diam. 7 3/8 in. (18.7 cm)\r\n         Wt. 23.9 oz. (677.6 g)\r\nb:      H. 2 7/16 in. (6.2 cm)\r\n         Diam. 4 1/8 in. (10.5 cm)\r\n         Wt. 5.5 oz. (155.9)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": "b",
-        "elementMeasurements": {
-          "Diameter": 10.477521,
-          "Height": 6.1912622,
-          "Weight": 0.15593989
-        }
-      },
-      {
-        "elementName": "Overall",
-        "elementDescription": "a",
-        "elementMeasurements": {
-          "Diameter": 18.732538,
-          "Height": 10.477521,
-          "Weight": 0.6776297
-        }
-      },
-      {
-        "elementName": "Overall",
-        "elementDescription": "a+b",
-        "elementMeasurements": {
-          "Diameter": 18.732538,
-          "Height": 15.875031,
-          "Weight": 0.8335696
-        }
-      }
-    ],
-    "creditLine": "Henry G. Leberthon Collection, Gift of Mr. and Mrs. A. Wallace Chauncey, 1957",
-    "geographyType": "Attributed to",
-    "country": "Iran",
-    "classification": "Ceramics",
-    "metadataDate": "2025-01-30T04:54:21.21Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/451432",
-    "tags": null,
-    "isTimelineWork": false
-  },
   "308540": {
     "objectID": 308540,
     "isHighlight": false,
@@ -175106,71 +170903,6 @@
     ],
     "isTimelineWork": false
   },
-  "236160": {
-    "objectID": 236160,
-    "isHighlight": false,
-    "accessionNumber": "2008.113",
-    "accessionYear": "2008",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/es/original/SF2008_113_img1.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/SF2008_113_img1.jpg",
-    "additionalImages": [
-      "https://images.metmuseum.org/CRDImages/es/original/SF2008_113_img2.jpg",
-      "https://images.metmuseum.org/CRDImages/es/original/SF2008_113_img3.jpg",
-      "https://images.metmuseum.org/CRDImages/es/original/SF2008_113_img4.jpg",
-      "https://images.metmuseum.org/CRDImages/es/original/SF2008_113_mark.jpg"
-    ],
-    "constituents": [
-      {
-        "constituentID": 161915,
-        "role": "Maker",
-        "name": "Emile Gall\u00e9",
-        "constituentULAN_URL": "http://vocab.getty.edu/page/ulan/500094535",
-        "constituentWikidata_URL": "https://www.wikidata.org/wiki/Q275085"
-      }
-    ],
-    "department": "European Sculpture and Decorative Arts",
-    "objectName": "Vase",
-    "title": "Vase",
-    "artistRole": "Maker",
-    "artistDisplayName": "Emile Gall\u00e9",
-    "artistDisplayBio": "French, Nancy 1846\u20131904 Nancy",
-    "artistAlphaSort": "Gall\u00e9, Emile",
-    "artistNationality": "French",
-    "artistBeginDate": "1846",
-    "artistEndDate": "1904",
-    "artistWikidata_URL": "https://www.wikidata.org/wiki/Q275085",
-    "artistULAN_URL": "http://vocab.getty.edu/page/ulan/500094535",
-    "objectDate": "ca. 1884",
-    "objectBeginDate": 1879,
-    "objectEndDate": 1889,
-    "medium": "Earthenware",
-    "dimensions": "Overall: 9 x 8 3/8 x 5 in. (22.9 x 21.3 x 12.7 cm)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Depth": 12.7,
-          "Height": 22.86,
-          "Width": 21.2725
-        }
-      }
-    ],
-    "creditLine": "The Charles E. Sampson Memorial Fund, 2008",
-    "classification": "Ceramics-Pottery",
-    "metadataDate": "2020-11-14T04:40:04.457Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/236160",
-    "tags": [
-      {
-        "term": "Insects",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300310470",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q1390"
-      }
-    ],
-    "isTimelineWork": false
-  },
   "39559": {
     "objectID": 39559,
     "isHighlight": false,
@@ -175440,45 +171172,6 @@
     "objectURL": "https://www.metmuseum.org/art/collection/search/770927",
     "tags": null,
     "isTimelineWork": false
-  },
-  "201907": {
-    "objectID": 201907,
-    "isHighlight": false,
-    "accessionNumber": "56.171.97a, b",
-    "accessionYear": "1956",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/es/original/sf56_171_96,97.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/sf56_171_96,97.jpg",
-    "additionalImages": [
-      "https://images.metmuseum.org/CRDImages/es/original/162519.jpg"
-    ],
-    "constituents": null,
-    "department": "European Sculpture and Decorative Arts",
-    "objectName": "Vase with cover",
-    "title": "Vase with cover",
-    "objectDate": "late 17th\u2013early 18th century",
-    "objectBeginDate": 1685,
-    "objectEndDate": 1715,
-    "medium": "Tin-glazed and luster-painted earthenware",
-    "dimensions": "Height: 11 7/8 in. (30.2 cm)",
-    "measurements": [
-      {
-        "elementName": "Height",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Height": 30.16256
-        }
-      }
-    ],
-    "creditLine": "Cloisters Fund, 1956",
-    "classification": "Ceramics-Pottery",
-    "metadataDate": "2025-01-31T04:54:36.6Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/201907",
-    "tags": null,
-    "objectWikidata_URL": "https://www.wikidata.org/wiki/Q116399644",
-    "isTimelineWork": false,
-    "GalleryNumber": "535"
   },
   "318603": {
     "objectID": 318603,
@@ -177655,41 +173348,6 @@
     "tags": null,
     "isTimelineWork": false
   },
-  "191730": {
-    "objectID": 191730,
-    "isHighlight": false,
-    "accessionNumber": "11.93.2",
-    "accessionYear": "1911",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/es/original/11076.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/11076.jpg",
-    "additionalImages": [],
-    "constituents": null,
-    "department": "European Sculpture and Decorative Arts",
-    "objectName": "Jug",
-    "title": "Annular jug",
-    "objectDate": "17th century",
-    "objectBeginDate": 1600,
-    "objectEndDate": 1699,
-    "medium": "Salt-glazed stoneware; pewter",
-    "dimensions": "H. 15-1/2 in. (39.4 cm)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Height": 39.4
-        }
-      }
-    ],
-    "creditLine": "Rogers Fund, 1911",
-    "classification": "Ceramics-Pottery",
-    "metadataDate": "2026-02-07T04:59:02.893Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/191730",
-    "tags": null,
-    "isTimelineWork": false
-  },
   "460652": {
     "objectID": 460652,
     "isHighlight": false,
@@ -177866,56 +173524,6 @@
         "term": "Leaves",
         "AAT_URL": "http://vocab.getty.edu/page/aat/300011892",
         "Wikidata_URL": "https://www.wikidata.org/wiki/Q33971"
-      }
-    ],
-    "isTimelineWork": false
-  },
-  "188378": {
-    "objectID": 188378,
-    "isHighlight": false,
-    "accessionNumber": "98.1.51a, b",
-    "accessionYear": "1898",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/es/original/6285.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/6285.jpg",
-    "additionalImages": [],
-    "constituents": [
-      {
-        "constituentID": 35189,
-        "role": "Factory",
-        "name": "George Phillips, Longport"
-      }
-    ],
-    "department": "European Sculpture and Decorative Arts",
-    "objectName": "Jug",
-    "title": "Jug",
-    "artistRole": "Factory",
-    "artistDisplayName": "George Phillips, Longport",
-    "artistAlphaSort": "Phillips, George",
-    "objectDate": "before 1830",
-    "objectBeginDate": 1800,
-    "objectEndDate": 1829,
-    "medium": "Blue printed ware",
-    "dimensions": "Height: 5 1/4 in. (13.3 cm)",
-    "measurements": [
-      {
-        "elementName": "Height",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Height": 13.335027
-        }
-      }
-    ],
-    "creditLine": "Gift of Mrs. Isaac Gibson Jaffray, in memory of her husband, 1898",
-    "classification": "Ceramics-Pottery",
-    "metadataDate": "2024-03-29T10:36:46.263Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/188378",
-    "tags": [
-      {
-        "term": "Flowers",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300132399",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q506"
       }
     ],
     "isTimelineWork": false
@@ -180296,57 +175904,6 @@
     "tags": null,
     "isTimelineWork": false
   },
-  "199729": {
-    "objectID": 199729,
-    "isHighlight": false,
-    "accessionNumber": "46.85.22",
-    "accessionYear": "1946",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/es/original/DP319081.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/DP319081.jpg",
-    "additionalImages": [
-      "https://images.metmuseum.org/CRDImages/es/original/DP319076.jpg",
-      "https://images.metmuseum.org/CRDImages/es/original/DP323235.jpg"
-    ],
-    "constituents": null,
-    "department": "European Sculpture and Decorative Arts",
-    "objectName": "Storage jar",
-    "title": "Storage jar (albarello) depicting a peacock",
-    "objectDate": "ca. 1470\u20131500",
-    "objectBeginDate": 1465,
-    "objectEndDate": 1505,
-    "medium": "Maiolica (tin-glazed earthenware)",
-    "dimensions": "Overall (confirmed): 12 1/4 \u00d7 5 3/4 \u00d7 5 3/4 in. (31.1 \u00d7 14.6 \u00d7 14.6 cm)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": "confirmed",
-        "elementMeasurements": {
-          "Depth": 14.605029,
-          "Height": 31.115063,
-          "Width": 14.605029
-        }
-      }
-    ],
-    "creditLine": "Fletcher Fund, 1946",
-    "classification": "Ceramics-Pottery",
-    "metadataDate": "2025-01-31T04:54:36.6Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/199729",
-    "tags": [
-      {
-        "term": "Animals",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300249525",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q729"
-      },
-      {
-        "term": "Peacocks",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300250082",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q201251"
-      }
-    ],
-    "isTimelineWork": false
-  },
   "47946": {
     "objectID": 47946,
     "isHighlight": false,
@@ -180384,48 +175941,6 @@
     "repository": "Metropolitan Museum of Art, New York, NY",
     "objectURL": "https://www.metmuseum.org/art/collection/search/47946",
     "tags": null,
-    "isTimelineWork": false
-  },
-  "196182": {
-    "objectID": 196182,
-    "isHighlight": false,
-    "accessionNumber": "27.199.18",
-    "accessionYear": "1927",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/es/original/69491.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/69491.jpg",
-    "additionalImages": [],
-    "constituents": null,
-    "department": "European Sculpture and Decorative Arts",
-    "objectName": "Tile",
-    "title": "Tile",
-    "objectDate": "1580\u20131625",
-    "objectBeginDate": 1580,
-    "objectEndDate": 1625,
-    "medium": "Tin-glazed earthenware",
-    "dimensions": "Overall: 4 3/4 \u00d7 4 3/4 in. (12.1 \u00d7 12.1 cm)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Height": 12.065024,
-          "Width": 12.065024
-        }
-      }
-    ],
-    "creditLine": "Fletcher Fund, 1927",
-    "classification": "Ceramics-Pottery",
-    "metadataDate": "2020-09-16T18:35:19.457Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/196182",
-    "tags": [
-      {
-        "term": "Flowers",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300132399",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q506"
-      }
-    ],
     "isTimelineWork": false
   },
   "452084": {
@@ -182238,68 +177753,6 @@
     "objectURL": "https://www.metmuseum.org/art/collection/search/47483",
     "tags": null,
     "isTimelineWork": false
-  },
-  "770924": {
-    "objectID": 770924,
-    "isHighlight": false,
-    "accessionNumber": "2018.62.96",
-    "accessionYear": "2018",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/es/original/DP-16489-191.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/DP-16489-191.jpg",
-    "additionalImages": [
-      "https://images.metmuseum.org/CRDImages/es/original/DP-16489-192.jpg",
-      "https://images.metmuseum.org/CRDImages/es/original/DP-16489-376.jpg",
-      "https://images.metmuseum.org/CRDImages/es/original/LC-2018_62_96-002.jpg",
-      "https://images.metmuseum.org/CRDImages/es/original/DP-16489-455.jpg"
-    ],
-    "constituents": [
-      {
-        "constituentID": 35110,
-        "role": "Manufactory",
-        "name": "Worcester factory",
-        "constituentULAN_URL": "http://vocab.getty.edu/page/ulan/500332804",
-        "constituentWikidata_URL": "https://www.wikidata.org/wiki/Q668894"
-      }
-    ],
-    "department": "European Sculpture and Decorative Arts",
-    "objectName": "Vase",
-    "title": "Rectangular vase with porcelain-making scenes (\"the oven for burning clay\" and \"the painting of the wares\")",
-    "artistRole": "Manufactory",
-    "artistDisplayName": "Worcester factory",
-    "artistDisplayBio": "British, 1751\u20132008",
-    "artistAlphaSort": "Worcester factory",
-    "artistNationality": "British",
-    "artistBeginDate": "1751",
-    "artistEndDate": "2008",
-    "artistWikidata_URL": "https://www.wikidata.org/wiki/Q668894",
-    "artistULAN_URL": "http://vocab.getty.edu/page/ulan/500332804",
-    "objectDate": "ca. 1872",
-    "objectBeginDate": 1867,
-    "objectEndDate": 1877,
-    "medium": "Bone china (\"ivory porcelain\") with enamel decoration and gilding",
-    "dimensions": "confirmed: 7 9/16 \u00d7 6 \u00d7 4 3/8 in., 2.2 lb. (19.2 \u00d7 15.2 \u00d7 11.1 cm, 1000g)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": "confirmed",
-        "elementMeasurements": {
-          "Depth": 11.112522,
-          "Height": 19.208788,
-          "Weight": 1,
-          "Width": 15.24003
-        }
-      }
-    ],
-    "creditLine": "Gift of Helene Fortunoff and Robert Grossman, 2017",
-    "classification": "Ceramics-Porcelain",
-    "metadataDate": "2025-01-31T04:54:36.6Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/770924",
-    "tags": null,
-    "objectWikidata_URL": "https://www.wikidata.org/wiki/Q116234828",
-    "isTimelineWork": false,
-    "GalleryNumber": "516"
   },
   "452683": {
     "objectID": 452683,
@@ -186130,64 +181583,6 @@
     "tags": null,
     "isTimelineWork": false
   },
-  "205961": {
-    "objectID": 205961,
-    "isHighlight": false,
-    "accessionNumber": "1974.356.409",
-    "accessionYear": "1974",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/es/original/205128.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/205128.jpg",
-    "additionalImages": [],
-    "constituents": [
-      {
-        "constituentID": 164832,
-        "role": "Manufactory",
-        "name": "Meissen Manufactory",
-        "constituentULAN_URL": "http://vocab.getty.edu/page/ulan/500054662",
-        "constituentWikidata_URL": "https://www.wikidata.org/wiki/Q822407"
-      }
-    ],
-    "department": "European Sculpture and Decorative Arts",
-    "objectName": "Vase",
-    "title": "Vase",
-    "artistRole": "Manufactory",
-    "artistDisplayName": "Meissen Manufactory",
-    "artistDisplayBio": "German, 1710\u2013present",
-    "artistAlphaSort": "Meissen Manufactory",
-    "artistNationality": "German",
-    "artistBeginDate": "1710",
-    "artistEndDate": "9999",
-    "artistWikidata_URL": "https://www.wikidata.org/wiki/Q822407",
-    "artistULAN_URL": "http://vocab.getty.edu/page/ulan/500054662",
-    "objectDate": "ca. 1730",
-    "objectBeginDate": 1725,
-    "objectEndDate": 1735,
-    "medium": "Hard-paste porcelain",
-    "dimensions": "Height: 10 3/4 in. (27.3 cm)",
-    "measurements": [
-      {
-        "elementName": "Height",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Height": 27.305054
-        }
-      }
-    ],
-    "creditLine": "The Lesley and Emma Sheafer Collection, Bequest of Emma A. Sheafer, 1973",
-    "classification": "Ceramics-Porcelain",
-    "metadataDate": "2020-09-16T18:35:19.457Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/205961",
-    "tags": [
-      {
-        "term": "Flowers",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300132399",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q506"
-      }
-    ],
-    "isTimelineWork": false
-  },
   "200875": {
     "objectID": 200875,
     "isHighlight": false,
@@ -186327,49 +181722,6 @@
     "repository": "Metropolitan Museum of Art, New York, NY",
     "objectURL": "https://www.metmuseum.org/art/collection/search/318618",
     "tags": null,
-    "isTimelineWork": false
-  },
-  "196261": {
-    "objectID": 196261,
-    "isHighlight": false,
-    "accessionNumber": "27.199.206",
-    "accessionYear": "1927",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/es/original/69543.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/69543.jpg",
-    "additionalImages": [],
-    "constituents": null,
-    "department": "European Sculpture and Decorative Arts",
-    "objectName": "Tile",
-    "title": "Tile",
-    "objectDate": "1610\u201325",
-    "objectBeginDate": 1610,
-    "objectEndDate": 1625,
-    "medium": "Tin-glazed earthenware",
-    "dimensions": "Overall: 5 3/8 \u00d7 5 3/8 \u00d7 9/16 in. (13.7 \u00d7 13.7 \u00d7 1.4 cm)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Depth": 1.4287529,
-          "Height": 13.652527,
-          "Width": 13.652527
-        }
-      }
-    ],
-    "creditLine": "Fletcher Fund, 1927",
-    "classification": "Ceramics-Pottery",
-    "metadataDate": "2020-09-16T18:35:19.457Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/196261",
-    "tags": [
-      {
-        "term": "Flowers",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300132399",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q506"
-      }
-    ],
     "isTimelineWork": false
   },
   "309370": {
@@ -187149,35 +182501,6 @@
     "objectWikidata_URL": "https://www.wikidata.org/wiki/Q97158679",
     "isTimelineWork": true
   },
-  "450768": {
-    "objectID": 450768,
-    "isHighlight": false,
-    "accessionNumber": "48.101.12",
-    "accessionYear": "1948",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/is/original/48.101.12.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/is/web-large/48.101.12.jpg",
-    "additionalImages": [],
-    "constituents": null,
-    "department": "Islamic Art",
-    "objectName": "Jar",
-    "title": "Jar",
-    "objectDate": "11th century",
-    "objectBeginDate": 1000,
-    "objectEndDate": 1099,
-    "medium": "Earthenware; incised and unglazed",
-    "measurements": null,
-    "creditLine": "Rogers Fund, 1948",
-    "geographyType": "Excavated in",
-    "city": "Nishapur",
-    "country": "Iran",
-    "classification": "Ceramics",
-    "metadataDate": "2024-10-09T04:54:19.043Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/450768",
-    "tags": null,
-    "isTimelineWork": false
-  },
   "195302": {
     "objectID": 195302,
     "isHighlight": false,
@@ -187698,45 +183021,6 @@
         "Wikidata_URL": "https://www.wikidata.org/wiki/Q5113"
       }
     ],
-    "isTimelineWork": false
-  },
-  "37440": {
-    "objectID": 37440,
-    "isHighlight": false,
-    "accessionNumber": "1986.506.8a, b",
-    "accessionYear": "1986",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/as/original/264827_1986.506.1-10.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/as/web-large/264827_1986.506.1-10.jpg",
-    "additionalImages": [],
-    "constituents": null,
-    "department": "Asian Art",
-    "objectName": "Covered jar",
-    "title": "Covered Jar",
-    "culture": "Thailand",
-    "period": "Angkor period",
-    "objectDate": "mid-11th\u201312th century",
-    "objectBeginDate": 1050,
-    "objectEndDate": 1199,
-    "medium": "Stoneware",
-    "dimensions": "H. 8 7/16 in. (21.5 cm); Diam. 6 1/8 in. (15.6 cm)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": "CSR Survey ",
-        "elementMeasurements": {
-          "Diameter": 15.557531,
-          "Height": 21.590044,
-          "Weight": 1.224712
-        }
-      }
-    ],
-    "creditLine": "Gift of Cynthia Hazen Polsky, 1986",
-    "classification": "Ceramics",
-    "metadataDate": "2026-03-12T04:56:18.36Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/37440",
-    "tags": null,
     "isTimelineWork": false
   },
   "670987": {
@@ -190611,59 +185895,6 @@
     "isTimelineWork": true,
     "GalleryNumber": "362"
   },
-  "48652": {
-    "objectID": 48652,
-    "isHighlight": false,
-    "accessionNumber": "21.12.8a, b",
-    "accessionYear": "1921",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/as/original/47401.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/as/web-large/47401.jpg",
-    "additionalImages": [],
-    "constituents": null,
-    "department": "Asian Art",
-    "objectName": "Covered jar",
-    "title": "Covered Jar",
-    "culture": "China",
-    "period": "Qing dynasty (1644\u20131911), Kangxi period (1662\u20131722)",
-    "objectBeginDate": 1662,
-    "objectEndDate": 1722,
-    "medium": "Porcelain",
-    "dimensions": "H. 16 1/4 in. (41.3 cm); Diam. 10 1/4 in. (26 cm); Diam. of base 7 1/4 in. (18.4 cm)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Height": 41.27508
-        }
-      },
-      {
-        "elementName": "Diameter",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Body": 26.035051,
-          "Foot": 18.415037
-        }
-      },
-      {
-        "elementName": "Overall",
-        "elementDescription": "CSR 2025",
-        "elementMeasurements": {
-          "Diameter": 25.08255,
-          "Height": 41.27508,
-          "Weight": 4.576
-        }
-      }
-    ],
-    "creditLine": "Rogers Fund, 1921",
-    "classification": "Ceramics",
-    "metadataDate": "2021-10-28T04:38:52.167Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/48652",
-    "tags": null,
-    "isTimelineWork": false
-  },
   "74243": {
     "objectID": 74243,
     "isHighlight": false,
@@ -192983,144 +188214,6 @@
     ],
     "isTimelineWork": false
   },
-  "48692": {
-    "objectID": 48692,
-    "isHighlight": false,
-    "accessionNumber": "14.40.317",
-    "accessionYear": "1914",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/as/original/20602.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/as/web-large/20602.jpg",
-    "additionalImages": [],
-    "constituents": null,
-    "department": "Asian Art",
-    "objectName": "Vase",
-    "title": "Vase with Lotus Scrolls",
-    "culture": "China",
-    "period": "Qing dynasty (1644\u20131911), Kangxi period (1662\u20131722)",
-    "objectDate": "early 18th century",
-    "objectBeginDate": 1700,
-    "objectEndDate": 1722,
-    "medium": "Porcelain painted with cobalt blue under transparent glaze (Jingdezhen ware)",
-    "dimensions": "H. 17 7/8 in. (45.4 cm); Diam. of rim 9 in. (22.9 cm); Diam. 7 1/4 in. (18.4 cm); Diam. of base 6 1/8 in. (15.6 cm)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Height": 45.40259
-        }
-      },
-      {
-        "elementName": "Diam. of base",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Diameter": 15.557531
-        }
-      },
-      {
-        "elementName": "Diameter",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Diameter": 18.415037
-        }
-      },
-      {
-        "elementName": "Diam. of rim",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Diameter": 22.860046
-        }
-      },
-      {
-        "elementName": "Overall",
-        "elementDescription": "csr 2025",
-        "elementMeasurements": {
-          "Diameter": 22.542545,
-          "Height": 44.45009,
-          "Weight": 3.512
-        }
-      }
-    ],
-    "creditLine": "Bequest of Benjamin Altman, 1913",
-    "classification": "Ceramics",
-    "metadataDate": "2021-05-28T04:43:00.24Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/48692",
-    "tags": [
-      {
-        "term": "Lotuses",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300375570",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q3645698"
-      }
-    ],
-    "isTimelineWork": false
-  },
-  "187846": {
-    "objectID": 187846,
-    "isHighlight": false,
-    "accessionNumber": "94.4.336",
-    "accessionYear": "1894",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/es/original/7041.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/7041.jpg",
-    "additionalImages": [],
-    "constituents": [
-      {
-        "constituentID": 35508,
-        "role": "Manufactory",
-        "name": "De Witte Starre Manufactory"
-      },
-      {
-        "constituentID": 35515,
-        "role": "Factory owner",
-        "name": "Period of Cornelison Janson Brouwer"
-      }
-    ],
-    "department": "European Sculpture and Decorative Arts",
-    "objectName": "Vase",
-    "title": "Vase (part of a garniture)",
-    "artistRole": "Manufactory",
-    "artistDisplayName": "De Witte Starre Manufactory",
-    "artistAlphaSort": "DE WITTE STARRE MANUFACTORY",
-    "objectDate": "1723\u201341",
-    "objectBeginDate": 1723,
-    "objectEndDate": 1741,
-    "medium": "Tin-glazed earthenware",
-    "dimensions": "Height: 7 in. (17.8 cm)",
-    "measurements": [
-      {
-        "elementName": "Height",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Height": 17.780035
-        }
-      }
-    ],
-    "creditLine": "Gift of Henry G. Marquand, 1894",
-    "classification": "Ceramics-Pottery",
-    "metadataDate": "2020-09-16T18:35:19.457Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/187846",
-    "tags": [
-      {
-        "term": "Human Figures",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300404114",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q5937779"
-      },
-      {
-        "term": "Flowers",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300132399",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q506"
-      },
-      {
-        "term": "Trees",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300132410",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q10884"
-      }
-    ],
-    "isTimelineWork": false
-  },
   "39666": {
     "objectID": 39666,
     "isHighlight": true,
@@ -193334,46 +188427,6 @@
       }
     ],
     "isTimelineWork": false
-  },
-  "460130": {
-    "objectID": 460130,
-    "isHighlight": false,
-    "accessionNumber": "1975.1.999",
-    "accessionYear": "1975",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/rl/original/SF-1975-1-999.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/rl/web-large/SF-1975-1-999.jpg",
-    "additionalImages": [
-      "https://images.metmuseum.org/CRDImages/rl/original/DT3437.jpg"
-    ],
-    "constituents": null,
-    "department": "Robert Lehman Collection",
-    "objectName": "Apothecary jar",
-    "title": "Apothecary jar (orciuolo)",
-    "culture": "Italian, probably Tuscany",
-    "objectDate": "second half 15th century",
-    "objectBeginDate": 1450,
-    "objectEndDate": 1499,
-    "medium": "Maiolica (tin-glazed earthenware)",
-    "dimensions": "Height: 11 3/16 in. (28.4cm)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Height": 28.4
-        }
-      }
-    ],
-    "creditLine": "Robert Lehman Collection, 1975",
-    "classification": "Ceramics-Pottery",
-    "metadataDate": "2025-01-29T04:54:03.16Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/460130",
-    "tags": null,
-    "objectWikidata_URL": "https://www.wikidata.org/wiki/Q116246205",
-    "isTimelineWork": false,
-    "GalleryNumber": "950"
   },
   "50739": {
     "objectID": 50739,
@@ -193638,60 +188691,6 @@
         "term": "Flowers",
         "AAT_URL": "http://vocab.getty.edu/page/aat/300132399",
         "Wikidata_URL": "https://www.wikidata.org/wiki/Q506"
-      }
-    ],
-    "isTimelineWork": false
-  },
-  "460392": {
-    "objectID": 460392,
-    "isHighlight": false,
-    "accessionNumber": "1975.1.1741",
-    "accessionYear": "1975",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/rl/original/SLP1740-1741.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/rl/web-large/SLP1740-1741.jpg",
-    "additionalImages": [
-      "https://images.metmuseum.org/CRDImages/rl/original/SF-1975-1-1741.jpg"
-    ],
-    "constituents": null,
-    "department": "Robert Lehman Collection",
-    "objectName": "Covered jar",
-    "title": "Covered Jar, polychrome floral decoration, handle on cover in shape of squirrel.",
-    "culture": "Dutch",
-    "objectDate": "18th century",
-    "objectBeginDate": 1700,
-    "objectEndDate": 1800,
-    "medium": "Tin-glazed earthenware",
-    "dimensions": "Height, 10 3/8 in. (26.4cm)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Height": 26.3526
-        }
-      }
-    ],
-    "creditLine": "Robert Lehman Collection, 1975",
-    "classification": "Ceramics-Porcelain",
-    "metadataDate": "2025-01-29T04:54:03.16Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/460392",
-    "tags": [
-      {
-        "term": "Birds",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300266506",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q5113"
-      },
-      {
-        "term": "Chinoiserie",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300021167",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q863679"
-      },
-      {
-        "term": "Squirrels",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300250601",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q1302028"
       }
     ],
     "isTimelineWork": false

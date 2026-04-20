@@ -22,7 +22,7 @@ from utils import load_objects_json, save_images
 REPO_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_OUTPUT_DIR = REPO_ROOT / "hf_space/pipeline/real_images"
 DEFAULT_ERROR_LOG = REPO_ROOT / "hf_space/pipeline/real_images_errors.jsonl"
-DEFAULT_PROCESSED_IDS = REPO_ROOT / "hf_space/pipeline/real_images/processed_ids.txt"
+DEFAULT_PROCESSED_IDS = REPO_ROOT / "hf_space/pipeline/processed_ids.txt"
 DEFAULT_SKIP_OBJECT_ID_FILES = [
     REPO_ROOT / "pipeline/data/api_errors_object_ids.json",
     REPO_ROOT / "pipeline/data/manual_reject_object_ids.json",
