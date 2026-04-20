@@ -26,6 +26,7 @@ DATA_DIR = ROOT / "pipeline" / "data"
 OBJECTS_PATH = DATA_DIR / "objects.json"
 REJECT_IDS_PATH = DATA_DIR / "reject_object_ids.json"
 MANUAL_REJECT_IDS_PATH = DATA_DIR / "manual_reject_object_ids.json"
+API_ERRORS_IDS_PATH = DATA_DIR / "api_errors_object_ids.json"
 
 
 def load_json_dict(path: Path) -> Dict[str, Any]:
@@ -56,6 +57,8 @@ def clean_objects_with_filters() -> None:
     objects_by_id: Dict[str, Any] = load_json_dict(OBJECTS_PATH)
     rejected_ids: list[int] = load_json_list(REJECT_IDS_PATH)
     manual_reject_ids = {int(object_id) for object_id in load_json_list(MANUAL_REJECT_IDS_PATH)}
+    api_error_ids = {int(object_id) for object_id in load_json_list(API_ERRORS_IDS_PATH)}
+    excluded_ids = manual_reject_ids | api_error_ids
 
     original_count = len(objects_by_id)
     removed_count = 0
@@ -67,9 +70,10 @@ def clean_objects_with_filters() -> None:
     for key, obj in objects_by_id.items():
         # objectID in the JSON is an int; keys in objects_by_id are strings
         object_id = int(obj.get("objectID", key))
-        if object_id in manual_reject_ids:
+        if object_id in excluded_ids:
             removed_count += 1
-            removed_manual_count += 1
+            if object_id in manual_reject_ids:
+                removed_manual_count += 1
             if object_id not in rejected_ids:
                 rejected_ids.append(object_id)
             continue

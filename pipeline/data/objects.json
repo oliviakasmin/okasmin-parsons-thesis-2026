@@ -24340,44 +24340,6 @@
     ],
     "isTimelineWork": true
   },
-  "47172": {
-    "objectID": 47172,
-    "isHighlight": false,
-    "accessionNumber": "93.1.99",
-    "accessionYear": "1893",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/as/original/15925.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/as/web-large/15925.jpg",
-    "additionalImages": [],
-    "constituents": null,
-    "department": "Asian Art",
-    "objectName": "Pitcher",
-    "title": "Pitcher",
-    "culture": "Japan",
-    "period": "Edo (1615\u20131868) or Meiji period (1868\u20131912)",
-    "objectDate": "19th century",
-    "objectBeginDate": 1800,
-    "objectEndDate": 1899,
-    "medium": "Pottery moulded with design of paste and covered with glaze (Banko ware)",
-    "dimensions": "H. 3 in. (7.6 cm); W. 7 3/8 in. (18.7 cm)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Height": 7.6,
-          "Width": 18.732538
-        }
-      }
-    ],
-    "creditLine": "Gift of Mr. and Mrs. Samuel Colman, 1893",
-    "classification": "Ceramics",
-    "metadataDate": "2025-03-06T04:54:30Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/47172",
-    "tags": null,
-    "isTimelineWork": false
-  },
   "50349": {
     "objectID": 50349,
     "isHighlight": false,
@@ -39019,48 +38981,6 @@
     "metadataDate": "2025-01-29T04:54:03.16Z",
     "repository": "Metropolitan Museum of Art, New York, NY",
     "objectURL": "https://www.metmuseum.org/art/collection/search/460660",
-    "tags": null,
-    "isTimelineWork": false
-  },
-  "833906": {
-    "objectID": 833906,
-    "isHighlight": false,
-    "accessionNumber": "2019.565.8",
-    "accessionYear": "2019",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/ao/original/DP-24286-002.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/ao/web-large/DP-24286-002.jpg",
-    "additionalImages": [
-      "https://images.metmuseum.org/CRDImages/ao/original/DP-24286-001.jpg"
-    ],
-    "constituents": null,
-    "department": "The Michael C. Rockefeller Wing",
-    "objectName": "Bottle",
-    "title": "Polychrome Bottle",
-    "culture": "Mississippian (Ancestral Quapaw)",
-    "objectDate": "14th\u201315th century",
-    "objectBeginDate": 1300,
-    "objectEndDate": 1499,
-    "medium": "Clay",
-    "dimensions": "H. 9 1/4 \u00d7 W. 8 3/8 \u00d7 D. 8 9/16 in. (23.5 \u00d7 21.3 \u00d7 21.7 cm)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Depth": 21.748793,
-          "Height": 23.495047,
-          "Width": 21.272543
-        }
-      }
-    ],
-    "creditLine": "Gift of Samuel and Gabrielle Lurie, in celebration of the Museum's 150th Anniversary, 2019",
-    "state": "Arkansas",
-    "country": "United States",
-    "classification": "Ceramics-Vessels",
-    "metadataDate": "2025-01-30T04:54:21.21Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/833906",
     "tags": null,
     "isTimelineWork": false
   },
@@ -55236,73 +55156,6 @@
     ],
     "isTimelineWork": false
   },
-  "198481": {
-    "objectID": 198481,
-    "isHighlight": false,
-    "accessionNumber": "39.140.92a, b",
-    "accessionYear": "1939",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/es/original/DP-39177-001.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/DP-39177-001.jpg",
-    "additionalImages": [
-      "https://images.metmuseum.org/CRDImages/es/original/DP-39177-002.jpg"
-    ],
-    "constituents": [
-      {
-        "constituentID": 39299,
-        "role": "Factory",
-        "name": "Liverpool"
-      },
-      {
-        "constituentID": 39302,
-        "role": "Factory director",
-        "name": "Philip Christian"
-      }
-    ],
-    "department": "European Sculpture and Decorative Arts",
-    "objectName": "Coffeepot",
-    "title": "Coffeepot",
-    "artistRole": "Factory",
-    "artistDisplayName": "Liverpool",
-    "artistAlphaSort": "Liverpool",
-    "objectDate": "ca. 1770",
-    "objectBeginDate": 1765,
-    "objectEndDate": 1775,
-    "medium": "Soft-paste porcelain",
-    "dimensions": "Height (with cover): 9 5/8 in. (24.4 cm)",
-    "measurements": [
-      {
-        "elementName": "Height",
-        "elementDescription": "with cover",
-        "elementMeasurements": {
-          "Height": 24.44755
-        }
-      }
-    ],
-    "creditLine": "Gift of Mr. and Mrs. Luke Vincent Lockwood, 1939",
-    "classification": "Ceramics-Porcelain",
-    "metadataDate": "2022-08-16T04:53:06.477Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/198481",
-    "tags": [
-      {
-        "term": "Boys",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300247598",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q3010"
-      },
-      {
-        "term": "Men",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300025928",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q8441"
-      },
-      {
-        "term": "Women",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300025943",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q467"
-      }
-    ],
-    "isTimelineWork": false
-  },
   "62557": {
     "objectID": 62557,
     "isHighlight": false,
@@ -64295,45 +64148,6 @@
     "metadataDate": "2023-11-22T04:56:59.923Z",
     "repository": "Metropolitan Museum of Art, New York, NY",
     "objectURL": "https://www.metmuseum.org/art/collection/search/46557",
-    "tags": null,
-    "isTimelineWork": false
-  },
-  "833910": {
-    "objectID": 833910,
-    "isHighlight": false,
-    "accessionNumber": "2019.565.12",
-    "accessionYear": "2019",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/ao/original/DP-24289-001.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/ao/web-large/DP-24289-001.jpg",
-    "additionalImages": [
-      "https://images.metmuseum.org/CRDImages/ao/original/DP-24289-002.jpg"
-    ],
-    "constituents": null,
-    "department": "The Michael C. Rockefeller Wing",
-    "objectName": "Jar",
-    "title": "Incised Vessel",
-    "culture": "Mississippian (Ancestral Quapaw)",
-    "objectDate": "13th\u201314th century",
-    "objectBeginDate": 1200,
-    "objectEndDate": 1400,
-    "medium": "Clay",
-    "dimensions": "H. 4 1/2 \u00d7 Diam. 6 in. (11.4 \u00d7 15.2 cm)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Diameter": 15.24003,
-          "Height": 11.430023
-        }
-      }
-    ],
-    "creditLine": "Gift of Samuel and Gabrielle Lurie, in celebration of the Museum's 150th Anniversary, 2019",
-    "classification": "Ceramics-Vessels",
-    "metadataDate": "2025-01-30T04:54:21.21Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/833910",
     "tags": null,
     "isTimelineWork": false
   },
@@ -125443,66 +125257,6 @@
     "tags": null,
     "isTimelineWork": false
   },
-  "198656": {
-    "objectID": 198656,
-    "isHighlight": false,
-    "accessionNumber": "40.68a, b",
-    "accessionYear": "1940",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/es/original/DP104603.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/DP104603.jpg",
-    "additionalImages": [],
-    "constituents": [
-      {
-        "constituentID": 162700,
-        "role": "Factory",
-        "name": "Wedgwood and Bentley",
-        "constituentULAN_URL": "http://vocab.getty.edu/page/ulan/500524246",
-        "constituentWikidata_URL": "https://www.wikidata.org/wiki/Q97105343"
-      }
-    ],
-    "department": "European Sculpture and Decorative Arts",
-    "objectName": "Vase with cover",
-    "title": "Vase with cover",
-    "artistRole": "Factory",
-    "artistDisplayName": "Wedgwood and Bentley",
-    "artistDisplayBio": "British, Etruria, Staffordshire, 1769\u20131780",
-    "artistAlphaSort": "Wedgwood and Bentley",
-    "artistNationality": "British",
-    "artistBeginDate": "1769",
-    "artistEndDate": "1780",
-    "artistWikidata_URL": "https://www.wikidata.org/wiki/Q97105343",
-    "artistULAN_URL": "http://vocab.getty.edu/page/ulan/500524246",
-    "objectDate": "ca. 1775",
-    "objectBeginDate": 1770,
-    "objectEndDate": 1780,
-    "medium": "Glazed earthenware",
-    "dimensions": "Height: 13 7/8 in. (35.2 cm)",
-    "measurements": [
-      {
-        "elementName": "Height",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Height": 35.24257
-        }
-      }
-    ],
-    "creditLine": "Rogers Fund, 1940",
-    "classification": "Ceramics-Pottery",
-    "metadataDate": "2025-01-31T04:54:36.6Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/198656",
-    "tags": [
-      {
-        "term": "Satyrs",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300379732",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q163709"
-      }
-    ],
-    "objectWikidata_URL": "https://www.wikidata.org/wiki/Q116310746",
-    "isTimelineWork": false,
-    "GalleryNumber": "512"
-  },
   "310556": {
     "objectID": 310556,
     "isHighlight": false,
@@ -155407,66 +155161,6 @@
     "tags": null,
     "isTimelineWork": false
   },
-  "192822": {
-    "objectID": 192822,
-    "isHighlight": false,
-    "accessionNumber": "14.58.85a, b",
-    "accessionYear": "1914",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/es/original/DP-39371-001.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/DP-39371-001.jpg",
-    "additionalImages": [
-      "https://images.metmuseum.org/CRDImages/es/original/DP-39371-002.jpg"
-    ],
-    "constituents": [
-      {
-        "constituentID": 35094,
-        "role": "Factory",
-        "name": "Chelsea Porcelain Manufactory",
-        "constituentULAN_URL": "http://vocab.getty.edu/page/ulan/500371694",
-        "constituentWikidata_URL": "https://www.wikidata.org/wiki/Q2072152"
-      }
-    ],
-    "department": "European Sculpture and Decorative Arts",
-    "objectName": "Vase with cover",
-    "title": "Vase with cover",
-    "artistRole": "Factory",
-    "artistDisplayName": "Chelsea Porcelain Manufactory",
-    "artistDisplayBio": "British, 1745\u20131784, Gold Anchor Period, 1759\u201369",
-    "artistAlphaSort": "Chelsea Porcelain Manufactory",
-    "artistNationality": "British",
-    "artistBeginDate": "1744",
-    "artistEndDate": "1784",
-    "artistWikidata_URL": "https://www.wikidata.org/wiki/Q2072152",
-    "artistULAN_URL": "http://vocab.getty.edu/page/ulan/500371694",
-    "objectDate": "ca. 1765\u201370",
-    "objectBeginDate": 1760,
-    "objectEndDate": 1775,
-    "medium": "Soft-paste porcelain",
-    "dimensions": "Height: 9 in. (22.9 cm)",
-    "measurements": [
-      {
-        "elementName": "Height",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Height": 22.860046
-        }
-      }
-    ],
-    "creditLine": "Bequest of John L. Cadwalader, 1914",
-    "classification": "Ceramics-Porcelain",
-    "metadataDate": "2023-08-10T04:56:18.473Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/192822",
-    "tags": [
-      {
-        "term": "Flowers",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300132399",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q506"
-      }
-    ],
-    "isTimelineWork": false
-  },
   "200952": {
     "objectID": 200952,
     "isHighlight": false,
@@ -174853,74 +174547,6 @@
     "tags": null,
     "isTimelineWork": false,
     "GalleryNumber": "362"
-  },
-  "192845": {
-    "objectID": 192845,
-    "isHighlight": false,
-    "accessionNumber": "14.58.115",
-    "accessionYear": "1914",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/es/original/DP-12374-008.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/DP-12374-008.jpg",
-    "additionalImages": [],
-    "constituents": [
-      {
-        "constituentID": 35094,
-        "role": "Factory",
-        "name": "Chelsea Porcelain Manufactory",
-        "constituentULAN_URL": "http://vocab.getty.edu/page/ulan/500371694",
-        "constituentWikidata_URL": "https://www.wikidata.org/wiki/Q2072152"
-      }
-    ],
-    "department": "European Sculpture and Decorative Arts",
-    "objectName": "Vase",
-    "title": "Vase",
-    "artistRole": "Factory",
-    "artistDisplayName": "Chelsea Porcelain Manufactory",
-    "artistDisplayBio": "British, 1745\u20131784, Gold Anchor Period, 1759\u201369",
-    "artistAlphaSort": "Chelsea Porcelain Manufactory",
-    "artistNationality": "British",
-    "artistBeginDate": "1744",
-    "artistEndDate": "1784",
-    "artistWikidata_URL": "https://www.wikidata.org/wiki/Q2072152",
-    "artistULAN_URL": "http://vocab.getty.edu/page/ulan/500371694",
-    "objectDate": "ca. 1760",
-    "objectBeginDate": 1755,
-    "objectEndDate": 1765,
-    "medium": "Soft-paste porcelain",
-    "dimensions": "Height: 13 1/2 in. (34.3 cm)",
-    "measurements": [
-      {
-        "elementName": "Height",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Height": 34.29007
-        }
-      }
-    ],
-    "creditLine": "Bequest of John L. Cadwalader, 1914",
-    "classification": "Ceramics-Porcelain",
-    "metadataDate": "2025-01-31T04:54:36.6Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/192845",
-    "tags": [
-      {
-        "term": "Birds",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300266506",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q5113"
-      },
-      {
-        "term": "Children",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300025945",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q7569"
-      },
-      {
-        "term": "Flowers",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300132399",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q506"
-      }
-    ],
-    "isTimelineWork": false
   },
   "42450": {
     "objectID": 42450,
