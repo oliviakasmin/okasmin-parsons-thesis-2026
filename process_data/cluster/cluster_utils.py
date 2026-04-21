@@ -1,4 +1,5 @@
 import math
+import json
 from pathlib import Path
 
 import numpy as np
@@ -17,6 +18,7 @@ from sklearn.neighbors import NearestNeighbors
 from sklearn.preprocessing import StandardScaler
 
 
+# Used in: internal helper for all cluster notebooks.
 def _sort_profile_cols(cols, prefix: str):
     return sorted(
         [col for col in cols if col.startswith(prefix) and col[len(prefix) :].isdigit()],
@@ -24,6 +26,7 @@ def _sort_profile_cols(cols, prefix: str):
     )
 
 
+# Used in: internal helper for all cluster notebooks.
 def _validate_weight(name: str, value: float):
     if not np.isfinite(value):
         raise ValueError(f"{name} must be finite, got {value}")
@@ -31,6 +34,7 @@ def _validate_weight(name: str, value: float):
         raise ValueError(f"{name} must be >= 0, got {value}")
 
 
+# Used in: cluster_kmeans_1st_weird.ipynb, cluster_kmeans_outliers.ipynb.
 def find_repo_root(start: Path) -> Path:
     start = start.resolve()
     for path in [start] + list(start.parents):
@@ -39,12 +43,14 @@ def find_repo_root(start: Path) -> Path:
     raise RuntimeError("Could not locate repo root (package.json not found in parents).")
 
 
+# Used in: cluster.ipynb, cluster_kmeans.ipynb, cluster_kmeans_outliers.ipynb, cluster_kmeans_1st_weird.ipynb.
 def load_feature_table(feature_csv: Path) -> pd.DataFrame:
     df = pd.read_csv(feature_csv)
     df["object_id"] = df["object_id"].astype(str)
     return df
 
 
+# Used in: cluster.ipynb, cluster_kmeans.ipynb, cluster_kmeans_outliers.ipynb, cluster_kmeans_1st_weird.ipynb.
 def get_feature_groups(df: pd.DataFrame):
     lr_cols = _sort_profile_cols(df.columns, "l") + _sort_profile_cols(df.columns, "r")
     tb_cols = _sort_profile_cols(df.columns, "t") + _sort_profile_cols(df.columns, "b")
@@ -83,6 +89,7 @@ def get_feature_groups(df: pd.DataFrame):
     }
 
 
+# Used in: cluster.ipynb, cluster_kmeans.ipynb, cluster_kmeans_outliers.ipynb, cluster_kmeans_1st_weird.ipynb.
 def build_weighted_matrix(
     df: pd.DataFrame,
     groups: dict,
@@ -90,7 +97,7 @@ def build_weighted_matrix(
     tb_weight: float = 0.2,
     shape_weight: float = 1.0,
     inner_weight: float = 0.8,
-    inner_count_weight: float = 0.35,
+    inner_count_weight: float = 0.5,
 ):
     _validate_weight("lr_weight", lr_weight)
     _validate_weight("tb_weight", tb_weight)
@@ -133,6 +140,7 @@ def build_weighted_matrix(
     return X_weighted, cols, imputer, scaler, W
 
 
+# Used in: cluster.ipynb, cluster_kmeans.ipynb, cluster_kmeans_outliers.ipynb, cluster_kmeans_1st_weird.ipynb.
 def evaluate_labels(X: np.ndarray, labels: np.ndarray) -> dict:
     labels = np.asarray(labels)
     unique = sorted(set(labels.tolist()))
@@ -152,6 +160,7 @@ def evaluate_labels(X: np.ndarray, labels: np.ndarray) -> dict:
     return metrics
 
 
+# Used in: cluster.ipynb, cluster_kmeans.ipynb, cluster_kmeans_outliers.ipynb, cluster_kmeans_1st_weird.ipynb.
 def compute_cluster_compactness(X: np.ndarray, labels: np.ndarray) -> pd.DataFrame:
     rows = []
     for cluster_id in sorted(set(labels.tolist())):
@@ -174,12 +183,14 @@ def compute_cluster_compactness(X: np.ndarray, labels: np.ndarray) -> pd.DataFra
     )
 
 
+# Used in: cluster.ipynb, cluster_kmeans.ipynb, cluster_kmeans_outliers.ipynb, cluster_kmeans_1st_weird.ipynb.
 def attach_labels(df: pd.DataFrame, labels: np.ndarray) -> pd.DataFrame:
     out = df.copy()
     out["cluster"] = labels
     return out
 
 
+# Used in: cluster.ipynb, cluster_kmeans.ipynb, cluster_kmeans_outliers.ipynb, cluster_kmeans_1st_weird.ipynb.
 def stack_cluster_outlines(
     df_labeled: pd.DataFrame,
     cluster_id: int,
@@ -240,6 +251,7 @@ def stack_cluster_outlines(
     return stack
 
 
+# Used in: cluster_kmeans_outliers.ipynb.
 def build_final_labels_with_weird_buckets(
     X: np.ndarray,
     total_groups: int = 12,
@@ -312,6 +324,7 @@ def build_final_labels_with_weird_buckets(
     return final_labels, details
 
 
+# Used in: cluster_kmeans_1st_weird.ipynb.
 def build_labels_with_primary_isolated_weird(
     X: np.ndarray,
     total_groups: int = 12,
@@ -392,3 +405,100 @@ def build_labels_with_primary_isolated_weird(
         "isolation_score": isolation_score,
     }
     return labels, details
+
+
+# Used in: internal helper for export_final_cluster_csvs (cluster_kmeans_1st_weird.ipynb export flow).
+def _cluster_type_for_label(cluster_label: int, n_weird_buckets: int) -> str:
+    if cluster_label == 0:
+        return "outliers"
+    if cluster_label < n_weird_buckets:
+        return "weird_cluster"
+    return "core"
+
+
+# Used in: internal helper for export_final_cluster_csvs (cluster_kmeans_1st_weird.ipynb export flow).
+def build_cluster_representatives(
+    df_labeled: pd.DataFrame,
+    X: np.ndarray,
+    n_weird_buckets: int,
+    cluster_prefix: str = "cluster_",
+    centroid_round_digits: int = 6,
+) -> pd.DataFrame:
+    """
+    Build one summary row per cluster including:
+    - cluster name
+    - cluster_type
+    - count
+    - closest_object_id (nearest sample to centroid)
+    - centroid_json (serialized centroid vector in weighted feature space)
+    """
+    labels = df_labeled["cluster"].to_numpy()
+    if len(labels) != X.shape[0]:
+        raise ValueError(
+            f"Length mismatch: df_labeled has {len(labels)} rows but X has {X.shape[0]} rows"
+        )
+
+    rows = []
+    for cluster_label in sorted(set(labels.tolist())):
+        idx = np.where(labels == cluster_label)[0]
+        Xc = X[idx]
+        centroid = Xc.mean(axis=0)
+        dists = np.linalg.norm(Xc - centroid, axis=1)
+        nearest_local = int(np.argmin(dists))
+        nearest_global = int(idx[nearest_local])
+        closest_object_id = str(df_labeled.iloc[nearest_global]["object_id"])
+
+        centroid_list = [round(float(v), centroid_round_digits) for v in centroid.tolist()]
+        rows.append(
+            {
+                "cluster": f"{cluster_prefix}{int(cluster_label)}",
+                "cluster_type": _cluster_type_for_label(int(cluster_label), n_weird_buckets),
+                "count": int(len(idx)),
+                "closest_object_id": closest_object_id,
+                "closest_dist_to_centroid": float(dists[nearest_local]),
+                "centroid_json": json.dumps(centroid_list),
+            }
+        )
+
+    return pd.DataFrame(rows).sort_values(by="cluster").reset_index(drop=True)
+
+
+# Used in: cluster_kmeans_1st_weird.ipynb.
+def export_final_cluster_csvs(
+    df_labeled: pd.DataFrame,
+    X: np.ndarray,
+    n_weird_buckets: int,
+    object_ids_csv_path: Path,
+    keys_csv_path: Path,
+    cluster_prefix: str = "cluster_",
+) -> tuple[pd.DataFrame, pd.DataFrame]:
+    """
+    Export:
+    1) object-level assignments CSV
+    2) cluster-level keys CSV including representative object and centroid
+    """
+    out = df_labeled.copy()
+    out["cluster"] = out["cluster"].astype(int)
+    out["cluster_type"] = out["cluster"].map(
+        lambda c: _cluster_type_for_label(int(c), n_weird_buckets)
+    )
+    out["cluster"] = out["cluster"].map(lambda c: f"{cluster_prefix}{int(c)}")
+
+    object_cols = ["object_id", "cluster", "cluster_type"]
+    out_objects = out[object_cols].copy()
+
+    keys_df = build_cluster_representatives(
+        df_labeled=df_labeled,
+        X=X,
+        n_weird_buckets=n_weird_buckets,
+        cluster_prefix=cluster_prefix,
+    )
+
+    object_ids_csv_path = Path(object_ids_csv_path)
+    keys_csv_path = Path(keys_csv_path)
+    object_ids_csv_path.parent.mkdir(parents=True, exist_ok=True)
+    keys_csv_path.parent.mkdir(parents=True, exist_ok=True)
+
+    out_objects.to_csv(object_ids_csv_path, index=False)
+    keys_df.to_csv(keys_csv_path, index=False)
+    return out_objects, keys_df
