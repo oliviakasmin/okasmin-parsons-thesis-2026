@@ -423,6 +423,7 @@ def build_cluster_representatives(
     n_weird_buckets: int,
     cluster_prefix: str = "cluster_",
     centroid_round_digits: int = 6,
+    top_k_closest: int = 5,
 ) -> pd.DataFrame:
     """
     Build one summary row per cluster including:
@@ -430,6 +431,7 @@ def build_cluster_representatives(
     - cluster_type
     - count
     - closest_object_id (nearest sample to centroid)
+    - top-K closest object_ids ordered by centroid distance
     - centroid_json (serialized centroid vector in weighted feature space)
     """
     labels = df_labeled["cluster"].to_numpy()
@@ -444,6 +446,13 @@ def build_cluster_representatives(
         Xc = X[idx]
         centroid = Xc.mean(axis=0)
         dists = np.linalg.norm(Xc - centroid, axis=1)
+        order = np.argsort(dists)
+
+        k = int(max(1, top_k_closest))
+        top_local = order[: min(k, len(order))]
+        top_global = idx[top_local]
+        top_object_ids = [str(df_labeled.iloc[int(i)]["object_id"]) for i in top_global]
+
         nearest_local = int(np.argmin(dists))
         nearest_global = int(idx[nearest_local])
         closest_object_id = str(df_labeled.iloc[nearest_global]["object_id"])
@@ -456,6 +465,12 @@ def build_cluster_representatives(
                 "count": int(len(idx)),
                 "closest_object_id": closest_object_id,
                 "closest_dist_to_centroid": float(dists[nearest_local]),
+                "closest_object_ids_top5": json.dumps(top_object_ids),
+                "closest_object_id_1": top_object_ids[0] if len(top_object_ids) > 0 else "",
+                "closest_object_id_2": top_object_ids[1] if len(top_object_ids) > 1 else "",
+                "closest_object_id_3": top_object_ids[2] if len(top_object_ids) > 2 else "",
+                "closest_object_id_4": top_object_ids[3] if len(top_object_ids) > 3 else "",
+                "closest_object_id_5": top_object_ids[4] if len(top_object_ids) > 4 else "",
                 "centroid_json": json.dumps(centroid_list),
             }
         )
