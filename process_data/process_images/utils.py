@@ -3,9 +3,9 @@ import uuid
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
-OBJECTS_JSON = REPO_ROOT / "pipeline/data/objects.json"
+OBJECTS_JSON = REPO_ROOT / "fetch_data/data/objects.json"
 
-save_output_dir = REPO_ROOT / "hf_space/pipeline/test_images_2"
+save_output_dir = REPO_ROOT / "process_data/test_images_2"
 
 
 def load_objects_json(objects_json_path=OBJECTS_JSON):

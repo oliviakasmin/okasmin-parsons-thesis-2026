@@ -21,7 +21,7 @@ import numpy as np
 from PIL import Image as PImage
 
 DEFAULT_OBJECT_IDS_JSON = "test_assets/manual_interesting_ones.json"
-DEFAULT_INPUT_DIR = "hf_space/pipeline/test_images"
+DEFAULT_INPUT_DIR = "process_data/test_images"
 DEFAULT_OUTPUT_DIR = "test_assets/outline_images"
 DEFAULT_OUTPUT_JSON = "test_assets/outline_contours.json"
 

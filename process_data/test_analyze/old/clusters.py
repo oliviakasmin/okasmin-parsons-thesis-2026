@@ -7,9 +7,9 @@ Outputs:
 2) cluster_assignments.csv: one row per object with cluster assignment
 
 Usage examples:
-  python hf_space/analyze/clusters.py
-  python hf_space/analyze/clusters.py --k 10
-  python hf_space/analyze/clusters.py --features-csv hf_space/pipeline/features/silhouette_features.csv
+  python process_data/test_analyze/old/clusters.py
+  python process_data/test_analyze/old/clusters.py --k 10
+  python process_data/test_analyze/old/clusters.py --features-csv process_data/features/silhouette_features.csv
 """
 
 import argparse
@@ -19,8 +19,8 @@ import math
 import random
 from pathlib import Path
 
-DEFAULT_FEATURES_CSV = "hf_space/pipeline/features/test_silhouette_features.csv"
-DEFAULT_MANUAL_REJECT_JSON = "pipeline/data/manual_reject_object_ids.json"
+DEFAULT_FEATURES_CSV = "process_data/features/test_silhouette_features.csv"
+DEFAULT_MANUAL_REJECT_JSON = "fetch_data/data/manual_reject_object_ids.json"
 DEFAULT_OUTPUT_CLUSTERS_JSON = "test_assets/clusters.json"
 DEFAULT_OUTPUT_ASSIGNMENTS_CSV = "test_assets/cluster_assignments.csv"
 DEFAULT_K = 20

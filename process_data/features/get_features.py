@@ -465,17 +465,18 @@ def run_feature_extraction(
     alpha_threshold=DEFAULT_ALPHA_THRESHOLD,
     max_files=None,
 ):
-    pipeline_dir = Path(__file__).resolve().parent
-    resolved_input_dir = Path(input_dir) if input_dir else (pipeline_dir / "real_images")
+    features_dir = Path(__file__).resolve().parent
+    process_data_dir = features_dir.parent
+    resolved_input_dir = Path(input_dir) if input_dir else (process_data_dir / "real_images")
     resolved_output_path = (
         Path(output_path)
         if output_path
-        else (pipeline_dir / "features" / "silhouette_features.csv")
+        else (features_dir / "silhouette_features.csv")
     )
     resolved_skipped_log_path = (
         Path(skipped_log_path)
         if skipped_log_path
-        else (pipeline_dir / "features" / "skipped_features.jsonl")
+        else (features_dir / "skipped_features.jsonl")
     )
 
     rows, skipped, total_files = build_feature_table(

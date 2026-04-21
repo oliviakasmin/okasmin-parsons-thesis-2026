@@ -1,5 +1,5 @@
 # RUN THIS FILE FROM ROOT DIRECTORY
-# python -m pipeline.fetch.get_objects
+# python -m fetch_data.fetch.get_objects
 
 
 # loop through object_ids and save relevant info for each object
@@ -15,7 +15,7 @@ import requests
 from tqdm import tqdm
 
 # NOTE: Run this file as a module:
-#   python -m pipeline.fetch.get_objects
+#   python -m fetch_data.fetch.get_objects
 
 from .filter_objects import apply_filters  # centralised filtering logic
 
@@ -26,7 +26,7 @@ class ForbiddenError(Exception):
 
 # Paths
 ROOT = Path(__file__).resolve().parents[2]  # .../okasmin-parsons-thesis-2026
-DATA_DIR = ROOT / "pipeline" / "data"
+DATA_DIR = ROOT / "fetch_data" / "data"
 OBJECT_IDS_PATH = DATA_DIR / "object_ids.json"
 OBJECTS_PATH = DATA_DIR / "objects.json"
 REJECT_IDS_PATH = DATA_DIR / "reject_object_ids.json"

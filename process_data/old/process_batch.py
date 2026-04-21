@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
 # RUN THIS FILE FROM ROOT DIRECTORY
-# python hf_space/pipeline/process_batch.py
+# python process_data/old/process_batch.py
 #
 # QUICK START
 # 1) Default test mode (processes 1 image from objects.json):
-#    python hf_space/pipeline/process_batch.py
+#    python process_data/old/process_batch.py
 # 2) Single objectID from objects.json:
-#    python hf_space/pipeline/process_batch.py --object-id 46043
+#    python process_data/old/process_batch.py --object-id 46043
 # 3) Batch N images:
-#    python hf_space/pipeline/process_batch.py --limit 25
+#    python process_data/old/process_batch.py --limit 25
 # 4) Full run:
-#    python hf_space/pipeline/process_batch.py --all
+#    python process_data/old/process_batch.py --all
 
 import argparse
 import json
@@ -29,12 +29,12 @@ from extract_features import (
 )
 
 DEFAULT_LIMIT = 1
-DEFAULT_OBJECTS_JSON = "pipeline/data/objects.json"
-DEFAULT_MANUAL_REJECT_JSON = "pipeline/data/manual_reject_object_ids.json"
-DEFAULT_OUTPUT_DIR = "hf_space/pipeline/test_images"
+DEFAULT_OBJECTS_JSON = "fetch_data/data/objects.json"
+DEFAULT_MANUAL_REJECT_JSON = "fetch_data/data/manual_reject_object_ids.json"
+DEFAULT_OUTPUT_DIR = "process_data/test_images"
 DEFAULT_DRY_RUN = True
-TEST_FEATURES_CSV = "hf_space/pipeline/features/test_silhouette_features.csv"
-REAL_FEATURES_CSV = "hf_space/pipeline/features/silhouette_features.csv"
+TEST_FEATURES_CSV = "process_data/features/test_silhouette_features.csv"
+REAL_FEATURES_CSV = "process_data/features/silhouette_features.csv"
 DEFAULT_SKIP_EXISTING = True
 DEFAULT_PREFETCH_COUNT = 4
 DEFAULT_DOWNLOAD_WORKERS = 4

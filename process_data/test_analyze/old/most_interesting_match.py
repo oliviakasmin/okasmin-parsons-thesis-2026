@@ -19,9 +19,9 @@ import math
 import re
 from pathlib import Path
 
-DEFAULT_FEATURES_CSV = "hf_space/pipeline/features/test_silhouette_features.csv"
-DEFAULT_OBJECTS_JSON = "pipeline/data/objects.json"
-DEFAULT_MANUAL_REJECT_JSON = "pipeline/data/manual_reject_object_ids.json"
+DEFAULT_FEATURES_CSV = "process_data/features/test_silhouette_features.csv"
+DEFAULT_OBJECTS_JSON = "fetch_data/data/objects.json"
+DEFAULT_MANUAL_REJECT_JSON = "fetch_data/data/manual_reject_object_ids.json"
 DEFAULT_OUTPUT_JSON = "test_assets/most_interesting_matches.json"
 DEFAULT_TOP_K = 20
 MISSING_ROW_PENALTY = 1.0

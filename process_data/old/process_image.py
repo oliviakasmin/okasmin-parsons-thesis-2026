@@ -1,5 +1,5 @@
 # RUN THIS FILE FROM ROOT DIRECTORY
-# python hf_space/pipeline/process_image.py
+# python process_data/old/process_image.py
 
 from pathlib import Path
 
@@ -42,7 +42,7 @@ def process_single_image(image_url, object_id, output_dir):
 
 def main():
     repo_root = Path(__file__).resolve().parents[2]
-    output_dir = repo_root / "hf_space" / "pipeline" / "test_images"
+    output_dir = repo_root / "process_data" / "test_images"
     output_dir.mkdir(parents=True, exist_ok=True)
 
     process_single_image(

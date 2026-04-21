@@ -1,5 +1,5 @@
 # RUN THIS FILE FROM ROOT DIRECTORY.
-# python hf_space/pipeline/crop_standardize.py
+# python process_data/process_images/crop_standardize.py
 
 """
 Standardize vessel image after background removed using the BRIA model output.
@@ -98,7 +98,7 @@ def standardize_single_image(
 
 def main():  # Runs a local one-image smoke test from repository context.
     repo_root = Path(__file__).resolve().parents[2]
-    test_images_dir = repo_root / "hf_space" / "pipeline" / "test_images"
+    test_images_dir = repo_root / "process_data" / "test_images"
     input_no_bg_path = test_images_dir / f"{TEST_OBJECT_ID}_no_bg.png"
     input_mask_path = test_images_dir / f"{TEST_OBJECT_ID}_mask_img.png"
     if not input_no_bg_path.exists() or not input_mask_path.exists():

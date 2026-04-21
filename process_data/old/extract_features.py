@@ -1,5 +1,5 @@
 # RUN THIS FILE FROM ROOT DIRECTORY
-# python hf_space/pipeline/extract_features.py
+# python process_data/old/extract_features.py
 
 import csv
 import math

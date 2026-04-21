@@ -1,5 +1,5 @@
 # Fetch object IDs from the Met API for several ceramic vessel search terms,
-# merge and deduplicate them, and write the unique IDs to pipeline/data/object_ids.json.
+# merge and deduplicate them, and write the unique IDs to fetch_data/data/object_ids.json.
 
 
 import json
@@ -17,7 +17,7 @@ BASE_URL = "https://collectionapi.metmuseum.org/public/collection/v1/search"
 
 # where to save the combined list of IDs
 ROOT = Path(__file__).resolve().parents[2]  # repo root: .../okasmin-parsons-thesis-2026
-DATA_DIR = ROOT / "pipeline" / "data"
+DATA_DIR = ROOT / "fetch_data" / "data"
 DATA_DIR.mkdir(parents=True, exist_ok=True)
 OBJECT_IDS_PATH = DATA_DIR / "object_ids.json"
 
@@ -58,4 +58,4 @@ if __name__ == "__main__":
 
 
 # to run this file:
-# python pipeline/fetch/get_object_ids.py
+# python -m fetch_data.fetch.get_object_ids

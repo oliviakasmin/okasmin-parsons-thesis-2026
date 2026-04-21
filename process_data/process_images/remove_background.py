@@ -1,5 +1,5 @@
 # RUN THIS FILE FROM ROOT DIRECTORY
-# python hf_space/pipeline/remove_background.py
+# python process_data/process_images/remove_background.py
 
 import io
 

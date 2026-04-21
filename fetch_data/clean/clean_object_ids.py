@@ -1,5 +1,5 @@
 # RUN THIS FILE FROM ROOT DIRECTORY
-#   python -m pipeline.clean.clean_object_ids
+#   python -m fetch_data.clean.clean_object_ids
 
 # remove object IDs from objects_ids.json if they appear in the reject_object_ids.json
 
@@ -8,7 +8,7 @@ from pathlib import Path
 
 # Paths
 ROOT = Path(__file__).resolve().parents[2]  # .../okasmin-parsons-thesis-2026
-DATA_DIR = ROOT / "pipeline" / "data"
+DATA_DIR = ROOT / "fetch_data" / "data"
 OBJECT_IDS_PATH = DATA_DIR / "object_ids.json"
 REJECT_IDS_PATH = DATA_DIR / "reject_object_ids.json"
 MANUAL_REJECT_IDS_PATH = DATA_DIR / "manual_reject_object_ids.json"

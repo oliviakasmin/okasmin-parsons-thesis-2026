@@ -1,6 +1,6 @@
 import { useState } from "react";
-import manualRejectObjectIds from "../../pipeline/data/manual_reject_object_ids.json";
-import objectsData from "../../pipeline/data/objects.json";
+import manualRejectObjectIds from "../../fetch_data/data/manual_reject_object_ids.json";
+import objectsData from "../../fetch_data/data/objects.json";
 import clustersData from "../../test_assets/clusters.json";
 import interestingMatchesData from "../../test_assets/most_interesting_matches.json";
 import manualInterestingOnesData from "../../test_assets/manual_interesting_ones.json";

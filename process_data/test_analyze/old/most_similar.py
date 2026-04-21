@@ -3,8 +3,8 @@
 Given an object ID in the silhouette feature CSV, return the most similar object ID.
 
 Usage:
-  python hf_space/analyze/most_similar.py --object-id 44793
-  python hf_space/analyze/most_similar.py --object-id 44793 --verbose
+  python process_data/test_analyze/old/most_similar.py --object-id 44793
+  python process_data/test_analyze/old/most_similar.py --object-id 44793 --verbose
 """
 
 import argparse
@@ -12,7 +12,7 @@ import csv
 import math
 from pathlib import Path
 
-DEFAULT_FEATURES_CSV = "hf_space/pipeline/features/test_silhouette_features.csv"
+DEFAULT_FEATURES_CSV = "process_data/features/test_silhouette_features.csv"
 MISSING_ROW_PENALTY = 1.0
 
 

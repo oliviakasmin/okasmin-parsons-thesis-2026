@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import manualRejectObjectIds from "../../pipeline/data/manual_reject_object_ids.json";
-import objectsData from "../../pipeline/data/objects.json";
+import manualRejectObjectIds from "../../fetch_data/data/manual_reject_object_ids.json";
+import objectsData from "../../fetch_data/data/objects.json";
 
 type ImageMode = "mask" | "no_bg" | "outline";
 
@@ -24,15 +24,15 @@ const objectTitleById = new Map(
   ).map(([objectIdKey, value]) => [String(value.objectID ?? objectIdKey), value.title ?? "Unknown"])
 );
 
-const maskImageModules = import.meta.glob("../../hf_space/pipeline/real_images/*_mask.png", {
+const maskImageModules = import.meta.glob("../../process_data/real_images/*_mask.png", {
   eager: true,
   import: "default"
 }) as Record<string, string>;
-const noBgImageModules = import.meta.glob("../../hf_space/pipeline/real_images/*_no_bg.png", {
+const noBgImageModules = import.meta.glob("../../process_data/real_images/*_no_bg.png", {
   eager: true,
   import: "default"
 }) as Record<string, string>;
-const outlineImageModules = import.meta.glob("../../hf_space/pipeline/real_images/*_outline.png", {
+const outlineImageModules = import.meta.glob("../../process_data/real_images/*_outline.png", {
   eager: true,
   import: "default"
 }) as Record<string, string>;

@@ -1,8 +1,8 @@
 # RUN THIS FILE FROM ROOT DIRECTORY
-# python -m pipeline.clean.clean_objects
+# python -m fetch_data.clean.clean_objects
 
 
-# remove any objects in objects.json that appear in pipeline/data/manual_reject_object_ids.json
+# remove any objects in objects.json that appear in fetch_data/data/manual_reject_object_ids.json
 
 
 # remove any objects in objects.json that appear in reject_object_ids
@@ -18,11 +18,11 @@ import json
 from pathlib import Path
 from typing import Any, Dict
 
-from pipeline.fetch.filter_objects import apply_filters
+from fetch_data.fetch.filter_objects import apply_filters
 
 # Paths
 ROOT = Path(__file__).resolve().parents[2]  # .../okasmin-parsons-thesis-2026
-DATA_DIR = ROOT / "pipeline" / "data"
+DATA_DIR = ROOT / "fetch_data" / "data"
 OBJECTS_PATH = DATA_DIR / "objects.json"
 REJECT_IDS_PATH = DATA_DIR / "reject_object_ids.json"
 MANUAL_REJECT_IDS_PATH = DATA_DIR / "manual_reject_object_ids.json"

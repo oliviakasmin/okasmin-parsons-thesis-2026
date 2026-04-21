@@ -7,26 +7,25 @@ from pathlib import Path
 
 import torch
 
-pipeline_dir = Path("../pipeline").resolve()
-if str(pipeline_dir) not in sys.path:
-    sys.path.insert(0, str(pipeline_dir))
+MODULE_DIR = Path(__file__).resolve().parent
+if str(MODULE_DIR) not in sys.path:
+    sys.path.insert(0, str(MODULE_DIR))
 
 from crop_standardize import standardize_single_image
 from extract_mask_contours import (
     draw_contours_from_mask_image,
     extract_outline_from_mask_image,
 )
-from remove_background import run_remove_background_step
 from utils import load_objects_json, save_images
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
-DEFAULT_OUTPUT_DIR = REPO_ROOT / "hf_space/pipeline/real_images"
-DEFAULT_ERROR_LOG = REPO_ROOT / "hf_space/pipeline/real_images_errors.jsonl"
-DEFAULT_PROCESSED_IDS = REPO_ROOT / "hf_space/pipeline/processed_ids.txt"
+DEFAULT_OUTPUT_DIR = REPO_ROOT / "process_data/real_images"
+DEFAULT_ERROR_LOG = REPO_ROOT / "process_data/real_images_errors.jsonl"
+DEFAULT_PROCESSED_IDS = REPO_ROOT / "process_data/processed_ids.txt"
 DEFAULT_SKIP_OBJECT_ID_FILES = [
-    REPO_ROOT / "pipeline/data/api_errors_object_ids.json",
-    REPO_ROOT / "pipeline/data/manual_reject_object_ids.json",
-    REPO_ROOT / "pipeline/data/reject_object_ids.json",
+    REPO_ROOT / "fetch_data/data/api_errors_object_ids.json",
+    REPO_ROOT / "fetch_data/data/manual_reject_object_ids.json",
+    REPO_ROOT / "fetch_data/data/reject_object_ids.json",
 ]
 
 
@@ -144,6 +143,9 @@ def clear_memory():
 
 
 def process_single_object(object_id, image_url, output_dir):
+    # Import lazily so CLI help/arg parsing still works if model deps are missing.
+    from remove_background import run_remove_background_step
+
     no_bg_image, model_mask = run_remove_background_step(image_url=image_url)
     standardized, std_mask = standardize_single_image(no_bg_image, model_mask)
     contours, _, _, _ = extract_outline_from_mask_image(std_mask)

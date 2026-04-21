@@ -1,6 +1,6 @@
 {
   "source_object_ids_json": "test_assets/manual_interesting_ones.json",
-  "input_dir": "hf_space/pipeline/test_images",
+  "input_dir": "process_data/test_images",
   "output_dir": "test_assets/outline_images",
   "processed_count": 19,
   "contours": {
