@@ -1,0 +1,13 @@
+cluster,cluster_type,count
+cluster_0,outliers,117
+cluster_1,weird_cluster,164
+cluster_2,weird_cluster,108
+cluster_3,core,475
+cluster_4,core,525
+cluster_5,core,256
+cluster_6,core,317
+cluster_7,core,373
+cluster_8,core,411
+cluster_9,core,551
+cluster_10,core,467
+cluster_11,core,124
