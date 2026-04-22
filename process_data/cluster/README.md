@@ -17,6 +17,47 @@ The final approach in `cluster_kmeans_1st_weird.ipynb` is:
 - Cluster the rest into core clusters so total groups stay fixed at 12.
 - Evaluate using silhouette, Calinski-Harabasz, Davies-Bouldin, compactness, and overlay visual checks.
 
+## Exactly How `cluster_1` and `cluster_2` Are Calculated
+
+In this notebook, weird groups are built by `build_labels_with_primary_isolated_weird(...)` in `cluster_utils.py`.
+The run uses:
+
+- `TOTAL_GROUPS = 12`
+- `N_WEIRD_BUCKETS = 3`
+- `PRIMARY_WEIRD_FRACTION = 0.03`
+- `SECONDARY_WEIRD_FRACTION = 0.07`
+- `PRIMARY_KNN_K = 7`
+
+With `N_WEIRD_BUCKETS = 3`, labels are interpreted as:
+- `cluster_0` -> `outliers` (primary weird bucket)
+- `cluster_1` and `cluster_2` -> `weird_cluster` (secondary weird buckets)
+- `cluster_3` to `cluster_11` -> `core`
+
+Step-by-step for `cluster_1` and `cluster_2`:
+
+1. Compute a global isolation score for each object:
+   - Fit kNN (`k=7`) in weighted feature space.
+   - For each object, isolation score = mean distance to its 7 nearest neighbors.
+   - Higher score means "more isolated".
+
+2. Sort all objects by isolation score descending.
+
+3. Assign top `round(0.03 * N)` objects to `cluster_0` (`outliers`).
+
+4. From the remaining objects, take top `round(0.07 * N)` most isolated as the secondary weird candidate pool.
+   - In this run, this pool is then split into 2 groups because `N_WEIRD_BUCKETS - 1 = 2`.
+
+5. Run KMeans with `n_clusters=2` on that secondary weird pool only.
+   - KMeans local label `0` becomes global `cluster_1`.
+   - KMeans local label `1` becomes global `cluster_2`.
+
+6. All objects not assigned above are clustered into core groups (`cluster_3` ... `cluster_11`).
+
+Important interpretation note:
+- `cluster_1` and `cluster_2` are **not** hand-defined semantic categories.
+- They are the two KMeans splits of the "next-most-isolated" subset.
+- Their numeric IDs can swap across reruns if random seed/settings change, even if the visual groups are similar.
+
 ## Variables We Tuned
 
 During experimentation, we repeatedly toggled these variables to balance cluster tightness, outlier handling, and interpretability:

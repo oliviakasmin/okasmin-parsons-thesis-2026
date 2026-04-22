@@ -1,6 +1,8 @@
 import { Route, Routes, useNavigate } from "react-router-dom";
 import Test from "./Test";
 import Test2 from "./Test2";
+import ClusterTest from "./ClusterTest";
+import { Shelf } from "./Components";
 
 function Home() {
   const navigate = useNavigate();
@@ -30,7 +32,7 @@ function Home() {
             cursor: "pointer"
           }}
         >
-          Open Test View
+          Test
         </button>
         <button
           type="button"
@@ -45,7 +47,37 @@ function Home() {
             cursor: "pointer"
           }}
         >
-          Open Test2 View
+          Test2
+        </button>
+        <button
+          type="button"
+          onClick={() => navigate("/cluster-test")}
+          style={{
+            border: "1px solid #fff",
+            background: "#fff",
+            color: "#000",
+            padding: "0.6rem 0.9rem",
+            borderRadius: "8px",
+            fontWeight: 700,
+            cursor: "pointer"
+          }}
+        >
+          ClusterTest
+        </button>
+        <button
+          type="button"
+          onClick={() => navigate("/shelf")}
+          style={{
+            border: "1px solid #fff",
+            background: "#fff",
+            color: "#000",
+            padding: "0.6rem 0.9rem",
+            borderRadius: "8px",
+            fontWeight: 700,
+            cursor: "pointer"
+          }}
+        >
+          Shelf
         </button>
       </div>
     </main>
@@ -58,6 +90,8 @@ function App() {
       <Route path="/" element={<Home />} />
       <Route path="/test" element={<Test />} />
       <Route path="/test2" element={<Test2 />} />
+      <Route path="/cluster-test" element={<ClusterTest />} />
+      <Route path="/shelf" element={<Shelf />} />
     </Routes>
   );
 }
