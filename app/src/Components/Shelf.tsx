@@ -3,15 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { Box, Button, Typography } from "@mui/material";
 import finalClusterKeysCsv from "../../../process_data/cluster/final_clusters_keys.csv?raw";
 import finalClusterObjectIdsCsv from "../../../process_data/cluster/final_clusters_object_ids.csv?raw";
-
-type ShelfMode = "outline" | "solid";
-
-type ClusterRow = {
-  cluster: string;
-  clusterType: string;
-  allObjectIds: string[];
-  closestTop5Ids: string[];
-};
+import BackButton from "./BackButton";
+import ImageToggleButton from "./ImageToggleButton";
+import useImageToggle from "../hooks/useImageToggle";
+import useImageModules from "../hooks/useImageModules";
+import useFormatClusters, { type ClusterRow } from "../hooks/useFormatClusters";
 
 const cluster0 = "cluster_0";
 const cluster1 = "cluster_1";
@@ -61,119 +57,17 @@ const SOURCE_IMAGE_SIZE_PX = 768;
 const IMAGE_ASPECT_RATIO = 0.2;
 const RENDER_IMAGE_SIZE_PX = SOURCE_IMAGE_SIZE_PX * IMAGE_ASPECT_RATIO;
 
-const outlineImageModules = import.meta.glob("../../../process_data/real_images/*_outline.png", {
-  eager: true,
-  import: "default"
-}) as Record<string, string>;
-
-const maskImageModules = import.meta.glob("../../../process_data/real_images/*_mask.png", {
-  eager: true,
-  import: "default"
-}) as Record<string, string>;
-
-function parseCsvLine(line: string) {
-  const values: string[] = [];
-  let current = "";
-  let insideQuotes = false;
-
-  for (let index = 0; index < line.length; index += 1) {
-    const character = line[index];
-    const nextCharacter = line[index + 1];
-
-    if (character === '"') {
-      if (insideQuotes && nextCharacter === '"') {
-        current += '"';
-        index += 1;
-      } else {
-        insideQuotes = !insideQuotes;
-      }
-      continue;
-    }
-
-    if (character === "," && !insideQuotes) {
-      values.push(current);
-      current = "";
-      continue;
-    }
-
-    current += character;
-  }
-
-  values.push(current);
-  return values;
-}
-
-function toImageMap(modules: Record<string, string>, suffix: "_outline.png" | "_mask.png") {
-  const imageMap = new Map<string, string>();
-  for (const [path, src] of Object.entries(modules)) {
-    const filename = path.split("/").pop() ?? "";
-    if (!filename.endsWith(suffix)) continue;
-    const objectId = filename.slice(0, -suffix.length);
-    imageMap.set(objectId, src);
-  }
-  return imageMap;
-}
-
-function buildClusters(keysCsv: string, objectIdsCsv: string) {
-  const objectIdsByCluster = new Map<string, string[]>();
-  const objectIdLines = objectIdsCsv.split(/\r?\n/).filter(Boolean);
-
-  for (const line of objectIdLines.slice(1)) {
-    const [objectId, cluster] = parseCsvLine(line);
-    if (!cluster || !objectId) continue;
-    const existing = objectIdsByCluster.get(cluster) ?? [];
-    existing.push(objectId);
-    objectIdsByCluster.set(cluster, existing);
-  }
-
-  const rows: ClusterRow[] = [];
-  const keyLines = keysCsv.split(/\r?\n/).filter(Boolean);
-  const header = parseCsvLine(keyLines[0]);
-  const clusterIdx = header.indexOf("cluster");
-  const clusterTypeIdx = header.indexOf("cluster_type");
-  const closest1Idx = header.indexOf("closest_object_id_1");
-  const closest2Idx = header.indexOf("closest_object_id_2");
-  const closest3Idx = header.indexOf("closest_object_id_3");
-  const closest4Idx = header.indexOf("closest_object_id_4");
-  const closest5Idx = header.indexOf("closest_object_id_5");
-
-  for (const line of keyLines.slice(1)) {
-    const cells = parseCsvLine(line);
-    const cluster = cells[clusterIdx];
-    if (!cluster) continue;
-    rows.push({
-      cluster,
-      clusterType: cells[clusterTypeIdx] ?? "unknown",
-      allObjectIds: objectIdsByCluster.get(cluster) ?? [],
-      closestTop5Ids: [
-        cells[closest1Idx],
-        cells[closest2Idx],
-        cells[closest3Idx],
-        cells[closest4Idx],
-        cells[closest5Idx]
-      ].filter(Boolean)
-    });
-  }
-
-  return rows;
-}
-
 function defaultStackOpacity(clusterSize: number) {
   return Math.min(1, Math.max(0.1, 1 / Math.max(18, clusterSize)));
 }
 
 function Shelf() {
   const navigate = useNavigate();
-  const [mode, setMode] = useState<ShelfMode>("solid");
+  const { mode, options, setMode } = useImageToggle();
   const [solidIndexByCluster, setSolidIndexByCluster] = useState<Record<string, number>>({});
   const [hoveredCluster, setHoveredCluster] = useState<string | null>(null);
-
-  const outlineImageByObjectId = useMemo(() => toImageMap(outlineImageModules, "_outline.png"), []);
-  const maskImageByObjectId = useMemo(() => toImageMap(maskImageModules, "_mask.png"), []);
-  const clusterRows = useMemo(
-    () => buildClusters(finalClusterKeysCsv, finalClusterObjectIdsCsv),
-    []
-  );
+  const { outlineImageByObjectId, maskImageByObjectId } = useImageModules();
+  const { clusterRows } = useFormatClusters(finalClusterKeysCsv, finalClusterObjectIdsCsv);
   const orderedClusterRows = useMemo(() => {
     const byCluster = new Map(clusterRows.map((row) => [row.cluster, row]));
     return shelves.flatMap((row) =>
@@ -197,24 +91,7 @@ function Shelf() {
       }}
     >
       <Box sx={{ display: "flex", alignItems: "center", gap: "0.6rem", mb: "0.85rem" }}>
-        <Button
-          type="button"
-          onClick={() => navigate("/cluster-test")}
-          variant="outlined"
-          sx={{
-            borderColor: "#fff",
-            background: "#fff",
-            color: "#000",
-            px: "0.65rem",
-            py: "0.35rem",
-            minWidth: 0,
-            borderRadius: 0,
-            fontWeight: 700,
-            "&:hover": { borderColor: "#fff", background: "#fff" }
-          }}
-        >
-          Back
-        </Button>
+        <BackButton to="/cluster-test" />
         <Typography component="h1" sx={{ m: 0, fontSize: "1.25rem" }}>
           Shelf
         </Typography>
@@ -222,48 +99,7 @@ function Shelf() {
 
       <Box sx={{ display: "flex", alignItems: "center", gap: "0.5rem", mb: "0.5rem" }}>
         <Box sx={{ display: "flex", alignItems: "center", gap: 0 }}>
-          <Button
-            type="button"
-            onClick={() => setMode("solid")}
-            variant="outlined"
-            sx={{
-              borderColor: "#fff",
-              background: mode === "solid" ? "#fff" : "#000",
-              color: mode === "solid" ? "#000" : "#fff",
-              px: "0.55rem",
-              py: "0.3rem",
-              minWidth: 0,
-              borderRadius: 0,
-              textTransform: "none",
-              "&:hover": {
-                borderColor: "#fff",
-                background: mode === "solid" ? "#fff" : "#000"
-              }
-            }}
-          >
-            solid
-          </Button>
-          <Button
-            type="button"
-            onClick={() => setMode("outline")}
-            variant="outlined"
-            sx={{
-              borderColor: "#fff",
-              background: mode === "outline" ? "#fff" : "#000",
-              color: mode === "outline" ? "#000" : "#fff",
-              px: "0.55rem",
-              py: "0.3rem",
-              minWidth: 0,
-              borderRadius: 0,
-              textTransform: "none",
-              "&:hover": {
-                borderColor: "#fff",
-                background: mode === "outline" ? "#fff" : "#000"
-              }
-            }}
-          >
-            outline
-          </Button>
+          <ImageToggleButton mode={mode} options={options} onChange={setMode} />
         </Box>
       </Box>
 
@@ -298,6 +134,7 @@ function Shelf() {
             <Box
               component="article"
               key={clusterRow.cluster}
+              onClick={() => navigate(`/all/${clusterRow.cluster}`)}
               onMouseEnter={() => setHoveredCluster(clusterRow.cluster)}
               onMouseLeave={() => setHoveredCluster(null)}
               sx={{
@@ -307,7 +144,8 @@ function Shelf() {
                 minHeight: `${RENDER_IMAGE_SIZE_PX * 0.82}px`,
                 maxHeight: `${RENDER_IMAGE_SIZE_PX * 1.02}px`,
                 paddingLeft: `${RENDER_IMAGE_SIZE_PX * 0.2}px`,
-                paddingRight: `${RENDER_IMAGE_SIZE_PX * 0.2}px`
+                paddingRight: `${RENDER_IMAGE_SIZE_PX * 0.2}px`,
+                cursor: "pointer"
               }}
             >
               <Box
@@ -346,7 +184,8 @@ function Shelf() {
                   </Typography>
                   <Button
                     type="button"
-                    onClick={() => {
+                    onClick={(event) => {
+                      event.stopPropagation();
                       if (!solidObjectIds.length) return;
                       setSolidIndexByCluster((previous) => ({
                         ...previous,
@@ -367,6 +206,8 @@ function Shelf() {
                       fontSize: "0.42rem",
                       lineHeight: 1.1,
                       textTransform: "none",
+                      position: "relative",
+                      zIndex: 2,
                       "&:hover": { borderColor: "#fff", background: "#000" }
                     }}
                     aria-label={`Rotate solid image for ${clusterRow.cluster}`}

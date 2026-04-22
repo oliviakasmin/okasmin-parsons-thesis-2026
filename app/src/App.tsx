@@ -2,7 +2,7 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import Test from "./Test";
 import Test2 from "./Test2";
 import ClusterTest from "./ClusterTest";
-import { Shelf } from "./Components";
+import { All, Shelf } from "./Components";
 
 function Home() {
   const navigate = useNavigate();
@@ -92,6 +92,7 @@ function App() {
       <Route path="/test2" element={<Test2 />} />
       <Route path="/cluster-test" element={<ClusterTest />} />
       <Route path="/shelf" element={<Shelf />} />
+      <Route path="/all/:clusterId" element={<All />} />
     </Routes>
   );
 }
