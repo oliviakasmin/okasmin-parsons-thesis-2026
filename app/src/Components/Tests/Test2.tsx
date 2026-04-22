@@ -1,7 +1,7 @@
 import { useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import manualRejectObjectIds from "../../fetch_data/data/manual_reject_object_ids.json";
-import objectsData from "../../fetch_data/data/objects.json";
+import manualRejectObjectIds from "../../../../fetch_data/data/manual_reject_object_ids.json";
+import objectsData from "../../../../fetch_data/data/objects.json";
 
 const S3_IMAGE_BASE_URL = "https://vessels-thesis.s3.amazonaws.com/real_images";
 

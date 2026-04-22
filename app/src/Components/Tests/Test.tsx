@@ -1,9 +1,9 @@
 import { useState } from "react";
-import manualRejectObjectIds from "../../fetch_data/data/manual_reject_object_ids.json";
-import objectsData from "../../fetch_data/data/objects.json";
-import clustersData from "../../test_assets/clusters.json";
-import interestingMatchesData from "../../test_assets/most_interesting_matches.json";
-import manualInterestingOnesData from "../../test_assets/manual_interesting_ones.json";
+import manualRejectObjectIds from "../../../../fetch_data/data/manual_reject_object_ids.json";
+import objectsData from "../../../../fetch_data/data/objects.json";
+import clustersData from "../../../../test_assets/clusters.json";
+import interestingMatchesData from "../../../../test_assets/most_interesting_matches.json";
+import manualInterestingOnesData from "../../../../test_assets/manual_interesting_ones.json";
 
 const S3_IMAGE_BASE_URL = "https://vessels-thesis.s3.amazonaws.com/images";
 const S3_OUTLINE_BASE_URL = "https://vessels-thesis.s3.amazonaws.com/outline_images/outline_images";

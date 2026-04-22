@@ -1,7 +1,7 @@
 import { Route, Routes, useNavigate } from "react-router-dom";
-import Test from "./Test";
-import Test2 from "./Test2";
-import ClusterTest from "./ClusterTest";
+import Test from "./Components/Tests/Test";
+import Test2 from "./Components/Tests/Test2";
+import ClusterTest from "./Components/Tests/ClusterTest";
 import { All, Shelf } from "./Components";
 
 function Home() {

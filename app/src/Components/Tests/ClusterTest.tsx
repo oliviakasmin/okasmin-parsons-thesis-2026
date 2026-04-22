@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import finalClusterKeysCsv from "../../process_data/cluster/final_clusters_keys.csv?raw";
-import finalClusterObjectIdsCsv from "../../process_data/cluster/final_clusters_object_ids.csv?raw";
+import finalClusterKeysCsv from "../../../../process_data/cluster/final_clusters_keys.csv?raw";
+import finalClusterObjectIdsCsv from "../../../../process_data/cluster/final_clusters_object_ids.csv?raw";
 
 type ClusterRow = {
   cluster: string;
@@ -10,7 +10,7 @@ type ClusterRow = {
   closestTop5Ids: string[];
 };
 
-const outlineImageModules = import.meta.glob("../../process_data/real_images/*_outline.png", {
+const outlineImageModules = import.meta.glob("../../../../process_data/real_images/*_outline.png", {
   eager: true,
   import: "default"
 }) as Record<string, string>;

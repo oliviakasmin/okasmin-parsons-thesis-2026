@@ -1,55 +1,73 @@
-import { useMemo } from "react";
+// TODO better list of all objectIDs
 
-function toImageMap(
-  modules: Record<string, string>,
-  suffix: "_outline.png" | "_mask.png" | "_no_bg.png"
-) {
+import { useMemo } from "react";
+import finalClusterObjectIdsCsv from "../../../process_data/cluster/final_clusters_object_ids.csv?raw";
+
+const S3_REAL_IMAGES_BASE_URL = "https://vessels-thesis.s3.amazonaws.com/real_images";
+
+type ImageSuffix = "_outline.png" | "_mask.png" | "_no_bg.png";
+
+function parseCsvLine(line: string) {
+  const values: string[] = [];
+  let current = "";
+  let insideQuotes = false;
+
+  for (let index = 0; index < line.length; index += 1) {
+    const character = line[index];
+    const nextCharacter = line[index + 1];
+
+    if (character === '"') {
+      if (insideQuotes && nextCharacter === '"') {
+        current += '"';
+        index += 1;
+      } else {
+        insideQuotes = !insideQuotes;
+      }
+      continue;
+    }
+
+    if (character === "," && !insideQuotes) {
+      values.push(current);
+      current = "";
+      continue;
+    }
+
+    current += character;
+  }
+
+  values.push(current);
+  return values;
+}
+
+function buildObjectIds(objectIdsCsv: string) {
+  const lines = objectIdsCsv.split(/\r?\n/).filter(Boolean);
+  const objectIds = new Set<string>();
+
+  for (const line of lines.slice(1)) {
+    const [objectId] = parseCsvLine(line);
+    if (!objectId) continue;
+    objectIds.add(objectId);
+  }
+
+  return Array.from(objectIds);
+}
+
+function toImageMap(objectIds: string[], suffix: ImageSuffix) {
   const imageMap = new Map<string, string>();
-  for (const [path, src] of Object.entries(modules)) {
-    const filename = path.split("/").pop() ?? "";
-    if (!filename.endsWith(suffix)) continue;
-    const objectId = filename.slice(0, -suffix.length);
-    imageMap.set(objectId, src);
+  for (const objectId of objectIds) {
+    imageMap.set(objectId, `${S3_REAL_IMAGES_BASE_URL}/${objectId}${suffix}`);
   }
   return imageMap;
 }
 
 function useImageModules() {
-  const outlineImageByObjectId = useMemo(
-    () =>
-      toImageMap(
-        import.meta.glob("../../../process_data/real_images/*_outline.png", {
-          eager: true,
-          import: "default"
-        }) as Record<string, string>,
-        "_outline.png"
-      ),
-    []
-  );
+  const objectIds = useMemo(() => buildObjectIds(finalClusterObjectIdsCsv), []);
 
-  const maskImageByObjectId = useMemo(
-    () =>
-      toImageMap(
-        import.meta.glob("../../../process_data/real_images/*_mask.png", {
-          eager: true,
-          import: "default"
-        }) as Record<string, string>,
-        "_mask.png"
-      ),
-    []
-  );
+  const outlineImageByObjectId = useMemo(() => toImageMap(objectIds, "_outline.png"), [objectIds]);
 
-  const noBgImageByObjectId = useMemo(
-    () =>
-      toImageMap(
-        import.meta.glob("../../../process_data/real_images/*_no_bg.png", {
-          eager: true,
-          import: "default"
-        }) as Record<string, string>,
-        "_no_bg.png"
-      ),
-    []
-  );
+  const maskImageByObjectId = useMemo(() => toImageMap(objectIds, "_mask.png"), [objectIds]);
+
+  const noBgImageByObjectId = useMemo(() => toImageMap(objectIds, "_no_bg.png"), [objectIds]);
 
   return { outlineImageByObjectId, maskImageByObjectId, noBgImageByObjectId };
 }
