@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Box, Button, Typography } from "@mui/material";
 import finalClusterKeysCsv from "../../../process_data/cluster/final_clusters_keys.csv?raw";
 import finalClusterObjectIdsCsv from "../../../process_data/cluster/final_clusters_object_ids.csv?raw";
 
@@ -183,74 +184,96 @@ function Shelf() {
   }, [clusterRows]);
 
   return (
-    <main
-      style={{
+    <Box
+      component="main"
+      sx={{
         height: "100vh",
         background: "#000",
         color: "#fff",
-        padding: "0.75rem",
+        p: "0.75rem",
         display: "flex",
         flexDirection: "column",
         overflow: "auto"
       }}
     >
-      <div
-        style={{ display: "flex", alignItems: "center", gap: "0.6rem", marginBottom: "0.85rem" }}
-      >
-        <button
+      <Box sx={{ display: "flex", alignItems: "center", gap: "0.6rem", mb: "0.85rem" }}>
+        <Button
           type="button"
           onClick={() => navigate("/cluster-test")}
-          style={{
-            border: "1px solid #fff",
+          variant="outlined"
+          sx={{
+            borderColor: "#fff",
             background: "#fff",
             color: "#000",
-            padding: "0.35rem 0.65rem",
-            cursor: "pointer",
-            fontWeight: 700
+            px: "0.65rem",
+            py: "0.35rem",
+            minWidth: 0,
+            borderRadius: 0,
+            fontWeight: 700,
+            "&:hover": { borderColor: "#fff", background: "#fff" }
           }}
         >
           Back
-        </button>
-        <h1 style={{ margin: 0, fontSize: "1.25rem" }}>Shelf</h1>
-      </div>
+        </Button>
+        <Typography component="h1" sx={{ m: 0, fontSize: "1.25rem" }}>
+          Shelf
+        </Typography>
+      </Box>
 
-      <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.5rem" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 0 }}>
-          <button
+      <Box sx={{ display: "flex", alignItems: "center", gap: "0.5rem", mb: "0.5rem" }}>
+        <Box sx={{ display: "flex", alignItems: "center", gap: 0 }}>
+          <Button
             type="button"
             onClick={() => setMode("solid")}
-            style={{
-              border: "1px solid #fff",
+            variant="outlined"
+            sx={{
+              borderColor: "#fff",
               background: mode === "solid" ? "#fff" : "#000",
               color: mode === "solid" ? "#000" : "#fff",
-              padding: "0.3rem 0.55rem",
-              cursor: "pointer"
+              px: "0.55rem",
+              py: "0.3rem",
+              minWidth: 0,
+              borderRadius: 0,
+              textTransform: "none",
+              "&:hover": {
+                borderColor: "#fff",
+                background: mode === "solid" ? "#fff" : "#000"
+              }
             }}
           >
             solid
-          </button>
-          <button
+          </Button>
+          <Button
             type="button"
             onClick={() => setMode("outline")}
-            style={{
-              border: "1px solid #fff",
+            variant="outlined"
+            sx={{
+              borderColor: "#fff",
               background: mode === "outline" ? "#fff" : "#000",
               color: mode === "outline" ? "#000" : "#fff",
-              padding: "0.3rem 0.55rem",
-              cursor: "pointer"
+              px: "0.55rem",
+              py: "0.3rem",
+              minWidth: 0,
+              borderRadius: 0,
+              textTransform: "none",
+              "&:hover": {
+                borderColor: "#fff",
+                background: mode === "outline" ? "#fff" : "#000"
+              }
             }}
           >
             outline
-          </button>
-        </div>
-      </div>
+          </Button>
+        </Box>
+      </Box>
 
-      <section
-        style={{
+      <Box
+        component="section"
+        sx={{
           flex: 1,
           minHeight: 0,
           width: `min(100%, ${RENDER_IMAGE_SIZE_PX * 3}px)`,
-          marginInline: "auto",
+          mx: "auto",
           display: "grid",
           gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
           gridTemplateRows: "repeat(4, auto)",
@@ -272,11 +295,12 @@ function Shelf() {
             : undefined;
 
           return (
-            <article
+            <Box
+              component="article"
               key={clusterRow.cluster}
               onMouseEnter={() => setHoveredCluster(clusterRow.cluster)}
               onMouseLeave={() => setHoveredCluster(null)}
-              style={{
+              sx={{
                 display: "flex",
                 flexDirection: "column",
                 borderBottom: "4px solid #fff",
@@ -286,8 +310,8 @@ function Shelf() {
                 paddingRight: `${RENDER_IMAGE_SIZE_PX * 0.2}px`
               }}
             >
-              <div
-                style={{
+              <Box
+                sx={{
                   marginBottom: 0,
                   fontSize: "0.42rem",
                   paddingTop: 0,
@@ -295,15 +319,17 @@ function Shelf() {
                   transition: "opacity 120ms ease"
                 }}
               >
-                <strong>{clusterRow.cluster}</strong>
-                <span style={{ marginLeft: "0.45rem", color: "#ccc" }}>
+                <Typography component="span" sx={{ fontSize: "inherit", fontWeight: 700 }}>
+                  {clusterRow.cluster}
+                </Typography>
+                <Typography component="span" sx={{ marginLeft: "0.45rem", color: "#ccc" }}>
                   {clusterRow.clusterType}
-                </span>
-              </div>
+                </Typography>
+              </Box>
 
               {mode === "solid" ? (
-                <div
-                  style={{
+                <Box
+                  sx={{
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "space-between",
@@ -313,12 +339,12 @@ function Shelf() {
                     transition: "opacity 120ms ease"
                   }}
                 >
-                  <span style={{ fontSize: "0.42rem", color: "#ddd" }}>
+                  <Typography component="span" sx={{ fontSize: "0.42rem", color: "#ddd" }}>
                     {selectedSolidObjectId
                       ? `index ${clampedSolidIndex} - object ${selectedSolidObjectId}`
                       : "no object id"}
-                  </span>
-                  <button
+                  </Typography>
+                  <Button
                     type="button"
                     onClick={() => {
                       if (!solidObjectIds.length) return;
@@ -329,22 +355,29 @@ function Shelf() {
                           solidObjectIds.length
                       }));
                     }}
-                    style={{
-                      border: "1px solid #fff",
+                    variant="outlined"
+                    sx={{
+                      borderColor: "#fff",
                       background: "#000",
                       color: "#fff",
-                      padding: "0.05rem 0.25rem",
+                      px: "0.25rem",
+                      py: "0.05rem",
+                      minWidth: 0,
+                      borderRadius: 0,
                       fontSize: "0.42rem",
-                      cursor: "pointer"
+                      lineHeight: 1.1,
+                      textTransform: "none",
+                      "&:hover": { borderColor: "#fff", background: "#000" }
                     }}
                     aria-label={`Rotate solid image for ${clusterRow.cluster}`}
                   >
                     {">"}
-                  </button>
-                </div>
+                  </Button>
+                </Box>
               ) : (
-                <span
-                  style={{
+                <Typography
+                  component="span"
+                  sx={{
                     fontSize: "0.42rem",
                     color: "#bbb",
                     marginBottom: 0,
@@ -353,11 +386,11 @@ function Shelf() {
                   }}
                 >
                   stacked outlines
-                </span>
+                </Typography>
               )}
 
-              <div
-                style={{
+              <Box
+                sx={{
                   marginTop: "auto",
                   width: "100%",
                   height: `min(${RENDER_IMAGE_SIZE_PX * 0.86}px, calc((100vh - 240px) / 4))`,
@@ -415,8 +448,8 @@ function Shelf() {
                     }}
                   />
                 ) : (
-                  <div
-                    style={{
+                  <Box
+                    sx={{
                       width: "100%",
                       height: "100%",
                       display: "grid",
@@ -426,14 +459,14 @@ function Shelf() {
                     }}
                   >
                     Missing image
-                  </div>
+                  </Box>
                 )}
-              </div>
-            </article>
+              </Box>
+            </Box>
           );
         })}
-      </section>
-    </main>
+      </Box>
+    </Box>
   );
 }
 

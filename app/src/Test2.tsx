@@ -1,7 +1,9 @@
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import manualRejectObjectIds from "../../fetch_data/data/manual_reject_object_ids.json";
 import objectsData from "../../fetch_data/data/objects.json";
+
+const S3_IMAGE_BASE_URL = "https://vessels-thesis.s3.amazonaws.com/real_images";
 
 type ImageMode = "mask" | "no_bg" | "outline";
 
@@ -24,38 +26,12 @@ const objectTitleById = new Map(
   ).map(([objectIdKey, value]) => [String(value.objectID ?? objectIdKey), value.title ?? "Unknown"])
 );
 
-const maskImageModules = import.meta.glob("../../process_data/real_images/*_mask.png", {
-  eager: true,
-  import: "default"
-}) as Record<string, string>;
-const noBgImageModules = import.meta.glob("../../process_data/real_images/*_no_bg.png", {
-  eager: true,
-  import: "default"
-}) as Record<string, string>;
-const outlineImageModules = import.meta.glob("../../process_data/real_images/*_outline.png", {
-  eager: true,
-  import: "default"
-}) as Record<string, string>;
-
-function objectIdFromPath(path: string, mode: ImageMode) {
-  const suffix = `_${IMAGE_SUFFIX[mode]}.png`;
-  const filename = path.split("/").pop() ?? "";
-  if (!filename.endsWith(suffix)) {
-    return null;
-  }
-  return filename.slice(0, -suffix.length);
+function buildImageFilename(objectId: string, mode: ImageMode) {
+  return `${objectId}_${IMAGE_SUFFIX[mode]}.png`;
 }
 
-function toImageMap(modules: Record<string, string>, mode: ImageMode) {
-  const imageMap = new Map<string, string>();
-  for (const [path, src] of Object.entries(modules)) {
-    const objectId = objectIdFromPath(path, mode);
-    if (!objectId) {
-      continue;
-    }
-    imageMap.set(objectId, src);
-  }
-  return imageMap;
+function buildS3ImageUrl(objectId: string, mode: ImageMode) {
+  return `${S3_IMAGE_BASE_URL}/${buildImageFilename(objectId, mode)}`;
 }
 
 function loadSelectedObjectIdsFromStorage() {
@@ -75,28 +51,38 @@ function getObjectTitle(objectId: string) {
   return objectTitleById.get(objectId) ?? "Unknown";
 }
 
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function scrollToBottom() {
+  window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+}
+
 function Test2() {
   const navigate = useNavigate();
   const [imageMode, setImageMode] = useState<ImageMode>("mask");
   const [, setSelectedObjectIds] = useState<string[]>(() => loadSelectedObjectIdsFromStorage());
-
-  const imageMaps = useMemo(
-    () => ({
-      mask: toImageMap(maskImageModules, "mask"),
-      no_bg: toImageMap(noBgImageModules, "no_bg"),
-      outline: toImageMap(outlineImageModules, "outline")
-    }),
-    []
-  );
+  const [missingImageNames, setMissingImageNames] = useState<Record<string, true>>({});
+  const loggedMissingImageNamesRef = useRef<Set<string>>(new Set());
   const objectIds = useMemo(() => {
-    const allIds = new Set<string>();
-    for (const id of imageMaps.mask.keys()) allIds.add(id);
-    for (const id of imageMaps.no_bg.keys()) allIds.add(id);
-    for (const id of imageMaps.outline.keys()) allIds.add(id);
-    return Array.from(allIds)
+    return Array.from(objectTitleById.keys())
       .filter((objectId) => !manualRejectObjectIdSet.has(objectId))
       .sort((a, b) => Number(a) - Number(b));
-  }, [imageMaps]);
+  }, []);
+
+  const handleImageError = (objectId: string, mode: ImageMode, imageName: string) => {
+    if (!loggedMissingImageNamesRef.current.has(imageName)) {
+      loggedMissingImageNamesRef.current.add(imageName);
+      console.log(imageName);
+      if (mode === "mask") {
+        console.log(objectId);
+      }
+    }
+    setMissingImageNames((previous) =>
+      previous[imageName] ? previous : { ...previous, [imageName]: true }
+    );
+  };
 
   const handleImageClick = (objectId: string) => {
     setSelectedObjectIds((previousIds) => {
@@ -197,6 +183,50 @@ function Test2() {
         </button>
       </div>
 
+      <div
+        style={{
+          position: "sticky",
+          top: "0.5rem",
+          zIndex: 20,
+          display: "flex",
+          justifyContent: "flex-end",
+          gap: "0.4rem",
+          marginBottom: "0.75rem",
+          pointerEvents: "none"
+        }}
+      >
+        <button
+          type="button"
+          onClick={scrollToTop}
+          style={{
+            border: "1px solid #fff",
+            borderRadius: "6px",
+            background: "#000",
+            color: "#fff",
+            padding: "0.35rem 0.6rem",
+            cursor: "pointer",
+            pointerEvents: "auto"
+          }}
+        >
+          Top
+        </button>
+        <button
+          type="button"
+          onClick={scrollToBottom}
+          style={{
+            border: "1px solid #fff",
+            borderRadius: "6px",
+            background: "#000",
+            color: "#fff",
+            padding: "0.35rem 0.6rem",
+            cursor: "pointer",
+            pointerEvents: "auto"
+          }}
+        >
+          Bottom
+        </button>
+      </div>
+
       <section
         style={{
           display: "flex",
@@ -204,73 +234,80 @@ function Test2() {
           gap: "10px"
         }}
       >
-        {objectIds.map((objectId) => (
-          <figure
-            key={objectId}
-            style={{
-              margin: 0,
-              width: "140px",
-              padding: "6px",
-              borderRadius: "8px",
-              background: "transparent"
-            }}
-          >
-            <div
-              onClick={() => handleImageClick(objectId)}
+        {objectIds.map((objectId) => {
+          const imageName = buildImageFilename(objectId, imageMode);
+          const imageUrl = buildS3ImageUrl(objectId, imageMode);
+          const isMissingImage = Boolean(missingImageNames[imageName]);
+
+          return (
+            <figure
+              key={`${objectId}-${imageMode}`}
               style={{
-                width: "100%",
-                aspectRatio: "1 / 1",
-                position: "relative",
-                backgroundColor: imageMode === "no_bg" ? "transparent" : "#000",
-                cursor: "pointer"
+                margin: 0,
+                width: "140px",
+                padding: "6px",
+                borderRadius: "8px",
+                background: "transparent"
               }}
             >
-              {imageMaps[imageMode].get(objectId) ? (
-                <img
-                  src={imageMaps[imageMode].get(objectId)}
-                  alt={`${objectId}_${IMAGE_SUFFIX[imageMode]}.png`}
-                  loading="lazy"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "contain",
-                    display: "block",
-                    position: "absolute",
-                    inset: 0
-                  }}
-                />
-              ) : (
-                <div
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    display: "grid",
-                    placeItems: "center",
-                    color: "#888",
-                    fontSize: "10px",
-                    textAlign: "center",
-                    padding: "6px"
-                  }}
-                >
-                  Missing {IMAGE_SUFFIX[imageMode]}
-                </div>
-              )}
-            </div>
-            <figcaption
-              style={{
-                marginTop: "6px",
-                fontSize: "11px",
-                lineHeight: 1.3,
-                color: "#fff",
-                overflowWrap: "anywhere"
-              }}
-            >
-              ID: {objectId}
-              <br />
-              Title: {getObjectTitle(objectId)}
-            </figcaption>
-          </figure>
-        ))}
+              <div
+                onClick={() => handleImageClick(objectId)}
+                style={{
+                  width: "100%",
+                  aspectRatio: "1 / 1",
+                  position: "relative",
+                  backgroundColor: imageMode === "no_bg" ? "transparent" : "#000",
+                  cursor: "pointer"
+                }}
+              >
+                {!isMissingImage ? (
+                  <img
+                    src={imageUrl}
+                    alt={imageName}
+                    loading="lazy"
+                    onError={() => handleImageError(objectId, imageMode, imageName)}
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "contain",
+                      display: "block",
+                      position: "absolute",
+                      inset: 0
+                    }}
+                  />
+                ) : (
+                  <div
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      display: "grid",
+                      placeItems: "center",
+                      color: "#888",
+                      fontSize: "10px",
+                      textAlign: "center",
+                      padding: "6px"
+                    }}
+                  >
+                    Missing {IMAGE_SUFFIX[imageMode]}
+                  </div>
+                )}
+              </div>
+              <figcaption
+                style={{
+                  marginTop: "6px",
+                  fontSize: "11px",
+                  lineHeight: 1.3,
+                  color: "#fff",
+                  overflowWrap: "anywhere"
+                }}
+              >
+                ID: {objectId}
+                <br />
+                Title: {getObjectTitle(objectId)}
+              </figcaption>
+            </figure>
+          );
+        })}
       </section>
     </main>
   );
