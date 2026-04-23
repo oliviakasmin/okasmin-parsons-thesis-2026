@@ -197516,5 +197516,458 @@
     "objectWikidata_URL": "https://www.wikidata.org/wiki/Q116295365",
     "isTimelineWork": false,
     "GalleryNumber": "171"
+  },
+  "912990": {
+    "objectID": 912990,
+    "isHighlight": false,
+    "accessionNumber": "2024.352",
+    "accessionYear": "2024",
+    "isPublicDomain": true,
+    "primaryImage": "https://images.metmuseum.org/CRDImages/gr/original/DP-36886-001.jpg",
+    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/gr/web-large/DP-36886-001.jpg",
+    "additionalImages": [
+      "https://images.metmuseum.org/CRDImages/gr/original/DP-36886-011.jpg",
+      "https://images.metmuseum.org/CRDImages/gr/original/DP-36886-010.jpg",
+      "https://images.metmuseum.org/CRDImages/gr/original/DP-36886-009.jpg",
+      "https://images.metmuseum.org/CRDImages/gr/original/DP-36886-008.jpg",
+      "https://images.metmuseum.org/CRDImages/gr/original/DP-36886-007.jpg",
+      "https://images.metmuseum.org/CRDImages/gr/original/DP-36886-006.jpg",
+      "https://images.metmuseum.org/CRDImages/gr/original/DP-36886-005.jpg",
+      "https://images.metmuseum.org/CRDImages/gr/original/DP-36886-004.jpg",
+      "https://images.metmuseum.org/CRDImages/gr/original/DP-36886-003.jpg",
+      "https://images.metmuseum.org/CRDImages/gr/original/DP-36886-002.jpg"
+    ],
+    "constituents": null,
+    "department": "Greek and Roman Art",
+    "objectName": "Vase",
+    "title": "Polychrome terracotta head vase",
+    "culture": "Canosan, Puglia",
+    "period": "Hellenistic",
+    "objectDate": "ca. 3rd\u20132nd century BCE",
+    "objectBeginDate": 0,
+    "objectEndDate": 0,
+    "medium": "Terracotta",
+    "dimensions": "14 5/16 \u00d7 8 3/8 \u00d7 9 7/16 in., 9 lb. (36.4 \u00d7 21.2 \u00d7 23.9 cm, 4.1 kg)",
+    "measurements": [
+      {
+        "elementName": "Overall",
+        "elementDescription": null,
+        "elementMeasurements": {
+          "Depth": 23.9,
+          "Height": 36.4,
+          "Weight": 4.082373,
+          "Width": 21.2
+        }
+      }
+    ],
+    "creditLine": "Marguerite and Frank A. Cosgrove Jr. Fund, 2024",
+    "classification": "Vases",
+    "metadataDate": "2025-12-20T04:50:39.43Z",
+    "repository": "Metropolitan Museum of Art, New York, NY",
+    "objectURL": "https://www.metmuseum.org/art/collection/search/912990",
+    "tags": [
+      {
+        "term": "Heads",
+        "AAT_URL": "http://vocab.getty.edu/page/aat/300375054",
+        "Wikidata_URL": "https://www.wikidata.org/wiki/Q3409626"
+      }
+    ],
+    "isTimelineWork": false,
+    "GalleryNumber": "162"
+  },
+  "251104": {
+    "objectID": 251104,
+    "isHighlight": false,
+    "accessionNumber": "21.88.80",
+    "accessionYear": "1921",
+    "isPublicDomain": true,
+    "primaryImage": "https://images.metmuseum.org/CRDImages/gr/original/DT260165.jpg",
+    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/gr/web-large/DT260165.jpg",
+    "additionalImages": [],
+    "constituents": null,
+    "department": "Greek and Roman Art",
+    "objectName": "Oinochoe, miniature",
+    "title": "Terracotta oinochoe: chous (jug)",
+    "culture": "Greek, Attic",
+    "period": "Classical",
+    "objectDate": "ca. 400 BCE",
+    "objectBeginDate": -420,
+    "objectEndDate": -400,
+    "medium": "Terracotta",
+    "dimensions": "4in. (10.2cm)",
+    "measurements": [
+      {
+        "elementName": "Overall",
+        "elementDescription": null,
+        "elementMeasurements": {
+          "Height": 10.21
+        }
+      }
+    ],
+    "creditLine": "Rogers Fund, 1921",
+    "classification": "Vases",
+    "metadataDate": "2025-03-06T04:54:30Z",
+    "repository": "Metropolitan Museum of Art, New York, NY",
+    "objectURL": "https://www.metmuseum.org/art/collection/search/251104",
+    "tags": [
+      {
+        "term": "Boys",
+        "AAT_URL": "http://vocab.getty.edu/page/aat/300247598",
+        "Wikidata_URL": "https://www.wikidata.org/wiki/Q3010"
+      },
+      {
+        "term": "Goats",
+        "AAT_URL": "http://vocab.getty.edu/page/aat/300250122",
+        "Wikidata_URL": "https://www.wikidata.org/wiki/Q2934"
+      },
+      {
+        "term": "Chariots",
+        "AAT_URL": "http://vocab.getty.edu/page/aat/300212699",
+        "Wikidata_URL": "https://www.wikidata.org/wiki/Q203788"
+      }
+    ],
+    "objectWikidata_URL": "https://www.wikidata.org/wiki/Q116290086",
+    "isTimelineWork": false,
+    "GalleryNumber": "159"
+  },
+  "240332": {
+    "objectID": 240332,
+    "isHighlight": false,
+    "accessionNumber": "74.51.745",
+    "accessionYear": "1874",
+    "isPublicDomain": true,
+    "primaryImage": "https://images.metmuseum.org/CRDImages/gr/original/DP121133.jpg",
+    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/gr/web-large/DP121133.jpg",
+    "additionalImages": [],
+    "constituents": null,
+    "department": "Greek and Roman Art",
+    "objectName": "False-necked jar",
+    "title": "Terracotta stirrup jar",
+    "culture": "Mycenaean",
+    "period": "Late Helladic IIIB",
+    "objectDate": "ca. 1300\u20131190 BCE",
+    "objectBeginDate": -1300,
+    "objectEndDate": -1190,
+    "medium": "Terracotta",
+    "dimensions": "H. 6 7/8 in. (16.4 cm.)",
+    "measurements": null,
+    "creditLine": "The Cesnola Collection, Purchased by subscription, 1874\u201376",
+    "classification": "Vases",
+    "metadataDate": "2025-03-06T04:54:30Z",
+    "repository": "Metropolitan Museum of Art, New York, NY",
+    "objectURL": "https://www.metmuseum.org/art/collection/search/240332",
+    "tags": null,
+    "objectWikidata_URL": "https://www.wikidata.org/wiki/Q116296916",
+    "isTimelineWork": false,
+    "GalleryNumber": "171"
+  },
+  "254634": {
+    "objectID": 254634,
+    "isHighlight": false,
+    "accessionNumber": "49.94.5",
+    "accessionYear": "1949",
+    "isPublicDomain": true,
+    "primaryImage": "https://images.metmuseum.org/CRDImages/gr/original/DP1409.jpg",
+    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/gr/web-large/DP1409.jpg",
+    "additionalImages": [
+      "https://images.metmuseum.org/CRDImages/gr/original/DP1409_49.94.5.jpg"
+    ],
+    "constituents": null,
+    "department": "Greek and Roman Art",
+    "objectName": "Amphora",
+    "title": "Terracotta amphora (jug)",
+    "culture": "Roman",
+    "period": "Mid-Imperial",
+    "objectDate": "2nd\u20133rd century CE",
+    "objectBeginDate": 100,
+    "objectEndDate": 299,
+    "medium": "Terracotta",
+    "dimensions": "H. 10 3/8 in. (26.4 cm)",
+    "measurements": [
+      {
+        "elementName": "Overall",
+        "elementDescription": null,
+        "elementMeasurements": {
+          "Height": 26.39
+        }
+      }
+    ],
+    "creditLine": "Gift of Arthur L. Gale, 1949",
+    "classification": "Vases",
+    "metadataDate": "2025-03-06T04:54:30Z",
+    "repository": "Metropolitan Museum of Art, New York, NY",
+    "objectURL": "https://www.metmuseum.org/art/collection/search/254634",
+    "tags": [
+      {
+        "term": "Dionysus",
+        "AAT_URL": "http://vocab.getty.edu/page/ia/901001029",
+        "Wikidata_URL": "https://www.wikidata.org/wiki/Q41680"
+      },
+      {
+        "term": "Nymphs",
+        "AAT_URL": "http://vocab.getty.edu/page/aat/300379159",
+        "Wikidata_URL": "https://www.wikidata.org/wiki/Q373916"
+      }
+    ],
+    "objectWikidata_URL": "https://www.wikidata.org/wiki/Q116282800",
+    "isTimelineWork": false,
+    "GalleryNumber": "169"
+  },
+  "240072": {
+    "objectID": 240072,
+    "isHighlight": false,
+    "accessionNumber": "74.51.486",
+    "accessionYear": "1874",
+    "isPublicDomain": true,
+    "primaryImage": "https://images.metmuseum.org/CRDImages/gr/original/LC-74_51_486.jpg",
+    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/gr/web-large/LC-74_51_486.jpg",
+    "additionalImages": [],
+    "constituents": null,
+    "department": "Greek and Roman Art",
+    "objectName": "Amphoriskos",
+    "title": "Amphoriskos",
+    "culture": "Cypriot",
+    "period": "Cypro-Archaic II ?",
+    "objectDate": "600\u2013480 BCE",
+    "objectBeginDate": -600,
+    "objectEndDate": -480,
+    "medium": "Terracotta",
+    "dimensions": "H. 8 1/4 in. (21 cm)",
+    "measurements": [
+      {
+        "elementName": "Overall",
+        "elementDescription": null,
+        "elementMeasurements": {
+          "Height": 21
+        }
+      }
+    ],
+    "creditLine": "The Cesnola Collection, Purchased by subscription, 1874\u201376",
+    "classification": "Vases",
+    "metadataDate": "2025-04-08T04:57:41.12Z",
+    "repository": "Metropolitan Museum of Art, New York, NY",
+    "objectURL": "https://www.metmuseum.org/art/collection/search/240072",
+    "tags": null,
+    "isTimelineWork": false
+  },
+  "240328": {
+    "objectID": 240328,
+    "isHighlight": false,
+    "accessionNumber": "74.51.741",
+    "accessionYear": "1874",
+    "isPublicDomain": true,
+    "primaryImage": "https://images.metmuseum.org/CRDImages/gr/original/LC-74_51_741.jpg",
+    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/gr/web-large/LC-74_51_741.jpg",
+    "additionalImages": [],
+    "constituents": null,
+    "department": "Greek and Roman Art",
+    "objectName": "Jug",
+    "title": "Jug",
+    "culture": "Cypriot",
+    "period": "Cypro-Archaic II",
+    "objectDate": "600\u2013480 BCE",
+    "objectBeginDate": -600,
+    "objectEndDate": -480,
+    "medium": "Terracotta",
+    "dimensions": "7 1/4in. (18.4cm)",
+    "measurements": [
+      {
+        "elementName": "Overall",
+        "elementDescription": null,
+        "elementMeasurements": {
+          "Height": 18.4
+        }
+      }
+    ],
+    "creditLine": "The Cesnola Collection, Purchased by subscription, 1874\u201376",
+    "classification": "Vases",
+    "metadataDate": "2025-03-06T04:54:30Z",
+    "repository": "Metropolitan Museum of Art, New York, NY",
+    "objectURL": "https://www.metmuseum.org/art/collection/search/240328",
+    "tags": null,
+    "isTimelineWork": false
+  },
+  "254616": {
+    "objectID": 254616,
+    "isHighlight": false,
+    "accessionNumber": "49.11.6",
+    "accessionYear": "1949",
+    "isPublicDomain": true,
+    "primaryImage": "https://images.metmuseum.org/CRDImages/gr/original/DP-18447-001.jpg",
+    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/gr/web-large/DP-18447-001.jpg",
+    "additionalImages": [
+      "https://images.metmuseum.org/CRDImages/gr/original/DP-18447-002.jpg"
+    ],
+    "constituents": [
+      {
+        "constituentID": 49109,
+        "role": "Artist",
+        "name": "Attributed to the Achilles Painter",
+        "constituentULAN_URL": "http://vocab.getty.edu/page/ulan/500019489",
+        "constituentWikidata_URL": "https://www.wikidata.org/wiki/Q125902"
+      }
+    ],
+    "department": "Greek and Roman Art",
+    "objectName": "Hydria, kalpis",
+    "title": "Terracotta hydria: kalpis (water jar)",
+    "culture": "Greek, Attic",
+    "period": "Classical",
+    "artistRole": "Artist",
+    "artistPrefix": "Attributed to the",
+    "artistDisplayName": "Achilles Painter",
+    "artistAlphaSort": "Achilles Painter",
+    "artistWikidata_URL": "https://www.wikidata.org/wiki/Q125902",
+    "artistULAN_URL": "http://vocab.getty.edu/page/ulan/500019489",
+    "objectDate": "ca. 450\u2013440 BCE",
+    "objectBeginDate": -450,
+    "objectEndDate": -400,
+    "medium": "Terracotta",
+    "dimensions": "H. 10 1/4 in. (26 cm)",
+    "measurements": [
+      {
+        "elementName": "Overall",
+        "elementDescription": null,
+        "elementMeasurements": {
+          "Height": 26.01
+        }
+      }
+    ],
+    "creditLine": "Rogers Fund, 1949",
+    "classification": "Vases",
+    "metadataDate": "2025-03-06T04:54:30Z",
+    "repository": "Metropolitan Museum of Art, New York, NY",
+    "objectURL": "https://www.metmuseum.org/art/collection/search/254616",
+    "tags": [
+      {
+        "term": "Men",
+        "AAT_URL": "http://vocab.getty.edu/page/aat/300025928",
+        "Wikidata_URL": "https://www.wikidata.org/wiki/Q8441"
+      },
+      {
+        "term": "Women",
+        "AAT_URL": "http://vocab.getty.edu/page/aat/300025943",
+        "Wikidata_URL": "https://www.wikidata.org/wiki/Q467"
+      }
+    ],
+    "objectWikidata_URL": "https://www.wikidata.org/wiki/Q116405074",
+    "isTimelineWork": false,
+    "GalleryNumber": "159"
+  },
+  "255681": {
+    "objectID": 255681,
+    "isHighlight": false,
+    "accessionNumber": "1980.11.10",
+    "accessionYear": "1980",
+    "isPublicDomain": true,
+    "primaryImage": "https://images.metmuseum.org/CRDImages/gr/original/DP-1503-001.jpg",
+    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/gr/web-large/DP-1503-001.jpg",
+    "additionalImages": [
+      "https://images.metmuseum.org/CRDImages/gr/original/DP-1503-002.jpg",
+      "https://images.metmuseum.org/CRDImages/gr/original/DP-1503-003.jpg"
+    ],
+    "constituents": [
+      {
+        "constituentID": 49155,
+        "role": "Artist",
+        "name": "Attributed to the Brygos Painter",
+        "constituentULAN_URL": "http://vocab.getty.edu/page/ulan/500025426",
+        "constituentWikidata_URL": "https://www.wikidata.org/wiki/Q322192"
+      }
+    ],
+    "department": "Greek and Roman Art",
+    "objectName": "Skyphos",
+    "title": "Skyphos",
+    "culture": "Greek, Attic",
+    "period": "Late Archaic",
+    "artistRole": "Artist",
+    "artistPrefix": "Attributed to the",
+    "artistDisplayName": "Brygos Painter",
+    "artistAlphaSort": "Brygos Painter",
+    "artistWikidata_URL": "https://www.wikidata.org/wiki/Q322192",
+    "artistULAN_URL": "http://vocab.getty.edu/page/ulan/500025426",
+    "objectDate": "ca. 490\u2013480 BCE",
+    "objectBeginDate": -490,
+    "objectEndDate": -480,
+    "medium": "Terracotta",
+    "dimensions": "7 3/8 \u00d7 9 in. (18.7 \u00d7 22.9 cm)\r\nDiam. of foot: 6 1/4 in. (15.9 cm)",
+    "measurements": [
+      {
+        "elementName": "Diam. of foot",
+        "elementDescription": null,
+        "elementMeasurements": {
+          "Diameter": 15.875031
+        }
+      },
+      {
+        "elementName": "Overall",
+        "elementDescription": null,
+        "elementMeasurements": {
+          "Diameter": 22.860046,
+          "Height": 18.745237
+        }
+      }
+    ],
+    "creditLine": "Arthur Darby Nock Fund, in memory of Gisela M. A. Richter, 1980",
+    "classification": "Vases",
+    "metadataDate": "2025-03-06T04:54:30Z",
+    "repository": "Metropolitan Museum of Art, New York, NY",
+    "objectURL": "https://www.metmuseum.org/art/collection/search/255681",
+    "tags": [
+      {
+        "term": "Human Figures",
+        "AAT_URL": "http://vocab.getty.edu/page/aat/300404114",
+        "Wikidata_URL": "https://www.wikidata.org/wiki/Q5937779"
+      },
+      {
+        "term": "Musical Instruments",
+        "AAT_URL": "http://vocab.getty.edu/page/aat/300041620",
+        "Wikidata_URL": "https://www.wikidata.org/wiki/Q34379"
+      }
+    ],
+    "isTimelineWork": false
+  },
+  "240063": {
+    "objectID": 240063,
+    "isHighlight": false,
+    "accessionNumber": "74.51.477",
+    "accessionYear": "1874",
+    "isPublicDomain": true,
+    "primaryImage": "https://images.metmuseum.org/CRDImages/gr/original/LC-74_51_477a.jpg",
+    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/gr/web-large/LC-74_51_477a.jpg",
+    "additionalImages": [],
+    "constituents": null,
+    "department": "Greek and Roman Art",
+    "objectName": "Strainer",
+    "title": "Strainer",
+    "culture": "Cypriot",
+    "period": "Cypro-Geometric I ?",
+    "objectDate": "1050\u2013950 BCE",
+    "objectBeginDate": -1050,
+    "objectEndDate": -950,
+    "medium": "Terracotta",
+    "dimensions": "2 1/4in. (5.7cm)\r\nOther: 4 7/8in. (12.4cm)",
+    "measurements": [
+      {
+        "elementName": "Other",
+        "elementDescription": null,
+        "elementMeasurements": {
+          "Diameter": 12.4
+        }
+      },
+      {
+        "elementName": "Overall",
+        "elementDescription": null,
+        "elementMeasurements": {
+          "Height": 5.7
+        }
+      }
+    ],
+    "creditLine": "The Cesnola Collection, Purchased by subscription, 1874\u201376",
+    "classification": "Vases",
+    "metadataDate": "2025-03-06T04:54:30Z",
+    "repository": "Metropolitan Museum of Art, New York, NY",
+    "objectURL": "https://www.metmuseum.org/art/collection/search/240063",
+    "tags": null,
+    "isTimelineWork": false
   }
 }

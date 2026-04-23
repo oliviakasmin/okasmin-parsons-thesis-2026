@@ -2,3 +2,6 @@ export { default as Shelf } from "./Shelf";
 export { default as All } from "./All";
 export { default as BackButton } from "./BackButton";
 export { default as ImageToggleButton } from "./ImageToggleButton";
+export { default as ObjectScene } from "./ObjectScene";
+export { default as TimelineAxis } from "./TimelineAxis";
+export { default as MapOverlay } from "./MapOverlay";

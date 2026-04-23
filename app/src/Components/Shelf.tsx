@@ -8,6 +8,7 @@ import ImageToggleButton from "./ImageToggleButton";
 import useImageToggle from "../hooks/useImageToggle";
 import useImageModules from "../hooks/useImageModules";
 import useFormatClusters, { type ClusterRow } from "../hooks/useFormatClusters";
+import { SHELF_RENDER_IMAGE_SIZE_PX } from "./constants";
 
 const cluster0 = "cluster_0";
 const cluster1 = "cluster_1";
@@ -52,10 +53,6 @@ const defaultMaskImageByCluster = [
 const defaultMaskIndexByCluster = new Map(
   defaultMaskImageByCluster.map((entry) => [entry.cluster, entry.index])
 );
-
-const SOURCE_IMAGE_SIZE_PX = 768;
-const IMAGE_ASPECT_RATIO = 0.2;
-const RENDER_IMAGE_SIZE_PX = SOURCE_IMAGE_SIZE_PX * IMAGE_ASPECT_RATIO;
 
 function defaultStackOpacity(clusterSize: number) {
   return Math.min(1, Math.max(0.1, 1 / Math.max(18, clusterSize)));
@@ -108,7 +105,7 @@ function Shelf() {
         sx={{
           flex: 1,
           minHeight: 0,
-          width: `min(100%, ${RENDER_IMAGE_SIZE_PX * 3}px)`,
+          width: `min(100%, ${SHELF_RENDER_IMAGE_SIZE_PX * 3}px)`,
           mx: "auto",
           display: "grid",
           gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
@@ -141,10 +138,10 @@ function Shelf() {
                 display: "flex",
                 flexDirection: "column",
                 borderBottom: "4px solid #fff",
-                minHeight: `${RENDER_IMAGE_SIZE_PX * 0.82}px`,
-                maxHeight: `${RENDER_IMAGE_SIZE_PX * 1.02}px`,
-                paddingLeft: `${RENDER_IMAGE_SIZE_PX * 0.2}px`,
-                paddingRight: `${RENDER_IMAGE_SIZE_PX * 0.2}px`,
+                minHeight: `${SHELF_RENDER_IMAGE_SIZE_PX * 0.82}px`,
+                maxHeight: `${SHELF_RENDER_IMAGE_SIZE_PX * 1.02}px`,
+                paddingLeft: `${SHELF_RENDER_IMAGE_SIZE_PX * 0.2}px`,
+                paddingRight: `${SHELF_RENDER_IMAGE_SIZE_PX * 0.2}px`,
                 cursor: "pointer"
               }}
             >
@@ -234,12 +231,12 @@ function Shelf() {
                 sx={{
                   marginTop: "auto",
                   width: "100%",
-                  height: `min(${RENDER_IMAGE_SIZE_PX * 0.86}px, calc((100vh - 240px) / 4))`,
+                  height: `min(${SHELF_RENDER_IMAGE_SIZE_PX * 0.86}px, calc((100vh - 240px) / 4))`,
                   position: "relative",
                   background: "#000",
                   overflow: "hidden",
-                  paddingLeft: `${RENDER_IMAGE_SIZE_PX * 0.25}px`,
-                  paddingRight: `${RENDER_IMAGE_SIZE_PX * 0.25}px`,
+                  paddingLeft: `${SHELF_RENDER_IMAGE_SIZE_PX * 0.25}px`,
+                  paddingRight: `${SHELF_RENDER_IMAGE_SIZE_PX * 0.25}px`,
                   boxSizing: "border-box"
                 }}
               >
@@ -258,10 +255,10 @@ function Shelf() {
                           left: "50%",
                           bottom: "-3px",
                           transform: "translateX(-50%)",
-                          width: `min(100%, ${RENDER_IMAGE_SIZE_PX}px, calc((100vh - 180px) / 4))`,
-                          height: `min(100%, ${RENDER_IMAGE_SIZE_PX}px, calc((100vh - 180px) / 4))`,
-                          maxWidth: `${RENDER_IMAGE_SIZE_PX}px`,
-                          maxHeight: `${RENDER_IMAGE_SIZE_PX}px`,
+                          width: `min(100%, ${SHELF_RENDER_IMAGE_SIZE_PX}px, calc((100vh - 180px) / 4))`,
+                          height: `min(100%, ${SHELF_RENDER_IMAGE_SIZE_PX}px, calc((100vh - 180px) / 4))`,
+                          maxWidth: `${SHELF_RENDER_IMAGE_SIZE_PX}px`,
+                          maxHeight: `${SHELF_RENDER_IMAGE_SIZE_PX}px`,
                           objectFit: "contain",
                           objectPosition: "center bottom",
                           opacity: defaultStackOpacity(clusterRow.allObjectIds.length)
@@ -279,10 +276,10 @@ function Shelf() {
                       left: "50%",
                       bottom: "-3px",
                       transform: "translateX(-50%)",
-                      width: `min(100%, ${RENDER_IMAGE_SIZE_PX}px, calc((100vh - 180px) / 4))`,
-                      height: `min(100%, ${RENDER_IMAGE_SIZE_PX}px, calc((100vh - 180px) / 4))`,
-                      maxWidth: `${RENDER_IMAGE_SIZE_PX}px`,
-                      maxHeight: `${RENDER_IMAGE_SIZE_PX}px`,
+                      width: `min(100%, ${SHELF_RENDER_IMAGE_SIZE_PX}px, calc((100vh - 180px) / 4))`,
+                      height: `min(100%, ${SHELF_RENDER_IMAGE_SIZE_PX}px, calc((100vh - 180px) / 4))`,
+                      maxWidth: `${SHELF_RENDER_IMAGE_SIZE_PX}px`,
+                      maxHeight: `${SHELF_RENDER_IMAGE_SIZE_PX}px`,
                       objectFit: "contain",
                       objectPosition: "center bottom",
                       display: "block"

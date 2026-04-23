@@ -1,28 +1,59 @@
-import { useMemo, useState } from "react";
-import { useParams } from "react-router-dom";
-import { Box, Typography } from "@mui/material";
+import { useLayoutEffect, useMemo, useRef, useState } from "react";
+import { useParams, useSearchParams } from "react-router-dom";
+import { Box, Button, Typography } from "@mui/material";
 import finalClusterKeysCsv from "../../../process_data/cluster/final_clusters_keys.csv?raw";
 import finalClusterObjectIdsCsv from "../../../process_data/cluster/final_clusters_object_ids.csv?raw";
 import BackButton from "./BackButton";
 import ImageToggleButton from "./ImageToggleButton";
+import Timeline from "./Timeline";
+import ObjectScene from "./ObjectScene";
 import useImageToggle from "../hooks/useImageToggle";
 import useImageModules from "../hooks/useImageModules";
 import useFormatClusters from "../hooks/useFormatClusters";
-
-const SOURCE_IMAGE_SIZE_PX = 768;
-const IMAGE_ASPECT_RATIO = 0.2;
-const RENDER_IMAGE_SIZE_PX = SOURCE_IMAGE_SIZE_PX * IMAGE_ASPECT_RATIO;
+import useTimelineBuckets from "../hooks/useTimelineBuckets";
+import { buildSceneLayout } from "../hooks/useViewLayouts";
+import { SUBGROUP_RENDER_IMAGE_SIZE_PX } from "./constants";
 
 function All() {
   const { clusterId } = useParams();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const currentView = searchParams.get("view") === "timeline" ? "timeline" : "all";
   const { mode, options, setMode } = useImageToggle({ colorOption: true });
-  const [hoveredObjectId, setHoveredObjectId] = useState<string | null>(null);
+  const sceneHostRef = useRef<HTMLDivElement | null>(null);
+  const [sceneWidth, setSceneWidth] = useState(0);
   const { outlineImageByObjectId, maskImageByObjectId, noBgImageByObjectId } = useImageModules();
   const { clusterRows } = useFormatClusters(finalClusterKeysCsv, finalClusterObjectIdsCsv);
   const selectedCluster = useMemo(
     () => clusterRows.find((row) => row.cluster === clusterId),
     [clusterId, clusterRows]
   );
+  const { buckets: timelineBuckets, excludedCount } = useTimelineBuckets(
+    selectedCluster?.allObjectIds ?? []
+  );
+  const sceneLayout = useMemo(
+    () =>
+      buildSceneLayout({
+        objectIds: selectedCluster?.allObjectIds ?? [],
+        buckets: timelineBuckets,
+        view: currentView,
+        sceneWidth,
+        imageSizePx: SUBGROUP_RENDER_IMAGE_SIZE_PX
+      }),
+    [currentView, sceneWidth, selectedCluster?.allObjectIds, timelineBuckets]
+  );
+
+  useLayoutEffect(() => {
+    const hostNode = sceneHostRef.current;
+    if (!hostNode) return;
+    const observer = new ResizeObserver((entries) => {
+      const entry = entries[0];
+      if (!entry) return;
+      setSceneWidth(entry.contentRect.width);
+    });
+    observer.observe(hostNode);
+    setSceneWidth(hostNode.getBoundingClientRect().width);
+    return () => observer.disconnect();
+  }, []);
 
   if (!selectedCluster) {
     return (
@@ -78,106 +109,67 @@ function All() {
         </Box>
       </Box>
 
-      <Box
-        component="section"
-        sx={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(170px, 1fr))",
-          gap: "0.6rem"
-        }}
-      >
-        {selectedCluster.allObjectIds.map((objectId) => {
-          const imageSrc =
-            mode === "outline"
-              ? outlineImageByObjectId.get(objectId)
-              : mode === "color"
-                ? (noBgImageByObjectId.get(objectId) ?? maskImageByObjectId.get(objectId))
-                : maskImageByObjectId.get(objectId);
-          const hoverImageSrc = noBgImageByObjectId.get(objectId);
-          const isHovered = hoveredObjectId === objectId;
+      <Box sx={{ display: "flex", alignItems: "center", gap: "0.4rem", mb: "0.8rem" }}>
+        <Button
+          type="button"
+          onClick={() => setSearchParams({ view: "all" })}
+          variant="outlined"
+          sx={{
+            borderColor: "#fff",
+            background: currentView === "all" ? "#fff" : "#000",
+            color: currentView === "all" ? "#000" : "#fff",
+            textTransform: "none",
+            minWidth: 0,
+            borderRadius: 0,
+            "&:hover": { borderColor: "#fff", background: currentView === "all" ? "#fff" : "#000" }
+          }}
+        >
+          All
+        </Button>
+        <Button
+          type="button"
+          onClick={() => setSearchParams({ view: "timeline" })}
+          variant="outlined"
+          sx={{
+            borderColor: "#fff",
+            background: currentView === "timeline" ? "#fff" : "#000",
+            color: currentView === "timeline" ? "#000" : "#fff",
+            textTransform: "none",
+            minWidth: 0,
+            borderRadius: 0,
+            "&:hover": {
+              borderColor: "#fff",
+              background: currentView === "timeline" ? "#fff" : "#000"
+            }
+          }}
+        >
+          Timeline
+        </Button>
+        {currentView === "timeline" ? (
+          <Typography component="span" sx={{ ml: "0.4rem", fontSize: "0.8rem", color: "#aaa" }}>
+            Excluded (non-numeric final_date): {excludedCount}
+          </Typography>
+        ) : null}
+      </Box>
 
-          return (
-            <Box
-              key={`${selectedCluster.cluster}-${objectId}`}
-              sx={{
-                p: "0.4rem",
-                minHeight: `${RENDER_IMAGE_SIZE_PX * 0.95}px`
-              }}
-            >
-              <Box
-                sx={{
-                  width: `min(100%, ${RENDER_IMAGE_SIZE_PX}px)`,
-                  height: `min(${RENDER_IMAGE_SIZE_PX}px, calc((100vh - 180px) / 4))`,
-                  mx: "auto",
-                  position: "relative",
-                  background: "#000",
-                  overflow: "hidden",
-                  cursor: "pointer"
-                }}
-                onMouseEnter={() => setHoveredObjectId(objectId)}
-                onMouseLeave={() => setHoveredObjectId(null)}
-              >
-                {imageSrc ? (
-                  <>
-                    <img
-                      src={imageSrc}
-                      alt={`${objectId}_${mode === "outline" ? "outline" : mode === "color" ? "no_bg" : "mask"}.png`}
-                      loading="lazy"
-                      style={{
-                        position: "absolute",
-                        left: "50%",
-                        bottom: "-3px",
-                        transform: "translateX(-50%)",
-                        width: `min(100%, ${RENDER_IMAGE_SIZE_PX}px, calc((100vh - 180px) / 4))`,
-                        height: `min(100%, ${RENDER_IMAGE_SIZE_PX}px, calc((100vh - 180px) / 4))`,
-                        maxWidth: `${RENDER_IMAGE_SIZE_PX}px`,
-                        maxHeight: `${RENDER_IMAGE_SIZE_PX}px`,
-                        objectFit: "contain",
-                        objectPosition: "center bottom",
-                        display: "block"
-                      }}
-                    />
-                    {hoverImageSrc && mode !== "color" ? (
-                      <img
-                        src={hoverImageSrc}
-                        alt={`${objectId}_no_bg.png`}
-                        loading="lazy"
-                        style={{
-                          position: "absolute",
-                          left: "50%",
-                          bottom: "-3px",
-                          transform: "translateX(-50%)",
-                          width: `min(100%, ${RENDER_IMAGE_SIZE_PX}px, calc((100vh - 180px) / 4))`,
-                          height: `min(100%, ${RENDER_IMAGE_SIZE_PX}px, calc((100vh - 180px) / 4))`,
-                          maxWidth: `${RENDER_IMAGE_SIZE_PX}px`,
-                          maxHeight: `${RENDER_IMAGE_SIZE_PX}px`,
-                          objectFit: "contain",
-                          objectPosition: "center bottom",
-                          display: "block",
-                          opacity: isHovered ? 1 : 0,
-                          transition: "opacity 120ms ease-out"
-                        }}
-                      />
-                    ) : null}
-                  </>
-                ) : (
-                  <Box
-                    sx={{
-                      width: "100%",
-                      height: "100%",
-                      display: "grid",
-                      placeItems: "center",
-                      color: "#777",
-                      fontSize: "11px"
-                    }}
-                  >
-                    Missing image
-                  </Box>
-                )}
-              </Box>
-            </Box>
-          );
-        })}
+      <Box ref={sceneHostRef} sx={{ position: "relative", width: "100%" }}>
+        {currentView === "timeline" ? (
+          <Timeline buckets={timelineBuckets} bucketWidthByKey={sceneLayout.bucketWidthByKey} />
+        ) : null}
+        <ObjectScene
+          objectIds={selectedCluster.allObjectIds}
+          objectLayoutById={sceneLayout.objectLayoutById}
+          sceneHeight={sceneLayout.sceneHeight}
+          getPrimaryImageSrc={(objectId) => {
+            if (mode === "outline") return outlineImageByObjectId.get(objectId);
+            if (mode === "color")
+              return noBgImageByObjectId.get(objectId) ?? maskImageByObjectId.get(objectId);
+            return maskImageByObjectId.get(objectId);
+          }}
+          getHoverImageSrc={(objectId) => noBgImageByObjectId.get(objectId)}
+          imageAltSuffix={mode === "outline" ? "outline" : mode === "color" ? "no_bg" : "mask"}
+          enableHoverSwap={mode !== "color"}
+        />
       </Box>
     </Box>
   );

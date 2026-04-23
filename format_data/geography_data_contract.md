@@ -118,10 +118,10 @@ Required:
 ## Examples
 
 - `"44793,Asian Art,50,||||||||China||"` -> `China`, source=`country`, confidence=`1.0`, eligible=`true`
-- `"46021,Asian Art,1849,||||||||China or Japan (?)||"` -> keep best guess nullable or low-confidence guess; eligible=`false`
-- `"450494,Islamic Art,849,||||||Iraq or Syria||||"` -> `Iraq` (or `Syria`), source=`country`, confidence=`0.45-0.60`, eligible usually=`false`
-- `"201753,European Sculpture and Decorative Arts,1548,||||||||||German"` -> `Germany`, source=`artistNationality`, confidence=`0.45-0.60`
-- `"670810,European Sculpture and Decorative Arts,1880,||||||||||British, Scottish"` -> `United Kingdom`, source=`artistNationality`, confidence=`0.35-0.55`
+- `"46021,Asian Art,1849,||||||||China or Japan (?)||"` -> "China" confidence=0.25, eligble=true
+- `"450494,Islamic Art,849,||||||Iraq or Syria||||"` -> `Iraq`, source=`country`, confidence=`0.25`, eligible usually=`true`
+- `"201753,European Sculpture and Decorative Arts,1548,||||||||||German"` -> `Germany`, source=`artistNationality`, confidence=`0.5`
+- `"670810,European Sculpture and Decorative Arts,1880,||||||||||British, Scottish"` -> `United Kingdom`, source=`artistNationality`, confidence=`0.5`
 - `"460135,Robert Lehman Collection,1480,||||||||Italian, possibly Florence or Faenza||"` -> `Florence, Italy`, source=`city||culture`, confidence=`0.60-0.75`
 - `"452853,Islamic Art,1149,||||||probably Egypt||||"` -> `Egypt`, source=`country`, confidence=`0.60-0.75`
 - `"460139,Robert Lehman Collection,1500,||||||||Italian, probably Florence or vicinity||"` -> `Florence, Italy`, source=`city||culture`, confidence=`0.65-0.80`
