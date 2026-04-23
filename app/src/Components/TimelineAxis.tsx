@@ -17,7 +17,8 @@ function TimelineAxis({ buckets, bucketWidthByKey }: TimelineAxisProps) {
           : "1fr",
         columnGap: 0,
         rowGap: "0.45rem",
-        width: "100%"
+        width: "max-content",
+        minWidth: "100%"
       }}
     >
       {buckets.map((bucket) => (

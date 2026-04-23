@@ -6,6 +6,7 @@ import type { ObjectLayout } from "../hooks/useViewLayouts";
 type ObjectSceneProps = {
   objectIds: string[];
   objectLayoutById: Map<string, ObjectLayout>;
+  sceneWidth: number;
   sceneHeight: number;
   getPrimaryImageSrc: (objectId: string) => string | undefined;
   getHoverImageSrc: (objectId: string) => string | undefined;
@@ -16,6 +17,7 @@ type ObjectSceneProps = {
 function ObjectScene({
   objectIds,
   objectLayoutById,
+  sceneWidth,
   sceneHeight,
   getPrimaryImageSrc,
   getHoverImageSrc,
@@ -42,9 +44,10 @@ function ObjectScene({
     <Box
       sx={{
         position: "relative",
-        width: "100%",
+        width: `${Math.max(sceneWidth, 1)}px`,
+        minWidth: "100%",
         height: `${Math.max(sceneHeight, 1)}px`,
-        overflow: "hidden"
+        overflow: "visible"
       }}
     >
       {objectIds.map((objectId) => {

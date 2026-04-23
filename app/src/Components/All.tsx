@@ -19,8 +19,8 @@ function All() {
   const [searchParams, setSearchParams] = useSearchParams();
   const currentView = searchParams.get("view") === "timeline" ? "timeline" : "all";
   const { mode, options, setMode } = useImageToggle({ colorOption: true });
-  const sceneHostRef = useRef<HTMLDivElement | null>(null);
-  const [sceneWidth, setSceneWidth] = useState(0);
+  const sceneViewportRef = useRef<HTMLDivElement | null>(null);
+  const [sceneViewportSize, setSceneViewportSize] = useState({ width: 0, height: 0 });
   const { outlineImageByObjectId, maskImageByObjectId, noBgImageByObjectId } = useImageModules();
   const { clusterRows } = useFormatClusters(finalClusterKeysCsv, finalClusterObjectIdsCsv);
   const selectedCluster = useMemo(
@@ -30,28 +30,52 @@ function All() {
   const { buckets: timelineBuckets, excludedCount } = useTimelineBuckets(
     selectedCluster?.allObjectIds ?? []
   );
-  const sceneLayout = useMemo(
+  const allSceneLayout = useMemo(
     () =>
       buildSceneLayout({
         objectIds: selectedCluster?.allObjectIds ?? [],
         buckets: timelineBuckets,
-        view: currentView,
-        sceneWidth,
+        view: "all",
+        sceneWidth: sceneViewportSize.width,
         imageSizePx: SUBGROUP_RENDER_IMAGE_SIZE_PX
       }),
-    [currentView, sceneWidth, selectedCluster?.allObjectIds, timelineBuckets]
+    [sceneViewportSize.width, selectedCluster?.allObjectIds, timelineBuckets]
   );
 
+  const timelineSceneLayout = useMemo(
+    () =>
+      buildSceneLayout({
+        objectIds: selectedCluster?.allObjectIds ?? [],
+        buckets: timelineBuckets,
+        view: "timeline",
+        sceneWidth: sceneViewportSize.width,
+        imageSizePx: SUBGROUP_RENDER_IMAGE_SIZE_PX
+      }),
+    [sceneViewportSize.width, selectedCluster?.allObjectIds, timelineBuckets]
+  );
+
+  const sceneLayout = currentView === "timeline" ? timelineSceneLayout : allSceneLayout;
+  const sharedSceneHeight = Math.max(
+    sceneViewportSize.height,
+    allSceneLayout.sceneHeight,
+    timelineSceneLayout.sceneHeight
+  );
+  const sharedSceneWidth = Math.max(allSceneLayout.sceneWidth, timelineSceneLayout.sceneWidth);
+
   useLayoutEffect(() => {
-    const hostNode = sceneHostRef.current;
-    if (!hostNode) return;
+    const viewportNode = sceneViewportRef.current;
+    if (!viewportNode) return;
     const observer = new ResizeObserver((entries) => {
       const entry = entries[0];
       if (!entry) return;
-      setSceneWidth(entry.contentRect.width);
+      setSceneViewportSize({
+        width: entry.contentRect.width,
+        height: entry.contentRect.height
+      });
     });
-    observer.observe(hostNode);
-    setSceneWidth(hostNode.getBoundingClientRect().width);
+    observer.observe(viewportNode);
+    const initialRect = viewportNode.getBoundingClientRect();
+    setSceneViewportSize({ width: initialRect.width, height: initialRect.height });
     return () => observer.disconnect();
   }, []);
 
@@ -76,10 +100,12 @@ function All() {
     <Box
       component="main"
       sx={{
-        minHeight: "100vh",
+        height: "100vh",
         background: "#000",
         color: "#fff",
-        p: "0.75rem"
+        p: "0.75rem",
+        display: "flex",
+        flexDirection: "column"
       }}
     >
       <Box
@@ -152,24 +178,48 @@ function All() {
         ) : null}
       </Box>
 
-      <Box ref={sceneHostRef} sx={{ position: "relative", width: "100%" }}>
-        {currentView === "timeline" ? (
-          <Timeline buckets={timelineBuckets} bucketWidthByKey={sceneLayout.bucketWidthByKey} />
-        ) : null}
-        <ObjectScene
-          objectIds={selectedCluster.allObjectIds}
-          objectLayoutById={sceneLayout.objectLayoutById}
-          sceneHeight={sceneLayout.sceneHeight}
-          getPrimaryImageSrc={(objectId) => {
-            if (mode === "outline") return outlineImageByObjectId.get(objectId);
-            if (mode === "color")
-              return noBgImageByObjectId.get(objectId) ?? maskImageByObjectId.get(objectId);
-            return maskImageByObjectId.get(objectId);
+      <Box
+        ref={sceneViewportRef}
+        sx={{ position: "relative", flex: 1, minHeight: 0, width: "100%" }}
+      >
+        <Box
+          sx={{
+            position: "absolute",
+            inset: 0,
+            overflowX: currentView === "timeline" ? "auto" : "hidden",
+            overflowY: "auto"
           }}
-          getHoverImageSrc={(objectId) => noBgImageByObjectId.get(objectId)}
-          imageAltSuffix={mode === "outline" ? "outline" : mode === "color" ? "no_bg" : "mask"}
-          enableHoverSwap={mode !== "color"}
-        />
+        >
+          <Box
+            sx={{
+              position: "relative",
+              width: `${Math.max(sharedSceneWidth, 1)}px`,
+              minWidth: "100%"
+            }}
+          >
+            {currentView === "timeline" ? (
+              <Timeline
+                buckets={timelineBuckets}
+                bucketWidthByKey={timelineSceneLayout.bucketWidthByKey}
+              />
+            ) : null}
+            <ObjectScene
+              objectIds={selectedCluster.allObjectIds}
+              objectLayoutById={sceneLayout.objectLayoutById}
+              sceneWidth={sharedSceneWidth}
+              sceneHeight={sharedSceneHeight}
+              getPrimaryImageSrc={(objectId) => {
+                if (mode === "outline") return outlineImageByObjectId.get(objectId);
+                if (mode === "color")
+                  return noBgImageByObjectId.get(objectId) ?? maskImageByObjectId.get(objectId);
+                return maskImageByObjectId.get(objectId);
+              }}
+              getHoverImageSrc={(objectId) => noBgImageByObjectId.get(objectId)}
+              imageAltSuffix={mode === "outline" ? "outline" : mode === "color" ? "no_bg" : "mask"}
+              enableHoverSwap={mode !== "color"}
+            />
+          </Box>
+        </Box>
       </Box>
     </Box>
   );
