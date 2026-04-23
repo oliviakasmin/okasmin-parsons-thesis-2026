@@ -62,7 +62,7 @@ type SceneLayout = {
   objectLayoutById: Map<string, ObjectLayout>;
   sceneWidth: number;
   sceneHeight: number;
-  bucketWidthByKey: Map<string, number>;
+  bucketSpanByKey: Map<string, number>;
 };
 
 type TimelineBucketLike = {
@@ -75,6 +75,7 @@ type BuildSceneLayoutParams = {
   buckets: TimelineBucketLike[];
   view: "all" | "timeline";
   sceneWidth: number;
+  sceneHeight: number;
   imageSizePx: number;
 };
 
@@ -86,9 +87,9 @@ function buildAllLayout(
   objectIds: string[],
   sceneWidth: number,
   imageSizePx: number
-): Pick<SceneLayout, "objectLayoutById" | "sceneHeight" | "bucketWidthByKey"> {
+): Pick<SceneLayout, "objectLayoutById" | "sceneHeight" | "bucketSpanByKey"> {
   const objectLayoutById = new Map<string, ObjectLayout>();
-  const bucketWidthByKey = new Map<string, number>();
+  const bucketSpanByKey = new Map<string, number>();
   const cellWidth = imageSizePx + 4;
   const columns = Math.max(1, Math.floor(sceneWidth / cellWidth));
   const rowGap = 2;
@@ -110,24 +111,27 @@ function buildAllLayout(
 
   const totalRows = Math.max(1, Math.ceil(objectIds.length / columns));
   const sceneHeight = totalRows * (imageSizePx + rowGap);
-  return { objectLayoutById, sceneHeight, bucketWidthByKey };
+  return { objectLayoutById, sceneHeight, bucketSpanByKey };
 }
 
 function buildTimelineLayout(
   objectIds: string[],
   buckets: TimelineBucketLike[],
-  sceneWidth: number,
+  sceneHeight: number,
   imageSizePx: number
-): Pick<SceneLayout, "objectLayoutById" | "sceneHeight" | "bucketWidthByKey"> {
+): Pick<SceneLayout, "objectLayoutById" | "sceneHeight" | "bucketSpanByKey"> {
   const objectLayoutById = new Map<string, ObjectLayout>();
-  const bucketWidthByKey = new Map<string, number>();
+  const bucketSpanByKey = new Map<string, number>();
   const bucketCount = Math.max(1, buckets.length);
-  const bucketWidth = Math.max(imageSizePx, sceneWidth / bucketCount);
-  let maxStackDepth = 1;
+  const minRowHeight = imageSizePx + 18;
+  const fitRowHeight = Math.floor(sceneHeight / bucketCount);
+  const rowHeight = Math.max(minRowHeight, fitRowHeight);
+  const laneStep = imageSizePx + 6;
+  let maxLaneDepth = 1;
 
   objectIds.forEach((objectId) => {
     objectLayoutById.set(objectId, {
-      x: sceneWidth / 2 - imageSizePx / 2,
+      x: 0,
       y: 0,
       width: imageSizePx,
       height: imageSizePx,
@@ -136,13 +140,13 @@ function buildTimelineLayout(
   });
 
   buckets.forEach((bucket, bucketIndex) => {
-    bucketWidthByKey.set(bucket.key, bucketWidth);
-    maxStackDepth = Math.max(maxStackDepth, bucket.objectIds.length);
+    bucketSpanByKey.set(bucket.key, rowHeight);
+    maxLaneDepth = Math.max(maxLaneDepth, bucket.objectIds.length);
 
     bucket.objectIds.forEach((objectId, stackIndex) => {
       objectLayoutById.set(objectId, {
-        x: bucketIndex * bucketWidth + (bucketWidth - imageSizePx) / 2,
-        y: stackIndex * imageSizePx,
+        x: stackIndex * laneStep,
+        y: bucketIndex * rowHeight + (rowHeight - imageSizePx) / 2,
         width: imageSizePx,
         height: imageSizePx,
         visible: true
@@ -150,8 +154,14 @@ function buildTimelineLayout(
     });
   });
 
-  const sceneHeight = maxStackDepth * imageSizePx;
-  return { objectLayoutById, sceneHeight, bucketWidthByKey };
+  const computedSceneHeight = bucketCount * rowHeight;
+  const requiredWidth = maxLaneDepth * laneStep + imageSizePx;
+  objectIds.forEach((objectId) => {
+    const layout = objectLayoutById.get(objectId);
+    if (!layout || !layout.visible) return;
+    layout.x = Math.min(layout.x, Math.max(requiredWidth - imageSizePx, 0));
+  });
+  return { objectLayoutById, sceneHeight: computedSceneHeight, bucketSpanByKey };
 }
 
 function buildSceneLayout({
@@ -159,18 +169,20 @@ function buildSceneLayout({
   buckets,
   view,
   sceneWidth,
+  sceneHeight,
   imageSizePx
 }: BuildSceneLayoutParams): SceneLayout {
   const width = ensurePositive(sceneWidth, imageSizePx * 4);
+  const height = ensurePositive(sceneHeight, imageSizePx * 4);
   const size = ensurePositive(imageSizePx, 24);
 
   if (view === "timeline") {
-    const timelineLayout = buildTimelineLayout(objectIds, buckets, width, size);
+    const timelineLayout = buildTimelineLayout(objectIds, buckets, height, size);
     return {
       objectLayoutById: timelineLayout.objectLayoutById,
       sceneHeight: timelineLayout.sceneHeight,
       sceneWidth: width,
-      bucketWidthByKey: timelineLayout.bucketWidthByKey
+      bucketSpanByKey: timelineLayout.bucketSpanByKey
     };
   }
 
@@ -179,7 +191,7 @@ function buildSceneLayout({
     objectLayoutById: allLayout.objectLayoutById,
     sceneHeight: allLayout.sceneHeight,
     sceneWidth: width,
-    bucketWidthByKey: allLayout.bucketWidthByKey
+    bucketSpanByKey: allLayout.bucketSpanByKey
   };
 }
 

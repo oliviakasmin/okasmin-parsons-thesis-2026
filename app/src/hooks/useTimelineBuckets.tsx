@@ -12,6 +12,7 @@ type TimelineBucket = {
 type TimelineBucketsResult = {
   buckets: TimelineBucket[];
   excludedCount: number;
+  spanYears: number;
 };
 
 const BUCKET_SIZE_YEARS = 500;
@@ -58,6 +59,36 @@ function bucketStartYear(year: number) {
   return Math.floor(year / BUCKET_SIZE_YEARS) * BUCKET_SIZE_YEARS;
 }
 
+function formatBucketLabel(startYear: number, endYear: number) {
+  const displayedEndYear = endYear + 1;
+  const formatYearNumber = (year: number) => String(Math.abs(year));
+
+  if (startYear < 0 && displayedEndYear < 0) {
+    return `${formatYearNumber(startYear)} - ${formatYearNumber(displayedEndYear)} BCE`;
+  }
+
+  if (startYear < 0 && displayedEndYear === 0) {
+    return `${formatYearNumber(startYear)} BCE - 0`;
+  }
+
+  if (startYear === 0 && displayedEndYear > 0) {
+    return `0 - ${displayedEndYear} CE`;
+  }
+
+  if (startYear > 0 && displayedEndYear > 0) {
+    return `${startYear} - ${displayedEndYear} CE`;
+  }
+
+  // Fallback for any mixed-sign edge case.
+  const formatSingleYear = (year: number) => {
+    if (year < 0) return `${formatYearNumber(year)} BCE`;
+    if (year > 0) return `${year} CE`;
+    return "0";
+  };
+
+  return `${formatSingleYear(startYear)} - ${formatSingleYear(displayedEndYear)}`;
+}
+
 function shuffleOnce<T>(items: T[]) {
   const copy = [...items];
   for (let index = copy.length - 1; index > 0; index -= 1) {
@@ -94,6 +125,8 @@ function useTimelineBuckets(objectIds: string[]): TimelineBucketsResult {
   return useMemo(() => {
     const bucketsByKey = new Map<string, TimelineBucket>();
     let excludedCount = 0;
+    let minYear = Number.POSITIVE_INFINITY;
+    let maxYear = Number.NEGATIVE_INFINITY;
 
     for (const objectId of objectIds) {
       const year = finalDateByObjectId.get(objectId);
@@ -101,6 +134,9 @@ function useTimelineBuckets(objectIds: string[]): TimelineBucketsResult {
         excludedCount += 1;
         continue;
       }
+
+      minYear = Math.min(minYear, year);
+      maxYear = Math.max(maxYear, year);
 
       const startYear = bucketStartYear(year);
       const endYear = startYear + BUCKET_SIZE_YEARS - 1;
@@ -116,7 +152,7 @@ function useTimelineBuckets(objectIds: string[]): TimelineBucketsResult {
         key,
         startYear,
         endYear,
-        label: `${startYear} to ${endYear}`,
+        label: formatBucketLabel(startYear, endYear),
         objectIds: [objectId]
       });
     }
@@ -136,7 +172,10 @@ function useTimelineBuckets(objectIds: string[]): TimelineBucketsResult {
         return { ...bucket, objectIds: objectIdsInBucket };
       });
 
-    return { buckets, excludedCount };
+    const spanYears =
+      Number.isFinite(minYear) && Number.isFinite(maxYear) ? Math.max(0, maxYear - minYear) : 0;
+
+    return { buckets, excludedCount, spanYears };
   }, [finalDateByObjectId, objectIds]);
 }
 

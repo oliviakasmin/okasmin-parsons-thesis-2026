@@ -5,3 +5,5 @@ export { default as ImageToggleButton } from "./ImageToggleButton";
 export { default as ObjectScene } from "./ObjectScene";
 export { default as TimelineAxis } from "./TimelineAxis";
 export { default as MapOverlay } from "./MapOverlay";
+export { default as LeftOutlineStackPanel } from "./LeftOutlineStackPanel";
+export { default as SceneHeader } from "./SceneHeader";

@@ -89,9 +89,6 @@ function Shelf() {
     >
       <Box sx={{ display: "flex", alignItems: "center", gap: "0.6rem", mb: "0.85rem" }}>
         <BackButton to="/cluster-test" />
-        <Typography component="h1" sx={{ m: 0, fontSize: "1.25rem" }}>
-          Shelf
-        </Typography>
       </Box>
 
       <Box sx={{ display: "flex", alignItems: "center", gap: "0.5rem", mb: "0.5rem" }}>
