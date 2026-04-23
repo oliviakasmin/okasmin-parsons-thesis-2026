@@ -24,6 +24,7 @@ PLURAL_TERMS = [
     "pots",
     "teapots",
     "tea pots",
+    "vessels",
     # Irregular plural
     "amphorae",
 ]
@@ -36,13 +37,17 @@ EXCLUDED_TERMS = [
     "cup",
     "set of",
     "service",
-    "a pair",
-    "a set",
+    "pair",
+    "set",
     "tea pot",
     "teapot",
     "dish",
     "fragment",
     "box",
+    "stand",
+    "tile",
+    "figurine",
+    "plate"
 ]
 
 
@@ -51,12 +56,19 @@ def _contains_any_term(text: str, terms: list[str]) -> bool:
     return any(term in lowered for term in terms)
 
 
-def apply_filters(obj: Dict[str, Any], object_id: int, rejected_ids: list[int]) -> bool:
+def apply_filters(
+    obj: Dict[str, Any],
+    object_id: int,
+    rejected_ids: list[int],
+    *,
+    require_ceramics_classification: bool = True,
+) -> bool:
     """
     Apply all rejection rules to an object.
 
     - Returns True if the object should be kept (included in objects.json).
     - Returns False if it should be rejected, and appends object_id to rejected_ids.
+    - If require_ceramics_classification is False, skip the classification substring check.
     """
     # isPublicDomain must be true
     if not obj.get("isPublicDomain", False):
@@ -68,11 +80,12 @@ def apply_filters(obj: Dict[str, Any], object_id: int, rejected_ids: list[int]) 
         rejected_ids.append(object_id)
         return False
 
-    # classification must include "Ceramics"
-    classification = obj.get("classification") or ""
-    if CLASSIFICATION_REQUIRED_SUBSTRING not in classification:
-        rejected_ids.append(object_id)
-        return False
+    # classification must include "Ceramics" (optional for some fetch sources)
+    if require_ceramics_classification:
+        classification = obj.get("classification") or ""
+        if CLASSIFICATION_REQUIRED_SUBSTRING not in classification:
+            rejected_ids.append(object_id)
+            return False
 
     # objectName or title must NOT include plural versions of the search queries
     title = (obj.get("title") or "").lower()
