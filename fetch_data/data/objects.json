@@ -196075,5 +196075,1446 @@
     ],
     "objectWikidata_URL": "https://www.wikidata.org/wiki/Q116288566",
     "isTimelineWork": false
+  },
+  "240442": {
+    "objectID": 240442,
+    "isHighlight": false,
+    "accessionNumber": "74.51.854",
+    "accessionYear": "1874",
+    "isPublicDomain": true,
+    "primaryImage": "https://images.metmuseum.org/CRDImages/gr/original/LC-74_51_854.jpg",
+    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/gr/web-large/LC-74_51_854.jpg",
+    "additionalImages": [],
+    "constituents": null,
+    "department": "Greek and Roman Art",
+    "objectName": "Juglet",
+    "title": "Juglet",
+    "culture": "Cypriot",
+    "period": "Cypro-Geometric III",
+    "objectDate": "850\u2013750 BCE",
+    "objectBeginDate": -850,
+    "objectEndDate": -750,
+    "medium": "Terracotta",
+    "dimensions": "3 5/8in. (9.2cm)",
+    "measurements": [
+      {
+        "elementName": "Overall",
+        "elementDescription": null,
+        "elementMeasurements": {
+          "Height": 9.2
+        }
+      }
+    ],
+    "creditLine": "The Cesnola Collection, Purchased by subscription, 1874\u201376",
+    "classification": "Vases",
+    "metadataDate": "2025-03-06T04:54:30Z",
+    "repository": "Metropolitan Museum of Art, New York, NY",
+    "objectURL": "https://www.metmuseum.org/art/collection/search/240442",
+    "tags": null,
+    "isTimelineWork": false
+  },
+  "246205": {
+    "objectID": 246205,
+    "isHighlight": false,
+    "accessionNumber": "96.9.140b",
+    "accessionYear": "1896",
+    "isPublicDomain": true,
+    "primaryImage": "https://images.metmuseum.org/CRDImages/gr/original/DP249196.jpg",
+    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/gr/web-large/DP249196.jpg",
+    "additionalImages": [],
+    "constituents": null,
+    "department": "Greek and Roman Art",
+    "objectName": "Lid of jug",
+    "title": "Terracotta lid",
+    "culture": "Etruscan",
+    "period": "Archaic",
+    "objectDate": "ca. 550 BCE",
+    "objectBeginDate": -550,
+    "objectEndDate": -550,
+    "medium": "Terracotta",
+    "dimensions": "H.: 4 3/4 in. (12.1 cm)",
+    "measurements": [
+      {
+        "elementName": "Height",
+        "elementDescription": null,
+        "elementMeasurements": {
+          "Height": 12.065024
+        }
+      }
+    ],
+    "creditLine": "Purchase, 1896",
+    "classification": "Vases",
+    "metadataDate": "2025-03-06T04:54:30Z",
+    "repository": "Metropolitan Museum of Art, New York, NY",
+    "objectURL": "https://www.metmuseum.org/art/collection/search/246205",
+    "tags": [
+      {
+        "term": "Heads",
+        "AAT_URL": "http://vocab.getty.edu/page/aat/300375054",
+        "Wikidata_URL": "https://www.wikidata.org/wiki/Q3409626"
+      }
+    ],
+    "objectWikidata_URL": "https://www.wikidata.org/wiki/Q116295674",
+    "isTimelineWork": false,
+    "GalleryNumber": "170"
+  },
+  "240893": {
+    "objectID": 240893,
+    "isHighlight": false,
+    "accessionNumber": "74.51.1306",
+    "accessionYear": "1874",
+    "isPublicDomain": true,
+    "primaryImage": "https://images.metmuseum.org/CRDImages/gr/original/DP-43356-001.jpg",
+    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/gr/web-large/DP-43356-001.jpg",
+    "additionalImages": [
+      "https://images.metmuseum.org/CRDImages/gr/original/DP-43356-002.jpg"
+    ],
+    "constituents": null,
+    "department": "Greek and Roman Art",
+    "objectName": "Ladle",
+    "title": "Ladle",
+    "culture": "Cypriot",
+    "period": "Bronze Age",
+    "objectDate": "ca. 3200\u20131050 BCE",
+    "objectBeginDate": -3200,
+    "objectEndDate": -1050,
+    "medium": "Terracotta",
+    "dimensions": "1 1/2 \u00d7 5 1/2 \u00d7 2 3/4 in. (3.8 \u00d7 14 \u00d7 7 cm)",
+    "measurements": [
+      {
+        "elementName": "Overall",
+        "elementDescription": null,
+        "elementMeasurements": {
+          "Diameter": 7,
+          "Height": 3.8,
+          "Length": 13.970028
+        }
+      }
+    ],
+    "creditLine": "The Cesnola Collection, Purchased by subscription, 1874\u201376",
+    "classification": "Vases",
+    "metadataDate": "2025-12-02T04:52:41.85Z",
+    "repository": "Metropolitan Museum of Art, New York, NY",
+    "objectURL": "https://www.metmuseum.org/art/collection/search/240893",
+    "tags": null,
+    "objectWikidata_URL": "https://www.wikidata.org/wiki/Q116728057",
+    "isTimelineWork": false
+  },
+  "256549": {
+    "objectID": 256549,
+    "isHighlight": false,
+    "accessionNumber": "2004.363.2",
+    "accessionYear": "2004",
+    "isPublicDomain": true,
+    "primaryImage": "https://images.metmuseum.org/CRDImages/gr/original/DP116325.jpg",
+    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/gr/web-large/DP116325.jpg",
+    "additionalImages": [
+      "https://images.metmuseum.org/CRDImages/gr/original/DP116326.jpg",
+      "https://images.metmuseum.org/CRDImages/gr/original/DP116327.jpg",
+      "https://images.metmuseum.org/CRDImages/gr/original/DP116328.jpg",
+      "https://images.metmuseum.org/CRDImages/gr/original/DP116329.jpg",
+      "https://images.metmuseum.org/CRDImages/gr/original/DP116746.jpg"
+    ],
+    "constituents": null,
+    "department": "Greek and Roman Art",
+    "objectName": "Jar",
+    "title": "Terracotta jar",
+    "culture": "Cycladic",
+    "period": "Early Cycladic III\u2013Middle Cycladic I",
+    "objectDate": "ca. 2300\u20131900 BCE",
+    "objectBeginDate": -2300,
+    "objectEndDate": -1900,
+    "medium": "Terracotta",
+    "dimensions": "Overall: 16 3/8 in. (41.6 cm)",
+    "measurements": [
+      {
+        "elementName": "Overall",
+        "elementDescription": null,
+        "elementMeasurements": {
+          "Height": 41.5926
+        }
+      }
+    ],
+    "creditLine": "Purchase, The Annenberg Foundation Gift, 2004",
+    "classification": "Vases",
+    "metadataDate": "2025-03-06T04:54:30Z",
+    "repository": "Metropolitan Museum of Art, New York, NY",
+    "objectURL": "https://www.metmuseum.org/art/collection/search/256549",
+    "tags": null,
+    "objectWikidata_URL": "https://www.wikidata.org/wiki/Q116287778",
+    "isTimelineWork": true,
+    "GalleryNumber": "151"
+  },
+  "250572": {
+    "objectID": 250572,
+    "isHighlight": false,
+    "accessionNumber": "17.230.39",
+    "accessionYear": "1917",
+    "isPublicDomain": true,
+    "primaryImage": "https://images.metmuseum.org/CRDImages/gr/original/DP1430.jpg",
+    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/gr/web-large/DP1430.jpg",
+    "additionalImages": [
+      "https://images.metmuseum.org/CRDImages/gr/original/DP1430_17.230.39.jpg"
+    ],
+    "constituents": null,
+    "department": "Greek and Roman Art",
+    "objectName": "Jug",
+    "title": "Jug",
+    "culture": "East Greek",
+    "period": "Late Classical",
+    "objectDate": "4th century BCE",
+    "objectBeginDate": -399,
+    "objectEndDate": -300,
+    "medium": "Terracotta",
+    "dimensions": "H. with handle 7 in. (17.8 cm)",
+    "measurements": [
+      {
+        "elementName": "Other",
+        "elementDescription": "height with handle",
+        "elementMeasurements": {
+          "Height": 17.81
+        }
+      }
+    ],
+    "creditLine": "Rogers Fund, 1917",
+    "classification": "Vases",
+    "metadataDate": "2025-03-06T04:54:30Z",
+    "repository": "Metropolitan Museum of Art, New York, NY",
+    "objectURL": "https://www.metmuseum.org/art/collection/search/250572",
+    "tags": null,
+    "isTimelineWork": false
+  },
+  "252901": {
+    "objectID": 252901,
+    "isHighlight": false,
+    "accessionNumber": "27.120.3",
+    "accessionYear": "1927",
+    "isPublicDomain": true,
+    "primaryImage": "https://images.metmuseum.org/CRDImages/gr/original/DP121179.jpg",
+    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/gr/web-large/DP121179.jpg",
+    "additionalImages": [],
+    "constituents": null,
+    "department": "Greek and Roman Art",
+    "objectName": "Basin",
+    "title": "Terracotta basin with four handles",
+    "culture": "Mycenaean",
+    "period": "Late Helladic IIIA-B",
+    "objectDate": "ca. 1400\u20131190 BCE",
+    "objectBeginDate": -1400,
+    "objectEndDate": -1190,
+    "medium": "Terracotta",
+    "dimensions": "H. 6 3/4 in. (17 cm.)\r\nDiameter 15 5/8 in. (39.6 cm.)",
+    "measurements": [
+      {
+        "elementName": "Other",
+        "elementDescription": null,
+        "elementMeasurements": {
+          "Diameter": 39.6
+        }
+      },
+      {
+        "elementName": "Overall",
+        "elementDescription": null,
+        "elementMeasurements": {
+          "Height": 16.99
+        }
+      }
+    ],
+    "creditLine": "Gift of the Greek Government, 1927",
+    "classification": "Vases",
+    "metadataDate": "2025-03-06T04:54:30Z",
+    "repository": "Metropolitan Museum of Art, New York, NY",
+    "objectURL": "https://www.metmuseum.org/art/collection/search/252901",
+    "tags": null,
+    "objectWikidata_URL": "https://www.wikidata.org/wiki/Q116242172",
+    "isTimelineWork": false,
+    "GalleryNumber": "171"
+  },
+  "240815": {
+    "objectID": 240815,
+    "isHighlight": false,
+    "accessionNumber": "74.51.1228",
+    "accessionYear": "1874",
+    "isPublicDomain": true,
+    "primaryImage": "https://images.metmuseum.org/CRDImages/gr/original/DP121227.jpg",
+    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/gr/web-large/DP121227.jpg",
+    "additionalImages": [],
+    "constituents": null,
+    "department": "Greek and Roman Art",
+    "objectName": "Jug",
+    "title": "Terracotta jug",
+    "culture": "Cypriot",
+    "period": "Middle Cypriot III",
+    "objectDate": "ca. 1725\u20131600 BCE",
+    "objectBeginDate": -1725,
+    "objectEndDate": -1600,
+    "medium": "Terracotta",
+    "dimensions": "H. 7 1/8 in. (18.1 cm)",
+    "measurements": null,
+    "creditLine": "The Cesnola Collection, Purchased by subscription, 1874\u201376",
+    "classification": "Vases",
+    "metadataDate": "2025-11-15T04:50:59.18Z",
+    "repository": "Metropolitan Museum of Art, New York, NY",
+    "objectURL": "https://www.metmuseum.org/art/collection/search/240815",
+    "tags": null,
+    "objectWikidata_URL": "https://www.wikidata.org/wiki/Q116295573",
+    "isTimelineWork": false,
+    "GalleryNumber": "171"
+  },
+  "255097": {
+    "objectID": 255097,
+    "isHighlight": false,
+    "accessionNumber": "61.11.1",
+    "accessionYear": "1961",
+    "isPublicDomain": true,
+    "primaryImage": "https://images.metmuseum.org/CRDImages/gr/original/sf61111.jpg",
+    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/gr/web-large/sf61111.jpg",
+    "additionalImages": [],
+    "constituents": [
+      {
+        "constituentID": 49314,
+        "role": "Artist",
+        "name": "Attributed to the Swan Group",
+        "constituentULAN_URL": "http://vocab.getty.edu/page/ulan/500104612"
+      }
+    ],
+    "department": "Greek and Roman Art",
+    "objectName": "Lekanis with lid, miniature",
+    "title": "Lekanis with lid, miniature",
+    "culture": "Greek, Attic",
+    "period": "Archaic",
+    "artistRole": "Artist",
+    "artistPrefix": "Attributed to the",
+    "artistDisplayName": "Swan Group",
+    "artistAlphaSort": "Swan Group",
+    "artistULAN_URL": "http://vocab.getty.edu/page/ulan/500104612",
+    "objectDate": "mid-6th century BCE",
+    "objectBeginDate": -575,
+    "objectEndDate": -525,
+    "medium": "Terracotta",
+    "dimensions": "Overall: 2 1/4in. (5.7cm)\r\nOther (height with lid): 2 1/4in. (5.7cm)\r\nOther (height without lid): 1 1/4in. (3.2cm)\r\nDiameter: 2 1/4 \u00d7 7/8 in. (5.7 \u00d7 2.2 cm)\r\nOverall (width w/ handles): 3 1/16 in. (7.7 cm)",
+    "measurements": [
+      {
+        "elementName": "Other",
+        "elementDescription": "height without lid",
+        "elementMeasurements": {
+          "Height": 3.2
+        }
+      },
+      {
+        "elementName": "Other",
+        "elementDescription": "height with lid",
+        "elementMeasurements": {
+          "Height": 5.69
+        }
+      },
+      {
+        "elementName": "Overall",
+        "elementDescription": null,
+        "elementMeasurements": {
+          "Height": 5.69
+        }
+      },
+      {
+        "elementName": "Overall",
+        "elementDescription": "width w/ handles",
+        "elementMeasurements": {
+          "Width": 7.74
+        }
+      },
+      {
+        "elementName": "Diameter",
+        "elementDescription": null,
+        "elementMeasurements": {
+          "Diameter": 5.69,
+          "Foot": 2.16
+        }
+      }
+    ],
+    "creditLine": "Rogers Fund, 1961",
+    "classification": "Vases",
+    "metadataDate": "2025-03-06T04:54:30Z",
+    "repository": "Metropolitan Museum of Art, New York, NY",
+    "objectURL": "https://www.metmuseum.org/art/collection/search/255097",
+    "tags": null,
+    "isTimelineWork": false
+  },
+  "240529": {
+    "objectID": 240529,
+    "isHighlight": false,
+    "accessionNumber": "74.51.940",
+    "accessionYear": "1874",
+    "isPublicDomain": true,
+    "primaryImage": "https://images.metmuseum.org/CRDImages/gr/original/DP101904.jpg",
+    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/gr/web-large/DP101904.jpg",
+    "additionalImages": [],
+    "constituents": null,
+    "department": "Greek and Roman Art",
+    "objectName": "Spindle whorl",
+    "title": "Terracotta biconical spindle-whorl with flat top",
+    "culture": "Cypriot",
+    "period": "Early Cypriot I",
+    "objectDate": "ca. 2500\u20132075 BCE",
+    "objectBeginDate": -2500,
+    "objectEndDate": -2075,
+    "medium": "Terracotta",
+    "dimensions": "H. 1 7/8 in. (4.8 cm)",
+    "measurements": [
+      {
+        "elementName": "Overall",
+        "elementDescription": null,
+        "elementMeasurements": {
+          "Height": 4.7
+        }
+      }
+    ],
+    "creditLine": "The Cesnola Collection, Purchased by subscription, 1874\u201376",
+    "classification": "Vases",
+    "metadataDate": "2025-03-06T04:54:30Z",
+    "repository": "Metropolitan Museum of Art, New York, NY",
+    "objectURL": "https://www.metmuseum.org/art/collection/search/240529",
+    "tags": null,
+    "objectWikidata_URL": "https://www.wikidata.org/wiki/Q116295949",
+    "isTimelineWork": false,
+    "GalleryNumber": "171"
+  },
+  "244759": {
+    "objectID": 244759,
+    "isHighlight": false,
+    "accessionNumber": "74.51.5887",
+    "accessionYear": "1874",
+    "isPublicDomain": true,
+    "primaryImage": "https://images.metmuseum.org/CRDImages/gr/original/DP119942.jpg",
+    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/gr/web-large/DP119942.jpg",
+    "additionalImages": [],
+    "constituents": null,
+    "department": "Greek and Roman Art",
+    "objectName": "Amphoriskos",
+    "title": "Terracotta amphoriskos (oil flask)",
+    "culture": "Greek, Corinthian",
+    "period": "Late Corinthian",
+    "objectDate": "ca. 575\u2013500 BCE",
+    "objectBeginDate": -575,
+    "objectEndDate": -500,
+    "medium": "Terracotta",
+    "dimensions": "H. 6 1/4 in. (15.9 cm)",
+    "measurements": [
+      {
+        "elementName": "Overall",
+        "elementDescription": null,
+        "elementMeasurements": {
+          "Height": 15.88
+        }
+      }
+    ],
+    "creditLine": "The Cesnola Collection, Purchased by subscription, 1874\u201376",
+    "classification": "Vases",
+    "metadataDate": "2025-03-06T04:54:30Z",
+    "repository": "Metropolitan Museum of Art, New York, NY",
+    "objectURL": "https://www.metmuseum.org/art/collection/search/244759",
+    "tags": [
+      {
+        "term": "Deer",
+        "AAT_URL": "http://vocab.getty.edu/page/aat/300250308",
+        "Wikidata_URL": "https://www.wikidata.org/wiki/Q685795"
+      }
+    ],
+    "objectWikidata_URL": "https://www.wikidata.org/wiki/Q116289460",
+    "isTimelineWork": false,
+    "GalleryNumber": "171"
+  },
+  "240022": {
+    "objectID": 240022,
+    "isHighlight": false,
+    "accessionNumber": "74.51.436",
+    "accessionYear": "1874",
+    "isPublicDomain": true,
+    "primaryImage": "https://images.metmuseum.org/CRDImages/gr/original/LC-74_51_436.jpg",
+    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/gr/web-large/LC-74_51_436.jpg",
+    "additionalImages": [],
+    "constituents": null,
+    "department": "Greek and Roman Art",
+    "objectName": "Tripod",
+    "title": "Tripod",
+    "culture": "Cypriot",
+    "period": "Cypro-Geometric I",
+    "objectDate": "1050\u2013950 BCE",
+    "objectBeginDate": -1050,
+    "objectEndDate": -950,
+    "medium": "Terracotta",
+    "dimensions": "5 3/8in. (13.7cm)",
+    "measurements": [
+      {
+        "elementName": "Overall",
+        "elementDescription": null,
+        "elementMeasurements": {
+          "Height": 13.7
+        }
+      }
+    ],
+    "creditLine": "The Cesnola Collection, Purchased by subscription, 1874\u201376",
+    "classification": "Vases",
+    "metadataDate": "2025-03-06T04:54:30Z",
+    "repository": "Metropolitan Museum of Art, New York, NY",
+    "objectURL": "https://www.metmuseum.org/art/collection/search/240022",
+    "tags": null,
+    "isTimelineWork": false
+  },
+  "256602": {
+    "objectID": 256602,
+    "isHighlight": false,
+    "accessionNumber": "X.21.19",
+    "isPublicDomain": true,
+    "primaryImage": "https://images.metmuseum.org/CRDImages/gr/original/DP278547.jpg",
+    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/gr/web-large/DP278547.jpg",
+    "additionalImages": [
+      "https://images.metmuseum.org/CRDImages/gr/original/DP280933.jpg",
+      "https://images.metmuseum.org/CRDImages/gr/original/DP280934.jpg",
+      "https://images.metmuseum.org/CRDImages/gr/original/DP280936.jpg",
+      "https://images.metmuseum.org/CRDImages/gr/original/DP280935.jpg",
+      "https://images.metmuseum.org/CRDImages/gr/original/DP278549.jpg"
+    ],
+    "constituents": [
+      {
+        "constituentID": 49499,
+        "role": "Artist",
+        "name": "Attributed to the Pilos Head Group",
+        "constituentULAN_URL": "http://vocab.getty.edu/page/ulan/500108338"
+      }
+    ],
+    "department": "Greek and Roman Art",
+    "objectName": "Neck-amphora with twisted handles",
+    "title": "Terracotta neck-amphora with twisted handles (jar)",
+    "culture": "Greek, South Italian, Campanian",
+    "period": "Late Classical",
+    "artistRole": "Artist",
+    "artistPrefix": "Attributed to the",
+    "artistDisplayName": "Pilos Head Group",
+    "artistAlphaSort": "Pilos Head Group",
+    "artistULAN_URL": "http://vocab.getty.edu/page/ulan/500108338",
+    "objectDate": "ca. 350\u2013325 BCE",
+    "objectBeginDate": -350,
+    "objectEndDate": -325,
+    "medium": "Terracotta",
+    "dimensions": "H. 10 7/16 in. (26.5 cm)",
+    "measurements": [
+      {
+        "elementName": "Overall",
+        "elementDescription": null,
+        "elementMeasurements": {
+          "Height": 26.49
+        }
+      }
+    ],
+    "creditLine": "Museum Accession",
+    "classification": "Vases",
+    "metadataDate": "2025-03-06T04:54:30Z",
+    "repository": "Metropolitan Museum of Art, New York, NY",
+    "objectURL": "https://www.metmuseum.org/art/collection/search/256602",
+    "tags": [
+      {
+        "term": "Male Nudes",
+        "AAT_URL": "http://vocab.getty.edu/page/aat/300189568",
+        "Wikidata_URL": "https://www.wikidata.org/wiki/Q40446"
+      },
+      {
+        "term": "Warriors",
+        "AAT_URL": "http://vocab.getty.edu/page/aat/300261945",
+        "Wikidata_URL": "https://www.wikidata.org/wiki/Q1250916"
+      }
+    ],
+    "objectWikidata_URL": "https://www.wikidata.org/wiki/Q116287476",
+    "isTimelineWork": false,
+    "GalleryNumber": "161"
+  },
+  "248300": {
+    "objectID": 248300,
+    "isHighlight": false,
+    "accessionNumber": "10.210.15",
+    "accessionYear": "1910",
+    "isPublicDomain": true,
+    "primaryImage": "https://images.metmuseum.org/CRDImages/gr/original/DP232627.jpg",
+    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/gr/web-large/DP232627.jpg",
+    "additionalImages": [
+      "https://images.metmuseum.org/CRDImages/gr/original/DP232612.jpg",
+      "https://images.metmuseum.org/CRDImages/gr/original/DP232626.jpg"
+    ],
+    "constituents": null,
+    "department": "Greek and Roman Art",
+    "objectName": "Stamnos",
+    "title": "Terracotta stamnos (jar)",
+    "culture": "Greek, Attic",
+    "period": "Classical",
+    "objectDate": "early 5th century BCE",
+    "objectBeginDate": -499,
+    "objectEndDate": -475,
+    "medium": "Terracotta",
+    "dimensions": "Overall: 15 3/4 x 18 5/8in. (40 x 47.3cm)\r\ndiameter (neck)  15 1/4in. (38.7cm)",
+    "measurements": [
+      {
+        "elementName": "Other",
+        "elementDescription": "diameter (neck)",
+        "elementMeasurements": {
+          "Diameter": 38.74
+        }
+      },
+      {
+        "elementName": "Overall",
+        "elementDescription": null,
+        "elementMeasurements": {
+          "Height": 40.01,
+          "Width": 47.29
+        }
+      }
+    ],
+    "creditLine": "Rogers Fund, 1910",
+    "classification": "Vases",
+    "metadataDate": "2025-03-06T04:54:30Z",
+    "repository": "Metropolitan Museum of Art, New York, NY",
+    "objectURL": "https://www.metmuseum.org/art/collection/search/248300",
+    "tags": null,
+    "objectWikidata_URL": "https://www.wikidata.org/wiki/Q116290255",
+    "isTimelineWork": false,
+    "GalleryNumber": "171"
+  },
+  "240140": {
+    "objectID": 240140,
+    "isHighlight": false,
+    "accessionNumber": "74.51.553",
+    "accessionYear": "1874",
+    "isPublicDomain": true,
+    "primaryImage": "https://images.metmuseum.org/CRDImages/gr/original/DP-37120-004.jpg",
+    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/gr/web-large/DP-37120-004.jpg",
+    "additionalImages": [
+      "https://images.metmuseum.org/CRDImages/gr/original/DP-37120-001.jpg",
+      "https://images.metmuseum.org/CRDImages/gr/original/DP-37120-002.jpg",
+      "https://images.metmuseum.org/CRDImages/gr/original/DP-37120-003.jpg"
+    ],
+    "constituents": null,
+    "department": "Greek and Roman Art",
+    "objectName": "Jug",
+    "title": "Jug",
+    "culture": "Cypriot",
+    "period": "Cypro-Archaic I",
+    "objectDate": "750\u2013600 BCE",
+    "objectBeginDate": -750,
+    "objectEndDate": -600,
+    "medium": "Terracotta",
+    "dimensions": "6 3/16 \u00d7 5 1/2 \u00d7 4 3/4 \u00d7 4 3/4 in. (15.7 \u00d7 14 \u00d7 12.1 \u00d7 12.1 cm)",
+    "measurements": [
+      {
+        "elementName": "Overall",
+        "elementDescription": null,
+        "elementMeasurements": {
+          "Depth": 13.970028,
+          "Diameter": 12.065024,
+          "Height": 15.7,
+          "Width": 12.065024
+        }
+      }
+    ],
+    "creditLine": "The Cesnola Collection, Purchased by subscription, 1874\u201376",
+    "classification": "Vases",
+    "metadataDate": "2025-10-21T13:08:39.33Z",
+    "repository": "Metropolitan Museum of Art, New York, NY",
+    "objectURL": "https://www.metmuseum.org/art/collection/search/240140",
+    "tags": null,
+    "isTimelineWork": false
+  },
+  "251022": {
+    "objectID": 251022,
+    "isHighlight": false,
+    "accessionNumber": "21.80",
+    "accessionYear": "1921",
+    "isPublicDomain": true,
+    "primaryImage": "https://images.metmuseum.org/CRDImages/gr/original/DP-19157-001.jpg",
+    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/gr/web-large/DP-19157-001.jpg",
+    "additionalImages": [],
+    "constituents": [
+      {
+        "constituentID": 49096,
+        "role": "Artist",
+        "name": "Attributed to the Group of the Paidikos Alabastra",
+        "constituentULAN_URL": "http://vocab.getty.edu/page/ulan/500074721",
+        "constituentWikidata_URL": "https://www.wikidata.org/wiki/Q19959687"
+      }
+    ],
+    "department": "Greek and Roman Art",
+    "objectName": "Alabastron",
+    "title": "Terracotta alabastron (perfume vase)",
+    "culture": "Greek, Attic",
+    "period": "Archaic",
+    "artistRole": "Artist",
+    "artistPrefix": "Attributed to the",
+    "artistDisplayName": "Group of the Paidikos Alabastra",
+    "artistAlphaSort": "Group of the Paidikos Alabastra",
+    "artistWikidata_URL": "https://www.wikidata.org/wiki/Q19959687",
+    "artistULAN_URL": "http://vocab.getty.edu/page/ulan/500074721",
+    "objectDate": "ca. 510 BCE",
+    "objectBeginDate": -510,
+    "objectEndDate": -510,
+    "medium": "Terracotta",
+    "dimensions": "H. 5 in. (12.7 cm)",
+    "measurements": [
+      {
+        "elementName": "Overall",
+        "elementDescription": null,
+        "elementMeasurements": {
+          "Height": 12.7
+        }
+      }
+    ],
+    "creditLine": "Gift of Welles Bosworth, 1921",
+    "classification": "Vases",
+    "metadataDate": "2025-03-06T04:54:30Z",
+    "repository": "Metropolitan Museum of Art, New York, NY",
+    "objectURL": "https://www.metmuseum.org/art/collection/search/251022",
+    "tags": null,
+    "objectWikidata_URL": "https://www.wikidata.org/wiki/Q116402760",
+    "isTimelineWork": false,
+    "GalleryNumber": "156"
+  },
+  "244860": {
+    "objectID": 244860,
+    "isHighlight": false,
+    "accessionNumber": "76.12.9",
+    "accessionYear": "1876",
+    "isPublicDomain": true,
+    "primaryImage": "https://images.metmuseum.org/CRDImages/gr/original/DP1649.jpg",
+    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/gr/web-large/DP1649.jpg",
+    "additionalImages": [],
+    "constituents": null,
+    "department": "Greek and Roman Art",
+    "objectName": "Hydria",
+    "title": "Hydria",
+    "culture": "Greek, South Italian, Apulian",
+    "period": "Late Classical",
+    "objectDate": "ca. 350\u2013325 BCE",
+    "objectBeginDate": -350,
+    "objectEndDate": -325,
+    "medium": "Terracotta",
+    "dimensions": "4 7/8in. (12.4cm)",
+    "measurements": [
+      {
+        "elementName": "Overall",
+        "elementDescription": null,
+        "elementMeasurements": {
+          "Height": 12.37
+        }
+      }
+    ],
+    "creditLine": "Gift of L. P. di Cesnola, 1876",
+    "classification": "Vases",
+    "metadataDate": "2025-03-06T04:54:30Z",
+    "repository": "Metropolitan Museum of Art, New York, NY",
+    "objectURL": "https://www.metmuseum.org/art/collection/search/244860",
+    "tags": [
+      {
+        "term": "Heads",
+        "AAT_URL": "http://vocab.getty.edu/page/aat/300375054",
+        "Wikidata_URL": "https://www.wikidata.org/wiki/Q3409626"
+      },
+      {
+        "term": "Women",
+        "AAT_URL": "http://vocab.getty.edu/page/aat/300025943",
+        "Wikidata_URL": "https://www.wikidata.org/wiki/Q467"
+      }
+    ],
+    "isTimelineWork": false
+  },
+  "255193": {
+    "objectID": 255193,
+    "isHighlight": false,
+    "accessionNumber": "65.11.12",
+    "accessionYear": "1965",
+    "isPublicDomain": true,
+    "primaryImage": "https://images.metmuseum.org/CRDImages/gr/original/DP260689.jpg",
+    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/gr/web-large/DP260689.jpg",
+    "additionalImages": [
+      "https://images.metmuseum.org/CRDImages/gr/original/DP260740.jpg"
+    ],
+    "constituents": [
+      {
+        "constituentID": 49132,
+        "role": "Artist",
+        "name": "Attributed to the Berlin Painter",
+        "constituentULAN_URL": "http://vocab.getty.edu/page/ulan/500006931",
+        "constituentWikidata_URL": "https://www.wikidata.org/wiki/Q821647"
+      }
+    ],
+    "department": "Greek and Roman Art",
+    "objectName": "Hydria, kalpis",
+    "title": "Terracotta hydria: kalpis (water jar)",
+    "culture": "Greek, Attic",
+    "period": "Late Archaic",
+    "artistRole": "Artist",
+    "artistPrefix": "Attributed to the",
+    "artistDisplayName": "Berlin Painter",
+    "artistAlphaSort": "Berlin Painter",
+    "artistWikidata_URL": "https://www.wikidata.org/wiki/Q821647",
+    "artistULAN_URL": "http://vocab.getty.edu/page/ulan/500006931",
+    "objectDate": "ca. 490 BCE",
+    "objectBeginDate": -490,
+    "objectEndDate": -490,
+    "medium": "Terracotta",
+    "dimensions": "H. 14 5/16 in. (36.4 cm)",
+    "measurements": [
+      {
+        "elementName": "Overall",
+        "elementDescription": null,
+        "elementMeasurements": {
+          "Height": 36.4
+        }
+      }
+    ],
+    "creditLine": "Purchase, Mr. and Mrs. Arnold Whitridge Gift, 1965",
+    "classification": "Vases",
+    "metadataDate": "2026-03-21T04:54:46.133Z",
+    "repository": "Metropolitan Museum of Art, New York, NY",
+    "objectURL": "https://www.metmuseum.org/art/collection/search/255193",
+    "tags": [
+      {
+        "term": "Trojan War",
+        "AAT_URL": "http://vocab.getty.edu/page/ia/901000351",
+        "Wikidata_URL": "https://www.wikidata.org/wiki/Q42937"
+      },
+      {
+        "term": "Achilles",
+        "AAT_URL": "http://vocab.getty.edu/page/ia/901000072",
+        "Wikidata_URL": "https://www.wikidata.org/wiki/Q41746"
+      },
+      {
+        "term": "Games",
+        "AAT_URL": "http://vocab.getty.edu/page/aat/300069657",
+        "Wikidata_URL": "https://www.wikidata.org/wiki/Q11410"
+      },
+      {
+        "term": "Ajax",
+        "AAT_URL": "http://vocab.getty.edu/page/ia/901000663",
+        "Wikidata_URL": "https://www.wikidata.org/wiki/Q172725"
+      }
+    ],
+    "objectWikidata_URL": "https://www.wikidata.org/wiki/Q116288573",
+    "isTimelineWork": false,
+    "GalleryNumber": "157"
+  },
+  "240015": {
+    "objectID": 240015,
+    "isHighlight": false,
+    "accessionNumber": "74.51.429",
+    "accessionYear": "1874",
+    "isPublicDomain": true,
+    "primaryImage": "https://images.metmuseum.org/CRDImages/gr/original/GR247_74.51.429.jpg",
+    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/gr/web-large/GR247_74.51.429.jpg",
+    "additionalImages": [
+      "https://images.metmuseum.org/CRDImages/gr/original/GR248_74.51.429.jpg",
+      "https://images.metmuseum.org/CRDImages/gr/original/GR248.jpg",
+      "https://images.metmuseum.org/CRDImages/gr/original/GR247.jpg"
+    ],
+    "constituents": null,
+    "department": "Greek and Roman Art",
+    "objectName": "Krater",
+    "title": "Terracotta krater",
+    "culture": "Cypriot",
+    "period": "Late Cypriot III",
+    "objectDate": "ca. 1150\u20131100 BCE",
+    "objectBeginDate": -1150,
+    "objectEndDate": -1100,
+    "medium": "Terracotta",
+    "dimensions": "H. 8 7/16 in. (21.5 cm)\r\ndiameter  12 1/16 in. (30.7 cm)",
+    "measurements": [
+      {
+        "elementName": "Other",
+        "elementDescription": null,
+        "elementMeasurements": {
+          "Diameter": 30.71
+        }
+      },
+      {
+        "elementName": "Overall",
+        "elementDescription": null,
+        "elementMeasurements": {
+          "Height": 21.49
+        }
+      }
+    ],
+    "creditLine": "The Cesnola Collection, Purchased by subscription, 1874\u201376",
+    "classification": "Vases",
+    "metadataDate": "2025-04-08T04:57:41.12Z",
+    "repository": "Metropolitan Museum of Art, New York, NY",
+    "objectURL": "https://www.metmuseum.org/art/collection/search/240015",
+    "tags": [
+      {
+        "term": "Fish",
+        "AAT_URL": "http://vocab.getty.edu/page/aat/300266085",
+        "Wikidata_URL": "https://www.wikidata.org/wiki/Q152"
+      }
+    ],
+    "objectWikidata_URL": "https://www.wikidata.org/wiki/Q116297352",
+    "isTimelineWork": false
+  },
+  "246123": {
+    "objectID": 246123,
+    "isHighlight": false,
+    "accessionNumber": "96.9.21",
+    "accessionYear": "1896",
+    "isPublicDomain": true,
+    "primaryImage": "https://images.metmuseum.org/CRDImages/gr/original/DP138657.jpg",
+    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/gr/web-large/DP138657.jpg",
+    "additionalImages": [],
+    "constituents": null,
+    "department": "Greek and Roman Art",
+    "objectName": "Lekythos",
+    "title": "Terracotta lekythos (oil flask) with an owl",
+    "culture": "Greek, South Italian, Apulian",
+    "period": "Late Classical",
+    "objectDate": "4th century BCE",
+    "objectBeginDate": -399,
+    "objectEndDate": -300,
+    "medium": "Terracotta",
+    "dimensions": "H. 4 7/8 in. (12.4 cm)",
+    "measurements": [
+      {
+        "elementName": "Overall",
+        "elementDescription": null,
+        "elementMeasurements": {
+          "Height": 12.37
+        }
+      }
+    ],
+    "creditLine": "Purchase, 1896",
+    "classification": "Vases",
+    "metadataDate": "2025-03-06T04:54:30Z",
+    "repository": "Metropolitan Museum of Art, New York, NY",
+    "objectURL": "https://www.metmuseum.org/art/collection/search/246123",
+    "tags": [
+      {
+        "term": "Owls",
+        "AAT_URL": "http://vocab.getty.edu/page/aat/300310290",
+        "Wikidata_URL": "https://www.wikidata.org/wiki/Q8021345"
+      }
+    ],
+    "objectWikidata_URL": "https://www.wikidata.org/wiki/Q116296534",
+    "isTimelineWork": false,
+    "GalleryNumber": "171"
+  },
+  "246116": {
+    "objectID": 246116,
+    "isHighlight": false,
+    "accessionNumber": "96.9.14",
+    "accessionYear": "1896",
+    "isPublicDomain": true,
+    "primaryImage": "https://images.metmuseum.org/CRDImages/gr/original/DP1855.jpg",
+    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/gr/web-large/DP1855.jpg",
+    "additionalImages": [],
+    "constituents": null,
+    "department": "Greek and Roman Art",
+    "objectName": "Lekythos",
+    "title": "Terracotta pointed aryballos (oil flask)",
+    "culture": "Etruscan, Italo-Corinthian",
+    "period": "Archaic",
+    "objectDate": "late 7th\u2013early 6th century BCE",
+    "objectBeginDate": -799,
+    "objectEndDate": -500,
+    "medium": "Terracotta",
+    "dimensions": "H.: 3 15/16 in. (10 cm)",
+    "measurements": [
+      {
+        "elementName": "Height",
+        "elementDescription": null,
+        "elementMeasurements": {
+          "Height": 10.00127
+        }
+      }
+    ],
+    "creditLine": "Purchase, 1896",
+    "classification": "Vases",
+    "metadataDate": "2025-03-06T04:54:30Z",
+    "repository": "Metropolitan Museum of Art, New York, NY",
+    "objectURL": "https://www.metmuseum.org/art/collection/search/246116",
+    "tags": null,
+    "objectWikidata_URL": "https://www.wikidata.org/wiki/Q116296681",
+    "isTimelineWork": false,
+    "GalleryNumber": "171"
+  },
+  "240437": {
+    "objectID": 240437,
+    "isHighlight": false,
+    "accessionNumber": "74.51.849",
+    "accessionYear": "1874",
+    "isPublicDomain": true,
+    "primaryImage": "https://images.metmuseum.org/CRDImages/gr/original/56255.jpg",
+    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/gr/web-large/56255.jpg",
+    "additionalImages": [],
+    "constituents": null,
+    "department": "Greek and Roman Art",
+    "objectName": "Jug",
+    "title": "Jug",
+    "culture": "Cypriot",
+    "period": "Hellenic",
+    "objectBeginDate": -507,
+    "objectEndDate": -323,
+    "medium": "Terracotta",
+    "dimensions": "H.: 4 9/16 in. (11.6 cm)",
+    "measurements": [
+      {
+        "elementName": "Height",
+        "elementDescription": null,
+        "elementMeasurements": {
+          "Height": 11.588773
+        }
+      }
+    ],
+    "creditLine": "The Cesnola Collection, Purchased by subscription, 1874\u201376",
+    "classification": "Vases",
+    "metadataDate": "2025-03-06T04:54:30Z",
+    "repository": "Metropolitan Museum of Art, New York, NY",
+    "objectURL": "https://www.metmuseum.org/art/collection/search/240437",
+    "tags": null,
+    "isTimelineWork": false
+  },
+  "254246": {
+    "objectID": 254246,
+    "isHighlight": false,
+    "accessionNumber": "41.162.74",
+    "accessionYear": "1941",
+    "isPublicDomain": true,
+    "primaryImage": "https://images.metmuseum.org/CRDImages/gr/original/DP232670.jpg",
+    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/gr/web-large/DP232670.jpg",
+    "additionalImages": [
+      "https://images.metmuseum.org/CRDImages/gr/original/DP232671.jpg",
+      "https://images.metmuseum.org/CRDImages/gr/original/DP232681.jpg",
+      "https://images.metmuseum.org/CRDImages/gr/original/DP232664.jpg"
+    ],
+    "constituents": null,
+    "department": "Greek and Roman Art",
+    "objectName": "Aryballos in the form of a helmeted head",
+    "title": "Terracotta aryballos in the form of a helmeted head",
+    "culture": "East Greek",
+    "period": "Archaic",
+    "objectDate": "ca. 600\u2013575 BCE",
+    "objectBeginDate": -600,
+    "objectEndDate": -575,
+    "medium": "Terracotta",
+    "dimensions": "2 15/16 \u00d7 1 3/4 \u00d7 2 in. (7.4 \u00d7 4.5 \u00d7 5.1 cm)",
+    "measurements": [
+      {
+        "elementName": "Overall",
+        "elementDescription": null,
+        "elementMeasurements": {
+          "Depth": 5.1,
+          "Height": 7.4,
+          "Width": 4.5
+        }
+      }
+    ],
+    "creditLine": "Rogers Fund, 1941",
+    "classification": "Vases",
+    "metadataDate": "2025-03-28T04:53:47.247Z",
+    "repository": "Metropolitan Museum of Art, New York, NY",
+    "objectURL": "https://www.metmuseum.org/art/collection/search/254246",
+    "tags": [
+      {
+        "term": "Helmets",
+        "AAT_URL": "http://vocab.getty.edu/page/aat/300036794",
+        "Wikidata_URL": "https://www.wikidata.org/wiki/Q173603"
+      },
+      {
+        "term": "Heads",
+        "AAT_URL": "http://vocab.getty.edu/page/aat/300375054",
+        "Wikidata_URL": "https://www.wikidata.org/wiki/Q3409626"
+      }
+    ],
+    "objectWikidata_URL": "https://www.wikidata.org/wiki/Q116288853",
+    "isTimelineWork": false,
+    "GalleryNumber": "171"
+  },
+  "254396": {
+    "objectID": 254396,
+    "isHighlight": false,
+    "accessionNumber": "41.162.225",
+    "accessionYear": "1941",
+    "isPublicDomain": true,
+    "primaryImage": "https://images.metmuseum.org/CRDImages/gr/original/DP145550.jpg",
+    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/gr/web-large/DP145550.jpg",
+    "additionalImages": [],
+    "constituents": null,
+    "department": "Greek and Roman Art",
+    "objectName": "Lekythos",
+    "title": "Terracotta lekythos (oil flask) with a bird",
+    "culture": "Greek, South Italian, Apulian",
+    "period": "Late Classical or Hellenistic",
+    "objectDate": "4th century BCE",
+    "objectBeginDate": -399,
+    "objectEndDate": -300,
+    "medium": "Terracotta",
+    "dimensions": "H. 3 1/4 in. (8.3 cm)",
+    "measurements": [
+      {
+        "elementName": "Overall",
+        "elementDescription": null,
+        "elementMeasurements": {
+          "Height": 8.26
+        }
+      }
+    ],
+    "creditLine": "Rogers Fund, 1941",
+    "classification": "Vases",
+    "metadataDate": "2025-03-06T04:54:30Z",
+    "repository": "Metropolitan Museum of Art, New York, NY",
+    "objectURL": "https://www.metmuseum.org/art/collection/search/254396",
+    "tags": [
+      {
+        "term": "Birds",
+        "AAT_URL": "http://vocab.getty.edu/page/aat/300266506",
+        "Wikidata_URL": "https://www.wikidata.org/wiki/Q5113"
+      }
+    ],
+    "objectWikidata_URL": "https://www.wikidata.org/wiki/Q116287958",
+    "isTimelineWork": false,
+    "GalleryNumber": "171"
+  },
+  "254307": {
+    "objectID": 254307,
+    "isHighlight": false,
+    "accessionNumber": "41.162.135",
+    "accessionYear": "1941",
+    "isPublicDomain": true,
+    "primaryImage": "https://images.metmuseum.org/CRDImages/gr/original/DP117156.jpg",
+    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/gr/web-large/DP117156.jpg",
+    "additionalImages": [],
+    "constituents": null,
+    "department": "Greek and Roman Art",
+    "objectName": "Squat lekythos",
+    "title": "Terracotta squat lekythos (oil flask)",
+    "culture": "Greek, Attic",
+    "period": "Classical",
+    "objectDate": "late 5th\u2013early 4th century BCE",
+    "objectBeginDate": -425,
+    "objectEndDate": -375,
+    "medium": "Terracotta",
+    "dimensions": "H. 3 3/4 in. (9.6 cm)",
+    "measurements": [
+      {
+        "elementName": "Overall",
+        "elementDescription": null,
+        "elementMeasurements": {
+          "Height": 9.6
+        }
+      }
+    ],
+    "creditLine": "Rogers Fund, 1941",
+    "classification": "Vases",
+    "metadataDate": "2025-03-06T04:54:30Z",
+    "repository": "Metropolitan Museum of Art, New York, NY",
+    "objectURL": "https://www.metmuseum.org/art/collection/search/254307",
+    "tags": [
+      {
+        "term": "Heads",
+        "AAT_URL": "http://vocab.getty.edu/page/aat/300375054",
+        "Wikidata_URL": "https://www.wikidata.org/wiki/Q3409626"
+      },
+      {
+        "term": "Women",
+        "AAT_URL": "http://vocab.getty.edu/page/aat/300025943",
+        "Wikidata_URL": "https://www.wikidata.org/wiki/Q467"
+      }
+    ],
+    "objectWikidata_URL": "https://www.wikidata.org/wiki/Q116288163",
+    "isTimelineWork": false,
+    "GalleryNumber": "171"
+  },
+  "254559": {
+    "objectID": 254559,
+    "isHighlight": false,
+    "accessionNumber": "46.129.1",
+    "accessionYear": "1946",
+    "isPublicDomain": true,
+    "primaryImage": "https://images.metmuseum.org/CRDImages/gr/original/DP1064.jpg",
+    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/gr/web-large/DP1064.jpg",
+    "additionalImages": [
+      "https://images.metmuseum.org/CRDImages/gr/original/DP1064_46.129.1.jpg"
+    ],
+    "constituents": [
+      {
+        "constituentID": 49094,
+        "role": "Artist",
+        "name": "Attributed to the Class of Athens 581",
+        "constituentULAN_URL": "http://vocab.getty.edu/page/ulan/500116383",
+        "constituentWikidata_URL": "https://www.wikidata.org/wiki/Q1744528"
+      }
+    ],
+    "department": "Greek and Roman Art",
+    "objectName": "Lekythos",
+    "title": "Lekythos",
+    "culture": "Greek, Attic",
+    "period": "Archaic",
+    "artistRole": "Artist",
+    "artistPrefix": "Attributed to the",
+    "artistDisplayName": "Class of Athens 581",
+    "artistAlphaSort": "Class of Athens 581",
+    "artistWikidata_URL": "https://www.wikidata.org/wiki/Q1744528",
+    "artistULAN_URL": "http://vocab.getty.edu/page/ulan/500116383",
+    "objectDate": "6th\u20135th century BCE",
+    "objectBeginDate": -599,
+    "objectEndDate": -450,
+    "medium": "Terracotta",
+    "dimensions": "H. 21.79 cm.",
+    "measurements": [
+      {
+        "elementName": "Overall",
+        "elementDescription": null,
+        "elementMeasurements": {
+          "Height": 21.79
+        }
+      }
+    ],
+    "creditLine": "Gift of Mr. and Mrs. John van Benschoten Griggs, 1946",
+    "classification": "Vases",
+    "metadataDate": "2025-10-24T04:51:05.727Z",
+    "repository": "Metropolitan Museum of Art, New York, NY",
+    "objectURL": "https://www.metmuseum.org/art/collection/search/254559",
+    "tags": [
+      {
+        "term": "Animals",
+        "AAT_URL": "http://vocab.getty.edu/page/aat/300249525",
+        "Wikidata_URL": "https://www.wikidata.org/wiki/Q729"
+      },
+      {
+        "term": "Men",
+        "AAT_URL": "http://vocab.getty.edu/page/aat/300025928",
+        "Wikidata_URL": "https://www.wikidata.org/wiki/Q8441"
+      }
+    ],
+    "isTimelineWork": false
+  },
+  "240118": {
+    "objectID": 240118,
+    "isHighlight": false,
+    "accessionNumber": "74.51.531",
+    "accessionYear": "1874",
+    "isPublicDomain": true,
+    "primaryImage": "https://images.metmuseum.org/CRDImages/gr/original/DP-35773-001.jpg",
+    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/gr/web-large/DP-35773-001.jpg",
+    "additionalImages": [
+      "https://images.metmuseum.org/CRDImages/gr/original/DP-35773-004.jpg",
+      "https://images.metmuseum.org/CRDImages/gr/original/DP-35773-003.jpg",
+      "https://images.metmuseum.org/CRDImages/gr/original/DP-35773-002.jpg"
+    ],
+    "constituents": null,
+    "department": "Greek and Roman Art",
+    "objectName": "Jug",
+    "title": "Terracotta jug",
+    "culture": "Cypriot",
+    "period": "Cypro-Archaic I",
+    "objectDate": "ca. 750\u2013600 BCE",
+    "objectBeginDate": -750,
+    "objectEndDate": -600,
+    "medium": "Terracotta",
+    "dimensions": "H. 7 3/4 in. (19.7 cm)",
+    "measurements": [
+      {
+        "elementName": "Overall",
+        "elementDescription": null,
+        "elementMeasurements": {
+          "Height": 19.71
+        }
+      }
+    ],
+    "creditLine": "The Cesnola Collection, Purchased by subscription, 1874\u201376",
+    "classification": "Vases",
+    "metadataDate": "2025-03-06T04:54:30Z",
+    "repository": "Metropolitan Museum of Art, New York, NY",
+    "objectURL": "https://www.metmuseum.org/art/collection/search/240118",
+    "tags": [
+      {
+        "term": "Women",
+        "AAT_URL": "http://vocab.getty.edu/page/aat/300025943",
+        "Wikidata_URL": "https://www.wikidata.org/wiki/Q467"
+      },
+      {
+        "term": "Serpents",
+        "AAT_URL": "http://vocab.getty.edu/page/aat/300417734",
+        "Wikidata_URL": "https://www.wikidata.org/wiki/Q2102"
+      }
+    ],
+    "objectWikidata_URL": "https://www.wikidata.org/wiki/Q116297139",
+    "isTimelineWork": false
+  },
+  "239990": {
+    "objectID": 239990,
+    "isHighlight": false,
+    "accessionNumber": "74.51.404",
+    "accessionYear": "1874",
+    "isPublicDomain": true,
+    "primaryImage": "https://images.metmuseum.org/CRDImages/gr/original/LC-74_51404.jpg",
+    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/gr/web-large/LC-74_51404.jpg",
+    "additionalImages": [],
+    "constituents": null,
+    "department": "Greek and Roman Art",
+    "objectName": "Vase, miniature",
+    "title": "Vase, miniature",
+    "culture": "Cypriot",
+    "period": "Cypro-Classical II ?",
+    "objectDate": "400\u2013310 BCE",
+    "objectBeginDate": -400,
+    "objectEndDate": -310,
+    "medium": "Terracotta",
+    "dimensions": "3 7/8in. (9.8cm)",
+    "measurements": [
+      {
+        "elementName": "Overall",
+        "elementDescription": null,
+        "elementMeasurements": {
+          "Height": 9.8
+        }
+      }
+    ],
+    "creditLine": "The Cesnola Collection, Purchased by subscription, 1874\u201376",
+    "classification": "Vases",
+    "metadataDate": "2025-03-06T04:54:30Z",
+    "repository": "Metropolitan Museum of Art, New York, NY",
+    "objectURL": "https://www.metmuseum.org/art/collection/search/239990",
+    "tags": null,
+    "isTimelineWork": false
+  },
+  "252556": {
+    "objectID": 252556,
+    "isHighlight": false,
+    "accessionNumber": "26.60.92",
+    "accessionYear": "1926",
+    "isPublicDomain": true,
+    "primaryImage": "https://images.metmuseum.org/CRDImages/gr/original/DP245700.jpg",
+    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/gr/web-large/DP245700.jpg",
+    "additionalImages": [],
+    "constituents": null,
+    "department": "Greek and Roman Art",
+    "objectName": "Vase in the form of a monkey",
+    "title": "Terracotta vase in the shape of a monkey",
+    "culture": "Etruscan, Etrusco-Corinthian",
+    "period": "Archaic",
+    "objectDate": "ca. 565\u2013550 BCE",
+    "objectBeginDate": -565,
+    "objectEndDate": -550,
+    "medium": "Terracotta",
+    "dimensions": "H. 3 5/8 in. (9.2 cm)",
+    "measurements": [
+      {
+        "elementName": "Overall",
+        "elementDescription": null,
+        "elementMeasurements": {
+          "Height": 9.19
+        }
+      }
+    ],
+    "creditLine": "Fletcher Fund, 1926",
+    "classification": "Vases",
+    "metadataDate": "2026-02-07T04:59:02.893Z",
+    "repository": "Metropolitan Museum of Art, New York, NY",
+    "objectURL": "https://www.metmuseum.org/art/collection/search/252556",
+    "tags": [
+      {
+        "term": "Monkeys",
+        "AAT_URL": "http://vocab.getty.edu/page/aat/300250028",
+        "Wikidata_URL": "https://www.wikidata.org/wiki/Q1367"
+      },
+      {
+        "term": "Bowls",
+        "AAT_URL": "http://vocab.getty.edu/page/aat/300203596",
+        "Wikidata_URL": "https://www.wikidata.org/wiki/Q153988"
+      }
+    ],
+    "objectWikidata_URL": "https://www.wikidata.org/wiki/Q116242269",
+    "isTimelineWork": false,
+    "GalleryNumber": "170"
+  },
+  "248515": {
+    "objectID": 248515,
+    "isHighlight": false,
+    "accessionNumber": "11.186.14",
+    "accessionYear": "1911",
+    "isPublicDomain": true,
+    "primaryImage": "https://images.metmuseum.org/CRDImages/gr/original/DP256400.jpg",
+    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/gr/web-large/DP256400.jpg",
+    "additionalImages": [
+      "https://images.metmuseum.org/CRDImages/gr/original/DP257982.jpg"
+    ],
+    "constituents": null,
+    "department": "Greek and Roman Art",
+    "objectName": "Kalathos",
+    "title": "Terracotta kalathos (vase with flaring lip)",
+    "culture": "Cycladic",
+    "period": "Late Cycladic I",
+    "objectDate": "ca. 1550\u20131425 BCE",
+    "objectBeginDate": -1550,
+    "objectEndDate": -1425,
+    "medium": "Terracotta",
+    "dimensions": "H. 5 1/8 in. (13 cm)\r\ndiameter  7 3/4 in. (19.7 cm)",
+    "measurements": [
+      {
+        "elementName": "Other",
+        "elementDescription": null,
+        "elementMeasurements": {
+          "Diameter": 19.71
+        }
+      },
+      {
+        "elementName": "Overall",
+        "elementDescription": null,
+        "elementMeasurements": {
+          "Height": 13
+        }
+      }
+    ],
+    "creditLine": "The Cesnola Collection, by exchange, 1911",
+    "classification": "Vases",
+    "metadataDate": "2025-03-06T04:54:30Z",
+    "repository": "Metropolitan Museum of Art, New York, NY",
+    "objectURL": "https://www.metmuseum.org/art/collection/search/248515",
+    "tags": null,
+    "objectWikidata_URL": "https://www.wikidata.org/wiki/Q116288627",
+    "isTimelineWork": false,
+    "GalleryNumber": "151"
+  },
+  "240926": {
+    "objectID": 240926,
+    "isHighlight": false,
+    "accessionNumber": "74.51.1341",
+    "accessionYear": "1874",
+    "isPublicDomain": true,
+    "primaryImage": "https://images.metmuseum.org/CRDImages/gr/original/DP121310.jpg",
+    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/gr/web-large/DP121310.jpg",
+    "additionalImages": [
+      "https://images.metmuseum.org/CRDImages/gr/original/DP138789.jpg"
+    ],
+    "constituents": null,
+    "department": "Greek and Roman Art",
+    "objectName": "Amphora",
+    "title": "Terracotta amphora",
+    "culture": "Cypriot",
+    "period": "Middle Cypriot (?)",
+    "objectDate": "ca. 1900\u20131600 BCE",
+    "objectBeginDate": -1900,
+    "objectEndDate": -1600,
+    "medium": "Terracotta",
+    "dimensions": "H. 19 in. (48.3 cm)",
+    "measurements": [
+      {
+        "elementName": "Overall",
+        "elementDescription": null,
+        "elementMeasurements": {
+          "Height": 48.26
+        }
+      }
+    ],
+    "creditLine": "The Cesnola Collection, Purchased by subscription, 1874\u201376",
+    "classification": "Vases",
+    "metadataDate": "2025-03-06T04:54:30Z",
+    "repository": "Metropolitan Museum of Art, New York, NY",
+    "objectURL": "https://www.metmuseum.org/art/collection/search/240926",
+    "tags": null,
+    "objectWikidata_URL": "https://www.wikidata.org/wiki/Q116295365",
+    "isTimelineWork": false,
+    "GalleryNumber": "171"
   }
 }
