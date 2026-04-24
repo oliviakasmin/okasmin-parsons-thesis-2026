@@ -8,13 +8,17 @@ from pathlib import Path
 CSV_PATH = Path(__file__).resolve().parent / "fields.csv"
 
 UNCERTAINTY_RE = re.compile(r"\b(or|possibly|probably|vicinity)\b|\?", re.IGNORECASE)
+PARENS_RE = re.compile(r"\(([^()]*)\)")
+
+PLACE_LIKE_RE = re.compile(r"^[A-Za-z][A-Za-z\s\-'.,]+$")
 
 DEMONYM_MAP = {
     "german": "Germany",
     "italian": "Italy",
-    "british": "United Kingdom",
-    "scottish": "United Kingdom",
+    "british": "Britain",
+    "scottish": "Scotland",
     "french": "France",
+    "swiss": "Switzerland",
     "spanish": "Spain",
     "dutch": "Netherlands",
     "chinese": "China",
@@ -30,6 +34,48 @@ DEMONYM_MAP = {
     "mexican": "Mexico",
     "peruvian": "Peru",
     "indian": "India",
+}
+
+CULTURE_MAP = {
+    "french (paris)": "Paris, France",
+    "cypriot": "Cyprus",
+    "cycladic": "Cyclades, Greece",
+    "attic": "Attica, Greece",
+    "east greek": "East Greece",
+    "apulian": "Apulia, Italy",
+    "campanian": "Campania, Italy",
+    "canosan": "Canosa di Puglia, Italy",
+    "etruscan": "Etruria, Italy",
+    "etrusco-corinthian": "Etruria, Italy",
+    "italo-corinthian": "Etruria, Italy",
+}
+
+COUNTRY_HINTS = {
+    "china",
+    "japan",
+    "korea",
+    "iran",
+    "iraq",
+    "syria",
+    "egypt",
+    "turkey",
+    "greece",
+    "france",
+    "italy",
+    "spain",
+    "netherlands",
+    "united kingdom",
+    "britain",
+    "switzerland",
+    "ghana",
+    "mexico",
+    "peru",
+    "guatemala",
+    "vietnam",
+    "cyprus",
+    "thailand",
+    "india",
+    "united states",
 }
 
 
@@ -51,20 +97,25 @@ def parse_geo_options(raw: str) -> list[str]:
     return [clean(p) for p in parts]
 
 
+def cleanup_uncertainty_noise(text: str) -> str:
+    text = re.sub(r"\b(possibly|probably|vicinity)\b", "", text, flags=re.IGNORECASE)
+    text = text.replace("?", " ")
+    text = text.replace("(?)", " ")
+    text = re.sub(r"\s+", " ", text)
+    return text.strip(" ,;")
+
+
 def extract_candidate(text: str) -> tuple[str, bool]:
     text = clean(text)
     if not text:
         return "", False
 
-    lower = text.lower()
-    ambiguous = bool(UNCERTAINTY_RE.search(lower))
-    if " or " in lower:
-        text = text.split(" or ")[0].strip(" ,;")
+    ambiguous = bool(UNCERTAINTY_RE.search(text))
+    if re.search(r"\bor\b", text, flags=re.IGNORECASE):
+        text = re.split(r"\bor\b", text, flags=re.IGNORECASE)[0].strip(" ,;")
         ambiguous = True
 
-    text = re.sub(r"\b(possibly|probably|vicinity)\b", "", text, flags=re.IGNORECASE)
-    text = text.replace("?", " ").strip(" ,;")
-    text = re.sub(r"\s+", " ", text)
+    text = cleanup_uncertainty_noise(text)
     return text, ambiguous
 
 
@@ -95,14 +146,96 @@ def normalize_nationality(value: str) -> tuple[str, bool]:
     return unique[0], ambiguous or len(unique) > 1
 
 
+def normalize_culture(value: str) -> tuple[str, bool]:
+    value, ambiguous = extract_candidate(value)
+    if not value:
+        return "", ambiguous
+
+    lowered = value.lower()
+    if lowered in CULTURE_MAP:
+        return CULTURE_MAP[lowered], ambiguous
+
+    # Pattern: "Country (Specific Place)" or "Demonym (City)"
+    paren_match = PARENS_RE.search(value)
+    if paren_match:
+        inner = cleanup_uncertainty_noise(paren_match.group(1))
+        outer = cleanup_uncertainty_noise(PARENS_RE.sub("", value))
+        outer_country = DEMONYM_MAP.get(outer.lower(), outer)
+
+        if inner and PLACE_LIKE_RE.match(inner) and outer_country and PLACE_LIKE_RE.match(outer_country):
+            if inner.lower().endswith("culture"):
+                # e.g. Thailand (Ban Chiang culture) -> Thailand
+                return outer_country, ambiguous
+            # e.g. French (Paris) -> Paris, France
+            return f"{inner}, {outer_country}", ambiguous
+
+    demonym = DEMONYM_MAP.get(value.lower())
+    if demonym:
+        return demonym, ambiguous
+
+    # Keep only likely geocoder-friendly place-like strings.
+    if PLACE_LIKE_RE.match(value):
+        return value, ambiguous
+    return "", True
+
+
+def canonicalize_location(location: str) -> str:
+    location = cleanup_uncertainty_noise(location)
+    location = re.sub(r"\(\s*\)", "", location).strip(" ,;")
+    location = re.sub(r"\s+", " ", location)
+    return location
+
+
+def department_bias_for_nationality(department: str, location: str) -> float:
+    dept = (department or "").lower()
+    loc = location.lower()
+    if not loc:
+        return 0.0
+
+    if "european" in dept and loc in {
+        "italy",
+        "germany",
+        "france",
+        "spain",
+        "united kingdom",
+        "britain",
+        "netherlands",
+        "greece",
+        "switzerland",
+    }:
+        return 0.08
+    if "asian" in dept and loc in {"japan", "china", "korea", "india"}:
+        return 0.08
+    if "islamic" in dept and loc in {"iran", "iraq", "syria", "egypt", "turkey"}:
+        return 0.08
+    # weakly conflicting department context
+    if any(k in dept for k in ("european", "asian", "islamic")):
+        return -0.10
+    return 0.0
+
+
+def is_mappable_place(location: str) -> bool:
+    loc = location.lower()
+    if not loc:
+        return False
+    if "," in location:
+        return True
+    if loc in COUNTRY_HINTS:
+        return True
+    return any(loc.endswith(f" {country}") for country in COUNTRY_HINTS)
+
+
 def resolve_location(department: str, geo_options: str) -> tuple[str, str, float, bool]:
-    city, state, region, country, culture, artist_nationality = parse_geo_options(geo_options)
+    city, state, region, country, culture_raw, artist_nationality = parse_geo_options(geo_options)
     city, city_amb = extract_candidate(city)
     state, state_amb = extract_candidate(state)
     region, region_amb = extract_candidate(region)
     country, country_amb = extract_candidate(country)
-    culture, culture_amb = extract_candidate(culture)
+    culture, culture_amb = normalize_culture(culture_raw)
     nationality_place, nationality_amb = normalize_nationality(artist_nationality)
+
+    if (department or "").strip().lower() == "greek and roman art" and clean(culture_raw).lower() == "roman":
+        return "", "none", 0.0, False
 
     if city:
         if state and country:
@@ -186,25 +319,16 @@ def resolve_location(department: str, geo_options: str) -> tuple[str, str, float
         confidence = 0.45
         ambiguous = nationality_amb
 
-        dept = (department or "").lower()
-        if "european" in dept and location in {
-            "Italy",
-            "Germany",
-            "France",
-            "Spain",
-            "United Kingdom",
-            "Netherlands",
-            "Greece",
-        }:
+        dept_adjust = department_bias_for_nationality(department, location)
+        if dept_adjust != 0.0:
             source = "department||artistNationality"
-            confidence += 0.08
-        elif "asian" in dept and location in {"Japan", "China", "Korea", "India", "Iran"}:
-            source = "department||artistNationality"
-            confidence += 0.08
-        elif "islamic" in dept and location in {"Iran", "Iraq", "Syria", "Egypt", "Turkey"}:
-            source = "department||artistNationality"
-            confidence += 0.08
+            confidence += dept_adjust
     else:
+        return "", "none", 0.0, False
+
+    location = canonicalize_location(location)
+    # Contract guardrail: if culture/nationality path could not produce a mappable place, return null output.
+    if source in {"culture", "artistNationality", "department||artistNationality"} and not is_mappable_place(location):
         return "", "none", 0.0, False
 
     if ambiguous:

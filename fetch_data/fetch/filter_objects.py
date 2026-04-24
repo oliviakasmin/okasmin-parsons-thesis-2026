@@ -47,7 +47,9 @@ EXCLUDED_TERMS = [
     "stand",
     "tile",
     "figurine",
-    "plate"
+    "plate",
+    "platter",
+    "basin"
 ]
 
 

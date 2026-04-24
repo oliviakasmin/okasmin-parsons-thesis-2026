@@ -204,7 +204,7 @@ objectId,department,final_date,geo_options,geo_LLM_best_guess_location_normalize
 46519,Asian Art,1711,||||||||China||,China,culture,0.55,true
 46521,Asian Art,1694,||||||||China||,China,culture,0.55,true
 46522,Asian Art,1692,||||||||China||,China,culture,0.55,true
-46523,Asian Art,1749,||||||||ChinaNeihuLu||,ChinaNeihuLu,culture,0.55,true
+46523,Asian Art,1749,||||||||ChinaNeihuLu||,China,culture,0.55,true
 46525,Asian Art,1749,||||||||China||,China,culture,0.55,true
 46527,Asian Art,1711,||||||||China||,China,culture,0.55,true
 46528,Asian Art,1849,||||||||China||,China,culture,0.55,true
@@ -384,7 +384,7 @@ objectId,department,final_date,geo_options,geo_LLM_best_guess_location_normalize
 309324,The Michael C. Rockefeller Wing,550,||||||Peru||Moche||,Peru,country,0.70,true
 205835,European Sculpture and Decorative Arts,1730,||||||||||,,none,0.00,false
 50950,Asian Art,1700,||||||||China||,China,culture,0.55,true
-460135,Robert Lehman Collection,1480,"||||||||Italian, possibly Florence or Faenza||","Italian, Florence",culture,0.35,true
+460135,Robert Lehman Collection,1480,"||||||||Italian, possibly Florence or Faenza||","Florence, Italy",culture,0.35,true
 761272,The Michael C. Rockefeller Wing,750,||||||Mexico||Maya||,Mexico,country,0.70,true
 47447,Asian Art,1649,||||||||Japan||,Japan,culture,0.55,true
 47804,Asian Art,1749,||||||||China||,China,culture,0.55,true
@@ -781,12 +781,12 @@ objectId,department,final_date,geo_options,geo_LLM_best_guess_location_normalize
 47388,Asian Art,1716,||||||||China||,China,culture,0.55,true
 309503,The Michael C. Rockefeller Wing,850,||||North Coast||Peru||Wari artist(s)||,"North Coast, Peru",region||country,0.70,true
 670995,Asian Art,1657,||||||||Japan||,Japan,culture,0.55,true
-461338,Robert Lehman Collection,1850,||||||||Chinese||,Chinese,culture,0.55,true
+461338,Robert Lehman Collection,1850,||||||||Chinese||,,culture,0.55,true
 199751,European Sculpture and Decorative Arts,1520,||||||||||,,none,0.00,false
 42389,Asian Art,1650,||||||||China||,China,culture,0.55,true
 48223,Asian Art,1695,||||||||China||,China,culture,0.55,true
 205914,European Sculpture and Decorative Arts,1740,||||||||||German,Germany,department||artistNationality,0.53,true
-460146,Robert Lehman Collection,1485,"||||||||Italian, Faenza or Florence||","Italian, Faenza",culture,0.35,true
+460146,Robert Lehman Collection,1485,"||||||||Italian, Faenza or Florence||","Faenza, Italy",culture,0.35,true
 231768,European Sculpture and Decorative Arts,1799,||||||||||,,none,0.00,false
 63123,Asian Art,1749,||||||||Japan||,Japan,culture,0.55,true
 195500,European Sculpture and Decorative Arts,1834,||||||||||,,none,0.00,false
@@ -798,7 +798,7 @@ objectId,department,final_date,geo_options,geo_LLM_best_guess_location_normalize
 48012,Asian Art,1749,||||||||Japan||,Japan,culture,0.55,true
 46550,Asian Art,1711,||||||||China||,China,culture,0.55,true
 644111,European Sculpture and Decorative Arts,1797,||||||||||French,France,department||artistNationality,0.53,true
-651241,The Cloisters,1287,Potter Toynton (?)||Lincolnshire||||England||British||,"Potter Toynton ( ), Lincolnshire, England",city||state||country,0.75,true
+651241,The Cloisters,1287,Potter Toynton (?)||Lincolnshire||||England||British||,"Lincolnshire, United Kingdom",city||state||country,0.75,true
 447277,Islamic Art,1199,||||||Iran||||,Iran,country,0.70,true
 47920,Asian Art,1695,||||||||China||,China,culture,0.55,true
 37450,Asian Art,1349,||||||||Vietnam||,Vietnam,culture,0.55,true
@@ -921,7 +921,7 @@ objectId,department,final_date,geo_options,geo_LLM_best_guess_location_normalize
 48228,Asian Art,1749,||||||||China||,China,culture,0.55,true
 232384,European Sculpture and Decorative Arts,1761,||||||||||French,France,department||artistNationality,0.53,true
 200981,European Sculpture and Decorative Arts,1767,||||||||||British,United Kingdom,department||artistNationality,0.53,true
-460136,Robert Lehman Collection,1485,"||||||||Italian, possibly Tuscany||","Italian, Tuscany",culture,0.35,true
+460136,Robert Lehman Collection,1485,"||||||||Italian, possibly Tuscany||","Tuscany, Italy",culture,0.35,true
 310542,The Michael C. Rockefeller Wing,450,||||Mesoamerica||Guatemala or Mexico||Maya||,"Mesoamerica, Guatemala",region||country,0.50,true
 48504,Asian Art,590,||||||||China||,China,culture,0.55,true
 450769,Islamic Art,1049,Nishapur||||||Iran||||,"Nishapur, Iran",city||country,0.88,true
@@ -929,7 +929,7 @@ objectId,department,final_date,geo_options,geo_LLM_best_guess_location_normalize
 309504,The Michael C. Rockefeller Wing,500,||||||Peru||Moche||,Peru,country,0.70,true
 239483,European Sculpture and Decorative Arts,1876,||||||||||British,United Kingdom,department||artistNationality,0.53,true
 48467,Asian Art,1824,||||||||China||,China,culture,0.55,true
-65596,Asian Art,-3000,||||||||Northeast China (Hongshan culture)||,Northeast China (Hongshan culture),culture,0.55,true
+65596,Asian Art,-3000,||||||||Northeast China (Hongshan culture)||,Northeast China,culture,0.55,true
 448424,Islamic Art,1299,||||||Iran||||,Iran,country,0.70,true
 209997,European Sculpture and Decorative Arts,1882,||||||||||French,France,department||artistNationality,0.53,true
 46619,Asian Art,1700,||||||||Japan||,Japan,culture,0.55,true
@@ -937,7 +937,7 @@ objectId,department,final_date,geo_options,geo_LLM_best_guess_location_normalize
 309300,The Michael C. Rockefeller Wing,600,||||||Peru||Moche||,Peru,country,0.70,true
 308428,The Michael C. Rockefeller Wing,-500,||||||Peru||Paracas||,Peru,country,0.70,true
 308465,The Michael C. Rockefeller Wing,-50,||||Ica Valley||Peru||Topará||,"Ica Valley, Peru",region||country,0.70,true
-460142,Robert Lehman Collection,1475,"||||||||Italian, Faenza or Pesaro||","Italian, Faenza",culture,0.35,true
+460142,Robert Lehman Collection,1475,"||||||||Italian, Faenza or Pesaro||","Faenza, Italy",culture,0.35,true
 205254,European Sculpture and Decorative Arts,1747,||||||||||German,Germany,department||artistNationality,0.53,true
 57358,Asian Art,1916,||||||||Korea||,Korea,culture,0.55,true
 477280,Medieval Art,2,||Kharga Oasis||||Byzantine Egypt||Coptic||,"Kharga Oasis, Byzantine Egypt",state||country,0.72,true
@@ -980,7 +980,7 @@ objectId,department,final_date,geo_options,geo_LLM_best_guess_location_normalize
 204350,European Sculpture and Decorative Arts,1849,||||||||||,,none,0.00,false
 48335,Asian Art,1849,||||||||China||,China,culture,0.55,true
 42217,Asian Art,1692,||||||||China||,China,culture,0.55,true
-487350,Modern and Contemporary Art,1884,||||||||French (Paris)||French,French (Paris),culture,0.55,true
+487350,Modern and Contemporary Art,1884,||||||||French (Paris)||French,"Paris, France",culture,0.55,true
 47505,Asian Art,1725,||||||||Japan||,Japan,culture,0.55,true
 48609,Asian Art,1849,||||||||China||,China,culture,0.55,true
 308483,The Michael C. Rockefeller Wing,-250,||||Ica Valley||Peru||Paracas||,"Ica Valley, Peru",region||country,0.70,true
@@ -1160,24 +1160,24 @@ objectId,department,final_date,geo_options,geo_LLM_best_guess_location_normalize
 449072,Islamic Art,899,Nishapur||||||Iran||||,"Nishapur, Iran",city||country,0.88,true
 204090,European Sculpture and Decorative Arts,1749,||||||||||,,none,0.00,false
 451618,Islamic Art,1149,Kashan||||||Iran||||,"Kashan, Iran",city||country,0.88,true
-37407,Asian Art,-650,||||||||Thailand (Ban Chiang culture)||,Thailand (Ban Chiang culture),culture,0.55,true
+37407,Asian Art,-650,||||||||Thailand (Ban Chiang culture)||,Thailand ,culture,0.55,true
 465889,Medieval Art,1449,||||||||French||,French,culture,0.55,true
 48202,Asian Art,1700,||||||||China||,China,culture,0.55,true
 670989,Asian Art,1600,||||||||Japan||,Japan,culture,0.55,true
 49308,Asian Art,1665,||||||||Japan||,Japan,culture,0.55,true
 206433,European Sculpture and Decorative Arts,1760,||||||||||French,France,department||artistNationality,0.53,true
-208387,European Sculpture and Decorative Arts,1770,||||||||||Swiss,Swiss,artistNationality,0.45,true
+208387,European Sculpture and Decorative Arts,1770,||||||||||Swiss,Switzerland,artistNationality,0.45,true
 449649,Islamic Art,849,Nishapur||||||Iran||||,"Nishapur, Iran",city||country,0.88,true
-465879,Medieval Art,1549,||||||||French||,French,culture,0.55,true
+465879,Medieval Art,1549,||||||||French||,France,culture,0.55,true
 46636,Asian Art,1849,||||||||China||,China,culture,0.55,true
 47169,Asian Art,1724,||||||||Japan||,Japan,culture,0.55,true
 51067,Asian Art,1119,||||||||China||,China,culture,0.55,true
-463208,Medieval Art,1449,||||||||Italian||,Italian,culture,0.55,true
+463208,Medieval Art,1449,||||||||Italian||,Italy,culture,0.55,true
 623474,European Sculpture and Decorative Arts,1705,||||||||||,,none,0.00,false
 308514,The Michael C. Rockefeller Wing,700,||||||Peru||Moche||,Peru,country,0.70,true
 309437,The Michael C. Rockefeller Wing,500,||||||Peru||Moche||,Peru,country,0.70,true
 63071,Asian Art,1820,||||||||Japan||Japanese,Japan,culture,0.55,true
-460131,Robert Lehman Collection,1475,"||||||||Italian, Florence or vicinity||","Italian, Florence",culture,0.35,true
+460131,Robert Lehman Collection,1475,"||||||||Italian, Florence or vicinity||","Florence, Italy",culture,0.35,true
 312165,The Michael C. Rockefeller Wing,150,||||||Peru||Viru||,Peru,country,0.70,true
 186684,European Sculpture and Decorative Arts,1520,||||||||||,,none,0.00,false
 47566,Asian Art,1749,||||||||Japan||,Japan,culture,0.55,true
@@ -1237,7 +1237,7 @@ objectId,department,final_date,geo_options,geo_LLM_best_guess_location_normalize
 50332,Asian Art,1635,||||||||Japan||,Japan,culture,0.55,true
 62712,Asian Art,1749,||||||||Japan||,Japan,culture,0.55,true
 62702,Asian Art,1749,||||||||Japan||,Japan,culture,0.55,true
-839471,Asian Art,1884,"||||||||India, Bombay School||","India, Bombay School",culture,0.55,true
+839471,Asian Art,1884,"||||||||India, Bombay School||","Bombay, India",culture,0.55,true
 47481,Asian Art,1849,||||||||Japan||,Japan,culture,0.55,true
 204062,European Sculpture and Decorative Arts,1749,||||||||||,,none,0.00,false
 197819,European Sculpture and Decorative Arts,1747,||||||||||,,none,0.00,false
@@ -1248,7 +1248,7 @@ objectId,department,final_date,geo_options,geo_LLM_best_guess_location_normalize
 44724,Asian Art,-2500,||||||||China||,China,culture,0.55,true
 40207,Asian Art,-2150,||||||||China||,China,culture,0.55,true
 196544,European Sculpture and Decorative Arts,1756,||||||||||French,France,department||artistNationality,0.53,true
-239497,European Sculpture and Decorative Arts,1888,||||||||||British,United Kingdom,department||artistNationality,0.53,true
+239497,European Sculpture and Decorative Arts,1888,||||||||||British,Britain,department||artistNationality,0.53,true
 46557,Asian Art,1781,||||||||China||,China,culture,0.55,true
 46192,Asian Art,1849,||||||||China||,China,culture,0.55,true
 51192,Asian Art,1824,||||||||China||,China,culture,0.55,true
@@ -1256,13 +1256,13 @@ objectId,department,final_date,geo_options,geo_LLM_best_guess_location_normalize
 48850,Asian Art,1692,||||||||China||,China,culture,0.55,true
 196361,European Sculpture and Decorative Arts,1830,||||||||||,,none,0.00,false
 308592,The Michael C. Rockefeller Wing,-550,||||Ica Valley||Peru||Paracas||,"Ica Valley, Peru",region||country,0.70,true
-208556,European Sculpture and Decorative Arts,1880,"||||||||||British, Scottish",United Kingdom,department||artistNationality,0.53,true
+208556,European Sculpture and Decorative Arts,1880,"||||||||||British, Scottish",Scotland,department||artistNationality,0.53,true
 200876,European Sculpture and Decorative Arts,1690,||||||||||French,France,department||artistNationality,0.53,true
 234894,European Sculpture and Decorative Arts,1775,||||||||||German,Germany,department||artistNationality,0.53,true
 46693,Asian Art,1830,||||||||Japan||,Japan,culture,0.55,true
 47407,Asian Art,1783,||||||||China||,China,culture,0.55,true
 46667,Asian Art,1749,||||||||China||,China,culture,0.55,true
-771060,European Sculpture and Decorative Arts,1887,||||||||||British,United Kingdom,department||artistNationality,0.53,true
+771060,European Sculpture and Decorative Arts,1887,||||||||||British,Britain,department||artistNationality,0.53,true
 37540,Asian Art,1449,||||||||Vietnam||,Vietnam,culture,0.55,true
 48271,Asian Art,1119,||||||||China||,China,culture,0.55,true
 49356,Asian Art,1729,||||||||China||,China,culture,0.55,true
@@ -3701,7 +3701,7 @@ objectId,department,final_date,geo_options,geo_LLM_best_guess_location_normalize
 47897,Asian Art,1650,||||||||China||,China,culture,0.55,true
 201752,European Sculpture and Decorative Arts,1700,||||||||||,,none,0.00,false
 46978,Asian Art,1749,||||||||China||,China,culture,0.55,true
-460145,Robert Lehman Collection,1480,"||||||||Italian, probably Faenza||","Italian, Faenza",culture,0.35,true
+460145,Robert Lehman Collection,1480,"||||||||Italian, probably Faenza||","Faenza, Italy",culture,0.35,true
 52214,Asian Art,1849,||||||||Japan||,Japan,culture,0.55,true
 199238,European Sculpture and Decorative Arts,1750,||||||||||German,Germany,department||artistNationality,0.53,true
 47638,Asian Art,1692,||||||||China||,China,culture,0.55,true
@@ -3734,7 +3734,7 @@ objectId,department,final_date,geo_options,geo_LLM_best_guess_location_normalize
 456219,Islamic Art,1649,||||||Iran||||,Iran,country,0.70,true
 48758,Asian Art,1695,||||||||China||,China,culture,0.55,true
 450941,Islamic Art,1149,Raqqa||||||Syria||||,"Raqqa, Syria",city||country,0.88,true
-37496,Asian Art,1399,||||||||Thailand (Si Satchanalai)||,Thailand (Si Satchanalai),culture,0.55,true
+37496,Asian Art,1399,||||||||Thailand (Si Satchanalai)||,"Si Satchanalai, Thailand ",culture,0.55,true
 708056,European Sculpture and Decorative Arts,1725,||||||||||German,Germany,department||artistNationality,0.53,true
 63047,Asian Art,1850,||||||||Japan||,Japan,culture,0.55,true
 308448,The Michael C. Rockefeller Wing,-500,||||||Peru||Paracas||,Peru,country,0.70,true
@@ -3787,7 +3787,7 @@ objectId,department,final_date,geo_options,geo_LLM_best_guess_location_normalize
 40082,Asian Art,-2200,||||||||China||,China,culture,0.55,true
 42331,Asian Art,-300,||||||||China||,China,culture,0.55,true
 448695,Islamic Art,849,||||||Iraq||||,Iraq,country,0.70,true
-37482,Asian Art,1435,||||||||Thailand (Si Satchanalai)||,Thailand (Si Satchanalai),culture,0.55,true
+37482,Asian Art,1435,||||||||Thailand (Si Satchanalai)||,"Si Satchanalai, Thailand ",culture,0.55,true
 314692,The Michael C. Rockefeller Wing,100,||||||Peru||Salinar (?)||,Peru,country,0.70,true
 188536,European Sculpture and Decorative Arts,1551,||||||||||,,none,0.00,false
 309133,The Michael C. Rockefeller Wing,350,||||||Peru||Nasca||,Peru,country,0.70,true
@@ -3902,7 +3902,7 @@ objectId,department,final_date,geo_options,geo_LLM_best_guess_location_normalize
 247584,Greek and Roman Art,-450,"||||||||Greek, Attic||","Greek, Attic",culture,0.55,true
 254957,Greek and Roman Art,-413,"||||||||Greek, Attic||","Greek, Attic",culture,0.55,true
 254247,Greek and Roman Art,-480,"||||||||Greek, Attic||","Greek, Attic",culture,0.55,true
-248709,Greek and Roman Art,-200,"||||||||Greek, South Italian, Apulian, Canosan||","Greek, South Italian, Apulian, Canosan",culture,0.55,true
+248709,Greek and Roman Art,-200,"||||||||Greek, South Italian, Apulian, Canosan||","Canosa di Puglia",culture,0.55,true
 255316,Greek and Roman Art,-313,"||||||||Greek, South Italian, Apulian||","Greek, South Italian, Apulian",culture,0.55,true
 240486,Greek and Roman Art,-1125,||||||||Cypriot||,Cypriot,culture,0.55,true
 247635,Greek and Roman Art,-2500,||||||||Minoan||,Minoan,culture,0.55,true
@@ -3960,7 +3960,7 @@ objectId,department,final_date,geo_options,geo_LLM_best_guess_location_normalize
 319003,The Michael C. Rockefeller Wing,0,||Nayarit||Mesoamerica||Mexico||Nayarit||,"Nayarit, Mexico",state||country,0.72,true
 317619,The Michael C. Rockefeller Wing,800,||Veracruz||Mesoamerica||Mexico||Veracruz||,"Veracruz, Mexico",state||country,0.72,true
 318345,The Michael C. Rockefeller Wing,350,||||||Guatemala||Maya||,Guatemala,country,0.70,true
-310369,The Michael C. Rockefeller Wing,1650,Fomena (?)||||Adanse traditional area||Ghana||Akan||,"Fomena ( ), Ghana",city||country,0.68,true
+310369,The Michael C. Rockefeller Wing,1650,Fomena (?)||||Adanse traditional area||Ghana||Akan||,"Fomena, Ghana",city||country,0.68,true
 315683,The Michael C. Rockefeller Wing,1250,||||||Peru||Chancay||,Peru,country,0.70,true
 310594,The Michael C. Rockefeller Wing,450,||Ancash||||Peru||Recuay||,"Ancash, Peru",state||country,0.72,true
 319065,The Michael C. Rockefeller Wing,75,||Colima||Mesoamerica||Mexico||Colima||,"Colima, Mexico",state||country,0.72,true
@@ -4010,7 +4010,7 @@ objectId,department,final_date,geo_options,geo_LLM_best_guess_location_normalize
 240394,Greek and Roman Art,-1125,||||||||Cypriot||,Cypriot,culture,0.55,true
 250229,Greek and Roman Art,150,||||||||Roman||,Roman,culture,0.55,true
 247348,Greek and Roman Art,-415,"||||||||Greek, Attic||","Greek, Attic",culture,0.55,true
-255333,Greek and Roman Art,-313,"||||||||Greek, South Italian, Apulian, Canosan||","Greek, South Italian, Apulian, Canosan",culture,0.55,true
+255333,Greek and Roman Art,-313,"||||||||Greek, South Italian, Apulian, Canosan||","Canosa di Puglia, Italy",culture,0.55,true
 246636,Greek and Roman Art,-400,||||||||Etruscan||,Etruscan,culture,0.55,true
 255461,Greek and Roman Art,-325,"||||||||Greek, South Italian, Apulian||","Greek, South Italian, Apulian",culture,0.55,true
 253196,Greek and Roman Art,-713,"||||||||Greek, Attic||","Greek, Attic",culture,0.55,true
@@ -4026,22 +4026,22 @@ objectId,department,final_date,geo_options,geo_LLM_best_guess_location_normalize
 240529,Greek and Roman Art,-2288,||||||||Cypriot||,Cypriot,culture,0.55,true
 244759,Greek and Roman Art,-538,"||||||||Greek, Corinthian||","Greek, Corinthian",culture,0.55,true
 240022,Greek and Roman Art,-1000,||||||||Cypriot||,Cypriot,culture,0.55,true
-256602,Greek and Roman Art,-338,"||||||||Greek, South Italian, Campanian||","Greek, South Italian, Campanian",culture,0.55,true
+256602,Greek and Roman Art,-338,"||||||||Greek, South Italian, Campanian||","Campania, Italy",culture,0.55,true
 248300,Greek and Roman Art,-487,"||||||||Greek, Attic||","Greek, Attic",culture,0.55,true
 240140,Greek and Roman Art,-675,||||||||Cypriot||,Cypriot,culture,0.55,true
 251022,Greek and Roman Art,-510,"||||||||Greek, Attic||","Greek, Attic",culture,0.55,true
-244860,Greek and Roman Art,-338,"||||||||Greek, South Italian, Apulian||","Greek, South Italian, Apulian",culture,0.55,true
+244860,Greek and Roman Art,-338,"||||||||Greek, South Italian, Apulian||","Apulia, Italy",culture,0.55,true
 255193,Greek and Roman Art,-490,"||||||||Greek, Attic||","Greek, Attic",culture,0.55,true
 240015,Greek and Roman Art,-1125,||||||||Cypriot||,Cypriot,culture,0.55,true
 246123,Greek and Roman Art,-350,"||||||||Greek, South Italian, Apulian||","Greek, South Italian, Apulian",culture,0.55,true
-246116,Greek and Roman Art,-650,"||||||||Etruscan, Italo-Corinthian||","Etruscan, Italo-Corinthian",culture,0.55,true
+246116,Greek and Roman Art,-650,"||||||||Etruscan, Italo-Corinthian||","Etruria, Italy",culture,0.55,true
 240437,Greek and Roman Art,-415,||||||||Cypriot||,Cypriot,culture,0.55,true
-254246,Greek and Roman Art,-588,||||||||East Greek||,East Greek,culture,0.55,true
+254246,Greek and Roman Art,-588,||||||||East Greek||,East Greece,culture,0.55,true
 254396,Greek and Roman Art,-350,"||||||||Greek, South Italian, Apulian||","Greek, South Italian, Apulian",culture,0.55,true
 254307,Greek and Roman Art,-400,"||||||||Greek, Attic||","Greek, Attic",culture,0.55,true
-254559,Greek and Roman Art,-525,"||||||||Greek, Attic||","Greek, Attic",culture,0.55,true
+254559,Greek and Roman Art,-525,"||||||||Greek, Attic||","Attica, Greece",culture,0.55,true
 240118,Greek and Roman Art,-675,||||||||Cypriot||,Cypriot,culture,0.55,true
 239990,Greek and Roman Art,-355,||||||||Cypriot||,Cypriot,culture,0.55,true
-252556,Greek and Roman Art,-558,"||||||||Etruscan, Etrusco-Corinthian||","Etruscan, Etrusco-Corinthian",culture,0.55,true
-248515,Greek and Roman Art,-1488,||||||||Cycladic||,Cycladic,culture,0.55,true
-240926,Greek and Roman Art,-1750,||||||||Cypriot||,Cypriot,culture,0.55,true
+252556,Greek and Roman Art,-558,"||||||||Etruscan, Etrusco-Corinthian||","Etruria, Italy",culture,0.55,true
+248515,Greek and Roman Art,-1488,||||||||Cycladic||,"Cyclades, Greece",culture,0.55,true
+240926,Greek and Roman Art,-1750,||||||||Cypriot||,Cyprus,culture,0.55,true

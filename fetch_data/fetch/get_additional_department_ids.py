@@ -9,24 +9,25 @@ from tqdm import tqdm
 
 # One Met search per department below (same medium + search term for each).
 DEPARTMENTS = [
-    {"departmentId": 10, "displayName": "Egyptian Art"},
+    {"departmentId": 10, "displayName": "Egyptian Art"}, #fetched all, including pottery
     {"departmentId": 13, "displayName": "Greek and Roman Art"},
-    {"departmentId": 21, "displayName": "Modern Art"},
-    {"departmentId": 1, "displayName": "American Decorative Arts"},
+    {"departmentId": 21, "displayName": "Modern Art"}, #fetched all
+    {"departmentId": 1, "displayName": "American Decorative Arts"},  #fetched all
     {"departmentId": 6, "displayName": "Asian Art"},
-    {"departmentId": 3, "displayName": "Ancient Near Eastern Art"},
+    {"departmentId": 3, "displayName": "Ancient Near Eastern Art"}, #fetched all, including pottery
     {
         "departmentId": 5,
-        "displayName": "Arts of Africa, Oceania, and the Americas",
+        "displayName": "Arts of Africa, Oceania, and the Americas", #fetched all, including pottery
     },
       {
       "departmentId": 14,
-      "displayName": "Islamic Art"
+      "displayName": "Islamic Art" #fetched all, including pottery
     },
 ]
 
 # must be this medium
-MEDIUM = "Clay"
+# MEDIUM = "Clay"
+MEDIUM = "Pottery"
 
 # must be this search term
 SEARCH_TERM = "vessel"
@@ -56,7 +57,7 @@ def load_existing_object_ids(path: Path) -> set[int]:
 def build_output_path(department: dict[str, int | str]) -> Path:
     """Create a stable file name for a department's ID list."""
     slug = str(department["displayName"]).lower().replace(" and ", "_").replace(" ", "_")
-    return OUTPUT_DIR / f'{department["departmentId"]}_{slug}_object_ids.json'
+    return OUTPUT_DIR / f'{department["departmentId"]}_pottery_{slug}_object_ids.json'
 
 
 def fetch_ids_for_department(department: dict[str, int | str]) -> list[int]:

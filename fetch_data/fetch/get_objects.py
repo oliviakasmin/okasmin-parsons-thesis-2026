@@ -1,6 +1,7 @@
 # RUN THIS FILE FROM ROOT DIRECTORY
 # python -m fetch_data.fetch.get_objects
 # python -m fetch_data.fetch.get_objects --additional-department 10
+# python -m fetch_data.fetch.get_objects --additional-department 10 --pottery
 
 
 # loop through object_ids and save relevant info for each object
@@ -100,19 +101,24 @@ def remove_empty_string_fields(value: Any) -> Any:
     return value
 
 
-def additional_department_ids_path(department_id: int) -> Path:
+def additional_department_ids_path(department_id: int, *, pottery: bool = False) -> Path:
     """Resolve the JSON file produced by get_additional_department_ids for this department."""
-    # Glob "{id}_*_object_ids.json" also matches *_fetched_object_ids.json (e.g. * = "egyptian_art_fetched").
-    raw = ADDITIONAL_DEPT_IDS_DIR.glob(f"{department_id}_*_object_ids.json")
+    # Glob patterns also match *_fetched_object_ids.json, so filter those out below.
+    pattern = f"{department_id}_pottery_*_object_ids.json" if pottery else f"{department_id}_*_object_ids.json"
+    raw = ADDITIONAL_DEPT_IDS_DIR.glob(pattern)
     matches = sorted(p for p in raw if not p.name.endswith("_fetched_object_ids.json"))
+    if not pottery:
+        matches = [p for p in matches if "_pottery_" not in p.name]
     if not matches:
+        pottery_hint = "pottery " if pottery else ""
         raise FileNotFoundError(
-            f"No additional ID file for departmentId={department_id} under {ADDITIONAL_DEPT_IDS_DIR}. "
+            f"No {pottery_hint}additional ID file for departmentId={department_id} under {ADDITIONAL_DEPT_IDS_DIR}. "
             "Run: python -m fetch_data.fetch.get_additional_department_ids"
         )
     if len(matches) > 1:
+        pottery_hint = "pottery " if pottery else ""
         raise ValueError(
-            f"Ambiguous additional ID files for departmentId={department_id}: {[m.name for m in matches]}"
+            f"Ambiguous {pottery_hint}additional ID files for departmentId={department_id}: {[m.name for m in matches]}"
         )
     return matches[0]
 
@@ -324,7 +330,7 @@ def main() -> None:
     )
 
 
-def get_additional_department_objects(department_id: int) -> None:
+def get_additional_department_objects(department_id: int, *, pottery: bool = False) -> None:
     """
     Fetch object details for IDs listed under additional_department_ids for one department.
 
@@ -337,16 +343,27 @@ def get_additional_department_objects(department_id: int) -> None:
     ``requests`` error from that call). IDs skipped as already in the global pipeline
     are not listed.
     """
-    ids_path = additional_department_ids_path(department_id)
+    ids_path = additional_department_ids_path(department_id, pottery=pottery)
     fetched_path = additional_department_fetched_path(ids_path)
     object_ids: List[int] = load_json_list(ids_path)
     run_fetch_batch(
         object_ids,
         require_ceramics_classification=False,
-        progress_desc=f"Fetching dept {department_id} object details",
+        progress_desc=f"Fetching {'pottery ' if pottery else ''}dept {department_id} object details",
         ids_source_description=str(ids_path),
         department_fetched_path=fetched_path,
     )
+
+
+def confirm_run() -> bool:
+    """Prompt for explicit y/n confirmation before starting a fetch run."""
+    while True:
+        answer = input("are you sure? (y/n): ").strip().lower()
+        if answer in {"y", "yes"}:
+            return True
+        if answer in {"n", "no"}:
+            return False
+        print("Please answer y or n.")
 
 
 if __name__ == "__main__":
@@ -362,8 +379,21 @@ if __name__ == "__main__":
             "and skip the Ceramics classification filter."
         ),
     )
+    parser.add_argument(
+        "--pottery",
+        action="store_true",
+        help=(
+            "Use with --additional-department to read "
+            "fetch_data/data/additional_department_ids/{DEPARTMENT_ID}_pottery_*_object_ids.json."
+        ),
+    )
     args = parser.parse_args()
+    if not confirm_run():
+        print("Aborted.")
+        raise SystemExit(0)
+    if args.pottery and args.additional_department is None:
+        parser.error("--pottery requires --additional-department DEPARTMENT_ID")
     if args.additional_department is not None:
-        get_additional_department_objects(args.additional_department)
+        get_additional_department_objects(args.additional_department, pottery=args.pottery)
     else:
         main()

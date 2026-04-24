@@ -6,6 +6,8 @@ Standardize location outputs for a first-pass LLM/agent normalization step befor
 
 The LLM/agent should create best-guess geography fields from existing source signals, while clearly encoding uncertainty.
 
+The new `geo_LLM_best_guess_location_normalized` (see below) will then be passed to Mapbox Geocoding API
+
 ## Columns to Add in Initial LLM/Agent Pass
 
 - `geo_LLM_best_guess_location_normalized` (string, nullable)
@@ -31,6 +33,7 @@ The LLM/agent should create best-guess geography fields from existing source sig
 
 - Canonical location string to pass to geocoder.
 - Nullable if no usable location can be inferred.
+- Prefer modern, geocoder-friendly place labels over raw cultural strings.
 - Examples:
   - `Paris, France`
   - `Andalusia, Spain`
@@ -83,7 +86,17 @@ The LLM/agent should create best-guess geography fields from existing source sig
 - `culture` may provide higher-level context when `country` is missing, but confidence should be penalized versus country-backed context.
 - `artistNationality` is last resort only.
 - Demonym normalization is allowed when unambiguous:
-  - `German -> Germany`, `Italian -> Italy`, `British -> United Kingdom`
+  - `German -> Germany`, `Italian -> Italy`, `French -> France`, `Swiss -> Switzerland`
+  - `British -> United Kingdom` (or project-standard synonym such as `Britain` if needed for consistency)
+- Culture normalization is allowed when it yields a clearer canonical place:
+  - `French (Paris) -> Paris, France`
+  - `Thai culture terms with known production centers -> Si Satchanalai, Thailand`
+  - `Cypriot -> Cyprus`, `Cycladic -> Cyclades, Greece`, `Attic -> Attica, Greece`
+  - `Apulian -> Apulia, Italy`, `Campanian -> Campania, Italy`, `Canosan -> Canosa di Puglia, Italy`
+  - `Etruscan / Etrusco-Corinthian / Italo-Corinthian -> Etruria, Italy`
+- Remove uncertainty markers and parenthetical noise from final normalized output:
+  - strip `?`, `(?)`, and vague qualifiers like `possibly`, `probably`, `or vicinity`
+  - do not emit punctuation artifacts such as `( )` in normalized location values
 - Department context may be used only as a weak tie-breaker when candidates are close, and confidence must be reduced.
 - Department nuance for `artistNationality` signals:
   - Treat department as contextual evidence, not a hard constraint.
@@ -98,6 +111,13 @@ The LLM/agent should create best-guess geography fields from existing source sig
 - If strings contain explicit uncertainty markers (`or`, `possibly`, `probably`, `?`, `vicinity`):
   - choose most plausible canonical guess only if one candidate is clearly better;
   - otherwise set `geo_LLM_geo_eligible = false` and lower confidence.
+- If no clearly mappable canonical location can be produced from culture/nationality context, return null output rather than preserving an unresolved adjective label.
+- Department-specific guardrail:
+  - If `department = Greek and Roman Art` and `culture = Roman`, set:
+    - `geo_LLM_best_guess_location_normalized = null`
+    - `geo_LLM_source_cols = none`
+    - `geo_LLM_confidence = 0.0`
+    - `geo_LLM_geo_eligible = false`
 - If no usable signal exists:
   - `geo_LLM_best_guess_location_normalized = null`
   - `geo_LLM_source_cols = none`
@@ -118,10 +138,16 @@ Required:
 ## Examples
 
 - `"44793,Asian Art,50,||||||||China||"` -> `China`, source=`country`, confidence=`1.0`, eligible=`true`
-- `"46021,Asian Art,1849,||||||||China or Japan (?)||"` -> "China" confidence=0.25, eligble=true
+- `"46021,Asian Art,1849,||||||||China or Japan (?)||"` -> `China`, source=`culture`, confidence=`0.25`, eligible=`true`
 - `"450494,Islamic Art,849,||||||Iraq or Syria||||"` -> `Iraq`, source=`country`, confidence=`0.25`, eligible usually=`true`
 - `"201753,European Sculpture and Decorative Arts,1548,||||||||||German"` -> `Germany`, source=`artistNationality`, confidence=`0.5`
-- `"670810,European Sculpture and Decorative Arts,1880,||||||||||British, Scottish"` -> `United Kingdom`, source=`artistNationality`, confidence=`0.5`
+- `"670810,European Sculpture and Decorative Arts,1880,||||||||||British, Scottish"` -> `Scotland` (or fallback `United Kingdom`), source=`artistNationality`, confidence=`~0.5`
 - `"460135,Robert Lehman Collection,1480,||||||||Italian, possibly Florence or Faenza||"` -> `Florence, Italy`, source=`city||culture`, confidence=`0.60-0.75`
 - `"452853,Islamic Art,1149,||||||probably Egypt||||"` -> `Egypt`, source=`country`, confidence=`0.60-0.75`
 - `"460139,Robert Lehman Collection,1500,||||||||Italian, probably Florence or vicinity||"` -> `Florence, Italy`, source=`city||culture`, confidence=`0.65-0.80`
+- `",European Sculpture and Decorative Arts,1548,||||||||||French"` -> `France`
+- `",European Sculpture and Decorative Arts,1548,||||||||||Scottish"` -> `Scotland`
+- `",European Sculpture and Decorative Arts,1548,||||||||||British"` -> `Britain` (or `United Kingdom` by project convention)
+- `",European Sculpture and Decorative Arts,1548,||||||||||Italian"` -> `Italy`
+- `"487350,Modern and Contemporary Art,1884,||||||||French (Paris)||French"` -> `Paris, France`
+- `"310369,The Michael C. Rockefeller Wing,1650,Fomena (?)||||Adanse traditional area||Ghana||Akan||"` -> `Fomena, Ghana`
