@@ -197969,5 +197969,148 @@
     "objectURL": "https://www.metmuseum.org/art/collection/search/240063",
     "tags": null,
     "isTimelineWork": false
+  },
+  "254561": {
+    "objectID": 254561,
+    "isHighlight": false,
+    "accessionNumber": "46.129.3",
+    "accessionYear": "1946",
+    "isPublicDomain": true,
+    "primaryImage": "https://images.metmuseum.org/CRDImages/gr/original/DP115270.jpg",
+    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/gr/web-large/DP115270.jpg",
+    "additionalImages": [
+      "https://images.metmuseum.org/CRDImages/gr/original/DP115271.jpg"
+    ],
+    "constituents": null,
+    "department": "Greek and Roman Art",
+    "objectName": "Amphora, Type B",
+    "title": "Terracotta amphora (jar)",
+    "culture": "Greek, Attic",
+    "period": "Late Archaic",
+    "objectDate": "ca. 500\u2013490 BCE",
+    "objectBeginDate": -500,
+    "objectEndDate": -490,
+    "medium": "Terracotta",
+    "dimensions": "H. 12 3/8 in. (31.4 cm)",
+    "measurements": [
+      {
+        "elementName": "Overall",
+        "elementDescription": null,
+        "elementMeasurements": {
+          "Height": 31.39
+        }
+      }
+    ],
+    "creditLine": "Gift of Mr. and Mrs. John van Benschoten Griggs, 1946",
+    "classification": "Vases",
+    "metadataDate": "2025-03-06T04:54:30Z",
+    "repository": "Metropolitan Museum of Art, New York, NY",
+    "objectURL": "https://www.metmuseum.org/art/collection/search/254561",
+    "tags": [
+      {
+        "term": "Shields",
+        "AAT_URL": "http://vocab.getty.edu/page/aat/300036869",
+        "Wikidata_URL": "https://www.wikidata.org/wiki/Q131559"
+      },
+      {
+        "term": "Satyrs",
+        "AAT_URL": "http://vocab.getty.edu/page/aat/300379732",
+        "Wikidata_URL": "https://www.wikidata.org/wiki/Q163709"
+      }
+    ],
+    "objectWikidata_URL": "https://www.wikidata.org/wiki/Q116286976",
+    "isTimelineWork": false,
+    "GalleryNumber": "171"
+  },
+  "254551": {
+    "objectID": 254551,
+    "isHighlight": false,
+    "accessionNumber": "46.92",
+    "accessionYear": "1946",
+    "isPublicDomain": true,
+    "primaryImage": "https://images.metmuseum.org/CRDImages/gr/original/DP232633.jpg",
+    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/gr/web-large/DP232633.jpg",
+    "additionalImages": [
+      "https://images.metmuseum.org/CRDImages/gr/original/DP232617.jpg"
+    ],
+    "constituents": null,
+    "department": "Greek and Roman Art",
+    "objectName": "Amphora",
+    "title": "Terracotta neck-amphora (jar)",
+    "culture": "Greek, Attic",
+    "period": "Archaic",
+    "objectDate": "ca. 510 BCE",
+    "objectBeginDate": -515,
+    "objectEndDate": -505,
+    "medium": "Terracotta",
+    "dimensions": "H. 40.3-40.5 cm.\r\nDiameter 27.3 cm.",
+    "measurements": null,
+    "creditLine": "Gift of Mrs. Edward Robinson, 1946",
+    "classification": "Vases",
+    "metadataDate": "2025-12-20T04:50:39.43Z",
+    "repository": "Metropolitan Museum of Art, New York, NY",
+    "objectURL": "https://www.metmuseum.org/art/collection/search/254551",
+    "tags": [
+      {
+        "term": "Men",
+        "AAT_URL": "http://vocab.getty.edu/page/aat/300025928",
+        "Wikidata_URL": "https://www.wikidata.org/wiki/Q8441"
+      },
+      {
+        "term": "Women",
+        "AAT_URL": "http://vocab.getty.edu/page/aat/300025943",
+        "Wikidata_URL": "https://www.wikidata.org/wiki/Q467"
+      },
+      {
+        "term": "Triton",
+        "AAT_URL": null,
+        "Wikidata_URL": "https://www.wikidata.org/wiki/Q148030"
+      },
+      {
+        "term": "Herakles",
+        "AAT_URL": "http://vocab.getty.edu/page/ia/901000042",
+        "Wikidata_URL": "https://www.wikidata.org/wiki/Q122248"
+      }
+    ],
+    "objectWikidata_URL": "https://www.wikidata.org/wiki/Q116404951",
+    "isTimelineWork": false,
+    "GalleryNumber": "171"
+  },
+  "240790": {
+    "objectID": 240790,
+    "isHighlight": false,
+    "accessionNumber": "74.51.1203",
+    "accessionYear": "1874",
+    "isPublicDomain": true,
+    "primaryImage": "https://images.metmuseum.org/CRDImages/gr/original/LC-74_51_1203.jpg",
+    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/gr/web-large/LC-74_51_1203.jpg",
+    "additionalImages": [],
+    "constituents": null,
+    "department": "Greek and Roman Art",
+    "objectName": "Juglet",
+    "title": "Juglet",
+    "culture": "Cypriot",
+    "period": "Early Cypriot",
+    "objectDate": "2500\u20131900 BCE",
+    "objectBeginDate": -2500,
+    "objectEndDate": -1900,
+    "medium": "Terracotta",
+    "dimensions": "6 5/16in. (16cm)",
+    "measurements": [
+      {
+        "elementName": "Overall",
+        "elementDescription": null,
+        "elementMeasurements": {
+          "Height": 16
+        }
+      }
+    ],
+    "creditLine": "The Cesnola Collection, Purchased by subscription, 1874\u201376",
+    "classification": "Vases",
+    "metadataDate": "2025-03-06T04:54:30Z",
+    "repository": "Metropolitan Museum of Art, New York, NY",
+    "objectURL": "https://www.metmuseum.org/art/collection/search/240790",
+    "tags": null,
+    "isTimelineWork": false
   }
 }

@@ -175,15 +175,32 @@ function All() {
               panelHeight={contentSceneHeight}
             />
           ) : (
-            <Box
-              sx={{
-                position: "absolute",
-                top: 0,
-                bottom: 0,
-                right: 0,
-                borderRight: "1px solid #444"
-              }}
-            />
+            <>
+              <Box
+                sx={{
+                  position: "absolute",
+                  inset: 0,
+                  display: "grid",
+                  placeItems: "center",
+                  pr: "0.65rem",
+                  color: "#777",
+                  fontSize: "0.78rem",
+                  textAlign: "center",
+                  pointerEvents: "none"
+                }}
+              >
+                show stacked outline images here
+              </Box>
+              <Box
+                sx={{
+                  position: "absolute",
+                  top: 0,
+                  bottom: 0,
+                  right: 0,
+                  borderRight: "1px solid #444"
+                }}
+              />
+            </>
           )}
         </Box>
         <Box
