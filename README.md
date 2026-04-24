@@ -1,31 +1,21 @@
-Deployed link: https://okasmin-thesis-vessels.netlify.app/
+# Ceramics Undressed
 
-# okasmin-parsons-thesis-2026
+##### The practice of pottery shows us how connected we really are.
 
-This repository contains the thesis project codebase, including:
+Olivia Kasmin, 2026
 
-- `app/` for the React + TypeScript frontend
-- `pipeline/` for data fetch/clean scripts
-- `hf_space/` for the Hugging Face Space app
+---
 
-## Development (repo root)
+### Project
 
-Run these from the repository root:
+https://okasmin-thesis-vessels.netlify.app/
 
-- install dependencies: `npm install`
-- start frontend dev server: `npm run dev`
-- build deployable frontend assets: `npm run build`
-- lint frontend TypeScript/JS: `npm run lint`
-- auto-fix frontend lint issues: `npm run lint:fix`
-- lint Python (`pipeline/`, `hf_space/`): `npm run lint:py`
-- auto-fix Python lint issues: `npm run lint:py:fix`
-- check frontend formatting: `npm run format`
-- auto-format frontend files: `npm run format:fix`
-- check Python formatting: `npm run format:py`
-- auto-format Python files: `npm run format:py:fix`
-- run full commit gate manually: `npm run check:commit`
+---
 
-## Git Hooks
+### Abstract
 
-- hooks are managed with Husky in the repo root
-- full hook instructions: `.husky/README.md`
+Ceramic vessels are among the oldest and most constant traces of human making. In an age of constant progress, it is often our differences — not our similarities — that are celebrated. In this project, I show how ceramic vessels offer an opportunity to find a thread of connection to one another across oceans and political divides, and to our ancestors from thousands of years ago. When we undress ceramic vessels — ignoring surface decoration and focusing instead on form — similarities between objects become clear.
+
+The technology of working clay into vessels to serve basic needs like cooking, drinking, and storage has existed for roughly 13,000 years. Though we’ve moved away from a hands-on connection with the materiality of clay — today, we interact mainly with mass-produced ceramics — we still share these same needs and use ceramics in our everyday lives.
+
+By highlighting vessels whose forms resemble one another, I aim to emphasize that we resemble one another as well. It is not my intention to minimize the historical and artistic complexity of ceramics (or people), but rather to encourage an understanding of our connectedness, our similarity to other cultures, and our humanity through this common technology and canvas of expression and utility.
