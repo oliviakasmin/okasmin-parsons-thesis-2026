@@ -146,7 +146,6 @@ def _department_fetch_postfix(fetched_ids: set[int], object_id_set: set[int], to
 def run_fetch_batch(
     object_ids: List[int],
     *,
-    require_ceramics_classification: bool,
     progress_desc: str,
     ids_source_description: str,
     department_fetched_path: Path | None = None,
@@ -252,7 +251,6 @@ def run_fetch_batch(
             obj,
             object_id,
             rejected_ids,
-            require_ceramics_classification=require_ceramics_classification,
         ):
             cleaned_obj = remove_empty_string_fields(obj)
             key = str(cleaned_obj.get("objectID", object_id))
@@ -324,7 +322,6 @@ def main() -> None:
     object_ids: List[int] = load_json_list(OBJECT_IDS_PATH)
     run_fetch_batch(
         object_ids,
-        require_ceramics_classification=True,
         progress_desc="Fetching object details",
         ids_source_description=str(OBJECT_IDS_PATH),
     )
@@ -335,8 +332,7 @@ def get_additional_department_objects(department_id: int, *, pottery: bool = Fal
     Fetch object details for IDs listed under additional_department_ids for one department.
 
     Same outputs and batching as main(), but reads IDs from
-    ``additional_department_ids/{departmentId}_*_object_ids.json`` and skips the
-    Ceramics classification requirement in apply_filters.
+    ``additional_department_ids/{departmentId}_*_object_ids.json``.
 
     Writes ``*_fetched_object_ids.json`` beside the ID list: one entry per objectID
     once the Met object-detail API is invoked for it in this mode (200, 403, or a
@@ -348,7 +344,6 @@ def get_additional_department_objects(department_id: int, *, pottery: bool = Fal
     object_ids: List[int] = load_json_list(ids_path)
     run_fetch_batch(
         object_ids,
-        require_ceramics_classification=False,
         progress_desc=f"Fetching {'pottery ' if pottery else ''}dept {department_id} object details",
         ids_source_description=str(ids_path),
         department_fetched_path=fetched_path,
@@ -376,7 +371,7 @@ if __name__ == "__main__":
         metavar="DEPARTMENT_ID",
         help=(
             "Use IDs from fetch_data/data/additional_department_ids/{DEPARTMENT_ID}_*_object_ids.json "
-            "and skip the Ceramics classification filter."
+            "instead of fetch_data/data/object_ids.json."
         ),
     )
     parser.add_argument(
