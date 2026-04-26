@@ -7,7 +7,7 @@ FLASK = ["flask"]
 VESSEL = ["vessel"]
 BEAKER = ["beaker"]
 PITCHER = ["pitcher"]
-STORAGE = ["storage"]
+AMPHORA = ["amphora"]
 
 FUNCTION_GROUP_STRINGS = [
     JAR,
@@ -18,151 +18,131 @@ FUNCTION_GROUP_STRINGS = [
     FLASK,
     VESSEL,
     BEAKER,
-    PITCHER,    
-    STORAGE,
+    PITCHER,
+    AMPHORA,
 ]
 
 ORDER_OF_PRIORITY = [
-  STORAGE, 
-  PITCHER, 
-  BOTTLE,
-  JUG,
-  FLASK, 
-  BEAKER, 
-  JAR, 
-  POT, 
-  VASE, 
-  VESSEL, 
-  ]
+    AMPHORA,
+    PITCHER,
+    BOTTLE,
+    JUG,
+    FLASK,
+    BEAKER,
+    JAR,
+    POT,
+    VASE,
+    VESSEL,
+]
 
 group_mappings = {
-  "storage jar": STORAGE,
-  "amphora": STORAGE,
-  "ewer": PITCHER,
-  "askos": PITCHER,
-  "urn": JAR,
-  "aryballos": FLASK,
-  "hydria": JAR,
-  "juglet": JUG,
-  "oinochoe": PITCHER,
-  "alabastron": FLASK,
-  "lekythos": FLASK,
-  "neck-pelike": STORAGE,
-  "brazier": POT,
-  "bucket": VESSEL,
-  "kendi": PITCHER,
-  "plemochoe": VESSEL,
-  "ring-kernos": VESSEL,
-  "oon": VESSEL,
-  "nestoris": STORAGE,
-  "pen washer": VESSEL,
-  "saltcellar": VESSEL,
-  "glass cooler": VESSEL,
-  "aquamanile": PITCHER,
-  "kero": BEAKER,
-  "holder for magic straws": VASE,
-  "brush holder": VESSEL,
-  "lydion": FLASK,
-  "thymiaterion": VESSEL,
-  "aidoion": VASE,
-  "censer": VESSEL,
-  "caddy": STORAGE,
-  "ampulla": FLASK,
-  "dipper": VESSEL,
-  "kyathos": VESSEL,
-  "situla": VESSEL,
-  "strainer": VESSEL,
-  "bottle vase": VASE, #important this is VASE not BOTTLE
-  "albarello": STORAGE,
-  "amphoriskos": STORAGE,
-  "pelike": STORAGE,
-  "guttus": FLASK,
-  "loutrophoros": VASE,
-  "stamnos": STORAGE,
-  "rhyton": VASE,
-  "gallipot": JAR,
-  "epichysis": PITCHER,
-  "lebes gamikos": JAR,
-  "kalathos": VASE,
-  "olpe": PITCHER,
-  "krater": VESSEL
+    "amphora": AMPHORA,
+    "neck-amphora": AMPHORA,
+    "amphoriskos": AMPHORA,
+
+    "ewer": PITCHER,
+    "askos": PITCHER,
+    "oinochoe": PITCHER,
+    "kendi": PITCHER,
+    "aquamanile": PITCHER,
+    "epichysis": PITCHER,
+    "olpe": PITCHER,
+
+    "juglet": JUG,
+
+    "aryballos": FLASK,
+    "alabastron": FLASK,
+    "lekythos": FLASK,
+    "lydion": FLASK,
+    "ampulla": FLASK,
+    "guttus": FLASK,
+
+    "urn": JAR,
+    "hydria": JAR,
+    "neck-pelike": JAR,
+    "nestoris": JAR,
+    "pelike": JAR,
+    "stamnos": JAR,
+    "albarello": JAR,
+    "gallipot": JAR,
+
+
+
+    "brazier": POT,
+
+    "kero": BEAKER,
+
+    "bottle vase": VASE,  # important: VASE, not BOTTLE
+    "loutrophoros": VASE,
+    "rhyton": VASE,
+    "kalathos": VASE,
+    "holder for magic straws": VASE,
+    "aidoion": VASE,
+
+    "bucket": VESSEL,
+    "plemochoe": VESSEL,
+    "ring-kernos": VESSEL,
+    "oon": VESSEL,
+    "pen washer": VESSEL,
+    "saltcellar": VESSEL,
+    "glass cooler": VESSEL,
+    "brush holder": VESSEL,
+    "thymiaterion": VESSEL,
+    "censer": VESSEL,
+    "dipper": VESSEL,
+    "kyathos": VESSEL,
+    "situla": VESSEL,
+    "strainer": VESSEL,
+    "krater": VESSEL,
+    "calyx-krater": VESSEL,
+    "lebes gamikos": VESSEL,
+    "caddy": VESSEL,
 }
 
+
+
+
+
 """
-JAR
+AR
 
-A wide-mouthed container used primarily for storage of solids or semi-liquids.
-
-usually no spout
-access > pouring
-often cylindrical or bulbous
-
-BOTTLE
-
-A narrow-necked container designed to store and dispense liquids.
-
-controlled pouring via neck
-typically no handle
-more vertical than jars
-
-FLASK
-
-A small, portable narrow-necked container for valuable liquids (oils, perfumes).
-
-subset of bottle, but scaled down + precious use
-often carried on the body
-
-JUG
-
-A generic handled container for holding and pouring liquids.
-
-informal / domestic
-may or may not have a defined spout
-
-PITCHER
-
-A designed pouring vessel with a defined spout and often a known typology.
-
-controlled pouring is primary function
-includes historical named forms
-
-POT
-
-A vessel used for heating, cooking, or holding hot contents.
-
-associated with fire/heat
-thick-walled, functional
-
-BEAKER
-
-A simple, handleless drinking vessel.
-
-open form
-individual use
-
-STORAGE
-
-A vessel designed for bulk storage or transport of goods.
-
-capacity-focused
-often standardized shapes
-pouring is secondary
+A container labeled “jar” in the data, typically described as storage-related and often appearing with modifiers like “covered,” “storage,” or specific contents (e.g., tea, pharmacy).
 
 VASE
 
-A vessel categorized primarily by form, decoration, or ceremonial/aesthetic role rather than function.
+An object labeled “vase” in the data, often associated with decorative or display contexts, including phrases like “vase with [motif]” or “flower vase.”
 
-art-historical classification
-often ambiguous function
+BOTTLE
 
-VESSEL (fallback)
+A container labeled “bottle” in the data, frequently paired with liquid descriptors such as “wine,” “water,” or “scent.”
 
-A general category for objects that do not clearly fit into other functional groups.
+JUG
 
-includes:
-open forms (since you removed bowls/cups)
-ambiguous / multi-function objects
-non-standard typologies
+A handled container labeled “jug” in the data, sometimes modified by contents (e.g., “cream jug”) but primarily identified by the noun itself.
+
+POT
+
+An object labeled “pot” in the data, used across multiple contexts (e.g., “flower pot,” “bean pot,” “milk pot”), without a single consistent function implied by the term alone.
+
+FLASK
+
+A container labeled “flask” in the data or a closely related named type (e.g., alabastron, lekythos), often associated with specific liquids like oil or perfume.
+
+VESSEL
+
+A generic label used in the data when no more specific noun is applied, or for objects whose type is unclear, uncommon, or not captured by other categories.
+
+BEAKER
+
+A drinking container labeled “beaker” in the data, typically appearing without handles and sometimes modified by descriptors like “black-topped.”
+
+PITCHER
+
+A pouring container labeled “pitcher” in the data (and including synonymous terms like “ewer”), often appearing with liquid descriptors such as “water” or “wine.”
+
+AMPHORA
+
+A container labeled “amphora” in the data, including variations such as “neck-amphora” or named subtypes, treated as a distinct category based on consistent usage of the term.
 """
 
 
@@ -183,3 +163,17 @@ SECONDARY_GROUPS = ["amphora"]
 SHAPED = ["gourd-shaped","pear-shaped", "cocoon-shaped","u-shaped","in the Form of a Lute Player", "in Shape of Archaic Bronze Vessel", "in Meiping Shape"]
 
 SPECIFIC_CATEGORIES = ["amphora", "neck-amphora"]
+
+
+
+
+
+
+# pouring
+# water
+# wine
+# funerary
+# storage
+# rituation / ceremonial
+# drinking
+# precious liquids (perfurmes and oiles)

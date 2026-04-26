@@ -53075,52 +53075,6 @@
     "tags": null,
     "isTimelineWork": false
   },
-  "62941": {
-    "objectID": 62941,
-    "isHighlight": false,
-    "accessionNumber": "23.225.148",
-    "accessionYear": "1923",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/as/original/54630.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/as/web-large/54630.jpg",
-    "additionalImages": [],
-    "constituents": null,
-    "department": "Asian Art",
-    "objectName": "Vase",
-    "title": "Square Lamp (andon) with Design of an Idealized Woman Behind a Curtain",
-    "culture": "Japan",
-    "period": "Edo period (1615\u20131868)",
-    "objectDate": "1760",
-    "objectBeginDate": 1760,
-    "objectEndDate": 1760,
-    "medium": "Porcelain decorated with enamels (Arita ware, Imari type)",
-    "dimensions": "H. 5 1/4 in. (13.3 cm); W. 3 in. (7.6 cm); L. 3 7/8 in. (9.8 cm)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": "CSR 2025",
-        "elementMeasurements": {
-          "Depth": 9.8,
-          "Height": 13.3,
-          "Weight": 0.548,
-          "Width": 7.6
-        }
-      }
-    ],
-    "creditLine": "Gift of Mrs. V. Everit Macy, 1923",
-    "classification": "Ceramics",
-    "metadataDate": "2022-03-04T10:34:46.977Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/62941",
-    "tags": [
-      {
-        "term": "Women",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300025943",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q467"
-      }
-    ],
-    "isTimelineWork": false
-  },
   "190647": {
     "objectID": 190647,
     "isHighlight": false,
@@ -157283,57 +157237,6 @@
     "tags": null,
     "isTimelineWork": false
   },
-  "451492": {
-    "objectID": 451492,
-    "isHighlight": false,
-    "accessionNumber": "59.69.3",
-    "accessionYear": "1959",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/is/original/DP214303.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/is/web-large/DP214303.jpg",
-    "additionalImages": [
-      "https://images.metmuseum.org/CRDImages/is/original/59.69.3.jpg",
-      "https://images.metmuseum.org/CRDImages/is/original/DP214304.jpg",
-      "https://images.metmuseum.org/CRDImages/is/original/DP214305.jpg"
-    ],
-    "constituents": null,
-    "department": "Islamic Art",
-    "objectName": "Mosque lamp",
-    "title": "Ceramic Vessel in the Shape of a Mosque Lamp",
-    "objectDate": "1525\u201340",
-    "objectBeginDate": 1500,
-    "objectEndDate": 1565,
-    "medium": "Stonepaste; painted in blue under transparent glaze",
-    "dimensions": "H. 6 11/16 in. (17 cm)\r\nMax. diam: 5 13/16 in. (14.8 cm)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Diameter": 14.7638,
-          "Height": 16.9863
-        }
-      }
-    ],
-    "creditLine": "Harris Brisbane Dick Fund, 1959",
-    "geographyType": "Made in",
-    "city": "Iznik",
-    "country": "Turkey",
-    "classification": "Ceramics",
-    "metadataDate": "2025-12-20T04:50:39.43Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/451492",
-    "tags": [
-      {
-        "term": "Arabic",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300387843",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q13955"
-      }
-    ],
-    "objectWikidata_URL": "https://www.wikidata.org/wiki/Q116244673",
-    "isTimelineWork": true,
-    "GalleryNumber": "460"
-  },
   "309753": {
     "objectID": 309753,
     "isHighlight": false,
@@ -204218,95 +204121,6 @@
     "repository": "Metropolitan Museum of Art, New York, NY",
     "objectURL": "https://www.metmuseum.org/art/collection/search/240277",
     "tags": null,
-    "isTimelineWork": false
-  },
-  "254288": {
-    "objectID": 254288,
-    "isHighlight": false,
-    "accessionNumber": "41.162.116",
-    "accessionYear": "1941",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/gr/original/DP287750.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/gr/web-large/DP287750.jpg",
-    "additionalImages": [
-      "https://images.metmuseum.org/CRDImages/gr/original/DP287751.jpg",
-      "https://images.metmuseum.org/CRDImages/gr/original/DP287753.jpg",
-      "https://images.metmuseum.org/CRDImages/gr/original/DP287752.jpg",
-      "https://images.metmuseum.org/CRDImages/gr/original/DP295965.jpg",
-      "https://images.metmuseum.org/CRDImages/gr/original/DP295967.jpg"
-    ],
-    "constituents": [
-      {
-        "constituentID": 49352,
-        "role": "Artist",
-        "name": "Attributed to the Philon Painter"
-      }
-    ],
-    "department": "Greek and Roman Art",
-    "objectName": "Kyathos",
-    "title": "Kyathos",
-    "culture": "Greek, Attic",
-    "period": "Archaic",
-    "artistRole": "Artist",
-    "artistPrefix": "Attributed to the",
-    "artistDisplayName": "Philon Painter",
-    "artistAlphaSort": "Philon Painter",
-    "objectDate": "ca. 530\u2013500 BCE",
-    "objectBeginDate": -530,
-    "objectEndDate": -500,
-    "medium": "Terracotta",
-    "dimensions": "Overall: 3 3/16 in. (8.1 cm)\r\nOther (height with handle): 5 5/8in. (14.3cm)\r\nDiameter: 4 1/4 \u00d7 2 3/16 in. (10.7 \u00d7 5.6 cm)",
-    "measurements": [
-      {
-        "elementName": "Other",
-        "elementDescription": "height with handle",
-        "elementMeasurements": {
-          "Height": 14.3
-        }
-      },
-      {
-        "elementName": "Overall",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Height": 8.096266
-        }
-      },
-      {
-        "elementName": "Diameter",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Diameter": 10.72,
-          "Foot": 5.55
-        }
-      }
-    ],
-    "creditLine": "Rogers Fund, 1941",
-    "classification": "Vases",
-    "metadataDate": "2025-03-06T04:54:30Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/254288",
-    "tags": [
-      {
-        "term": "Battles",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300185692",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q178561"
-      },
-      {
-        "term": "Soldiers",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300185678",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q4991371"
-      },
-      {
-        "term": "Shields",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300036869",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q131559"
-      },
-      {
-        "term": "Horses",
-        "AAT_URL": "http://vocab.getty.edu/page/aat/300250148",
-        "Wikidata_URL": "https://www.wikidata.org/wiki/Q726"
-      }
-    ],
     "isTimelineWork": false
   },
   "251269": {

@@ -54,7 +54,6 @@ def _resolve_candidate_groups(text: str) -> list[str]:
     Shared mapping resolver used for both objectName and title.
 
     Priority behavior:
-    - "storage" (word-boundary) trumps all groups
     - "bottle vase" (word-boundary phrase) maps to "vase" and is prioritized
     - then explicit objectName mappings
     - then generic group keywords
@@ -65,8 +64,6 @@ def _resolve_candidate_groups(text: str) -> list[str]:
 
     hits: list[str] = []
 
-    if _contains_word(text_norm, "storage"):
-        hits.append("storage")
     if _contains_word(text_norm, "bottle vase"):
         hits.append("vase")
 
@@ -87,9 +84,7 @@ def _resolve_candidate_groups(text: str) -> list[str]:
         out.append(group)
 
     # Final enforcement of special-case precedence.
-    if "storage" in out:
-        out = ["storage"] + [g for g in out if g != "storage"]
-    elif "vase" in out and _contains_word(text_norm, "bottle vase"):
+    if "vase" in out and _contains_word(text_norm, "bottle vase"):
         out = ["vase"] + [g for g in out if g != "vase"]
     return out
 
@@ -155,8 +150,6 @@ def map_function_group(object_name: str, title: str) -> str:
     object_name_norm = _normalize(object_name)
 
     # Hard overrides: these objectName forms should never emit alternates.
-    if _contains_word(object_name_norm, "storage jar"):
-        return "storage"
     if _contains_word(object_name_norm, "bottle vase"):
         return "vase"
     return resolve_final_group(object_name, title)

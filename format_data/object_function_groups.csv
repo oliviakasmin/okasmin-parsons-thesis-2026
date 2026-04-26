@@ -8,8 +8,8 @@ objectID,department,objectName,title,final_group
 44973,Asian Art,Jar,Bell-Shaped Jar,jar
 44974,Asian Art,Pedestal jar,Pedestal jar with two handles,jar
 44977,Asian Art,Jar,Jar,jar
-45205,Asian Art,Storage Jar,Large Storage Jar (Ōtsubo),storage
-45365,Asian Art,Jar,Storage Jar (Tsubo,storage
+45205,Asian Art,Storage Jar,Large Storage Jar (Ōtsubo),jar
+45365,Asian Art,Jar,Storage Jar (Tsubo,jar
 45432,Asian Art,Jar,Moon jar,jar
 45482,Asian Art,Sake bottle,Ninsei-style Sake Bottle with Floral Patterning,bottle
 45484,Asian Art,Sake bottle,"Sake Bottle (Tokkuri) with “Three Friends of Winter” (Pine, Bamboo, and Plum)",bottle
@@ -221,7 +221,7 @@ objectID,department,objectName,title,final_group
 205878,European Sculpture and Decorative Arts,Scent bottle,Scent bottle,bottle
 770999,European Sculpture and Decorative Arts,Urn with lid,Urn with lid,jar
 196553,European Sculpture and Decorative Arts,Vase with cover,Vase with cover,vase
-199730,European Sculpture and Decorative Arts,Storage jar,Storage jar (albarello),storage
+199730,European Sculpture and Decorative Arts,Storage jar,Storage jar (albarello),jar
 308546,The Michael C. Rockefeller Wing,Bottle,Stirrup Spout Bottle with Woman Carrying Burden,bottle
 37436,Asian Art,Covered Lime pot,Covered Lime Pot in the Form of a Rabbit,pot
 47332,Asian Art,Vase,Bon-Bon Vase,vase
@@ -272,8 +272,8 @@ objectID,department,objectName,title,final_group
 47470,Asian Art,Bottle,Bottle,bottle
 447276,Islamic Art,Ewer,Ewer,pitcher
 48332,Asian Art,Vase,Minature meiping vase,vase
-309470,The Michael C. Rockefeller Wing,Jar,Storage jar,storage
-199719,European Sculpture and Decorative Arts,Albarello,Albarello,storage
+309470,The Michael C. Rockefeller Wing,Jar,Storage jar,jar
+199719,European Sculpture and Decorative Arts,Albarello,Albarello,jar
 46633,Asian Art,Vase,Vase,vase
 46799,Asian Art,Urn,Tomb urn,jar
 310675,The Michael C. Rockefeller Wing,Jug,Jug,jug
@@ -378,7 +378,7 @@ objectID,department,objectName,title,final_group
 310517,The Michael C. Rockefeller Wing,Jar,Head jar,jar
 468271,Medieval Art,Vessel,Vessel,vessel
 446929,Islamic Art,Jar,Jar,jar
-196741,European Sculpture and Decorative Arts,Albarello,Albarello,storage
+196741,European Sculpture and Decorative Arts,Albarello,Albarello,jar
 47953,Asian Art,Vase,Vase,vase
 447285,Islamic Art,Ewer,Ewer,pitcher
 197824,European Sculpture and Decorative Arts,Jug,Jug,jug
@@ -540,7 +540,7 @@ objectID,department,objectName,title,final_group
 310220,The Michael C. Rockefeller Wing,Bottle,Bottle,bottle
 46779,Asian Art,Vase,Vase with flowers,vase
 308457,The Michael C. Rockefeller Wing,Jar,Jar,jar
-195021,European Sculpture and Decorative Arts,Albarello,Albarello,storage
+195021,European Sculpture and Decorative Arts,Albarello,Albarello,jar
 309138,The Michael C. Rockefeller Wing,Bottle,Bottle: Head,bottle
 201716,European Sculpture and Decorative Arts,Milk jug with cover,Milk jug with cover,jug
 447279,Islamic Art,Ewer,Miniature Ewer,pitcher
@@ -563,13 +563,13 @@ objectID,department,objectName,title,final_group
 48661,Asian Art,Vase,Square vase,vase
 48280,Asian Art,Vase,Vase with flowers and rocks,vase
 57517,Asian Art,Jar,Jar with lid,jar
-50313,Asian Art,Jar,Large Storage Jar (Ōtsubo),storage
+50313,Asian Art,Jar,Large Storage Jar (Ōtsubo),jar
 477270,Medieval Art,Jug,Jug,jug
 46928,Asian Art,Vase,Vase with floral patterns,vase
 188534,European Sculpture and Decorative Arts,Globular jar,Globular jar,jar
 460139,Robert Lehman Collection,Apothecary jar,Apothecary Jar (orciuolo),jar
 52377,Asian Art,Jar,Jar,jar
-197222,European Sculpture and Decorative Arts,Albarello,Albarello,storage
+197222,European Sculpture and Decorative Arts,Albarello,Albarello,jar
 44426,Asian Art,Jar,Small Jar (Guan),jar
 52807,Asian Art,Ewer,Ewer with Equestrian Figure,pitcher
 644110,European Sculpture and Decorative Arts,Vase,Vase with scenes of storm at sea,vase
@@ -584,16 +584,16 @@ objectID,department,objectName,title,final_group
 188908,European Sculpture and Decorative Arts,Vase,Vase,vase
 52611,Asian Art,Vase,Vase,vase
 42243,Asian Art,Vase,"Vase with Cranes, Clouds, and Waves",vase
-210750,European Sculpture and Decorative Arts,Storage jar,One-handled storage jar (albarello),storage
+210750,European Sculpture and Decorative Arts,Storage jar,One-handled storage jar (albarello),jar
 37432,Asian Art,Footed urn,Footed Urn,jar
 52259,Asian Art,Oil bottle,Oil bottle,bottle
 194432,European Sculpture and Decorative Arts,Ewer,Ewer (Brocca),pitcher
 62677,Asian Art,Bottle,Bottle,bottle
-204512,European Sculpture and Decorative Arts,Vase,Two-handled storage jug (albarello) with crowned eagles,storage
+204512,European Sculpture and Decorative Arts,Vase,Two-handled storage jug (albarello) with crowned eagles,jar
 52755,Asian Art,Jar,Jar,jar
 51010,Asian Art,Vase,Vase decorated with blossoming plum,vase
 465872,Medieval Art,Jar,Jar,jar
-771037,European Sculpture and Decorative Arts,Vase,Elongated amphora shaped vase in pastel shades,storage
+771037,European Sculpture and Decorative Arts,Vase,Elongated amphora shaped vase in pastel shades,amphora
 42251,Asian Art,Vase,Vase with Flowers,vase
 39506,Asian Art,Footed jar,Footed jar,jar
 670807,European Sculpture and Decorative Arts,Jug,Jug,jug
@@ -703,7 +703,7 @@ objectID,department,objectName,title,final_group
 48629,Asian Art,Vase,Vase with dragon,vase
 453896,Islamic Art,Jar,Jar,jar
 49262,Asian Art,Jar,Jar,jar
-460182,Robert Lehman Collection,Albarello,Apothecary jar (albarello),storage
+460182,Robert Lehman Collection,Albarello,Apothecary jar (albarello),jar
 63097,Asian Art,Tea jar with cover,Tea jar with cover,jar
 37449,Asian Art,Jar,Footed Jar,jar
 199039,European Sculpture and Decorative Arts,Jug,Jug,jug
@@ -730,12 +730,12 @@ objectID,department,objectName,title,final_group
 451635,Islamic Art,Jar,Jar,jar
 191344,European Sculpture and Decorative Arts,Jug,Jug,jug
 52811,Asian Art,Vase,Vase decorated with flowers,vase
-476256,Medieval Art,Amphora,Amphora,storage
+476256,Medieval Art,Amphora,Amphora,amphora
 41749,Asian Art,Water jar,Water Jar for the Tea Ceremony with Seven Sages of the Bamboo Grove Design,jar
 46848,Asian Art,Vase,Vase,vase
 76114,Asian Art,Jar,Dragon jar,jar
 48628,Asian Art,Vase,Vase with Garden Scene,vase
-50317,Asian Art,Storage jar,Storage jar,storage
+50317,Asian Art,Storage jar,Storage jar,jar
 51013,Asian Art,Vase,Vase,vase
 44729,Asian Art,Jar,Jar (Guan),jar
 194632,European Sculpture and Decorative Arts,Jug,Jug,jug
@@ -748,7 +748,7 @@ objectID,department,objectName,title,final_group
 309503,The Michael C. Rockefeller Wing,Bottle,Double-chambered bottle,bottle
 670995,Asian Art,Jar,Shigaraki Tea Jar (Chatsubo),jar
 461338,Robert Lehman Collection,Covered ewer,Covered ewer,pitcher
-199751,European Sculpture and Decorative Arts,Storage jar,One-handled storage jar (albarello),storage
+199751,European Sculpture and Decorative Arts,Storage jar,One-handled storage jar (albarello),jar
 42389,Asian Art,Vase,Vase with King Wen Visiting the Scholar Jiang Taigong,vase
 48223,Asian Art,Covered jar,"Covered jar with ""Hundred Antique"" pattern",jar
 460146,Robert Lehman Collection,Jug,Armorial jug (boccale),jug
@@ -798,7 +798,7 @@ objectID,department,objectName,title,final_group
 312161,The Michael C. Rockefeller Wing,Bottle,Bottle (Florero),bottle
 448981,Islamic Art,Ewer,Ewer,pitcher
 50891,Asian Art,Vase,"Vase with ladies, plants, and landscape",vase
-49553,Asian Art,Amphora,Amphora with dragon-shaped handles,storage
+49553,Asian Art,Amphora,Amphora with dragon-shaped handles,amphora
 477323,Medieval Art,Jar,Jar with Handle,jar
 44431,Asian Art,Flask,Molded Flask,flask
 454610,Islamic Art,Jar,Jar,jar
@@ -824,17 +824,17 @@ objectID,department,objectName,title,final_group
 48759,Asian Art,Vase,Vase,vase
 46570,Asian Art,Vase,Minature vase,vase
 49203,Asian Art,Jar,Jar,jar
-188538,European Sculpture and Decorative Arts,Albarello,Albarello,storage
+188538,European Sculpture and Decorative Arts,Albarello,Albarello,jar
 308297,The Michael C. Rockefeller Wing,Bottle,"Bottle, Falcon",bottle
 62552,Asian Art,Tea jar,Tea Jar,jar
 46773,Asian Art,Bottle,Bottle,bottle
 308411,The Michael C. Rockefeller Wing,Bottle,Warrior Bottle,bottle
 47077,Asian Art,Bottle,Bottle,bottle
 47118,Asian Art,Jar with cover,Jar with Cover,jar
-475761,Medieval Art,Amphora,Amphora,storage
+475761,Medieval Art,Amphora,Amphora,amphora
 47846,Asian Art,Water pitcher,Sencha Water Pitcher (Suichū),pitcher
 201610,European Sculpture and Decorative Arts,Ewer,Ewer,pitcher
-52922,Asian Art,Amphora,Amphora,storage
+52922,Asian Art,Amphora,Amphora,amphora
 446886,Islamic Art,Vase,Vase,vase
 314688,The Michael C. Rockefeller Wing,Bottle,Stirrup Spout Bottle: Monkey Head,bottle
 452223,Islamic Art,Bottle,Bottle,bottle
@@ -898,7 +898,7 @@ objectID,department,objectName,title,final_group
 451362,Islamic Art,Jar,Jar,jar
 308428,The Michael C. Rockefeller Wing,Bottle,Bottle,bottle
 308465,The Michael C. Rockefeller Wing,Bottle,Double Spout Bottle,bottle
-460142,Robert Lehman Collection,Albarello,Apothecary jar (albarello),storage
+460142,Robert Lehman Collection,Albarello,Apothecary jar (albarello),jar
 57358,Asian Art,Vase,Vase,vase
 477280,Medieval Art,Jug,Jug,jug
 52907,Asian Art,Bottle,Bottle,bottle
@@ -907,7 +907,7 @@ objectID,department,objectName,title,final_group
 57362,Asian Art,Vase,Vase,vase
 308515,The Michael C. Rockefeller Wing,Bottle,Stirrup Spout Bottle with Duck,bottle
 46941,Asian Art,Jar,Jar,jar
-188539,European Sculpture and Decorative Arts,Albarello,Albarello,storage
+188539,European Sculpture and Decorative Arts,Albarello,Albarello,jar
 314629,The Michael C. Rockefeller Wing,Jar,Jar,jar
 197485,European Sculpture and Decorative Arts,Jug,Jug,jug
 44737,Asian Art,Bottle,Bottle decorated with peonies,bottle
@@ -915,7 +915,7 @@ objectID,department,objectName,title,final_group
 47657,Asian Art,Jar,Jar,jar
 45871,Asian Art,Vase with lid,Vase with lid,vase
 48741,Asian Art,Vase,Vase with Immortals Offering the Peaches of Longevity,vase
-199721,European Sculpture and Decorative Arts,Pharmacy jar,Pharmacy jar (albarello),storage
+199721,European Sculpture and Decorative Arts,Pharmacy jar,Pharmacy jar (albarello),jar
 48676,Asian Art,Vase,Square vase with flowers of four seasons,vase
 466701,Medieval Art,Jar,Two-Handled Jar with Stag,jar
 49298,Asian Art,Ewer,Ewer with Figures in Landscape,pitcher
@@ -962,7 +962,7 @@ objectID,department,objectName,title,final_group
 47758,Asian Art,Jar,Jar,jar
 50328,Asian Art,Sake bottle,Sake Bottle (Tokkuri) with Flowers and Grasses,bottle
 49142,Asian Art,Jar,Jar (Hu),jar
-49274,Asian Art,Storage jar,Storage jar,storage
+49274,Asian Art,Storage jar,Storage jar,jar
 309728,The Michael C. Rockefeller Wing,Bottle,"Bottle, Drum",bottle
 48666,Asian Art,Bottle,Bottle,bottle
 42443,Asian Art,Jar,Jar,jar
@@ -1012,7 +1012,7 @@ objectID,department,objectName,title,final_group
 52076,Asian Art,Jar,Jar,jar
 309129,The Michael C. Rockefeller Wing,Bottle,Mountain Scene Bottle,bottle
 42416,Asian Art,Water jar,Water jar with clouds,jar
-194293,European Sculpture and Decorative Arts,Pharmacy jar,Pharmacy jar (albarello),storage
+194293,European Sculpture and Decorative Arts,Pharmacy jar,Pharmacy jar (albarello),jar
 205336,European Sculpture and Decorative Arts,Scent bottle,Scent bottle,bottle
 47810,Asian Art,Wine bottle,Wine Bottle,bottle
 50506,Asian Art,Vase,Vase with landscape,vase
@@ -1072,7 +1072,6 @@ objectID,department,objectName,title,final_group
 194636,European Sculpture and Decorative Arts,Jug,Jug,jug
 52089,Asian Art,Tea jar,Tea Jar,jar
 47370,Asian Art,Vase,Vase,vase
-62941,Asian Art,Vase,Square Lamp (andon) with Design of an Idealized Woman Behind a Curtain,vase
 190647,European Sculpture and Decorative Arts,Jug,Beardman or Bellarmine jug,jug
 47441,Asian Art,Vase,Vase,vase
 448976,Islamic Art,Jar,Jar,jar
@@ -1082,7 +1081,7 @@ objectID,department,objectName,title,final_group
 48550,Asian Art,Jar,Jar,jar
 449870,Islamic Art,Jar,Jar,jar
 48755,Asian Art,Vase,Large Vase,vase
-476257,Medieval Art,Amphora,Amphora,storage
+476257,Medieval Art,Amphora,Amphora,amphora
 42413,Asian Art,Jar,Water Jar,jar
 446907,Islamic Art,Ewer,Ewer with Horsemen and Sphinxes,pitcher
 52064,Asian Art,Covered jar,Covered Jar,jar
@@ -1155,8 +1154,8 @@ objectID,department,objectName,title,final_group
 46872,Asian Art,Vase,Meiping vase with flowers,vase
 47433,Asian Art,Vase,Vase,vase
 444488,Islamic Art,Bottle,Bottle,bottle
-194303,European Sculpture and Decorative Arts,Pharmacy jar,Pharmacy jar (albarello),storage
-828462,Asian Art,Jug,Four handled storage jar with rope-pattern design,storage
+194303,European Sculpture and Decorative Arts,Pharmacy jar,Pharmacy jar (albarello),jar
+828462,Asian Art,Jug,Four handled storage jar with rope-pattern design,jug
 308651,The Michael C. Rockefeller Wing,Bottle,Double Spout and Bridge Bottle with Bird,bottle
 57368,Asian Art,Vase,Vase,vase
 52020,Asian Art,Vase,Vase with birds and flowers,vase
@@ -1226,11 +1225,11 @@ objectID,department,objectName,title,final_group
 51064,Asian Art,Bottle,Bottle,bottle
 48565,Asian Art,Jar,Jar,jar
 44421,Asian Art,Jar,Pear-Shaped Jar (Hu),jar
-197219,European Sculpture and Decorative Arts,Albarello,Storage Jar (Albarello),storage
+197219,European Sculpture and Decorative Arts,Albarello,Storage Jar (Albarello),jar
 47616,Asian Art,Bottle,Covered Bottle,bottle
 48712,Asian Art,Vase,Wine container (hu),vase
 42511,Asian Art,Jar,Jar with Scrolling Vine and Gourds,jar
-460270,Robert Lehman Collection,Albarello,Apothecary jar (albarello),storage
+460270,Robert Lehman Collection,Albarello,Apothecary jar (albarello),jar
 46631,Asian Art,Vase,Vase,vase
 204368,European Sculpture and Decorative Arts,Pitcher,Pitcher,pitcher
 309517,The Michael C. Rockefeller Wing,Bottle,Stirrup Spout Bottle,bottle
@@ -1358,7 +1357,7 @@ objectID,department,objectName,title,final_group
 47256,Asian Art,Bottle,Bottle,bottle
 45891,Asian Art,Vase,Vase with birds and flowers,vase
 63140,Asian Art,Tea jar,Tea jar,jar
-198939,European Sculpture and Decorative Arts,Storage or pharmacy jar,Storage or pharmacy jar,storage
+198939,European Sculpture and Decorative Arts,Storage or pharmacy jar,Storage or pharmacy jar,jar
 42221,Asian Art,Vase,Vase with flowers and birds of the four seasons,vase
 196567,European Sculpture and Decorative Arts,Wine bottle,Wine bottle,bottle
 44741,Asian Art,Jar,Jar,jar
@@ -1375,7 +1374,7 @@ objectID,department,objectName,title,final_group
 201732,European Sculpture and Decorative Arts,Vase,Vase (cuvette à fleurs Courteille),vase
 42393,Asian Art,Jar,Jar,jar
 206328,European Sculpture and Decorative Arts,Water bottle or flask,Water bottle or flask,bottle
-309469,The Michael C. Rockefeller Wing,Jar,Storage jar,storage
+309469,The Michael C. Rockefeller Wing,Jar,Storage jar,jar
 50841,Asian Art,Vase,Vase,vase
 465873,Medieval Art,Jar,Jar,jar
 52065,Asian Art,Vase,Miniature vase,vase
@@ -1396,7 +1395,7 @@ objectID,department,objectName,title,final_group
 48579,Asian Art,Covered jar,Covered Jar,jar
 52739,Asian Art,Jar,Jar,jar
 47186,Asian Art,Bottle,Bottle,bottle
-460143,Robert Lehman Collection,Albarello,Apothecary jar (albarello),storage
+460143,Robert Lehman Collection,Albarello,Apothecary jar (albarello),jar
 309713,The Michael C. Rockefeller Wing,Vessel with lid,Yoke-form vessel,vessel
 460168,Robert Lehman Collection,Vase,Vase (vaso),vase
 46797,Asian Art,Vase,Vase,vase
@@ -1490,7 +1489,7 @@ objectID,department,objectName,title,final_group
 49204,Asian Art,Ewer,Ewer with phoenix,pitcher
 40095,Asian Art,Jar,Jar,jar
 46673,Asian Art,Bottle vase,Bottle vase,vase
-188541,European Sculpture and Decorative Arts,Albarello,Albarello,storage
+188541,European Sculpture and Decorative Arts,Albarello,Albarello,jar
 194488,European Sculpture and Decorative Arts,Hot milk jug,Hot milk jug,jug
 191206,European Sculpture and Decorative Arts,Vase with cover,Vase with cover,vase
 308713,The Michael C. Rockefeller Wing,Bottle,Double Spout and Bridge Bottle with Bird,bottle
@@ -1553,9 +1552,9 @@ objectID,department,objectName,title,final_group
 309376,The Michael C. Rockefeller Wing,Bottle,Stirrup Spout Bottle with Figure,bottle
 194392,European Sculpture and Decorative Arts,Vase with cover,Vase with cover,vase
 748327,Asian Art,Wall vase,Wall vase in the form of a peacock,vase
-460272,Robert Lehman Collection,Albarello,Apothecary jar (albarello),storage
+460272,Robert Lehman Collection,Albarello,Apothecary jar (albarello),jar
 49295,Asian Art,Apothecary bottle,Apothecary bottle,bottle
-476258,Medieval Art,Amphora,Amphora,storage
+476258,Medieval Art,Amphora,Amphora,amphora
 63126,Asian Art,Tea jar,Tea jar,jar
 449905,Islamic Art,Ewer,Ewer,pitcher
 204671,European Sculpture and Decorative Arts,Vase,Vase,vase
@@ -1572,7 +1571,7 @@ objectID,department,objectName,title,final_group
 47619,Asian Art,Vase,Vase,vase
 444496,Islamic Art,Bottle,Pear-Shaped Bottle with a Bullock Design,bottle
 450930,Islamic Art,Jar,Jar,jar
-460132,Robert Lehman Collection,Albarello,Apothecary Jar (albarello),storage
+460132,Robert Lehman Collection,Albarello,Apothecary Jar (albarello),jar
 701291,Asian Art,Vase,Square-form vase with decoration of Su Shi’s first and second “Rhapsody on Red Cliff”,vase
 315677,The Michael C. Rockefeller Wing,Bottle,Single Spout Bottle with Fanged Face,bottle
 50355,Asian Art,Wine ewer with lid,Wine Ewer with Lid,pitcher
@@ -1588,10 +1587,10 @@ objectID,department,objectName,title,final_group
 444481,Islamic Art,Ewer,Ewer,pitcher
 451619,Islamic Art,Vase,Vase,vase
 460280,Robert Lehman Collection,Apothecary jug,Maiolica: Apothecary jug (brocca),jug
-197224,European Sculpture and Decorative Arts,Albarello,Albarello,storage
+197224,European Sculpture and Decorative Arts,Albarello,Albarello,jar
 53773,Asian Art,Jar,Jar,jar
 476300,Medieval Art,Jar,Jar,jar
-460147,Robert Lehman Collection,Albarello,Apothecary jar (albarello),storage
+460147,Robert Lehman Collection,Albarello,Apothecary jar (albarello),jar
 208040,European Sculpture and Decorative Arts,Vase,Vase,vase
 444517,Islamic Art,Bottle,Bottle,bottle
 45883,Asian Art,Vase,Vase with birds and flowers,vase
@@ -1603,8 +1602,8 @@ objectID,department,objectName,title,final_group
 670992,Asian Art,Jar,Widemouthed Oil Jar (Kame) with Wave Pattern,jar
 42208,Asian Art,Vase,Vase,vase
 46968,Asian Art,Square flask,Square Flask,flask
-49270,Asian Art,Storage jar,Storage jar,storage
-476251,Medieval Art,Amphora,Amphora,storage
+49270,Asian Art,Storage jar,Storage jar,jar
+476251,Medieval Art,Amphora,Amphora,amphora
 449906,Islamic Art,Ewer,Ewer,pitcher
 50305,Asian Art,Jar,Jar,jar
 46665,Asian Art,Vase,Vase,vase
@@ -1616,7 +1615,7 @@ objectID,department,objectName,title,final_group
 50837,Asian Art,Vase,Vase with figural scenes,vase
 853981,Asian Art,Ewer,Ewer with makara spout with lotus-form cover,pitcher
 450943,Islamic Art,Jar,Jar,jar
-476266,Medieval Art,Amphora,Amphora,storage
+476266,Medieval Art,Amphora,Amphora,amphora
 308380,The Michael C. Rockefeller Wing,Jar,Collared jar with birds,jar
 46547,Asian Art,Vase,Vase,vase
 48551,Asian Art,Vase,Vase,vase
@@ -1630,7 +1629,7 @@ objectID,department,objectName,title,final_group
 192830,European Sculpture and Decorative Arts,Vase,Vase,vase
 50694,Asian Art,Vase,Meiping (Plum) Vase with Bamboo and Rocks,vase
 47215,Asian Art,Bottle,Bottle,bottle
-460277,Robert Lehman Collection,Albarello,Apothecary jar (albarello),storage
+460277,Robert Lehman Collection,Albarello,Apothecary jar (albarello),jar
 771034,European Sculpture and Decorative Arts,Lidded jar,"""Alhambra"" vase with lid",jar
 48844,Asian Art,Bottle,Bottle with an entwined dragon,bottle
 36454,Asian Art,Jar,Jar with Floral Design,jar
@@ -1714,7 +1713,7 @@ objectID,department,objectName,title,final_group
 195307,European Sculpture and Decorative Arts,Jug,Jug,jug
 51161,Asian Art,Vase,Vase,vase
 48781,Asian Art,Vase,Vase with floral scrolls,vase
-460265,Robert Lehman Collection,Albarello,Apothecary jar (albarello),storage
+460265,Robert Lehman Collection,Albarello,Apothecary jar (albarello),jar
 658718,European Sculpture and Decorative Arts,Vase,Tall vase,vase
 57366,Asian Art,Vase,Vase,vase
 309521,The Michael C. Rockefeller Wing,Bottle,Stirrup-Spout Bottle,bottle
@@ -1758,7 +1757,7 @@ objectID,department,objectName,title,final_group
 202178,European Sculpture and Decorative Arts,Vase,Vase with cover (vase à bâtons rompus),vase
 48564,Asian Art,Bottle vase,Bottle vase,vase
 191583,European Sculpture and Decorative Arts,Bottle jug,Bottle jug,bottle
-460227,Robert Lehman Collection,Albarello,Apothecary jar (albarello),storage
+460227,Robert Lehman Collection,Albarello,Apothecary jar (albarello),jar
 62609,Asian Art,Bottle,Gourd-Shaped Bottle,bottle
 194228,European Sculpture and Decorative Arts,Scent bottle,Scent bottle in the form of a monk,bottle
 309510,The Michael C. Rockefeller Wing,Bottle,Stirrup Spout Bottle: Fruit,bottle
@@ -1794,7 +1793,7 @@ objectID,department,objectName,title,final_group
 451740,Islamic Art,Bottle,Bottle,bottle
 206142,European Sculpture and Decorative Arts,Scent bottle,Lady seated amongst a grapevine,bottle
 52014,Asian Art,Mortuary urn,Mortuary Urn,jar
-53964,Asian Art,Jar,Storage Jar,storage
+53964,Asian Art,Jar,Storage Jar,jar
 63328,Asian Art,Covered jar,Circular Small Covered Jar with Millefleur Design,jar
 51041,Asian Art,Bottle vase,Bottle vase,vase
 448557,Islamic Art,Ewer,Ewer,pitcher
@@ -1820,7 +1819,7 @@ objectID,department,objectName,title,final_group
 451364,Islamic Art,Vase,Vase,vase
 57441,Asian Art,Vase,Vase,vase
 62909,Asian Art,Jug,Jug,jug
-475759,Medieval Art,Amphora,Amphora,storage
+475759,Medieval Art,Amphora,Amphora,amphora
 48664,Asian Art,Bottle,Bottle,bottle
 51066,Asian Art,Vase,Vase,vase
 309741,The Michael C. Rockefeller Wing,Jar,"Jar, Whiskered Face",jar
@@ -1869,7 +1868,7 @@ objectID,department,objectName,title,final_group
 468393,Medieval Art,Jug,Jug,jug
 47640,Asian Art,Bottle,Bottle For Sweets,bottle
 42537,Asian Art,Vase,Vase with dragons amid flowers,vase
-199722,European Sculpture and Decorative Arts,Storage jar,Storage jar (albarello) with a profile portrait,storage
+199722,European Sculpture and Decorative Arts,Storage jar,Storage jar (albarello) with a profile portrait,jar
 53846,Asian Art,Jar,Jar,jar
 42201,Asian Art,Vase,Vase with Scholars in Landscape,vase
 50906,Asian Art,Vase,Vase,vase
@@ -1934,12 +1933,12 @@ objectID,department,objectName,title,final_group
 208029,European Sculpture and Decorative Arts,Vase,Vase,vase
 308524,The Michael C. Rockefeller Wing,Bottle,Double Chambered Whistling Jar with Parrot,bottle
 48387,Asian Art,Vase,Vase with flowers,vase
-460183,Robert Lehman Collection,Albarello,Apothecary jar (albarello),storage
+460183,Robert Lehman Collection,Albarello,Apothecary jar (albarello),jar
 52442,Asian Art,Water jar,Freshwater Jar (Mizusashi) with Bamboo,jar
 449772,Islamic Art,Jar,Jar,jar
 46958,Asian Art,Vase,Vase,vase
 48369,Asian Art,Vase,Meiping vase,vase
-460226,Robert Lehman Collection,Albarello,Apothecary jar (albarello),storage
+460226,Robert Lehman Collection,Albarello,Apothecary jar (albarello),jar
 62706,Asian Art,Tea jar,Tea Jar,jar
 48612,Asian Art,Vase,Square vase with scenes of four seasons,vase
 47309,Asian Art,Bottle,Bottle,bottle
@@ -1992,7 +1991,7 @@ objectID,department,objectName,title,final_group
 192308,European Sculpture and Decorative Arts,Toilet jar,Toilet jar,jar
 47319,Asian Art,Vase,Double gourd vase with gourd vines,vase
 48559,Asian Art,Vase,Gourd-shaped vase with gourds on vines and bats,vase
-199720,European Sculpture and Decorative Arts,Pharmacy jar,Pharmacy jar (albarello),storage
+199720,European Sculpture and Decorative Arts,Pharmacy jar,Pharmacy jar (albarello),jar
 47449,Asian Art,Bottle,Bottle,bottle
 42409,Asian Art,Vase,Vase with Women Enjoying Scholarly Pursuits,vase
 52801,Asian Art,Vase,Vase,vase
@@ -2046,7 +2045,7 @@ objectID,department,objectName,title,final_group
 40206,Asian Art,Jar,Small Jar (Guan),jar
 52208,Asian Art,Vase,Rectangular Vase with Raised Netting Pattern,vase
 450760,Islamic Art,Ewer,Unglazed Jug with Writing,pitcher
-188537,European Sculpture and Decorative Arts,Albarello,Albarello,storage
+188537,European Sculpture and Decorative Arts,Albarello,Albarello,jar
 49299,Asian Art,Vase,Vase with Figures in Landscape,vase
 191733,European Sculpture and Decorative Arts,Jug,Jug,jug
 48859,Asian Art,Vase,Vase with floral patterns,vase
@@ -2085,7 +2084,7 @@ objectID,department,objectName,title,final_group
 37404,Asian Art,Vase,Vase with Incised and Impressed Designs,vase
 310589,The Michael C. Rockefeller Wing,Vessel,Effigy vessel,vessel
 52605,Asian Art,Vase,Vase with dragons,vase
-199744,European Sculpture and Decorative Arts,Pharmacy jar,Pharmacy jar (albarello),storage
+199744,European Sculpture and Decorative Arts,Pharmacy jar,Pharmacy jar (albarello),jar
 47391,Asian Art,Jar,Jar,jar
 204423,European Sculpture and Decorative Arts,Pitcher,Pitcher,pitcher
 50738,Asian Art,Minature vase,Minature vase,vase
@@ -2124,12 +2123,12 @@ objectID,department,objectName,title,final_group
 63081,Asian Art,Tea jar,Tea jar,jar
 50143,Asian Art,Covered jar,Covered jar with baskets of flowers,jar
 48646,Asian Art,Bottle,Bottle,bottle
-199727,European Sculpture and Decorative Arts,Albarello,Albarello,storage
+199727,European Sculpture and Decorative Arts,Albarello,Albarello,jar
 62530,Asian Art,Vase,Vase,vase
 199338,European Sculpture and Decorative Arts,Jug,Jug,jug
 195501,European Sculpture and Decorative Arts,Bottle,Bottle,bottle
 308645,The Michael C. Rockefeller Wing,Bottle,Double Spout and Bridge Bottle with Bird,bottle
-474926,Medieval Art,Amphora,Ribbed Amphora,storage
+474926,Medieval Art,Amphora,Ribbed Amphora,amphora
 42203,Asian Art,Vase,Vase with Flowers and Scholar’s Implements,vase
 449116,Islamic Art,Jug,Jug,jug
 64119,Asian Art,Flask,Pilgrim’s flask with Central Asian dancers,flask
@@ -2173,7 +2172,7 @@ objectID,department,objectName,title,final_group
 446685,Islamic Art,Ewer,Ewer,pitcher
 47982,Asian Art,Vase,Vase,vase
 313275,The Michael C. Rockefeller Wing,Bottle,Vessel,bottle
-460264,Robert Lehman Collection,Albarello,Apothecary jar (albarello),storage
+460264,Robert Lehman Collection,Albarello,Apothecary jar (albarello),jar
 447617,Islamic Art,Figural vessel,Bottle in the Form of a Lute Player,bottle
 40959,Asian Art,Wall vase,Wall Vase,vase
 196568,European Sculpture and Decorative Arts,Puzzle jug,Puzzle jug,jug
@@ -2181,7 +2180,7 @@ objectID,department,objectName,title,final_group
 309508,The Michael C. Rockefeller Wing,Bottle,Stirrup-spout vessel with figure in a shell,bottle
 194967,European Sculpture and Decorative Arts,Vase,Vase,vase
 308569,The Michael C. Rockefeller Wing,Bottle,"Double Spout Bottle, Feline-Otter",bottle
-194608,European Sculpture and Decorative Arts,Storage jar,Storage jar (albarello),storage
+194608,European Sculpture and Decorative Arts,Storage jar,Storage jar (albarello),jar
 72420,Asian Art,Jug,Jug with Floral Scroll,jug
 42307,Asian Art,Vase,Maebyeong,vase
 57492,Asian Art,Wine ewer,Wine Ewer,pitcher
@@ -2244,13 +2243,13 @@ objectID,department,objectName,title,final_group
 200622,European Sculpture and Decorative Arts,Vase with cover,Vase with cover,vase
 52719,Asian Art,Jar,Jar,jar
 312572,The Michael C. Rockefeller Wing,Jar,Tripod Jar,jar
-197223,European Sculpture and Decorative Arts,Albarello,Albarello,storage
+197223,European Sculpture and Decorative Arts,Albarello,Albarello,jar
 451798,Islamic Art,Vase,Vase,vase
 53961,Asian Art,Jar,Jar with women at leisure,jar
 48647,Asian Art,Bottle,Bottle,bottle
 204391,European Sculpture and Decorative Arts,Pitcher,Pitcher,pitcher
 75938,Asian Art,Vase,Vase in Meiping Shape with Daoist Immortal Zhongli Quan,vase
-199733,European Sculpture and Decorative Arts,Pharmacy or storage jar,Two-handled pharmacy or storage jar with arms of the Orsini family and profile head of a man,storage
+199733,European Sculpture and Decorative Arts,Pharmacy or storage jar,Two-handled pharmacy or storage jar with arms of the Orsini family and profile head of a man,jar
 308626,The Michael C. Rockefeller Wing,Bottle,Single Spout Bottle,bottle
 63127,Asian Art,Tea jar,Tea jar,jar
 47414,Asian Art,Jar with cover,Jar with cover,jar
@@ -2320,7 +2319,7 @@ objectID,department,objectName,title,final_group
 194291,European Sculpture and Decorative Arts,Pilgrim bottle,Pilgrim bottle,bottle
 47989,Asian Art,Vase,Vase with floral patterns,vase
 238560,European Sculpture and Decorative Arts,Vase,Vase,vase
-198778,European Sculpture and Decorative Arts,Pharmacy jar,Pharmacy jar (albarello),storage
+198778,European Sculpture and Decorative Arts,Pharmacy jar,Pharmacy jar (albarello),jar
 308702,The Michael C. Rockefeller Wing,Bottle,Oblong Single Spout Bottle,bottle
 471799,The Cloisters,Pitcher,Pitcher,pitcher
 50700,Asian Art,Jar,Jar with Abstract Decoration,jar
@@ -2372,7 +2371,7 @@ objectID,department,objectName,title,final_group
 871960,European Sculpture and Decorative Arts,Vase,Vase with green and gold decoration on white,vase
 199334,European Sculpture and Decorative Arts,Toby jug,Toby jug,jug
 207469,European Sculpture and Decorative Arts,Jug,Jug,jug
-198780,European Sculpture and Decorative Arts,Storage jar,Storage jar,storage
+198780,European Sculpture and Decorative Arts,Storage jar,Storage jar,jar
 310363,The Michael C. Rockefeller Wing,Bottle,Stirrup Spout Bottle with Serpent,bottle
 449622,Islamic Art,Jar,Jar,jar
 49426,Asian Art,Sake ewer,Hexagonal Sake Ewer with Landscape Design,pitcher
@@ -2384,7 +2383,7 @@ objectID,department,objectName,title,final_group
 310556,The Michael C. Rockefeller Wing,Bottle,Bottle,bottle
 487563,Modern and Contemporary Art,Vase,Vase,vase
 471759,The Cloisters,Pharmacy jar,Pharmacy Jar,jar
-204514,European Sculpture and Decorative Arts,Pharmacy jar,Pharmacy jar (albarello),storage
+204514,European Sculpture and Decorative Arts,Pharmacy jar,Pharmacy jar (albarello),jar
 52736,Asian Art,Vase,Vase,vase
 239498,European Sculpture and Decorative Arts,Vase,Bottle vase with birds,vase
 46553,Asian Art,Vase,"Vase with peaches, pomegranates, and fingered citrons",vase
@@ -2419,7 +2418,7 @@ objectID,department,objectName,title,final_group
 204363,European Sculpture and Decorative Arts,Pitcher,Pitcher,pitcher
 47948,Asian Art,Vase,Vase,vase
 48694,Asian Art,Vase,Square vase with birds and flowers,vase
-475726,Medieval Art,Amphora,Jar,storage
+475726,Medieval Art,Amphora,Jar,amphora
 204354,European Sculpture and Decorative Arts,Pitcher,Pitcher,pitcher
 50842,Asian Art,Vase,Vase with Women’s Activities,vase
 48703,Asian Art,Vase,Vase,vase
@@ -2449,9 +2448,9 @@ objectID,department,objectName,title,final_group
 204066,European Sculpture and Decorative Arts,Cream jug,Cream jug,jug
 57365,Asian Art,Vase,Vase,vase
 50331,Asian Art,Jar,Jar (Tsubo) with Four Loop Handles and Flower Medallions,jar
-450460,Islamic Art,Jar,Storage Jar,storage
+450460,Islamic Art,Jar,Storage Jar,jar
 449875,Islamic Art,Ewer,Ewer,pitcher
-44637,Asian Art,Storage jar,Large Storage Jar (Ōtsubo),storage
+44637,Asian Art,Storage jar,Large Storage Jar (Ōtsubo),jar
 194301,European Sculpture and Decorative Arts,Vase,Vase,vase
 446654,Islamic Art,Bottle,Bottle Depicting Storks in Blue and Yellow on a White Background,bottle
 42540,Asian Art,Jar,Jar,jar
@@ -2462,7 +2461,7 @@ objectID,department,objectName,title,final_group
 49139,Asian Art,Vase,Vase (Hu),vase
 841274,European Sculpture and Decorative Arts,Ewer,Ewer with female figure,pitcher
 48679,Asian Art,Jar,Jar with scholars and crane,jar
-191779,European Sculpture and Decorative Arts,Albarello,Albarello,storage
+191779,European Sculpture and Decorative Arts,Albarello,Albarello,jar
 448686,Islamic Art,Jar,Jar,jar
 449635,Islamic Art,Ewer,Ewer,pitcher
 308382,The Michael C. Rockefeller Wing,Bottle,Stirrup spout bottle with figure,bottle
@@ -2554,7 +2553,7 @@ objectID,department,objectName,title,final_group
 239561,European Sculpture and Decorative Arts,Flask,Flask with face,flask
 449435,Islamic Art,Ewer,Ewer,pitcher
 201289,European Sculpture and Decorative Arts,Cream jug,Cream jug,jug
-308350,The Michael C. Rockefeller Wing,Jar,Storage jar,storage
+308350,The Michael C. Rockefeller Wing,Jar,Storage jar,jar
 451836,Islamic Art,Vase,Vase,vase
 47061,Asian Art,Vase,Vase with flowers,vase
 308379,The Michael C. Rockefeller Wing,Bottle,Double spout and bridge bottle,bottle
@@ -2637,13 +2636,13 @@ objectID,department,objectName,title,final_group
 308606,The Michael C. Rockefeller Wing,Bottle,Double Spout and Bridge Bottle with Feline Face,bottle
 194591,European Sculpture and Decorative Arts,Vase,Vase,vase
 232222,European Sculpture and Decorative Arts,Jug,Jug,jug
-198777,European Sculpture and Decorative Arts,Pharmacy jar,Pharmacy jar (albarello),storage
+198777,European Sculpture and Decorative Arts,Pharmacy jar,Pharmacy jar (albarello),jar
 47006,Asian Art,Bottle,Bottle,bottle
 206025,European Sculpture and Decorative Arts,Bottle,Bottle,bottle
 449129,Islamic Art,Jar,Ribbed Jar,jar
 47762,Asian Art,Ewer,Hexagonal ewer with lion and cub,pitcher
 198322,European Sculpture and Decorative Arts,Vase with cover,Vase with cover,vase
-308349,The Michael C. Rockefeller Wing,Jar,Storage jar,storage
+308349,The Michael C. Rockefeller Wing,Jar,Storage jar,jar
 47958,Asian Art,Jar,Jar,jar
 42312,Asian Art,Jar,Small Jar with Cover,jar
 62640,Asian Art,Tea jar,Tea Jar,jar
@@ -2688,7 +2687,7 @@ objectID,department,objectName,title,final_group
 770939,European Sculpture and Decorative Arts,Moon flask,Moon flask with stylized floral decoration,flask
 448441,Islamic Art,Jar,Jar,jar
 318617,The Michael C. Rockefeller Wing,Bottle,Runners Bottle,bottle
-52923,Asian Art,Amphora,Amphora,storage
+52923,Asian Art,Amphora,Amphora,amphora
 37657,Asian Art,Jar,Jar,jar
 449428,Islamic Art,Ewer,Ewer,pitcher
 48774,Asian Art,Vase,Vase,vase
@@ -2732,8 +2731,8 @@ objectID,department,objectName,title,final_group
 316782,The Michael C. Rockefeller Wing,Jar,Jar,jar
 42308,Asian Art,Bottle,Flask-shaped bottle decorated with peonies,bottle
 46987,Asian Art,Bottle,Bottle,bottle
-39524,Asian Art,Ewer,Amphora,storage
-197220,European Sculpture and Decorative Arts,Albarello,Storage Jar (Albarello),storage
+39524,Asian Art,Ewer,Amphora,amphora
+197220,European Sculpture and Decorative Arts,Albarello,Storage Jar (Albarello),jar
 49316,Asian Art,Jar,Octagonal Jar with Decoration of Flowering Cherry and Chrysanthemum,jar
 48316,Asian Art,Ewer,Ewer,pitcher
 307619,The Michael C. Rockefeller Wing,Bottle,Incised Painted Jar with Single Spout,bottle
@@ -2755,7 +2754,7 @@ objectID,department,objectName,title,final_group
 42400,Asian Art,Flask,Flask,flask
 47682,Asian Art,Bottle,Bottle,bottle
 62697,Asian Art,Bottle,Bottle,bottle
-670990,Asian Art,Jar,Large Storage Jar (Ōtsubo),storage
+670990,Asian Art,Jar,Large Storage Jar (Ōtsubo),jar
 51232,Asian Art,Vase,Vase,vase
 205922,European Sculpture and Decorative Arts,Vase,Vase,vase
 42550,Asian Art,Vase,Vase,vase
@@ -2850,7 +2849,7 @@ objectID,department,objectName,title,final_group
 45868,Asian Art,Jar,Jar,jar
 52046,Asian Art,Vase,Vase,vase
 47280,Asian Art,Vase,Vase,vase
-198941,European Sculpture and Decorative Arts,Storage jar,Storage jar (albarello) for mostarda,storage
+198941,European Sculpture and Decorative Arts,Storage jar,Storage jar (albarello) for mostarda,jar
 465831,Medieval Art,Jar,Jar,jar
 63189,Asian Art,Covered jar,Small Covered Jar with Design of Cherry Blossoms and Lambrequin Border,jar
 765030,Medieval Art,Jug,Jug with Finely-Dressed Woman,jug
@@ -2960,13 +2959,13 @@ objectID,department,objectName,title,final_group
 447275,Islamic Art,Bottle,Bottle,bottle
 48546,Asian Art,Vase,Vase,vase
 308884,The Michael C. Rockefeller Wing,Bottle,Single Spout Monkey Figure Bottle with Strap Handle,bottle
-460279,Robert Lehman Collection,Albarello,Maiolica: Apothecary jar (albarello),storage
+460279,Robert Lehman Collection,Albarello,Maiolica: Apothecary jar (albarello),jar
 63545,Asian Art,Jar,Wide-Mouthed Jar (Kame),jar
 46755,Asian Art,Jar,Jar with flowers,jar
 308883,The Michael C. Rockefeller Wing,Bottle,Seated Prisoner Single Spout Bottle,bottle
 52624,Asian Art,Jar,Jar,jar
 53157,Asian Art,Bottle,Recumbent bottle (Yokobe),bottle
-45862,Asian Art,Amphora,Amphora with dragon-shaped handles,storage
+45862,Asian Art,Amphora,Amphora with dragon-shaped handles,amphora
 44688,Asian Art,Pitcher,Pitcher (Hu),pitcher
 444948,Islamic Art,Bottle,Bottle,bottle
 42317,Asian Art,Vase,Vase with Nine Peaches,vase
@@ -3003,7 +3002,7 @@ objectID,department,objectName,title,final_group
 50981,Asian Art,Vase,Vase,vase
 444898,Islamic Art,Ewer,Ewer,pitcher
 308294,The Michael C. Rockefeller Wing,Bottle,"Bottle, Falcon Head",bottle
-198781,European Sculpture and Decorative Arts,Storage jar,Storage jar,storage
+198781,European Sculpture and Decorative Arts,Storage jar,Storage jar,jar
 62937,Asian Art,Vase with lid,Vase with lid,vase
 52685,Asian Art,Covered jar,Covered Jar,jar
 629700,Asian Art,Freshwater jar (mizusashi),Freshwater jar,jar
@@ -3017,7 +3016,7 @@ objectID,department,objectName,title,final_group
 477748,Medieval Art,Vase,Vase,vase
 47914,Asian Art,Vase,Vase with figures in a landscape,vase
 52260,Asian Art,Jar,Jar with Chrysanthemums and Rocks,jar
-460278,Robert Lehman Collection,Albarello,Apothecary jar (albarello),storage
+460278,Robert Lehman Collection,Albarello,Apothecary jar (albarello),jar
 315155,The Michael C. Rockefeller Wing,Bottle,Stirrup Spout Bottle with Warrior,bottle
 52041,Asian Art,Vase,Vase with deer and pine tree,vase
 50943,Asian Art,Vase,Vase with Warrior,vase
@@ -3048,7 +3047,7 @@ objectID,department,objectName,title,final_group
 39484,Asian Art,Bottle,Bottle with Peony and Rock,bottle
 706316,Asian Art,Vase,Vase with poems in a panoramic landscape,vase
 202581,European Sculpture and Decorative Arts,Jug,Jug with Portuguese arms,jug
-476271,Medieval Art,Amphora,Amphora,storage
+476271,Medieval Art,Amphora,Amphora,amphora
 200962,European Sculpture and Decorative Arts,Vase with cover,Vase with cover,vase
 46726,Asian Art,Bottle,Bottle with floral pattern,bottle
 48456,Asian Art,Jar,Jar,jar
@@ -3070,7 +3069,7 @@ objectID,department,objectName,title,final_group
 308412,The Michael C. Rockefeller Wing,Bottle,Stirrup spout bottle with dignitary figure,bottle
 447288,Islamic Art,Ewer,Ewer,pitcher
 313145,The Michael C. Rockefeller Wing,Jar,Spouted jar,jar
-49905,Asian Art,Amphora,Amphora with dragon-shaped handles,storage
+49905,Asian Art,Amphora,Amphora with dragon-shaped handles,amphora
 50740,Asian Art,Vase,Vase,vase
 308363,The Michael C. Rockefeller Wing,Bottle,Spout-and-bridge bottle with feline face,bottle
 458261,Islamic Art,Jar,Apothecary Jar with Running Hares and a Dog,jar
@@ -3090,7 +3089,7 @@ objectID,department,objectName,title,final_group
 451336,Islamic Art,Jar,Luster Jar with Medallions and Peacock-Eye Pattern,jar
 46566,Asian Art,Bottle,Bottle,bottle
 771046,European Sculpture and Decorative Arts,Vase,Vase with coiled dragon,vase
-53628,Asian Art,Storage jar,Storage jar,storage
+53628,Asian Art,Storage jar,Storage jar,jar
 453308,Islamic Art,Bottle,Bottle,bottle
 206914,European Sculpture and Decorative Arts,Bottle,Bottle,bottle
 308585,The Michael C. Rockefeller Wing,Bottle,Double Spout and Bridge Bottle with Incised Design,bottle
@@ -3185,20 +3184,20 @@ objectID,department,objectName,title,final_group
 192801,European Sculpture and Decorative Arts,Vase with cover,Vase with cover,vase
 193077,European Sculpture and Decorative Arts,Jug,Jug,jug
 197232,European Sculpture and Decorative Arts,Pilgrim bottle,Pilgrim bottle,bottle
-460276,Robert Lehman Collection,Albarello,Apothecary jar (albarello),storage
+460276,Robert Lehman Collection,Albarello,Apothecary jar (albarello),jar
 671536,European Sculpture and Decorative Arts,Jug,Face jug,jug
-460900,Robert Lehman Collection,Vase,Amphora vase,storage
+460900,Robert Lehman Collection,Vase,Amphora vase,amphora
 48757,Asian Art,Covered jar,Covered jar with flowers,jar
 47945,Asian Art,Vase,Quadrangular vase in the form of a Neolithic ritual jade object (Cong),vase
 309323,The Michael C. Rockefeller Wing,Bottle,Stirrup Spout Bottle with Sleeping Man,bottle
 50777,Asian Art,Vase,Vase,vase
 47696,Asian Art,Bottle,Bottle,bottle
 448429,Islamic Art,Bottle,Bottle,bottle
-460268,Robert Lehman Collection,Albarello,Apothecary jar (albarello),storage
+460268,Robert Lehman Collection,Albarello,Apothecary jar (albarello),jar
 51024,Asian Art,Jar,Jar,jar
 465895,Medieval Art,Bottle,Bottle,bottle
 50226,Asian Art,Jar,Jar,jar
-198947,European Sculpture and Decorative Arts,Albarello,Albarello,storage
+198947,European Sculpture and Decorative Arts,Albarello,Albarello,jar
 468165,Medieval Art,Jar,Two-Handled Jar with Stag,jar
 448544,Islamic Art,Jar,Jar,jar
 239359,European Sculpture and Decorative Arts,Vase,Vase with reaper,vase
@@ -3224,7 +3223,7 @@ objectID,department,objectName,title,final_group
 44467,Asian Art,Covered jar,Covered Jar,jar
 312606,The Michael C. Rockefeller Wing,Bottle,Double Spout and Bridge Bottle with Bird Handle,bottle
 308586,The Michael C. Rockefeller Wing,Bottle,Bottle with Incised Designs,bottle
-453623,Islamic Art,Jar,Storage Jar,storage
+453623,Islamic Art,Jar,Storage Jar,jar
 62656,Asian Art,Tea jar,Tea Jar,jar
 194395,European Sculpture and Decorative Arts,Ewer,Ewer,pitcher
 445268,Islamic Art,Vase,Vase,vase
@@ -3232,7 +3231,6 @@ objectID,department,objectName,title,final_group
 471836,The Cloisters,Jug,Jug,jug
 308446,The Michael C. Rockefeller Wing,Bottle,Black Slip Bottle,bottle
 185902,European Sculpture and Decorative Arts,Jug with cover,Jug with cover,jug
-451492,Islamic Art,Mosque lamp,Ceramic Vessel in the Shape of a Mosque Lamp,vessel
 309753,The Michael C. Rockefeller Wing,Bottle,Stirrup Spout Bottle with Fish,bottle
 206522,European Sculpture and Decorative Arts,Potpourri vase,Potpourri vase (pot-pourri à jour),vase
 49207,Asian Art,Vase,Vase with abstract scroll decoration,vase
@@ -3287,7 +3285,7 @@ objectID,department,objectName,title,final_group
 50333,Asian Art,Water jar,Freshwater Jar (Mizusashi) with Plants and Auspicious Motifs,jar
 317989,The Michael C. Rockefeller Wing,Vessel,Long-necked vessel,vessel
 478668,Medieval Art,Jar,Jar,jar
-460144,Robert Lehman Collection,Albarello,Apothecary jar (albarello),storage
+460144,Robert Lehman Collection,Albarello,Apothecary jar (albarello),jar
 47223,Asian Art,Hanging vase,Hanging Vase,vase
 51222,Asian Art,Vase,Vase,vase
 53006,Asian Art,Ewer,Ewer (Suichū) with Cherry Blossoms and Picnic Curtain,pitcher
@@ -3303,7 +3301,7 @@ objectID,department,objectName,title,final_group
 50356,Asian Art,Ewer,Wine Ewer with Chrysanthemums and Lotus Flowers,pitcher
 46571,Asian Art,Vase,Miniature Vase,vase
 49900,Asian Art,Jar,Jar,jar
-42376,Asian Art,Amphora,Phoenix headed amphora,storage
+42376,Asian Art,Amphora,Phoenix headed amphora,amphora
 479661,The Cloisters,Jug,Face Jug,jug
 52217,Asian Art,Jar,Jar (Tsubo) with Chrysanthemums,jar
 467958,Medieval Art,Pharmacy jar,Pharmacy Jar,jar
@@ -3319,7 +3317,7 @@ objectID,department,objectName,title,final_group
 477269,Medieval Art,Jug,Jug with Cruces Gammatae,jug
 38546,Asian Art,Vase,Vase,vase
 52517,Asian Art,Vase,Vase,vase
-75915,Asian Art,Jar,Storage Jar,storage
+75915,Asian Art,Jar,Storage Jar,jar
 201695,European Sculpture and Decorative Arts,Perfume bottle,Perfume bottle,bottle
 47373,Asian Art,Vase,Vase,vase
 44722,Asian Art,Jar,Jar (Guan),jar
@@ -3398,7 +3396,7 @@ objectID,department,objectName,title,final_group
 463085,Medieval Art,Pharmacy jar,Pharmacy Jar,jar
 460652,Robert Lehman Collection,Ewer,"Phoenix-head ewer, Tang sancai ware",pitcher
 47347,Asian Art,Vase,Vase with poem on marbled ground,vase
-187794,European Sculpture and Decorative Arts,Albarello,Albarello,storage
+187794,European Sculpture and Decorative Arts,Albarello,Albarello,jar
 52506,Asian Art,Jar,Jar,jar
 308549,The Michael C. Rockefeller Wing,Bottle,Stirrup Spout Bottle with Figure Holding Feline,bottle
 192034,European Sculpture and Decorative Arts,Harvest jug,Harvest jug,jug
@@ -3466,7 +3464,7 @@ objectID,department,objectName,title,final_group
 194961,European Sculpture and Decorative Arts,Jug,Jug,jug
 39528,Asian Art,Jar,Jar with Handles,jar
 196359,European Sculpture and Decorative Arts,Vase with stopper,Vase with stopper,vase
-199132,European Sculpture and Decorative Arts,Caddy,Tea caddy,storage
+199132,European Sculpture and Decorative Arts,Caddy,Tea caddy,vessel
 48773,Asian Art,Vase,Vase,vase
 37454,Asian Art,Bottle,Bottle with Stopper,bottle
 50311,Asian Art,Jar,Jar,jar
@@ -3492,7 +3490,7 @@ objectID,department,objectName,title,final_group
 51017,Asian Art,Vase,Vase,vase
 204396,European Sculpture and Decorative Arts,Clock vase,Clock vase,vase
 310496,The Michael C. Rockefeller Wing,Bottle,Stirrup-spout bottle,bottle
-191778,European Sculpture and Decorative Arts,Albarello,Albarello,storage
+191778,European Sculpture and Decorative Arts,Albarello,Albarello,jar
 205335,European Sculpture and Decorative Arts,Scent bottle,Scent bottle,bottle
 848434,European Sculpture and Decorative Arts,Jug,Jug with coat-of-arms of the Cleminius Family,jug
 52639,Asian Art,Jar,Jar,jar
@@ -3518,7 +3516,7 @@ objectID,department,objectName,title,final_group
 46562,Asian Art,Vase,Vase,vase
 47820,Asian Art,Water jar,Water Jar,jar
 308455,The Michael C. Rockefeller Wing,Bottle,Double-spout bottle,bottle
-49273,Asian Art,Storage jar,Storage jar,storage
+49273,Asian Art,Storage jar,Storage jar,jar
 447146,Islamic Art,Ewer,Ewer,pitcher
 197993,European Sculpture and Decorative Arts,Jug,Jug,jug
 47196,Asian Art,Bottle,Bottle for Sweets,bottle
@@ -3564,7 +3562,7 @@ objectID,department,objectName,title,final_group
 310195,The Michael C. Rockefeller Wing,Bottle,"Bottle, Head",bottle
 309367,The Michael C. Rockefeller Wing,Bottle,Stirrup Spout Bottle with Phallic Figure,bottle
 46589,Asian Art,Vase,Vase with figures,vase
-199745,European Sculpture and Decorative Arts,Albarello,Storage Jar (Albarello),storage
+199745,European Sculpture and Decorative Arts,Albarello,Storage Jar (Albarello),jar
 46637,Asian Art,Bottle,Sake Bottle (Tokkuri),bottle
 200875,European Sculpture and Decorative Arts,Vase with cover,Vase with cover,vase
 460180,Robert Lehman Collection,Apothecary vase,Apothecary vase (vaso da farmacia),vase
@@ -3573,7 +3571,7 @@ objectID,department,objectName,title,final_group
 52780,Asian Art,Vase,Vase,vase
 42226,Asian Art,Vase,Vase in Meiping Shape,vase
 47845,Asian Art,Jar,Jar,jar
-195766,European Sculpture and Decorative Arts,Jar,Albarello with arms of Leonardo Buonafede,storage
+195766,European Sculpture and Decorative Arts,Jar,Albarello with arms of Leonardo Buonafede,jar
 46711,Asian Art,Jar,Jar,jar
 308703,The Michael C. Rockefeller Wing,Bottle,Figure Jar,bottle
 42310,Asian Art,Bottle,Square bottle,bottle
@@ -3602,7 +3600,7 @@ objectID,department,objectName,title,final_group
 47897,Asian Art,Covered jar,Jar with Female Rider,jar
 201752,European Sculpture and Decorative Arts,Jug,Jug,jug
 46978,Asian Art,Bottle,Bottle,bottle
-460145,Robert Lehman Collection,Albarello,Apothecary jar (albarello),storage
+460145,Robert Lehman Collection,Albarello,Apothecary jar (albarello),jar
 52214,Asian Art,Bottle,Bottle,bottle
 199238,European Sculpture and Decorative Arts,Jug,Jug,jug
 47638,Asian Art,Bottle,Bottle,bottle
@@ -3618,7 +3616,7 @@ objectID,department,objectName,title,final_group
 194380,European Sculpture and Decorative Arts,Jug with cover,Jug with cover,jug
 52044,Asian Art,Water bottle,Writer's Water Bottle,bottle
 47970,Asian Art,Vase,Vase,vase
-460271,Robert Lehman Collection,Albarello,Apothecary jar (albarello),storage
+460271,Robert Lehman Collection,Albarello,Apothecary jar (albarello),jar
 57355,Asian Art,Vase,Maebyeong,vase
 45872,Asian Art,Covered jar,Covered jar with birds and flowers,jar
 37443,Asian Art,Bottle,Anthropomorphic Bottle in Human Form,bottle
@@ -3686,10 +3684,10 @@ objectID,department,objectName,title,final_group
 450932,Islamic Art,Jar,Jar,jar
 40082,Asian Art,Jar,Jar (Guan),jar
 42331,Asian Art,Jar,Jar (Guan),jar
-448695,Islamic Art,Jar,Large Storage Jar for Cool Water With Flower Motifs,storage
+448695,Islamic Art,Jar,Large Storage Jar for Cool Water With Flower Motifs,jar
 37482,Asian Art,Covered jar,Covered Jar in the Form of a Bird,jar
 314692,The Michael C. Rockefeller Wing,Bottle,Stirrup Spout Bottle with Felines,bottle
-188536,European Sculpture and Decorative Arts,Pharmacy jar,Pharmacy jar (albarello),storage
+188536,European Sculpture and Decorative Arts,Pharmacy jar,Pharmacy jar (albarello),jar
 309133,The Michael C. Rockefeller Wing,Bottle,Double Spout and Bridge Bottle with Faces,bottle
 308528,The Michael C. Rockefeller Wing,Bottle,Bottle with portrait head,bottle
 45856,Asian Art,Jar,Jar,jar
@@ -3717,7 +3715,7 @@ objectID,department,objectName,title,final_group
 48751,Asian Art,Jar,Covered jar with baskets of flowers,jar
 205973,European Sculpture and Decorative Arts,Ewer with cover,Ewer with cover in the shape of a rabbit,pitcher
 468381,Medieval Art,Jug,Jug,jug
-194298,European Sculpture and Decorative Arts,Albarello,Albarello,storage
+194298,European Sculpture and Decorative Arts,Albarello,Albarello,jar
 46710,Asian Art,Covered jar,Covered jar with dragons,jar
 53901,Asian Art,Bottle,Bottle,bottle
 463530,Medieval Art,Pitcher,Pitcher,pitcher
@@ -3728,7 +3726,7 @@ objectID,department,objectName,title,final_group
 198321,European Sculpture and Decorative Arts,Vase with cover,Vase with cover,vase
 48634,Asian Art,Vase,Vase with coiling dragon,vase
 52397,Asian Art,Wine bottle,Wine Bottle,bottle
-453577,Islamic Art,Jar,"Large Storage Jar for Cool Water With a Bejeweled Lion, Hare, and Deer",storage
+453577,Islamic Art,Jar,"Large Storage Jar for Cool Water With a Bejeweled Lion, Hare, and Deer",jar
 48173,Asian Art,Vase,Vase with floral and geometric ornaments,vase
 52908,Asian Art,Bottle,Bottle,bottle
 449436,Islamic Art,Jar,Jar,jar
@@ -3738,36 +3736,36 @@ objectID,department,objectName,title,final_group
 546649,Egyptian Art,Jar,Jar,jar
 547756,Egyptian Art,Jar,Jar,jar
 549136,Egyptian Art,"Canopic Jar, Ruiu, human head, Hapy",Canopic Jar of Ruiu,jar
-250804,Greek and Roman Art,Amphoriskos,Terracotta amphoriskos (oil flask),storage
+250804,Greek and Roman Art,Amphoriskos,Terracotta amphoriskos (oil flask),amphora
 245548,Greek and Roman Art,"Hydria, Hadra (foot)",Terracotta foot of Hadra hydria (water jar),jar
 254629,Greek and Roman Art,Oinochoe,Terracotta oinochoe (jug),pitcher
 244857,Greek and Roman Art,Alabastron,Terracotta alabastron (perfume vase),flask
 240403,Greek and Roman Art,Askos in the form of an animal,Askos in the form of an animal,pitcher
 240048,Greek and Roman Art,Jug,Jug,jug
-254881,Greek and Roman Art,Neck-amphora,Terracotta  neck-amphora (jar),storage
-255627,Greek and Roman Art,Panathenaic prize amphora,Terracotta Panathenaic prize amphora (jar),storage
+254881,Greek and Roman Art,Neck-amphora,Terracotta  neck-amphora (jar),amphora
+255627,Greek and Roman Art,Panathenaic prize amphora,Terracotta Panathenaic prize amphora (jar),amphora
 253052,Greek and Roman Art,Squat lekythos,Terracotta squat lekythos (oil flask),flask
 240086,Greek and Roman Art,Jug,Terracotta jug with trough spout,jug
 250077,Greek and Roman Art,Vase,Vase,vase
-245612,Greek and Roman Art,Neck-amphora,Terracotta neck-amphora (jar),storage
+245612,Greek and Roman Art,Neck-amphora,Terracotta neck-amphora (jar),amphora
 240335,Greek and Roman Art,False-necked jar,Terracotta stirrup jar,jar
 254633,Greek and Roman Art,Oinochoe,Oinochoe,pitcher
 248182,Greek and Roman Art,Lekythos,Terracotta lekythos (oil flask),flask
-254346,Greek and Roman Art,Neck-amphora,Neck-amphora,storage
-255156,Greek and Roman Art,Pelike,Terracotta pelike (wine jar),storage
-245598,Greek and Roman Art,Stamnos,Terracotta stamnos,storage
+254346,Greek and Roman Art,Neck-amphora,Neck-amphora,amphora
+255156,Greek and Roman Art,Pelike,Terracotta pelike (wine jar),jar
+245598,Greek and Roman Art,Stamnos,Terracotta stamnos,jar
 250747,Greek and Roman Art,Askos in the form of a duck,Terracotta duck-askos (flask with spout and handle),pitcher
 251401,Greek and Roman Art,Askos in the form of a lobster claw,Terracotta vase in the form of a lobster claw,pitcher
 248705,Greek and Roman Art,Guttus,Terracotta guttus (flask with handle and vertical spout),flask
 254923,Greek and Roman Art,Situla,Terracotta situla (bucket),vessel
-247949,Greek and Roman Art,Nolan neck-amphora with triple handles,Terracotta Nolan neck-amphora (jar),storage
+247949,Greek and Roman Art,Nolan neck-amphora with triple handles,Terracotta Nolan neck-amphora (jar),amphora
 247256,Greek and Roman Art,Lekythos,Terracotta lekythos (oil jar),flask
 240129,Greek and Roman Art,Jug,Jug,jug
 250239,Greek and Roman Art,Vase,Vase,vase
 246223,Greek and Roman Art,Oinochoe,Oinochoe,pitcher
 240128,Greek and Roman Art,"Flask, head-shaped",Terracotta head-shaped flask,flask
 246560,Greek and Roman Art,Squat lekythos,Squat lekythos,flask
-240667,Greek and Roman Art,Amphoriskos,Amphoriskos,storage
+240667,Greek and Roman Art,Amphoriskos,Amphoriskos,amphora
 247192,Greek and Roman Art,Alabastron,Terracotta alabastron (perfume vase),flask
 240351,Greek and Roman Art,Pithoid jar,Terracotta pithoid jar,jar
 240117,Greek and Roman Art,Jug,Terracotta jug,jug
@@ -3792,14 +3790,14 @@ objectID,department,objectName,title,final_group
 254329,Greek and Roman Art,Aryballos,Terracotta aryballos (oil flask),flask
 240489,Greek and Roman Art,Flask,Flask,flask
 240668,Greek and Roman Art,Juglet in the form of a horn,Terracotta vase in the shape of a horn,jug
-244838,Greek and Roman Art,Nicosthenic neck-amphora,Terracotta Nicosthenic neck-amphora (jar),storage
+244838,Greek and Roman Art,Nicosthenic neck-amphora,Terracotta Nicosthenic neck-amphora (jar),amphora
 256912,Greek and Roman Art,Aidoion,Terracotta vase in the form of a phallus,vase
 240634,Greek and Roman Art,Jug,Terracotta jug,jug
 244828,Greek and Roman Art,Squat lekythos,Terracotta squat lekythos (oil flask),flask
-246241,Greek and Roman Art,Neck-amphora with lid,Terracotta neck-amphora (jar) with lid,storage
-247308,Greek and Roman Art,Pelike,Terracotta pelike (jar),storage
+246241,Greek and Roman Art,Neck-amphora with lid,Terracotta neck-amphora (jar) with lid,amphora
+247308,Greek and Roman Art,Pelike,Terracotta pelike (jar),jar
 247324,Greek and Roman Art,Lekythos,Lekythos,flask
-248732,Greek and Roman Art,Nolan neck-amphora,Terracotta Nolan neck-amphora (jar),storage
+248732,Greek and Roman Art,Nolan neck-amphora,Terracotta Nolan neck-amphora (jar),amphora
 246979,Greek and Roman Art,Rhyton in the form of a deer's head,Terracotta rhyton (vase for libations or drinking),vase
 240484,Greek and Roman Art,"Jug, barrel-shaped",Terracotta barrel-shaped jug,jug
 240478,Greek and Roman Art,Juglet,Juglet,jug
@@ -3847,18 +3845,18 @@ objectID,department,objectName,title,final_group
 254427,Greek and Roman Art,Lekythos,Lekythos,flask
 240785,Greek and Roman Art,Jug,Terracotta jug,jug
 250076,Greek and Roman Art,Vase,Vase,vase
-247282,Greek and Roman Art,Neck-amphora,Terracotta neck-amphora (jar) with twisted handles,storage
+247282,Greek and Roman Art,Neck-amphora,Terracotta neck-amphora (jar) with twisted handles,amphora
 245571,Greek and Roman Art,"Hydria, Hadra",Terracotta Hadra hydria (water jar),jar
 251271,Greek and Roman Art,"Hydria, miniature","Hydria, miniature",jar
-251100,Greek and Roman Art,"Amphora, Type B",Terracotta amphora (jar),storage
+251100,Greek and Roman Art,"Amphora, Type B",Terracotta amphora (jar),amphora
 255062,Greek and Roman Art,Vase with strainer and spout,"Terracotta vase with strainer, spout, and three handles",vessel
 253050,Greek and Roman Art,Alabastron in the form of a woman,Terracotta alabastron (perfume vase) in the form of a woman holding a dove,flask
 241816,Greek and Roman Art,Vase in the form of a sleeping black African boy,Terracotta vase in the form of a sleeping Black African youth,vase
 240221,Greek and Roman Art,Jug,Terracotta jug,jug
 254198,Greek and Roman Art,Alabastron in the form of a hare,Terracotta alabastron (perfume vase) in the shape of a hare,flask
-254183,Greek and Roman Art,Nolan neck-amphora with triple handles,Terracotta Nolan neck-amphora (jar),storage
+254183,Greek and Roman Art,Nolan neck-amphora with triple handles,Terracotta Nolan neck-amphora (jar),amphora
 256203,Greek and Roman Art,Jug,Terracotta beak-spouted jug,jug
-240394,Greek and Roman Art,Amphora,Amphora,storage
+240394,Greek and Roman Art,Amphora,Amphora,amphora
 247348,Greek and Roman Art,"Hydria, kalpis",Terracotta hydria: kalpis (water jar),jar
 255333,Greek and Roman Art,Bottle,Bottle,bottle
 246636,Greek and Roman Art,Vase,Vase,vase
@@ -3869,9 +3867,9 @@ objectID,department,objectName,title,final_group
 256549,Greek and Roman Art,Jar,Terracotta jar,jar
 250572,Greek and Roman Art,Jug,Jug,jug
 240815,Greek and Roman Art,Jug,Terracotta jug,jug
-244759,Greek and Roman Art,Amphoriskos,Terracotta amphoriskos (oil flask),storage
-256602,Greek and Roman Art,Neck-amphora with twisted handles,Terracotta neck-amphora with twisted handles (jar),storage
-248300,Greek and Roman Art,Stamnos,Terracotta stamnos (jar),storage
+244759,Greek and Roman Art,Amphoriskos,Terracotta amphoriskos (oil flask),amphora
+256602,Greek and Roman Art,Neck-amphora with twisted handles,Terracotta neck-amphora with twisted handles (jar),amphora
+248300,Greek and Roman Art,Stamnos,Terracotta stamnos (jar),jar
 240140,Greek and Roman Art,Jug,Jug,jug
 251022,Greek and Roman Art,Alabastron,Terracotta alabastron (perfume vase),flask
 244860,Greek and Roman Art,Hydria,Hydria,jar
@@ -3888,17 +3886,17 @@ objectID,department,objectName,title,final_group
 239990,Greek and Roman Art,"Vase, miniature","Vase, miniature",vase
 252556,Greek and Roman Art,Vase in the form of a monkey,Terracotta vase in the shape of a monkey,vase
 248515,Greek and Roman Art,Kalathos,Terracotta kalathos (vase with flaring lip),vase
-240926,Greek and Roman Art,Amphora,Terracotta amphora,storage
+240926,Greek and Roman Art,Amphora,Terracotta amphora,amphora
 912990,Greek and Roman Art,Vase,Polychrome terracotta head vase,vase
 251104,Greek and Roman Art,"Oinochoe, miniature",Terracotta oinochoe: chous (jug),pitcher
 240332,Greek and Roman Art,False-necked jar,Terracotta stirrup jar,jar
-254634,Greek and Roman Art,Amphora,Terracotta amphora (jug),storage
-240072,Greek and Roman Art,Amphoriskos,Amphoriskos,storage
+254634,Greek and Roman Art,Amphora,Terracotta amphora (jug),amphora
+240072,Greek and Roman Art,Amphoriskos,Amphoriskos,amphora
 240328,Greek and Roman Art,Jug,Jug,jug
 254616,Greek and Roman Art,"Hydria, kalpis",Terracotta hydria: kalpis (water jar),jar
 240063,Greek and Roman Art,Strainer,Strainer,vessel
-254561,Greek and Roman Art,"Amphora, Type B",Terracotta amphora (jar),storage
-254551,Greek and Roman Art,Amphora,Terracotta neck-amphora (jar),storage
+254561,Greek and Roman Art,"Amphora, Type B",Terracotta amphora (jar),amphora
+254551,Greek and Roman Art,Amphora,Terracotta neck-amphora (jar),amphora
 240790,Greek and Roman Art,Juglet,Juglet,jug
 256207,Greek and Roman Art,Loutrophoros,Terracotta loutrophoros (ceremonial vase for water),vase
 251128,Greek and Roman Art,Oinochoe,Oinochoe,pitcher
@@ -3915,13 +3913,13 @@ objectID,department,objectName,title,final_group
 244817,Greek and Roman Art,"Oinochoe, chous",Terracotta oinochoe: chous (jug),pitcher
 240000,Greek and Roman Art,Jug,Jug,jug
 244751,Greek and Roman Art,Stirrup jar,Terracotta stirrup jar,jar
-247216,Greek and Roman Art,Neck-amphora,Terracotta neck-amphora (jar),storage
+247216,Greek and Roman Art,Neck-amphora,Terracotta neck-amphora (jar),amphora
 247410,Greek and Roman Art,Funnel-jar,Terracotta funnel-jar,jar
 240908,Greek and Roman Art,Spindle bottle,Terracotta spindle bottle,bottle
-246122,Greek and Roman Art,Lebes gamikos,Lebes gamikos (jar associated with weddings),jar
+246122,Greek and Roman Art,Lebes gamikos,Lebes gamikos (jar associated with weddings),vessel
 247207,Greek and Roman Art,Aryballos in the form of a siren,Terracotta vase in the form of a siren,flask
-246939,Greek and Roman Art,Pelike,Terracotta pelike (jar),storage
-240307,Greek and Roman Art,Amphoriskos,Amphoriskos,storage
+246939,Greek and Roman Art,Pelike,Terracotta pelike (jar),jar
+240307,Greek and Roman Art,Amphoriskos,Amphoriskos,amphora
 240065,Greek and Roman Art,Jug,Jug,jug
 240436,Greek and Roman Art,Jug,Jug,jug
 254352,Greek and Roman Art,Lekythos,Lekythos,flask
@@ -3977,35 +3975,35 @@ objectID,department,objectName,title,final_group
 449878,Islamic Art,Ewer,Ewer,pitcher
 449056,Islamic Art,Jug,Jug,jug
 252458,Greek and Roman Art,Jar,Terracotta jar,jar
-254345,Greek and Roman Art,"Amphora, Type A",Terracotta amphora (jar),storage
-244862,Greek and Roman Art,Pelike,Pelike,storage
-254422,Greek and Roman Art,"Amphora, miniature","Amphora, miniature",storage
-247952,Greek and Roman Art,Neck-pelike,Terracotta neck-pelike (wine jar),storage
-254932,Greek and Roman Art,Nestoris,Terracotta nestoris (two-handled jar),storage
+254345,Greek and Roman Art,"Amphora, Type A",Terracotta amphora (jar),amphora
+244862,Greek and Roman Art,Pelike,Pelike,jar
+254422,Greek and Roman Art,"Amphora, miniature","Amphora, miniature",amphora
+247952,Greek and Roman Art,Neck-pelike,Terracotta neck-pelike (wine jar),jar
+254932,Greek and Roman Art,Nestoris,Terracotta nestoris (two-handled jar),jar
 248832,Greek and Roman Art,Strainer,Terracotta hemispherical strainer,vessel
 245557,Greek and Roman Art,"Hydria, Hadra",Terracotta Hadra hydria (water jar),jar
 240124,Greek and Roman Art,Juglet,Juglet,jug
 240428,Greek and Roman Art,Askos in the form of a duck,Terracotta duck-shaped askos (flask with spout and handle over the back),pitcher
 255802,Greek and Roman Art,"Hydria, kalpis",Terracotta hydria: kalpis (water jar),jar
-256616,Greek and Roman Art,Neck-amphora,Terracotta neck-amphora (jar),storage
+256616,Greek and Roman Art,Neck-amphora,Terracotta neck-amphora (jar),amphora
 240291,Greek and Roman Art,"Jug, barrel-shaped","Jug, barrel-shaped",jug
 244778,Greek and Roman Art,Pithoid jar,Terracotta pithoid jar,jar
-251933,Greek and Roman Art,Nolan neck-amphora with triple handles,Terracotta Nolan neck-amphora (jar),storage
+251933,Greek and Roman Art,Nolan neck-amphora with triple handles,Terracotta Nolan neck-amphora (jar),amphora
 255351,Greek and Roman Art,Guttus,Terracotta guttus (flask with handle and vertical spout),flask
 253205,Greek and Roman Art,Oinochoe,Terracotta oinochoe (jug),pitcher
 248096,Greek and Roman Art,"Oinochoe, chous",Terracotta oinochoe: chous (jug),pitcher
-254303,Greek and Roman Art,Neck-amphora,Terracotta Nolan amphora (jar),storage
+254303,Greek and Roman Art,Neck-amphora,Terracotta Nolan amphora (jar),amphora
 240817,Greek and Roman Art,Juglet,Terracotta vessel,jug
 251487,Greek and Roman Art,Lekythos,Terracotta lekythos (oil flask),flask
-254983,Greek and Roman Art,"Amphora, Type A",Terracotta amphora (jar),storage
+254983,Greek and Roman Art,"Amphora, Type A",Terracotta amphora (jar),amphora
 249056,Greek and Roman Art,Lekythos,Lekythos,flask
 253430,Greek and Roman Art,Lekythos,Terracotta lekythos (oil flask),flask
 247198,Greek and Roman Art,Vase in the form of a fish,Terracotta vase in the form of a fish,vase
 246239,Greek and Roman Art,Volute-krater,Terracotta volute-krater (container for mixing wine and water),vessel
 255315,Greek and Roman Art,Epichysis,Epichysis,pitcher
 247364,Greek and Roman Art,"Oinochoe, chous","Oinochoe, chous",pitcher
-246156,Greek and Roman Art,Vase with lid,Terracotta amphora with lid,storage
-246168,Greek and Roman Art,Amphora with lid,Amphora with lid,storage
+246156,Greek and Roman Art,Vase with lid,Terracotta amphora with lid,amphora
+246168,Greek and Roman Art,Amphora with lid,Amphora with lid,amphora
 240432,Greek and Roman Art,Askos in the form of an animal,Askos in the form of an animal,pitcher
 257671,Greek and Roman Art,Jug,Terracotta spouted jug,jug
 47283,Asian Art,Vase,Wide-Mouth Vase with Carp,vase
@@ -4028,12 +4026,12 @@ objectID,department,objectName,title,final_group
 50963,Asian Art,Vase,Gourd-Shaped Vase,vase
 246189,Greek and Roman Art,Vase,Vase,vase
 255341,Greek and Roman Art,Oon,Terracotta oon (egg),vessel
-247315,Greek and Roman Art,"Amphora, Type A",Terracotta amphora (jar),storage
+247315,Greek and Roman Art,"Amphora, Type A",Terracotta amphora (jar),amphora
 248502,Greek and Roman Art,Jug,Terracotta jug,jug
 240970,Greek and Roman Art,Jug,Terracotta jug,jug
 251260,Greek and Roman Art,Aryballos,Terracotta aryballos (oil flask),flask
 239997,Greek and Roman Art,Juglet,Juglet,jug
-258464,Greek and Roman Art,Neck-amphora,Terracotta neck-amphora (jar),storage
+258464,Greek and Roman Art,Neck-amphora,Terracotta neck-amphora (jar),amphora
 254915,Greek and Roman Art,"Hydria, kalpis",Terracotta hydria: kalpis (water jar),jar
 254778,Greek and Roman Art,"Vase, funerary, wedding scene",Terracotta vase,vase
 245556,Greek and Roman Art,"Hydria, Hadra",Terracotta Hadra hydria (water jar),jar
@@ -4041,20 +4039,20 @@ objectID,department,objectName,title,final_group
 255274,Greek and Roman Art,Alabastron,Terracotta alabastron (perfume vase),flask
 910532,Greek and Roman Art,Calyx-krater,Red-figure calyx-krater,vessel
 240274,Greek and Roman Art,Ring-kernos,Ring-kernos,vessel
-254199,Greek and Roman Art,Neck-amphora,Terracotta neck-amphora (jar),storage
+254199,Greek and Roman Art,Neck-amphora,Terracotta neck-amphora (jar),amphora
 255244,Greek and Roman Art,Oinochoe,Oinochoe,pitcher
 247414,Greek and Roman Art,Loutrophoros,Terracotta loutrophoros (ceremonial vase for water),vase
 254312,Greek and Roman Art,Lekythos,Lekythos,flask
-251508,Greek and Roman Art,Amphoriskos,Terracotta amphoriskos (flask),storage
+251508,Greek and Roman Art,Amphoriskos,Terracotta amphoriskos (flask),amphora
 240344,Greek and Roman Art,Vase,Terracotta globular flask,flask
 254484,Greek and Roman Art,Jug in the form of Dionysos,Terracotta jug in the form of Dionysos,jug
 240109,Greek and Roman Art,Oinochoe,Oinochoe,pitcher
-248811,Greek and Roman Art,Neck-amphora,Terracotta neck-amphora (jar) with twisted handles,storage
+248811,Greek and Roman Art,Neck-amphora,Terracotta neck-amphora (jar) with twisted handles,amphora
 252902,Greek and Roman Art,"Jug, sauceboat",Terracotta sauceboat,jug
 857709,Greek and Roman Art,Askos,Terracotta askos in the shape of a quadruped,pitcher
 255700,Greek and Roman Art,"Aryballos, ring",Terracotta ring aryballos (perfume vase),flask
 240016,Greek and Roman Art,Jug,Terracotta jug,jug
-254281,Greek and Roman Art,Nolan neck-amphora,Terracotta Nolan neck-amphora (jar),storage
+254281,Greek and Roman Art,Nolan neck-amphora,Terracotta Nolan neck-amphora (jar),amphora
 246169,Greek and Roman Art,Vase with lid,Vase with lid,vase
 254428,Greek and Roman Art,Plemochoe,Plemochoe,vessel
 244732,Greek and Roman Art,Jug,Terracotta jug,jug
@@ -4063,18 +4061,18 @@ objectID,department,objectName,title,final_group
 240070,Greek and Roman Art,Jug,Jug,jug
 254189,Greek and Roman Art,Aryballos in the form of a bird,Terracotta vase in the form of a bird,flask
 255719,Greek and Roman Art,Oinochoe,Terracotta oinochoe (jug),pitcher
-254545,Greek and Roman Art,Neck-amphora,Terracotta neck-amphora (jar),storage
-252496,Greek and Roman Art,"Amphora, Type B",Terracotta amphora (jar),storage
+254545,Greek and Roman Art,Neck-amphora,Terracotta neck-amphora (jar),amphora
+252496,Greek and Roman Art,"Amphora, Type B",Terracotta amphora (jar),amphora
 240345,Greek and Roman Art,"Flask, globular",Terracotta globular flask,flask
 240287,Greek and Roman Art,Jug,Jug,jug
-240600,Greek and Roman Art,Amphora,Amphora,storage
+240600,Greek and Roman Art,Amphora,Amphora,amphora
 255894,Greek and Roman Art,Hydria,Terracotta hydria (water jar),jar
 240333,Greek and Roman Art,False-necked jar,Terracotta stirrup jar,jar
 240910,Greek and Roman Art,Spindle bottle,Terracotta spindle bottle,bottle
-240145,Greek and Roman Art,Amphora,Amphora,storage
+240145,Greek and Roman Art,Amphora,Amphora,amphora
 251345,Greek and Roman Art,Hydria,Terracotta hydria (water jar),jar
 240474,Greek and Roman Art,Juglet,Juglet,jug
-251402,Greek and Roman Art,Neck-amphora,Terracotta neck-amphora (jar),storage
+251402,Greek and Roman Art,Neck-amphora,Terracotta neck-amphora (jar),amphora
 62529,Asian Art,Bottle,Bottle,bottle
 47649,Asian Art,Jar,Jar with mythical creatures,jar
 47573,Asian Art,Bottle vase,Bottle vase with floral scrolls,vase
@@ -4173,10 +4171,10 @@ objectID,department,objectName,title,final_group
 2539,The American Wing,Tobacco jar,Tobacco Jar,jar
 487206,Modern and Contemporary Art,Vase,Vase,vase
 240727,Greek and Roman Art,Vase,Terracotta jug,jug
-247191,Greek and Roman Art,Neck-amphora,Terracotta neck-amphora (storage jar),storage
+247191,Greek and Roman Art,Neck-amphora,Terracotta neck-amphora (storage jar),amphora
 254227,Greek and Roman Art,Column-krater,Column-krater,vessel
 253173,Greek and Roman Art,Oinochoe,Terracotta oinochoe (jug),pitcher
-254880,Greek and Roman Art,Neck-amphora,Terracotta neck-amphora (jar),storage
+254880,Greek and Roman Art,Neck-amphora,Terracotta neck-amphora (jar),amphora
 254202,Greek and Roman Art,Lekythos,Terracotta lekythos (oil flask),flask
 250091,Greek and Roman Art,Jug,Jug,jug
 254200,Greek and Roman Art,Rhyton in the form of a lamb's head,Terracotta rhyton (vase for libations or drinking),vase
@@ -4187,15 +4185,14 @@ objectID,department,objectName,title,final_group
 252589,Greek and Roman Art,"Askos, ring",Terracotta ring askos (flask with a spout and handle over the top),pitcher
 248847,Greek and Roman Art,Oinochoe,Terracotta oinochoe (jug),pitcher
 255706,Greek and Roman Art,Lekythos,Lekythos,flask
-247223,Greek and Roman Art,Neck-amphora of Panathenaic shape,Terracotta neck-amphora (jar) of Panathenaic shape,storage
+247223,Greek and Roman Art,Neck-amphora of Panathenaic shape,Terracotta neck-amphora (jar) of Panathenaic shape,amphora
 240009,Greek and Roman Art,"Vase, miniature","Vase, miniature",vase
 330015,Greek and Roman Art,Bottle,Terracotta bottle,bottle
 252634,Greek and Roman Art,Lydion,Terracotta lydion (perfume jar),flask
-240277,Greek and Roman Art,Amphora,Amphora,storage
-254288,Greek and Roman Art,Kyathos,Kyathos,vessel
-251269,Greek and Roman Art,Amphora,Small terracotta amphora (jar),storage
+240277,Greek and Roman Art,Amphora,Amphora,amphora
+251269,Greek and Roman Art,Amphora,Small terracotta amphora (jar),amphora
 245573,Greek and Roman Art,"Hydria, Hadra",Terracotta Hadra hydria (water jar),jar
-240566,Greek and Roman Art,Amphora,Amphora,storage
+240566,Greek and Roman Art,Amphora,Amphora,amphora
 255796,Greek and Roman Art,Guttus,Terracotta guttus (flask with handle and verticle spout),flask
 244829,Greek and Roman Art,Olpe,Terracotta oinochoe: olpe (jug),pitcher
 240423,Greek and Roman Art,Askos in the form of an animal,Terracotta zoomorphic askos (vessel),pitcher

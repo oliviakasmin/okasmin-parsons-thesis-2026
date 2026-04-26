@@ -69,7 +69,8 @@ EXCLUDED_TERMS = [
     "seal impression",
     "incense",
     "dinos",
-    "lekanis"
+    "lekanis",
+    "lamp"
 ]
 
 EXCLUDED_CLASSIFICATIONS = ["Snuff Bottles", "Ceramics-Musical Instruments", "Ceramics-Implements", "Ceramics-Sculpture	"]
