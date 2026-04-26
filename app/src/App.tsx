@@ -1,84 +1,32 @@
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Test from "./Components/Tests/Test";
 import Test2 from "./Components/Tests/Test2";
 import ClusterTest from "./Components/Tests/ClusterTest";
 import { All, Shelf } from "./Components";
+import Title from "./Components/Title";
+import ShelfFunction from "./Components/ShelfFunction";
+import ShelfColor from "./Components/ShelfColor";
+import CaseStudies from "./Components/CaseStudies";
 
 function Home() {
-  const navigate = useNavigate();
-
   return (
     <main
       style={{
         minHeight: "100vh",
         display: "flex",
-        alignItems: "center",
+        alignItems: "flex-start",
         justifyContent: "center",
         background: "#000",
-        color: "#fff"
+        color: "#fff",
+        padding: "2rem"
       }}
     >
-      <div style={{ display: "flex", gap: "0.75rem", alignItems: "center", flexWrap: "wrap" }}>
-        <button
-          type="button"
-          onClick={() => navigate("/test")}
-          style={{
-            border: "1px solid #fff",
-            background: "#fff",
-            color: "#000",
-            padding: "0.6rem 0.9rem",
-            borderRadius: "8px",
-            fontWeight: 700,
-            cursor: "pointer"
-          }}
-        >
-          Test
-        </button>
-        <button
-          type="button"
-          onClick={() => navigate("/test2")}
-          style={{
-            border: "1px solid #fff",
-            background: "#fff",
-            color: "#000",
-            padding: "0.6rem 0.9rem",
-            borderRadius: "8px",
-            fontWeight: 700,
-            cursor: "pointer"
-          }}
-        >
-          Test2
-        </button>
-        <button
-          type="button"
-          onClick={() => navigate("/cluster-test")}
-          style={{
-            border: "1px solid #fff",
-            background: "#fff",
-            color: "#000",
-            padding: "0.6rem 0.9rem",
-            borderRadius: "8px",
-            fontWeight: 700,
-            cursor: "pointer"
-          }}
-        >
-          ClusterTest
-        </button>
-        <button
-          type="button"
-          onClick={() => navigate("/shelf")}
-          style={{
-            border: "1px solid #fff",
-            background: "#fff",
-            color: "#000",
-            padding: "0.6rem 0.9rem",
-            borderRadius: "8px",
-            fontWeight: 700,
-            cursor: "pointer"
-          }}
-        >
-          Shelf
-        </button>
+      <div style={{ display: "grid", gap: "1rem", width: "100%" }}>
+        <Title />
+        <Shelf />
+        <ShelfFunction />
+        <ShelfColor />
+        <CaseStudies />
       </div>
     </main>
   );
@@ -92,6 +40,10 @@ function App() {
       <Route path="/test2" element={<Test2 />} />
       <Route path="/cluster-test" element={<ClusterTest />} />
       <Route path="/shelf" element={<Shelf />} />
+      <Route path="/title" element={<Title />} />
+      <Route path="/shelf-function" element={<ShelfFunction />} />
+      <Route path="/shelf-color" element={<ShelfColor />} />
+      <Route path="/case-studies" element={<CaseStudies />} />
       <Route path="/all/:clusterId" element={<All />} />
     </Routes>
   );

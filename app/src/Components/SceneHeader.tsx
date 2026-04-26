@@ -28,7 +28,7 @@ function SceneHeader({ view, objectCount, spanYears }: SceneHeaderProps) {
             textAlign: "center"
           }}
         >
-          this form has been made for{" "}
+          similar forms have been made for{" "}
           <Box
             component="span"
             sx={{ fontSize: "2.15rem", color: "#fff", fontWeight: 600, lineHeight: 1 }}

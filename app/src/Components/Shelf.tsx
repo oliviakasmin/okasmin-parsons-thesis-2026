@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { Box, Button, Typography } from "@mui/material";
 import finalClusterKeysCsv from "../../../process_data/cluster/final_clusters_keys.csv?raw";
 import finalClusterObjectIdsCsv from "../../../process_data/cluster/final_clusters_object_ids.csv?raw";
-import BackButton from "./BackButton";
 import ImageToggleButton from "./ImageToggleButton";
 import useImageToggle from "../hooks/useImageToggle";
 import useImageModules from "../hooks/useImageModules";
@@ -87,10 +86,6 @@ function Shelf() {
         overflow: "auto"
       }}
     >
-      <Box sx={{ display: "flex", alignItems: "center", gap: "0.6rem", mb: "0.85rem" }}>
-        <BackButton to="/cluster-test" />
-      </Box>
-
       <Box sx={{ display: "flex", alignItems: "center", gap: "0.5rem", mb: "0.5rem" }}>
         <Box sx={{ display: "flex", alignItems: "center", gap: 0 }}>
           <ImageToggleButton mode={mode} options={options} onChange={setMode} />
