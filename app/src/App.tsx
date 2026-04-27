@@ -2,11 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import Test from "./Components/Tests/Test";
 import Test2 from "./Components/Tests/Test2";
 import ClusterTest from "./Components/Tests/ClusterTest";
-import { All, Shelf } from "./Components";
-import Title from "./Components/Title";
-import ShelfFunction from "./Components/ShelfFunction";
-import ShelfColor from "./Components/ShelfColor";
-import CaseStudies from "./Components/CaseStudies";
+import { All, Intro, CaseStudies, Shelf, Title, ShelfFunction, ShelfColor } from "./Components";
 
 function Home() {
   return (
@@ -22,6 +18,7 @@ function Home() {
       }}
     >
       <div style={{ display: "grid", gap: "1rem", width: "100%" }}>
+        <Intro />
         <Title />
         <Shelf />
         <ShelfFunction />

@@ -1,11 +1,11 @@
 from __future__ import annotations
 
-import csv
 import re
 from pathlib import Path
+import pandas as pd
 
 
-CSV_PATH = Path(__file__).resolve().parent / "fields.csv"
+CSV_PATH = Path(__file__).resolve().parents[1] / "generated" / "fields.csv"
 
 UNCERTAINTY_RE = re.compile(r"\b(or|possibly|probably|vicinity)\b|\?", re.IGNORECASE)
 PARENS_RE = re.compile(r"\(([^()]*)\)")
@@ -16,13 +16,23 @@ DEMONYM_MAP = {
     "german": "Germany",
     "italian": "Italy",
     "british": "Britain",
+    "british, scottish": "Scotland",
     "scottish": "Scotland",
     "french": "France",
     "swiss": "Switzerland",
     "spanish": "Spain",
     "dutch": "Netherlands",
+    "netherlandish": "Netherlands",
+    "south netherlandish": "Belgium",
+    "belgian": "Belgium",
+    "bohemian": "Czech Republic",
+    "danish": "Denmark",
+    "russian": "Russia",
+    "irish": "Ireland",
     "chinese": "China",
+    "chinese, for american market": "China",
     "japanese": "Japan",
+    "vietnamese": "Vietnam",
     "korean": "Korea",
     "iranian": "Iran",
     "iraqi": "Iraq",
@@ -38,16 +48,172 @@ DEMONYM_MAP = {
 
 CULTURE_MAP = {
     "french (paris)": "Paris, France",
+    "french (limoges)": "Limoges, France",
+    "saintonge": "Saintonge, France",
+    "scottish": "Scotland",
     "cypriot": "Cyprus",
+    "greek, cypriot": "Cyprus",
     "cycladic": "Cyclades, Greece",
     "attic": "Attica, Greece",
     "east greek": "East Greece",
+    "greek, attic": "Attica, Greece",
+    "greek, corinthian": "Greece",
+    "greek, south italian, apulian": "Apulia, Italy",
+    "greek, south italian, campanian": "Campania, Italy",
+    "greek, south italian, apulian, canosan": "Apulia, Italy",
+    "greek, south italian, lucanian": "Basilicata, Italy",
+    "greek, south italian, gnathian": "Apulia, Italy",
+    "greek, egypt, alexandria-hadra": "Alexandria, Egypt",
+    "greek, asia minor": "Turkey",
+    "greek, laconian": "Laconia, Greece",
+    "east greek, rhodian": "Rhodes, Greece",
     "apulian": "Apulia, Italy",
     "campanian": "Campania, Italy",
     "canosan": "Canosa di Puglia, Italy",
-    "etruscan": "Etruria, Italy",
-    "etrusco-corinthian": "Etruria, Italy",
-    "italo-corinthian": "Etruria, Italy",
+    "etruscan": "Umbria, Italy",
+    "etruscan, etrusco-corinthian": "Umbria, Italy",
+    "etrusco-corinthian": "Umbria, Italy",
+    "italo-corinthian": "Umbria, Italy",
+    "faliscan": "Italy",
+    "mycenaean": "Greece",
+    "helladic": "Greece",
+    "helladic, mycenaean": "Greece",
+    "minoan": "Crete, Greece",
+    "phoenician": "Lebanon",
+    "lydian": "Western Turkey",
+    "visigothic": "Spain",
+    "greek": "Greece",
+    "european": "Europe",
+    "greek, chalcidian": "Greece",
+    "greek, ptolemaic": "Egypt",
+    "greek, ptolemaic, cretan": "Crete, Greece",
+    "greek, sicilian, centuripe": "Centuripe, Sicily, Italy",
+    "greek, probably corinthian": "Greece",
+    "greek, probably cypriot": "Cyprus",
+    "greek, boeotian (or attic)": "Greece",
+    "greek or roman": "Mediterranean",
+    "canosan, puglia": "Apulia, Italy",
+    "cycladic or cretan": "Greece",
+    "mycenaean or cypro-mycenaean": "Greece",
+    "maya": "Guatemala",
+    "olmec": "Mexico",
+    "zapotec": "Oaxaca, Mexico",
+    "mixtec": "Oaxaca, Mexico",
+    "mexica (aztec)": "Central Mexico",
+    "chupicuaro": "Central Mexico",
+    "casas grandes": "Chihuahua, Mexico",
+    "monte alban": "Oaxaca, Mexico",
+    "huastec": "Veracruz, Mexico",
+    "moche": "Peru",
+    "nasca": "Peru",
+    "paracas": "Peru",
+    "topara": "Peru",
+    "cupisnique": "Peru",
+    "chimu": "Peru",
+    "inca": "Peru",
+    "vicus": "Peru",
+    "wari": "Peru",
+    "salinar (?)": "Peru",
+    "recuay": "Peru",
+    "chorrera": "Ecuador",
+    "quimbaya": "Colombia",
+    "coptic": "Egypt",
+    "dogon peoples": "Mali",
+    "tellem peoples": "Mali",
+    "middle niger civilization": "Mali",
+    "chinese": "China",
+    "japanese": "Japan",
+    "roman": "Mediterranean",
+    "east greek, rhodian": "Rhodes, Greece",
+    "east greek, rhodian (?)": "Rhodes, Greece",
+}
+
+LOCATION_CLEANUP_MAP = {
+    "probably rayy": "Rayy, Iran",
+    "probably isfahan": "Isfahan, Iran",
+    "probably mashhad": "Mashhad, Iran",
+    "probably kirman": "Kerman, Iran",
+    "probably basra": "Basra, Iraq",
+    "near susa": "Susa, Iran",
+    "near raqqa": "Raqqa, Syria",
+    "nishapur or samarqand": "Nishapur, Iran",
+    "iran or iraq": "Iran",
+    "iraq or syria": "Iraq",
+    "iran or present-day uzbekistan": "Iran",
+    "iraq or iran, persian gulf": "Iraq",
+    "italian, castelli": "Castelli, Italy",
+    "italian, deruta": "Deruta, Italy",
+    "italian, urbino": "Urbino, Italy",
+    "italian, faenza": "Faenza, Italy",
+    "italian, naples": "Naples, Italy",
+    "italian, gubbio": "Gubbio, Italy",
+    "italian, florence": "Florence, Italy",
+    "italian, florence or vicinity": "Florence, Italy",
+    "italian, probably florence or vicinity": "Florence, Italy",
+    "italian, possibly florence or faenza": "Florence, Italy",
+    "italian (supposedly faenza or florence)": "Faenza, Italy",
+    "italian, faenza or florence": "Faenza, Italy",
+    "italian, faenza or pesaro": "Faenza, Italy",
+    "italian, faenza or naples": "Faenza, Italy",
+    "italian, probably faenza": "Faenza, Italy",
+    "italian, probably faenza (or palermo)": "Faenza, Italy",
+    "italian, probably gubbio": "Gubbio, Italy",
+    "italian (probably naples)": "Naples, Italy",
+    "italian, perhaps trapani": "Trapani, Italy",
+    "italian, tuscany, cafaggiolo or montelupo": "Montelupo, Tuscany, Italy",
+    "italian, probably tuscany (?)": "Tuscany, Italy",
+    "probably manises": "Manises, Valencia, Spain",
+    "manises": "Manises, Valencia, Spain",
+    "paterna": "Paterna, Valencia, Spain",
+    "probably seville": "Seville, Spain",
+    "spain or north africa": "Spain",
+    "paris or its vicinity": "Paris, France",
+    "china (?)": "China",
+    "greek, boeotian (or attic)": "Greece",
+    "probably surrey": "Surrey, England",
+    "potter toynton (?)": "Toynton, Lincolnshire, England",
+    "west midlands": "West Midlands, England",
+    "wiltshire": "Wiltshire, England",
+    "derbyshire": "Derbyshire, England",
+    "surrey": "Surrey, England",
+    "siegburg": "Siegburg, Germany",
+    "middle rhineland (?)": "Rhineland, Germany",
+    "meuse valley": "Meuse Valley, Netherlands",
+    "delft": "Delft, Netherlands",
+    "central andes": "Central Andes, Peru",
+    "ica valley": "Ica Valley, Peru",
+    "ica river, south coast": "Ica Valley, Peru",
+    "santa province": "Santa Province, Peru",
+    "santa province (?)": "Santa Province, Peru",
+    "chicama valley": "Chicama Valley, Peru",
+    "tembladera": "Tembladera, Peru",
+    "ancash": "Ancash, Peru",
+    "piura": "Piura, Peru",
+    "west mexico": "Western Mexico",
+    "colima": "Colima, Mexico",
+    "veracruz": "Veracruz, Mexico",
+    "oaxaca": "Oaxaca, Mexico",
+    "puebla": "Puebla, Mexico",
+    "nayarit": "Nayarit, Mexico",
+    "michoacan": "Michoacan, Mexico",
+    "chihuahua": "Chihuahua, Mexico",
+    "mid-atlantic united states": "Mid-Atlantic, United States",
+    "new england united states": "New England, United States",
+    "midwest united states": "Midwest, United States",
+    "southern": "Southern United States",
+    "upper egypt, thebes": "Thebes, Egypt",
+    "northern upper egypt": "Upper Egypt, Egypt",
+    "southern upper egypt": "Upper Egypt, Egypt",
+    "middle egypt": "Middle Egypt, Egypt",
+    "memphite region": "Memphis region, Egypt",
+    "thebes, byzantine egypt": "Thebes, Egypt",
+    "probably egypt": "Egypt",
+    "vietnam, hong river region": "Red River Delta, Vietnam",
+    "thailand (si satchanalai)": "Si Satchanalai, Thailand",
+    "thailand (ban chiang)": "Ban Chiang, Thailand",
+    "thailand (buriram province)": "Buriram Province, Thailand",
+    "thailand (ban chiang culture)": "Ban Chiang, Thailand",
+    "cocle province": "Cocle Province, Panama",
 }
 
 COUNTRY_HINTS = {
@@ -61,11 +227,13 @@ COUNTRY_HINTS = {
     "turkey",
     "greece",
     "france",
+    "germany",
     "italy",
     "spain",
     "netherlands",
     "united kingdom",
     "britain",
+    "scotland",
     "switzerland",
     "ghana",
     "mexico",
@@ -76,6 +244,23 @@ COUNTRY_HINTS = {
     "thailand",
     "india",
     "united states",
+    "lebanon",
+    "england",
+    "mali",
+    "ecuador",
+    "colombia",
+    "panama",
+    "belgium",
+    "czech republic",
+    "denmark",
+    "russia",
+    "ireland",
+    "levant",
+    "europe",
+    "mediterranean",
+    "eastern mediterranean",
+    "western turkey",
+    "central mexico",
 }
 
 
@@ -111,11 +296,18 @@ def extract_candidate(text: str) -> tuple[str, bool]:
         return "", False
 
     ambiguous = bool(UNCERTAINTY_RE.search(text))
+    raw_key = text.lower()
+    if raw_key in LOCATION_CLEANUP_MAP:
+        return LOCATION_CLEANUP_MAP[raw_key], True if ambiguous else False
+
     if re.search(r"\bor\b", text, flags=re.IGNORECASE):
         text = re.split(r"\bor\b", text, flags=re.IGNORECASE)[0].strip(" ,;")
         ambiguous = True
 
     text = cleanup_uncertainty_noise(text)
+    cleaned_key = text.lower()
+    if cleaned_key in LOCATION_CLEANUP_MAP:
+        return LOCATION_CLEANUP_MAP[cleaned_key], True if ambiguous else False
     return text, ambiguous
 
 
@@ -123,6 +315,10 @@ def normalize_nationality(value: str) -> tuple[str, bool]:
     value, ambiguous = extract_candidate(value)
     if not value:
         return "", ambiguous
+
+    direct = DEMONYM_MAP.get(value.lower())
+    if direct:
+        return direct, ambiguous
 
     tokens = re.split(r"[,/;]|\band\b", value, flags=re.IGNORECASE)
     mapped: list[str] = []
@@ -234,6 +430,22 @@ def resolve_location(department: str, geo_options: str) -> tuple[str, str, float
     culture, culture_amb = normalize_culture(culture_raw)
     nationality_place, nationality_amb = normalize_nationality(artist_nationality)
 
+    # Only collapse broad Peruvian coastal labels to Peru when country context is explicitly Peru.
+    culture_raw_key = clean(culture_raw).lower()
+    coast_labels = {"north coast", "south coast"}
+    if country.lower() == "peru":
+        if city.lower() in coast_labels:
+            city = ""
+        if state.lower() in coast_labels:
+            state = ""
+        if region.lower() in coast_labels:
+            region = ""
+    if culture_raw_key in {"north coast", "south coast"}:
+        if country.lower() == "peru":
+            culture = "Peru"
+        else:
+            culture = ""
+
     if (department or "").strip().lower() == "greek and roman art" and clean(culture_raw).lower() == "roman":
         return "", "none", 0.0, False
 
@@ -312,7 +524,9 @@ def resolve_location(department: str, geo_options: str) -> tuple[str, str, float
     elif country:
         location, source, confidence, ambiguous = country, "country", 0.70, country_amb
     elif culture:
-        location, source, confidence, ambiguous = culture, "culture", 0.55, culture_amb
+        # If culture normalization yields a specific place and country, keep provenance explicit.
+        culture_source = "culture||country" if "," in culture else "culture"
+        location, source, confidence, ambiguous = culture, culture_source, 0.55, culture_amb
     elif nationality_place:
         location = nationality_place
         source = "artistNationality"
@@ -337,37 +551,40 @@ def resolve_location(department: str, geo_options: str) -> tuple[str, str, float
     return location, source, round(confidence, 2), confidence >= 0.30
 
 
-def main() -> None:
-    with CSV_PATH.open("r", encoding="utf-8", newline="") as f:
-        reader = csv.DictReader(f)
-        rows = list(reader)
-        fieldnames = list(reader.fieldnames or [])
+def apply_geo_contract_df(df: pd.DataFrame) -> pd.DataFrame:
+    out = df.copy()
+    out["department"] = out["department"].fillna("")
+    out["geo_options"] = out["geo_options"].fillna("")
 
-    new_columns = [
-        "geo_LLM_best_guess_location_normalized",
-        "geo_LLM_source_cols",
-        "geo_LLM_confidence",
-        "geo_LLM_geo_eligible",
+    resolved = out.apply(
+        lambda row: resolve_location(row["department"], row["geo_options"]),
+        axis=1,
+        result_type="expand",
+    )
+    resolved.columns = [
+        "geo_normalized_best_guess_location",
+        "geo_normalized_source_cols",
+        "geo_normalized_confidence",
+        "geo_normalized_geo_eligible",
     ]
-    for col in new_columns:
-        if col not in fieldnames:
-            fieldnames.append(col)
 
-    for row in rows:
-        location, source, confidence, eligible = resolve_location(
-            row.get("department", ""), row.get("geo_options", "")
-        )
-        row["geo_LLM_best_guess_location_normalized"] = location
-        row["geo_LLM_source_cols"] = source
-        row["geo_LLM_confidence"] = f"{confidence:.2f}"
-        row["geo_LLM_geo_eligible"] = "true" if eligible else "false"
+    out["geo_normalized_best_guess_location"] = resolved[
+        "geo_normalized_best_guess_location"
+    ]
+    out["geo_normalized_source_cols"] = resolved["geo_normalized_source_cols"]
+    out["geo_normalized_confidence"] = resolved["geo_normalized_confidence"].map(lambda v: f"{v:.2f}")
+    out["geo_normalized_geo_eligible"] = resolved["geo_normalized_geo_eligible"].map(
+        lambda v: "true" if v else "false"
+    )
+    return out
 
-    with CSV_PATH.open("w", encoding="utf-8", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames)
-        writer.writeheader()
-        writer.writerows(rows)
 
-    print(f"Updated {len(rows)} rows in {CSV_PATH}")
+def main() -> None:
+    df = pd.read_csv(CSV_PATH)
+    out = apply_geo_contract_df(df)
+    out.to_csv(CSV_PATH, index=False)
+
+    print(f"Updated {len(out)} rows in {CSV_PATH}")
 
 
 if __name__ == "__main__":

@@ -9,12 +9,12 @@ from typing import Any
 from .function_group_mapping import FUNCTION_GROUP_STRINGS, ORDER_OF_PRIORITY, group_mappings
 
 # RUN FROM REPO ROOT:
-# python -m format_data.get_object_function_group
+# python -m format_data.function_groups.get_object_function_group
 
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 OBJECTS_PATH = ROOT / "fetch_data" / "data" / "objects.json"
-OUTPUT_PATH = ROOT / "format_data" / "object_function_groups.csv"
+OUTPUT_PATH = ROOT / "format_data" / "generated" / "object_function_groups.csv"
 
 def _clean(value: str | None) -> str:
     return (value or "").strip()
@@ -185,6 +185,7 @@ def build_rows(objects_by_id: dict[str, Any]) -> list[dict[str, Any]]:
 def save_rows(rows: list[dict[str, Any]], path: Path = OUTPUT_PATH) -> None:
     if not rows:
         return
+    path.parent.mkdir(parents=True, exist_ok=True)
     fieldnames = list(rows[0].keys())
     with path.open("w", encoding="utf-8", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)

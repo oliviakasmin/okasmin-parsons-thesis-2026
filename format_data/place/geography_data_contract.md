@@ -6,14 +6,14 @@ Standardize location outputs for a first-pass LLM/agent normalization step befor
 
 The LLM/agent should create best-guess geography fields from existing source signals, while clearly encoding uncertainty.
 
-The new `geo_LLM_best_guess_location_normalized` (see below) will then be passed to Mapbox Geocoding API
+The new `geo_normalized_best_guess_location` (see below) will then be passed to Mapbox Geocoding API
 
 ## Columns to Add in Initial LLM/Agent Pass
 
-- `geo_LLM_best_guess_location_normalized` (string, nullable)
-- `geo_LLM_source_cols` (string, required)
-- `geo_LLM_confidence` (number 0.0-1.0, required)
-- `geo_LLM_geo_eligible` (boolean, required)
+- `geo_normalized_best_guess_location` (string, nullable)
+- `geo_normalized_source_cols` (string, required)
+- `geo_normalized_confidence` (number 0.0-1.0, required)
+- `geo_normalized_geo_eligible` (boolean, required)
 
 ## Record Identity
 
@@ -29,7 +29,7 @@ The new `geo_LLM_best_guess_location_normalized` (see below) will then be passed
 
 ## Field Definitions
 
-### `geo_LLM_best_guess_location_normalized`
+### `geo_normalized_best_guess_location`
 
 - Canonical location string to pass to geocoder.
 - Nullable if no usable location can be inferred.
@@ -39,7 +39,7 @@ The new `geo_LLM_best_guess_location_normalized` (see below) will then be passed
   - `Andalusia, Spain`
   - `Cairo, Egypt`
 
-### `geo_LLM_source_cols`
+### `geo_normalized_source_cols`
 
 - Provenance of source(s) used for the final guess.
 - Example values:
@@ -53,13 +53,14 @@ The new `geo_LLM_best_guess_location_normalized` (see below) will then be passed
   - `region||country`
   - `country`
   - `culture`
+  - `culture||country`
   - `city||culture`
   - `state||culture`
   - `region||culture`
   - `department||artistNationality`
   - `none`
 
-### `geo_LLM_confidence`
+### `geo_normalized_confidence`
 
 - Deterministic score from 0.0 to 1.0.
 - Suggested bands:
@@ -68,12 +69,12 @@ The new `geo_LLM_best_guess_location_normalized` (see below) will then be passed
   - low: `0.01-0.59`
   - none: `0.00`
 
-### `geo_LLM_geo_eligible`
+### `geo_normalized_geo_eligible`
 
 - `true` when safe to send directly to geocoder.
 - `false` when ambiguity is high or signal is too weak.
 - Recommended default:
-  - `true` if `geo_LLM_confidence >= 0.30`
+  - `true` if `geo_normalized_confidence >= 0.30`
   - `false` otherwise
 
 ## Rule Semantics
@@ -107,22 +108,22 @@ The new `geo_LLM_best_guess_location_normalized` (see below) will then be passed
     - `0` when department adds no new disambiguation.
     - `-0.10 to -0.20` when department conflicts with the nationality-derived candidate.
   - Never let department override a stronger geographic field (`city`, `state`, `region`, `country`).
-  - If nationality remains ambiguous after department context (example: `British, Scottish`), keep low confidence and consider `geo_LLM_geo_eligible=false`.
+  - If nationality remains ambiguous after department context (example: `British, Scottish`), keep low confidence and consider `geo_normalized_geo_eligible=false`.
 - If strings contain explicit uncertainty markers (`or`, `possibly`, `probably`, `?`, `vicinity`):
   - choose most plausible canonical guess only if one candidate is clearly better;
-  - otherwise set `geo_LLM_geo_eligible = false` and lower confidence.
+  - otherwise set `geo_normalized_geo_eligible = false` and lower confidence.
 - If no clearly mappable canonical location can be produced from culture/nationality context, return null output rather than preserving an unresolved adjective label.
 - Department-specific guardrail:
   - If `department = Greek and Roman Art` and `culture = Roman`, set:
-    - `geo_LLM_best_guess_location_normalized = null`
-    - `geo_LLM_source_cols = none`
-    - `geo_LLM_confidence = 0.0`
-    - `geo_LLM_geo_eligible = false`
+    - `geo_normalized_best_guess_location = null`
+    - `geo_normalized_source_cols = none`
+    - `geo_normalized_confidence = 0.0`
+    - `geo_normalized_geo_eligible = false`
 - If no usable signal exists:
-  - `geo_LLM_best_guess_location_normalized = null`
-  - `geo_LLM_source_cols = none`
-  - `geo_LLM_confidence = 0.0`
-  - `geo_LLM_geo_eligible = false`
+  - `geo_normalized_best_guess_location = null`
+  - `geo_normalized_source_cols = none`
+  - `geo_normalized_confidence = 0.0`
+  - `geo_normalized_geo_eligible = false`
 
 ## Minimal CSV Handoff Schema
 
@@ -130,10 +131,10 @@ Required:
 
 - `objectId`
 - `geo_options`
-- `geo_LLM_best_guess_location_normalized`
-- `geo_LLM_source_cols`
-- `geo_LLM_confidence`
-- `geo_LLM_geo_eligible`
+- `geo_normalized_best_guess_location`
+- `geo_normalized_source_cols`
+- `geo_normalized_confidence`
+- `geo_normalized_geo_eligible`
 
 ## Examples
 
@@ -151,3 +152,79 @@ Required:
 - `",European Sculpture and Decorative Arts,1548,||||||||||Italian"` -> `Italy`
 - `"487350,Modern and Contemporary Art,1884,||||||||French (Paris)||French"` -> `Paris, France`
 - `"310369,The Michael C. Rockefeller Wing,1650,Fomena (?)||||Adanse traditional area||Ghana||Akan||"` -> `Fomena, Ghana`
+
+## Runtime Mapping Layers (Refactor-Aligned)
+
+The implementation uses a single active mapping source per signal type:
+
+- `DEMONYM_MAP`
+  - Normalizes nationality/demonym values to canonical place labels.
+  - Includes both single-token and known multi-token variants where needed (for example `British, Scottish -> Scotland`).
+
+- `CULTURE_MAP`
+  - Normalizes curated culture values to canonical geocoder-friendly outputs.
+  - Includes Greek-world, Etruscan/Italic, Aegean, Near Eastern, and broader culture terms used in this dataset.
+
+- `LOCATION_CLEANUP_MAP`
+  - Normalizes free-form and uncertain raw location strings (for example `Italian, probably Florence or vicinity -> Florence, Italy`).
+  - Applied during candidate extraction so cleanup happens before final source precedence resolution.
+
+### Mapping Key Rules
+
+- Mapping keys are treated case-insensitively at runtime.
+- Canonical output values should remain geocoder-friendly and stable.
+- Avoid duplicate source-of-truth dictionaries for the same concept.
+- New mappings should be added to one of the active runtime layers above, not to deprecated appendix dictionaries.
+
+### Representative Runtime Mapping Examples
+
+- Nationality/demonym:
+  - `Scottish -> Scotland`
+  - `British, Scottish -> Scotland`
+  - `South Netherlandish -> Belgium`
+
+- Culture:
+  - `Greek, Attic -> Attica, Greece`
+  - `Greek, South Italian, Campanian -> Campania, Italy`
+  - `Etrusco-Corinthian -> Etruria, Italy`
+  - `Minoan -> Crete, Greece`
+
+- Raw cleanup:
+  - `Iraq or Syria -> Iraq`
+  - `Italian, probably Florence or vicinity -> Florence, Italy`
+  - `Thailand (Ban Chiang culture) -> Ban Chiang, Thailand`
+
+## Backend Geocoding Runbook
+
+Run order:
+
+1. `python -m format_data.get_fields`
+2. `python -m format_data.place.geocode_locations`
+
+Required secret:
+
+- `MAPBOX_TOKEN` in environment (for local runs and Netlify builds)
+
+Generated artifacts:
+
+- `format_data/generated/geocode/fields_geocoded.csv` (row-level enriched output)
+- `format_data/generated/geocode/fields_geocoded.json` (same row-level output in JSON)
+- `format_data/generated/geocode/geocode_cache.csv` (query-level cache for reuse)
+- `format_data/generated/geocode/geocode_cache.json` (query-level cache in JSON)
+
+Geocoding output columns appended per row:
+
+- `geo_mapbox_place_name`
+- `geo_mapbox_lon`
+- `geo_mapbox_lat`
+- `geo_mapbox_relevance`
+- `geo_mapbox_accuracy`
+- `geo_mapbox_feature_id`
+- `geo_mapbox_match_status` (`matched`, `no_match`, `error`, `skipped`)
+- `geo_mapbox_updated_at`
+
+Caching behavior:
+
+- Cache key is exact `geo_normalized_best_guess_location` string.
+- Re-runs only call Mapbox for unseen normalized values.
+- Existing cached values are reused to minimize API costs and keep output stable.

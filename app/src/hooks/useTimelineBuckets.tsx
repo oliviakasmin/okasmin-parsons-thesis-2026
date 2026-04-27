@@ -1,5 +1,5 @@
 import { useMemo, useRef } from "react";
-import fieldsCsv from "../../../format_data/fields.csv?raw";
+import fieldsCsv from "../../../format_data/generated/fields.csv?raw";
 
 type TimelineBucket = {
   key: string;

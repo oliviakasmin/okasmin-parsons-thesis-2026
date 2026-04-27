@@ -1,4 +1,6 @@
 export { default as Shelf } from "./Shelf";
+export { default as Intro } from "./Intro";
+export { default as CaseStudies } from "./CaseStudies";
 export { default as All } from "./All";
 export { default as BackButton } from "./BackButton";
 export { default as ImageToggleButton } from "./ImageToggleButton";
@@ -7,3 +9,6 @@ export { default as TimelineAxis } from "./TimelineAxis";
 export { default as MapOverlay } from "./MapOverlay";
 export { default as LeftOutlineStackPanel } from "./LeftOutlineStackPanel";
 export { default as SceneHeader } from "./SceneHeader";
+export { default as Title } from "./Title";
+export { default as ShelfFunction } from "./ShelfFunction";
+export { default as ShelfColor } from "./ShelfColor";

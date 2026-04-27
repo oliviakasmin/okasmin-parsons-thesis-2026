@@ -4,22 +4,16 @@
 from pathlib import Path
 import json
 import pandas as pd
+from .place.get_location_fields import get_location_field
+from .place.apply_geo_contract import apply_geo_contract_df
+from .place.geocode_locations import CACHE_CSV_PATH
 
 ROOT = Path(__file__).resolve().parents[1]
 OBJECTS_JSON_PATH = ROOT / "fetch_data" / "data" / "objects.json"
-OUTPUT_CSV_PATH = Path(__file__).resolve().parent / "fields.csv"
-
-MISSING_TOKEN = ""
+OUTPUT_CSV_PATH = Path(__file__).resolve().parent / "generated" / "fields.csv"
 
 date_cols = ["objectBeginDate", "objectEndDate"]
-geography_cols = [
-    "city",
-    "state",
-    "region",
-    "country",
-    "culture",
-    "artistNationality",
-]
+
 
 def load_objects_df(path: Path) -> pd.DataFrame:
     with path.open("r", encoding="utf-8") as f:
@@ -36,24 +30,70 @@ def get_date_field(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
-def _clean_geo_value(series: pd.Series) -> pd.Series:
-    s = series.astype("string").str.strip()
-    missing_mask = s.isna() | s.eq("") | s.str.lower().eq("undefined")
-    return s.mask(missing_mask, MISSING_TOKEN)
+def add_geo_llm_fields(df: pd.DataFrame) -> pd.DataFrame:
+    """Apply geo contract and return df with geo_normalized_* columns."""
+    return apply_geo_contract_df(df)
 
 
-def get_location_field(df: pd.DataFrame) -> pd.DataFrame:
-    # Build a pipe-delimited set of all geo columns, keeping placeholders for missing values.
-    geo_frame = pd.DataFrame({col: _clean_geo_value(df[col]) for col in geography_cols})
-    df["geo_options"] = geo_frame.agg("||".join, axis=1)
-    return df
+def add_geocoded_location_fields(df: pd.DataFrame) -> pd.DataFrame:
+    """Join cached Mapbox geocodes by normalized location string."""
+    out = df.copy()
+    mapbox_cols = [
+        "mapbox_feature_id",
+        "mapbox_place_name",
+        "geo_mapbox_lon",
+        "geo_mapbox_lat",
+        "geo_mapbox_relevance",
+        "geo_mapbox_accuracy",
+        "geo_mapbox_match_status",
+        "geo_mapbox_updated_at",
+    ]
+
+    if not CACHE_CSV_PATH.exists():
+        for col in mapbox_cols:
+            out[col] = ""
+        return out
+
+    cache_df = pd.read_csv(CACHE_CSV_PATH)
+    if "query" not in cache_df.columns:
+        for col in mapbox_cols:
+            out[col] = ""
+        return out
+
+    keep_cols = ["query"] + [c for c in mapbox_cols if c in cache_df.columns]
+    cache_df = cache_df[keep_cols].drop_duplicates(subset=["query"], keep="last")
+    cache_df = cache_df.rename(columns={"query": "geo_normalized_best_guess_location"})
+
+    out = out.merge(cache_df, on="geo_normalized_best_guess_location", how="left")
+    return out
 
 
 def build_fields(df: pd.DataFrame) -> pd.DataFrame:
     df = get_date_field(df)
     df = get_location_field(df)
+    df = add_geo_llm_fields(df)
+    df = add_geocoded_location_fields(df)
 
-    out = df[["objectID", "department", "final_date", "geo_options"]].copy()
+    out = df[
+        [
+            "objectID",
+            "department",
+            "final_date",
+            "geo_options",
+            "geo_normalized_best_guess_location",
+            "geo_normalized_source_cols",
+            "geo_normalized_confidence",
+            "geo_normalized_geo_eligible",
+            "mapbox_feature_id",
+            "mapbox_place_name",
+            "geo_mapbox_lon",
+            "geo_mapbox_lat",
+            "geo_mapbox_relevance",
+            "geo_mapbox_accuracy",
+            "geo_mapbox_match_status",
+            "geo_mapbox_updated_at",
+        ]
+    ].copy()
     out = out.rename(columns={"objectID": "objectId"})
     return out
 
@@ -70,8 +110,3 @@ if __name__ == "__main__":
 
 
 
-# Analyze geo_options to return location that is readable for Leaflet/Nominatim/Mapbox/Google on Frontend
-# order of geography_cols array is in order of preference
-# "artistNationality" is the LAST CHOICE and should not be used to inform any other columns - for example "French" can be turned into "France"
-# "city","state","region","country" can all be used to inform one another. "culture" can also be used to inform if need more information
-# "culture" is more broad but a good fallback 

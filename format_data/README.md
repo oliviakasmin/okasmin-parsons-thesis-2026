@@ -4,19 +4,17 @@ This directory includes the logic that maps each object to a single `final_group
 
 ## Relevant Files
 
-- `function_group_mapping.py`
+- `function_groups/function_group_mapping.py`
   - Defines canonical group labels (`JAR`, `VASE`, `BOTTLE`, etc.).
   - Defines explicit `group_mappings` from known object types to groups.
   - Defines `ORDER_OF_PRIORITY` used to resolve conflicts.
 
-- `get_object_function_group.py`
+- `function_groups/get_object_function_group.py`
   - Reads source objects from `fetch_data/data/objects.json`.
   - Resolves candidate groups from both `objectName` and `title`.
-  - Applies special handling for:
-    - `storage` (priority/trump behavior),
-    - `bottle vase` (maps to `vase`),
+  - Applies special handling for `bottle vase` (maps to `vase`).
   - Produces one final decision: `final_group`.
-  - Writes output CSV to `format_data/object_function_groups.csv`.
+  - Writes output CSV to `format_data/generated/object_function_groups.csv`.
 
 ## Final Group Resolution Rules
 
@@ -29,7 +27,7 @@ This directory includes the logic that maps each object to a single `final_group
 
 ## Output
 
-`object_function_groups.csv` columns:
+`generated/object_function_groups.csv` columns:
 
 - `objectID`
 - `department`
@@ -42,5 +40,5 @@ This directory includes the logic that maps each object to a single `final_group
 From repository root:
 
 ```bash
-python -m format_data.get_object_function_group
+python -m format_data.function_groups.get_object_function_group
 ```
