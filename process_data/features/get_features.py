@@ -467,7 +467,11 @@ def run_feature_extraction(
 ):
     features_dir = Path(__file__).resolve().parent
     process_data_dir = features_dir.parent
-    resolved_input_dir = Path(input_dir) if input_dir else (process_data_dir / "real_images")
+    resolved_input_dir = (
+        Path(input_dir)
+        if input_dir
+        else (process_data_dir / "generated/real_images")
+    )
     resolved_output_path = (
         Path(output_path)
         if output_path

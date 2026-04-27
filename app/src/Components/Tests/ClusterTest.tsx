@@ -10,10 +10,7 @@ type ClusterRow = {
   closestTop5Ids: string[];
 };
 
-const outlineImageModules = import.meta.glob("../../../../process_data/real_images/*_outline.png", {
-  eager: true,
-  import: "default"
-}) as Record<string, string>;
+const S3_REAL_IMAGES_BASE_URL = "https://vessels-thesis.s3.amazonaws.com/real_images";
 
 function parseCsvLine(line: string) {
   const values: string[] = [];
@@ -47,13 +44,10 @@ function parseCsvLine(line: string) {
   return values;
 }
 
-function toOutlineImageMap(modules: Record<string, string>) {
+function toOutlineImageMap(objectIds: string[]) {
   const imageMap = new Map<string, string>();
-  for (const [path, src] of Object.entries(modules)) {
-    const filename = path.split("/").pop() ?? "";
-    if (!filename.endsWith("_outline.png")) continue;
-    const objectId = filename.slice(0, -"_outline.png".length);
-    imageMap.set(objectId, src);
+  for (const objectId of objectIds) {
+    imageMap.set(objectId, `${S3_REAL_IMAGES_BASE_URL}/${objectId}_outline.png`);
   }
   return imageMap;
 }
@@ -116,10 +110,16 @@ function ClusterTest() {
   const [stackControlsByCluster, setStackControlsByCluster] = useState<
     Record<string, { opacity: number; brightness: number }>
   >({});
-  const outlineImageByObjectId = useMemo(() => toOutlineImageMap(outlineImageModules), []);
   const clusterRows = useMemo(
     () => buildClusters(finalClusterKeysCsv, finalClusterObjectIdsCsv),
     []
+  );
+  const outlineImageByObjectId = useMemo(
+    () =>
+      toOutlineImageMap(
+        Array.from(new Set(clusterRows.flatMap((clusterRow) => clusterRow.allObjectIds)))
+      ),
+    [clusterRows]
   );
 
   return (

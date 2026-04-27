@@ -3,9 +3,26 @@ import gc
 import json
 import sys
 import time
+import warnings
 from pathlib import Path
 
 import torch
+
+# Run from repo root in 500-item batches:
+# python process_data/process_images/process_images.py --start-index 0 --limit 500 --skip-existing
+# Then increment --start-index by 500 for the next batch (500, 1000, 1500, ...).
+
+# Suppress noisy third-party deprecation warnings from timm while processing.
+warnings.filterwarnings(
+    "ignore",
+    category=FutureWarning,
+    message=r"Importing from timm\.models\.layers is deprecated, please import via timm\.layers",
+)
+warnings.filterwarnings(
+    "ignore",
+    category=FutureWarning,
+    message=r"Importing from timm\.models\.registry is deprecated, please import via timm\.models",
+)
 
 MODULE_DIR = Path(__file__).resolve().parent
 if str(MODULE_DIR) not in sys.path:
@@ -19,9 +36,9 @@ from extract_mask_contours import (
 from utils import load_objects_json, save_images
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
-DEFAULT_OUTPUT_DIR = REPO_ROOT / "process_data/real_images"
-DEFAULT_ERROR_LOG = REPO_ROOT / "process_data/real_images_errors.jsonl"
-DEFAULT_PROCESSED_IDS = REPO_ROOT / "process_data/processed_ids.txt"
+DEFAULT_OUTPUT_DIR = REPO_ROOT / "process_data/generated/real_images"
+DEFAULT_ERROR_LOG = REPO_ROOT / "process_data/generated/real_images_errors.jsonl"
+DEFAULT_PROCESSED_IDS = REPO_ROOT / "process_data/generated/processed_ids.txt"
 DEFAULT_SKIP_OBJECT_ID_FILES = [
     REPO_ROOT / "fetch_data/data/api_errors_object_ids.json",
     REPO_ROOT / "fetch_data/data/manual_reject_object_ids.json",
@@ -174,10 +191,10 @@ def main():
     print(f"total_objects={total}")
     print(f"selected_range=[{start}:{end}]")
     print(f"selected_count={len(selected)}")
-    print(f"output_dir={output_dir}")
-    print(f"processed_ids_file={processed_ids_path}")
+    # print(f"output_dir={output_dir}")
+    # print(f"processed_ids_file={processed_ids_path}")
     print(f"processed_ids_loaded={len(processed_ids)}")
-    print(f"skip_object_ids_files={args.skip_object_ids_file}")
+    # print(f"skip_object_ids_files={args.skip_object_ids_file}")
     print(f"skip_object_ids_loaded={len(skip_object_ids)}")
 
     processed = 0

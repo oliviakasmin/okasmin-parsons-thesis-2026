@@ -31,6 +31,8 @@ function useViewTransition(
       activeGhostsRef.current = [];
 
       const elements = container.querySelectorAll<HTMLElement>("[data-object-id]");
+      // Safety: if a previous transition was interrupted, ensure we start visible.
+      elements.forEach((element) => gsap.set(element, { opacity: 1 }));
       const revealedElements: HTMLElement[] = [];
       const previousRects = previousRectsRef.current;
       const coverage = getRectCoverage(previousRects, currentRects);

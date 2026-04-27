@@ -1,7 +1,7 @@
 export { default as Shelf } from "./EntryPoints/Shelf";
 export { default as Intro } from "./Intro";
 export { default as CaseStudies } from "./CaseStudies";
-export { default as All } from "./Scenes/All";
+export { default as Container } from "./Scenes/Container";
 export { default as BackButton } from "./BackButton";
 export { default as ImageToggleButton } from "./ImageToggleButton";
 export { default as ObjectScene } from "./Scenes/ObjectScene";

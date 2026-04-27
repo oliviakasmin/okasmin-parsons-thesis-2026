@@ -9,7 +9,7 @@ This directory contains the image-processing and shape-analysis pipeline used af
   - `remove_background.py`: background removal with `briaai/RMBG-2.0`.
   - `crop_standardize.py`: crop + normalize vessel placement/size.
   - `extract_mask_contours.py`: generate outline images from masks.
-  - `process_images.py`: batch runner that writes `_no_bg`, `_mask`, `_outline` images to `real_images/`.
+  - `process_images.py`: batch runner that writes `_no_bg`, `_mask`, `_outline` images to `generated/real_images/`.
   - `utils.py`: shared helpers (object loading + atomic file save).
 
 - `features/`
@@ -22,7 +22,7 @@ This directory contains the image-processing and shape-analysis pipeline used af
   - Notebook workflow for weighted clustering + evaluation.
   - Stores final cluster outputs (`final_clusters_object_ids.csv`, `final_clusters_keys.csv`) and helper utilities (`cluster_utils.py`).
 
-- `real_images/`
+- `generated/real_images/`
   - Generated processing outputs used by downstream analysis/frontend experiments.
 
 - `test_analyze/old/` and `old/`
@@ -30,6 +30,6 @@ This directory contains the image-processing and shape-analysis pipeline used af
 
 ## Current end-to-end flow
 
-1. Process source images into `real_images/` via `process_images/process_images.py`.
+1. Process source images into `generated/real_images/` via `process_images/process_images.py`.
 2. Extract shape features into `features/silhouette_features.csv`.
 3. Run clustering experiments in `cluster/` notebooks and export final cluster CSVs.

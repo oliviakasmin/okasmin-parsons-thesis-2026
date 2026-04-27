@@ -10,6 +10,7 @@ const IMAGE_SUFFIX: Record<ImageMode, string> = {
   no_bg: "no_bg",
   outline: "outline"
 };
+const S3_REAL_IMAGES_BASE_URL = "https://vessels-thesis.s3.amazonaws.com/real_images";
 const SELECTED_OBJECT_IDS_STORAGE_KEY = "test2_selected_object_ids";
 const manualRejectObjectIdSet = new Set(manualRejectObjectIds.map((objectId) => String(objectId)));
 const objectTitleById = new Map(
@@ -24,38 +25,12 @@ const objectTitleById = new Map(
   ).map(([objectIdKey, value]) => [String(value.objectID ?? objectIdKey), value.title ?? "Unknown"])
 );
 
-const maskImageModules = import.meta.glob("../../process_data/real_images/*_mask.png", {
-  eager: true,
-  import: "default"
-}) as Record<string, string>;
-const noBgImageModules = import.meta.glob("../../process_data/real_images/*_no_bg.png", {
-  eager: true,
-  import: "default"
-}) as Record<string, string>;
-const outlineImageModules = import.meta.glob("../../process_data/real_images/*_outline.png", {
-  eager: true,
-  import: "default"
-}) as Record<string, string>;
-
-function objectIdFromPath(path: string, mode: ImageMode) {
-  const suffix = `_${IMAGE_SUFFIX[mode]}.png`;
-  const filename = path.split("/").pop() ?? "";
-  if (!filename.endsWith(suffix)) {
-    return null;
-  }
-  return filename.slice(0, -suffix.length);
+function buildImageFilename(objectId: string, mode: ImageMode) {
+  return `${objectId}_${IMAGE_SUFFIX[mode]}.png`;
 }
 
-function toImageMap(modules: Record<string, string>, mode: ImageMode) {
-  const imageMap = new Map<string, string>();
-  for (const [path, src] of Object.entries(modules)) {
-    const objectId = objectIdFromPath(path, mode);
-    if (!objectId) {
-      continue;
-    }
-    imageMap.set(objectId, src);
-  }
-  return imageMap;
+function buildS3ImageUrl(objectId: string, mode: ImageMode) {
+  return `${S3_REAL_IMAGES_BASE_URL}/${buildImageFilename(objectId, mode)}`;
 }
 
 function loadSelectedObjectIdsFromStorage() {
@@ -80,23 +55,11 @@ function Test2() {
   const [imageMode, setImageMode] = useState<ImageMode>("mask");
   const [, setSelectedObjectIds] = useState<string[]>(() => loadSelectedObjectIdsFromStorage());
 
-  const imageMaps = useMemo(
-    () => ({
-      mask: toImageMap(maskImageModules, "mask"),
-      no_bg: toImageMap(noBgImageModules, "no_bg"),
-      outline: toImageMap(outlineImageModules, "outline")
-    }),
-    []
-  );
   const objectIds = useMemo(() => {
-    const allIds = new Set<string>();
-    for (const id of imageMaps.mask.keys()) allIds.add(id);
-    for (const id of imageMaps.no_bg.keys()) allIds.add(id);
-    for (const id of imageMaps.outline.keys()) allIds.add(id);
-    return Array.from(allIds)
+    return Array.from(objectTitleById.keys())
       .filter((objectId) => !manualRejectObjectIdSet.has(objectId))
       .sort((a, b) => Number(a) - Number(b));
-  }, [imageMaps]);
+  }, []);
 
   const handleImageClick = (objectId: string) => {
     setSelectedObjectIds((previousIds) => {
@@ -225,9 +188,9 @@ function Test2() {
                 cursor: "pointer"
               }}
             >
-              {imageMaps[imageMode].get(objectId) ? (
+              {buildS3ImageUrl(objectId, imageMode) ? (
                 <img
-                  src={imageMaps[imageMode].get(objectId)}
+                  src={buildS3ImageUrl(objectId, imageMode)}
                   alt={`${objectId}_${IMAGE_SUFFIX[imageMode]}.png`}
                   loading="lazy"
                   style={{

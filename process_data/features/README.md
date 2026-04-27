@@ -17,7 +17,7 @@ This directory contains silhouette feature extraction code and generated CSV out
 
 ## Input and output
 
-- **Input masks:** default `process_data/real_images/*_mask.png`
+- **Input masks:** default `process_data/generated/real_images/*_mask.png`
 - **Output CSV:** default `process_data/features/silhouette_features.csv`
 - **Row granularity:** one row per `object_id`
 

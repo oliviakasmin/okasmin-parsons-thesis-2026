@@ -2,7 +2,15 @@ import { Route, Routes } from "react-router-dom";
 import Test from "./Components/Tests/Test";
 import Test2 from "./Components/Tests/Test2";
 import ClusterTest from "./Components/Tests/ClusterTest";
-import { All, Intro, CaseStudies, Shelf, Title, ShelfFunction, ShelfColor } from "./Components";
+import {
+  Container,
+  Intro,
+  CaseStudies,
+  Shelf,
+  Title,
+  ShelfFunction,
+  ShelfColor
+} from "./Components";
 
 function Home() {
   return (
@@ -42,7 +50,7 @@ function App() {
       <Route path="/shelf-function" element={<ShelfFunction />} />
       <Route path="/shelf-color" element={<ShelfColor />} />
       <Route path="/case-studies" element={<CaseStudies />} />
-      <Route path="/all/:clusterId" element={<All />} />
+      <Route path="/all/:clusterId" element={<Container />} />
     </Routes>
   );
 }
