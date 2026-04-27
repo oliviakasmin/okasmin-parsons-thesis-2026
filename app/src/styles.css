@@ -27,3 +27,8 @@ body {
   margin: 0 auto;
   padding: 2rem 1rem;
 }
+
+.outline-image {
+  filter: brightness(4);
+  opacity: 1;
+}

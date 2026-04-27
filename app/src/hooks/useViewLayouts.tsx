@@ -73,11 +73,14 @@ type TimelineBucketLike = {
 type BuildSceneLayoutParams = {
   objectIds: string[];
   buckets: TimelineBucketLike[];
-  view: "all" | "timeline";
+  view: "all" | "timeline" | "map";
   sceneWidth: number;
   sceneHeight: number;
   imageSizePx: number;
+  mapProjectionByObjectId?: Map<string, { x: number; y: number; visible: boolean }>;
 };
+
+const MAP_LABEL_CLEARANCE_PX = 10;
 
 function ensurePositive(numberValue: number, fallback: number) {
   return Number.isFinite(numberValue) && numberValue > 0 ? numberValue : fallback;
@@ -164,13 +167,42 @@ function buildTimelineLayout(
   return { objectLayoutById, sceneHeight: computedSceneHeight, bucketSpanByKey };
 }
 
+function buildMapLayout(
+  objectIds: string[],
+  sceneWidth: number,
+  sceneHeight: number,
+  imageSizePx: number,
+  mapProjectionByObjectId: Map<string, { x: number; y: number; visible: boolean }>
+): Pick<SceneLayout, "objectLayoutById" | "sceneHeight" | "bucketSpanByKey"> {
+  const objectLayoutById = new Map<string, ObjectLayout>();
+  const bucketSpanByKey = new Map<string, number>();
+
+  objectIds.forEach((objectId) => {
+    const projected = mapProjectionByObjectId.get(objectId);
+    const visible = projected?.visible === true;
+    const centerX = projected?.x ?? sceneWidth / 2;
+    const bottomY = (projected?.y ?? sceneHeight / 2) - MAP_LABEL_CLEARANCE_PX;
+
+    objectLayoutById.set(objectId, {
+      x: centerX - imageSizePx / 2,
+      y: bottomY - imageSizePx,
+      width: imageSizePx,
+      height: imageSizePx,
+      visible
+    });
+  });
+
+  return { objectLayoutById, sceneHeight, bucketSpanByKey };
+}
+
 function buildSceneLayout({
   objectIds,
   buckets,
   view,
   sceneWidth,
   sceneHeight,
-  imageSizePx
+  imageSizePx,
+  mapProjectionByObjectId
 }: BuildSceneLayoutParams): SceneLayout {
   const width = ensurePositive(sceneWidth, imageSizePx * 4);
   const height = ensurePositive(sceneHeight, imageSizePx * 4);
@@ -183,6 +215,22 @@ function buildSceneLayout({
       sceneHeight: timelineLayout.sceneHeight,
       sceneWidth: width,
       bucketSpanByKey: timelineLayout.bucketSpanByKey
+    };
+  }
+
+  if (view === "map") {
+    const mapLayout = buildMapLayout(
+      objectIds,
+      width,
+      height,
+      size,
+      mapProjectionByObjectId ?? new Map()
+    );
+    return {
+      objectLayoutById: mapLayout.objectLayoutById,
+      sceneHeight: mapLayout.sceneHeight,
+      sceneWidth: width,
+      bucketSpanByKey: mapLayout.bucketSpanByKey
     };
   }
 

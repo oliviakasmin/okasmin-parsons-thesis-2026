@@ -1,13 +1,13 @@
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Box, Button, Typography } from "@mui/material";
-import finalClusterKeysCsv from "../../../process_data/cluster/final_clusters_keys.csv?raw";
-import finalClusterObjectIdsCsv from "../../../process_data/cluster/final_clusters_object_ids.csv?raw";
-import ImageToggleButton from "./ImageToggleButton";
-import useImageToggle from "../hooks/useImageToggle";
-import useImageModules from "../hooks/useImageModules";
-import useFormatClusters, { type ClusterRow } from "../hooks/useFormatClusters";
-import { SHELF_RENDER_IMAGE_SIZE_PX } from "./constants";
+import finalClusterKeysCsv from "../../../../process_data/cluster/final_clusters_keys.csv?raw";
+import finalClusterObjectIdsCsv from "../../../../process_data/cluster/final_clusters_object_ids.csv?raw";
+import ImageToggleButton from "../ImageToggleButton";
+import useImageToggle from "../../hooks/useImageToggle";
+import useImageModules from "../../hooks/useImageModules";
+import useFormatClusters, { type ClusterRow } from "../../hooks/useFormatClusters";
+import { SHELF_RENDER_IMAGE_SIZE_PX } from "../constants";
 
 const cluster0 = "cluster_0";
 const cluster1 = "cluster_1";

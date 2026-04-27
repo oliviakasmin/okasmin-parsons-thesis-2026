@@ -557,9 +557,9 @@ def parse_args() -> argparse.Namespace:
 def main() -> None:
     args = parse_args()
     load_env_file(ENV_PATH)
-    token = os.environ.get("MAPBOX_TOKEN", "").strip()
+    token = os.environ.get("VITE_MAPBOX_TOKEN", "").strip()
     if not token:
-        raise RuntimeError("MAPBOX_TOKEN is required in environment or .env.")
+        raise RuntimeError("VITE_MAPBOX_TOKEN is required in environment or .env.")
 
     summary = geocode_fields(
         input_csv_path=args.input_csv,

@@ -176,210 +176,226 @@ function ClusterTest() {
               //   background: "#111"
             }}
           >
-            <div
-              style={{ marginBottom: "0.55rem", display: "flex", gap: "0.6rem", flexWrap: "wrap" }}
-            >
-              <strong>{clusterRow.cluster}</strong>
-              <span style={{ color: "#bbb", fontSize: "0.9rem" }}>
-                {clusterRow.clusterType} - {clusterRow.allObjectIds.length} objects
-              </span>
-            </div>
-            <div
-              style={{
-                marginBottom: "0.65rem",
-                display: "flex",
-                gap: "0.9rem",
-                alignItems: "center",
-                flexWrap: "wrap"
-              }}
-            >
-              <label
-                style={{ display: "flex", alignItems: "center", gap: "0.45rem", fontSize: "12px" }}
-              >
-                <span style={{ color: "#ddd" }}>Stack opacity</span>
-                <input
-                  type="range"
-                  min="0"
-                  max="1"
-                  step="0.01"
-                  value={
-                    stackControlsByCluster[clusterRow.cluster]?.opacity ??
-                    defaultStackOpacity(clusterRow.allObjectIds.length)
-                  }
-                  onChange={(event) => {
-                    const opacity = Number(event.target.value);
-                    setStackControlsByCluster((previous) => ({
-                      ...previous,
-                      [clusterRow.cluster]: {
-                        opacity,
-                        brightness: previous[clusterRow.cluster]?.brightness ?? 1
-                      }
-                    }));
-                  }}
-                />
-                <span style={{ color: "#aaa", minWidth: "36px" }}>
-                  {(
-                    stackControlsByCluster[clusterRow.cluster]?.opacity ??
-                    defaultStackOpacity(clusterRow.allObjectIds.length)
-                  ).toFixed(2)}
-                </span>
-              </label>
-              <label
-                style={{ display: "flex", alignItems: "center", gap: "0.45rem", fontSize: "12px" }}
-              >
-                <span style={{ color: "#ddd" }}>Brightness</span>
-                <input
-                  type="range"
-                  min="0"
-                  max="4"
-                  step="0.01"
-                  value={stackControlsByCluster[clusterRow.cluster]?.brightness ?? 1}
-                  onChange={(event) => {
-                    const brightness = Number(event.target.value);
-                    setStackControlsByCluster((previous) => ({
-                      ...previous,
-                      [clusterRow.cluster]: {
-                        opacity:
-                          previous[clusterRow.cluster]?.opacity ??
-                          defaultStackOpacity(clusterRow.allObjectIds.length),
-                        brightness
-                      }
-                    }));
-                  }}
-                />
-                <span style={{ color: "#aaa", minWidth: "36px" }}>
-                  {(stackControlsByCluster[clusterRow.cluster]?.brightness ?? 1).toFixed(2)}
-                </span>
-              </label>
-              <button
-                type="button"
-                onClick={() => {
-                  setStackControlsByCluster((previous) => ({
-                    ...previous,
-                    [clusterRow.cluster]: {
-                      opacity: defaultStackOpacity(clusterRow.allObjectIds.length),
-                      brightness: 1
-                    }
-                  }));
-                }}
-                style={{
-                  border: "1px solid #fff",
-                  background: "#fff",
-                  color: "#000",
-                  padding: "0.2rem 0.55rem",
-                  cursor: "pointer",
-                  fontSize: "12px",
-                  fontWeight: 600
-                }}
-              >
-                Reset
-              </button>
-            </div>
-
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(6, minmax(140px, 1fr))",
-                gap: "10px"
-              }}
-            >
-              <figure style={{ margin: 0 }}>
-                <div
-                  style={{
-                    width: "100%",
-                    aspectRatio: "1 / 1",
-                    position: "relative",
-                    background: "#000",
-                    // border: "1px solid #333",
-                    // borderRadius: "8px",
-                    overflow: "hidden",
-                    filter: `brightness(${
-                      stackControlsByCluster[clusterRow.cluster]?.brightness ?? 1
-                    })`
-                  }}
-                >
-                  {clusterRow.allObjectIds.map((objectId) => {
-                    const imageSrc = outlineImageByObjectId.get(objectId);
-                    if (!imageSrc) return null;
-                    return (
-                      <img
-                        key={`${clusterRow.cluster}-stack-${objectId}`}
-                        src={imageSrc}
-                        alt={`${objectId}_outline.png`}
-                        loading="lazy"
-                        style={{
-                          position: "absolute",
-                          inset: 0,
-                          width: "100%",
-                          height: "100%",
-                          objectFit: "contain",
-                          opacity:
-                            stackControlsByCluster[clusterRow.cluster]?.opacity ??
-                            defaultStackOpacity(clusterRow.allObjectIds.length)
-                        }}
-                      />
-                    );
-                  })}
-                </div>
-                <figcaption style={{ marginTop: "6px", fontSize: "11px", color: "#ddd" }}>
-                  Stacked all
-                </figcaption>
-              </figure>
-
-              {clusterRow.closestTop5Ids.map((objectId, index) => {
-                const imageSrc = outlineImageByObjectId.get(objectId);
-                return (
-                  <figure
-                    key={`${clusterRow.cluster}-closest-${objectId}-${index}`}
-                    style={{ margin: 0 }}
+            {(() => {
+              const rowOpacity =
+                stackControlsByCluster[clusterRow.cluster]?.opacity ??
+                defaultStackOpacity(clusterRow.allObjectIds.length);
+              const rowBrightness = stackControlsByCluster[clusterRow.cluster]?.brightness ?? 1;
+              return (
+                <>
+                  <div
+                    style={{
+                      marginBottom: "0.55rem",
+                      display: "flex",
+                      gap: "0.6rem",
+                      flexWrap: "wrap"
+                    }}
                   >
-                    <div
+                    <strong>{clusterRow.cluster}</strong>
+                    <span style={{ color: "#bbb", fontSize: "0.9rem" }}>
+                      {clusterRow.clusterType} - {clusterRow.allObjectIds.length} objects
+                    </span>
+                  </div>
+                  <div
+                    style={{
+                      marginBottom: "0.65rem",
+                      display: "flex",
+                      gap: "0.9rem",
+                      alignItems: "center",
+                      flexWrap: "wrap"
+                    }}
+                  >
+                    <label
                       style={{
-                        width: "100%",
-                        aspectRatio: "1 / 1",
-                        background: "#000",
-                        // border: "1px solid #333",
-                        // borderRadius: "8px",
-                        overflow: "hidden",
-                        display: "grid",
-                        placeItems: "center",
-                        filter: `brightness(${
-                          stackControlsByCluster[clusterRow.cluster]?.brightness ?? 1
-                        })`
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "0.45rem",
+                        fontSize: "12px"
                       }}
                     >
-                      {imageSrc ? (
-                        <img
-                          src={imageSrc}
-                          alt={`${objectId}_outline.png`}
-                          loading="lazy"
-                          style={{
-                            width: "100%",
-                            height: "100%",
-                            objectFit: "contain",
-                            display: "block"
-                          }}
-                        />
-                      ) : (
-                        <span
-                          style={{
-                            fontSize: "10px",
-                            color: "#777",
-                            textAlign: "center",
-                            padding: "6px"
-                          }}
+                      <span style={{ color: "#ddd" }}>Stack opacity</span>
+                      <input
+                        type="range"
+                        min="0"
+                        max="1"
+                        step="0.01"
+                        value={rowOpacity}
+                        onChange={(event) => {
+                          const opacity = Number(event.target.value);
+                          setStackControlsByCluster((previous) => ({
+                            ...previous,
+                            [clusterRow.cluster]: {
+                              opacity,
+                              brightness: previous[clusterRow.cluster]?.brightness ?? 1
+                            }
+                          }));
+                        }}
+                      />
+                      <span style={{ color: "#aaa", minWidth: "36px" }}>
+                        {rowOpacity.toFixed(2)}
+                      </span>
+                    </label>
+                    <label
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "0.45rem",
+                        fontSize: "12px"
+                      }}
+                    >
+                      <span style={{ color: "#ddd" }}>Brightness</span>
+                      <input
+                        type="range"
+                        min="0"
+                        max="4"
+                        step="0.01"
+                        value={rowBrightness}
+                        onChange={(event) => {
+                          const brightness = Number(event.target.value);
+                          setStackControlsByCluster((previous) => ({
+                            ...previous,
+                            [clusterRow.cluster]: {
+                              opacity:
+                                previous[clusterRow.cluster]?.opacity ??
+                                defaultStackOpacity(clusterRow.allObjectIds.length),
+                              brightness
+                            }
+                          }));
+                        }}
+                      />
+                      <span style={{ color: "#aaa", minWidth: "36px" }}>
+                        {rowBrightness.toFixed(2)}
+                      </span>
+                    </label>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setStackControlsByCluster((previous) => ({
+                          ...previous,
+                          [clusterRow.cluster]: {
+                            opacity: defaultStackOpacity(clusterRow.allObjectIds.length),
+                            brightness: 1
+                          }
+                        }));
+                      }}
+                      style={{
+                        border: "1px solid #fff",
+                        background: "#fff",
+                        color: "#000",
+                        padding: "0.2rem 0.55rem",
+                        cursor: "pointer",
+                        fontSize: "12px",
+                        fontWeight: 600
+                      }}
+                    >
+                      Reset
+                    </button>
+                  </div>
+
+                  <div
+                    style={{
+                      display: "grid",
+                      gridTemplateColumns: "repeat(6, minmax(140px, 1fr))",
+                      gap: "10px"
+                    }}
+                  >
+                    <figure style={{ margin: 0 }}>
+                      <div
+                        style={{
+                          width: "100%",
+                          aspectRatio: "1 / 1",
+                          position: "relative",
+                          background: "#000",
+                          // border: "1px solid #333",
+                          // borderRadius: "8px",
+                          overflow: "hidden",
+                          filter: `brightness(${rowBrightness})`
+                        }}
+                      >
+                        {clusterRow.allObjectIds.map((objectId) => {
+                          const imageSrc = outlineImageByObjectId.get(objectId);
+                          if (!imageSrc) return null;
+                          return (
+                            <img
+                              key={`${clusterRow.cluster}-stack-${objectId}`}
+                              src={imageSrc}
+                              alt={`${objectId}_outline.png`}
+                              className="outline-image"
+                              loading="lazy"
+                              style={{
+                                position: "absolute",
+                                inset: 0,
+                                width: "100%",
+                                height: "100%",
+                                objectFit: "contain",
+                                opacity: rowOpacity
+                              }}
+                            />
+                          );
+                        })}
+                      </div>
+                      <figcaption style={{ marginTop: "6px", fontSize: "11px", color: "#ddd" }}>
+                        Stacked all
+                      </figcaption>
+                    </figure>
+
+                    {clusterRow.closestTop5Ids.map((objectId, index) => {
+                      const imageSrc = outlineImageByObjectId.get(objectId);
+                      return (
+                        <figure
+                          key={`${clusterRow.cluster}-closest-${objectId}-${index}`}
+                          style={{ margin: 0 }}
                         >
-                          Missing outline
-                        </span>
-                      )}
-                    </div>
-                    <figcaption style={{ marginTop: "6px", fontSize: "11px", color: "#ddd" }}>
-                      Closest {index + 1}: {objectId}
-                    </figcaption>
-                  </figure>
-                );
-              })}
-            </div>
+                          <div
+                            style={{
+                              width: "100%",
+                              aspectRatio: "1 / 1",
+                              background: "#000",
+                              // border: "1px solid #333",
+                              // borderRadius: "8px",
+                              overflow: "hidden",
+                              display: "grid",
+                              placeItems: "center",
+                              filter: `brightness(${rowBrightness})`
+                            }}
+                          >
+                            {imageSrc ? (
+                              <img
+                                src={imageSrc}
+                                alt={`${objectId}_outline.png`}
+                                className="outline-image"
+                                loading="lazy"
+                                style={{
+                                  width: "100%",
+                                  height: "100%",
+                                  objectFit: "contain",
+                                  display: "block",
+                                  opacity: rowOpacity
+                                }}
+                              />
+                            ) : (
+                              <span
+                                style={{
+                                  fontSize: "10px",
+                                  color: "#777",
+                                  textAlign: "center",
+                                  padding: "6px"
+                                }}
+                              >
+                                Missing outline
+                              </span>
+                            )}
+                          </div>
+                          <figcaption style={{ marginTop: "6px", fontSize: "11px", color: "#ddd" }}>
+                            Closest {index + 1}: {objectId}
+                          </figcaption>
+                        </figure>
+                      );
+                    })}
+                  </div>
+                </>
+              );
+            })()}
           </section>
         ))}
       </div>

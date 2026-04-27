@@ -1,8 +1,8 @@
 import { Box, Typography } from "@mui/material";
-import { SCENE_HEADER_HEIGHT_PX } from "./constants";
+import { SCENE_HEADER_HEIGHT_PX } from "../constants";
 
 type SceneHeaderProps = {
-  view: "all" | "timeline";
+  view: "all" | "timeline" | "map";
   objectCount: number;
   spanYears: number;
 };

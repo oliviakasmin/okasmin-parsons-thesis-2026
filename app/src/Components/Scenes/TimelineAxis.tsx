@@ -1,6 +1,6 @@
 import { Box, Chip, Typography } from "@mui/material";
-import type { TimelineBucket } from "../hooks/useTimelineBuckets";
-import { SCENE_LEFT_BASELINE_COLOR } from "./constants";
+import type { TimelineBucket } from "../../hooks/useTimelineBuckets";
+import { SCENE_LEFT_BASELINE_COLOR } from "../constants";
 
 type TimelineAxisProps = {
   buckets: TimelineBucket[];

@@ -1,29 +1,32 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
 import { Box, Button, Typography } from "@mui/material";
-import finalClusterKeysCsv from "../../../process_data/cluster/final_clusters_keys.csv?raw";
-import finalClusterObjectIdsCsv from "../../../process_data/cluster/final_clusters_object_ids.csv?raw";
-import BackButton from "./BackButton";
-import ImageToggleButton from "./ImageToggleButton";
+import finalClusterKeysCsv from "../../../../process_data/cluster/final_clusters_keys.csv?raw";
+import finalClusterObjectIdsCsv from "../../../../process_data/cluster/final_clusters_object_ids.csv?raw";
+import BackButton from "../BackButton";
+import ImageToggleButton from "../ImageToggleButton";
 import ObjectScene from "./ObjectScene";
+import MapView from "./Map";
 import SceneHeader from "./SceneHeader";
 import TimelineAxis from "./TimelineAxis";
-import useImageToggle from "../hooks/useImageToggle";
-import useImageModules from "../hooks/useImageModules";
-import useFormatClusters from "../hooks/useFormatClusters";
-import useTimelineBuckets from "../hooks/useTimelineBuckets";
-import { buildSceneLayout } from "../hooks/useViewLayouts";
+import useImageToggle from "../../hooks/useImageToggle";
+import useImageModules from "../../hooks/useImageModules";
+import useFormatClusters from "../../hooks/useFormatClusters";
+import useTimelineBuckets from "../../hooks/useTimelineBuckets";
+import useObjectGeo, { useObjectCountryNames } from "../../hooks/useObjectGeo";
+import { buildSceneLayout } from "../../hooks/useViewLayouts";
 import {
   SCENE_LEFT_PANEL_MAX_WIDTH_PX,
   SCENE_LEFT_PANEL_MIN_WIDTH_PX,
   SCENE_LEFT_PANEL_WIDTH_VW,
   SUBGROUP_RENDER_IMAGE_SIZE_PX
-} from "./constants";
+} from "../constants";
 
 function All() {
   const { clusterId } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
-  const currentView = searchParams.get("view") === "timeline" ? "timeline" : "all";
+  const searchView = searchParams.get("view");
+  const currentView = searchView === "timeline" || searchView === "map" ? searchView : "all";
   const { mode, options, setMode } = useImageToggle({ colorOption: true });
   const sceneViewportRef = useRef<HTMLDivElement | null>(null);
   const [sceneViewportSize, setSceneViewportSize] = useState({ width: 0, height: 0 });
@@ -33,11 +36,17 @@ function All() {
     () => clusterRows.find((row) => row.cluster === clusterId),
     [clusterId, clusterRows]
   );
+  const clusterObjectIds = selectedCluster?.allObjectIds ?? [];
   const {
     buckets: timelineBuckets,
     excludedCount,
     spanYears
-  } = useTimelineBuckets(selectedCluster?.allObjectIds ?? []);
+  } = useTimelineBuckets(clusterObjectIds);
+  const geoByObjectId = useObjectGeo(clusterObjectIds);
+  const countryNames = useObjectCountryNames(clusterObjectIds);
+  const [mapProjectionByObjectId, setMapProjectionByObjectId] = useState<
+    Map<string, { x: number; y: number; visible: boolean }>
+  >(new globalThis.Map());
   const allSceneLayout = useMemo(
     () =>
       buildSceneLayout({
@@ -73,12 +82,46 @@ function All() {
       timelineBuckets
     ]
   );
+  const mapSceneLayout = useMemo(
+    () =>
+      buildSceneLayout({
+        objectIds: selectedCluster?.allObjectIds ?? [],
+        buckets: timelineBuckets,
+        view: "map",
+        sceneWidth: sceneViewportSize.width,
+        sceneHeight: sceneViewportSize.height,
+        imageSizePx: SUBGROUP_RENDER_IMAGE_SIZE_PX,
+        mapProjectionByObjectId
+      }),
+    [
+      mapProjectionByObjectId,
+      sceneViewportSize.height,
+      sceneViewportSize.width,
+      selectedCluster?.allObjectIds,
+      timelineBuckets
+    ]
+  );
 
-  const sceneLayout = currentView === "timeline" ? timelineSceneLayout : allSceneLayout;
+  const sceneLayout =
+    currentView === "timeline"
+      ? timelineSceneLayout
+      : currentView === "map"
+        ? mapSceneLayout
+        : allSceneLayout;
   const allSceneHeight = Math.max(sceneViewportSize.height, allSceneLayout.sceneHeight);
   const timelineSceneHeight = Math.max(sceneViewportSize.height, timelineSceneLayout.sceneHeight);
-  const contentSceneHeight = currentView === "timeline" ? timelineSceneHeight : allSceneHeight;
-  const sharedSceneWidth = Math.max(allSceneLayout.sceneWidth, timelineSceneLayout.sceneWidth);
+  const mapSceneHeight = Math.max(sceneViewportSize.height, mapSceneLayout.sceneHeight);
+  const contentSceneHeight =
+    currentView === "timeline"
+      ? timelineSceneHeight
+      : currentView === "map"
+        ? mapSceneHeight
+        : allSceneHeight;
+  const sharedSceneWidth = Math.max(
+    allSceneLayout.sceneWidth,
+    timelineSceneLayout.sceneWidth,
+    mapSceneLayout.sceneWidth
+  );
 
   useLayoutEffect(() => {
     const viewportNode = sceneViewportRef.current;
@@ -207,12 +250,21 @@ function All() {
           ref={sceneViewportRef}
           sx={{ position: "relative", flex: 1, minHeight: 0, minWidth: 0, width: "100%" }}
         >
+          {currentView === "map" ? (
+            <MapView
+              objectIds={selectedCluster.allObjectIds}
+              geoByObjectId={geoByObjectId}
+              countryNames={countryNames}
+              onProjectionChange={setMapProjectionByObjectId}
+            />
+          ) : null}
           <Box
             sx={{
               position: "absolute",
               inset: 0,
               overflowX: currentView === "timeline" ? "auto" : "hidden",
-              overflowY: "auto"
+              overflowY: "auto",
+              pointerEvents: currentView === "map" ? "none" : "auto"
             }}
           >
             <Box
@@ -238,6 +290,7 @@ function All() {
                   mode === "outline" ? "outline" : mode === "color" ? "no_bg" : "mask"
                 }
                 enableHoverSwap={mode !== "color"}
+                pointerEvents={currentView === "map" ? "none" : "auto"}
               />
             </Box>
           </Box>
@@ -294,6 +347,25 @@ function All() {
             }}
           >
             Timeline
+          </Button>
+          <Button
+            type="button"
+            onClick={() => setSearchParams({ view: "map" })}
+            variant="outlined"
+            sx={{
+              borderColor: "#fff",
+              background: currentView === "map" ? "#fff" : "#000",
+              color: currentView === "map" ? "#000" : "#fff",
+              textTransform: "none",
+              minWidth: 0,
+              borderRadius: 0,
+              "&:hover": {
+                borderColor: "#fff",
+                background: currentView === "map" ? "#fff" : "#000"
+              }
+            }}
+          >
+            Map
           </Button>
         </Box>
       </Box>

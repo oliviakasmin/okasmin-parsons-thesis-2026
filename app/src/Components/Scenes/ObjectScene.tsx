@@ -1,7 +1,7 @@
 import { useMemo, useRef, useState } from "react";
 import { Box } from "@mui/material";
-import useSceneAnimator from "../hooks/useSceneAnimator";
-import type { ObjectLayout } from "../hooks/useViewLayouts";
+import useSceneAnimator from "../../hooks/useSceneAnimator";
+import type { ObjectLayout } from "../../hooks/useViewLayouts";
 
 type ObjectSceneProps = {
   objectIds: string[];
@@ -12,6 +12,7 @@ type ObjectSceneProps = {
   getHoverImageSrc: (objectId: string) => string | undefined;
   imageAltSuffix: string;
   enableHoverSwap: boolean;
+  pointerEvents?: "auto" | "none";
 };
 
 function ObjectScene({
@@ -22,7 +23,8 @@ function ObjectScene({
   getPrimaryImageSrc,
   getHoverImageSrc,
   imageAltSuffix,
-  enableHoverSwap
+  enableHoverSwap,
+  pointerEvents = "auto"
 }: ObjectSceneProps) {
   const [hoveredObjectId, setHoveredObjectId] = useState<string | null>(null);
   const nodeByObjectIdRef = useRef<Map<string, HTMLDivElement>>(new Map());
@@ -54,6 +56,7 @@ function ObjectScene({
         const primaryImageSrc = getPrimaryImageSrc(objectId);
         const hoverImageSrc = getHoverImageSrc(objectId);
         const isHovered = hoveredObjectId === objectId;
+        const isOutlineMode = imageAltSuffix === "outline";
 
         return (
           <Box
@@ -72,7 +75,8 @@ function ObjectScene({
               display: "flex",
               justifyContent: "center",
               alignItems: "flex-end",
-              cursor: "pointer"
+              cursor: pointerEvents === "none" ? "default" : "pointer",
+              pointerEvents
             }}
           >
             {primaryImageSrc ? (
@@ -80,13 +84,21 @@ function ObjectScene({
                 <img
                   src={primaryImageSrc}
                   alt={`${objectId}_${imageAltSuffix}.png`}
+                  className={isOutlineMode ? "outline-image" : undefined}
                   loading="lazy"
                   style={{
                     width: "100%",
                     height: "100%",
                     objectFit: "contain",
                     objectPosition: "center bottom",
-                    display: "block"
+                    display: "block",
+                    ...(isOutlineMode
+                      ? {
+                          opacity: 1,
+                          filter:
+                            "brightness(4) contrast(2) drop-shadow(0 0 1px rgba(255,255,255,1)) drop-shadow(0 0 3px rgba(255,255,255,0.9))"
+                        }
+                      : {})
                   }}
                 />
                 {enableHoverSwap && hoverImageSrc ? (

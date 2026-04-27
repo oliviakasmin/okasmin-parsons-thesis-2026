@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import type { TimelineBucket } from "../hooks/useTimelineBuckets";
+import type { TimelineBucket } from "../../hooks/useTimelineBuckets";
 import TimelineAxis from "./TimelineAxis";
 
 type TimelineProps = {

@@ -7,8 +7,9 @@ type SceneNodeMap = Map<string, HTMLDivElement>;
 type UseSceneAnimatorParams = {
   nodeByObjectId: SceneNodeMap;
   objectLayoutById: Map<string, ObjectLayout>;
-  duration?: number;
 };
+
+const DEFAULT_SCENE_ANIMATION_DURATION_S = 1.05;
 
 function noiseFromObjectId(objectId: string, salt: number) {
   let hash = 2166136261 ^ salt;
@@ -23,11 +24,7 @@ function clamp(value: number, min: number, max: number) {
   return Math.min(max, Math.max(min, value));
 }
 
-function useSceneAnimator({
-  nodeByObjectId,
-  objectLayoutById,
-  duration = 1.05
-}: UseSceneAnimatorParams) {
+function useSceneAnimator({ nodeByObjectId, objectLayoutById }: UseSceneAnimatorParams) {
   const hasInitializedRef = useRef(false);
   const activeTimelineRef = useRef<gsap.core.Timeline | null>(null);
 
@@ -51,7 +48,9 @@ function useSceneAnimator({
       return;
     }
 
-    const timeline = gsap.timeline({ defaults: { duration, ease: "power2.out" } });
+    const timeline = gsap.timeline({
+      defaults: { duration: DEFAULT_SCENE_ANIMATION_DURATION_S, ease: "power2.out" }
+    });
     activeTimelineRef.current = timeline;
 
     nodeByObjectId.forEach((node, objectId) => {
@@ -80,7 +79,7 @@ function useSceneAnimator({
         {
           t: 1,
           ease: "power2.out",
-          duration,
+          duration: DEFAULT_SCENE_ANIMATION_DURATION_S,
           onUpdate: () => {
             const t = progressProxy.t;
             const baseX = currentX + travelX * t;
@@ -103,7 +102,7 @@ function useSceneAnimator({
           width: layout.width,
           height: layout.height,
           opacity: layout.visible ? 1 : 0,
-          duration
+          duration: DEFAULT_SCENE_ANIMATION_DURATION_S
         },
         0
       );
@@ -113,7 +112,7 @@ function useSceneAnimator({
       timeline.kill();
       if (activeTimelineRef.current === timeline) activeTimelineRef.current = null;
     };
-  }, [duration, nodeByObjectId, objectLayoutById]);
+  }, [nodeByObjectId, objectLayoutById]);
 }
 
 export default useSceneAnimator;

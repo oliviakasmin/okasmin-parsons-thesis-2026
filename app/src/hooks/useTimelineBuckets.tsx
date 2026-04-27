@@ -1,5 +1,6 @@
 import { useMemo, useRef } from "react";
 import fieldsCsv from "../../../format_data/generated/fields.csv?raw";
+import timelineBucketsJson from "../../../format_data/date/timeline_buckets.json?raw";
 
 type TimelineBucket = {
   key: string;
@@ -62,14 +63,22 @@ function shuffleOnce<T>(items: T[]) {
   return copy;
 }
 
+type TimelineBucketMetadata = {
+  final_date_bucket_start: number;
+  final_date_bucket_end: number;
+  final_date_bucket_label: string;
+};
+
+function buildTimelineBucketMetadataMap(jsonRaw: string) {
+  const parsed = JSON.parse(jsonRaw) as Record<string, TimelineBucketMetadata>;
+  return new Map(Object.entries(parsed));
+}
+
 function buildFinalDateByObjectIdMap(csvRaw: string) {
   type BucketInfo = {
     beginDate: number;
     endDate: number;
     key: string;
-    startYear: number;
-    endYear: number;
-    label: string;
   };
   const lines = csvRaw.split(/\r?\n/).filter(Boolean);
   if (!lines.length) return new Map<string, BucketInfo>();
@@ -79,9 +88,6 @@ function buildFinalDateByObjectIdMap(csvRaw: string) {
   const objectBeginDateIdx = header.indexOf("objectBeginDate");
   const objectEndDateIdx = header.indexOf("objectEndDate");
   const bucketKeyIdx = header.indexOf("final_date_bucket_key");
-  const bucketStartIdx = header.indexOf("final_date_bucket_start");
-  const bucketEndIdx = header.indexOf("final_date_bucket_end");
-  const bucketLabelIdx = header.indexOf("final_date_bucket_label");
   const result = new Map<string, BucketInfo>();
 
   for (const line of lines.slice(1)) {
@@ -90,22 +96,10 @@ function buildFinalDateByObjectIdMap(csvRaw: string) {
     const beginDate = parseStrictYear(cells[objectBeginDateIdx] ?? "");
     const endDate = parseStrictYear(cells[objectEndDateIdx] ?? "");
     const key = (cells[bucketKeyIdx] ?? "").trim();
-    const startYear = parseStrictYear(cells[bucketStartIdx] ?? "");
-    const endYear = parseStrictYear(cells[bucketEndIdx] ?? "");
-    const label = (cells[bucketLabelIdx] ?? "").trim();
 
-    if (
-      !objectId ||
-      beginDate === null ||
-      endDate === null ||
-      !key ||
-      startYear === null ||
-      endYear === null ||
-      !label
-    )
-      continue;
+    if (!objectId || beginDate === null || endDate === null || !key) continue;
 
-    result.set(objectId, { beginDate, endDate, key, startYear, endYear, label });
+    result.set(objectId, { beginDate, endDate, key });
   }
 
   return result;
@@ -113,6 +107,10 @@ function buildFinalDateByObjectIdMap(csvRaw: string) {
 
 function useTimelineBuckets(objectIds: string[]): TimelineBucketsResult {
   const finalDateByObjectId = useMemo(() => buildFinalDateByObjectIdMap(fieldsCsv), []);
+  const timelineBucketMetadataByKey = useMemo(
+    () => buildTimelineBucketMetadataMap(timelineBucketsJson),
+    []
+  );
   const randomizedOrderCacheRef = useRef<Map<string, string[]>>(new Map());
 
   return useMemo(() => {
@@ -131,6 +129,12 @@ function useTimelineBuckets(objectIds: string[]): TimelineBucketsResult {
       minBeginDate = Math.min(minBeginDate, bucketInfo.beginDate);
       maxEndDate = Math.max(maxEndDate, bucketInfo.endDate);
 
+      const timelineBucketMetadata = timelineBucketMetadataByKey.get(bucketInfo.key);
+      if (!timelineBucketMetadata) {
+        excludedCount += 1;
+        continue;
+      }
+
       const existingBucket = bucketsByKey.get(bucketInfo.key);
 
       if (existingBucket) {
@@ -140,9 +144,9 @@ function useTimelineBuckets(objectIds: string[]): TimelineBucketsResult {
 
       bucketsByKey.set(bucketInfo.key, {
         key: bucketInfo.key,
-        startYear: bucketInfo.startYear,
-        endYear: bucketInfo.endYear,
-        label: bucketInfo.label,
+        startYear: timelineBucketMetadata.final_date_bucket_start,
+        endYear: timelineBucketMetadata.final_date_bucket_end,
+        label: timelineBucketMetadata.final_date_bucket_label,
         objectIds: [objectId]
       });
     }
@@ -168,7 +172,7 @@ function useTimelineBuckets(objectIds: string[]): TimelineBucketsResult {
         : 0;
 
     return { buckets, excludedCount, spanYears };
-  }, [finalDateByObjectId, objectIds]);
+  }, [finalDateByObjectId, objectIds, timelineBucketMetadataByKey]);
 }
 
 export default useTimelineBuckets;

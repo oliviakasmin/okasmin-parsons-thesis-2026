@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Box, Button, Typography } from "@mui/material";
-import { SUBGROUP_RENDER_IMAGE_SIZE_PX } from "./constants";
+import { SUBGROUP_RENDER_IMAGE_SIZE_PX } from "../constants";
 
 type LeftOutlineStackPanelProps = {
   objectIds: string[];

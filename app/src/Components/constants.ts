@@ -1,6 +1,7 @@
 export const SOURCE_IMAGE_SIZE_PX = 768;
 export const SHELF_IMAGE_ASPECT_RATIO = 0.2;
-export const SUBGROUP_IMAGE_ASPECT_RATIO = 0.05;
+export const SUBGROUP_IMAGE_ASPECT_RATIO = 0.06;
+export const ALL_IMAGE_ASPECT_RATIO = 0.2;
 export const SCENE_HEADER_HEIGHT_PX = 112;
 export const SCENE_LEFT_PANEL_WIDTH_VW = 22;
 export const SCENE_LEFT_PANEL_MIN_WIDTH_PX = 170;
