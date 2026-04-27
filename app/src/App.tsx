@@ -18,8 +18,9 @@ function Home() {
       }}
     >
       <div style={{ display: "grid", gap: "1rem", width: "100%" }}>
-        <Intro />
         <Title />
+        <Intro />
+
         <Shelf />
         <ShelfFunction />
         <ShelfColor />
