@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import { homeEntryDomId, type HomeEntryScrollId } from "./Components/constants";
 import Test from "./Components/Tests/Test";
 import Test2 from "./Components/Tests/Test2";
@@ -16,17 +16,26 @@ import {
 
 function Home() {
   const location = useLocation();
+  const navigate = useNavigate();
   useEffect(() => {
     if (location.pathname !== "/") return;
     const entry = (location.state as { homeScrollTo?: HomeEntryScrollId } | null)?.homeScrollTo;
-    if (!entry) return;
+    if (!entry) {
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+      return;
+    }
     const el = document.getElementById(homeEntryDomId(entry));
-    if (!el) return;
+    if (!el) {
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+      return;
+    }
     const scroll = () => el.scrollIntoView({ behavior: "smooth", block: "start" });
     scroll();
     const timeoutId = window.setTimeout(scroll, 120);
+    // Consume one-time home scroll state so future home loads default to top.
+    navigate(location.pathname, { replace: true, state: null });
     return () => window.clearTimeout(timeoutId);
-  }, [location.pathname, location.state]);
+  }, [location.pathname, location.state, navigate]);
 
   return (
     <main
