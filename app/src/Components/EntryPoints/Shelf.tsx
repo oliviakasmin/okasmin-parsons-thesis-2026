@@ -88,7 +88,28 @@ function Shelf() {
         overflow: "auto"
       }}
     >
-      <Box sx={{ display: "flex", alignItems: "center", gap: "0.5rem", mb: "0.5rem" }}>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          gap: "0.5rem",
+          mb: "0.5rem"
+        }}
+      >
+        <Box sx={{ maxWidth: "25vw" }}>
+          <Typography
+            component="h2"
+            sx={{
+              m: 0,
+              fontSize: "2rem",
+              lineHeight: 1.05,
+              letterSpacing: "0.02em"
+            }}
+          >
+            choose a form
+          </Typography>
+        </Box>
         <Box sx={{ display: "flex", alignItems: "center", gap: 0 }}>
           <ImageToggleButton mode={mode} options={options} onChange={setMode} />
         </Box>

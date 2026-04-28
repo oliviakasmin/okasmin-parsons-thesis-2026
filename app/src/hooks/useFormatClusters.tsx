@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import useValidObjectIds from "./useValidObjectIds";
 
 export type ClusterRow = {
   cluster: string;
@@ -39,13 +40,14 @@ function parseCsvLine(line: string) {
   return values;
 }
 
-function buildClusters(keysCsv: string, objectIdsCsv: string) {
+function buildClusters(keysCsv: string, objectIdsCsv: string, validObjectIds: Set<string>) {
   const objectIdsByCluster = new Map<string, string[]>();
   const objectIdLines = objectIdsCsv.split(/\r?\n/).filter(Boolean);
 
   for (const line of objectIdLines.slice(1)) {
     const [objectId, cluster] = parseCsvLine(line);
     if (!cluster || !objectId) continue;
+    if (!validObjectIds.has(objectId)) continue;
     const existing = objectIdsByCluster.get(cluster) ?? [];
     existing.push(objectId);
     objectIdsByCluster.set(cluster, existing);
@@ -66,17 +68,22 @@ function buildClusters(keysCsv: string, objectIdsCsv: string) {
     const cells = parseCsvLine(line);
     const cluster = cells[clusterIdx];
     if (!cluster) continue;
+    const closestTop5Ids = [
+      cells[closest1Idx],
+      cells[closest2Idx],
+      cells[closest3Idx],
+      cells[closest4Idx],
+      cells[closest5Idx]
+    ].filter((value): value is string => Boolean(value) && validObjectIds.has(value));
+    const allObjectIds = objectIdsByCluster.get(cluster) ?? [];
+    if (allObjectIds.length === 0 && closestTop5Ids.length === 0) {
+      continue;
+    }
     rows.push({
       cluster,
       clusterType: cells[clusterTypeIdx] ?? "unknown",
-      allObjectIds: objectIdsByCluster.get(cluster) ?? [],
-      closestTop5Ids: [
-        cells[closest1Idx],
-        cells[closest2Idx],
-        cells[closest3Idx],
-        cells[closest4Idx],
-        cells[closest5Idx]
-      ].filter(Boolean)
+      allObjectIds,
+      closestTop5Ids
     });
   }
 
@@ -84,7 +91,11 @@ function buildClusters(keysCsv: string, objectIdsCsv: string) {
 }
 
 function useFormatClusters(keysCsv: string, objectIdsCsv: string) {
-  const clusterRows = useMemo(() => buildClusters(keysCsv, objectIdsCsv), [keysCsv, objectIdsCsv]);
+  const validObjectIds = useValidObjectIds();
+  const clusterRows = useMemo(
+    () => buildClusters(keysCsv, objectIdsCsv, validObjectIds),
+    [keysCsv, objectIdsCsv, validObjectIds]
+  );
   const clusterRowById = useMemo(
     () => new Map(clusterRows.map((row) => [row.cluster, row])),
     [clusterRows]

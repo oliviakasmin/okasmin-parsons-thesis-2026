@@ -87,6 +87,9 @@ def add_color_fields(df: pd.DataFrame) -> pd.DataFrame:
         "top_color_hex",
         "dominant_colors_hex",
         "color_group_id",
+        "color_group_key",
+        "color_group_type",
+        "color_group_confidence",
     ]
     if not COLOR_FIELDS_CSV_PATH.exists():
         for col in color_cols:
@@ -139,6 +142,9 @@ def build_fields(df: pd.DataFrame) -> pd.DataFrame:
             "top_color_hex",
             "dominant_colors_hex",
             "color_group_id",
+            "color_group_key",
+            "color_group_type",
+            "color_group_confidence",
         ]
     ].copy()
     out = out.rename(columns={"objectID": "objectId"})

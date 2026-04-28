@@ -9,6 +9,7 @@ import useImageToggle from "../../hooks/useImageToggle";
 import useImageModules from "../../hooks/useImageModules";
 import useFormatClusters from "../../hooks/useFormatClusters";
 import useFunctionGroups, { isFunctionGroup } from "../../hooks/useFunctionGroups";
+import useColorGroups, { isColorGroupKey } from "../../hooks/useColorGroups";
 import useTimelineBuckets from "../../hooks/useTimelineBuckets";
 import useObjectGeo, { useObjectCountryNames } from "../../hooks/useObjectGeo";
 import { buildSceneLayout } from "../../hooks/useViewLayouts";
@@ -26,22 +27,32 @@ import SceneHeader from "./SceneHeader";
 import TimelineAxis from "./TimelineAxis";
 
 type SceneView = "all" | "timeline" | "map";
+type ContainerLocationState = {
+  homeScrollTo?: HomeEntryScrollId;
+  initialImageMode?: "solid" | "outline" | "color";
+};
 
 function Container() {
   const { clusterId } = useParams();
   const location = useLocation();
-  const homeScrollTo = (location.state as { homeScrollTo?: HomeEntryScrollId } | null)
-    ?.homeScrollTo;
+  const locationState = (location.state as ContainerLocationState | null) ?? null;
+  const homeScrollTo = locationState?.homeScrollTo;
   const [searchParams, setSearchParams] = useSearchParams();
   const searchView = searchParams.get("view");
   const currentView: SceneView =
     searchView === "timeline" || searchView === "map" ? searchView : "all";
-  const { mode, options, setMode } = useImageToggle({ colorOption: true });
+  const { mode, options, setMode } = useImageToggle({
+    colorOption: true,
+    initialMode: locationState?.initialImageMode ?? "solid"
+  });
   const sceneViewportRef = useRef<HTMLDivElement | null>(null);
+  const timelineAxisContentRef = useRef<HTMLDivElement | null>(null);
+  const sceneContentScrollRef = useRef<HTMLDivElement | null>(null);
   const [sceneViewportSize, setSceneViewportSize] = useState({ width: 0, height: 0 });
   const { outlineImageByObjectId, maskImageByObjectId, noBgImageByObjectId } = useImageModules();
   const { clusterRows } = useFormatClusters(finalClusterKeysCsv, finalClusterObjectIdsCsv);
   const { groupRowById } = useFunctionGroups();
+  const { groupRowByKey } = useColorGroups();
   const selectedCluster = useMemo(
     () => clusterRows.find((row) => row.cluster === clusterId),
     [clusterId, clusterRows]
@@ -49,6 +60,10 @@ function Container() {
   const selectedFunctionGroup = useMemo(
     () => (clusterId && isFunctionGroup(clusterId) ? groupRowById.get(clusterId) : undefined),
     [clusterId, groupRowById]
+  );
+  const selectedColorGroup = useMemo(
+    () => (clusterId && isColorGroupKey(clusterId) ? groupRowByKey.get(clusterId) : undefined),
+    [clusterId, groupRowByKey]
   );
   const selectedEntry = useMemo(
     () =>
@@ -64,17 +79,27 @@ function Container() {
               typeLabel: "function group",
               objectIds: selectedFunctionGroup.objectIds
             }
-          : null,
-    [selectedCluster, selectedFunctionGroup]
+          : selectedColorGroup
+            ? {
+                id: selectedColorGroup.groupKey,
+                typeLabel: "color group",
+                objectIds: selectedColorGroup.objectIds
+              }
+            : null,
+    [selectedCluster, selectedColorGroup, selectedFunctionGroup]
   );
   const selectedObjectIds = useMemo(() => selectedEntry?.objectIds ?? [], [selectedEntry]);
   const objectLabelPlural = selectedFunctionGroup
     ? selectedFunctionGroup.group === "amphora"
       ? "amphorae"
       : `${selectedFunctionGroup.group}s`
-    : "vessels";
-  const timelineSubject = selectedFunctionGroup ? objectLabelPlural : "these forms";
-  const mapSubject = selectedFunctionGroup ? objectLabelPlural : "these forms";
+    : selectedColorGroup
+      ? `${selectedColorGroup.label} vessels`
+      : "vessels";
+  const timelineSubject =
+    selectedFunctionGroup || selectedColorGroup ? objectLabelPlural : "these forms";
+  const mapSubject =
+    selectedFunctionGroup || selectedColorGroup ? objectLabelPlural : "these forms";
 
   const {
     buckets: timelineBuckets,
@@ -184,6 +209,17 @@ function Container() {
     (objectId: string) => noBgImageByObjectId.get(objectId),
     [noBgImageByObjectId]
   );
+  const syncTimelineAxisToSceneScroll = useCallback(() => {
+    if (currentView !== "timeline") return;
+    const source = sceneContentScrollRef.current;
+    const axisContent = timelineAxisContentRef.current;
+    if (!source || !axisContent) return;
+    axisContent.style.transform = `translateY(${-source.scrollTop}px)`;
+  }, [currentView]);
+
+  const handleSceneContentScroll = useCallback(() => {
+    syncTimelineAxisToSceneScroll();
+  }, [syncTimelineAxisToSceneScroll]);
 
   useEffect(() => {
     if (currentView !== "timeline") return;
@@ -194,6 +230,9 @@ function Container() {
     if (!selectedEntry) return;
     console.log(`${selectedEntry.id}\n${selectedEntry.typeLabel}`);
   }, [selectedEntry]);
+  useEffect(() => {
+    syncTimelineAxisToSceneScroll();
+  }, [contentSceneHeight, currentView, syncTimelineAxisToSceneScroll, timelineBuckets]);
 
   if (!selectedEntry) {
     return (
@@ -257,15 +296,21 @@ function Container() {
           sx={{
             width: `clamp(${SCENE_LEFT_PANEL_MIN_WIDTH_PX}px, ${SCENE_LEFT_PANEL_WIDTH_VW}vw, ${SCENE_LEFT_PANEL_MAX_WIDTH_PX}px)`,
             minWidth: 0,
-            position: "relative"
+            position: "relative",
+            overflow: "hidden"
           }}
         >
           {currentView === "timeline" ? (
-            <TimelineAxis
-              buckets={timelineBuckets}
-              bucketSpanByKey={timelineSceneLayout.bucketSpanByKey}
-              panelHeight={contentSceneHeight}
-            />
+            <Box
+              ref={timelineAxisContentRef}
+              sx={{ position: "absolute", inset: 0, willChange: "transform" }}
+            >
+              <TimelineAxis
+                buckets={timelineBuckets}
+                bucketSpanByKey={timelineSceneLayout.bucketSpanByKey}
+                panelHeight={contentSceneHeight}
+              />
+            </Box>
           ) : (
             <>
               <Box
@@ -308,12 +353,16 @@ function Container() {
             />
           ) : null}
           <Box
+            ref={sceneContentScrollRef}
+            onScroll={handleSceneContentScroll}
             sx={{
               position: "absolute",
               inset: 0,
               overflowX: currentView === "timeline" ? "auto" : "hidden",
               overflowY: "auto",
-              pointerEvents: currentView === "map" ? "none" : "auto"
+              pointerEvents: currentView === "map" ? "none" : "auto",
+              boxSizing: "border-box",
+              pb: currentView === "timeline" ? "4rem" : 0
             }}
           >
             <Box

@@ -23,19 +23,23 @@ export default function ShelfFunction() {
         p: "0.75rem",
         display: "flex",
         flexDirection: "column",
+        justifyContent: "center",
         overflowY: "auto",
         overflowX: "hidden"
       }}
     >
+      <Typography component="h2" sx={{ fontSize: "2rem", mb: "0.35rem", letterSpacing: "0.02em" }}>
+        choose a type
+      </Typography>
       <Box
         sx={{
-          flex: 1,
-          minHeight: 0,
+          flex: "0 0 auto",
           display: "grid",
           gridTemplateColumns: `repeat(auto-fit, minmax(${SHELF_RENDER_IMAGE_SIZE_PX * 0.85}px, 1fr))`,
           alignItems: "end",
+          alignContent: "start",
           columnGap: 0,
-          rowGap: 0,
+          rowGap: "30px",
           width: "100%"
         }}
       >
@@ -64,9 +68,8 @@ export default function ShelfFunction() {
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
+                position: "relative",
                 cursor: "pointer",
-                pt: "0.2rem",
-                minHeight: `${SHELF_RENDER_IMAGE_SIZE_PX * 0.95}px`,
                 "&:hover .shelf-function-label": {
                   opacity: 1,
                   visibility: "visible"
@@ -109,13 +112,15 @@ export default function ShelfFunction() {
                 className="shelf-function-label"
                 component="span"
                 sx={{
-                  mt: "0.25rem",
-                  mb: "0.2rem",
+                  position: "absolute",
+                  top: "100%",
+                  mt: "0.1rem",
                   fontSize: "0.62rem",
                   letterSpacing: "0.03em",
                   opacity: 0,
                   visibility: "hidden",
-                  transition: "opacity 120ms ease"
+                  transition: "opacity 120ms ease",
+                  pointerEvents: "none"
                 }}
               >
                 {groupRow.group}

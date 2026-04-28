@@ -188003,59 +188003,6 @@
     "tags": null,
     "isTimelineWork": false
   },
-  "251022": {
-    "objectID": 251022,
-    "isHighlight": false,
-    "accessionNumber": "21.80",
-    "accessionYear": "1921",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/gr/original/DP-19157-001.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/gr/web-large/DP-19157-001.jpg",
-    "additionalImages": [],
-    "constituents": [
-      {
-        "constituentID": 49096,
-        "role": "Artist",
-        "name": "Attributed to the Group of the Paidikos Alabastra",
-        "constituentULAN_URL": "http://vocab.getty.edu/page/ulan/500074721",
-        "constituentWikidata_URL": "https://www.wikidata.org/wiki/Q19959687"
-      }
-    ],
-    "department": "Greek and Roman Art",
-    "objectName": "Alabastron",
-    "title": "Terracotta alabastron (perfume vase)",
-    "culture": "Greek, Attic",
-    "period": "Archaic",
-    "artistRole": "Artist",
-    "artistPrefix": "Attributed to the",
-    "artistDisplayName": "Group of the Paidikos Alabastra",
-    "artistAlphaSort": "Group of the Paidikos Alabastra",
-    "artistWikidata_URL": "https://www.wikidata.org/wiki/Q19959687",
-    "artistULAN_URL": "http://vocab.getty.edu/page/ulan/500074721",
-    "objectDate": "ca. 510 BCE",
-    "objectBeginDate": -510,
-    "objectEndDate": -510,
-    "medium": "Terracotta",
-    "dimensions": "H. 5 in. (12.7 cm)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Height": 12.7
-        }
-      }
-    ],
-    "creditLine": "Gift of Welles Bosworth, 1921",
-    "classification": "Vases",
-    "metadataDate": "2025-03-06T04:54:30Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/251022",
-    "tags": null,
-    "objectWikidata_URL": "https://www.wikidata.org/wiki/Q116402760",
-    "isTimelineWork": false,
-    "GalleryNumber": "156"
-  },
   "244860": {
     "objectID": 244860,
     "isHighlight": false,
@@ -188318,42 +188265,6 @@
     "objectWikidata_URL": "https://www.wikidata.org/wiki/Q116296681",
     "isTimelineWork": false,
     "GalleryNumber": "171"
-  },
-  "240437": {
-    "objectID": 240437,
-    "isHighlight": false,
-    "accessionNumber": "74.51.849",
-    "accessionYear": "1874",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/gr/original/56255.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/gr/web-large/56255.jpg",
-    "additionalImages": [],
-    "constituents": null,
-    "department": "Greek and Roman Art",
-    "objectName": "Jug",
-    "title": "Jug",
-    "culture": "Cypriot",
-    "period": "Hellenic",
-    "objectBeginDate": -507,
-    "objectEndDate": -323,
-    "medium": "Terracotta",
-    "dimensions": "H.: 4 9/16 in. (11.6 cm)",
-    "measurements": [
-      {
-        "elementName": "Height",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Height": 11.588773
-        }
-      }
-    ],
-    "creditLine": "The Cesnola Collection, Purchased by subscription, 1874\u201376",
-    "classification": "Vases",
-    "metadataDate": "2025-03-06T04:54:30Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/240437",
-    "tags": null,
-    "isTimelineWork": false
   },
   "254246": {
     "objectID": 254246,
@@ -194093,59 +194004,6 @@
     "objectWikidata_URL": "https://www.wikidata.org/wiki/Q116296500",
     "isTimelineWork": false,
     "GalleryNumber": "171"
-  },
-  "255802": {
-    "objectID": 255802,
-    "isHighlight": false,
-    "accessionNumber": "1984.11.1",
-    "accessionYear": "1984",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/gr/original/DP-19161-001.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/gr/web-large/DP-19161-001.jpg",
-    "additionalImages": [],
-    "constituents": [
-      {
-        "constituentID": 49145,
-        "role": "Artist",
-        "name": "Attributed to the manner of the Shuvalov Painter",
-        "constituentULAN_URL": "http://vocab.getty.edu/page/ulan/500004128",
-        "constituentWikidata_URL": "https://www.wikidata.org/wiki/Q968196"
-      }
-    ],
-    "department": "Greek and Roman Art",
-    "objectName": "Hydria, kalpis",
-    "title": "Terracotta hydria: kalpis (water jar)",
-    "culture": "Greek, Attic",
-    "period": "Classical",
-    "artistRole": "Artist",
-    "artistPrefix": "Attributed to the manner of the",
-    "artistDisplayName": "Shuvalov Painter",
-    "artistAlphaSort": "Shuvalov Painter",
-    "artistWikidata_URL": "https://www.wikidata.org/wiki/Q968196",
-    "artistULAN_URL": "http://vocab.getty.edu/page/ulan/500004128",
-    "objectDate": "ca. 430 BCE",
-    "objectBeginDate": -450,
-    "objectEndDate": -400,
-    "medium": "Terracotta",
-    "dimensions": "H. 7 3/16 in. (18.3 cm)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Height": 18.29
-        }
-      }
-    ],
-    "creditLine": "Purchase, Sarah Campbell Blaffer Foundation and Schimmel Foundation Inc. Gifts, 1984",
-    "classification": "Vases",
-    "metadataDate": "2025-10-10T08:45:47.623Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/255802",
-    "tags": null,
-    "objectWikidata_URL": "https://www.wikidata.org/wiki/Q116406169",
-    "isTimelineWork": false,
-    "GalleryNumber": "159"
   },
   "256616": {
     "objectID": 256616,

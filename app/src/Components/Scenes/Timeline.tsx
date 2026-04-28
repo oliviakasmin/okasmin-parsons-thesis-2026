@@ -10,7 +10,7 @@ type TimelineProps = {
 
 function Timeline({ buckets, bucketSpanByKey, panelHeight }: TimelineProps) {
   return (
-    <Box component="section" sx={{ width: "100%" }}>
+    <Box component="section" sx={{ width: "100%", background: "#000" }}>
       <TimelineAxis buckets={buckets} bucketSpanByKey={bucketSpanByKey} panelHeight={panelHeight} />
     </Box>
   );

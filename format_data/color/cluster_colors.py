@@ -112,3 +112,93 @@ def label_centroids(centroids: np.ndarray) -> list[str]:
         val_mean = float(centroid[3])
         labels.append(_label_from_hsv(hue_x, hue_y, sat_mean, val_mean))
     return labels
+
+
+def top_hue_bin_share(colors_hex: list[str], shares: list[float], hue_bins: int = 12) -> float:
+    if hue_bins <= 1:
+        raise ValueError("hue_bins must be > 1")
+    if not colors_hex or not shares:
+        return 0.0
+
+    weights = np.array(shares, dtype=np.float64)
+    if weights.sum() <= 0:
+        return 0.0
+    weights = weights / weights.sum()
+
+    bins = np.zeros(hue_bins, dtype=np.float64)
+    for color, weight in zip(colors_hex, weights):
+        r, g, b = _hex_to_rgb01(color)
+        hue, _, _ = colorsys.rgb_to_hsv(r, g, b)
+        idx = min(hue_bins - 1, int(hue * hue_bins))
+        bins[idx] += float(weight)
+    return float(bins.max())
+
+
+def hue_family_shares(colors_hex: list[str], shares: list[float]) -> dict[str, float]:
+    families = {
+        "red": 0.0,
+        "orange": 0.0,
+        "yellow": 0.0,
+        "green": 0.0,
+        "blue": 0.0,
+        "purple": 0.0,
+        "neutral": 0.0,
+    }
+    if not colors_hex or not shares:
+        return families
+
+    weights = np.array(shares, dtype=np.float64)
+    if weights.sum() <= 0:
+        return families
+    weights = weights / weights.sum()
+
+    for color, weight in zip(colors_hex, weights):
+        r, g, b = _hex_to_rgb01(color)
+        hue, sat, val = colorsys.rgb_to_hsv(r, g, b)
+        if sat < 0.12:
+            families["neutral"] += float(weight)
+            continue
+        if hue < 0.04 or hue >= 0.92:
+            families["red"] += float(weight)
+        elif hue < 0.11:
+            families["orange"] += float(weight)
+        elif hue < 0.18:
+            families["yellow"] += float(weight)
+        elif hue < 0.45:
+            families["green"] += float(weight)
+        elif hue < 0.72:
+            families["blue"] += float(weight)
+        else:
+            # Fold pink/magenta into purple for simpler combo recipes.
+            families["purple"] += float(weight)
+    return families
+
+
+def weighted_palette_embedding(
+    colors_hex: list[str], shares: list[float], max_colors: int = 8
+) -> np.ndarray:
+    if max_colors <= 0:
+        raise ValueError("max_colors must be > 0")
+    if not colors_hex or not shares:
+        return np.zeros(max_colors * 5, dtype=np.float64)
+
+    pairs = list(zip(colors_hex, shares))
+    pairs.sort(key=lambda item: float(item[1]), reverse=True)
+    pairs = pairs[:max_colors]
+
+    weights = np.array([max(0.0, float(item[1])) for item in pairs], dtype=np.float64)
+    if weights.sum() <= 0:
+        weights = np.ones(len(pairs), dtype=np.float64)
+    weights = weights / weights.sum()
+
+    feature_values: list[float] = []
+    for (color, _), weight in zip(pairs, weights):
+        r, g, b = _hex_to_rgb01(color)
+        h, s, v = colorsys.rgb_to_hsv(r, g, b)
+        angle = h * 2.0 * np.pi
+        feature_values.extend([np.cos(angle), np.sin(angle), s, v, float(weight)])
+
+    while len(feature_values) < max_colors * 5:
+        feature_values.extend([0.0, 0.0, 0.0, 0.0, 0.0])
+
+    return np.array(feature_values, dtype=np.float64)

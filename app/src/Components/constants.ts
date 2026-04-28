@@ -1,5 +1,5 @@
 export const SOURCE_IMAGE_SIZE_PX = 768;
-export const SHELF_IMAGE_ASPECT_RATIO = 0.2;
+export const SHELF_IMAGE_ASPECT_RATIO = 0.15;
 export const SUBGROUP_IMAGE_ASPECT_RATIO = 0.06;
 /** Cluster scene “All” grid only; larger than timeline/map (`SUBGROUP_IMAGE_ASPECT_RATIO`). */
 export const ALL_SCENE_GRID_ASPECT_RATIO = 0.15;

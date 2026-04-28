@@ -6,12 +6,11 @@ import json
 from datetime import datetime, timezone
 from pathlib import Path
 
-import numpy as np
 import pandas as pd
 
 from .bw_detection import check_image_url_grayscale
-from .cluster_colors import cluster_palette_features, label_centroids, palette_to_feature_vector
 from .dominant_colors import extract_dominant_colors
+from .recluster_colors import run_reclustering
 
 ROOT = Path(__file__).resolve().parents[2]
 OBJECTS_JSON_PATH = ROOT / "fetch_data" / "data" / "objects.json"
@@ -124,9 +123,6 @@ def run_pipeline(
     bw_cache = _load_bw_cache(path=BW_CACHE_PATH)
 
     rows: list[dict] = []
-    cluster_input_indices: list[int] = []
-    cluster_features: list[np.ndarray] = []
-
     for obj in objects:
         object_id = obj["objectID"]
         image_url = obj["primaryImage"]
@@ -141,6 +137,7 @@ def run_pipeline(
             "dominant_colors_share": json.dumps([]),
             "color_group_id": "",
             "color_group_label": "",
+            "color_group_key": "",
             "no_bg_image_path": str(_no_bg_path(object_id)),
             "no_bg_image_exists": False,
             "dominant_color_foreground_pixels": "",
@@ -186,24 +183,10 @@ def run_pipeline(
             row["dominant_color_foreground_pixels"] = result.foreground_pixels
             row["color_analysis_status"] = "eligible"
 
-            feature = palette_to_feature_vector(result.colors_hex, result.shares)
-            cluster_input_indices.append(len(rows))
-            cluster_features.append(feature)
         except Exception as error:  # noqa: BLE001
             row["color_analysis_status"] = f"palette_error:{error}"
 
         rows.append(row)
-
-    if cluster_features:
-        features = np.vstack(cluster_features)
-        group_ids, centroids = cluster_palette_features(features=features, max_groups=max_groups)
-        group_labels = label_centroids(centroids)
-        for source_idx, group_id in zip(cluster_input_indices, group_ids):
-            rows[source_idx]["color_group_id"] = int(group_id)
-            rows[source_idx]["color_group_label"] = group_labels[int(group_id)]
-    else:
-        centroids = np.empty((0, 0), dtype=np.float64)
-        group_labels = []
 
     _save_bw_cache(path=BW_CACHE_PATH, cache=bw_cache)
 
@@ -212,19 +195,7 @@ def run_pipeline(
     GENERATED_DIR.mkdir(parents=True, exist_ok=True)
     output_df.to_csv(OUTPUT_CSV_PATH, index=False)
 
-    centroid_rows = []
-    for idx, label in enumerate(group_labels):
-        centroid_rows.append(
-            {
-                "color_group_id": idx,
-                "color_group_label": label,
-                "hue_x": float(centroids[idx][0]),
-                "hue_y": float(centroids[idx][1]),
-                "sat_mean": float(centroids[idx][2]),
-                "val_mean": float(centroids[idx][3]),
-            }
-        )
-    pd.DataFrame(centroid_rows).to_csv(CLUSTER_SUMMARY_PATH, index=False)
+    cluster_stats = run_reclustering(max_groups=max_groups)
 
     stats = {
         "objects_seen": int(len(objects)),
@@ -235,11 +206,12 @@ def run_pipeline(
         "missing_primary_image_count": int((output_df["color_analysis_status"] == "missing_primary_image").sum()),
         "missing_no_bg_count": int((output_df["color_analysis_status"] == "missing_no_bg").sum()),
         "url_fetch_error_count": int((output_df["color_analysis_status"] == "url_fetch_error").sum()),
-        "cluster_count": int(len(group_labels)),
+        "cluster_count": int(cluster_stats["group_count_including_multicolor"]),
         "generated_at_utc": datetime.now(timezone.utc).isoformat(),
         "output_csv_path": str(OUTPUT_CSV_PATH),
         "cluster_summary_path": str(CLUSTER_SUMMARY_PATH),
         "bw_cache_path": str(BW_CACHE_PATH),
+        "cluster_group_labels_path": str(cluster_stats["group_labels_path"]),
     }
     RUN_STATS_PATH.write_text(json.dumps(stats, indent=2), encoding="utf-8")
     return stats

@@ -10,8 +10,8 @@
     sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color: #1f2937;
-  background-color: #f7f7f8;
+  color: #fff;
+  background-color: #000;
 }
 
 * {
@@ -20,6 +20,13 @@
 
 body {
   margin: 0;
+  min-height: 100vh;
+  background: #000;
+}
+
+#root {
+  min-height: 100vh;
+  background: #000;
 }
 
 .app {

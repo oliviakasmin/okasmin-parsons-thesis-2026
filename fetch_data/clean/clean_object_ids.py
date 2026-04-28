@@ -29,10 +29,10 @@ def save_json_list(path: Path, data: list[int]) -> None:
 
 
 def main() -> None:
-    object_ids = load_json_list(OBJECT_IDS_PATH)
-    reject_ids = set(load_json_list(REJECT_IDS_PATH))
-    manual_reject_ids = set(load_json_list(MANUAL_REJECT_IDS_PATH))
-    api_error_ids = set(load_json_list(API_ERRORS_IDS_PATH))
+    object_ids = [int(oid) for oid in load_json_list(OBJECT_IDS_PATH)]
+    reject_ids = {int(oid) for oid in load_json_list(REJECT_IDS_PATH)}
+    manual_reject_ids = {int(oid) for oid in load_json_list(MANUAL_REJECT_IDS_PATH)}
+    api_error_ids = {int(oid) for oid in load_json_list(API_ERRORS_IDS_PATH)}
     excluded_ids = reject_ids | manual_reject_ids | api_error_ids
 
     original_count = len(object_ids)
