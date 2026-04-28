@@ -1,0 +1,67 @@
+{
+  "-4500:-4001": {
+    "final_date_bucket_start": -4500,
+    "final_date_bucket_end": -4001,
+    "final_date_bucket_label": "4500 - 4000 BCE"
+  },
+  "-4000:-3501": {
+    "final_date_bucket_start": -4000,
+    "final_date_bucket_end": -3501,
+    "final_date_bucket_label": "4000 - 3500 BCE"
+  },
+  "-3500:-3001": {
+    "final_date_bucket_start": -3500,
+    "final_date_bucket_end": -3001,
+    "final_date_bucket_label": "3500 - 3000 BCE"
+  },
+  "-3000:-2501": {
+    "final_date_bucket_start": -3000,
+    "final_date_bucket_end": -2501,
+    "final_date_bucket_label": "3000 - 2500 BCE"
+  },
+  "-2500:-2001": {
+    "final_date_bucket_start": -2500,
+    "final_date_bucket_end": -2001,
+    "final_date_bucket_label": "2500 - 2000 BCE"
+  },
+  "-2000:-1501": {
+    "final_date_bucket_start": -2000,
+    "final_date_bucket_end": -1501,
+    "final_date_bucket_label": "2000 - 1500 BCE"
+  },
+  "-1500:-1001": {
+    "final_date_bucket_start": -1500,
+    "final_date_bucket_end": -1001,
+    "final_date_bucket_label": "1500 - 1000 BCE"
+  },
+  "-1000:-501": {
+    "final_date_bucket_start": -1000,
+    "final_date_bucket_end": -501,
+    "final_date_bucket_label": "1000 - 500 BCE"
+  },
+  "-500:-1": {
+    "final_date_bucket_start": -500,
+    "final_date_bucket_end": -1,
+    "final_date_bucket_label": "500 BCE - 0"
+  },
+  "0:499": {
+    "final_date_bucket_start": 0,
+    "final_date_bucket_end": 499,
+    "final_date_bucket_label": "0 - 500 CE"
+  },
+  "500:999": {
+    "final_date_bucket_start": 500,
+    "final_date_bucket_end": 999,
+    "final_date_bucket_label": "500 - 1000 CE"
+  },
+  "1000:1499": {
+    "final_date_bucket_start": 1000,
+    "final_date_bucket_end": 1499,
+    "final_date_bucket_label": "1000 - 1500 CE"
+  },
+  "1500:1999": {
+    "final_date_bucket_start": 1500,
+    "final_date_bucket_end": 1999,
+    "final_date_bucket_label": "1500 - 2000 CE"
+  }
+}

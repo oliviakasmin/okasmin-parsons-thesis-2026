@@ -56,9 +56,10 @@ def clean_objects_with_filters() -> None:
     """
     objects_by_id: Dict[str, Any] = load_json_dict(OBJECTS_PATH)
     rejected_ids: list[int] = load_json_list(REJECT_IDS_PATH)
+    rejected_ids_set = {int(object_id) for object_id in rejected_ids}
     manual_reject_ids = {int(object_id) for object_id in load_json_list(MANUAL_REJECT_IDS_PATH)}
     api_error_ids = {int(object_id) for object_id in load_json_list(API_ERRORS_IDS_PATH)}
-    excluded_ids = manual_reject_ids | api_error_ids
+    excluded_ids = rejected_ids_set | manual_reject_ids | api_error_ids
 
     original_count = len(objects_by_id)
     removed_count = 0
@@ -74,8 +75,9 @@ def clean_objects_with_filters() -> None:
             removed_count += 1
             if object_id in manual_reject_ids:
                 removed_manual_count += 1
-            if object_id not in rejected_ids:
+            if object_id not in rejected_ids_set:
                 rejected_ids.append(object_id)
+                rejected_ids_set.add(object_id)
             continue
         if apply_filters(obj, object_id, rejected_ids):
             cleaned_objects[key] = obj

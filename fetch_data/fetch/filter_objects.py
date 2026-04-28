@@ -3,11 +3,8 @@ from typing import Any, Dict
 # reject reasons
 # - isPublicDomain: reject if not true
 # - primaryImageSmall: reject if not true
-# - classification: reject if doesn't include "Ceramics"
 # - objectName or title includes plural version of search q, ie "vases", "vessels", "pots", "jugs"
 # - objectName or title includes ["shard", "plate", "bowl", "cup", "set of"]
-
-CLASSIFICATION_REQUIRED_SUBSTRING = "Ceramics"
 
 # Keep this list explicit so fetch-query tuning does not silently alter filter behavior.
 # We still reject pluralized vessel/object words in objectName/title.
@@ -24,6 +21,7 @@ PLURAL_TERMS = [
     "pots",
     "teapots",
     "tea pots",
+    "vessels",
     # Irregular plural
     "amphorae",
 ]
@@ -36,22 +34,57 @@ EXCLUDED_TERMS = [
     "cup",
     "set of",
     "service",
-    "a pair",
-    "a set",
+    "pair",
+    "set",
     "tea pot",
     "teapot",
     "dish",
     "fragment",
     "box",
+    "stand",
+    "tile",
+    "figurine",
+    "plate",
+    "platter",
+    "basin",
+    "tablet",
+    "sherds",
+    "tankard",
+    "mug",
+    "chocolate pot",
+    "jar sealing",
+    "ostracon",
+    "ostraca",
+    "sherd",
+    "part of",
+    "one of",
+    "beads",
+    "bead",
+    "group",
+    "garniture",
+    "spindle whorl",
+    "whistle",
+    "clove boiler",
+    "water coupe",
+    "seal impression",
+    "incense",
+    "dinos",
+    "lekanis",
+    "lamp"
 ]
 
+EXCLUDED_CLASSIFICATIONS = ["Snuff Bottles", "Ceramics-Musical Instruments", "Ceramics-Implements", "Ceramics-Sculpture	"]
 
 def _contains_any_term(text: str, terms: list[str]) -> bool:
     lowered = text.lower()
     return any(term in lowered for term in terms)
 
 
-def apply_filters(obj: Dict[str, Any], object_id: int, rejected_ids: list[int]) -> bool:
+def apply_filters(
+    obj: Dict[str, Any],
+    object_id: int,
+    rejected_ids: list[int],
+) -> bool:
     """
     Apply all rejection rules to an object.
 
@@ -68,9 +101,10 @@ def apply_filters(obj: Dict[str, Any], object_id: int, rejected_ids: list[int]) 
         rejected_ids.append(object_id)
         return False
 
-    # classification must include "Ceramics"
-    classification = obj.get("classification") or ""
-    if CLASSIFICATION_REQUIRED_SUBSTRING not in classification:
+    # classification must NOT be in excluded classifications
+    classification = (obj.get("classification") or "").strip()
+    excluded_classifications = {value.strip() for value in EXCLUDED_CLASSIFICATIONS}
+    if classification in excluded_classifications:
         rejected_ids.append(object_id)
         return False
 

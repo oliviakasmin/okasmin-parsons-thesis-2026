@@ -87,6 +87,7 @@ test_assets/
 !tsconfig.app.json
 !tsconfig.node.json
 !.prettierrc.json
+!format_data/date/timeline_buckets.json
 
 # ─────────────────────────────────────────────
 # Ignore ALL images by default

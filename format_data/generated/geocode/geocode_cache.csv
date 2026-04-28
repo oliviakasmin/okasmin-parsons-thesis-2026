@@ -1,0 +1,194 @@
+query,mapbox_feature_id,mapbox_place_name,geo_mapbox_lon,geo_mapbox_lat,geo_mapbox_relevance,geo_mapbox_accuracy,geo_mapbox_match_status,geo_mapbox_updated_at,source_key,mapbox_types,mapbox_country
+"Abu Mena, Egypt",country.8771,Egypt,29.871903,26.494184,0.425926,country:0.43,matched,2026-04-27T16:46:27Z,city||country,"place,district,region,country",eg
+"Alexandria, Egypt",place.329795,"Alexandria, Alexandria, Egypt",29.89866,31.198877,1.0,place:1.00,matched,2026-04-27T16:46:27Z,culture||country,"place,district,region,country",eg
+"Alta Verapaz, Guatemala",region.25693,"Alta Verapaz, Guatemala",-90.373506,15.4702,1.0,region:1.00,matched,2026-04-27T16:46:27Z,city||country,"place,district,region,country",gt
+"Ancash, Peru, Peru",region.50352,"Ancash, Peru",-77.528998,-9.529851,1.0,region:1.00,matched,2026-04-27T16:46:28Z,state||country,"region,district,country,place",pe
+"Apulia, Italy",region.1516656,"Apulia, Italy",16.862029,41.125784,1.0,region:1.00,matched,2026-04-27T16:46:28Z,culture||country,"place,district,region,country",it
+"Arizona, United States",region.394476,"Arizona, United States",-111.422128,34.220261,1.0,region:1.00,matched,2026-04-27T16:46:28Z,state||country,"region,district,country,place",us
+"Attica, Greece",region.107611,"Attica, Greece",23.734832,37.975565,1.0,region:1.00,matched,2026-04-27T16:46:29Z,culture||country,"place,district,region,country",gr
+"Baltimore, Maryland, United States",place.17508588,"Baltimore, Maryland, United States",-76.612299,39.289643,1.0,place:1.00,matched,2026-04-27T16:46:29Z,city||state||country,"place,district,region,country",us
+"Ban Chiang, Thailand",place.75997,"Ban Chang, Rayong, Thailand",101.050095,12.724634,0.971296,place:0.97,matched,2026-04-27T16:46:29Z,culture||country,"place,district,region,country",th
+"Bandiagara Escarpment, Mali",place.51759251,"Bandiagara, Mopti, Mali",-3.608384,14.35225,0.666667,place:0.67,matched,2026-04-27T16:46:29Z,city||country,"place,district,region,country",ml
+"Basilicata, Italy",region.1524848,"Basilicata, Italy",15.802208,40.638405,1.0,region:1.00,matched,2026-04-27T16:46:30Z,culture||country,"place,district,region,country",it
+"Basra, Iraq, Iraq",place.88500333,"Basra, Basra, Iraq",47.793478,30.515087,1.0,place:1.00,matched,2026-04-27T16:46:30Z,city||country,"place,district,region,country",iq
+Belgium,country.8725,Belgium,4.633575,50.438696,1.0,country:1.00,matched,2026-04-27T16:46:30Z,department||artistNationality,country,be
+"Bennington, Vermont, United States",place.25110764,"Bennington, Vermont, United States",-73.197131,42.878354,1.0,place:1.00,matched,2026-04-27T16:46:30Z,city||state||country,"place,district,region,country",us
+"Biloxi, Mississippi, United States",place.28379372,"Biloxi, Mississippi, United States",-88.885571,30.395579,1.0,place:1.00,matched,2026-04-27T16:46:31Z,city||state||country,"place,district,region,country",us
+Britain,country.8783,United Kingdom,-2.36967,54.237933,1.0,country:1.00,matched,2026-04-27T16:46:31Z,artistNationality,country,gb
+Britain,country.8783,United Kingdom,-2.36967,54.237933,1.0,country:1.00,matched,2026-04-27T16:46:31Z,culture,"country,region",gb
+Britain,country.8783,United Kingdom,-2.36967,54.237933,1.0,country:1.00,matched,2026-04-27T16:46:31Z,department||artistNationality,country,gb
+"Brooklyn, New York, United States",place.233720044,"New York City, New York, United States",-74.005994,40.712749,0.725926,place:0.73,matched,2026-04-27T16:46:31Z,city||state||country,"place,district,region,country",us
+"Buriram Province, Thailand",region.394461,"Buri Ram, Thailand",103.107919,14.995569,0.653333,region:0.65,matched,2026-04-27T16:46:32Z,culture||country,"place,district,region,country",th
+"Campania, Italy",region.1500272,"Campania, Italy",14.248367,40.83725,1.0,region:1.00,matched,2026-04-27T16:46:32Z,culture||country,"place,district,region,country",it
+"Castelli, Italy",place.13543536,"Castelli, Teramo, Italy",13.711486,42.488766,1.0,place:1.00,matched,2026-04-27T16:46:32Z,culture||country,"place,district,region,country",it
+"Central Andes, Peru, Peru",place.10954928,"San Andrés District, Ica, Peru",-76.22378,-13.73163,0.501096,place:0.50,matched,2026-04-27T16:46:33Z,region||country,"region,district,country,place",pe
+"Centuripe, Sicily, Italy",region.1541232,"Sicily, Italy",13.352443,38.111227,0.666667,region:0.67,matched,2026-04-27T16:46:33Z,culture||country,"place,district,region,country",it
+"Chelsea, Massachusetts, United States",place.57919724,"Chelsea, Massachusetts, United States",-71.035964,42.391745,1.0,place:1.00,matched,2026-04-27T16:46:33Z,city||state||country,"place,district,region,country",us
+"Chicama Valley, Peru, Peru",place.2599088,"Chicama, La Libertad, Peru",-79.151054,-7.840456,0.592593,place:0.59,matched,2026-04-27T16:46:33Z,region||country,"region,district,country,place",pe
+"Chiclayo, Peru",place.2631856,"Chiclayo, Lambayeque, Peru",-79.838455,-6.771348,1.0,place:1.00,matched,2026-04-27T16:46:34Z,state||country,"region,district,country,place",pe
+"Chihuahua, Mexico, Mexico",place.5228703,"Chihuahua, Chihuahua, Mexico",-106.07461,28.638037,1.0,place:1.00,matched,2026-04-27T16:46:34Z,state||country,"region,district,country,place",mx
+China,country.8753,People's Republic of China,101.901875,35.486703,1.0,country:1.00,matched,2026-04-27T16:46:34Z,country,country,cn
+China,country.8753,People's Republic of China,101.901875,35.486703,1.0,country:1.00,matched,2026-04-27T16:46:34Z,culture,"country,region",cn
+"Cincinnati, Ohio, United States",place.60967148,"Cincinnati, Ohio, United States",-84.513301,39.102438,1.0,place:1.00,matched,2026-04-27T16:46:35Z,city||state||country,"place,district,region,country",us
+"Cocle Province, Panama, Panama",place.452783,"Panama City, Panamá, Panama",-79.52339,8.982861,0.738444,place:0.74,matched,2026-04-27T16:46:35Z,state||country,"region,district,country,place",pa
+"Colima, Mexico, Mexico",region.255135,"Mexico, Mexico",-99.724084,19.642105,0.666667,region:0.67,matched,2026-04-27T16:46:35Z,state||country,"region,district,country,place",mx
+Colombia,country.8754,Colombia,-73.129056,3.065088,1.0,country:1.00,matched,2026-04-27T16:46:36Z,country,country,co
+"Comala, Colima, Mexico, Mexico",place.6899871,"Comala, Colima, Mexico",-103.75812,19.32317,0.75,place:0.75,matched,2026-04-27T16:46:36Z,city||state||country,"place,district,region,country",mx
+"Connecticut, United States",region.361708,"Connecticut, United States",-72.726243,41.626142,1.0,region:1.00,matched,2026-04-27T16:46:36Z,state||country,"region,district,country,place",us
+"Crete, Greece",region.17499,"Crete, Greece",25.133284,35.33908,1.0,region:1.00,matched,2026-04-27T16:46:36Z,culture||country,"place,district,region,country",gr
+"Ctesiphon, Iraq",country.8813,Iraq,43.404716,33.048056,0.5,country:0.50,matched,2026-04-27T16:46:37Z,city||country,"place,district,region,country",iq
+"Cyclades, Greece",country.8795,Greece,23.828554,38.589021,0.5,country:0.50,matched,2026-04-27T16:46:37Z,culture||country,"place,district,region,country",gr
+Cyprus,country.8760,Cyprus,33.221762,35.045882,1.0,country:1.00,matched,2026-04-27T16:46:37Z,culture,"country,region",cy
+Czech Republic,country.8761,Czech Republic,15.338412,49.742859,1.0,country:1.00,matched,2026-04-27T16:46:37Z,department||artistNationality,country,cz
+"Delft, Netherlands",place.3156136,"Delft, South Holland, Netherlands",4.357397,52.01155,1.0,place:1.00,matched,2026-04-27T16:46:38Z,culture||country,"place,district,region,country",nl
+Denmark,country.8765,Denmark,10.046297,55.963398,1.0,country:1.00,matched,2026-04-27T16:46:38Z,artistNationality,country,dk
+Denmark,country.8765,Denmark,10.046297,55.963398,1.0,country:1.00,matched,2026-04-27T16:46:38Z,department||artistNationality,country,dk
+"Derbyshire, England, England",district.419407,"Derbyshire, England, United Kingdom",-1.427393,53.23586,0.666667,district:0.67,matched,2026-04-27T16:46:38Z,state||country,"region,district,country,place",gb
+"Deruta, Italy",place.20514928,"Deruta, Perugia, Italy",12.420198,42.98219,1.0,place:1.00,matched,2026-04-27T16:46:38Z,culture||country,"place,district,region,country",it
+East Greece,country.8795,Greece,23.828554,38.589021,0.5,country:0.50,matched,2026-04-27T16:46:39Z,culture,"country,region",
+Eastern Syria,country.8919,Syria,38.505592,35.013048,0.5,country:0.50,matched,2026-04-27T16:46:39Z,country,country,sy
+Ecuador,country.8769,Ecuador,-78.432915,-1.160171,1.0,country:1.00,matched,2026-04-27T16:46:39Z,country,country,ec
+Egypt,country.8771,Egypt,29.871903,26.494184,1.0,country:1.00,matched,2026-04-27T16:46:39Z,country,country,eg
+Egypt,country.8771,Egypt,29.871903,26.494184,1.0,country:1.00,matched,2026-04-27T16:46:40Z,culture,"country,region",eg
+"Egypt, Byzantine",country.8771,Egypt,29.871903,26.494184,0.5,country:0.50,matched,2026-04-27T16:46:40Z,culture||country,"place,district,region,country",eg
+"Etruscan, Italo-Corinthian",country.8816,Italy,12.646361,42.504154,0.383333,country:0.38,matched,2026-04-27T16:46:40Z,culture||country,"place,district,region,country",it
+Europe,place.125147,"Europa Island, Scattered Islands in the Indian Ocean, French Southern and Antarctic Lands",40.363333,-22.368333,0.88,place:0.88,matched,2026-04-27T16:46:41Z,country,country,
+Europe,place.125147,"Europa Island, Scattered Islands in the Indian Ocean, French Southern and Antarctic Lands",40.363333,-22.368333,0.88,place:0.88,matched,2026-04-27T16:46:41Z,culture,"country,region",
+"Faenza, Italy",place.21547120,"Faenza, Ravenna, Italy",11.882004,44.285633,1.0,place:1.00,matched,2026-04-27T16:46:41Z,culture||country,"place,district,region,country",it
+"Florence, Italy",place.22481008,"Florence, Florence, Italy",11.256129,43.771484,1.0,place:1.00,matched,2026-04-27T16:46:41Z,city||country,"place,district,region,country",it
+"Florence, Italy",place.22481008,"Florence, Florence, Italy",11.256129,43.771484,1.0,place:1.00,matched,2026-04-27T16:46:42Z,culture||country,"place,district,region,country",it
+"Florence, Tuscany, Italy",place.22481008,"Florence, Florence, Italy",11.256129,43.771484,0.666667,place:0.67,matched,2026-04-27T16:46:42Z,city||state||country,"place,district,region,country",it
+France,country.8781,France,2.618787,47.824905,1.0,country:1.00,matched,2026-04-27T16:46:42Z,artistNationality,country,fr
+France,country.8781,France,2.618787,47.824905,1.0,country:1.00,matched,2026-04-27T16:46:42Z,country,country,fr
+France,country.8781,France,2.618787,47.824905,1.0,country:1.00,matched,2026-04-27T16:46:42Z,culture,"country,region",fr
+France,country.8781,France,2.618787,47.824905,1.0,country:1.00,matched,2026-04-27T16:46:43Z,department||artistNationality,country,fr
+"Fustat, Egypt",country.8771,Egypt,29.871903,26.494184,0.5,country:0.50,matched,2026-04-27T16:46:43Z,city||country,"place,district,region,country",eg
+Germany,country.8762,Germany,10.018343,51.133481,1.0,country:1.00,matched,2026-04-27T16:46:43Z,culture,"country,region",de
+Germany,country.8762,Germany,10.018343,51.133481,1.0,country:1.00,matched,2026-04-27T16:46:43Z,department||artistNationality,country,de
+"Gloucester, New Jersey, United States",region.156908,"New Jersey, United States",-74.389317,40.150248,0.725926,region:0.73,matched,2026-04-27T16:46:43Z,city||state||country,"place,district,region,country",us
+Greece,country.8795,Greece,23.828554,38.589021,1.0,country:1.00,matched,2026-04-27T16:46:44Z,culture,"country,region",gr
+Guatemala,country.8797,Guatemala,-90.390002,15.605589,1.0,country:1.00,matched,2026-04-27T16:46:44Z,country,country,gt
+Guatemala,country.8797,Guatemala,-90.390002,15.605589,1.0,country:1.00,matched,2026-04-27T16:46:44Z,culture,"country,region",gt
+"Gubbio, Italy",place.26683504,"Gubbio, Perugia, Italy",12.578854,43.351868,1.0,place:1.00,matched,2026-04-27T16:46:44Z,culture||country,"place,district,region,country",it
+"Gurgan, Iran",place.1009774,"Gorgan County, Golestan, Iran",54.435223,36.839176,0.94,place:0.94,matched,2026-04-27T16:46:45Z,city||country,"place,district,region,country",ir
+"Ica Valley, Peru, Peru",place.5556400,"Ica District, Ica, Peru",-75.729645,-14.063716,0.592593,place:0.59,matched,2026-04-27T16:46:45Z,region||country,"region,district,country,place",pe
+India,country.8811,India,78.476681,22.199166,1.0,country:1.00,matched,2026-04-27T16:46:45Z,country,country,in
+"India, Bombay School",place.29403243,"Mumbai, Maharashtra, India",72.87872,19.077793,0.656667,place:0.66,matched,2026-04-27T16:46:45Z,culture||country,"place,district,region,country",in
+Iran,country.8814,Iran,54.301374,32.565838,1.0,country:1.00,matched,2026-04-27T16:46:46Z,country,country,ir
+Iraq,country.8813,Iraq,43.404716,33.048056,1.0,country:1.00,matched,2026-04-27T16:46:46Z,country,country,iq
+Iraq,country.8813,Iraq,43.404716,33.048056,1.0,country:1.00,matched,2026-04-27T16:46:46Z,culture,"country,region",iq
+Ireland,country.8808,Ireland,-7.737649,53.305494,1.0,country:1.00,matched,2026-04-27T16:46:46Z,department||artistNationality,country,ie
+"Isfahan, Iran, Iran",place.772206,"Isfahan, Isfahan, Iran",51.66541,32.66991,0.666667,place:0.67,matched,2026-04-27T16:46:47Z,city||country,"place,district,region,country",ir
+"Italian, Tuscany",region.1459312,"Tuscany, Italy",11.255576,43.769871,0.935714,region:0.94,matched,2026-04-27T16:46:47Z,culture||country,"place,district,region,country",it
+Italy,country.8816,Italy,12.646361,42.504154,1.0,country:1.00,matched,2026-04-27T16:46:47Z,culture,"country,region",it
+Italy,country.8816,Italy,12.646361,42.504154,1.0,country:1.00,matched,2026-04-27T16:46:47Z,department||artistNationality,country,it
+"Iznik, Turkey",place.5138660,"İznik, Bursa, Türkiye",29.719765,40.42917,1.0,place:1.00,matched,2026-04-27T16:46:47Z,city||country,"place,district,region,country",tr
+Japan,country.8820,Japan,138.59223,36.386493,1.0,country:1.00,matched,2026-04-27T16:46:48Z,culture,"country,region",jp
+"Kaolin, South Carolina, United States",place.40159468,"Brooktondale, New York, United States",-76.391092,42.381355,0.799306,place:0.80,matched,2026-04-27T16:46:48Z,city||state||country,"place,district,region,country",us
+"Kashan, Iran",place.1255534,"Kashan County, Isfahan, Iran",51.44271,33.98714,0.98,place:0.98,matched,2026-04-27T16:46:48Z,city||country,"place,district,region,country",ir
+"Kerman, Iran, Iran",region.99438,"Kerman, Iran",57.064839,30.285219,0.666667,region:0.67,matched,2026-04-27T16:46:48Z,city||country,"place,district,region,country",ir
+"Kharga Oasis, Byzantine Egypt",country.8771,Egypt,29.871903,26.494184,0.388889,country:0.39,matched,2026-04-27T16:46:49Z,state||country,"region,district,country,place",eg
+"Kirman, Iran",region.99438,"Kerman, Iran",57.064839,30.285219,0.958333,region:0.96,matched,2026-04-27T16:46:49Z,city||country,"place,district,region,country",ir
+Korea,country.8828,South Korea,128.168944,36.536236,1.0,country:1.00,matched,2026-04-27T16:46:49Z,culture,"country,region",kr
+"Kufa, Iraq",place.11266157,"Kufa, Najaf, Iraq",44.403112,32.03444,1.0,place:1.00,matched,2026-04-27T16:46:49Z,city||country,"place,district,region,country",iq
+"Laconia, Greece",country.8795,Greece,23.828554,38.589021,0.5,country:0.50,matched,2026-04-27T16:46:50Z,culture||country,"place,district,region,country",gr
+"Lazio, Italy",region.1483888,"Lazio, Italy",12.482932,41.89332,1.0,region:1.00,matched,2026-04-27T16:46:50Z,city||country,"place,district,region,country",it
+Lebanon,country.8833,Lebanon,35.888026,33.920265,1.0,country:1.00,matched,2026-04-27T16:46:50Z,culture,"country,region",
+"Limoges, France",place.143050829,"Limoges, Haute-Vienne, France",1.260269,45.831486,1.0,place:1.00,matched,2026-04-27T16:46:51Z,culture||country,"place,district,region,country",fr
+"London, England",place.6957135,"London, Greater London, England, United Kingdom",-0.127647,51.5073,1.0,place:1.00,matched,2026-04-27T16:46:51Z,city||country,"place,district,region,country",gb
+"Lower Nubia, Nubia (Sudan)",country.8903,Sudan,30.049948,13.831539,0.388889,country:0.39,matched,2026-04-27T16:46:51Z,region||country,"region,district,country,place",sd
+"Maine, United States",region.337132,"Maine, United States",-69.236551,45.398285,1.0,region:1.00,matched,2026-04-27T16:46:51Z,state||country,"region,district,country,place",us
+Mali,country.8851,Mali,-1.252145,17.350335,1.0,country:1.00,matched,2026-04-27T16:46:51Z,country,country,ml
+"Manises, Valencia, Spain, Valencia, Spain",place.35178566,"Manises, Valencia, Spain",-0.462126,39.493927,1.0,place:1.00,matched,2026-04-27T16:46:52Z,city||state||country,"place,district,region,country",es
+"Mashhad, Iran, Iran",place.1681518,"Mashhad, Razavi Khorasan, Iran",59.606693,36.297146,0.666667,place:0.67,matched,2026-04-27T16:46:52Z,city||country,"place,district,region,country",ir
+"Memphis region, Egypt, Egypt",country.8771,Egypt,29.871903,26.494184,0.388889,country:0.39,matched,2026-04-27T16:46:52Z,region||country,"region,district,country,place",eg
+"Mesoamerica, Guatemala",country.8797,Guatemala,-90.390002,15.605589,0.5,country:0.50,matched,2026-04-27T16:46:53Z,region||country,"region,district,country,place",gt
+"Mesoamerica, Mexico",country.8863,Mexico,-102.532867,23.950464,0.5,country:0.50,matched,2026-04-27T16:46:53Z,region||country,"region,district,country,place",mx
+"Meuse Valley, Netherlands, South Netherlands",country.8872,Netherlands,5.613491,51.972466,0.366667,country:0.37,matched,2026-04-27T16:46:53Z,state||country,"region,district,country,place",nl
+Mexico,country.8863,Mexico,-102.532867,23.950464,1.0,country:1.00,matched,2026-04-27T16:46:53Z,country,country,mx
+"Michoacan, Mexico, Mexico",region.255135,"Mexico, Mexico",-99.724084,19.642105,0.666667,region:0.67,matched,2026-04-27T16:46:54Z,state||country,"region,district,country,place",mx
+"Middle Egypt, Egypt",country.8771,Egypt,29.871903,26.494184,0.425926,country:0.43,matched,2026-04-27T16:46:54Z,region,"country,region",eg
+"Mill Green, Essex, England",district.542287,"Essex, England, United Kingdom",0.473644,51.733253,0.592593,district:0.59,matched,2026-04-27T16:46:54Z,city||state||country,"place,district,region,country",gb
+"Montelupo, Tuscany, Italy",region.1459312,"Tuscany, Italy",11.255576,43.769871,0.666667,region:0.67,matched,2026-04-27T16:46:54Z,city||state||country,"place,district,region,country",it
+"Montelupo, Tuscany, Italy",region.1459312,"Tuscany, Italy",11.255576,43.769871,0.666667,region:0.67,matched,2026-04-27T16:46:55Z,culture||country,"place,district,region,country",it
+"Naples, Italy",place.36685936,"Naples, Naples, Italy",14.253269,40.84603,1.0,place:1.00,matched,2026-04-27T16:46:55Z,culture||country,"place,district,region,country",it
+"Nayarit, Mexico, Mexico",region.173215,"Nayarit, Mexico",-104.867203,21.882316,1.0,region:1.00,matched,2026-04-27T16:46:55Z,state||country,"region,district,country,place",mx
+Netherlands,country.8872,Netherlands,5.613491,51.972466,1.0,country:1.00,matched,2026-04-27T16:46:55Z,department||artistNationality,country,nl
+"New Mexico, United States",region.222444,"New Mexico, United States",-105.998351,34.324856,1.0,region:1.00,matched,2026-04-27T16:46:55Z,state||country,"region,district,country,place",us
+"New York, New York, United States",place.233720044,"New York City, New York, United States",-74.005994,40.712749,1.0,place:1.00,matched,2026-04-27T16:46:56Z,city||state||country,"place,district,region,country",us
+"Nishapur, Iran",place.1878126,"Nishapur County, Razavi Khorasan, Iran",58.79233,36.21129,0.95,place:0.95,matched,2026-04-27T16:46:56Z,city||country,"place,district,region,country",ir
+"Nishapur, Iran, Iran",place.1878126,"Nishapur County, Razavi Khorasan, Iran",58.79233,36.21129,0.633333,place:0.63,matched,2026-04-27T16:46:56Z,city||country,"place,district,region,country",ir
+"North, Vietnam",country.8948,Vietnam,108.339537,14.315424,0.5,country:0.50,matched,2026-04-27T16:46:57Z,culture||country,"place,district,region,country",vn
+Northeast China,country.8753,People's Republic of China,101.901875,35.486703,0.5,country:0.50,matched,2026-04-27T16:46:57Z,culture,"country,region",
+"Oaxaca, Mexico, Mexico",place.40880287,"Oaxaca, Oaxaca, Mexico",-96.72438,17.062824,0.666667,place:0.67,matched,2026-04-27T16:46:57Z,region||country,"region,district,country,place",mx
+"Oaxaca, Mexico, Mexico",place.40880287,"Oaxaca, Oaxaca, Mexico",-96.72438,17.062824,0.666667,place:0.67,matched,2026-04-27T16:46:57Z,state||country,"region,district,country,place",mx
+"Orvieto, Italy",place.38684784,"Orvieto, Terni, Italy",12.110295,42.718315,1.0,place:1.00,matched,2026-04-27T16:46:58Z,city||country,"place,district,region,country",it
+"Orvieto, Umbria, Italy",region.1475696,"Umbria, Italy",12.38901,43.111961,0.666667,region:0.67,matched,2026-04-27T16:46:58Z,city||state||country,"place,district,region,country",it
+Panama,country.8879,Panama,-80.268175,8.704735,1.0,country:1.00,matched,2026-04-27T16:46:58Z,country,country,pa
+"Paris, France",place.894029,"Paris, France",2.348392,48.853495,1.0,region:1.00,matched,2026-04-27T16:46:58Z,city||country,"place,district,region,country",fr
+"Paris, France",place.894029,"Paris, France",2.348392,48.853495,1.0,region:1.00,matched,2026-04-27T16:46:59Z,culture||country,"place,district,region,country",fr
+"Paris, France, France",place.894029,"Paris, France",2.348392,48.853495,1.0,region:1.00,matched,2026-04-27T16:46:59Z,city||country,"place,district,region,country",fr
+"Paterna, Valencia, Spain, Valencia, Spain",place.43223110,"Paterna, Valencia, Spain",-0.442689,39.503807,1.0,place:1.00,matched,2026-04-27T16:46:59Z,city||state||country,"place,district,region,country",es
+"Pennsylvania, United States",region.148716,"Pennsylvania, United States",-78.290746,41.09114,1.0,region:1.00,matched,2026-04-27T16:46:59Z,state||country,"region,district,country,place",us
+Peru,country.8880,Peru,-75.311132,-10.151093,1.0,country:1.00,matched,2026-04-27T16:47:00Z,country,country,pe
+"Philadelphia, Pennsylvania, United States",place.257591532,"Philadelphia, Pennsylvania, United States",-75.166853,39.952756,1.0,place:1.00,matched,2026-04-27T16:47:00Z,city||state||country,"place,district,region,country",us
+"Piura, Peru, Peru",place.9750704,"Piura district, Piura, Peru",-80.627815,-5.197304,0.666667,place:0.67,matched,2026-04-27T16:47:00Z,state||country,"region,district,country,place",pe
+"Puebla, Mexico, Mexico",place.21481631,"Puebla, Puebla, Mexico",-98.19906,19.043692,0.666667,place:0.67,matched,2026-04-27T16:47:01Z,region||country,"region,district,country,place",mx
+"Puebla, Mexico, Mexico",place.21481631,"Puebla, Puebla, Mexico",-98.19906,19.043692,0.666667,place:0.67,matched,2026-04-27T16:47:01Z,state||country,"region,district,country,place",mx
+"Qasr-i Abu Nasr, Iran",country.8814,Iran,54.301374,32.565838,0.366667,country:0.37,matched,2026-04-27T16:47:01Z,city||country,"place,district,region,country",ir
+"Raqqa, Syria",place.13035735,"Raqqa, Al-Raqqah, Syria",39.008921,35.949678,1.0,place:1.00,matched,2026-04-27T16:47:01Z,city||country,"place,district,region,country",sy
+"Raqqa, Syria, Syria",place.13035735,"Raqqa, Al-Raqqah, Syria",39.008921,35.949678,0.666667,place:0.67,matched,2026-04-27T16:47:02Z,city||country,"place,district,region,country",sy
+"Rayy, Iran",country.8814,Iran,54.301374,32.565838,0.5,country:0.50,matched,2026-04-27T16:47:02Z,city||country,"place,district,region,country",ir
+"Rayy, Iran, Iran",place.1099886,"Eyvan County, Ilam, Iran",46.309772,33.82832,0.613333,place:0.61,matched,2026-04-27T16:47:02Z,city||country,"place,district,region,country",ir
+"Red River Delta, Vietnam",country.8948,Vietnam,108.339537,14.315424,0.388889,country:0.39,matched,2026-04-27T16:47:03Z,culture||country,"place,district,region,country",vn
+"Revere, Massachusetts, United States",place.275597548,"Revere, Massachusetts, United States",-71.012715,42.409472,1.0,place:1.00,matched,2026-04-27T16:47:03Z,city||state||country,"place,district,region,country",us
+"Rhineland, Germany, Germany",country.8762,Germany,10.018343,51.133481,0.5,country:0.50,matched,2026-04-27T16:47:03Z,city||country,"place,district,region,country",de
+"Rhodes, Greece",place.41265243,"Rhodes, South Aegean, Greece",28.227915,36.44352,1.0,place:1.00,matched,2026-04-27T16:47:03Z,culture||country,"place,district,region,country",gr
+"Rome, Italy",place.47384688,"Rome, Rome, Italy",12.476713,41.899986,1.0,place:1.00,matched,2026-04-27T16:47:04Z,city||country,"place,district,region,country",it
+Russia,country.8898,Russia,96.669705,61.994573,1.0,country:1.00,matched,2026-04-27T16:47:04Z,department||artistNationality,country,ru
+"Saintonge, France",country.8781,France,2.618787,47.824905,0.5,country:0.50,matched,2026-04-27T16:47:04Z,state||country,"region,district,country,place",fr
+"Santa Province, Peru, Peru",place.12142768,"Santa, Ancash, Peru",-78.61287,-8.986263,0.666667,place:0.67,matched,2026-04-27T16:47:04Z,state||country,"region,district,country,place",pe
+"Saveh, Iran",place.2345070,"Saveh County, Markazi, Iran",50.36513,35.019794,0.98,place:0.98,matched,2026-04-27T16:47:04Z,city||country,"place,district,region,country",ir
+"Scarborough, England",place.9513039,"Scarborough, North Yorkshire, England, United Kingdom",-0.400486,54.282314,1.0,place:1.00,matched,2026-04-27T16:47:05Z,city||country,"place,district,region,country",gb
+Scotland,region.17487,"Scotland, United Kingdom",-4.095892,56.734282,1.0,region:1.00,matched,2026-04-27T16:47:05Z,department||artistNationality,"country,region",gb
+"Seville, Spain, Spain",place.54249542,"Seville, Seville, Spain",-5.992558,37.389416,1.0,place:1.00,matched,2026-04-27T16:47:05Z,city||country,"place,district,region,country",es
+"Si Satchanalai, Thailand",place.6007005,"Si Satchanalai, Sukhothai, Thailand",99.80422,17.401382,1.0,place:1.00,matched,2026-04-27T16:47:06Z,culture||country,"place,district,region,country",th
+"Siegburg, Germany, Germany",place.73533498,"Siegburg, Rhein-Sieg District, North Rhine-Westphalia, Germany",7.205866,50.796486,1.0,place:1.00,matched,2026-04-27T16:47:06Z,city||country,"place,district,region,country",de
+"Siegburg, Germany, Lower Rhineland, Germany",place.73533498,"Siegburg, Rhein-Sieg District, North Rhine-Westphalia, Germany",7.205866,50.796486,0.592593,place:0.59,matched,2026-04-27T16:47:06Z,city||state||country,"place,district,region,country",de
+"Siena, Italy",place.55175280,"Siena, Siena, Italy",11.332266,43.31921,1.0,place:1.00,matched,2026-04-27T16:47:06Z,city||country,"place,district,region,country",it
+"South Amboy, New Jersey, United States",place.476965100,"South Amboy, New Jersey, United States",-74.280937,40.484437,1.0,place:1.00,matched,2026-04-27T16:47:07Z,city||state||country,"place,district,region,country",us
+Spain,country.8774,Spain,-4.055685,41.294856,1.0,country:1.00,matched,2026-04-27T16:47:07Z,country,country,es
+Spain,country.8774,Spain,-4.055685,41.294856,1.0,country:1.00,matched,2026-04-27T16:47:07Z,culture,"country,region",es
+Spain,country.8774,Spain,-4.055685,41.294856,1.0,country:1.00,matched,2026-04-27T16:47:07Z,department||artistNationality,country,es
+"Surrey, England, England",district.1222223,"Surrey, England, United Kingdom",-0.205921,51.23765,0.666667,district:0.67,matched,2026-04-27T16:47:08Z,state||country,"region,district,country,place",gb
+"Susa, Iran, Iran",place.1099886,"Eyvan County, Ilam, Iran",46.309772,33.82832,0.613333,place:0.61,matched,2026-04-27T16:47:08Z,city||country,"place,district,region,country",ir
+Switzerland,country.8748,Switzerland,8.234392,46.802496,1.0,country:1.00,matched,2026-04-27T16:47:08Z,department||artistNationality,country,ch
+"Syracuse, New York, United States",place.321915116,"Syracuse, New York, United States",-76.147486,43.047022,1.0,place:1.00,matched,2026-04-27T16:47:08Z,city||state||country,"place,district,region,country",us
+Syria,country.8919,Syria,38.505592,35.013048,1.0,country:1.00,matched,2026-04-27T16:47:09Z,country,country,sy
+"Tembladera, Peru, Peru",country.8880,Peru,-75.311132,-10.151093,0.425926,country:0.43,matched,2026-04-27T16:47:09Z,city||country,"place,district,region,country",pe
+"Tembladera, Peru, Peru",country.8880,Peru,-75.311132,-10.151093,0.425926,country:0.43,matched,2026-04-27T16:47:09Z,region||country,"region,district,country,place",pe
+Thailand,country.8925,Thailand,101.017438,15.127333,1.0,country:1.00,matched,2026-04-27T16:47:09Z,culture,"country,region",th
+"Thebes, Byzantine Egypt",country.8771,Egypt,29.871903,26.494184,0.425926,country:0.43,matched,2026-04-27T16:47:09Z,city||country,"place,district,region,country",eg
+"Thebes, Egypt, Egypt",country.8771,Egypt,29.871903,26.494184,0.425926,country:0.43,matched,2026-04-27T16:47:10Z,region||country,"region,district,country,place",eg
+"Todi, Italy",place.58173552,"Todi, Perugia, Italy",12.406307,42.782707,1.0,place:1.00,matched,2026-04-27T16:47:10Z,city||country,"place,district,region,country",it
+"Toynton, Lincolnshire, England, Lincolnshire, England",district.730703,"Lincolnshire, England, United Kingdom",-0.541387,53.230133,0.548148,district:0.55,matched,2026-04-27T16:47:10Z,city||state||country,"place,district,region,country",gb
+"Trapani, Italy",place.59132016,"Trapani, Trapani, Italy",12.509619,38.015,1.0,place:1.00,matched,2026-04-27T16:47:11Z,culture||country,"place,district,region,country",it
+"Trenton, New Jersey, United States",place.330352876,"Trenton, New Jersey, United States",-74.759711,40.220578,1.0,place:1.00,matched,2026-04-27T16:47:11Z,city||state||country,"place,district,region,country",us
+Turkey,country.8932,Türkiye,35.179593,39.060481,1.0,country:1.00,matched,2026-04-27T16:47:11Z,country,country,tr
+Turkey,country.8932,Türkiye,35.179593,39.060481,1.0,country:1.00,matched,2026-04-27T16:47:11Z,culture,"country,region",tr
+"Tuscany, Italy",region.1459312,"Tuscany, Italy",11.255576,43.769871,1.0,region:1.00,matched,2026-04-27T16:47:12Z,culture||country,"place,district,region,country",it
+"Tuscany, Italy",region.1459312,"Tuscany, Italy",11.255576,43.769871,1.0,region:1.00,matched,2026-04-27T16:47:12Z,state||country,"region,district,country,place",it
+"Umbria, Italy",region.1475696,"Umbria, Italy",12.38901,43.111961,1.0,region:1.00,matched,2026-04-27T16:47:12Z,culture||country,"place,district,region,country",it
+United States,country.8940,United States,-97.922211,39.381266,1.0,country:1.00,matched,2026-04-27T16:47:12Z,artistNationality,country,us
+United States,country.8940,United States,-97.922211,39.381266,1.0,country:1.00,matched,2026-04-27T16:47:12Z,culture,"country,region",us
+United States,country.8940,United States,-97.922211,39.381266,1.0,country:1.00,matched,2026-04-27T16:47:13Z,department||artistNationality,country,us
+"Upper Egypt, Egypt, Egypt",country.8771,Egypt,29.871903,26.494184,0.388889,country:0.39,matched,2026-04-27T16:47:13Z,region||country,"region,district,country,place",eg
+"Urbino, Italy",place.60237936,"Urbino, Pesaro and Urbino, Italy",12.637198,43.726307,1.0,place:1.00,matched,2026-04-27T16:47:13Z,culture||country,"place,district,region,country",it
+"Valencia, Spain",place.59942982,"Valencia, Valencia, Spain",-0.375984,39.47132,1.0,place:1.00,matched,2026-04-27T16:47:13Z,city||culture,"place,district,region,country",es
+"Veracruz, Mexico, Mexico",place.37464223,"Veracruz, Veracruz, Mexico",-96.1379,19.198362,0.666667,place:0.67,matched,2026-04-27T16:47:14Z,state||country,"region,district,country,place",mx
+Vietnam,country.8948,Vietnam,108.339537,14.315424,1.0,country:1.00,matched,2026-04-27T16:47:14Z,culture,"country,region",vn
+"Viterbo, Lazio, Italy",region.1483888,"Lazio, Italy",12.482932,41.89332,0.666667,region:0.67,matched,2026-04-27T16:47:14Z,city||state||country,"place,district,region,country",it
+"West Midlands, England, England",district.1328719,"West Midlands, England, United Kingdom",-1.901027,52.47935,0.703704,district:0.70,matched,2026-04-27T16:47:14Z,region||country,"region,district,country,place",gb
+"Western Mexico, Mexico",region.255135,"Mexico, Mexico",-99.724084,19.642105,0.666667,region:0.67,matched,2026-04-27T16:47:15Z,region||country,"region,district,country,place",mx
+Western Turkey,country.8932,Türkiye,35.179593,39.060481,0.5,country:0.50,matched,2026-04-27T16:47:15Z,culture,"country,region",
+"Wiltshire, England, England",district.1353295,"Wiltshire, England, United Kingdom",-2.20183,51.318718,0.666667,district:0.67,matched,2026-04-27T16:47:15Z,state||country,"region,district,country,place",gb

@@ -7,7 +7,7 @@ Image-processing stage for generating normalized vessel image assets used by fea
 - `process_images.py`
   - Primary batch runner.
   - For each object image: remove background -> standardize -> extract outline.
-  - Writes 3 outputs per object to `process_data/real_images/`:
+  - Writes 3 outputs per object to `process_data/generated/real_images/`:
     - `<object_id>_no_bg.png`
     - `<object_id>_mask.png`
     - `<object_id>_outline.png`

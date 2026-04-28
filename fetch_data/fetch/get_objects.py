@@ -1,10 +1,13 @@
 # RUN THIS FILE FROM ROOT DIRECTORY
 # python -m fetch_data.fetch.get_objects
+# python -m fetch_data.fetch.get_objects --additional-department 10
+# python -m fetch_data.fetch.get_objects --additional-department 10 --pottery
 
 
 # loop through object_ids and save relevant info for each object
 # function to verify if want to include object based on certain properties. if keep, then save to objects.json, otherwise save object id to reject-object-ids.json and don't save additional info to objects.json for that object
 
+import argparse
 import json
 import random
 import time
@@ -13,9 +16,6 @@ from typing import Any, Dict, List
 
 import requests
 from tqdm import tqdm
-
-# NOTE: Run this file as a module:
-#   python -m fetch_data.fetch.get_objects
 
 from .filter_objects import apply_filters  # centralised filtering logic
 
@@ -31,6 +31,7 @@ OBJECT_IDS_PATH = DATA_DIR / "object_ids.json"
 OBJECTS_PATH = DATA_DIR / "objects.json"
 REJECT_IDS_PATH = DATA_DIR / "reject_object_ids.json"
 API_ERRORS_PATH = DATA_DIR / "api_errors_object_ids.json"
+ADDITIONAL_DEPT_IDS_DIR = DATA_DIR / "additional_department_ids"
 
 # Throttling / batching
 REQUEST_TIMEOUT = 30
@@ -100,11 +101,60 @@ def remove_empty_string_fields(value: Any) -> Any:
     return value
 
 
-def main() -> None:
+def additional_department_ids_path(department_id: int, *, pottery: bool = False) -> Path:
+    """Resolve the JSON file produced by get_additional_department_ids for this department."""
+    # Glob patterns also match *_fetched_object_ids.json, so filter those out below.
+    pattern = f"{department_id}_pottery_*_object_ids.json" if pottery else f"{department_id}_*_object_ids.json"
+    raw = ADDITIONAL_DEPT_IDS_DIR.glob(pattern)
+    matches = sorted(p for p in raw if not p.name.endswith("_fetched_object_ids.json"))
+    if not pottery:
+        matches = [p for p in matches if "_pottery_" not in p.name]
+    if not matches:
+        pottery_hint = "pottery " if pottery else ""
+        raise FileNotFoundError(
+            f"No {pottery_hint}additional ID file for departmentId={department_id} under {ADDITIONAL_DEPT_IDS_DIR}. "
+            "Run: python -m fetch_data.fetch.get_additional_department_ids"
+        )
+    if len(matches) > 1:
+        pottery_hint = "pottery " if pottery else ""
+        raise ValueError(
+            f"Ambiguous {pottery_hint}additional ID files for departmentId={department_id}: {[m.name for m in matches]}"
+        )
+    return matches[0]
+
+
+def additional_department_fetched_path(ids_path: Path) -> Path:
+    """
+    Path for the per-department fetched-ID ledger (sibling of *_object_ids.json).
+
+    Example: ``10_egyptian_art_object_ids.json`` -> ``10_egyptian_art_fetched_object_ids.json``.
+    """
+    stem = ids_path.stem
+    if stem.endswith("_object_ids"):
+        base = stem[: -len("_object_ids")]
+    else:
+        base = stem
+    return ids_path.with_name(f"{base}_fetched_object_ids.json")
+
+
+def _department_fetch_postfix(fetched_ids: set[int], object_id_set: set[int], total: int) -> str:
+    """Ledger = objectIDs for which the Met object-detail API was invoked in --additional-department mode."""
+    done = len(fetched_ids & object_id_set)
+    return f"{done}/{total} in dept ledger"
+
+
+def run_fetch_batch(
+    object_ids: List[int],
+    *,
+    progress_desc: str,
+    ids_source_description: str,
+    department_fetched_path: Path | None = None,
+) -> None:
     DATA_DIR.mkdir(parents=True, exist_ok=True)
 
-    # Load IDs to process
-    object_ids: List[int] = load_json_list(OBJECT_IDS_PATH)
+    if not object_ids:
+        print(f"No object IDs to process ({ids_source_description}).")
+        return
 
     # Existing data (for resume)
     objects_by_id: Dict[str, Any] = load_json_dict(OBJECTS_PATH)
@@ -118,12 +168,33 @@ def main() -> None:
         set(int(k) for k in objects_by_id.keys()) | set(rejected_ids) | set(api_error_ids)
     )
 
+    object_id_set = set(object_ids)
+    total_in_department_list = len(object_id_set)
+    department_progress_enabled = department_fetched_path is not None
+    dept_fetched_ids: set[int] = set()
+    if department_progress_enabled:
+        assert department_fetched_path is not None
+        dept_fetched_ids.update(int(x) for x in load_json_list(department_fetched_path))
+        if len(dept_fetched_ids) > MAX_NEW_IDS_PER_RUN * 3:
+            print(
+                "If the department ledger looks larger than your --additional-department run count, it may have "
+                "been inflated by an older version of this script. Delete this department's *_fetched_object_ids.json "
+                "file to reset the ledger."
+            )
+        already_global = object_id_set & processed_ids
+        if already_global:
+            print(
+                f"Note: {len(already_global)}/{total_in_department_list} department list IDs are already in the "
+                f"global pipeline (objects / rejects / API errors) and are skipped without an API call. "
+                f"The *_fetched_object_ids.json ledger counts only IDs handled in --additional-department runs."
+            )
+
     # Preselect a random batch of unprocessed IDs so each run fetches at most
     # MAX_NEW_IDS_PER_RUN objects total.
     remaining_ids = [object_id for object_id in object_ids if object_id not in processed_ids]
     run_ids = random.sample(remaining_ids, k=min(MAX_NEW_IDS_PER_RUN, len(remaining_ids)))
 
-    print(f"Loaded {len(object_ids)} IDs from {OBJECT_IDS_PATH}")
+    print(f"Loaded {len(object_ids)} IDs from {ids_source_description}")
     print(
         f"Resuming with {len(objects_by_id)} kept, "
         f"{len(rejected_ids)} rejected, "
@@ -140,16 +211,16 @@ def main() -> None:
     processed_since_save = 0
     new_ids_this_run = 0
 
-    for object_id in tqdm(run_ids, desc="Fetching object details"):
+    bar = tqdm(run_ids, desc=progress_desc)
+    if department_progress_enabled:
+        bar.set_postfix_str(_department_fetch_postfix(dept_fetched_ids, object_id_set, total_in_department_list))
+
+    for object_id in bar:
         try:
             obj = fetch_object(object_id)
         except ForbiddenError as exc:
-            # Record this ID as having an API error, then stop the run.
+            # 403: stop this run without recording API error or counting as fetched.
             print(exc)
-            if object_id not in api_error_id_set:
-                api_error_ids.append(object_id)
-                api_error_id_set.add(object_id)
-            new_ids_this_run += 1
             break
         except requests.RequestException as exc:
             # Other API/network errors: record and continue, but do NOT mark as rejected.
@@ -158,10 +229,29 @@ def main() -> None:
                 api_error_ids.append(object_id)
                 api_error_id_set.add(object_id)
             processed_ids.add(object_id)
+            if department_progress_enabled:
+                dept_fetched_ids.add(object_id)
+                bar.set_postfix_str(
+                    _department_fetch_postfix(dept_fetched_ids, object_id_set, total_in_department_list)
+                )
+                assert department_fetched_path is not None
+                save_json(department_fetched_path, sorted(dept_fetched_ids))
             new_ids_this_run += 1
             continue
 
-        if apply_filters(obj, object_id, rejected_ids):
+        # Met object-detail API returned (HTTP 200 + JSON). Record as soon as the call succeeds so the
+        # ledger matches "API was invoked", even if filter/save logic below raises.
+        if department_progress_enabled:
+            dept_fetched_ids.add(object_id)
+            bar.set_postfix_str(
+                _department_fetch_postfix(dept_fetched_ids, object_id_set, total_in_department_list)
+            )
+
+        if apply_filters(
+            obj,
+            object_id,
+            rejected_ids,
+        ):
             cleaned_obj = remove_empty_string_fields(obj)
             key = str(cleaned_obj.get("objectID", object_id))
             objects_by_id[key] = cleaned_obj
@@ -181,6 +271,9 @@ def main() -> None:
             save_json(OBJECTS_PATH, objects_by_id)
             save_json(REJECT_IDS_PATH, rejected_ids)
             save_json(API_ERRORS_PATH, api_error_ids)
+            if department_progress_enabled:
+                assert department_fetched_path is not None
+                save_json(department_fetched_path, sorted(dept_fetched_ids))
             processed_since_save = 0
 
             if new_ids_this_run >= MAX_NEW_IDS_PER_RUN:
@@ -196,10 +289,24 @@ def main() -> None:
     save_json(OBJECTS_PATH, objects_by_id)
     save_json(REJECT_IDS_PATH, rejected_ids)
     save_json(API_ERRORS_PATH, api_error_ids)
+    if department_progress_enabled:
+        assert department_fetched_path is not None
+        save_json(department_fetched_path, sorted(dept_fetched_ids))
 
     new_kept_count = len(objects_by_id) - start_kept_count
     new_rejected_count = len(rejected_ids) - start_rejected_count
     new_api_error_count = len(api_error_ids) - start_api_error_count
+
+    done_msg = (
+        f"Saved to {OBJECTS_PATH}, {REJECT_IDS_PATH}, and {API_ERRORS_PATH}."
+    )
+    if department_progress_enabled and department_fetched_path is not None:
+        done = len(dept_fetched_ids & object_id_set)
+        done_msg = (
+            f"Department ledger (--additional-department only): {done}/{total_in_department_list} "
+            f"({department_fetched_path.name}). "
+            + done_msg
+        )
 
     print(
         f"Done. New this run -"
@@ -207,9 +314,81 @@ def main() -> None:
         f"rejected: {new_rejected_count}, "
         f"API errors: {new_api_error_count}"
         f"✅Totals: kept {len(objects_by_id)} "
-        f"Saved to {OBJECTS_PATH}, {REJECT_IDS_PATH}, and {API_ERRORS_PATH}."
+        f"{done_msg}"
     )
 
 
+def main() -> None:
+    object_ids: List[int] = load_json_list(OBJECT_IDS_PATH)
+    run_fetch_batch(
+        object_ids,
+        progress_desc="Fetching object details",
+        ids_source_description=str(OBJECT_IDS_PATH),
+    )
+
+
+def get_additional_department_objects(department_id: int, *, pottery: bool = False) -> None:
+    """
+    Fetch object details for IDs listed under additional_department_ids for one department.
+
+    Same outputs and batching as main(), but reads IDs from
+    ``additional_department_ids/{departmentId}_*_object_ids.json``.
+
+    Writes ``*_fetched_object_ids.json`` beside the ID list: one entry per objectID
+    once the Met object-detail API is invoked for it in this mode (200, 403, or a
+    ``requests`` error from that call). IDs skipped as already in the global pipeline
+    are not listed.
+    """
+    ids_path = additional_department_ids_path(department_id, pottery=pottery)
+    fetched_path = additional_department_fetched_path(ids_path)
+    object_ids: List[int] = load_json_list(ids_path)
+    run_fetch_batch(
+        object_ids,
+        progress_desc=f"Fetching {'pottery ' if pottery else ''}dept {department_id} object details",
+        ids_source_description=str(ids_path),
+        department_fetched_path=fetched_path,
+    )
+
+
+def confirm_run() -> bool:
+    """Prompt for explicit y/n confirmation before starting a fetch run."""
+    while True:
+        answer = input("are you sure? (y/n): ").strip().lower()
+        if answer in {"y", "yes"}:
+            return True
+        if answer in {"n", "no"}:
+            return False
+        print("Please answer y or n.")
+
+
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser(
+        description="Fetch Met object records into fetch_data/data/objects.json (and related files)."
+    )
+    parser.add_argument(
+        "--additional-department",
+        type=int,
+        metavar="DEPARTMENT_ID",
+        help=(
+            "Use IDs from fetch_data/data/additional_department_ids/{DEPARTMENT_ID}_*_object_ids.json "
+            "instead of fetch_data/data/object_ids.json."
+        ),
+    )
+    parser.add_argument(
+        "--pottery",
+        action="store_true",
+        help=(
+            "Use with --additional-department to read "
+            "fetch_data/data/additional_department_ids/{DEPARTMENT_ID}_pottery_*_object_ids.json."
+        ),
+    )
+    args = parser.parse_args()
+    if not confirm_run():
+        print("Aborted.")
+        raise SystemExit(0)
+    if args.pottery and args.additional_department is None:
+        parser.error("--pottery requires --additional-department DEPARTMENT_ID")
+    if args.additional_department is not None:
+        get_additional_department_objects(args.additional_department, pottery=args.pottery)
+    else:
+        main()

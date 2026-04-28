@@ -5,8 +5,7 @@ import clustersData from "../../test_assets/clusters.json";
 import interestingMatchesData from "../../test_assets/most_interesting_matches.json";
 import manualInterestingOnesData from "../../test_assets/manual_interesting_ones.json";
 
-const S3_IMAGE_BASE_URL = "https://vessels-thesis.s3.amazonaws.com/images";
-const S3_OUTLINE_BASE_URL = "https://vessels-thesis.s3.amazonaws.com/outline_images/outline_images";
+const S3_REAL_IMAGES_BASE_URL = "https://vessels-thesis.s3.amazonaws.com/real_images";
 const rejectObjectIdSet = new Set(manualRejectObjectIds.map(String));
 const objectMetaById = new Map(
   Object.entries(
@@ -47,16 +46,12 @@ const manualInterestingObjectIds = Array.from(
 type ImageViewMode = "mask_white" | "outline" | "no_bg";
 
 function buildImageUrl(filename: string) {
-  return `${S3_IMAGE_BASE_URL}/${filename}`;
-}
-
-function buildOutlineUrl(filename: string) {
-  return `${S3_OUTLINE_BASE_URL}/${filename}`;
+  return `${S3_REAL_IMAGES_BASE_URL}/${filename}`;
 }
 
 function getImageEntryByObjectId(objectId: string) {
-  const maskFilename = `${objectId}_mask_standardized.png`;
-  const noBgFilename = `${objectId}_no_bg_standardized.png`;
+  const maskFilename = `${objectId}_mask.png`;
+  const noBgFilename = `${objectId}_no_bg.png`;
   const outlineFilename = `${objectId}_outline.png`;
   return {
     objectId,
@@ -65,7 +60,7 @@ function getImageEntryByObjectId(objectId: string) {
     outlineFilename,
     maskSrc: buildImageUrl(maskFilename),
     noBgSrc: buildImageUrl(noBgFilename),
-    outlineSrc: buildOutlineUrl(outlineFilename)
+    outlineSrc: buildImageUrl(outlineFilename)
   };
 }
 
