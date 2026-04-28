@@ -1,4 +1,6 @@
-import { Route, Routes } from "react-router-dom";
+import { useEffect } from "react";
+import { Route, Routes, useLocation } from "react-router-dom";
+import { homeEntryDomId, type HomeEntryScrollId } from "./Components/constants";
 import Test from "./Components/Tests/Test";
 import Test2 from "./Components/Tests/Test2";
 import ClusterTest from "./Components/Tests/ClusterTest";
@@ -13,6 +15,19 @@ import {
 } from "./Components";
 
 function Home() {
+  const location = useLocation();
+  useEffect(() => {
+    if (location.pathname !== "/") return;
+    const entry = (location.state as { homeScrollTo?: HomeEntryScrollId } | null)?.homeScrollTo;
+    if (!entry) return;
+    const el = document.getElementById(homeEntryDomId(entry));
+    if (!el) return;
+    const scroll = () => el.scrollIntoView({ behavior: "smooth", block: "start" });
+    scroll();
+    const timeoutId = window.setTimeout(scroll, 120);
+    return () => window.clearTimeout(timeoutId);
+  }, [location.pathname, location.state]);
+
   return (
     <main
       style={{

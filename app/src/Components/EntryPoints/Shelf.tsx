@@ -1,13 +1,15 @@
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import finalClusterKeysCsv from "../../../../process_data/cluster/final_clusters_keys.csv?raw";
 import finalClusterObjectIdsCsv from "../../../../process_data/cluster/final_clusters_object_ids.csv?raw";
 import ImageToggleButton from "../ImageToggleButton";
 import useImageToggle from "../../hooks/useImageToggle";
 import useImageModules from "../../hooks/useImageModules";
 import useFormatClusters, { type ClusterRow } from "../../hooks/useFormatClusters";
-import { SHELF_RENDER_IMAGE_SIZE_PX } from "../constants";
+import { homeEntryDomId, SHELF_RENDER_IMAGE_SIZE_PX, type HomeEntryScrollId } from "../constants";
+
+const shelfEntryScrollId: HomeEntryScrollId = "shelf";
 
 const cluster0 = "cluster_0";
 const cluster1 = "cluster_1";
@@ -60,8 +62,7 @@ function defaultStackOpacity(clusterSize: number) {
 function Shelf() {
   const navigate = useNavigate();
   const { mode, options, setMode } = useImageToggle();
-  const [solidIndexByCluster, setSolidIndexByCluster] = useState<Record<string, number>>({});
-  const [hoveredCluster, setHoveredCluster] = useState<string | null>(null);
+  const [solidIndexByCluster] = useState<Record<string, number>>({});
   const { outlineImageByObjectId, maskImageByObjectId } = useImageModules();
   const { clusterRows } = useFormatClusters(finalClusterKeysCsv, finalClusterObjectIdsCsv);
   const orderedClusterRows = useMemo(() => {
@@ -76,6 +77,7 @@ function Shelf() {
   return (
     <Box
       component="main"
+      id={homeEntryDomId(shelfEntryScrollId)}
       sx={{
         height: "100vh",
         background: "#000",
@@ -123,102 +125,23 @@ function Shelf() {
             <Box
               component="article"
               key={clusterRow.cluster}
-              onClick={() => navigate(`/all/${clusterRow.cluster}`)}
-              onMouseEnter={() => setHoveredCluster(clusterRow.cluster)}
-              onMouseLeave={() => setHoveredCluster(null)}
+              onClick={() =>
+                navigate(`/all/${clusterRow.cluster}`, {
+                  state: { homeScrollTo: shelfEntryScrollId }
+                })
+              }
               sx={{
                 display: "flex",
                 flexDirection: "column",
-                borderBottom: "4px solid #fff",
                 minHeight: `${SHELF_RENDER_IMAGE_SIZE_PX * 0.82}px`,
                 maxHeight: `${SHELF_RENDER_IMAGE_SIZE_PX * 1.02}px`,
-                paddingLeft: `${SHELF_RENDER_IMAGE_SIZE_PX * 0.2}px`,
-                paddingRight: `${SHELF_RENDER_IMAGE_SIZE_PX * 0.2}px`,
-                cursor: "pointer"
+                cursor: "pointer",
+                "&:hover .shelf-cluster-label": {
+                  opacity: 1,
+                  visibility: "visible"
+                }
               }}
             >
-              <Box
-                sx={{
-                  marginBottom: 0,
-                  fontSize: "0.42rem",
-                  paddingTop: 0,
-                  opacity: hoveredCluster === clusterRow.cluster ? 1 : 0,
-                  transition: "opacity 120ms ease"
-                }}
-              >
-                <Typography component="span" sx={{ fontSize: "inherit", fontWeight: 700 }}>
-                  {clusterRow.cluster}
-                </Typography>
-                <Typography component="span" sx={{ marginLeft: "0.45rem", color: "#ccc" }}>
-                  {clusterRow.clusterType}
-                </Typography>
-              </Box>
-
-              {mode === "solid" ? (
-                <Box
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    gap: "0.5rem",
-                    marginBottom: 0,
-                    opacity: hoveredCluster === clusterRow.cluster ? 1 : 0,
-                    transition: "opacity 120ms ease"
-                  }}
-                >
-                  <Typography component="span" sx={{ fontSize: "0.42rem", color: "#ddd" }}>
-                    {selectedSolidObjectId
-                      ? `index ${clampedSolidIndex} - object ${selectedSolidObjectId}`
-                      : "no object id"}
-                  </Typography>
-                  <Button
-                    type="button"
-                    onClick={(event) => {
-                      event.stopPropagation();
-                      if (!solidObjectIds.length) return;
-                      setSolidIndexByCluster((previous) => ({
-                        ...previous,
-                        [clusterRow.cluster]:
-                          ((previous[clusterRow.cluster] ?? defaultSolidIndex) + 1) %
-                          solidObjectIds.length
-                      }));
-                    }}
-                    variant="outlined"
-                    sx={{
-                      borderColor: "#fff",
-                      background: "#000",
-                      color: "#fff",
-                      px: "0.25rem",
-                      py: "0.05rem",
-                      minWidth: 0,
-                      borderRadius: 0,
-                      fontSize: "0.42rem",
-                      lineHeight: 1.1,
-                      textTransform: "none",
-                      position: "relative",
-                      zIndex: 2,
-                      "&:hover": { borderColor: "#fff", background: "#000" }
-                    }}
-                    aria-label={`Rotate solid image for ${clusterRow.cluster}`}
-                  >
-                    {">"}
-                  </Button>
-                </Box>
-              ) : (
-                <Typography
-                  component="span"
-                  sx={{
-                    fontSize: "0.42rem",
-                    color: "#bbb",
-                    marginBottom: 0,
-                    opacity: hoveredCluster === clusterRow.cluster ? 1 : 0,
-                    transition: "opacity 120ms ease"
-                  }}
-                >
-                  stacked outlines
-                </Typography>
-              )}
-
               <Box
                 sx={{
                   marginTop: "auto",
@@ -229,7 +152,8 @@ function Shelf() {
                   overflow: "hidden",
                   paddingLeft: `${SHELF_RENDER_IMAGE_SIZE_PX * 0.25}px`,
                   paddingRight: `${SHELF_RENDER_IMAGE_SIZE_PX * 0.25}px`,
-                  boxSizing: "border-box"
+                  boxSizing: "border-box",
+                  borderBottom: "4px solid #fff"
                 }}
               >
                 {mode === "outline" ? (
@@ -292,6 +216,21 @@ function Shelf() {
                   </Box>
                 )}
               </Box>
+              <Typography
+                className="shelf-cluster-label"
+                component="span"
+                sx={{
+                  mt: "0.25rem",
+                  mb: "0.2rem",
+                  fontSize: "0.62rem",
+                  letterSpacing: "0.03em",
+                  opacity: 0,
+                  visibility: "hidden",
+                  transition: "opacity 120ms ease"
+                }}
+              >
+                {clusterRow.cluster}
+              </Typography>
             </Box>
           );
         })}

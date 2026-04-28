@@ -1,8 +1,8 @@
 import { useEffect, useRef } from "react";
 import { Box } from "@mui/material";
 import ObjectScene from "./ObjectScene";
-import type { ObjectLayout } from "../../hooks/useViewLayouts";
-import useSceneViewportSize, { type SceneViewportSize } from "../../hooks/useSceneViewportSize";
+import type { ObjectLayout } from "@/hooks/useViewLayouts";
+import useSceneViewportSize, { type SceneViewportSize } from "@/hooks/useSceneViewportSize";
 import {
   SCENE_LEFT_PANEL_MAX_WIDTH_PX,
   SCENE_LEFT_PANEL_MIN_WIDTH_PX,
@@ -40,7 +40,7 @@ function All({
   }, [onViewportSizeChange, sceneViewportSize]);
 
   return (
-    <Box sx={{ flex: 1, minHeight: 0, width: "100%", display: "flex", gap: "0.7rem" }}>
+    <Box sx={{ flex: 1, minHeight: 0, width: "100%", display: "flex", gap: "0.9rem" }}>
       <Box
         sx={{
           width: `clamp(${SCENE_LEFT_PANEL_MIN_WIDTH_PX}px, ${SCENE_LEFT_PANEL_WIDTH_VW}vw, ${SCENE_LEFT_PANEL_MAX_WIDTH_PX}px)`,
@@ -90,6 +90,7 @@ function All({
               minWidth: "100%"
             }}
           >
+            {/* Cell size comes from parent `buildSceneLayout` `imageSizePx` (e.g. Container vs timeline/map). */}
             <ObjectScene
               objectIds={objectIds}
               objectLayoutById={objectLayoutById}
@@ -100,6 +101,7 @@ function All({
               imageAltSuffix={imageAltSuffix}
               enableHoverSwap={enableHoverSwap}
               pointerEvents="auto"
+              onObjectClick={(objectId) => console.log(objectId)}
             />
           </Box>
         </Box>

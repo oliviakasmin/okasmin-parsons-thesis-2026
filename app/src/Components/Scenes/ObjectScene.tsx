@@ -13,6 +13,7 @@ type ObjectSceneProps = {
   imageAltSuffix: string;
   enableHoverSwap: boolean;
   pointerEvents?: "auto" | "none";
+  onObjectClick?: (objectId: string) => void;
 };
 
 function ObjectScene({
@@ -24,7 +25,8 @@ function ObjectScene({
   getHoverImageSrc,
   imageAltSuffix,
   enableHoverSwap,
-  pointerEvents = "auto"
+  pointerEvents = "auto",
+  onObjectClick
 }: ObjectSceneProps) {
   const [hoveredObjectId, setHoveredObjectId] = useState<string | null>(null);
   const nodeByObjectIdRef = useRef<Map<string, HTMLDivElement>>(new Map());
@@ -67,6 +69,7 @@ function ObjectScene({
             onMouseLeave={() =>
               setHoveredObjectId((current) => (current === objectId ? null : current))
             }
+            onClick={() => onObjectClick?.(objectId)}
             sx={{
               position: "absolute",
               top: 0,

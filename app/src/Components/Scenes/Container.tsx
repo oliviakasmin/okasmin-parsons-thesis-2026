@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useLocation, useParams, useSearchParams } from "react-router-dom";
 import { Box, Button, Typography } from "@mui/material";
 import finalClusterKeysCsv from "../../../../process_data/cluster/final_clusters_keys.csv?raw";
 import finalClusterObjectIdsCsv from "../../../../process_data/cluster/final_clusters_object_ids.csv?raw";
@@ -8,14 +8,17 @@ import ImageToggleButton from "../ImageToggleButton";
 import useImageToggle from "../../hooks/useImageToggle";
 import useImageModules from "../../hooks/useImageModules";
 import useFormatClusters from "../../hooks/useFormatClusters";
+import useFunctionGroups, { isFunctionGroup } from "../../hooks/useFunctionGroups";
 import useTimelineBuckets from "../../hooks/useTimelineBuckets";
 import useObjectGeo, { useObjectCountryNames } from "../../hooks/useObjectGeo";
 import { buildSceneLayout } from "../../hooks/useViewLayouts";
 import {
+  ALL_SCENE_RENDER_IMAGE_SIZE_PX,
   SCENE_LEFT_PANEL_MAX_WIDTH_PX,
   SCENE_LEFT_PANEL_MIN_WIDTH_PX,
   SCENE_LEFT_PANEL_WIDTH_VW,
-  SUBGROUP_RENDER_IMAGE_SIZE_PX
+  SUBGROUP_RENDER_IMAGE_SIZE_PX,
+  type HomeEntryScrollId
 } from "../constants";
 import MapView from "./Map";
 import ObjectScene from "./ObjectScene";
@@ -26,6 +29,9 @@ type SceneView = "all" | "timeline" | "map";
 
 function Container() {
   const { clusterId } = useParams();
+  const location = useLocation();
+  const homeScrollTo = (location.state as { homeScrollTo?: HomeEntryScrollId } | null)
+    ?.homeScrollTo;
   const [searchParams, setSearchParams] = useSearchParams();
   const searchView = searchParams.get("view");
   const currentView: SceneView =
@@ -35,19 +41,48 @@ function Container() {
   const [sceneViewportSize, setSceneViewportSize] = useState({ width: 0, height: 0 });
   const { outlineImageByObjectId, maskImageByObjectId, noBgImageByObjectId } = useImageModules();
   const { clusterRows } = useFormatClusters(finalClusterKeysCsv, finalClusterObjectIdsCsv);
+  const { groupRowById } = useFunctionGroups();
   const selectedCluster = useMemo(
     () => clusterRows.find((row) => row.cluster === clusterId),
     [clusterId, clusterRows]
   );
-  const clusterObjectIds = selectedCluster?.allObjectIds ?? [];
+  const selectedFunctionGroup = useMemo(
+    () => (clusterId && isFunctionGroup(clusterId) ? groupRowById.get(clusterId) : undefined),
+    [clusterId, groupRowById]
+  );
+  const selectedEntry = useMemo(
+    () =>
+      selectedCluster
+        ? {
+            id: selectedCluster.cluster,
+            typeLabel: selectedCluster.clusterType,
+            objectIds: selectedCluster.allObjectIds
+          }
+        : selectedFunctionGroup
+          ? {
+              id: selectedFunctionGroup.group,
+              typeLabel: "function group",
+              objectIds: selectedFunctionGroup.objectIds
+            }
+          : null,
+    [selectedCluster, selectedFunctionGroup]
+  );
+  const selectedObjectIds = useMemo(() => selectedEntry?.objectIds ?? [], [selectedEntry]);
+  const objectLabelPlural = selectedFunctionGroup
+    ? selectedFunctionGroup.group === "amphora"
+      ? "amphorae"
+      : `${selectedFunctionGroup.group}s`
+    : "vessels";
+  const timelineSubject = selectedFunctionGroup ? objectLabelPlural : "these forms";
+  const mapSubject = selectedFunctionGroup ? objectLabelPlural : "these forms";
 
   const {
     buckets: timelineBuckets,
     excludedCount,
     spanYears
-  } = useTimelineBuckets(clusterObjectIds);
-  const geoByObjectId = useObjectGeo(clusterObjectIds);
-  const countryNames = useObjectCountryNames(clusterObjectIds);
+  } = useTimelineBuckets(selectedObjectIds);
+  const geoByObjectId = useObjectGeo(selectedObjectIds);
+  const { countryNames, distinctCountryCount } = useObjectCountryNames(selectedObjectIds);
   const [mapProjectionByObjectId, setMapProjectionByObjectId] = useState<
     Map<string, { x: number; y: number; visible: boolean }>
   >(new globalThis.Map());
@@ -55,42 +90,32 @@ function Container() {
   const allSceneLayout = useMemo(
     () =>
       buildSceneLayout({
-        objectIds: selectedCluster?.allObjectIds ?? [],
+        objectIds: selectedObjectIds,
         buckets: timelineBuckets,
         view: "all",
         sceneWidth: sceneViewportSize.width,
         sceneHeight: sceneViewportSize.height,
-        imageSizePx: SUBGROUP_RENDER_IMAGE_SIZE_PX
+        imageSizePx: ALL_SCENE_RENDER_IMAGE_SIZE_PX
       }),
-    [
-      sceneViewportSize.height,
-      sceneViewportSize.width,
-      selectedCluster?.allObjectIds,
-      timelineBuckets
-    ]
+    [sceneViewportSize.height, sceneViewportSize.width, selectedObjectIds, timelineBuckets]
   );
 
   const timelineSceneLayout = useMemo(
     () =>
       buildSceneLayout({
-        objectIds: selectedCluster?.allObjectIds ?? [],
+        objectIds: selectedObjectIds,
         buckets: timelineBuckets,
         view: "timeline",
         sceneWidth: sceneViewportSize.width,
         sceneHeight: sceneViewportSize.height,
         imageSizePx: SUBGROUP_RENDER_IMAGE_SIZE_PX
       }),
-    [
-      sceneViewportSize.height,
-      sceneViewportSize.width,
-      selectedCluster?.allObjectIds,
-      timelineBuckets
-    ]
+    [sceneViewportSize.height, sceneViewportSize.width, selectedObjectIds, timelineBuckets]
   );
   const mapSceneLayout = useMemo(
     () =>
       buildSceneLayout({
-        objectIds: selectedCluster?.allObjectIds ?? [],
+        objectIds: selectedObjectIds,
         buckets: timelineBuckets,
         view: "map",
         sceneWidth: sceneViewportSize.width,
@@ -102,7 +127,7 @@ function Container() {
       mapProjectionByObjectId,
       sceneViewportSize.height,
       sceneViewportSize.width,
-      selectedCluster?.allObjectIds,
+      selectedObjectIds,
       timelineBuckets
     ]
   );
@@ -166,11 +191,11 @@ function Container() {
   }, [currentView, excludedCount]);
 
   useEffect(() => {
-    if (!selectedCluster) return;
-    console.log(`${selectedCluster.cluster}\n${selectedCluster.clusterType}`);
-  }, [selectedCluster]);
+    if (!selectedEntry) return;
+    console.log(`${selectedEntry.id}\n${selectedEntry.typeLabel}`);
+  }, [selectedEntry]);
 
-  if (!selectedCluster) {
+  if (!selectedEntry) {
     return (
       <Box
         component="main"
@@ -181,7 +206,7 @@ function Container() {
           p: "0.75rem"
         }}
       >
-        <BackButton to="/shelf" label="Back to Shelf" />
+        <BackButton to="/" label="Back" homeScrollTo={homeScrollTo} />
         <Typography>Cluster not found.</Typography>
       </Box>
     );
@@ -208,7 +233,7 @@ function Container() {
           flexWrap: "wrap"
         }}
       >
-        <BackButton to="/shelf" />
+        <BackButton to="/" homeScrollTo={homeScrollTo} />
       </Box>
 
       <Box sx={{ display: "flex", alignItems: "center", gap: "0.5rem", mb: "1rem" }}>
@@ -219,8 +244,12 @@ function Container() {
 
       <SceneHeader
         view={currentView}
-        objectCount={selectedCluster.allObjectIds.length}
+        objectCount={selectedObjectIds.length}
+        objectLabelPlural={objectLabelPlural}
+        timelineSubject={timelineSubject}
+        mapSubject={mapSubject}
         spanYears={spanYears}
+        countryCount={distinctCountryCount}
       />
 
       <Box sx={{ flex: 1, minHeight: 0, width: "100%", display: "flex", gap: "0.7rem" }}>
@@ -272,7 +301,7 @@ function Container() {
         >
           {currentView === "map" ? (
             <MapView
-              objectIds={selectedCluster.allObjectIds}
+              objectIds={selectedObjectIds}
               geoByObjectId={geoByObjectId}
               countryNames={countryNames}
               onProjectionChange={setMapProjectionByObjectId}
@@ -295,7 +324,7 @@ function Container() {
               }}
             >
               <ObjectScene
-                objectIds={selectedCluster.allObjectIds}
+                objectIds={selectedObjectIds}
                 objectLayoutById={sceneLayout.objectLayoutById}
                 sceneWidth={sharedSceneWidth}
                 sceneHeight={contentSceneHeight}
@@ -306,6 +335,7 @@ function Container() {
                 }
                 enableHoverSwap={mode !== "color"}
                 pointerEvents={currentView === "map" ? "none" : "auto"}
+                onObjectClick={(objectId) => console.log(objectId)}
               />
             </Box>
           </Box>
@@ -327,7 +357,7 @@ function Container() {
         <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 0 }}>
           <Button
             type="button"
-            onClick={() => setSearchParams({ view: "all" })}
+            onClick={() => setSearchParams({ view: "all" }, { state: location.state })}
             variant="outlined"
             sx={{
               borderColor: "#fff",
@@ -346,7 +376,7 @@ function Container() {
           </Button>
           <Button
             type="button"
-            onClick={() => setSearchParams({ view: "timeline" })}
+            onClick={() => setSearchParams({ view: "timeline" }, { state: location.state })}
             variant="outlined"
             sx={{
               borderColor: "#fff",
@@ -365,7 +395,7 @@ function Container() {
           </Button>
           <Button
             type="button"
-            onClick={() => setSearchParams({ view: "map" })}
+            onClick={() => setSearchParams({ view: "map" }, { state: location.state })}
             variant="outlined"
             sx={{
               borderColor: "#fff",

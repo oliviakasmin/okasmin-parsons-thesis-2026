@@ -9,7 +9,10 @@ type UseSceneAnimatorParams = {
   objectLayoutById: Map<string, ObjectLayout>;
 };
 
-const DEFAULT_SCENE_ANIMATION_DURATION_S = 1.05;
+const DEFAULT_SCENE_MOTION_DURATION_S = 1.05;
+/** Slightly longer + softer ease than motion so All↔Timeline/Map size changes read smoother. */
+const DEFAULT_SCENE_SIZE_DURATION_S = 1.55;
+const DEFAULT_SCENE_SIZE_EASE = "sine.inOut";
 
 function noiseFromObjectId(objectId: string, salt: number) {
   let hash = 2166136261 ^ salt;
@@ -49,13 +52,28 @@ function useSceneAnimator({ nodeByObjectId, objectLayoutById }: UseSceneAnimator
     }
 
     const timeline = gsap.timeline({
-      defaults: { duration: DEFAULT_SCENE_ANIMATION_DURATION_S, ease: "power2.out" }
+      defaults: { duration: DEFAULT_SCENE_MOTION_DURATION_S, ease: "power2.out" }
     });
     activeTimelineRef.current = timeline;
 
     nodeByObjectId.forEach((node, objectId) => {
       const layout = objectLayoutById.get(objectId);
       if (!layout) return;
+
+      if (!layout.visible) {
+        timeline.set(
+          node,
+          {
+            opacity: 0,
+            x: layout.x,
+            y: layout.y,
+            width: layout.width,
+            height: layout.height
+          },
+          0
+        );
+        return;
+      }
 
       const currentX = Number(gsap.getProperty(node, "x")) || 0;
       const currentY = Number(gsap.getProperty(node, "y")) || 0;
@@ -79,7 +97,7 @@ function useSceneAnimator({ nodeByObjectId, objectLayoutById }: UseSceneAnimator
         {
           t: 1,
           ease: "power2.out",
-          duration: DEFAULT_SCENE_ANIMATION_DURATION_S,
+          duration: DEFAULT_SCENE_MOTION_DURATION_S,
           onUpdate: () => {
             const t = progressProxy.t;
             const baseX = currentX + travelX * t;
@@ -102,7 +120,8 @@ function useSceneAnimator({ nodeByObjectId, objectLayoutById }: UseSceneAnimator
           width: layout.width,
           height: layout.height,
           opacity: layout.visible ? 1 : 0,
-          duration: DEFAULT_SCENE_ANIMATION_DURATION_S
+          duration: DEFAULT_SCENE_SIZE_DURATION_S,
+          ease: DEFAULT_SCENE_SIZE_EASE
         },
         0
       );

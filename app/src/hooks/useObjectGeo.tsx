@@ -175,15 +175,20 @@ function useObjectCountryNames(objectIds: string[]) {
   const allCountryNameByObjectId = useMemo(() => buildObjectCountryNameById(fieldsCsv), []);
 
   return useMemo(() => {
-    const countryNames = new Set<string>();
+    const canonicalCountries = new Set<string>();
+    const labelNames = new Set<string>();
     for (const objectId of objectIds) {
       const countryName = allCountryNameByObjectId.get(objectId);
       if (!countryName) continue;
-      countryNames.add(countryName);
+      canonicalCountries.add(countryName);
+      labelNames.add(countryName);
       const aliases = COUNTRY_LABEL_ALIASES[countryName];
-      if (aliases) aliases.forEach((alias) => countryNames.add(alias));
+      if (aliases) aliases.forEach((alias) => labelNames.add(alias));
     }
-    return Array.from(countryNames).sort();
+    return {
+      countryNames: Array.from(labelNames).sort(),
+      distinctCountryCount: canonicalCountries.size
+    };
   }, [allCountryNameByObjectId, objectIds]);
 }
 
