@@ -14,7 +14,7 @@ This directory includes the logic that maps each object to a single `final_group
   - Resolves candidate groups from both `objectName` and `title`.
   - Applies special handling for `bottle vase` (maps to `vase`).
   - Produces one final decision: `final_group`.
-  - Writes output CSV to `format_data/generated/object_function_groups.csv`.
+  - Writes output CSV to `format_data/generated/function_groups/object_function_groups.csv`.
 
 ## Final Group Resolution Rules
 
@@ -27,7 +27,7 @@ This directory includes the logic that maps each object to a single `final_group
 
 ## Output
 
-`generated/object_function_groups.csv` columns:
+`generated/function_groups/object_function_groups.csv` columns:
 
 - `objectID`
 - `department`

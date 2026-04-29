@@ -17,10 +17,11 @@ from .cluster_colors import (
 
 ROOT = Path(__file__).resolve().parents[2]
 GENERATED_DIR = ROOT / "format_data" / "generated"
-COLOR_FIELDS_PATH = GENERATED_DIR / "object_color_fields.csv"
-CENTROIDS_PATH = GENERATED_DIR / "object_color_cluster_centroids.csv"
-GROUP_LABELS_PATH = GENERATED_DIR / "object_color_group_labels.csv"
-RUN_STATS_PATH = GENERATED_DIR / "object_color_cluster_stats.json"
+COLOR_GENERATED_DIR = GENERATED_DIR / "color"
+COLOR_FIELDS_PATH = COLOR_GENERATED_DIR / "object_color_fields.csv"
+CENTROIDS_PATH = COLOR_GENERATED_DIR / "object_color_cluster_centroids.csv"
+GROUP_LABELS_PATH = COLOR_GENERATED_DIR / "object_color_group_labels.csv"
+RUN_STATS_PATH = COLOR_GENERATED_DIR / "object_color_cluster_stats.json"
 
 SINGLE_GROUPS = [
     {"id": 1, "key": "blue", "label": "blue"},

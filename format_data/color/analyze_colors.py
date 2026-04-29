@@ -16,10 +16,11 @@ ROOT = Path(__file__).resolve().parents[2]
 OBJECTS_JSON_PATH = ROOT / "fetch_data" / "data" / "objects.json"
 REAL_IMAGES_DIR = ROOT / "process_data" / "generated" / "real_images"
 GENERATED_DIR = ROOT / "format_data" / "generated"
-OUTPUT_CSV_PATH = GENERATED_DIR / "object_color_fields.csv"
-CLUSTER_SUMMARY_PATH = GENERATED_DIR / "object_color_cluster_centroids.csv"
-RUN_STATS_PATH = GENERATED_DIR / "object_color_run_stats.json"
-BW_CACHE_PATH = GENERATED_DIR / "color_bw_cache.csv"
+COLOR_GENERATED_DIR = GENERATED_DIR / "color"
+OUTPUT_CSV_PATH = COLOR_GENERATED_DIR / "object_color_fields.csv"
+CLUSTER_SUMMARY_PATH = COLOR_GENERATED_DIR / "object_color_cluster_centroids.csv"
+RUN_STATS_PATH = COLOR_GENERATED_DIR / "object_color_run_stats.json"
+BW_CACHE_PATH = COLOR_GENERATED_DIR / "color_bw_cache.csv"
 
 
 def parse_args() -> argparse.Namespace:
@@ -192,7 +193,7 @@ def run_pipeline(
 
     output_df = pd.DataFrame(rows)
     output_df = output_df.sort_values("objectID").reset_index(drop=True)
-    GENERATED_DIR.mkdir(parents=True, exist_ok=True)
+    COLOR_GENERATED_DIR.mkdir(parents=True, exist_ok=True)
     output_df.to_csv(OUTPUT_CSV_PATH, index=False)
 
     cluster_stats = run_reclustering(max_groups=max_groups)

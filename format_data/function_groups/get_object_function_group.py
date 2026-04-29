@@ -14,7 +14,7 @@ from .function_group_mapping import FUNCTION_GROUP_STRINGS, ORDER_OF_PRIORITY, g
 
 ROOT = Path(__file__).resolve().parents[2]
 OBJECTS_PATH = ROOT / "fetch_data" / "data" / "objects.json"
-OUTPUT_PATH = ROOT / "format_data" / "generated" / "object_function_groups.csv"
+OUTPUT_PATH = ROOT / "format_data" / "generated" / "function_groups" / "object_function_groups.csv"
 
 def _clean(value: str | None) -> str:
     return (value or "").strip()

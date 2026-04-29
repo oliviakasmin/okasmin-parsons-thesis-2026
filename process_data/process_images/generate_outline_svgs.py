@@ -14,7 +14,7 @@ from PIL import Image
 from extract_mask_contours import extract_outline_from_mask_image
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
-DEFAULT_CLUSTER_OBJECT_IDS_CSV = REPO_ROOT / "process_data/cluster/final_clusters_object_ids.csv"
+DEFAULT_CLUSTER_OBJECT_IDS_CSV = REPO_ROOT / "format_data/cluster_shape/final_clusters_object_ids.csv"
 DEFAULT_OUTPUT_DIR = REPO_ROOT / "process_data/generated/real_images"
 DEFAULT_ERRORS_PATH = REPO_ROOT / "process_data/generated/outline_svg_errors.jsonl"
 S3_REAL_IMAGES_BASE_URL = "https://vessels-thesis.s3.amazonaws.com/real_images"
