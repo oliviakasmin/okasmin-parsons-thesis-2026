@@ -25,6 +25,7 @@ import MapView from "./Map";
 import ObjectScene from "./ObjectScene";
 import SceneHeader from "./SceneHeader";
 import TimelineAxis from "./TimelineAxis";
+import { useShelfTab } from "../shelfTabState";
 
 type SceneView = "all" | "timeline" | "map";
 type ContainerLocationState = {
@@ -36,7 +37,6 @@ function Container() {
   const { clusterId } = useParams();
   const location = useLocation();
   const locationState = (location.state as ContainerLocationState | null) ?? null;
-  const homeScrollTo = locationState?.homeScrollTo;
   const [searchParams, setSearchParams] = useSearchParams();
   const searchView = searchParams.get("view");
   const currentView: SceneView =
@@ -53,6 +53,7 @@ function Container() {
   const { clusterRows } = useFormatClusters(finalClusterKeysCsv, finalClusterObjectIdsCsv);
   const { groupRowById } = useFunctionGroups();
   const { groupRowByKey } = useColorGroups();
+  const { setSelectedShelfTab } = useShelfTab();
   const selectedCluster = useMemo(
     () => clusterRows.find((row) => row.cluster === clusterId),
     [clusterId, clusterRows]
@@ -231,6 +232,19 @@ function Container() {
     console.log(`${selectedEntry.id}\n${selectedEntry.typeLabel}`);
   }, [selectedEntry]);
   useEffect(() => {
+    if (selectedFunctionGroup) {
+      setSelectedShelfTab("type");
+      return;
+    }
+    if (selectedColorGroup) {
+      setSelectedShelfTab("color");
+      return;
+    }
+    if (selectedCluster) {
+      setSelectedShelfTab("shape");
+    }
+  }, [selectedCluster, selectedColorGroup, selectedFunctionGroup, setSelectedShelfTab]);
+  useEffect(() => {
     syncTimelineAxisToSceneScroll();
   }, [contentSceneHeight, currentView, syncTimelineAxisToSceneScroll, timelineBuckets]);
 
@@ -245,7 +259,7 @@ function Container() {
           p: "0.75rem"
         }}
       >
-        <BackButton label="Back" homeScrollTo={homeScrollTo} />
+        <BackButton />
         <Typography>Cluster not found.</Typography>
       </Box>
     );
@@ -272,7 +286,7 @@ function Container() {
           flexWrap: "wrap"
         }}
       >
-        <BackButton homeScrollTo={homeScrollTo} />
+        <BackButton />
       </Box>
 
       <Box sx={{ display: "flex", alignItems: "center", gap: "0.5rem", mb: "1rem" }}>

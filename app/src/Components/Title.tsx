@@ -11,7 +11,7 @@ export default function Title() {
       }}
     >
       <Typography variant="h1" component="h1" sx={{ m: 0 }}>
-        Ceramics Undressed
+        Ceramics <span style={{ fontStyle: "italic", fontWeight: 100 }}>Undressed</span>
       </Typography>
     </div>
   );

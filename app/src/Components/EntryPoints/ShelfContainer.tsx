@@ -42,7 +42,8 @@ export default function ShelfContainer() {
         }}
       >
         <Typography
-          component="h2"
+          variant="h3"
+          // component="h2"
           sx={{
             m: 0,
             fontSize: "2rem",

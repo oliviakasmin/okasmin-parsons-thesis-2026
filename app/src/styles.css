@@ -33,10 +33,27 @@ body {
   background: #000;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "ivypresto-headline", serif;
+}
+
 .app {
   max-width: 960px;
   margin: 0 auto;
   padding: 2rem 1rem;
+}
+
+.title-header {
+  font-family: "ivypresto-headline", serif;
+}
+
+.shelf-container-header {
+  font-family: "ivypresto-headline", serif;
 }
 
 .outline-image {

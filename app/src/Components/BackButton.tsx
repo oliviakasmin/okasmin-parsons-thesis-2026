@@ -1,24 +1,11 @@
-import { Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
-import type { HomeEntryScrollId } from "./constants";
-import { useShelfTab } from "./shelfTabState";
 
-type BackButtonProps = {
-  label?: string;
-  homeScrollTo?: HomeEntryScrollId;
-};
-
-function BackButton(props: BackButtonProps) {
-  const { label = "Back", homeScrollTo } = props;
-  const { setSelectedShelfTab } = useShelfTab();
-  const shelfTab =
-    homeScrollTo === "shelf-function" ? "type" : homeScrollTo === "shelf-color" ? "color" : "shape";
-
+function BackButton() {
   return (
     <Button
       component={RouterLink}
       to="/#home-entry-shelf"
-      onClick={() => setSelectedShelfTab(shelfTab)}
       state={{ homeScrollTo: "shelf" }}
       variant="outlined"
       sx={{
@@ -34,7 +21,9 @@ function BackButton(props: BackButtonProps) {
         "&:hover": { borderColor: "#fff", background: "#fff" }
       }}
     >
-      {label}
+      <Typography component="span" variant="backButton">
+        Back
+      </Typography>
     </Button>
   );
 }
