@@ -245,7 +245,7 @@ function Container() {
           p: "0.75rem"
         }}
       >
-        <BackButton to="/" label="Back" homeScrollTo={homeScrollTo} />
+        <BackButton label="Back" homeScrollTo={homeScrollTo} />
         <Typography>Cluster not found.</Typography>
       </Box>
     );
@@ -272,7 +272,7 @@ function Container() {
           flexWrap: "wrap"
         }}
       >
-        <BackButton to="/" homeScrollTo={homeScrollTo} />
+        <BackButton homeScrollTo={homeScrollTo} />
       </Box>
 
       <Box sx={{ display: "flex", alignItems: "center", gap: "0.5rem", mb: "1rem" }}>

@@ -47,6 +47,7 @@ function LeftOutlineStackPanel({ objectIds, outlineImageByObjectId }: LeftOutlin
                 key={`stack-outline-${objectId}`}
                 src={outlineSrc}
                 alt={`${objectId}_outline.png`}
+                className="outline-image"
                 loading="lazy"
                 style={{
                   position: "absolute",

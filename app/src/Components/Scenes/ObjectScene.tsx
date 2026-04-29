@@ -94,14 +94,7 @@ function ObjectScene({
                     height: "100%",
                     objectFit: "contain",
                     objectPosition: "center bottom",
-                    display: "block",
-                    ...(isOutlineMode
-                      ? {
-                          opacity: 1,
-                          filter:
-                            "brightness(4) contrast(2) drop-shadow(0 0 1px rgba(255,255,255,1)) drop-shadow(0 0 3px rgba(255,255,255,0.9))"
-                        }
-                      : {})
+                    display: "block"
                   }}
                 />
                 {enableHoverSwap && hoverImageSrc ? (

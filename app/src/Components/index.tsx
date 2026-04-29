@@ -12,3 +12,4 @@ export { default as SceneHeader } from "./Scenes/SceneHeader";
 export { default as Title } from "./Title";
 export { default as ShelfFunction } from "./EntryPoints/ShelfFunction";
 export { default as ShelfColor } from "./EntryPoints/ShelfColor";
+export { default as ShelfContainer } from "./EntryPoints/ShelfContainer";

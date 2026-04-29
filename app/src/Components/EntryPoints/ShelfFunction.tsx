@@ -28,9 +28,6 @@ export default function ShelfFunction() {
         overflowX: "hidden"
       }}
     >
-      <Typography component="h2" sx={{ fontSize: "2rem", mb: "0.35rem", letterSpacing: "0.02em" }}>
-        choose a type
-      </Typography>
       <Box
         sx={{
           flex: "0 0 auto",

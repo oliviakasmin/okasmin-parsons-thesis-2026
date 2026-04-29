@@ -1,21 +1,25 @@
 import { Button } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
 import type { HomeEntryScrollId } from "./constants";
+import { useShelfTab } from "./shelfTabState";
 
 type BackButtonProps = {
-  to: string;
   label?: string;
-  /** When set, navigation includes `state` so `/` can scroll to `#home-entry-${homeScrollTo}`. */
   homeScrollTo?: HomeEntryScrollId;
 };
 
-function BackButton({ to, label = "Back", homeScrollTo }: BackButtonProps) {
-  const navigate = useNavigate();
+function BackButton(props: BackButtonProps) {
+  const { label = "Back", homeScrollTo } = props;
+  const { setSelectedShelfTab } = useShelfTab();
+  const shelfTab =
+    homeScrollTo === "shelf-function" ? "type" : homeScrollTo === "shelf-color" ? "color" : "shape";
 
   return (
     <Button
-      type="button"
-      onClick={() => (homeScrollTo ? navigate(to, { state: { homeScrollTo } }) : navigate(to))}
+      component={RouterLink}
+      to="/#home-entry-shelf"
+      onClick={() => setSelectedShelfTab(shelfTab)}
+      state={{ homeScrollTo: "shelf" }}
       variant="outlined"
       sx={{
         borderColor: "#fff",

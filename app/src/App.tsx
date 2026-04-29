@@ -11,31 +11,32 @@ import {
   Shelf,
   Title,
   ShelfFunction,
-  ShelfColor
+  ShelfColor,
+  ShelfContainer
 } from "./Components";
+import { ShelfTabProvider } from "./Components/ShelfTabContext";
 
 function Home() {
   const location = useLocation();
   const navigate = useNavigate();
+  const locationState = (location.state as { homeScrollTo?: HomeEntryScrollId } | null) ?? null;
+
   useEffect(() => {
     if (location.pathname !== "/") return;
-    const entry = (location.state as { homeScrollTo?: HomeEntryScrollId } | null)?.homeScrollTo;
-    if (!entry) {
-      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-      return;
+    const stateEntry = locationState?.homeScrollTo;
+    const hashTargetId = location.hash.startsWith("#") ? location.hash.slice(1) : "";
+    const targetId = hashTargetId || (stateEntry ? homeEntryDomId(stateEntry) : "");
+    if (!targetId) return;
+
+    const el = document.getElementById(targetId);
+    if (!el) return;
+    el.scrollIntoView({ behavior: "auto", block: "start" });
+
+    // Consume one-time home scroll state but preserve hash targeting in URL.
+    if (stateEntry) {
+      navigate(`${location.pathname}${location.hash}`, { replace: true, state: null });
     }
-    const el = document.getElementById(homeEntryDomId(entry));
-    if (!el) {
-      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-      return;
-    }
-    const scroll = () => el.scrollIntoView({ behavior: "smooth", block: "start" });
-    scroll();
-    const timeoutId = window.setTimeout(scroll, 120);
-    // Consume one-time home scroll state so future home loads default to top.
-    navigate(location.pathname, { replace: true, state: null });
-    return () => window.clearTimeout(timeoutId);
-  }, [location.pathname, location.state, navigate]);
+  }, [location.pathname, location.hash, locationState, navigate]);
 
   return (
     <main
@@ -53,9 +54,7 @@ function Home() {
         <Title />
         <Intro />
 
-        <Shelf />
-        <ShelfFunction />
-        <ShelfColor />
+        <ShelfContainer />
         <CaseStudies />
       </div>
     </main>
@@ -64,18 +63,20 @@ function Home() {
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/test" element={<Test />} />
-      <Route path="/test2" element={<Test2 />} />
-      <Route path="/cluster-test" element={<ClusterTest />} />
-      <Route path="/shelf" element={<Shelf />} />
-      <Route path="/title" element={<Title />} />
-      <Route path="/shelf-function" element={<ShelfFunction />} />
-      <Route path="/shelf-color" element={<ShelfColor />} />
-      <Route path="/case-studies" element={<CaseStudies />} />
-      <Route path="/all/:clusterId" element={<Container />} />
-    </Routes>
+    <ShelfTabProvider>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/test" element={<Test />} />
+        <Route path="/test2" element={<Test2 />} />
+        <Route path="/cluster-test" element={<ClusterTest />} />
+        <Route path="/shelf" element={<Shelf />} />
+        <Route path="/title" element={<Title />} />
+        <Route path="/shelf-function" element={<ShelfFunction />} />
+        <Route path="/shelf-color" element={<ShelfColor />} />
+        <Route path="/case-studies" element={<CaseStudies />} />
+        <Route path="/all/:clusterId" element={<Container />} />
+      </Routes>
+    </ShelfTabProvider>
   );
 }
 

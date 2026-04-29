@@ -12,6 +12,10 @@
   font-weight: 400;
   color: #fff;
   background-color: #000;
+  /* Outline styling source of truth. Tune these values here only. */
+  --outline-brightness: 3.2;
+  --outline-contrast: 1.9;
+  --outline-opacity: 1;
 }
 
 * {
@@ -36,6 +40,6 @@ body {
 }
 
 .outline-image {
-  filter: brightness(4);
-  opacity: 1;
+  filter: brightness(var(--outline-brightness)) contrast(var(--outline-contrast));
+  opacity: var(--outline-opacity);
 }
