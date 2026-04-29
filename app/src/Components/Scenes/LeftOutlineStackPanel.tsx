@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Box, Button, Typography } from "@mui/material";
 import { SUBGROUP_RENDER_IMAGE_SIZE_PX } from "../constants";
+import InlineOutlineSvg from "./InlineOutlineSvg";
 
 type LeftOutlineStackPanelProps = {
   objectIds: string[];
@@ -43,12 +44,11 @@ function LeftOutlineStackPanel({ objectIds, outlineImageByObjectId }: LeftOutlin
             const outlineSrc = outlineImageByObjectId.get(objectId);
             if (!outlineSrc) return null;
             return (
-              <img
+              <InlineOutlineSvg
                 key={`stack-outline-${objectId}`}
                 src={outlineSrc}
                 alt={`${objectId}_outline.png`}
-                className="outline-image"
-                loading="lazy"
+                className="inline-outline-svg"
                 style={{
                   position: "absolute",
                   left: "50%",
@@ -56,8 +56,7 @@ function LeftOutlineStackPanel({ objectIds, outlineImageByObjectId }: LeftOutlin
                   transform: "translateX(-50%)",
                   width: `min(100%, ${SUBGROUP_RENDER_IMAGE_SIZE_PX * 5.2}px)`,
                   height: `min(100%, ${SUBGROUP_RENDER_IMAGE_SIZE_PX * 5.2}px)`,
-                  objectFit: "contain",
-                  objectPosition: "center bottom",
+                  display: "block",
                   opacity: defaultStackOpacity(objectIds.length)
                 }}
               />

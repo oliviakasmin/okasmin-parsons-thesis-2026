@@ -104,9 +104,10 @@ export default function ShelfColor() {
                     }}
                   />
                 ) : (
-                  <Typography component="span" sx={{ fontSize: "0.55rem", color: "#777" }}>
-                    Missing image
-                  </Typography>
+                  (() => {
+                    console.log(`[ShelfColor] missing image for color group ${groupRow.groupKey}`);
+                    return <Box sx={{ width: "100%", height: "100%", display: "block" }} />;
+                  })()
                 )}
               </Box>
               <Typography

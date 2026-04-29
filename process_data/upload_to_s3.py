@@ -3,6 +3,11 @@ import json
 import subprocess
 from pathlib import Path
 
+# Run from repo root:
+#   python process_data/upload_to_s3.py
+# Optional safety check (no uploads):
+#   python process_data/upload_to_s3.py --dry-run
+
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_SOURCE_DIR = REPO_ROOT / "process_data/generated/real_images"
 DEFAULT_BUCKET = "vessels-thesis"

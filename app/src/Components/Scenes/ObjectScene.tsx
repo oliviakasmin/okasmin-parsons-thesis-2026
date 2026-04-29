@@ -2,6 +2,7 @@ import { useMemo, useRef, useState } from "react";
 import { Box } from "@mui/material";
 import useSceneAnimator from "../../hooks/useSceneAnimator";
 import type { ObjectLayout } from "../../hooks/useViewLayouts";
+import InlineOutlineSvg from "./InlineOutlineSvg";
 
 type ObjectSceneProps = {
   objectIds: string[];
@@ -60,6 +61,10 @@ function ObjectScene({
         const isHovered = hoveredObjectId === objectId;
         const isOutlineMode = imageAltSuffix === "outline";
 
+        if (!primaryImageSrc) {
+          console.log(`[ObjectScene] missing primary image for ${objectId} (${imageAltSuffix})`);
+        }
+
         return (
           <Box
             key={objectId}
@@ -84,19 +89,33 @@ function ObjectScene({
           >
             {primaryImageSrc ? (
               <>
-                <img
-                  src={primaryImageSrc}
-                  alt={`${objectId}_${imageAltSuffix}.png`}
-                  className={isOutlineMode ? "outline-image" : undefined}
-                  loading="lazy"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "contain",
-                    objectPosition: "center bottom",
-                    display: "block"
-                  }}
-                />
+                {isOutlineMode ? (
+                  <InlineOutlineSvg
+                    src={primaryImageSrc}
+                    alt={`${objectId}_${imageAltSuffix}.png`}
+                    className="inline-outline-svg"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      display: "block",
+                      opacity: enableHoverSwap && hoverImageSrc ? (isHovered ? 0 : 1) : 1,
+                      transition: "opacity 120ms ease-out"
+                    }}
+                  />
+                ) : (
+                  <img
+                    src={primaryImageSrc}
+                    alt={`${objectId}_${imageAltSuffix}.png`}
+                    loading="lazy"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "contain",
+                      objectPosition: "center bottom",
+                      display: "block"
+                    }}
+                  />
+                )}
                 {enableHoverSwap && hoverImageSrc ? (
                   <img
                     src={hoverImageSrc}
@@ -121,14 +140,9 @@ function ObjectScene({
                 sx={{
                   width: "100%",
                   height: "100%",
-                  display: "grid",
-                  placeItems: "center",
-                  color: "#777",
-                  fontSize: "11px"
+                  display: "block"
                 }}
-              >
-                Missing image
-              </Box>
+              />
             )}
           </Box>
         );

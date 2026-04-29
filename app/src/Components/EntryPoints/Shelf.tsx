@@ -8,6 +8,7 @@ import useImageToggle from "../../hooks/useImageToggle";
 import useImageModules from "../../hooks/useImageModules";
 import useFormatClusters, { type ClusterRow } from "../../hooks/useFormatClusters";
 import { homeEntryDomId, SHELF_RENDER_IMAGE_SIZE_PX, type HomeEntryScrollId } from "../constants";
+import InlineOutlineSvg from "../Scenes/InlineOutlineSvg";
 
 const shelfEntryScrollId: HomeEntryScrollId = "shelf";
 
@@ -169,12 +170,11 @@ function Shelf() {
                     const imageSrc = outlineImageByObjectId.get(objectId);
                     if (!imageSrc) return null;
                     return (
-                      <img
+                      <InlineOutlineSvg
                         key={`${clusterRow.cluster}-outline-${objectId}`}
                         src={imageSrc}
                         alt={`${objectId}_outline.png`}
-                        className="outline-image"
-                        loading="lazy"
+                        className="inline-outline-svg"
                         style={{
                           position: "absolute",
                           left: "50%",
@@ -184,8 +184,7 @@ function Shelf() {
                           height: `min(100%, ${SHELF_RENDER_IMAGE_SIZE_PX}px, calc((100vh - 180px) / 4))`,
                           maxWidth: `${SHELF_RENDER_IMAGE_SIZE_PX}px`,
                           maxHeight: `${SHELF_RENDER_IMAGE_SIZE_PX}px`,
-                          objectFit: "contain",
-                          objectPosition: "center bottom",
+                          display: "block",
                           opacity: defaultStackOpacity(clusterRow.allObjectIds.length)
                         }}
                       />
@@ -211,18 +210,10 @@ function Shelf() {
                     }}
                   />
                 ) : (
-                  <Box
-                    sx={{
-                      width: "100%",
-                      height: "100%",
-                      display: "grid",
-                      placeItems: "center",
-                      color: "#777",
-                      fontSize: "11px"
-                    }}
-                  >
-                    Missing image
-                  </Box>
+                  (() => {
+                    console.log(`[Shelf] missing image for cluster ${clusterRow.cluster}`);
+                    return <Box sx={{ width: "100%", height: "100%", display: "block" }} />;
+                  })()
                 )}
               </Box>
               <Typography
