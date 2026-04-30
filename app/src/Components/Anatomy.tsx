@@ -7,7 +7,7 @@ export default function Anatomy() {
         minHeight: "100vh",
         display: "flex",
         alignItems: "center",
-        justifyContent: "center",
+        justifyContent: "center"
       }}
     >
       <Typography variant="h3">insert anatomy drawing here</Typography>
