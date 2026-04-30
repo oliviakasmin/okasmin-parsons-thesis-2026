@@ -1,14 +1,12 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Box, Typography } from "@mui/material";
 import finalClusterKeysCsv from "../../../../format_data/cluster_shape/final_clusters_keys.csv?raw";
 import finalClusterObjectIdsCsv from "../../../../format_data/cluster_shape/final_clusters_object_ids.csv?raw";
-import ImageToggleButton from "../ImageToggleButton";
-import useImageToggle from "../../hooks/useImageToggle";
 import useImageModules from "../../hooks/useImageModules";
-import useFormatClusters, { type ClusterRow } from "../../hooks/useFormatClusters";
+import useFormatClusters from "../../hooks/useFormatClusters";
 import { homeEntryDomId, SHELF_RENDER_IMAGE_SIZE_PX, type HomeEntryScrollId } from "../constants";
-import InlineOutlineSvg from "../Scenes/InlineOutlineSvg";
+import useInlineSvg from "../../hooks/useInlineSvg";
 
 const shelfEntryScrollId: HomeEntryScrollId = "shelf";
 
@@ -56,24 +54,81 @@ const defaultMaskIndexByCluster = new Map(
   defaultMaskImageByCluster.map((entry) => [entry.cluster, entry.index])
 );
 
-function defaultStackOpacity(clusterSize: number) {
-  return Math.min(1, Math.max(0.1, 1 / Math.max(18, clusterSize)));
+const clusterLabels: Record<string, string> = {
+  cluster_0: "Outliers",
+  cluster_1: "Weird Cluster",
+  cluster_2: "Weird Cluster",
+  cluster_3: "Core",
+  cluster_4: "Core",
+  cluster_5: "Core",
+  cluster_6: "Core",
+  cluster_7: "Core",
+  cluster_8: "Core"
+};
+
+type AnimatedSampledSvgProps = {
+  src: string;
+  alt: string;
+};
+
+function AnimatedSampledSvg({ src, alt }: AnimatedSampledSvgProps) {
+  const { svgMarkup } = useInlineSvg(src);
+  const wrapperRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (!wrapperRef.current || !svgMarkup) return;
+
+    const paths = wrapperRef.current.querySelectorAll<SVGPathElement>("svg path");
+    paths.forEach((path, index) => {
+      const length = path.getTotalLength();
+      path.style.strokeDasharray = `${length}`;
+      path.style.strokeDashoffset = `${length}`;
+      path.style.animation = "none";
+      path.style.animation = `shelfPathDraw 1000ms ease forwards`;
+      path.style.animationDelay = `${index * 120}ms`;
+    });
+  }, [svgMarkup]);
+
+  if (!svgMarkup) {
+    return <Box aria-label={alt} sx={{ width: "100%", height: "100%", display: "block" }} />;
+  }
+
+  return (
+    <Box
+      ref={wrapperRef}
+      aria-label={alt}
+      role="img"
+      sx={{
+        // py: "0.25rem",
+        width: "100%",
+        height: "100%",
+        display: "block",
+        "& > svg": {
+          width: "100%",
+          height: "100%",
+          display: "block"
+        },
+        "@keyframes shelfPathDraw": {
+          to: {
+            strokeDashoffset: 0
+          }
+        }
+      }}
+      dangerouslySetInnerHTML={{ __html: svgMarkup }}
+    />
+  );
 }
 
 function Shelf() {
   const navigate = useNavigate();
-  const { mode, options, setMode } = useImageToggle();
-  const [solidIndexByCluster] = useState<Record<string, number>>({});
-  const { outlineImageByObjectId, maskImageByObjectId } = useImageModules();
+  const [hoveredClusterId, setHoveredClusterId] = useState<string | null>(null);
+  const orderedClusterIds = useMemo(() => shelves.flat(), []);
+  const { maskImageByObjectId } = useImageModules();
   const { clusterRows } = useFormatClusters(finalClusterKeysCsv, finalClusterObjectIdsCsv);
-  const orderedClusterRows = useMemo(() => {
-    const byCluster = new Map(clusterRows.map((row) => [row.cluster, row]));
-    return shelves.flatMap((row) =>
-      row
-        .map((clusterId) => byCluster.get(clusterId))
-        .filter((value): value is ClusterRow => Boolean(value))
-    );
-  }, [clusterRows]);
+  const clusterRowByClusterId = useMemo(
+    () => new Map(clusterRows.map((row) => [row.cluster, row])),
+    [clusterRows]
+  );
 
   return (
     <Box
@@ -83,26 +138,12 @@ function Shelf() {
         height: "100vh",
         background: "#000",
         color: "#fff",
-        p: "0.75rem",
+        py: "0.75rem",
         display: "flex",
         flexDirection: "column",
         overflow: "auto"
       }}
     >
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "flex-end",
-          gap: "0.5rem",
-          mb: "0.5rem"
-        }}
-      >
-        <Box sx={{ display: "flex", alignItems: "center", gap: 0 }}>
-          <ImageToggleButton mode={mode} options={options} onChange={setMode} />
-        </Box>
-      </Box>
-
       <Box
         component="section"
         sx={{
@@ -115,35 +156,38 @@ function Shelf() {
           gridTemplateRows: "repeat(4, auto)",
           justifyContent: "center",
           columnGap: 0,
-          rowGap: "0.1rem"
+          rowGap: 0
         }}
       >
-        {orderedClusterRows.map((clusterRow) => {
-          const solidObjectIds = clusterRow.closestTop5Ids;
-          const defaultSolidIndex = defaultMaskIndexByCluster.get(clusterRow.cluster) ?? 0;
-          const solidIndex = solidIndexByCluster[clusterRow.cluster] ?? defaultSolidIndex;
-          const clampedSolidIndex = solidObjectIds.length
-            ? Math.min(solidIndex, solidObjectIds.length - 1)
-            : 0;
-          const selectedSolidObjectId = solidObjectIds[clampedSolidIndex];
-          const selectedMaskSrc = selectedSolidObjectId
-            ? maskImageByObjectId.get(selectedSolidObjectId)
-            : undefined;
-
+        {orderedClusterIds.map((clusterId) => {
+          const stackedSvgSrc = `/cluster_SVG_stacked_outlines/${clusterId}_stack_sampled.svg`;
+          const clusterRow = clusterRowByClusterId.get(clusterId);
+          const fallbackMaskIndex = defaultMaskIndexByCluster.get(clusterId) ?? 0;
+          const maskObjectId =
+            clusterRow?.closestTop5Ids[
+              Math.min(fallbackMaskIndex, Math.max(0, (clusterRow?.closestTop5Ids.length ?? 1) - 1))
+            ];
+          const hoveredMaskSrc = maskObjectId ? maskImageByObjectId.get(maskObjectId) : undefined;
+          const showMask = hoveredClusterId === clusterId && Boolean(hoveredMaskSrc);
           return (
             <Box
               component="article"
-              key={clusterRow.cluster}
+              key={clusterId}
+              onMouseEnter={() => setHoveredClusterId(clusterId)}
+              onMouseLeave={() =>
+                setHoveredClusterId((current) => (current === clusterId ? null : current))
+              }
               onClick={() =>
-                navigate(`/all/${clusterRow.cluster}`, {
+                navigate(`/all/${clusterId}`, {
                   state: { homeScrollTo: shelfEntryScrollId }
                 })
               }
               sx={{
                 display: "flex",
                 flexDirection: "column",
-                minHeight: `${SHELF_RENDER_IMAGE_SIZE_PX * 0.82}px`,
-                maxHeight: `${SHELF_RENDER_IMAGE_SIZE_PX * 1.02}px`,
+                position: "relative",
+                minHeight: `${SHELF_RENDER_IMAGE_SIZE_PX * 0.74}px`,
+                maxHeight: `${SHELF_RENDER_IMAGE_SIZE_PX * 0.92}px`,
                 cursor: "pointer",
                 "&:hover .shelf-cluster-label": {
                   opacity: 1,
@@ -165,71 +209,59 @@ function Shelf() {
                   borderBottom: "4px solid #fff"
                 }}
               >
-                {mode === "outline" ? (
-                  clusterRow.allObjectIds.map((objectId) => {
-                    const imageSrc = outlineImageByObjectId.get(objectId);
-                    if (!imageSrc) return null;
-                    return (
-                      <InlineOutlineSvg
-                        key={`${clusterRow.cluster}-outline-${objectId}`}
-                        src={imageSrc}
-                        alt={`${objectId}_outline.png`}
-                        className="inline-outline-svg"
-                        style={{
-                          position: "absolute",
-                          left: "50%",
-                          bottom: "-3px",
-                          transform: "translateX(-50%)",
-                          width: `min(100%, ${SHELF_RENDER_IMAGE_SIZE_PX}px, calc((100vh - 180px) / 4))`,
-                          height: `min(100%, ${SHELF_RENDER_IMAGE_SIZE_PX}px, calc((100vh - 180px) / 4))`,
-                          maxWidth: `${SHELF_RENDER_IMAGE_SIZE_PX}px`,
-                          maxHeight: `${SHELF_RENDER_IMAGE_SIZE_PX}px`,
-                          display: "block",
-                          opacity: defaultStackOpacity(clusterRow.allObjectIds.length)
-                        }}
-                      />
-                    );
-                  })
-                ) : selectedMaskSrc ? (
-                  <img
-                    src={selectedMaskSrc}
-                    alt={`${selectedSolidObjectId}_mask.png`}
-                    loading="lazy"
-                    style={{
-                      position: "absolute",
-                      left: "50%",
-                      bottom: "-3px",
-                      transform: "translateX(-50%)",
-                      width: `min(100%, ${SHELF_RENDER_IMAGE_SIZE_PX}px, calc((100vh - 180px) / 4))`,
-                      height: `min(100%, ${SHELF_RENDER_IMAGE_SIZE_PX}px, calc((100vh - 180px) / 4))`,
-                      maxWidth: `${SHELF_RENDER_IMAGE_SIZE_PX}px`,
-                      maxHeight: `${SHELF_RENDER_IMAGE_SIZE_PX}px`,
-                      objectFit: "contain",
-                      objectPosition: "center bottom",
-                      display: "block"
-                    }}
-                  />
-                ) : (
-                  (() => {
-                    console.log(`[Shelf] missing image for cluster ${clusterRow.cluster}`);
-                    return <Box sx={{ width: "100%", height: "100%", display: "block" }} />;
-                  })()
-                )}
+                <Box
+                  sx={{
+                    position: "absolute",
+                    left: "50%",
+                    bottom: "-3px",
+                    transform: "translateX(-50%)",
+                    width: `min(100%, ${SHELF_RENDER_IMAGE_SIZE_PX}px, calc((100vh - 180px) / 4))`,
+                    height: `min(100%, ${SHELF_RENDER_IMAGE_SIZE_PX}px, calc((100vh - 180px) / 4))`,
+                    maxWidth: `${SHELF_RENDER_IMAGE_SIZE_PX}px`,
+                    maxHeight: `${SHELF_RENDER_IMAGE_SIZE_PX}px`,
+                    display: "block"
+                  }}
+                >
+                  {showMask && hoveredMaskSrc ? (
+                    <img
+                      src={hoveredMaskSrc}
+                      alt={`${maskObjectId}_mask.png`}
+                      loading="lazy"
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "contain",
+                        objectPosition: "center bottom",
+                        display: "block"
+                      }}
+                    />
+                  ) : (
+                    <AnimatedSampledSvg
+                      src={stackedSvgSrc}
+                      alt={`${clusterId}_stack_sampled.svg`}
+                    />
+                  )}
+                </Box>
               </Box>
               <Typography
                 className="shelf-cluster-label"
                 component="span"
                 sx={{
-                  mt: "0.25rem",
-                  mb: "0.2rem",
+                  position: "absolute",
+                  left: "50%",
+                  top: "100%",
+                  transform: "translateX(-50%)",
+                  mt: "0.08rem",
                   fontSize: "0.62rem",
                   letterSpacing: "0.03em",
                   opacity: 0,
                   visibility: "hidden",
-                  transition: "opacity 120ms ease"
+                  transition: "opacity 120ms ease",
+                  pointerEvents: "none",
+                  whiteSpace: "nowrap"
                 }}
               >
-                {clusterRow.cluster}
+                {clusterLabels[clusterId] ?? clusterId}
               </Typography>
             </Box>
           );

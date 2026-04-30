@@ -478,6 +478,24 @@ def build_cluster_representatives(
     return pd.DataFrame(rows).sort_values(by="cluster").reset_index(drop=True)
 
 
+def _distances_to_cluster_centroids(df_labeled: pd.DataFrame, X: np.ndarray) -> np.ndarray:
+    """Euclidean distance from each row's feature vector to its cluster centroid in ``X`` space."""
+    labels = df_labeled["cluster"].astype(int).to_numpy()
+    if len(labels) != X.shape[0]:
+        raise ValueError(
+            f"Length mismatch: df_labeled has {len(labels)} rows but X has {X.shape[0]} rows"
+        )
+    dist = np.zeros(len(labels), dtype=float)
+    for cl in np.unique(labels):
+        idx = np.where(labels == cl)[0]
+        if idx.size == 0:
+            continue
+        Xc = X[idx]
+        centroid = Xc.mean(axis=0)
+        dist[idx] = np.linalg.norm(Xc - centroid, axis=1)
+    return dist
+
+
 # Used in: cluster_kmeans_1st_weird.ipynb.
 def export_final_cluster_csvs(
     df_labeled: pd.DataFrame,
@@ -489,18 +507,25 @@ def export_final_cluster_csvs(
 ) -> tuple[pd.DataFrame, pd.DataFrame]:
     """
     Export:
-    1) object-level assignments CSV
+    1) object-level assignments CSV (rows sorted by numeric cluster id, then by
+       ascending distance to that cluster's centroid so downstream lists match
+       centroid proximity order)
     2) cluster-level keys CSV including representative object and centroid
     """
-    out = df_labeled.copy()
-    out["cluster"] = out["cluster"].astype(int)
-    out["cluster_type"] = out["cluster"].map(
+    labeled = df_labeled.copy()
+    labeled["cluster"] = labeled["cluster"].astype(int)
+    labeled["_dist_to_centroid"] = _distances_to_cluster_centroids(labeled, X)
+    labeled["cluster_type"] = labeled["cluster"].map(
         lambda c: _cluster_type_for_label(int(c), n_weird_buckets)
     )
-    out["cluster"] = out["cluster"].map(lambda c: f"{cluster_prefix}{int(c)}")
+    labeled = labeled.sort_values(
+        by=["cluster", "_dist_to_centroid", "object_id"],
+        ascending=[True, True, True],
+    )
+    labeled["cluster"] = labeled["cluster"].map(lambda c: f"{cluster_prefix}{int(c)}")
 
     object_cols = ["object_id", "cluster", "cluster_type"]
-    out_objects = out[object_cols].copy()
+    out_objects = labeled[object_cols].copy()
 
     keys_df = build_cluster_representatives(
         df_labeled=df_labeled,

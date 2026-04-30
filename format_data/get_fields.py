@@ -120,6 +120,7 @@ def build_fields(df: pd.DataFrame) -> pd.DataFrame:
         [
             "objectID",
             "department",
+            "title",
             "final_group",
             "objectBeginDate",
             "objectEndDate",

@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Box, Button, Typography } from "@mui/material";
 import mapboxgl from "mapbox-gl";
-import type { ObjectGeo } from "../../hooks/useObjectGeo";
+import { normalizeCountryCandidate, type ObjectGeo } from "../../hooks/useObjectGeo";
 import "mapbox-gl/dist/mapbox-gl.css";
 
 type ProjectedPoint = {
@@ -10,11 +10,17 @@ type ProjectedPoint = {
   visible: boolean;
 };
 
+type MapCountryResolvedPayload = {
+  displayLabel: string;
+  normalizedCountry: string;
+};
+
 type MapProps = {
   objectIds: string[];
   geoByObjectId: Map<string, ObjectGeo>;
   countryNames: string[];
   onProjectionChange: (projectionByObjectId: Map<string, ProjectedPoint>) => void;
+  onCountryResolved: (payload: MapCountryResolvedPayload | null) => void;
 };
 
 const MAPBOX_TOKEN = import.meta.env.VITE_MAPBOX_TOKEN as string | undefined;
@@ -22,9 +28,37 @@ const DEFAULT_MAP_ZOOM = 1.25;
 const DEFAULT_MAP_CENTER: [number, number] = [0, 18];
 const MAX_MAP_ZOOM = DEFAULT_MAP_ZOOM + 2;
 
-function Map({ objectIds, geoByObjectId, countryNames, onProjectionChange }: MapProps) {
+async function reverseGeocodeCountryName(
+  lng: number,
+  lat: number,
+  accessToken: string,
+  signal: AbortSignal
+): Promise<{ displayLabel: string } | null> {
+  const url = new URL(`https://api.mapbox.com/geocoding/v5/mapbox.places/${lng},${lat}.json`);
+  url.searchParams.set("types", "country");
+  url.searchParams.set("limit", "1");
+  url.searchParams.set("access_token", accessToken);
+  const res = await fetch(url.toString(), { signal });
+  if (!res.ok) return null;
+  const data = (await res.json()) as { features?: { text?: string }[] };
+  const feature = data.features?.[0];
+  const text = String(feature?.text ?? "").trim();
+  if (!text) return null;
+  return { displayLabel: text };
+}
+
+function Map({
+  objectIds,
+  geoByObjectId,
+  countryNames,
+  onProjectionChange,
+  onCountryResolved
+}: MapProps) {
   const mapContainerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<mapboxgl.Map | null>(null);
+  const onCountryResolvedRef = useRef(onCountryResolved);
+  onCountryResolvedRef.current = onCountryResolved;
+  const geocodeAbortRef = useRef<AbortController | null>(null);
   const [zoomLevel, setZoomLevel] = useState(DEFAULT_MAP_ZOOM);
   const [isAtDefaultView, setIsAtDefaultView] = useState(true);
 
@@ -65,8 +99,8 @@ function Map({ objectIds, geoByObjectId, countryNames, onProjectionChange }: Map
             type: "line",
             source: "continents",
             paint: {
-              "line-color": "#6d6d6d",
-              "line-width": 0.7,
+              "line-color": "#949494",
+              "line-width": 1.05,
               "line-opacity": 0.84
             }
           },
@@ -86,7 +120,7 @@ function Map({ objectIds, geoByObjectId, countryNames, onProjectionChange }: Map
             ],
             layout: {
               "text-field": ["coalesce", ["get", "name_en"], ["get", "name"]],
-              "text-size": 11,
+              "text-size": 13,
               "text-font": ["DIN Offc Pro Regular", "Arial Unicode MS Regular"],
               "text-allow-overlap": true,
               "text-ignore-placement": true
@@ -139,16 +173,6 @@ function Map({ objectIds, geoByObjectId, countryNames, onProjectionChange }: Map
     const setGrabbingCursor = () => {
       map.getCanvas().style.cursor = "grabbing";
     };
-    const syncPanAvailability = () => {
-      const canPan = map.getZoom() > DEFAULT_MAP_ZOOM + 0.0001;
-      if (canPan) {
-        map.dragPan.enable();
-        setGrabCursor();
-        return;
-      }
-      map.dragPan.disable();
-      map.getCanvas().style.cursor = "default";
-    };
     const syncControlState = () => {
       const currentZoom = map.getZoom();
       const currentCenter = map.getCenter();
@@ -162,13 +186,45 @@ function Map({ objectIds, geoByObjectId, countryNames, onProjectionChange }: Map
 
     map.on("load", () => {
       map.setFog(undefined);
-      syncPanAvailability();
+      map.dragPan.enable();
+      setGrabCursor();
       syncControlState();
       projectAll();
     });
+
+    const handleMapClick = (event: mapboxgl.MapMouseEvent) => {
+      const token = MAPBOX_TOKEN?.trim();
+      if (!token) return;
+      geocodeAbortRef.current?.abort();
+      const controller = new AbortController();
+      geocodeAbortRef.current = controller;
+      const { lng, lat } = event.lngLat;
+      void (async () => {
+        try {
+          const geo = await reverseGeocodeCountryName(lng, lat, token, controller.signal);
+          if (controller.signal.aborted) return;
+          if (!geo) {
+            onCountryResolvedRef.current(null);
+            return;
+          }
+          const normalizedCountry = normalizeCountryCandidate(geo.displayLabel);
+          if (!normalizedCountry) {
+            onCountryResolvedRef.current(null);
+            return;
+          }
+          onCountryResolvedRef.current({
+            displayLabel: geo.displayLabel,
+            normalizedCountry
+          });
+        } catch (error) {
+          if ((error as Error).name === "AbortError") return;
+          onCountryResolvedRef.current(null);
+        }
+      })();
+    };
+    map.on("click", handleMapClick);
     map.on("move", projectAll);
     map.on("zoom", projectAll);
-    map.on("zoom", syncPanAvailability);
     map.on("zoom", syncControlState);
     map.on("moveend", syncControlState);
     map.on("resize", projectAll);
@@ -178,9 +234,11 @@ function Map({ objectIds, geoByObjectId, countryNames, onProjectionChange }: Map
     map.on("mouseout", setGrabCursor);
 
     return () => {
+      geocodeAbortRef.current?.abort();
+      geocodeAbortRef.current = null;
+      map.off("click", handleMapClick);
       map.off("move", projectAll);
       map.off("zoom", projectAll);
-      map.off("zoom", syncPanAvailability);
       map.off("zoom", syncControlState);
       map.off("moveend", syncControlState);
       map.off("resize", projectAll);

@@ -74,7 +74,11 @@ function ObjectScene({
             onMouseLeave={() =>
               setHoveredObjectId((current) => (current === objectId ? null : current))
             }
-            onClick={() => onObjectClick?.(objectId)}
+            onClick={(event) => {
+              if (!onObjectClick) return;
+              event.stopPropagation();
+              onObjectClick(objectId);
+            }}
             sx={{
               position: "absolute",
               top: 0,

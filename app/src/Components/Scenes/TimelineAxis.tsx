@@ -1,5 +1,6 @@
 import { Box, Chip, Typography } from "@mui/material";
 import type { TimelineBucket } from "../../hooks/useTimelineBuckets";
+import { formatYearForTick } from "../../utils/formatYearTick";
 import { SCENE_LEFT_BASELINE_COLOR } from "../constants";
 
 type TimelineAxisProps = {
@@ -8,18 +9,12 @@ type TimelineAxisProps = {
   panelHeight: number;
 };
 
-function formatYearForTick(year: number): string {
-  if (!Number.isFinite(year)) return "";
-  if (year < 0) return `${Math.abs(year).toLocaleString("en-US")} BCE`;
-  return `${year.toLocaleString("en-US")} CE`;
-}
-
-const tickLineSx = {
-  position: "absolute" as const,
-  right: 0,
+const tickMarkSx = {
   width: "10px",
-  borderTop: "1px solid #777"
-};
+  height: "1px",
+  flexShrink: 0,
+  bgcolor: "#777"
+} as const;
 
 function TimelineAxis({ buckets, bucketSpanByKey, panelHeight }: TimelineAxisProps) {
   let runningTop = 0;
@@ -63,25 +58,35 @@ function TimelineAxis({ buckets, bucketSpanByKey, panelHeight }: TimelineAxisPro
               }
             }}
           >
-            {/* Top seam: tick + start year (aligns with layout band top) */}
-            <Box sx={{ ...tickLineSx, top: 0 }} aria-hidden />
-            <Typography
-              component="div"
-              title={bucket.label}
+            {/* Top seam: tick + start year, vertically centered as a unit on the band edge */}
+            <Box
               sx={{
                 position: "absolute",
-                right: "1rem",
                 top: 0,
-                transform: "none",
-                fontSize: "1.05rem",
-                color: "#ccc",
-                lineHeight: 1,
-                m: 0,
-                textAlign: "right"
+                right: "1rem",
+                display: "flex",
+                flexDirection: "row-reverse",
+                alignItems: "center",
+                gap: "0.35rem",
+                transform: "translateY(-50%)",
+                pointerEvents: "none"
               }}
             >
-              {formatYearForTick(bucket.startYear)}
-            </Typography>
+              <Box sx={tickMarkSx} aria-hidden />
+              <Typography
+                component="div"
+                title={bucket.label}
+                sx={{
+                  fontSize: "1.05rem",
+                  color: "#ccc",
+                  lineHeight: 1,
+                  m: 0,
+                  textAlign: "right"
+                }}
+              >
+                {formatYearForTick(bucket.startYear)}
+              </Typography>
+            </Box>
 
             <Chip
               className="TimelineAxis-countChip"
@@ -106,16 +111,24 @@ function TimelineAxis({ buckets, bucketSpanByKey, panelHeight }: TimelineAxisPro
             />
 
             {isLast ? (
-              <>
-                <Box sx={{ ...tickLineSx, bottom: 0 }} aria-hidden />
+              <Box
+                sx={{
+                  position: "absolute",
+                  bottom: 0,
+                  right: "1rem",
+                  display: "flex",
+                  flexDirection: "row-reverse",
+                  alignItems: "center",
+                  gap: "0.35rem",
+                  transform: "translateY(50%)",
+                  pointerEvents: "none"
+                }}
+              >
+                <Box sx={tickMarkSx} aria-hidden />
                 <Typography
                   component="div"
                   title={bucket.label}
                   sx={{
-                    position: "absolute",
-                    right: "1rem",
-                    bottom: 0,
-                    transform: "none",
                     fontSize: "1.05rem",
                     color: "#ccc",
                     lineHeight: 1,
@@ -125,7 +138,7 @@ function TimelineAxis({ buckets, bucketSpanByKey, panelHeight }: TimelineAxisPro
                 >
                   {formatYearForTick(bucket.endYear)}
                 </Typography>
-              </>
+              </Box>
             ) : null}
           </Box>
         );

@@ -7,6 +7,7 @@ import ClusterTest from "./Components/Tests/ClusterTest";
 import {
   Container,
   Intro,
+  Intro2,
   CaseStudies,
   Shelf,
   Title,
@@ -53,6 +54,7 @@ function Home() {
       <div style={{ display: "grid", gap: "1rem", width: "100%" }}>
         <Title />
         <Intro />
+        <Intro2 />
 
         <ShelfContainer />
         <CaseStudies />

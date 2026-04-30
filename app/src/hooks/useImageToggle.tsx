@@ -8,7 +8,7 @@ type UseImageToggleOptions = {
 };
 
 function getModeOptions(colorOption: boolean): ImageToggleMode[] {
-  return colorOption ? ["solid", "outline", "color"] : ["solid", "outline"];
+  return colorOption ? ["outline", "solid", "color"] : ["outline", "solid"];
 }
 
 function normalizeMode(
@@ -18,12 +18,12 @@ function normalizeMode(
   if (requestedMode && options.includes(requestedMode)) {
     return requestedMode;
   }
-  return "solid";
+  return "outline";
 }
 
 function useImageToggle({
   colorOption = false,
-  initialMode = "solid"
+  initialMode = "outline"
 }: UseImageToggleOptions = {}) {
   const options = useMemo(() => getModeOptions(colorOption), [colorOption]);
   const [mode, setModeState] = useState<ImageToggleMode>(() => normalizeMode(initialMode, options));

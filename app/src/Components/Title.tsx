@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { gsap } from "gsap";
@@ -14,13 +14,11 @@ export default function Title() {
   const timelineRef = useRef<gsap.core.Timeline | null>(null);
   const [morphPaths, setMorphPaths] = useState<string[]>([]);
 
-  const svgPaths = useMemo(
-    () => allObjectIds.map((objectId) => `/SVG_outlines/${objectId}_outline.svg`),
-    []
-  );
+  const objectIdsKey = allObjectIds.join(",");
 
   useEffect(() => {
     let cancelled = false;
+    const svgPaths = allObjectIds.map((objectId) => `/SVG_outlines/${objectId}_outline.svg`);
 
     async function loadPaths() {
       const loadedPaths = await Promise.all(
@@ -55,7 +53,7 @@ export default function Title() {
     return () => {
       cancelled = true;
     };
-  }, [svgPaths]);
+  }, [objectIdsKey]);
 
   useEffect(() => {
     const pathEl = pathRef.current;

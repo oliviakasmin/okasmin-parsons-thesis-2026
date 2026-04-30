@@ -26,24 +26,27 @@ export default function ShelfContainer() {
       component="section"
       id={homeEntryDomId("shelf")}
       sx={{
-        minHeight: "100vh",
+        height: "100vh",
         width: "100%",
         display: "flex",
-        flexDirection: "column",
-        background: "#000",
-        pt: "2rem"
+        flexDirection: "row",
+        alignItems: "stretch",
+        background: "#000"
       }}
     >
       <Box
         sx={{
+          width: "min(32vw, 320px)",
+          minWidth: "220px",
           px: "0.75rem",
-          pt: "0.75rem",
-          pb: "0.35rem"
+          pt: "2rem",
+          pb: "0.35rem",
+          display: "flex",
+          alignItems: "flex-start"
         }}
       >
         <Typography
           variant="h3"
-          // component="h2"
           sx={{
             m: 0,
             fontSize: "2rem",
@@ -52,45 +55,49 @@ export default function ShelfContainer() {
             letterSpacing: "0.02em"
           }}
         >
-          choose a{" "}
-          {(["shape", "type", "color"] as const).map((tab, index) => (
-            <span key={tab}>
-              <Typography
-                component="button"
-                onClick={() => setSelectedShelfTab(tab)}
-                sx={{
-                  border: 0,
-                  background: "transparent",
-                  padding: 0,
-                  margin: 0,
-                  cursor: "pointer",
-                  font: "inherit",
-                  fontSize: "2rem",
-                  lineHeight: 1.05,
-                  letterSpacing: "0.02em",
-                  verticalAlign: "baseline",
-                  color: selectedShelfTab === tab ? tabTextColor.active : tabTextColor.inactive
-                }}
-              >
-                {tab}
-              </Typography>
-              {index < 2 ? (
+          <Box component="span" sx={{ display: "block" }}>
+            choose a
+          </Box>
+          <Box component="span" sx={{ display: "block" }}>
+            {(["shape", "type", "color"] as const).map((tab, index) => (
+              <span key={tab}>
                 <Typography
-                  component="span"
-                  sx={{ fontSize: "2rem", color: tabTextColor.inactive, lineHeight: 1.05 }}
+                  component="button"
+                  onClick={() => setSelectedShelfTab(tab)}
+                  sx={{
+                    border: 0,
+                    background: "transparent",
+                    padding: 0,
+                    margin: 0,
+                    cursor: "pointer",
+                    font: "inherit",
+                    fontSize: "2rem",
+                    lineHeight: 1.05,
+                    letterSpacing: "0.02em",
+                    verticalAlign: "baseline",
+                    color: selectedShelfTab === tab ? tabTextColor.active : tabTextColor.inactive
+                  }}
                 >
-                  {" | "}
+                  {tab}
                 </Typography>
-              ) : null}
-            </span>
-          ))}
+                {index < 2 ? (
+                  <Typography
+                    component="span"
+                    sx={{ fontSize: "2rem", color: tabTextColor.inactive, lineHeight: 1.05 }}
+                  >
+                    {" | "}
+                  </Typography>
+                ) : null}
+              </span>
+            ))}
+          </Box>
         </Typography>
       </Box>
 
       <Box sx={{ display: "none" }} id={homeEntryDomId("shelf-function")} />
       <Box sx={{ display: "none" }} id={homeEntryDomId("shelf-color")} />
 
-      <Box sx={{ flex: 1, minHeight: 0 }}>{content}</Box>
+      <Box sx={{ flex: 1, minWidth: 0, height: "100vh" }}>{content}</Box>
     </Box>
   );
 }

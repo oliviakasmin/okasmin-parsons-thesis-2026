@@ -96,6 +96,35 @@ function normalizeCountryCandidate(value: string) {
   return trimmed;
 }
 
+/** Same normalization used for object country keys in `fields.csv` and for map label filters. */
+export { normalizeCountryCandidate };
+
+/**
+ * Map a reverse-geocoded country string (already normalized) to canonical country key(s)
+ * present in the current cluster. Matches direct canonical equality, then `COUNTRY_LABEL_ALIASES`
+ * (e.g. geocoder "united kingdom" matches objects keyed as scotland, england, etc.).
+ */
+export function canonicalKeysMatchingGeocode(
+  normalizedGeocoderCountry: string,
+  canonicalsPresent: ReadonlySet<string>
+): string[] {
+  const trimmed = normalizedGeocoderCountry.trim();
+  if (!trimmed) return [];
+
+  const direct = new Set<string>();
+  for (const c of canonicalsPresent) {
+    if (c === trimmed) direct.add(c);
+  }
+  if (direct.size) return [...direct];
+
+  const viaAlias = new Set<string>();
+  for (const c of canonicalsPresent) {
+    const aliases = COUNTRY_LABEL_ALIASES[c];
+    if (aliases?.includes(trimmed)) viaAlias.add(c);
+  }
+  return [...viaAlias];
+}
+
 function buildObjectGeoById(csvRaw: string) {
   const lines = csvRaw.split(/\r?\n/).filter(Boolean);
   if (!lines.length) return new Map<string, ObjectGeo>();
@@ -177,9 +206,11 @@ function useObjectCountryNames(objectIds: string[]) {
   return useMemo(() => {
     const canonicalCountries = new Set<string>();
     const labelNames = new Set<string>();
+    const countryByObjectId = new Map<string, string>();
     for (const objectId of objectIds) {
       const countryName = allCountryNameByObjectId.get(objectId);
       if (!countryName) continue;
+      countryByObjectId.set(objectId, countryName);
       canonicalCountries.add(countryName);
       labelNames.add(countryName);
       const aliases = COUNTRY_LABEL_ALIASES[countryName];
@@ -187,7 +218,8 @@ function useObjectCountryNames(objectIds: string[]) {
     }
     return {
       countryNames: Array.from(labelNames).sort(),
-      distinctCountryCount: canonicalCountries.size
+      distinctCountryCount: canonicalCountries.size,
+      countryByObjectId
     };
   }, [allCountryNameByObjectId, objectIds]);
 }
