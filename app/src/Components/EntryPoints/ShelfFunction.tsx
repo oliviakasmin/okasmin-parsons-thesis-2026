@@ -72,11 +72,7 @@ export default function ShelfFunction() {
                 flexDirection: "column",
                 alignItems: "center",
                 position: "relative",
-                cursor: "pointer",
-                "&:hover .shelf-function-label": {
-                  opacity: 1,
-                  visibility: "visible"
-                }
+                cursor: "pointer"
               }}
             >
               <Box
@@ -123,9 +119,6 @@ export default function ShelfFunction() {
                   mt: "0.1rem",
                   fontSize: "0.62rem",
                   letterSpacing: "0.03em",
-                  opacity: 0,
-                  visibility: "hidden",
-                  transition: "opacity 120ms ease",
                   pointerEvents: "none"
                 }}
               >
@@ -135,6 +128,32 @@ export default function ShelfFunction() {
           );
         })}
       </Box>
+      <Typography
+        component="h4"
+        variant="h4"
+        sx={{
+          mt: "1.5rem",
+          mb: "0.5rem",
+          // fontSize: "0.95rem",
+          // fontWeight: 400,
+          textAlign: "center"
+        }}
+      >
+        [change to something like]
+      </Typography>
+      <Typography
+        component="h4"
+        variant="h4"
+        sx={{
+          mt: "1.5rem",
+          mb: "0.5rem",
+          // fontSize: "0.95rem",
+          // fontWeight: 400,
+          textAlign: "center"
+        }}
+      >
+        storage | pouring | wine | water | ritual | animal shapes
+      </Typography>
     </Box>
   );
 }

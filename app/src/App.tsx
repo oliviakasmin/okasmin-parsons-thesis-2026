@@ -6,6 +6,7 @@ import Test2 from "./Components/Tests/Test2";
 import ClusterTest from "./Components/Tests/ClusterTest";
 import {
   Container,
+  Anatomy,
   Intro,
   Intro2,
   CaseStudies,
@@ -51,6 +52,7 @@ function Home() {
       <div style={{ display: "grid", gap: "1rem", width: "100%" }}>
         <Title />
         <Intro />
+        <Anatomy />
         <Intro2 />
 
         <ShelfContainer />
