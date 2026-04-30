@@ -82,7 +82,7 @@ export default function Intro() {
         }}
       >
         <Typography variant="introHeading" component="h4">
-          Ceramic vessels have been made by humans for over 10,000 years.
+          Ceramic vessels have been made for over 10,000 years.
         </Typography>
         <Typography variant="introHeading" component="h4">
           When we undress them a shared thread emerges.

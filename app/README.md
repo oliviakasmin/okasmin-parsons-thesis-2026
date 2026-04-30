@@ -1,5 +1,9 @@
 frontend dataviz
 
+important implementation notes
+
+- Shelf load/draw animation reference (flash-free): `app/SHELF_ANIMATION_REFERENCE.md`
+
 technologies used
 
 - React

@@ -102,6 +102,21 @@ export default function Title() {
         gap: "clamp(1rem, 3vw, 3rem)"
       }}
     >
+      <style>
+        {`
+          @font-face {
+            font-family: 'PPHattonMedium';
+            src: url('/Hatton_font/otf/PPHatton-Medium.otf') format('opentype');
+            font-display: swap;
+          }
+
+          @font-face {
+            font-family: 'PPHattonUltralightItalic';
+            src: url('/Hatton_font/otf/PPHatton-UltralightItalic.otf') format('opentype');
+            font-display: swap;
+          }
+        `}
+      </style>
       <Box
         sx={{
           flex: 1,
@@ -109,18 +124,59 @@ export default function Title() {
           ml: "2rem",
           pr: "1rem",
           display: "flex",
-          alignItems: "center",
-          alignSelf: "flex-start",
-          position: "sticky",
-          top: "25vh"
+          flexDirection: "column",
+          justifyContent: "space-between",
+          minHeight: "100vh"
         }}
       >
-        <Typography
-          variant="h1"
-          component="h1"
-          sx={{ m: 0, fontSize: "clamp(3rem, 7vw, 9rem)", lineHeight: 0.95 }}
+        <Box
+          sx={{
+            pb: "3rem",
+            position: "sticky",
+            top: "25vh",
+            alignSelf: "flex-start",
+            backgroundColor: "#000"
+          }}
         >
-          Ceramics <span style={{ fontStyle: "italic", fontWeight: 100 }}>Undressed</span>
+          <Typography
+            variant="h1"
+            component="h1"
+            sx={{
+              m: 0,
+              px: "0.18em",
+              py: "0.12em",
+              fontSize: "clamp(3rem, 7vw, 9rem)",
+              lineHeight: 0.95,
+              letterSpacing: "-0.015em",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "flex-start",
+              gap: "0.4em"
+            }}
+          >
+            <span
+              style={{
+                fontFamily: "'PPHattonMedium', serif",
+                fontWeight: 500,
+                letterSpacing: "-0.01em"
+              }}
+            >
+              Ceramics
+            </span>
+            <span
+              style={{
+                fontFamily: "'PPHattonUltralightItalic', serif",
+                fontWeight: 200,
+                letterSpacing: "0.005em",
+                lineHeight: 0.9
+              }}
+            >
+              Undressed
+            </span>
+          </Typography>
+        </Box>
+        <Typography variant="h5" component="h5" sx={{ m: 0, pb: "5rem", pl: "1rem" }}>
+          by Olivia Kasmin
         </Typography>
       </Box>
 
