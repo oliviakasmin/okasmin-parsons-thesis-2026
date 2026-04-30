@@ -14,6 +14,7 @@ const tabTextColor = {
 
 export default function ShelfContainer() {
   const { selectedShelfTab, setSelectedShelfTab } = useShelfTab();
+  const isShapeTab = selectedShelfTab === "shape";
 
   const content = useMemo(() => {
     if (selectedShelfTab === "shape") return <Shelf />;
@@ -28,21 +29,27 @@ export default function ShelfContainer() {
       sx={{
         height: "100vh",
         width: "100%",
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "stretch",
-        background: "#000"
+        position: isShapeTab ? "relative" : "static",
+        background: "#000",
+        overflow: isShapeTab ? "hidden" : "auto",
+        display: isShapeTab ? "block" : "flex",
+        flexDirection: isShapeTab ? "row" : "column"
       }}
     >
       <Box
         sx={{
           width: "min(32vw, 320px)",
           minWidth: "220px",
-          px: "0.75rem",
-          pt: "2rem",
-          pb: "0.35rem",
+          pl: "2rem",
+          pt: "25vh",
+          pb: "6rem",
           display: "flex",
-          alignItems: "flex-start"
+          alignItems: "flex-start",
+          position: isShapeTab ? "absolute" : "relative",
+          top: isShapeTab ? 0 : "auto",
+          left: isShapeTab ? 0 : "auto",
+          zIndex: 2,
+          pointerEvents: "auto"
         }}
       >
         <Typography
@@ -97,7 +104,34 @@ export default function ShelfContainer() {
       <Box sx={{ display: "none" }} id={homeEntryDomId("shelf-function")} />
       <Box sx={{ display: "none" }} id={homeEntryDomId("shelf-color")} />
 
-      <Box sx={{ flex: 1, minWidth: 0, height: "100vh" }}>{content}</Box>
+      <Box
+        sx={
+          isShapeTab
+            ? {
+                position: "absolute",
+                top: 0,
+                right: 0,
+                bottom: 0,
+                left: "min(32vw, 320px)",
+                minWidth: 0,
+                height: "100vh"
+              }
+            : {
+                position: "relative",
+                top: "auto",
+                left: "auto",
+                right: "auto",
+                bottom: "auto",
+                width: "100%",
+                minWidth: 0,
+                display: "flex",
+                justifyContent: "center",
+                flex: 1
+              }
+        }
+      >
+        {content}
+      </Box>
     </Box>
   );
 }

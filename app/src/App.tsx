@@ -43,12 +43,9 @@ function Home() {
     <main
       style={{
         minHeight: "100vh",
-        display: "flex",
-        alignItems: "flex-start",
-        justifyContent: "center",
+        width: "100vw",
         background: "#000",
-        color: "#fff",
-        padding: "2rem"
+        color: "#fff"
       }}
     >
       <div style={{ display: "grid", gap: "1rem", width: "100%" }}>

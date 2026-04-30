@@ -1,7 +1,8 @@
 import type { KeyboardEvent, ReactNode } from "react";
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { useLocation, useParams, useSearchParams } from "react-router-dom";
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, IconButton, Typography } from "@mui/material";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import finalClusterKeysCsv from "../../../../format_data/cluster_shape/final_clusters_keys.csv?raw";
 import finalClusterObjectIdsCsv from "../../../../format_data/cluster_shape/final_clusters_object_ids.csv?raw";
 import BackButton from "../BackButton";
@@ -30,6 +31,7 @@ import {
   type HomeEntryScrollId
 } from "../constants";
 import MapView from "./Map";
+import InlineOutlineSvg from "./InlineOutlineSvg";
 import ObjectImageModal from "./ObjectImageModal";
 import ObjectScene from "./ObjectScene";
 import TimelineAxis from "./TimelineAxis";
@@ -69,6 +71,10 @@ function formatCountryLabel(countryKey: string) {
     .filter(Boolean)
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
+}
+
+function defaultStackOpacity(clusterSize: number) {
+  return Math.min(1, Math.max(0.08, 1 / Math.max(18, clusterSize)));
 }
 
 /** Copy for the scene headline (timeline / map / all). Layout lives in Container. */
@@ -602,27 +608,42 @@ function Container() {
                           return (
                             <Box
                               key={objectId}
-                              component="img"
-                              src={src}
-                              alt=""
                               role="button"
                               tabIndex={0}
                               onClick={() => setModalObjectId(objectId)}
-                              onKeyDown={(event: KeyboardEvent<HTMLImageElement>) => {
+                              onKeyDown={(event: KeyboardEvent<HTMLDivElement>) => {
                                 if (event.key === "Enter" || event.key === " ") {
                                   event.preventDefault();
                                   setModalObjectId(objectId);
                                 }
                               }}
                               sx={{
-                                display: "block",
                                 width: "100%",
-                                height: "auto",
                                 aspectRatio: "1",
-                                objectFit: "contain",
                                 cursor: "pointer"
                               }}
-                            />
+                            >
+                              {mode === "outline" ? (
+                                <InlineOutlineSvg
+                                  src={src}
+                                  alt=""
+                                  className="inline-outline-svg"
+                                  style={{ width: "100%", height: "100%", display: "block" }}
+                                />
+                              ) : (
+                                <Box
+                                  component="img"
+                                  src={src}
+                                  alt=""
+                                  sx={{
+                                    display: "block",
+                                    width: "100%",
+                                    height: "100%",
+                                    objectFit: "contain"
+                                  }}
+                                />
+                              )}
+                            </Box>
                           );
                         })}
                       </Box>
@@ -634,16 +655,43 @@ function Container() {
                   sx={{
                     position: "absolute",
                     inset: 0,
-                    display: "grid",
-                    placeItems: "center",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
                     pr: "0.65rem",
-                    color: "#777",
-                    fontSize: "0.78rem",
-                    textAlign: "center",
                     pointerEvents: "none"
                   }}
                 >
-                  show stacked outline images here
+                  <Box
+                    sx={{
+                      position: "relative",
+                      width: "100%",
+                      height: "100%"
+                    }}
+                  >
+                    {selectedObjectIds.map((objectId) => {
+                      const outlineSrc = outlineImageByObjectId.get(objectId);
+                      if (!outlineSrc) return null;
+                      return (
+                        <InlineOutlineSvg
+                          key={`stack-outline-${objectId}`}
+                          src={outlineSrc}
+                          alt={`${objectId} outline`}
+                          className="inline-outline-svg"
+                          style={{
+                            position: "absolute",
+                            left: "50%",
+                            bottom: "-3px",
+                            transform: "translateX(-50%)",
+                            width: "100%",
+                            height: "100%",
+                            display: "block",
+                            opacity: defaultStackOpacity(selectedObjectIds.length)
+                          }}
+                        />
+                      );
+                    })}
+                  </Box>
                 </Box>
               ) : null}
               <Box
@@ -657,36 +705,59 @@ function Container() {
               />
             </>
           )}
-          {currentView !== "timeline" && (
-            <Button
-              type="button"
-              variant="text"
-              disableRipple
-              aria-label={isLeftPanelExpanded ? "Collapse left panel" : "Expand left panel"}
-              onClick={() => setIsLeftPanelExpanded((v) => !v)}
-              sx={{
-                textTransform: "none",
-                position: "absolute",
-                right: 0,
-                top: "50%",
-                transform: "translateY(-50%) rotate(90deg)",
-                transformOrigin: "center center",
-                zIndex: 1,
-                minWidth: 0,
-                minHeight: 0,
-                p: 0,
-                m: 0,
-                color: "#aaa",
-                whiteSpace: "nowrap",
-                borderRadius: 0,
-                "&:hover": { color: "#fff", bgcolor: "rgba(255,255,255,0.06)" }
-              }}
-            >
-              <Typography component="span" variant="backButton" sx={{ color: "inherit" }}>
-                {isLeftPanelExpanded ? "collapse" : "expand"}
-              </Typography>
-            </Button>
-          )}
+          {currentView !== "timeline" &&
+            (isLeftPanelExpanded ? (
+              <IconButton
+                aria-label="Collapse left panel"
+                onClick={() => setIsLeftPanelExpanded(false)}
+                sx={{
+                  position: "absolute",
+                  right: 0,
+                  top: "50%",
+                  transform: "translate(50%, -50%)",
+                  zIndex: 2,
+                  width: 24,
+                  height: 24,
+                  p: 0,
+                  color: "#aaa",
+                  borderRadius: "999px",
+                  bgcolor: "#000",
+                  border: "1px solid #444",
+                  "&:hover": { color: "#fff", bgcolor: "#111" }
+                }}
+              >
+                <ChevronLeftIcon fontSize="small" />
+              </IconButton>
+            ) : (
+              <Button
+                type="button"
+                variant="text"
+                disableRipple
+                aria-label="Expand left panel"
+                onClick={() => setIsLeftPanelExpanded(true)}
+                sx={{
+                  textTransform: "none",
+                  position: "absolute",
+                  right: 0,
+                  top: "50%",
+                  transform: "translateY(-50%) rotate(90deg)",
+                  transformOrigin: "center center",
+                  zIndex: 1,
+                  minWidth: 0,
+                  minHeight: 0,
+                  p: 0,
+                  m: 0,
+                  color: "#aaa",
+                  whiteSpace: "nowrap",
+                  borderRadius: 0,
+                  "&:hover": { color: "#fff", bgcolor: "rgba(255,255,255,0.06)" }
+                }}
+              >
+                <Typography component="span" variant="backButton" sx={{ color: "inherit" }}>
+                  expand
+                </Typography>
+              </Button>
+            ))}
         </Box>
         <Box
           ref={sceneViewportRef}

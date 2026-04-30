@@ -21,9 +21,11 @@ export default function ShelfColor() {
         background: "#000",
         color: "#fff",
         p: "0.75rem",
+        boxSizing: "border-box",
         display: "flex",
         flexDirection: "column",
-        justifyContent: "center",
+        alignItems: "center",
+        justifyContent: "flex-start",
         overflowY: "auto",
         overflowX: "hidden"
       }}
@@ -32,12 +34,16 @@ export default function ShelfColor() {
         sx={{
           flex: "0 0 auto",
           display: "grid",
-          gridTemplateColumns: `repeat(auto-fit, minmax(${SHELF_RENDER_IMAGE_SIZE_PX * 0.85}px, 1fr))`,
+          gridTemplateColumns: `repeat(${Math.max(groupRows.length, 1)}, minmax(0, 1fr))`,
           alignItems: "end",
           alignContent: "start",
           columnGap: 0,
           rowGap: "30px",
-          width: "100%"
+          width: "min(100%, 85vw)",
+          mx: "auto",
+          "@media (max-width: 900px)": {
+            gridTemplateColumns: `repeat(auto-fit, minmax(clamp(120px, 28vw, ${SHELF_RENDER_IMAGE_SIZE_PX * 0.85}px), 1fr))`
+          }
         }}
       >
         {groupRows.map((groupRow) => {
@@ -80,7 +86,7 @@ export default function ShelfColor() {
               <Box
                 sx={{
                   width: "100%",
-                  height: `${SHELF_RENDER_IMAGE_SIZE_PX * 0.84}px`,
+                  height: `clamp(120px, 12vw, ${SHELF_RENDER_IMAGE_SIZE_PX * 0.84}px)`,
                   position: "relative",
                   overflow: "hidden",
                   display: "grid",

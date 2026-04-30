@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Box, Typography } from "@mui/material";
 import finalClusterKeysCsv from "../../../../format_data/cluster_shape/final_clusters_keys.csv?raw";
@@ -75,7 +75,7 @@ function AnimatedSampledSvg({ src, alt }: AnimatedSampledSvgProps) {
   const { svgMarkup } = useInlineSvg(src);
   const wrapperRef = useRef<HTMLDivElement | null>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!wrapperRef.current || !svgMarkup) return;
 
     const paths = wrapperRef.current.querySelectorAll<SVGPathElement>("svg path");
@@ -84,7 +84,7 @@ function AnimatedSampledSvg({ src, alt }: AnimatedSampledSvgProps) {
       path.style.strokeDasharray = `${length}`;
       path.style.strokeDashoffset = `${length}`;
       path.style.animation = "none";
-      path.style.animation = `shelfPathDraw 1000ms ease forwards`;
+      path.style.animation = `shelfPathDraw 1800ms ease forwards`;
       path.style.animationDelay = `${index * 120}ms`;
     });
   }, [svgMarkup]);
@@ -122,6 +122,9 @@ function AnimatedSampledSvg({ src, alt }: AnimatedSampledSvgProps) {
 function Shelf() {
   const navigate = useNavigate();
   const [hoveredClusterId, setHoveredClusterId] = useState<string | null>(null);
+  const [isShelfHalfVisible, setIsShelfHalfVisible] = useState(false);
+  const shelfRef = useRef<HTMLElement | null>(null);
+  const hasHandledInitialIntersectionRef = useRef(false);
   const orderedClusterIds = useMemo(() => shelves.flat(), []);
   const { maskImageByObjectId } = useImageModules();
   const { clusterRows } = useFormatClusters(finalClusterKeysCsv, finalClusterObjectIdsCsv);
@@ -130,18 +133,51 @@ function Shelf() {
     [clusterRows]
   );
 
+  useEffect(() => {
+    if (!shelfRef.current) return;
+    let revealFrameId: number | null = null;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const isHalfVisible = entry.isIntersecting && entry.intersectionRatio >= 0.5;
+        if (!hasHandledInitialIntersectionRef.current) {
+          // Keep images hidden on mount/remount, then reveal on next frame if already in view.
+          hasHandledInitialIntersectionRef.current = true;
+          setIsShelfHalfVisible(false);
+          if (isHalfVisible) {
+            revealFrameId = window.requestAnimationFrame(() => {
+              setIsShelfHalfVisible(true);
+            });
+          }
+          return;
+        }
+        setIsShelfHalfVisible(isHalfVisible);
+      },
+      { threshold: [0, 0.5, 1] }
+    );
+
+    observer.observe(shelfRef.current);
+    return () => {
+      observer.disconnect();
+      if (revealFrameId !== null) {
+        window.cancelAnimationFrame(revealFrameId);
+      }
+    };
+  }, []);
+
   return (
     <Box
       component="main"
+      ref={shelfRef}
       id={homeEntryDomId(shelfEntryScrollId)}
       sx={{
         height: "100vh",
         background: "#000",
         color: "#fff",
-        py: "0.75rem",
+        py: "1.5rem",
         display: "flex",
         flexDirection: "column",
-        overflow: "auto"
+        overflowY: "auto"
       }}
     >
       <Box
@@ -222,25 +258,26 @@ function Shelf() {
                     display: "block"
                   }}
                 >
-                  {showMask && hoveredMaskSrc ? (
-                    <img
-                      src={hoveredMaskSrc}
-                      alt={`${maskObjectId}_mask.png`}
-                      loading="lazy"
-                      style={{
-                        width: "100%",
-                        height: "100%",
-                        objectFit: "contain",
-                        objectPosition: "center bottom",
-                        display: "block"
-                      }}
-                    />
-                  ) : (
-                    <AnimatedSampledSvg
-                      src={stackedSvgSrc}
-                      alt={`${clusterId}_stack_sampled.svg`}
-                    />
-                  )}
+                  {isShelfHalfVisible &&
+                    (showMask && hoveredMaskSrc ? (
+                      <img
+                        src={hoveredMaskSrc}
+                        alt={`${maskObjectId}_mask.png`}
+                        loading="lazy"
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "contain",
+                          objectPosition: "center bottom",
+                          display: "block"
+                        }}
+                      />
+                    ) : (
+                      <AnimatedSampledSvg
+                        src={stackedSvgSrc}
+                        alt={`${clusterId}_stack_sampled.svg`}
+                      />
+                    ))}
                 </Box>
               </Box>
               <Typography
