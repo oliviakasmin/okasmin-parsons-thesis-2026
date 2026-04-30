@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import fieldsCsv from "../../../format_data/generated/fields.csv?raw";
-import colorGroupLabelsCsv from "../../../format_data/generated/object_color_group_labels.csv?raw";
+import colorGroupLabelsCsv from "../../../format_data/generated/color/object_color_group_labels.csv?raw";
 
 export type ColorGroupKey =
   | "multicolor"

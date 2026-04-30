@@ -13,7 +13,7 @@ from .place.geocode_locations import CACHE_CSV_PATH
 ROOT = Path(__file__).resolve().parents[1]
 OBJECTS_JSON_PATH = ROOT / "fetch_data" / "data" / "objects.json"
 OUTPUT_CSV_PATH = Path(__file__).resolve().parent / "generated" / "fields.csv"
-COLOR_FIELDS_CSV_PATH = Path(__file__).resolve().parent / "generated" / "object_color_fields.csv"
+COLOR_FIELDS_CSV_PATH = Path(__file__).resolve().parent / "generated" / "color" / "object_color_fields.csv"
 
 
 
@@ -120,6 +120,7 @@ def build_fields(df: pd.DataFrame) -> pd.DataFrame:
         [
             "objectID",
             "department",
+            "title",
             "final_group",
             "objectBeginDate",
             "objectEndDate",

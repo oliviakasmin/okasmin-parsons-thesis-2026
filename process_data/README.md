@@ -17,7 +17,7 @@ This directory contains the image-processing and shape-analysis pipeline used af
   - `get_features.py`: per-mask feature extraction (profiles, contour geometry, Hu, inner-contour signals, symmetry-related fields).
   - `process_get_features.py`: batch/resumable CSV writer for silhouette features.
 
-- `cluster/`
+- `../format_data/cluster_shape/`
   - Active clustering experimentation and outputs.
   - Notebook workflow for weighted clustering + evaluation.
   - Stores final cluster outputs (`final_clusters_object_ids.csv`, `final_clusters_keys.csv`) and helper utilities (`cluster_utils.py`).
@@ -32,4 +32,4 @@ This directory contains the image-processing and shape-analysis pipeline used af
 
 1. Process source images into `generated/real_images/` via `process_images/process_images.py`.
 2. Extract shape features into `features/silhouette_features.csv`.
-3. Run clustering experiments in `cluster/` notebooks and export final cluster CSVs.
+3. Run clustering experiments in `format_data/cluster_shape/` notebooks and export final cluster CSVs.

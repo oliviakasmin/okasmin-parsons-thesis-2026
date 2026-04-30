@@ -1,8 +1,9 @@
+import type { KeyboardEvent, ReactNode } from "react";
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { useLocation, useParams, useSearchParams } from "react-router-dom";
 import { Box, Button, Typography } from "@mui/material";
-import finalClusterKeysCsv from "../../../../process_data/cluster/final_clusters_keys.csv?raw";
-import finalClusterObjectIdsCsv from "../../../../process_data/cluster/final_clusters_object_ids.csv?raw";
+import finalClusterKeysCsv from "../../../../format_data/cluster_shape/final_clusters_keys.csv?raw";
+import finalClusterObjectIdsCsv from "../../../../format_data/cluster_shape/final_clusters_object_ids.csv?raw";
 import BackButton from "../BackButton";
 import ImageToggleButton from "../ImageToggleButton";
 import useImageToggle from "../../hooks/useImageToggle";
@@ -11,20 +12,28 @@ import useFormatClusters from "../../hooks/useFormatClusters";
 import useFunctionGroups, { isFunctionGroup } from "../../hooks/useFunctionGroups";
 import useColorGroups, { isColorGroupKey } from "../../hooks/useColorGroups";
 import useTimelineBuckets from "../../hooks/useTimelineBuckets";
-import useObjectGeo, { useObjectCountryNames } from "../../hooks/useObjectGeo";
+import useObjectGeo, {
+  canonicalKeysMatchingGeocode,
+  useObjectCountryNames
+} from "../../hooks/useObjectGeo";
+import useObjectModalMetadata from "../../hooks/useObjectModalMetadata";
 import { buildSceneLayout } from "../../hooks/useViewLayouts";
 import {
   ALL_SCENE_RENDER_IMAGE_SIZE_PX,
+  SCENE_LEFT_PANEL_COLLAPSED_MIN_WIDTH_PX,
+  SCENE_LEFT_PANEL_COLLAPSED_VW,
   SCENE_LEFT_PANEL_MAX_WIDTH_PX,
   SCENE_LEFT_PANEL_MIN_WIDTH_PX,
+  SCENE_LEFT_PANEL_WIDTH_TRANSITION_MS,
   SCENE_LEFT_PANEL_WIDTH_VW,
   SUBGROUP_RENDER_IMAGE_SIZE_PX,
   type HomeEntryScrollId
 } from "../constants";
 import MapView from "./Map";
+import ObjectImageModal from "./ObjectImageModal";
 import ObjectScene from "./ObjectScene";
-import SceneHeader from "./SceneHeader";
 import TimelineAxis from "./TimelineAxis";
+import { useShelfTab } from "../shelfTabState";
 
 type SceneView = "all" | "timeline" | "map";
 type ContainerLocationState = {
@@ -32,27 +41,113 @@ type ContainerLocationState = {
   initialImageMode?: "solid" | "outline" | "color";
 };
 
+const sceneHeadlineSx = {
+  fontSize: "1.6rem",
+  lineHeight: 1.15,
+  color: "#bdbdbd",
+  textAlign: "center"
+} as const;
+
+const sceneHeadlineEmphasisSx = {
+  fontSize: "2rem",
+  color: "#fff",
+  fontWeight: 600,
+  lineHeight: 1
+} as const;
+
+function sceneHeadlineEmphasis(children: ReactNode) {
+  return (
+    <Box component="span" sx={sceneHeadlineEmphasisSx}>
+      {children}
+    </Box>
+  );
+}
+
+function formatCountryLabel(countryKey: string) {
+  return countryKey
+    .split(" ")
+    .filter(Boolean)
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+}
+
+/** Copy for the scene headline (timeline / map / all). Layout lives in Container. */
+function sceneHeadlineContent(args: {
+  view: SceneView;
+  objectCount: number;
+  objectLabelPlural: string;
+  timelineSubject: string;
+  mapSubject: string;
+  spanYears: number;
+  countryCount: number;
+}): ReactNode {
+  const {
+    view,
+    objectCount,
+    objectLabelPlural,
+    timelineSubject,
+    mapSubject,
+    spanYears,
+    countryCount
+  } = args;
+  if (view === "timeline") {
+    return (
+      <>
+        {timelineSubject} have been made for{" "}
+        {sceneHeadlineEmphasis(spanYears.toLocaleString("en-US"))} {sceneHeadlineEmphasis("years")}{" "}
+        (at least)
+      </>
+    );
+  }
+  if (view === "map") {
+    return (
+      <>
+        {mapSubject} have been made across{" "}
+        {sceneHeadlineEmphasis(countryCount.toLocaleString("en-US"))}{" "}
+        {sceneHeadlineEmphasis(countryCount === 1 ? "country" : "countries")} (at least)
+      </>
+    );
+  }
+  return (
+    <>
+      {objectCount.toLocaleString("en-US")} {objectLabelPlural}
+    </>
+  );
+}
+
 function Container() {
   const { clusterId } = useParams();
   const location = useLocation();
   const locationState = (location.state as ContainerLocationState | null) ?? null;
-  const homeScrollTo = locationState?.homeScrollTo;
   const [searchParams, setSearchParams] = useSearchParams();
   const searchView = searchParams.get("view");
   const currentView: SceneView =
     searchView === "timeline" || searchView === "map" ? searchView : "all";
   const { mode, options, setMode } = useImageToggle({
     colorOption: true,
-    initialMode: locationState?.initialImageMode ?? "solid"
+    initialMode: locationState?.initialImageMode ?? "outline"
   });
   const sceneViewportRef = useRef<HTMLDivElement | null>(null);
   const timelineAxisContentRef = useRef<HTMLDivElement | null>(null);
   const sceneContentScrollRef = useRef<HTMLDivElement | null>(null);
   const [sceneViewportSize, setSceneViewportSize] = useState({ width: 0, height: 0 });
+  const [isLeftPanelExpanded, setIsLeftPanelExpanded] = useState(false);
+  /** One beat: keep expanded width on timeline so width can animate closed after a scene change. */
+  const [leftPanelSceneCollapseGrace, setLeftPanelSceneCollapseGrace] = useState(false);
+  /** Column count for All grid at last collapsed rail width; used to shrink tiles when the rail expands. */
+  const [allGridBaselineColumns, setAllGridBaselineColumns] = useState<number | null>(null);
+  const [modalObjectId, setModalObjectId] = useState<string | null>(null);
+  const [mapCountryPanel, setMapCountryPanel] = useState<{
+    label: string;
+    objectIds: string[];
+  } | null>(null);
+  const isLeftPanelExpandedRef = useRef(isLeftPanelExpanded);
+  isLeftPanelExpandedRef.current = isLeftPanelExpanded;
   const { outlineImageByObjectId, maskImageByObjectId, noBgImageByObjectId } = useImageModules();
   const { clusterRows } = useFormatClusters(finalClusterKeysCsv, finalClusterObjectIdsCsv);
   const { groupRowById } = useFunctionGroups();
   const { groupRowByKey } = useColorGroups();
+  const { setSelectedShelfTab } = useShelfTab();
   const selectedCluster = useMemo(
     () => clusterRows.find((row) => row.cluster === clusterId),
     [clusterId, clusterRows]
@@ -107,23 +202,45 @@ function Container() {
     spanYears
   } = useTimelineBuckets(selectedObjectIds);
   const geoByObjectId = useObjectGeo(selectedObjectIds);
-  const { countryNames, distinctCountryCount } = useObjectCountryNames(selectedObjectIds);
+  const { countryNames, distinctCountryCount, countryByObjectId } =
+    useObjectCountryNames(selectedObjectIds);
+  const canonicalCountryKeysInCluster = useMemo(
+    () => new Set(countryByObjectId.values()),
+    [countryByObjectId]
+  );
+  const objectModalFieldsById = useObjectModalMetadata();
   const [mapProjectionByObjectId, setMapProjectionByObjectId] = useState<
     Map<string, { x: number; y: number; visible: boolean }>
   >(new globalThis.Map());
 
-  const allSceneLayout = useMemo(
-    () =>
-      buildSceneLayout({
-        objectIds: selectedObjectIds,
-        buckets: timelineBuckets,
-        view: "all",
-        sceneWidth: sceneViewportSize.width,
-        sceneHeight: sceneViewportSize.height,
-        imageSizePx: ALL_SCENE_RENDER_IMAGE_SIZE_PX
-      }),
-    [sceneViewportSize.height, sceneViewportSize.width, selectedObjectIds, timelineBuckets]
-  );
+  const allSceneLayout = useMemo(() => {
+    let imageSizePx = ALL_SCENE_RENDER_IMAGE_SIZE_PX;
+    if (
+      currentView === "all" &&
+      isLeftPanelExpanded &&
+      allGridBaselineColumns != null &&
+      sceneViewportSize.width > 0
+    ) {
+      const cellWidth = Math.floor(sceneViewportSize.width / allGridBaselineColumns);
+      imageSizePx = Math.max(24, cellWidth - 4);
+    }
+    return buildSceneLayout({
+      objectIds: selectedObjectIds,
+      buckets: timelineBuckets,
+      view: "all",
+      sceneWidth: sceneViewportSize.width,
+      sceneHeight: sceneViewportSize.height,
+      imageSizePx
+    });
+  }, [
+    allGridBaselineColumns,
+    currentView,
+    isLeftPanelExpanded,
+    sceneViewportSize.height,
+    sceneViewportSize.width,
+    selectedObjectIds,
+    timelineBuckets
+  ]);
 
   const timelineSceneLayout = useMemo(
     () =>
@@ -178,6 +295,15 @@ function Container() {
     mapSceneLayout.sceneWidth
   );
 
+  const leftPanelWidthCss = useMemo(() => {
+    const useExpandedWidth =
+      isLeftPanelExpanded && (currentView !== "timeline" || leftPanelSceneCollapseGrace);
+    if (useExpandedWidth) {
+      return `clamp(${SCENE_LEFT_PANEL_MIN_WIDTH_PX}px, ${SCENE_LEFT_PANEL_WIDTH_VW}vw, ${SCENE_LEFT_PANEL_MAX_WIDTH_PX}px)`;
+    }
+    return `clamp(${SCENE_LEFT_PANEL_COLLAPSED_MIN_WIDTH_PX}px, ${SCENE_LEFT_PANEL_COLLAPSED_VW}vw, ${SCENE_LEFT_PANEL_MAX_WIDTH_PX}px)`;
+  }, [currentView, isLeftPanelExpanded, leftPanelSceneCollapseGrace]);
+
   useLayoutEffect(() => {
     const viewportNode = sceneViewportRef.current;
     if (!viewportNode) return;
@@ -195,6 +321,33 @@ function Container() {
     return () => observer.disconnect();
   }, [currentView]);
 
+  useLayoutEffect(() => {
+    if (isLeftPanelExpanded || sceneViewportSize.width <= 0) return;
+    setAllGridBaselineColumns(
+      Math.max(1, Math.floor(sceneViewportSize.width / (ALL_SCENE_RENDER_IMAGE_SIZE_PX + 4)))
+    );
+  }, [isLeftPanelExpanded, sceneViewportSize.width]);
+
+  useLayoutEffect(() => {
+    if (!isLeftPanelExpandedRef.current) {
+      setLeftPanelSceneCollapseGrace(false);
+      return;
+    }
+    setLeftPanelSceneCollapseGrace(true);
+    let innerRaf = 0;
+    const outerRaf = requestAnimationFrame(() => {
+      innerRaf = requestAnimationFrame(() => {
+        setIsLeftPanelExpanded(false);
+        setLeftPanelSceneCollapseGrace(false);
+      });
+    });
+    return () => {
+      cancelAnimationFrame(outerRaf);
+      cancelAnimationFrame(innerRaf);
+      setLeftPanelSceneCollapseGrace(false);
+    };
+  }, [currentView]);
+
   const getPrimaryImageSrc = useCallback(
     (objectId: string) => {
       if (mode === "outline") return outlineImageByObjectId.get(objectId);
@@ -209,6 +362,72 @@ function Container() {
     (objectId: string) => noBgImageByObjectId.get(objectId),
     [noBgImageByObjectId]
   );
+
+  const getColorImageSrc = useCallback(
+    (objectId: string) => noBgImageByObjectId.get(objectId) ?? maskImageByObjectId.get(objectId),
+    [maskImageByObjectId, noBgImageByObjectId]
+  );
+
+  const getOutlineImageSrc = useCallback(
+    (objectId: string) => outlineImageByObjectId.get(objectId),
+    [outlineImageByObjectId]
+  );
+
+  const imageAltSuffix = mode === "outline" ? "outline" : mode === "color" ? "no_bg" : "mask";
+  const enableHoverSwap = mode !== "color";
+
+  const handleAllObjectClick = useCallback((objectId: string) => {
+    setModalObjectId(objectId);
+  }, []);
+
+  const openCountryPanelForObjectIds = useCallback((label: string, objectIds: string[]) => {
+    if (!objectIds.length) return;
+    setMapCountryPanel({ label, objectIds });
+    setIsLeftPanelExpanded(true);
+  }, []);
+
+  const handleMapObjectClick = useCallback(
+    (objectId: string) => {
+      const canonicalCountry = countryByObjectId.get(objectId);
+      if (!canonicalCountry) return;
+      const ids = selectedObjectIds.filter((id) => countryByObjectId.get(id) === canonicalCountry);
+      openCountryPanelForObjectIds(formatCountryLabel(canonicalCountry), ids);
+    },
+    [countryByObjectId, openCountryPanelForObjectIds, selectedObjectIds]
+  );
+
+  const handleMapCountryResolved = useCallback(
+    (payload: { displayLabel: string; normalizedCountry: string } | null) => {
+      if (!payload) return;
+      const matchedCanonicals = new Set(
+        canonicalKeysMatchingGeocode(payload.normalizedCountry, canonicalCountryKeysInCluster)
+      );
+      const ids =
+        matchedCanonicals.size === 0
+          ? []
+          : selectedObjectIds.filter((id) => {
+              const c = countryByObjectId.get(id);
+              return c != null && matchedCanonicals.has(c);
+            });
+      openCountryPanelForObjectIds(payload.displayLabel, ids);
+    },
+    [
+      canonicalCountryKeysInCluster,
+      countryByObjectId,
+      openCountryPanelForObjectIds,
+      selectedObjectIds
+    ]
+  );
+
+  useEffect(() => {
+    setMapCountryPanel(null);
+  }, [currentView, selectedEntry?.id]);
+
+  useEffect(() => {
+    if (currentView !== "all" && currentView !== "timeline" && currentView !== "map")
+      setModalObjectId(null);
+  }, [currentView]);
+
   const syncTimelineAxisToSceneScroll = useCallback(() => {
     if (currentView !== "timeline") return;
     const source = sceneContentScrollRef.current;
@@ -231,6 +450,19 @@ function Container() {
     console.log(`${selectedEntry.id}\n${selectedEntry.typeLabel}`);
   }, [selectedEntry]);
   useEffect(() => {
+    if (selectedFunctionGroup) {
+      setSelectedShelfTab("type");
+      return;
+    }
+    if (selectedColorGroup) {
+      setSelectedShelfTab("color");
+      return;
+    }
+    if (selectedCluster) {
+      setSelectedShelfTab("shape");
+    }
+  }, [selectedCluster, selectedColorGroup, selectedFunctionGroup, setSelectedShelfTab]);
+  useEffect(() => {
     syncTimelineAxisToSceneScroll();
   }, [contentSceneHeight, currentView, syncTimelineAxisToSceneScroll, timelineBuckets]);
 
@@ -245,7 +477,7 @@ function Container() {
           p: "0.75rem"
         }}
       >
-        <BackButton to="/" label="Back" homeScrollTo={homeScrollTo} />
+        <BackButton />
         <Typography>Cluster not found.</Typography>
       </Box>
     );
@@ -267,37 +499,48 @@ function Container() {
         sx={{
           display: "flex",
           alignItems: "center",
-          gap: "0.6rem",
+          flexWrap: "wrap",
+          rowGap: "0.5rem",
           mb: "0.85rem",
-          flexWrap: "wrap"
+          width: "100%"
         }}
       >
-        <BackButton to="/" homeScrollTo={homeScrollTo} />
-      </Box>
-
-      <Box sx={{ display: "flex", alignItems: "center", gap: "0.5rem", mb: "1rem" }}>
-        <Box sx={{ display: "flex", alignItems: "center", gap: 0 }}>
+        <Box sx={{ flexShrink: 0 }}>
+          <BackButton />
+        </Box>
+        <Box sx={{ flexShrink: 0, marginLeft: "auto" }}>
           <ImageToggleButton mode={mode} options={options} onChange={setMode} />
         </Box>
       </Box>
 
-      <SceneHeader
-        view={currentView}
-        objectCount={selectedObjectIds.length}
-        objectLabelPlural={objectLabelPlural}
-        timelineSubject={timelineSubject}
-        mapSubject={mapSubject}
-        spanYears={spanYears}
-        countryCount={distinctCountryCount}
-      />
+      <Typography
+        component="div"
+        sx={{
+          ...sceneHeadlineSx,
+          width: "100%",
+          mt: "1.5rem",
+          mb: "2rem"
+        }}
+      >
+        {sceneHeadlineContent({
+          view: currentView,
+          objectCount: selectedObjectIds.length,
+          objectLabelPlural,
+          timelineSubject,
+          mapSubject,
+          spanYears,
+          countryCount: distinctCountryCount
+        })}
+      </Typography>
 
       <Box sx={{ flex: 1, minHeight: 0, width: "100%", display: "flex", gap: "0.7rem" }}>
         <Box
           sx={{
-            width: `clamp(${SCENE_LEFT_PANEL_MIN_WIDTH_PX}px, ${SCENE_LEFT_PANEL_WIDTH_VW}vw, ${SCENE_LEFT_PANEL_MAX_WIDTH_PX}px)`,
+            width: leftPanelWidthCss,
             minWidth: 0,
             position: "relative",
-            overflow: "hidden"
+            overflow: "visible",
+            transition: `width ${SCENE_LEFT_PANEL_WIDTH_TRANSITION_MS}ms cubic-bezier(0.4, 0, 0.2, 1)`
           }}
         >
           {currentView === "timeline" ? (
@@ -313,21 +556,96 @@ function Container() {
             </Box>
           ) : (
             <>
-              <Box
-                sx={{
-                  position: "absolute",
-                  inset: 0,
-                  display: "grid",
-                  placeItems: "center",
-                  pr: "0.65rem",
-                  color: "#777",
-                  fontSize: "0.78rem",
-                  textAlign: "center",
-                  pointerEvents: "none"
-                }}
-              >
-                show stacked outline images here
-              </Box>
+              {isLeftPanelExpanded && currentView === "map" ? (
+                <Box
+                  sx={{
+                    position: "absolute",
+                    inset: 0,
+                    display: "flex",
+                    flexDirection: "column",
+                    minHeight: 0,
+                    pt: "0.35rem",
+                    pr: "0.65rem",
+                    pl: "0.25rem",
+                    pointerEvents: "auto"
+                  }}
+                >
+                  <Typography
+                    component="h3"
+                    variant="h3"
+                    sx={{
+                      mb: "0.65rem",
+                      color: mapCountryPanel ? "#fff" : "#777",
+                      flexShrink: 0
+                    }}
+                  >
+                    {mapCountryPanel?.label ?? "Select a country"}
+                  </Typography>
+                  {mapCountryPanel && mapCountryPanel.objectIds.length === 0 ? (
+                    <Typography sx={{ fontSize: "0.78rem", color: "#888", lineHeight: 1.35 }}>
+                      No objects in this cluster share that country in the same geo fields used for
+                      map labels.
+                    </Typography>
+                  ) : (
+                    <Box sx={{ flex: 1, minHeight: 0, overflowY: "auto", overflowX: "hidden" }}>
+                      <Box
+                        sx={{
+                          display: "grid",
+                          gridTemplateColumns: "repeat(auto-fill, minmax(52px, 1fr))",
+                          gap: "6px",
+                          pb: "0.75rem"
+                        }}
+                      >
+                        {mapCountryPanel?.objectIds.map((objectId) => {
+                          const src = getPrimaryImageSrc(objectId);
+                          if (!src) return null;
+                          return (
+                            <Box
+                              key={objectId}
+                              component="img"
+                              src={src}
+                              alt=""
+                              role="button"
+                              tabIndex={0}
+                              onClick={() => setModalObjectId(objectId)}
+                              onKeyDown={(event: KeyboardEvent<HTMLImageElement>) => {
+                                if (event.key === "Enter" || event.key === " ") {
+                                  event.preventDefault();
+                                  setModalObjectId(objectId);
+                                }
+                              }}
+                              sx={{
+                                display: "block",
+                                width: "100%",
+                                height: "auto",
+                                aspectRatio: "1",
+                                objectFit: "contain",
+                                cursor: "pointer"
+                              }}
+                            />
+                          );
+                        })}
+                      </Box>
+                    </Box>
+                  )}
+                </Box>
+              ) : isLeftPanelExpanded ? (
+                <Box
+                  sx={{
+                    position: "absolute",
+                    inset: 0,
+                    display: "grid",
+                    placeItems: "center",
+                    pr: "0.65rem",
+                    color: "#777",
+                    fontSize: "0.78rem",
+                    textAlign: "center",
+                    pointerEvents: "none"
+                  }}
+                >
+                  show stacked outline images here
+                </Box>
+              ) : null}
               <Box
                 sx={{
                   position: "absolute",
@@ -338,6 +656,36 @@ function Container() {
                 }}
               />
             </>
+          )}
+          {currentView !== "timeline" && (
+            <Button
+              type="button"
+              variant="text"
+              disableRipple
+              aria-label={isLeftPanelExpanded ? "Collapse left panel" : "Expand left panel"}
+              onClick={() => setIsLeftPanelExpanded((v) => !v)}
+              sx={{
+                textTransform: "none",
+                position: "absolute",
+                right: 0,
+                top: "50%",
+                transform: "translateY(-50%) rotate(90deg)",
+                transformOrigin: "center center",
+                zIndex: 1,
+                minWidth: 0,
+                minHeight: 0,
+                p: 0,
+                m: 0,
+                color: "#aaa",
+                whiteSpace: "nowrap",
+                borderRadius: 0,
+                "&:hover": { color: "#fff", bgcolor: "rgba(255,255,255,0.06)" }
+              }}
+            >
+              <Typography component="span" variant="backButton" sx={{ color: "inherit" }}>
+                {isLeftPanelExpanded ? "collapse" : "expand"}
+              </Typography>
+            </Button>
           )}
         </Box>
         <Box
@@ -350,6 +698,7 @@ function Container() {
               geoByObjectId={geoByObjectId}
               countryNames={countryNames}
               onProjectionChange={setMapProjectionByObjectId}
+              onCountryResolved={handleMapCountryResolved}
             />
           ) : null}
           <Box
@@ -379,12 +728,10 @@ function Container() {
                 sceneHeight={contentSceneHeight}
                 getPrimaryImageSrc={getPrimaryImageSrc}
                 getHoverImageSrc={getHoverImageSrc}
-                imageAltSuffix={
-                  mode === "outline" ? "outline" : mode === "color" ? "no_bg" : "mask"
-                }
-                enableHoverSwap={mode !== "color"}
-                pointerEvents={currentView === "map" ? "none" : "auto"}
-                onObjectClick={(objectId) => console.log(objectId)}
+                imageAltSuffix={imageAltSuffix}
+                enableHoverSwap={enableHoverSwap}
+                pointerEvents="auto"
+                onObjectClick={currentView === "map" ? handleMapObjectClick : handleAllObjectClick}
               />
             </Box>
           </Box>
@@ -463,6 +810,20 @@ function Container() {
           </Button>
         </Box>
       </Box>
+
+      {modalObjectId ? (
+        <ObjectImageModal
+          open={currentView === "all" || currentView === "timeline" || currentView === "map"}
+          objectId={modalObjectId}
+          onClose={() => setModalObjectId(null)}
+          title={objectModalFieldsById.get(modalObjectId)?.title ?? ""}
+          finalDate={objectModalFieldsById.get(modalObjectId)?.finalDate ?? ""}
+          mapboxPlaceName={objectModalFieldsById.get(modalObjectId)?.mapboxPlaceName ?? ""}
+          dominantColorsHex={objectModalFieldsById.get(modalObjectId)?.dominantColorsHex ?? []}
+          getColorImageSrc={getColorImageSrc}
+          getOutlineImageSrc={getOutlineImageSrc}
+        />
+      ) : null}
     </Box>
   );
 }

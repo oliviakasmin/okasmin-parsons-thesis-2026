@@ -28,9 +28,6 @@ export default function ShelfColor() {
         overflowX: "hidden"
       }}
     >
-      <Typography component="h2" sx={{ fontSize: "2rem", mb: "0.35rem", letterSpacing: "0.02em" }}>
-        choose a color
-      </Typography>
       <Box
         sx={{
           flex: "0 0 auto",
@@ -107,9 +104,10 @@ export default function ShelfColor() {
                     }}
                   />
                 ) : (
-                  <Typography component="span" sx={{ fontSize: "0.55rem", color: "#777" }}>
-                    Missing image
-                  </Typography>
+                  (() => {
+                    console.log(`[ShelfColor] missing image for color group ${groupRow.groupKey}`);
+                    return <Box sx={{ width: "100%", height: "100%", display: "block" }} />;
+                  })()
                 )}
               </Box>
               <Typography

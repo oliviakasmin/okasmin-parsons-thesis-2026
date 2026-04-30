@@ -1,21 +1,12 @@
-import { Button } from "@mui/material";
-import { useNavigate } from "react-router-dom";
-import type { HomeEntryScrollId } from "./constants";
+import { Button, Typography } from "@mui/material";
+import { Link as RouterLink } from "react-router-dom";
 
-type BackButtonProps = {
-  to: string;
-  label?: string;
-  /** When set, navigation includes `state` so `/` can scroll to `#home-entry-${homeScrollTo}`. */
-  homeScrollTo?: HomeEntryScrollId;
-};
-
-function BackButton({ to, label = "Back", homeScrollTo }: BackButtonProps) {
-  const navigate = useNavigate();
-
+function BackButton() {
   return (
     <Button
-      type="button"
-      onClick={() => (homeScrollTo ? navigate(to, { state: { homeScrollTo } }) : navigate(to))}
+      component={RouterLink}
+      to="/#home-entry-shelf"
+      state={{ homeScrollTo: "shelf" }}
       variant="outlined"
       sx={{
         borderColor: "#fff",
@@ -30,7 +21,9 @@ function BackButton({ to, label = "Back", homeScrollTo }: BackButtonProps) {
         "&:hover": { borderColor: "#fff", background: "#fff" }
       }}
     >
-      {label}
+      <Typography component="span" variant="backButton">
+        Back
+      </Typography>
     </Button>
   );
 }

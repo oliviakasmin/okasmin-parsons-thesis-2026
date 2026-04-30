@@ -100,18 +100,17 @@ test_assets/
 *.tiff
 *.gif
 *.bmp
+*.svg
 
 # Keep some images
 !preview.png
 
 # ─────────────────────────────────────────────
-# Re-allow ONLY deployable thumbnails
+# Re-allow ALL app public assets
 # ─────────────────────────────────────────────
 !app/
 !app/public/
-!app/public/assets/
-!app/public/assets/thumbs/
-!app/public/assets/thumbs/**
+!app/public/**
 
 # ─────────────────────────────────────────────
 # Hugging Face Space runtime artifacts

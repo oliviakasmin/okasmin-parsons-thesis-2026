@@ -1,0 +1,75 @@
+{
+  "uniqueObjectIdCount": {
+    "objectsJson": 4186,
+    "fieldsCsv": 4186
+  },
+  "maximumDateSpan": {
+    "minObjectBeginDate": -7000,
+    "maxObjectEndDate": 1999,
+    "spanYears": 8999
+  },
+  "earliest": [
+    {
+      "objectId": "246560",
+      "objectBeginDate": -7000,
+      "department": "Greek and Roman Art",
+      "final_group": "flask"
+    },
+    {
+      "objectId": "552190",
+      "objectBeginDate": -4500,
+      "department": "Egyptian Art",
+      "final_group": "jar"
+    },
+    {
+      "objectId": "547523",
+      "objectBeginDate": -4500,
+      "department": "Egyptian Art",
+      "final_group": "vessel"
+    },
+    {
+      "objectId": "240009",
+      "objectBeginDate": -3900,
+      "department": "Greek and Roman Art",
+      "final_group": "vase"
+    },
+    {
+      "objectId": "552180",
+      "objectBeginDate": -3850,
+      "department": "Egyptian Art",
+      "final_group": "jar"
+    }
+  ],
+  "latest": [
+    {
+      "objectId": "57400",
+      "objectEndDate": 1999,
+      "department": "Asian Art",
+      "final_group": "bottle"
+    },
+    {
+      "objectId": "52569",
+      "objectEndDate": 1999,
+      "department": "Asian Art",
+      "final_group": "vase"
+    },
+    {
+      "objectId": "50975",
+      "objectEndDate": 1999,
+      "department": "Asian Art",
+      "final_group": "jar"
+    },
+    {
+      "objectId": "63526",
+      "objectEndDate": 1966,
+      "department": "Asian Art",
+      "final_group": "bottle"
+    },
+    {
+      "objectId": "902207",
+      "objectEndDate": 1960,
+      "department": "Asian Art",
+      "final_group": "jar"
+    }
+  ]
+}

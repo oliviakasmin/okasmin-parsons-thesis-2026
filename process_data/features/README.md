@@ -1,6 +1,6 @@
 # Features
 
-This directory contains silhouette feature extraction code and generated CSV outputs used by clustering in `process_data/cluster`.
+This directory contains silhouette feature extraction code and generated CSV outputs used by clustering in `format_data/cluster_shape`.
 
 ## Files
 
@@ -87,7 +87,7 @@ Interior contours are descendants of the main outer contour in contour hierarchy
 
 ## Where these are used in clustering
 
-Feature grouping and weighting are defined in `process_data/cluster/cluster_utils.py`:
+Feature grouping and weighting are defined in `format_data/cluster_shape/cluster_utils.py`:
 
 - Groups:
   - `lr`: `l*` + `r*`

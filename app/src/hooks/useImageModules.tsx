@@ -3,7 +3,7 @@ import useValidObjectIds from "./useValidObjectIds";
 
 const S3_REAL_IMAGES_BASE_URL = "https://vessels-thesis.s3.amazonaws.com/real_images";
 
-type ImageSuffix = "_outline.png" | "_mask.png" | "_no_bg.png";
+type ImageSuffix = "_outline.svg" | "_mask.png" | "_no_bg.png";
 
 function toImageMap(objectIds: string[], suffix: ImageSuffix) {
   const imageMap = new Map<string, string>();
@@ -17,7 +17,7 @@ function useImageModules() {
   const validObjectIds = useValidObjectIds();
   const objectIds = useMemo(() => Array.from(validObjectIds), [validObjectIds]);
 
-  const outlineImageByObjectId = useMemo(() => toImageMap(objectIds, "_outline.png"), [objectIds]);
+  const outlineImageByObjectId = useMemo(() => toImageMap(objectIds, "_outline.svg"), [objectIds]);
 
   const maskImageByObjectId = useMemo(() => toImageMap(objectIds, "_mask.png"), [objectIds]);
 

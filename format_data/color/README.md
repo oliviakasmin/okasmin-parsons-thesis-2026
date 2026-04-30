@@ -15,12 +15,12 @@ Re-run clustering only (without re-fetching/re-extracting image colors):
 
 ## Outputs
 
-- `format_data/generated/object_color_fields.csv`
-- `format_data/generated/object_color_cluster_centroids.csv`
-- `format_data/generated/object_color_group_labels.csv`
-- `format_data/generated/object_color_run_stats.json`
-- `format_data/generated/object_color_cluster_stats.json`
-- `format_data/generated/color_bw_cache.csv` (URL grayscale cache)
+- `format_data/generated/color/object_color_fields.csv`
+- `format_data/generated/color/object_color_cluster_centroids.csv`
+- `format_data/generated/color/object_color_group_labels.csv`
+- `format_data/generated/color/object_color_run_stats.json`
+- `format_data/generated/color/object_color_cluster_stats.json`
+- `format_data/generated/color/color_bw_cache.csv` (URL grayscale cache)
 
 ## Notes
 

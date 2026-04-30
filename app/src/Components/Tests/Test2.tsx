@@ -2,6 +2,7 @@ import { useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import manualRejectObjectIds from "../../../../fetch_data/data/manual_reject_object_ids.json";
 import objectsData from "../../../../fetch_data/data/objects.json";
+import InlineOutlineSvg from "../Scenes/InlineOutlineSvg";
 
 const S3_IMAGE_BASE_URL = "https://vessels-thesis.s3.amazonaws.com/real_images";
 
@@ -27,7 +28,7 @@ const objectTitleById = new Map(
 );
 
 function buildImageFilename(objectId: string, mode: ImageMode) {
-  return `${objectId}_${IMAGE_SUFFIX[mode]}.png`;
+  return `${objectId}_${IMAGE_SUFFIX[mode]}.${mode === "outline" ? "svg" : "png"}`;
 }
 
 function buildS3ImageUrl(objectId: string, mode: ImageMode) {
@@ -62,6 +63,7 @@ function scrollToBottom() {
 function Test2() {
   const navigate = useNavigate();
   const [imageMode, setImageMode] = useState<ImageMode>("mask");
+  const [objectIdSearch, setObjectIdSearch] = useState("");
   const [, setSelectedObjectIds] = useState<string[]>(() => loadSelectedObjectIdsFromStorage());
   const [missingImageNames, setMissingImageNames] = useState<Record<string, true>>({});
   const loggedMissingImageNamesRef = useRef<Set<string>>(new Set());
@@ -70,6 +72,14 @@ function Test2() {
       .filter((objectId) => !manualRejectObjectIdSet.has(objectId))
       .sort((a, b) => Number(a) - Number(b));
   }, []);
+  const normalizedObjectIdSearch = objectIdSearch.trim();
+  const displayedObjectIds = useMemo(() => {
+    if (!normalizedObjectIdSearch) {
+      return objectIds;
+    }
+    return objectIds.filter((objectId) => objectId === normalizedObjectIdSearch);
+  }, [objectIds, normalizedObjectIdSearch]);
+  const hasNoSearchResult = normalizedObjectIdSearch.length > 0 && displayedObjectIds.length === 0;
 
   const handleImageError = (objectId: string, mode: ImageMode, imageName: string) => {
     if (!loggedMissingImageNamesRef.current.has(imageName)) {
@@ -125,7 +135,7 @@ function Test2() {
         </button>
         <h1 style={{ margin: 0, fontSize: "1.25rem" }}>Test2 Images</h1>
         <span style={{ marginLeft: "0.5rem", fontSize: "0.9rem", color: "#ddd" }}>
-          Showing {objectIds.length} objects
+          Showing {displayedObjectIds.length} of {objectIds.length} objects
         </span>
       </div>
 
@@ -181,7 +191,29 @@ function Test2() {
         >
           Outline
         </button>
+        <input
+          type="text"
+          inputMode="numeric"
+          pattern="[0-9]*"
+          value={objectIdSearch}
+          onChange={(event) => setObjectIdSearch(event.target.value.replace(/\D/g, ""))}
+          placeholder="Search objectID"
+          aria-label="Search by objectID"
+          style={{
+            border: "1px solid #fff",
+            borderRadius: "6px",
+            background: "#000",
+            color: "#fff",
+            padding: "0.35rem 0.6rem",
+            minWidth: "180px"
+          }}
+        />
       </div>
+      {hasNoSearchResult ? (
+        <p style={{ margin: "0 0 1rem 0", color: "#ffb3b3", fontSize: "0.9rem" }}>
+          No object found for ID {normalizedObjectIdSearch}.
+        </p>
+      ) : null}
 
       <div
         style={{
@@ -234,7 +266,7 @@ function Test2() {
           gap: "10px"
         }}
       >
-        {objectIds.map((objectId) => {
+        {displayedObjectIds.map((objectId) => {
           const imageName = buildImageFilename(objectId, imageMode);
           const imageUrl = buildS3ImageUrl(objectId, imageMode);
           const isMissingImage = Boolean(missingImageNames[imageName]);
@@ -261,20 +293,35 @@ function Test2() {
                 }}
               >
                 {!isMissingImage ? (
-                  <img
-                    src={imageUrl}
-                    alt={imageName}
-                    loading="lazy"
-                    onError={() => handleImageError(objectId, imageMode, imageName)}
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "contain",
-                      display: "block",
-                      position: "absolute",
-                      inset: 0
-                    }}
-                  />
+                  imageMode === "outline" ? (
+                    <InlineOutlineSvg
+                      src={imageUrl}
+                      alt={imageName}
+                      className="inline-outline-svg"
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        display: "block",
+                        position: "absolute",
+                        inset: 0
+                      }}
+                    />
+                  ) : (
+                    <img
+                      src={imageUrl}
+                      alt={imageName}
+                      loading="lazy"
+                      onError={() => handleImageError(objectId, imageMode, imageName)}
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "contain",
+                        display: "block",
+                        position: "absolute",
+                        inset: 0
+                      }}
+                    />
+                  )
                 ) : (
                   <div
                     style={{

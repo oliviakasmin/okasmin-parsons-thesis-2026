@@ -1,0 +1,11 @@
+color_group_id,color_group_key,color_group_label,color_group_type,color_group_recipe
+0,multicolor,multicolor,multicolor,mixed
+1,yellow,yellow,single,yellow:rule
+2,brown_tan,brown/ tan,single,brown_tan:rule
+3,orange,orange,single,orange:rule
+4,red,red,single,red:rule
+5,blue,blue,single,blue:rule
+6,green,green,single,green:rule
+7,purple,purple,single,purple:rule
+8,gray,gray,single,gray:rule
+9,white,white,single,white:rule

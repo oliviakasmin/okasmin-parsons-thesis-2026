@@ -29,13 +29,61 @@ body {
   background: #000;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "ivypresto-headline", serif;
+}
+
 .app {
   max-width: 960px;
   margin: 0 auto;
   padding: 2rem 1rem;
 }
 
-.outline-image {
-  filter: brightness(4);
-  opacity: 1;
+.title-header {
+  font-family: "ivypresto-headline", serif;
+}
+
+.shelf-container-header {
+  font-family: "ivypresto-headline", serif;
+}
+
+/* Inline SVG outline tuning (All path first). */
+:root {
+  --outline-svg-stroke: #ffffff;
+  --outline-svg-stroke-width: 1.5;
+  --outline-svg-linejoin: round;
+  --outline-svg-linecap: round;
+  --outline-svg-opacity: 1;
+  --outline-svg-contrast: 1.08;
+  --outline-svg-brightness: 1.02;
+}
+
+.inline-outline-svg {
+  opacity: var(--outline-svg-opacity);
+  filter: brightness(var(--outline-svg-brightness)) contrast(var(--outline-svg-contrast));
+}
+
+.inline-outline-svg svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.inline-outline-svg svg path {
+  stroke: var(--outline-svg-stroke);
+  stroke-width: var(--outline-svg-stroke-width);
+  stroke-linejoin: var(--outline-svg-linejoin);
+  stroke-linecap: var(--outline-svg-linecap);
+  fill: none;
+  vector-effect: non-scaling-stroke;
+}
+
+.title-outline-morph path {
+  stroke-width: 6;
+  vector-effect: non-scaling-stroke;
 }

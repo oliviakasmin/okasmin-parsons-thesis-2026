@@ -1,0 +1,10 @@
+color_group_id,color_group_key,color_group_label,color_group_type,color_group_recipe
+0,multicolor,multicolor,multicolor,mixed
+1,blue,blue,single,blue:strict
+2,green,green,single,green:strict
+101,combo_2,orange 0.46 + yellow 0.33,combo,orange:0.46+yellow:0.33
+100,combo_1,orange 0.59 + neutral 0.31,combo,orange:0.59+neutral:0.31
+104,combo_5,neutral 0.68 + blue 0.27,combo,neutral:0.68+blue:0.27
+103,combo_4,neutral 0.85 + yellow 0.09,combo,neutral:0.85+yellow:0.09
+102,combo_3,red 0.37 + orange 0.32,combo,red:0.37+orange:0.32
+105,combo_6,neutral 0.81 + green 0.10,combo,neutral:0.81+green:0.10
