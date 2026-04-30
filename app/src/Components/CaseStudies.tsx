@@ -1,18 +1,9 @@
-import { useState } from "react";
 import Typography from "@mui/material/Typography";
-import ObjectImageModal from "./Scenes/ObjectImageModal";
 import { allObjectIds } from "./title_intro_constants";
-import useObjectModalMetadata from "../hooks/useObjectModalMetadata";
 
 const S3_IMAGE_BASE_URL = "https://vessels-thesis.s3.amazonaws.com/real_images";
 
 export default function CaseStudies() {
-  const [modalObjectId, setModalObjectId] = useState<string | null>(null);
-  const objectModalFieldsById = useObjectModalMetadata();
-
-  const getColorImageSrc = (objectId: string) => `${S3_IMAGE_BASE_URL}/${objectId}_no_bg.png`;
-  const getOutlineImageSrc = (objectId: string) => `/SVG_outlines/${objectId}_outline.svg`;
-
   return (
     <>
       <section
@@ -23,12 +14,15 @@ export default function CaseStudies() {
           alignItems: "center",
           justifyContent: "center",
           padding: "3rem 1.5rem",
+          overflowX: "auto",
+          // overflowY: "hidden",
           boxSizing: "border-box"
         }}
       >
         <div
           style={{
-            width: "min(1200px, 100%)",
+            width: "max-content",
+            minWidth: "100%",
             display: "flex",
             flexDirection: "column",
             gap: "1.5rem"
@@ -41,59 +35,48 @@ export default function CaseStudies() {
 
           <div
             style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
-              gap: "2rem"
+              display: "flex",
+              flexWrap: "nowrap",
+              gap: 0
             }}
           >
             {allObjectIds.map((objectId) => (
-              <button
+              <div
                 key={`case-study-${objectId}`}
-                type="button"
-                onClick={() => setModalObjectId(String(objectId))}
                 style={{
                   display: "flex",
+                  flexDirection: "column",
                   justifyContent: "center",
                   alignItems: "center",
                   minHeight: "320px",
-                  padding: "1rem",
+                  padding: "1rem 0",
                   boxSizing: "border-box",
-                  border: "none",
-                  background: "transparent",
-                  cursor: "pointer"
+                  gap: "0.75rem",
+                  flexShrink: 0
                 }}
               >
-                <img
-                  src={`${S3_IMAGE_BASE_URL}/${objectId}_no_bg.png`}
-                  alt={`Case study object ${objectId}`}
-                  style={{
-                    width: "100%",
-                    maxWidth: "520px",
-                    height: "auto",
-                    maxHeight: "70vh",
-                    objectFit: "contain",
-                    display: "block"
-                  }}
-                />
-              </button>
+                <div style={{ borderBottom: "5px solid #fff" }}>
+                  <img
+                    src={`${S3_IMAGE_BASE_URL}/${objectId}_no_bg.png`}
+                    alt={`Case study object ${objectId}`}
+                    style={{
+                      width: "auto",
+                      height: "70vh",
+                      objectFit: "contain",
+                      display: "block",
+                      position: "relative",
+                      top: "3px"
+                    }}
+                  />
+                </div>
+                <Typography variant="caption" sx={{ fontSize: "1.2rem", lineHeight: 1 }}>
+                  statistician note
+                </Typography>
+              </div>
             ))}
           </div>
         </div>
       </section>
-
-      {modalObjectId ? (
-        <ObjectImageModal
-          open
-          objectId={modalObjectId}
-          onClose={() => setModalObjectId(null)}
-          title={objectModalFieldsById.get(modalObjectId)?.title ?? ""}
-          finalDate={objectModalFieldsById.get(modalObjectId)?.finalDate ?? ""}
-          mapboxPlaceName={objectModalFieldsById.get(modalObjectId)?.mapboxPlaceName ?? ""}
-          dominantColorsHex={objectModalFieldsById.get(modalObjectId)?.dominantColorsHex ?? []}
-          getColorImageSrc={getColorImageSrc}
-          getOutlineImageSrc={getOutlineImageSrc}
-        />
-      ) : null}
     </>
   );
 }
