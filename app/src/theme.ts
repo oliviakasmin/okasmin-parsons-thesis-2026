@@ -5,11 +5,13 @@ declare module "@mui/material/styles" {
   interface TypographyVariants {
     backButton: CSSProperties;
     introHeading: CSSProperties;
+    rocaLight: CSSProperties;
   }
 
   interface TypographyVariantsOptions {
     backButton?: CSSProperties;
     introHeading?: CSSProperties;
+    rocaLight?: CSSProperties;
   }
 }
 
@@ -17,6 +19,7 @@ declare module "@mui/material/Typography" {
   interface TypographyPropsVariantOverrides {
     backButton: true;
     introHeading: true;
+    rocaLight: true;
   }
 }
 
@@ -43,6 +46,10 @@ const themeBase = createTheme({
     h3: {
       fontFamily: roca,
       fontWeight: 600
+    },
+    rocaLight: {
+      fontFamily: roca,
+      fontWeight: 300
     },
     // Back button text: same tone as h3, smaller size.
     backButton: {

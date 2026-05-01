@@ -94,9 +94,8 @@ export default function Title() {
 
   return (
     <Box
+      className="viewport-with-margins"
       sx={{
-        minHeight: "100vh",
-        width: "100%",
         display: "flex",
         alignItems: "center",
         gap: "clamp(1rem, 3vw, 3rem)"
@@ -119,14 +118,15 @@ export default function Title() {
       </style>
       <Box
         sx={{
-          flex: 1,
+          flex: "0 1 32rem",
+          flexShrink: 1,
           minWidth: 0,
-          ml: "2rem",
+          minHeight: "100%",
           pr: "1rem",
+          position: "relative",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "space-between",
-          minHeight: "100vh"
+          justifyContent: "space-between"
         }}
       >
         <Box
@@ -135,7 +135,8 @@ export default function Title() {
             position: "sticky",
             top: "25vh",
             alignSelf: "flex-start",
-            backgroundColor: "#000"
+            backgroundColor: "#000",
+            zIndex: 1
           }}
         >
           <Typography
@@ -145,7 +146,7 @@ export default function Title() {
               m: 0,
               px: "0.18em",
               py: "0.12em",
-              fontSize: "clamp(3rem, 7vw, 9rem)",
+              fontSize: "clamp(2.2rem, 6vw, 9rem)",
               lineHeight: 0.95,
               letterSpacing: "-0.015em",
               display: "flex",
@@ -175,21 +176,38 @@ export default function Title() {
             </span>
           </Typography>
         </Box>
-        <Typography variant="h5" component="h5" sx={{ m: 0, pb: "5rem", pl: "1rem" }}>
+        <Typography
+          variant="h5"
+          component="h5"
+          sx={{
+            m: 0,
+            pl: "1rem",
+            position: "absolute",
+            left: 0,
+            bottom: "10%"
+          }}
+        >
           by Olivia Kasmin
         </Typography>
       </Box>
 
       <Box
         sx={{
-          flex: "0 0 auto",
-          minHeight: "100vh",
+          flex: "1 0 0",
+          minWidth: 0,
           display: "flex",
-          justifyContent: "flex-end",
+          justifyContent: "flex-start",
           alignItems: "center"
         }}
       >
-        <Box sx={{ height: "85vh", width: "90vh", maxWidth: "62vw" }}>
+        <Box
+          sx={{
+            width: "min(100%, calc(100vw - (var(--page-margin) * 2)))",
+            maxWidth: "min(85vw, 85vh)",
+            maxHeight: "min(85vw, 85vh)",
+            aspectRatio: "1 / 1"
+          }}
+        >
           <svg
             className="title-outline-morph"
             viewBox="0 0 768 768"

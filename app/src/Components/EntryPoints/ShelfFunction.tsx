@@ -152,7 +152,7 @@ export default function ShelfFunction() {
           textAlign: "center"
         }}
       >
-        storage | pouring | wine | water | ritual | animal shapes
+        storage | pouring | wine | water | ritual | animal shapes | miscellaneous
       </Typography>
     </Box>
   );

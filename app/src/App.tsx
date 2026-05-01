@@ -41,15 +41,8 @@ function Home() {
   }, [location.pathname, location.hash, locationState, navigate]);
 
   return (
-    <main
-      style={{
-        minHeight: "100vh",
-        width: "100vw",
-        background: "#000",
-        color: "#fff"
-      }}
-    >
-      <div style={{ display: "grid", gap: "1rem", width: "100%" }}>
+    <main>
+      <div style={{ display: "grid", gap: "4rem" }}>
         <Title />
         <Intro />
         <Anatomy />
