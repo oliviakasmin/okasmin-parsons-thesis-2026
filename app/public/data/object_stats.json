@@ -4,9 +4,9 @@
     "fieldsCsv": 4186
   },
   "maximumDateSpan": {
-    "minObjectBeginDate": -7000,
+    "minObjectBeginDate": -4500,
     "maxObjectEndDate": 1999,
-    "spanYears": 8999
+    "spanYears": 6499
   },
   "earliest": [
     {
