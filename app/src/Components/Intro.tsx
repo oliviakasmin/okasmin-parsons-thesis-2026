@@ -40,15 +40,17 @@ export default function Intro() {
           }}
         >
           <Typography variant="introHeading" component="h4">
+            We've been making
             <Box
               component="span"
               sx={(theme) => ({
                 ...theme.typography.h3
               })}
             >
-              Ceramic vessels{" "}
+              {" "}
+              ceramic vessels{" "}
             </Box>
-            have been made for over 10,000 years.
+            for over 10,000 years.
           </Typography>
           <Typography variant="introHeading" component="h4">
             When we{" "}

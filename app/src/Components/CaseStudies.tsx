@@ -1,7 +1,9 @@
 import Typography from "@mui/material/Typography";
-import { allObjectIds } from "./title_intro_constants";
+import { objects, options } from "./title_intro_constants";
 
 const S3_IMAGE_BASE_URL = "https://vessels-thesis.s3.amazonaws.com/real_images";
+
+const objectIds = [...objects, ...options];
 
 export default function CaseStudies() {
   return (
@@ -40,7 +42,7 @@ export default function CaseStudies() {
               gap: 0
             }}
           >
-            {allObjectIds.map((objectId) => (
+            {objectIds.map((objectId) => (
               <div
                 key={`case-study-${objectId}`}
                 style={{
