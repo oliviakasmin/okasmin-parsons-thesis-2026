@@ -19,9 +19,14 @@ export const SHELF_RENDER_IMAGE_SIZE_PX = SOURCE_IMAGE_SIZE_PX * SHELF_IMAGE_ASP
 export const SUBGROUP_RENDER_IMAGE_SIZE_PX = SOURCE_IMAGE_SIZE_PX * SUBGROUP_IMAGE_ASPECT_RATIO;
 export const ALL_SCENE_RENDER_IMAGE_SIZE_PX = SOURCE_IMAGE_SIZE_PX * ALL_SCENE_GRID_ASPECT_RATIO;
 
-/** Passed in router `state.homeScrollTo` when returning to `/` so Home can scroll to the matching section. */
-export type HomeEntryScrollId = "shelf" | "shelf-function" | "shelf-color" | "case-studies";
+/** Main home: `ShelfContainer` outer section — scroll target when closing the cluster overlay. */
+export const MAIN_SHELF_CONTAINER_ANCHOR_ID = "main-shelf-container-anchor";
 
-export function homeEntryDomId(entry: HomeEntryScrollId): string {
-  return `home-entry-${entry}`;
-}
+/** Standalone `/shelf` route root (shape grid). Must not duplicate `MAIN_SHELF_CONTAINER_ANCHOR_ID`. */
+export const ROUTE_SHELF_SHAPE_ROOT_ID = "route-shelf-shape-root";
+
+/** Standalone `/shelf-function` route root. */
+export const ROUTE_SHELF_FUNCTION_ROOT_ID = "route-shelf-function-root";
+
+/** Standalone `/shelf-color` route root. */
+export const ROUTE_SHELF_COLOR_ROOT_ID = "route-shelf-color-root";

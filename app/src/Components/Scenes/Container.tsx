@@ -1,6 +1,6 @@
 import type { KeyboardEvent, ReactNode } from "react";
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
-import { useLocation, useParams, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { Box, Button, IconButton, Typography } from "@mui/material";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import finalClusterKeysCsv from "../../../../format_data/cluster_shape/final_clusters_keys.csv?raw";
@@ -27,8 +27,7 @@ import {
   SCENE_LEFT_PANEL_MIN_WIDTH_PX,
   SCENE_LEFT_PANEL_WIDTH_TRANSITION_MS,
   SCENE_LEFT_PANEL_WIDTH_VW,
-  SUBGROUP_RENDER_IMAGE_SIZE_PX,
-  type HomeEntryScrollId
+  SUBGROUP_RENDER_IMAGE_SIZE_PX
 } from "../constants";
 import MapView from "./Map";
 import InlineOutlineSvg from "./InlineOutlineSvg";
@@ -38,8 +37,9 @@ import TimelineAxis from "./TimelineAxis";
 import { useShelfTab } from "../shelfTabState";
 
 type SceneView = "all" | "timeline" | "map";
-type ContainerLocationState = {
-  homeScrollTo?: HomeEntryScrollId;
+
+export type ContainerProps = {
+  clusterId: string;
   initialImageMode?: "solid" | "outline" | "color";
 };
 
@@ -121,17 +121,14 @@ function sceneHeadlineContent(args: {
   );
 }
 
-function Container() {
-  const { clusterId } = useParams();
-  const location = useLocation();
-  const locationState = (location.state as ContainerLocationState | null) ?? null;
+function Container({ clusterId, initialImageMode }: ContainerProps) {
   const [searchParams, setSearchParams] = useSearchParams();
   const searchView = searchParams.get("view");
   const currentView: SceneView =
     searchView === "timeline" || searchView === "map" ? searchView : "all";
   const { mode, options, setMode } = useImageToggle({
     colorOption: true,
-    initialMode: locationState?.initialImageMode ?? "outline"
+    initialMode: initialImageMode ?? "outline"
   });
   const sceneViewportRef = useRef<HTMLDivElement | null>(null);
   const timelineAxisContentRef = useRef<HTMLDivElement | null>(null);
@@ -824,7 +821,7 @@ function Container() {
         <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 0 }}>
           <Button
             type="button"
-            onClick={() => setSearchParams({ view: "all" }, { state: location.state })}
+            onClick={() => setSearchParams({ view: "all" })}
             variant="outlined"
             sx={{
               borderColor: "#fff",
@@ -843,7 +840,7 @@ function Container() {
           </Button>
           <Button
             type="button"
-            onClick={() => setSearchParams({ view: "timeline" }, { state: location.state })}
+            onClick={() => setSearchParams({ view: "timeline" })}
             variant="outlined"
             sx={{
               borderColor: "#fff",
@@ -862,7 +859,7 @@ function Container() {
           </Button>
           <Button
             type="button"
-            onClick={() => setSearchParams({ view: "map" }, { state: location.state })}
+            onClick={() => setSearchParams({ view: "map" })}
             variant="outlined"
             sx={{
               borderColor: "#fff",

@@ -1,21 +1,19 @@
-import { useNavigate } from "react-router-dom";
+import { useClusterScene } from "../ClusterSceneContext";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import useImageModules from "../../hooks/useImageModules";
 import useFunctionGroups from "../../hooks/useFunctionGroups";
-import { homeEntryDomId, SHELF_RENDER_IMAGE_SIZE_PX, type HomeEntryScrollId } from "../constants";
-
-const shelfFunctionEntryScrollId: HomeEntryScrollId = "shelf-function";
+import { ROUTE_SHELF_FUNCTION_ROOT_ID, SHELF_RENDER_IMAGE_SIZE_PX } from "../constants";
 
 export default function ShelfFunction() {
-  const navigate = useNavigate();
+  const { openCluster } = useClusterScene();
   const { maskImageByObjectId } = useImageModules();
   const { groupRows } = useFunctionGroups();
 
   return (
     <Box
       component="section"
-      id={homeEntryDomId(shelfFunctionEntryScrollId)}
+      id={ROUTE_SHELF_FUNCTION_ROOT_ID}
       sx={{
         minHeight: "100vh",
         background: "#000",
@@ -62,11 +60,7 @@ export default function ShelfFunction() {
             <Box
               component="article"
               key={groupRow.group}
-              onClick={() =>
-                navigate(`/all/${groupRow.group}`, {
-                  state: { homeScrollTo: shelfFunctionEntryScrollId }
-                })
-              }
+              onClick={() => openCluster({ clusterId: groupRow.group, returnShelfTab: "type" })}
               sx={{
                 display: "flex",
                 flexDirection: "column",

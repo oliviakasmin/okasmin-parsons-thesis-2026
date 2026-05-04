@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import { homeEntryDomId } from "../constants";
+import { MAIN_SHELF_CONTAINER_ANCHOR_ID } from "../constants";
 import { useShelfTab } from "../shelfTabState";
 import Shelf from "./Shelf";
 import ShelfFunction from "./ShelfFunction";
@@ -25,7 +25,7 @@ export default function ShelfContainer() {
   return (
     <Box
       component="section"
-      id={homeEntryDomId("shelf")}
+      id={MAIN_SHELF_CONTAINER_ANCHOR_ID}
       sx={{
         height: "100vh",
         width: "100%",
@@ -100,9 +100,6 @@ export default function ShelfContainer() {
           </Box>
         </Typography>
       </Box>
-
-      <Box sx={{ display: "none" }} id={homeEntryDomId("shelf-function")} />
-      <Box sx={{ display: "none" }} id={homeEntryDomId("shelf-color")} />
 
       <Box
         sx={

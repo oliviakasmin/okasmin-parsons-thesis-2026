@@ -1,21 +1,19 @@
-import { useNavigate } from "react-router-dom";
+import { useClusterScene } from "../ClusterSceneContext";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import useImageModules from "../../hooks/useImageModules";
 import useColorGroups from "../../hooks/useColorGroups";
-import { homeEntryDomId, SHELF_RENDER_IMAGE_SIZE_PX, type HomeEntryScrollId } from "../constants";
-
-const shelfColorEntryScrollId: HomeEntryScrollId = "shelf-color";
+import { ROUTE_SHELF_COLOR_ROOT_ID, SHELF_RENDER_IMAGE_SIZE_PX } from "../constants";
 
 export default function ShelfColor() {
-  const navigate = useNavigate();
+  const { openCluster } = useClusterScene();
   const { maskImageByObjectId, noBgImageByObjectId } = useImageModules();
   const { groupRows } = useColorGroups();
 
   return (
     <Box
       component="section"
-      id={homeEntryDomId(shelfColorEntryScrollId)}
+      id={ROUTE_SHELF_COLOR_ROOT_ID}
       sx={{
         minHeight: "100vh",
         background: "#000",
@@ -67,8 +65,10 @@ export default function ShelfColor() {
               component="article"
               key={groupRow.groupKey}
               onClick={() =>
-                navigate(`/all/${groupRow.groupKey}`, {
-                  state: { homeScrollTo: shelfColorEntryScrollId, initialImageMode: "color" }
+                openCluster({
+                  clusterId: groupRow.groupKey,
+                  initialImageMode: "color",
+                  returnShelfTab: "color"
                 })
               }
               sx={{

@@ -1,12 +1,13 @@
 import { Button, Typography } from "@mui/material";
-import { Link as RouterLink } from "react-router-dom";
+import { useClusterScene } from "./ClusterSceneContext";
 
 function BackButton() {
+  const { closeCluster } = useClusterScene();
+
   return (
     <Button
-      component={RouterLink}
-      to="/#home-entry-shelf"
-      state={{ homeScrollTo: "shelf" }}
+      type="button"
+      onClick={() => closeCluster()}
       variant="outlined"
       sx={{
         borderColor: "#fff",

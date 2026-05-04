@@ -1,14 +1,12 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useClusterScene } from "../ClusterSceneContext";
 import { Box, Typography } from "@mui/material";
 import finalClusterKeysCsv from "../../../../format_data/cluster_shape/final_clusters_keys.csv?raw";
 import finalClusterObjectIdsCsv from "../../../../format_data/cluster_shape/final_clusters_object_ids.csv?raw";
 import useImageModules from "../../hooks/useImageModules";
 import useFormatClusters from "../../hooks/useFormatClusters";
-import { homeEntryDomId, SHELF_RENDER_IMAGE_SIZE_PX, type HomeEntryScrollId } from "../constants";
+import { ROUTE_SHELF_SHAPE_ROOT_ID, SHELF_RENDER_IMAGE_SIZE_PX } from "../constants";
 import useInlineSvg from "../../hooks/useInlineSvg";
-
-const shelfEntryScrollId: HomeEntryScrollId = "shelf";
 
 const cluster0 = "cluster_0";
 const cluster1 = "cluster_1";
@@ -120,7 +118,7 @@ function AnimatedSampledSvg({ src, alt }: AnimatedSampledSvgProps) {
 }
 
 function Shelf() {
-  const navigate = useNavigate();
+  const { openCluster } = useClusterScene();
   const [hoveredClusterId, setHoveredClusterId] = useState<string | null>(null);
   const [isShelfHalfVisible, setIsShelfHalfVisible] = useState(false);
   const shelfRef = useRef<HTMLElement | null>(null);
@@ -169,7 +167,7 @@ function Shelf() {
     <Box
       component="main"
       ref={shelfRef}
-      id={homeEntryDomId(shelfEntryScrollId)}
+      id={ROUTE_SHELF_SHAPE_ROOT_ID}
       sx={{
         height: "100vh",
         background: "#000",
@@ -213,11 +211,7 @@ function Shelf() {
               onMouseLeave={() =>
                 setHoveredClusterId((current) => (current === clusterId ? null : current))
               }
-              onClick={() =>
-                navigate(`/all/${clusterId}`, {
-                  state: { homeScrollTo: shelfEntryScrollId }
-                })
-              }
+              onClick={() => openCluster({ clusterId })}
               sx={{
                 display: "flex",
                 flexDirection: "column",
