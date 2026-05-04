@@ -10,6 +10,7 @@ import {
   Intro,
   Intro2,
   CaseStudies,
+  DrawAndMatch,
   Shelf,
   Title,
   ShelfFunction,
@@ -50,6 +51,7 @@ function Home() {
 
         <ShelfContainer />
         <CaseStudies />
+        <DrawAndMatch />
       </div>
     </main>
   );
