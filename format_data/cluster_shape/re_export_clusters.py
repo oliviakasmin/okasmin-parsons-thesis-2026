@@ -35,6 +35,16 @@ from cluster_utils import (
 )
 
 
+def _confirm_run(prompt: str) -> bool:
+    while True:
+        answer = input(f"{prompt} [y/n]: ").strip().lower()
+        if answer in {"y", "yes"}:
+            return True
+        if answer in {"n", "no"}:
+            return False
+        print("Please answer 'y' or 'n'.")
+
+
 def _parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
@@ -88,6 +98,11 @@ def _parse_args() -> argparse.Namespace:
         action="store_true",
         help="Skip rerunning build_cluster_outline_svgs.py after CSV export.",
     )
+    parser.add_argument(
+        "--yes",
+        action="store_true",
+        help="Run non-interactively; skip the confirmation prompt.",
+    )
     return parser.parse_args()
 
 def _rerun_shape_svgs(repo_root: Path, object_ids_csv: Path) -> None:
@@ -116,6 +131,14 @@ def main() -> None:
         repo_root / "format_data/cluster_shape/final_clusters_object_ids.csv"
     )
     keys_csv = args.keys_csv or (repo_root / "format_data/cluster_shape/final_clusters_keys.csv")
+
+    if not args.yes:
+        should_run = _confirm_run(
+            "Proceed with cluster re-export (this writes cluster CSVs and may regenerate shape SVGs)?"
+        )
+        if not should_run:
+            print("Cancelled.")
+            return
 
     df = load_feature_table(feature_csv)
     groups = get_feature_groups(df)

@@ -58,6 +58,11 @@ function AnimatedSampledSvg({ src, alt }: AnimatedSampledSvgProps) {
     const paths = wrapperRef.current.querySelectorAll<SVGPathElement>("svg path");
     paths.forEach((path, index) => {
       const length = path.getTotalLength();
+      const computedStrokeWidth = Number.parseFloat(window.getComputedStyle(path).strokeWidth);
+      // Slightly thicken outlines while preserving each path's relative stroke width.
+      path.style.strokeWidth = Number.isFinite(computedStrokeWidth)
+        ? `${computedStrokeWidth * 1.75}px`
+        : "1.2px";
       path.style.strokeDasharray = `${length}`;
       path.style.strokeDashoffset = `${length}`;
       path.style.animation = "none";
@@ -171,6 +176,16 @@ function Shelf() {
             <Box
               component="article"
               key={clusterId}
+              onMouseEnter={(event) => {
+                const paths = event.currentTarget.querySelectorAll<SVGPathElement>("svg path");
+                paths.forEach((path, index) => {
+                  path.style.animation = "none";
+                  // Force style flush so restarting animation only affects this hovered card.
+                  void path.getBoundingClientRect();
+                  path.style.animation = `shelfPathDraw 1800ms ease forwards`;
+                  path.style.animationDelay = `${index * 120}ms`;
+                });
+              }}
               onClick={() =>
                 navigate(`/all/${clusterId}`, {
                   state: { homeScrollTo: shelfEntryScrollId }

@@ -181158,50 +181158,6 @@
     "isTimelineWork": false,
     "GalleryNumber": "171"
   },
-  "245548": {
-    "objectID": 245548,
-    "isHighlight": false,
-    "accessionNumber": "90.9.11",
-    "accessionYear": "1890",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/gr/original/LC-90_9_11.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/gr/web-large/LC-90_9_11.jpg",
-    "additionalImages": [],
-    "constituents": null,
-    "department": "Greek and Roman Art",
-    "objectName": "Hydria, Hadra (foot)",
-    "title": "Terracotta foot of Hadra hydria (water jar)",
-    "culture": "Greek, Egypt, Alexandria-Hadra",
-    "period": "Hellenistic",
-    "objectBeginDate": -323,
-    "objectEndDate": 31,
-    "medium": "Terracotta",
-    "dimensions": "2 3/16 \u00d7 4 7/16 in. (5.6 \u00d7 11.3 cm)\r\nDiam. of rim: 2 13/16 in. (7.2 cm)",
-    "measurements": [
-      {
-        "elementName": "Diam. of rim",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Diameter": 7.22
-        }
-      },
-      {
-        "elementName": "Overall",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Diameter": 11.26,
-          "Height": 5.58
-        }
-      }
-    ],
-    "creditLine": "Purchase, 1890",
-    "classification": "Vases",
-    "metadataDate": "2025-03-06T04:54:30Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/245548",
-    "tags": null,
-    "isTimelineWork": false
-  },
   "254629": {
     "objectID": 254629,
     "isHighlight": false,
@@ -193183,48 +193139,6 @@
     "objectURL": "https://www.metmuseum.org/art/collection/search/449056",
     "tags": null,
     "isTimelineWork": false
-  },
-  "252458": {
-    "objectID": 252458,
-    "isHighlight": false,
-    "accessionNumber": "26.59.6",
-    "accessionYear": "1926",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/gr/original/DP-17549-001.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/gr/web-large/DP-17549-001.jpg",
-    "additionalImages": [
-      "https://images.metmuseum.org/CRDImages/gr/original/DP-17548-001.jpg"
-    ],
-    "constituents": null,
-    "department": "Greek and Roman Art",
-    "objectName": "Jar",
-    "title": "Terracotta jar",
-    "culture": "Lydian",
-    "period": "Archaic",
-    "objectDate": "ca. 560\u2013546 BCE",
-    "objectBeginDate": -560,
-    "objectEndDate": -546,
-    "medium": "Terracotta",
-    "dimensions": "4 5/8 \u00d7 4 in. (11.8 \u00d7 10.1 cm)",
-    "measurements": [
-      {
-        "elementName": "Overall",
-        "elementDescription": null,
-        "elementMeasurements": {
-          "Diameter": 10.1,
-          "Height": 11.8
-        }
-      }
-    ],
-    "creditLine": "Gift of The American Society for the Excavation of Sardis, 1926",
-    "classification": "Vases",
-    "metadataDate": "2025-03-29T04:54:04.007Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/252458",
-    "tags": null,
-    "objectWikidata_URL": "https://www.wikidata.org/wiki/Q116404166",
-    "isTimelineWork": false,
-    "GalleryNumber": "152"
   },
   "254345": {
     "objectID": 254345,

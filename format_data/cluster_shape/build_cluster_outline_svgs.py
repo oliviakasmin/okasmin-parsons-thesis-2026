@@ -50,6 +50,15 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument("--sample-top-k", type=int, default=30)
     parser.add_argument("--sample-random-k", type=int, default=20)
+    parser.add_argument(
+        "--exclude-closest-fraction",
+        type=float,
+        default=0.15,
+        help=(
+            "Exclude this fraction of furthest-from-centroid rows (from cluster CSV order) "
+            "before sampling."
+        ),
+    )
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--manifest-json", type=Path, default=DEFAULT_MANIFEST_JSON)
     parser.add_argument(
@@ -141,6 +150,7 @@ def _sample_records(
     records: list[OutlineRecord],
     sample_top_k: int,
     sample_random_k: int,
+    exclude_closest_fraction: float,
     rng: random.Random,
 ) -> list[OutlineRecord]:
     if not records:
@@ -148,9 +158,17 @@ def _sample_records(
 
     top_k = max(0, sample_top_k)
     random_k = max(0, sample_random_k)
+    exclude_fraction = min(max(exclude_closest_fraction, 0.0), 1.0)
 
-    selected: list[OutlineRecord] = records[:top_k]
-    remaining = records[top_k:]
+    # records are sorted closest->furthest to centroid in final_clusters_object_ids.csv
+    exclude_count = int(len(records) * exclude_fraction)
+    keep_count = max(0, len(records) - exclude_count)
+    candidates = records[:keep_count]
+    if not candidates:
+        return []
+
+    selected: list[OutlineRecord] = candidates[:top_k]
+    remaining = candidates[top_k:]
 
     if random_k > 0 and remaining:
         if random_k >= len(remaining):
@@ -195,6 +213,10 @@ def main() -> None:
     args = parse_args()
     t0 = time.time()
     rng = random.Random(args.seed)
+    if not (0.0 <= args.exclude_closest_fraction <= 1.0):
+        raise ValueError(
+            f"--exclude-closest-fraction must be in [0,1], got {args.exclude_closest_fraction}"
+        )
 
     clusters_csv = args.clusters_csv
     input_outline_dir = args.input_outline_dir
@@ -288,6 +310,7 @@ def main() -> None:
                 records=records,
                 sample_top_k=args.sample_top_k,
                 sample_random_k=args.sample_random_k,
+                exclude_closest_fraction=args.exclude_closest_fraction,
                 rng=rng,
             )
             sampled_svg = _build_sampled_svg(
@@ -337,6 +360,7 @@ def main() -> None:
         "public_sampled_output_dir": str(public_sampled_output_dir),
         "sample_top_k": args.sample_top_k,
         "sample_random_k": args.sample_random_k,
+        "exclude_closest_fraction": args.exclude_closest_fraction,
         "seed": args.seed,
         "skip_existing": bool(args.skip_existing),
         "limit_clusters": args.limit_clusters,
