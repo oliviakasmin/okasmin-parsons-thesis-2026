@@ -186,6 +186,36 @@ function buildObjectCountryNameById(csvRaw: string): ObjectCountryNameById {
   return result;
 }
 
+function buildObjectPlaceLabelById(csvRaw: string): Map<string, string> {
+  const lines = csvRaw.split(/\r?\n/).filter(Boolean);
+  if (!lines.length) return new Map<string, string>();
+
+  const header = parseCsvLine(lines[0]);
+  const objectIdIdx = header.indexOf("objectId");
+  const placeNameIdx = header.indexOf("mapbox_place_name");
+  const normalizedLocationIdx = header.indexOf("geo_normalized_best_guess_location");
+  const geoMatchStatusIdx = header.indexOf("geo_mapbox_match_status");
+  const result = new Map<string, string>();
+
+  if (objectIdIdx < 0) return result;
+
+  for (const line of lines.slice(1)) {
+    const cells = parseCsvLine(line);
+    const objectId = cells[objectIdIdx]?.trim();
+    const placeName = (cells[placeNameIdx] ?? "").trim();
+    const normalizedLocation = (cells[normalizedLocationIdx] ?? "").trim();
+    const status = (cells[geoMatchStatusIdx] ?? "").trim();
+    if (!objectId || status === "no_match") continue;
+
+    const label = placeName || normalizedLocation;
+    if (!label) continue;
+
+    result.set(objectId, label);
+  }
+
+  return result;
+}
+
 function useObjectGeo(objectIds: string[]) {
   const allObjectGeoById = useMemo(() => buildObjectGeoById(fieldsCsv), []);
 
@@ -224,6 +254,20 @@ function useObjectCountryNames(objectIds: string[]) {
   }, [allCountryNameByObjectId, objectIds]);
 }
 
+function useObjectPlaceLabels(objectIds: string[]) {
+  const allPlaceLabelByObjectId = useMemo(() => buildObjectPlaceLabelById(fieldsCsv), []);
+
+  return useMemo(() => {
+    const placeLabelByObjectId = new Map<string, string>();
+    for (const objectId of objectIds) {
+      const label = allPlaceLabelByObjectId.get(objectId);
+      if (!label) continue;
+      placeLabelByObjectId.set(objectId, label);
+    }
+    return { placeLabelByObjectId };
+  }, [allPlaceLabelByObjectId, objectIds]);
+}
+
 export default useObjectGeo;
-export { useObjectCountryNames };
+export { useObjectCountryNames, useObjectPlaceLabels };
 export type { ObjectGeo };

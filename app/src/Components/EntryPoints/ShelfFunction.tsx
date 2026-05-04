@@ -5,7 +5,7 @@ import useImageModules from "../../hooks/useImageModules";
 import useFunctionGroups from "../../hooks/useFunctionGroups";
 import { homeEntryDomId, SHELF_RENDER_IMAGE_SIZE_PX, type HomeEntryScrollId } from "../constants";
 
-const shelfFunctionEntryScrollId: HomeEntryScrollId = "shelf-function";
+const shelfUseEntryScrollId: HomeEntryScrollId = "shelf-use";
 
 export default function ShelfFunction() {
   const navigate = useNavigate();
@@ -15,7 +15,7 @@ export default function ShelfFunction() {
   return (
     <Box
       component="section"
-      id={homeEntryDomId(shelfFunctionEntryScrollId)}
+      id={homeEntryDomId(shelfUseEntryScrollId)}
       sx={{
         minHeight: "100vh",
         background: "#000",
@@ -64,7 +64,7 @@ export default function ShelfFunction() {
               key={groupRow.group}
               onClick={() =>
                 navigate(`/all/${groupRow.group}`, {
-                  state: { homeScrollTo: shelfFunctionEntryScrollId }
+                  state: { homeScrollTo: shelfUseEntryScrollId }
                 })
               }
               sx={{
@@ -103,15 +103,13 @@ export default function ShelfFunction() {
                   />
                 ) : (
                   (() => {
-                    console.log(
-                      `[ShelfFunction] missing image for function group ${groupRow.group}`
-                    );
+                    console.log(`[ShelfFunction] missing image for use group ${groupRow.group}`);
                     return <Box sx={{ width: "100%", height: "100%", display: "block" }} />;
                   })()
                 )}
               </Box>
               <Typography
-                className="shelf-function-label"
+                className="shelf-use-label"
                 component="span"
                 sx={{
                   position: "absolute",

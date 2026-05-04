@@ -16,6 +16,8 @@ from __future__ import annotations
 
 import argparse
 from pathlib import Path
+import subprocess
+import sys
 
 import numpy as np
 import pandas as pd
@@ -31,6 +33,16 @@ from cluster_utils import (
     get_feature_groups,
     load_feature_table,
 )
+
+
+def _confirm_run(prompt: str) -> bool:
+    while True:
+        answer = input(f"{prompt} [y/n]: ").strip().lower()
+        if answer in {"y", "yes"}:
+            return True
+        if answer in {"n", "no"}:
+            return False
+        print("Please answer 'y' or 'n'.")
 
 
 def _parse_args() -> argparse.Namespace:
@@ -81,7 +93,32 @@ def _parse_args() -> argparse.Namespace:
         action="store_true",
         help="Also print metrics for n_weird_buckets in 1..3 (notebook sweep cell).",
     )
+    parser.add_argument(
+        "--skip-shape-svgs",
+        action="store_true",
+        help="Skip rerunning build_cluster_outline_svgs.py after CSV export.",
+    )
+    parser.add_argument(
+        "--yes",
+        action="store_true",
+        help="Run non-interactively; skip the confirmation prompt.",
+    )
     return parser.parse_args()
+
+def _rerun_shape_svgs(repo_root: Path, object_ids_csv: Path) -> None:
+    script_path = repo_root / "format_data/cluster_shape/build_cluster_outline_svgs.py"
+    if not script_path.exists():
+        raise FileNotFoundError(f"Shape SVG builder script not found: {script_path}")
+
+    command = [
+        sys.executable,
+        str(script_path),
+        "--clusters-csv",
+        str(object_ids_csv),
+    ]
+    print("\nRegenerating cluster stacked outline SVGs...")
+    print("Command:", " ".join(command))
+    subprocess.run(command, cwd=repo_root, check=True)
 
 
 def main() -> None:
@@ -94,6 +131,14 @@ def main() -> None:
         repo_root / "format_data/cluster_shape/final_clusters_object_ids.csv"
     )
     keys_csv = args.keys_csv or (repo_root / "format_data/cluster_shape/final_clusters_keys.csv")
+
+    if not args.yes:
+        should_run = _confirm_run(
+            "Proceed with cluster re-export (this writes cluster CSVs and may regenerate shape SVGs)?"
+        )
+        if not should_run:
+            print("Cancelled.")
+            return
 
     df = load_feature_table(feature_csv)
     groups = get_feature_groups(df)
@@ -204,6 +249,10 @@ def main() -> None:
         keys_csv_path=keys_csv,
     )
     print(f"\nWrote:\n  {object_ids_csv.resolve()}\n  {keys_csv.resolve()}")
+    if not args.skip_shape_svgs:
+        _rerun_shape_svgs(repo_root=repo_root, object_ids_csv=object_ids_csv)
+    else:
+        print("Skipped shape SVG regeneration (--skip-shape-svgs).")
 
 
 if __name__ == "__main__":

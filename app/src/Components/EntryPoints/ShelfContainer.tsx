@@ -18,7 +18,7 @@ export default function ShelfContainer() {
 
   const content = useMemo(() => {
     if (selectedShelfTab === "shape") return <Shelf />;
-    if (selectedShelfTab === "type") return <ShelfFunction />;
+    if (selectedShelfTab === "use") return <ShelfFunction />;
     return <ShelfColor />;
   }, [selectedShelfTab]);
 
@@ -66,7 +66,7 @@ export default function ShelfContainer() {
             choose a
           </Box>
           <Box component="span" sx={{ display: "block" }}>
-            {(["shape", "type", "color"] as const).map((tab, index) => (
+            {(["shape", "use", "color"] as const).map((tab, index) => (
               <span key={tab}>
                 <Typography
                   component="button"
@@ -101,7 +101,7 @@ export default function ShelfContainer() {
         </Typography>
       </Box>
 
-      <Box sx={{ display: "none" }} id={homeEntryDomId("shelf-function")} />
+      <Box sx={{ display: "none" }} id={homeEntryDomId("shelf-use")} />
       <Box sx={{ display: "none" }} id={homeEntryDomId("shelf-color")} />
 
       <Box

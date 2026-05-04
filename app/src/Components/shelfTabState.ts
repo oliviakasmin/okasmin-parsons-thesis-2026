@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react";
 
-export type ShelfTab = "shape" | "type" | "color";
+export type ShelfTab = "shape" | "use" | "color";
 
 export type ShelfTabContextValue = {
   selectedShelfTab: ShelfTab;
