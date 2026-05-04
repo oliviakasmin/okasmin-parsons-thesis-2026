@@ -4,38 +4,48 @@
     "fieldsCsv": 4186
   },
   "maximumDateSpan": {
-    "minObjectBeginDate": -7000,
+    "minObjectBeginDate": -4500,
     "maxObjectEndDate": 1999,
-    "spanYears": 8999
+    "spanYears": 6499
   },
   "earliest": [
     {
       "objectId": "246560",
       "objectBeginDate": -7000,
+      "objectEndDate": -30,
+      "final_date": -3515,
       "department": "Greek and Roman Art",
       "final_group": "flask"
     },
     {
       "objectId": "552190",
       "objectBeginDate": -4500,
+      "objectEndDate": -4000,
+      "final_date": -4250,
       "department": "Egyptian Art",
       "final_group": "jar"
     },
     {
       "objectId": "547523",
       "objectBeginDate": -4500,
+      "objectEndDate": -4000,
+      "final_date": -4250,
       "department": "Egyptian Art",
       "final_group": "vessel"
     },
     {
       "objectId": "240009",
       "objectBeginDate": -3900,
+      "objectEndDate": 100,
+      "final_date": -1900,
       "department": "Greek and Roman Art",
       "final_group": "vase"
     },
     {
       "objectId": "552180",
       "objectBeginDate": -3850,
+      "objectEndDate": -2960,
+      "final_date": -3405,
       "department": "Egyptian Art",
       "final_group": "jar"
     }
@@ -43,31 +53,41 @@
   "latest": [
     {
       "objectId": "57400",
+      "objectBeginDate": 1900,
       "objectEndDate": 1999,
+      "final_date": 1949,
       "department": "Asian Art",
       "final_group": "bottle"
     },
     {
       "objectId": "52569",
+      "objectBeginDate": 1900,
       "objectEndDate": 1999,
+      "final_date": 1949,
       "department": "Asian Art",
       "final_group": "vase"
     },
     {
       "objectId": "50975",
+      "objectBeginDate": 1900,
       "objectEndDate": 1999,
+      "final_date": 1949,
       "department": "Asian Art",
       "final_group": "jar"
     },
     {
       "objectId": "63526",
+      "objectBeginDate": 1934,
       "objectEndDate": 1966,
+      "final_date": 1950,
       "department": "Asian Art",
       "final_group": "bottle"
     },
     {
       "objectId": "902207",
+      "objectBeginDate": 1940,
       "objectEndDate": 1960,
+      "final_date": 1950,
       "department": "Asian Art",
       "final_group": "jar"
     }

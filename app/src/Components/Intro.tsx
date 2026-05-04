@@ -1,115 +1,76 @@
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { allObjectIds } from "./title_intro_constants";
-import InlineOutlineSvg from "./Scenes/InlineOutlineSvg";
+import MiniShelfSVG from "./MiniShelfSVG";
 
-const introOutlineThumbSx = {
-  width: "clamp(72px, 11vw, 132px)",
-  height: "clamp(72px, 11vw, 132px)",
-  display: "block" as const,
-  flexShrink: 0
-};
+const splitAt = Math.ceil(allObjectIds.length / 2);
+const topRowIds = allObjectIds.slice(0, splitAt);
+const bottomRowIds = allObjectIds.slice(splitAt);
 
-const introOutlineRowStripSx = {
-  display: "inline-flex",
-  flexDirection: "row" as const,
-  flexWrap: "nowrap" as const,
-  alignItems: "flex-end",
-  gap: 0,
-  borderBottom: "2px solid #fff",
-  boxSizing: "border-box" as const
-};
+const TopShelfSVG = <MiniShelfSVG objectIds={topRowIds} />;
+const BottomShelfSVG = <MiniShelfSVG objectIds={bottomRowIds} />;
 
 export default function Intro() {
-  const splitAt = Math.ceil(allObjectIds.length / 2);
-  const topRowIds = allObjectIds.slice(0, splitAt);
-  const bottomRowIds = allObjectIds.slice(splitAt);
-
   return (
-    <div
+    <section
+      className="viewport-with-margins"
       style={{
-        minHeight: "100vh",
-        width: "100%",
-        marginLeft: "auto",
-        marginRight: "auto",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between",
-        alignItems: "stretch",
-        textAlign: "center",
-        boxSizing: "border-box",
-        paddingLeft: "0.5rem",
-        paddingRight: "0.5rem",
-        paddingTop: "6rem",
-        paddingBottom: "6rem"
+        height: "calc(100vh - (var(--page-margin) * 2))",
+        overflow: "hidden"
       }}
     >
       <Box
         sx={{
-          width: "100%",
-          display: "flex",
-          justifyContent: "flex-start",
-          overflowX: "auto",
-          flexShrink: 0
-        }}
-      >
-        <Box sx={introOutlineRowStripSx}>
-          {topRowIds.map((objectId) => (
-            <InlineOutlineSvg
-              key={`intro-outline-top-${objectId}`}
-              src={`/SVG_outlines/${objectId}_outline.svg`}
-              alt=""
-              className="inline-outline-svg"
-              style={introOutlineThumbSx}
-            />
-          ))}
-        </Box>
-      </Box>
-
-      <Box
-        sx={{
+          height: "100%",
           display: "flex",
           flexDirection: "column",
-          alignItems: "stretch",
-          gap: "2rem",
-          width: "100%",
-          maxWidth: "70vw",
-          alignSelf: "center",
-          mx: "auto",
-          boxSizing: "border-box",
-          flexShrink: 0,
-          textAlign: "left"
+          justifyContent: "space-around"
+          // alignItems: "center"
         }}
       >
-        <Typography variant="introHeading" component="h4">
-          Ceramic vessels have been made for over 10,000 years.
-        </Typography>
-        <Typography variant="introHeading" component="h4">
-          When we undress them a shared thread emerges.
-        </Typography>
-      </Box>
+        <Box sx={{ alignSelf: "flex-start", pl: "8%" }}>{TopShelfSVG}</Box>
 
-      <Box
-        sx={{
-          width: "100%",
-          display: "flex",
-          justifyContent: "flex-end",
-          overflowX: "auto",
-          flexShrink: 0
-        }}
-      >
-        <Box sx={introOutlineRowStripSx}>
-          {bottomRowIds.map((objectId) => (
-            <InlineOutlineSvg
-              key={`intro-outline-bottom-${objectId}`}
-              src={`/SVG_outlines/${objectId}_outline.svg`}
-              alt=""
-              className="inline-outline-svg"
-              style={introOutlineThumbSx}
-            />
-          ))}
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: "3rem"
+          }}
+        >
+          <Typography variant="introHeading" component="h4">
+            We've been making
+            <Box
+              component="span"
+              sx={(theme) => ({
+                ...theme.typography.h3
+              })}
+            >
+              {" "}
+              ceramic vessels{" "}
+            </Box>
+            for over 10,000 years.
+          </Typography>
+          <Typography variant="introHeading" component="h4">
+            When we{" "}
+            <Box
+              component="span"
+              sx={(theme) => ({
+                ...theme.typography.rocaLight,
+                fontStyle: "italic",
+                fontSize: theme.typography.h3.fontSize,
+                lineHeight: theme.typography.h3.lineHeight
+              })}
+            >
+              undress
+            </Box>{" "}
+            them a shared thread emerges.
+          </Typography>
         </Box>
+
+        <Box sx={{ alignSelf: "flex-end", pr: "8%" }}>{BottomShelfSVG}</Box>
       </Box>
-    </div>
+    </section>
   );
 }

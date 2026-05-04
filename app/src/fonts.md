@@ -1,4 +1,5 @@
 Typekit kit in use: https://use.typekit.net/cvo4hus.css
+Additional Typekit kit in use: https://use.typekit.net/zbz0alt.css
 
 All available combinations in this kit:
 
@@ -57,10 +58,55 @@ font-family: "ivypresto-headline", serif;
 font-weight: 700;
 font-style: italic;
 
+Roca Thin
+font-family: "roca", sans-serif;
+font-weight: 100;
+font-style: normal;
+
+Roca Thin Italic
+font-family: "roca", sans-serif;
+font-weight: 100;
+font-style: italic;
+
+Roca Light
+font-family: "roca", sans-serif;
+font-weight: 300;
+font-style: normal;
+
+Roca Light Italic
+font-family: "roca", sans-serif;
+font-weight: 300;
+font-style: italic;
+
 Roca Regular
 font-family: "roca", sans-serif;
 font-weight: 400;
 font-style: normal;
+
+Roca Regular Italic
+font-family: "roca", sans-serif;
+font-weight: 400;
+font-style: italic;
+
+Roca Bold
+font-family: "roca", sans-serif;
+font-weight: 700;
+font-style: normal;
+
+Roca Bold Italic
+font-family: "roca", sans-serif;
+font-weight: 700;
+font-style: italic;
+
+Roca Black
+font-family: "roca", sans-serif;
+font-weight: 800;
+font-style: normal;
+
+Roca Black Italic
+font-family: "roca", sans-serif;
+font-weight: 800;
+font-style: italic;
 
 Adobe Handwriting Frank
 font-family: "adobe-handwriting-frank", sans-serif;
