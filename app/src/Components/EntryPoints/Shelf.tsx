@@ -1,10 +1,6 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Box, Typography } from "@mui/material";
-import finalClusterKeysCsv from "../../../../format_data/cluster_shape/final_clusters_keys.csv?raw";
-import finalClusterObjectIdsCsv from "../../../../format_data/cluster_shape/final_clusters_object_ids.csv?raw";
-import useImageModules from "../../hooks/useImageModules";
-import useFormatClusters from "../../hooks/useFormatClusters";
 import { homeEntryDomId, SHELF_RENDER_IMAGE_SIZE_PX, type HomeEntryScrollId } from "../constants";
 import useInlineSvg from "../../hooks/useInlineSvg";
 
@@ -34,25 +30,6 @@ const shelves = [
   [cluster4, cluster9, cluster11],
   [cluster0, cluster1, cluster2]
 ];
-
-const defaultMaskImageByCluster = [
-  { cluster: cluster0, index: 2 },
-  { cluster: cluster1, index: 1 },
-  { cluster: cluster2, index: 0 },
-  { cluster: cluster3, index: 0 },
-  { cluster: cluster4, index: 4 },
-  { cluster: cluster5, index: 1 },
-  { cluster: cluster6, index: 2 },
-  { cluster: cluster7, index: 3 },
-  { cluster: cluster8, index: 3 },
-  { cluster: cluster9, index: 0 },
-  { cluster: cluster10, index: 2 },
-  { cluster: cluster11, index: 2 }
-];
-
-const defaultMaskIndexByCluster = new Map(
-  defaultMaskImageByCluster.map((entry) => [entry.cluster, entry.index])
-);
 
 const clusterLabels: Record<string, string> = {
   cluster_0: "Outliers",
@@ -121,17 +98,10 @@ function AnimatedSampledSvg({ src, alt }: AnimatedSampledSvgProps) {
 
 function Shelf() {
   const navigate = useNavigate();
-  const [hoveredClusterId, setHoveredClusterId] = useState<string | null>(null);
   const [isShelfHalfVisible, setIsShelfHalfVisible] = useState(false);
   const shelfRef = useRef<HTMLElement | null>(null);
   const hasHandledInitialIntersectionRef = useRef(false);
   const orderedClusterIds = useMemo(() => shelves.flat(), []);
-  const { maskImageByObjectId } = useImageModules();
-  const { clusterRows } = useFormatClusters(finalClusterKeysCsv, finalClusterObjectIdsCsv);
-  const clusterRowByClusterId = useMemo(
-    () => new Map(clusterRows.map((row) => [row.cluster, row])),
-    [clusterRows]
-  );
 
   useEffect(() => {
     if (!shelfRef.current) return;
@@ -197,22 +167,10 @@ function Shelf() {
       >
         {orderedClusterIds.map((clusterId) => {
           const stackedSvgSrc = `/cluster_SVG_stacked_outlines/${clusterId}_stack_sampled.svg`;
-          const clusterRow = clusterRowByClusterId.get(clusterId);
-          const fallbackMaskIndex = defaultMaskIndexByCluster.get(clusterId) ?? 0;
-          const maskObjectId =
-            clusterRow?.closestTop5Ids[
-              Math.min(fallbackMaskIndex, Math.max(0, (clusterRow?.closestTop5Ids.length ?? 1) - 1))
-            ];
-          const hoveredMaskSrc = maskObjectId ? maskImageByObjectId.get(maskObjectId) : undefined;
-          const showMask = hoveredClusterId === clusterId && Boolean(hoveredMaskSrc);
           return (
             <Box
               component="article"
               key={clusterId}
-              onMouseEnter={() => setHoveredClusterId(clusterId)}
-              onMouseLeave={() =>
-                setHoveredClusterId((current) => (current === clusterId ? null : current))
-              }
               onClick={() =>
                 navigate(`/all/${clusterId}`, {
                   state: { homeScrollTo: shelfEntryScrollId }
@@ -258,26 +216,12 @@ function Shelf() {
                     display: "block"
                   }}
                 >
-                  {isShelfHalfVisible &&
-                    (showMask && hoveredMaskSrc ? (
-                      <img
-                        src={hoveredMaskSrc}
-                        alt={`${maskObjectId}_mask.png`}
-                        loading="lazy"
-                        style={{
-                          width: "100%",
-                          height: "100%",
-                          objectFit: "contain",
-                          objectPosition: "center bottom",
-                          display: "block"
-                        }}
-                      />
-                    ) : (
-                      <AnimatedSampledSvg
-                        src={stackedSvgSrc}
-                        alt={`${clusterId}_stack_sampled.svg`}
-                      />
-                    ))}
+                  {isShelfHalfVisible && (
+                    <AnimatedSampledSvg
+                      src={stackedSvgSrc}
+                      alt={`${clusterId}_stack_sampled.svg`}
+                    />
+                  )}
                 </Box>
               </Box>
               <Typography

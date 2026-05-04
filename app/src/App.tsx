@@ -65,7 +65,7 @@ function App() {
         <Route path="/cluster-test" element={<ClusterTest />} />
         <Route path="/shelf" element={<Shelf />} />
         <Route path="/title" element={<Title />} />
-        <Route path="/shelf-function" element={<ShelfFunction />} />
+        <Route path="/shelf-use" element={<ShelfFunction />} />
         <Route path="/shelf-color" element={<ShelfColor />} />
         <Route path="/case-studies" element={<CaseStudies />} />
         <Route path="/all/:clusterId" element={<Container />} />

@@ -98,12 +98,18 @@ def build_weighted_matrix(
     shape_weight: float = 1.0,
     inner_weight: float = 0.8,
     inner_count_weight: float = 0.5,
+    inner1_multiplier: float = 1.5,
+    inner2_multiplier: float = 1.0,
+    inner3_multiplier: float = 0.7,
 ):
     _validate_weight("lr_weight", lr_weight)
     _validate_weight("tb_weight", tb_weight)
     _validate_weight("shape_weight", shape_weight)
     _validate_weight("inner_weight", inner_weight)
     _validate_weight("inner_count_weight", inner_count_weight)
+    _validate_weight("inner1_multiplier", inner1_multiplier)
+    _validate_weight("inner2_multiplier", inner2_multiplier)
+    _validate_weight("inner3_multiplier", inner3_multiplier)
 
     cols = (
         groups["lr"]
@@ -131,7 +137,15 @@ def build_weighted_matrix(
         elif col in groups.get("inner_count", []):
             weights.append(inner_count_weight)
         elif col in groups["inner"]:
-            weights.append(inner_weight)
+            # Prioritize larger interior contours: inner1_* > inner2_* > inner3_*.
+            if col.startswith("inner1_"):
+                weights.append(inner_weight * inner1_multiplier)
+            elif col.startswith("inner2_"):
+                weights.append(inner_weight * inner2_multiplier)
+            elif col.startswith("inner3_"):
+                weights.append(inner_weight * inner3_multiplier)
+            else:
+                weights.append(inner_weight)
         else:
             weights.append(shape_weight)
 
@@ -329,8 +343,8 @@ def build_labels_with_primary_isolated_weird(
     X: np.ndarray,
     total_groups: int = 12,
     n_weird_buckets: int = 2,
-    primary_weird_fraction: float = 0.03,
-    secondary_weird_fraction: float = 0.07,
+    primary_weird_fraction: float = 0.5,
+    secondary_weird_fraction: float = 0.1,
     random_state: int = 42,
     primary_knn_k: int = 5,
 ):

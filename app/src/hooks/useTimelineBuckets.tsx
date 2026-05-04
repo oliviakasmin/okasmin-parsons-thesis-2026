@@ -105,6 +105,46 @@ function buildFinalDateByObjectIdMap(csvRaw: string) {
   return result;
 }
 
+type ObjectDateRange = { beginDate: number; endDate: number };
+
+/** Begin/end years only (no bucket key); for labels outside the timeline bucket flow. */
+function buildObjectDateRangeMap(csvRaw: string) {
+  const lines = csvRaw.split(/\r?\n/).filter(Boolean);
+  if (!lines.length) return new Map<string, ObjectDateRange>();
+
+  const header = parseCsvLine(lines[0]);
+  const objectIdIdx = header.indexOf("objectId");
+  const objectBeginDateIdx = header.indexOf("objectBeginDate");
+  const objectEndDateIdx = header.indexOf("objectEndDate");
+  const result = new Map<string, ObjectDateRange>();
+
+  if (objectIdIdx < 0 || objectBeginDateIdx < 0 || objectEndDateIdx < 0) return result;
+
+  for (const line of lines.slice(1)) {
+    const cells = parseCsvLine(line);
+    const objectId = cells[objectIdIdx]?.trim();
+    const beginDate = parseStrictYear(cells[objectBeginDateIdx] ?? "");
+    const endDate = parseStrictYear(cells[objectEndDateIdx] ?? "");
+    if (!objectId || beginDate === null || endDate === null) continue;
+    result.set(objectId, { beginDate, endDate });
+  }
+
+  return result;
+}
+
+function useObjectDateRanges(objectIds: string[]) {
+  const allRanges = useMemo(() => buildObjectDateRangeMap(fieldsCsv), []);
+
+  return useMemo(() => {
+    const result = new Map<string, ObjectDateRange>();
+    for (const objectId of objectIds) {
+      const range = allRanges.get(objectId);
+      if (range) result.set(objectId, range);
+    }
+    return result;
+  }, [allRanges, objectIds]);
+}
+
 function useTimelineBuckets(objectIds: string[]): TimelineBucketsResult {
   const finalDateByObjectId = useMemo(() => buildFinalDateByObjectIdMap(fieldsCsv), []);
   const timelineBucketMetadataByKey = useMemo(
@@ -176,4 +216,5 @@ function useTimelineBuckets(objectIds: string[]): TimelineBucketsResult {
 }
 
 export default useTimelineBuckets;
-export type { TimelineBucket, TimelineBucketsResult };
+export { useObjectDateRanges };
+export type { TimelineBucket, TimelineBucketsResult, ObjectDateRange };

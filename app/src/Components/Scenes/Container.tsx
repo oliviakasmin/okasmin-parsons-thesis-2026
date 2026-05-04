@@ -457,7 +457,7 @@ function Container() {
   }, [selectedEntry]);
   useEffect(() => {
     if (selectedFunctionGroup) {
-      setSelectedShelfTab("type");
+      setSelectedShelfTab("use");
       return;
     }
     if (selectedColorGroup) {

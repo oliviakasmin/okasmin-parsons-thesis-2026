@@ -18,6 +18,7 @@ DEFAULT_CLUSTERS_CSV = REPO_ROOT / "format_data/cluster_shape/final_clusters_obj
 DEFAULT_INPUT_OUTLINE_DIR = REPO_ROOT / "process_data/generated/real_images"
 DEFAULT_FAST_OUTPUT_DIR = REPO_ROOT / "process_data/generated/cluster_outline_svgs_fast"
 DEFAULT_SAMPLED_OUTPUT_DIR = REPO_ROOT / "process_data/generated/cluster_outline_svgs_sampled"
+DEFAULT_PUBLIC_SAMPLED_OUTPUT_DIR = REPO_ROOT / "app/public/cluster_SVG_stacked_outlines"
 DEFAULT_MANIFEST_JSON = REPO_ROOT / "process_data/generated/cluster_outline_svgs_manifest.json"
 DEFAULT_GEOMETRY = ("768", "768", "0 0 768 768")
 
@@ -41,6 +42,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--input-outline-dir", type=Path, default=DEFAULT_INPUT_OUTLINE_DIR)
     parser.add_argument("--fast-output-dir", type=Path, default=DEFAULT_FAST_OUTPUT_DIR)
     parser.add_argument("--sampled-output-dir", type=Path, default=DEFAULT_SAMPLED_OUTPUT_DIR)
+    parser.add_argument(
+        "--public-sampled-output-dir",
+        type=Path,
+        default=DEFAULT_PUBLIC_SAMPLED_OUTPUT_DIR,
+        help="Second sampled output folder for app/public assets.",
+    )
     parser.add_argument("--sample-top-k", type=int, default=30)
     parser.add_argument("--sample-random-k", type=int, default=20)
     parser.add_argument("--seed", type=int, default=42)
@@ -193,6 +200,7 @@ def main() -> None:
     input_outline_dir = args.input_outline_dir
     fast_output_dir = args.fast_output_dir
     sampled_output_dir = args.sampled_output_dir
+    public_sampled_output_dir = args.public_sampled_output_dir
     manifest_json = args.manifest_json
 
     if not clusters_csv.exists():
@@ -207,6 +215,8 @@ def main() -> None:
 
     print(f"clusters_csv={clusters_csv}")
     print(f"input_outline_dir={input_outline_dir}")
+    print(f"sampled_output_dir={sampled_output_dir}")
+    print(f"public_sampled_output_dir={public_sampled_output_dir}")
     print(f"cluster_count={len(cluster_names)}")
 
     geometry: tuple[str, str, str] | None = DEFAULT_GEOMETRY
@@ -261,9 +271,11 @@ def main() -> None:
         sampled_filename = f"{cluster_name}_stack_sampled.svg"
         fast_path = fast_output_dir / fast_filename
         sampled_path = sampled_output_dir / sampled_filename
+        public_sampled_path = public_sampled_output_dir / sampled_filename
 
         fast_written = False
         sampled_written = False
+        public_sampled_written = False
         sampled_records: list[OutlineRecord] = []
 
         if records:
@@ -293,6 +305,12 @@ def main() -> None:
             if sampled_written:
                 wrote_sampled += 1
 
+            public_sampled_written = _write_text(
+                path=public_sampled_path,
+                text=sampled_svg,
+                skip_existing=args.skip_existing,
+            )
+
         clusters_manifest.append(
             {
                 "cluster": cluster_name,
@@ -307,6 +325,7 @@ def main() -> None:
                 "sampled_svg_filename": sampled_filename,
                 "fast_svg_written": fast_written,
                 "sampled_svg_written": sampled_written,
+                "public_sampled_svg_written": public_sampled_written,
             }
         )
 
@@ -315,6 +334,7 @@ def main() -> None:
         "input_outline_dir": str(input_outline_dir),
         "fast_output_dir": str(fast_output_dir),
         "sampled_output_dir": str(sampled_output_dir),
+        "public_sampled_output_dir": str(public_sampled_output_dir),
         "sample_top_k": args.sample_top_k,
         "sample_random_k": args.sample_random_k,
         "seed": args.seed,

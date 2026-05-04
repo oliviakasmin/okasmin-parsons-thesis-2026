@@ -58,14 +58,18 @@ const themeBase = createTheme({
       fontSize: "1.25rem",
       lineHeight: 1.1
     },
-    // Normal text
+    // Normal text (body1 is default for paragraphs and factual labels).
     body1: {
       fontFamily: neueHaasDisplay,
-      fontWeight: 400
+      fontWeight: 400,
+      fontSize: "1.25rem",
+      lineHeight: 1.5
     },
     body2: {
       fontFamily: neueHaasDisplay,
-      fontWeight: 400
+      fontWeight: 400,
+      fontSize: "0.875rem",
+      lineHeight: 1.43
     },
     subtitle2: {
       fontFamily: neueHaasDisplay,
