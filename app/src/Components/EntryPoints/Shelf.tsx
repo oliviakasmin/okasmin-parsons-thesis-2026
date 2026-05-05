@@ -225,7 +225,7 @@ function Shelf() {
                   <Typography
                     className="shelf-cluster-label"
                     component="span"
-                    sx={shelfOverlayLabelSx}
+                    sx={{ ...shelfOverlayLabelSx, display: "none" }}
                   >
                     {clusterLabels[clusterId] ?? clusterId}
                   </Typography>

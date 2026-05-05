@@ -97,7 +97,21 @@ export default function ShelfFunction() {
                             maxHeight: "100%",
                             objectFit: "contain",
                             objectPosition: "center bottom",
-                            display: "block"
+                            display: "block",
+                            clipPath: "inset(100% 0 0 0)",
+                            animation: "shelfFunctionDrawUp 900ms ease-out forwards",
+                            "@keyframes shelfFunctionDrawUp": {
+                              from: {
+                                clipPath: "inset(100% 0 0 0)"
+                              },
+                              to: {
+                                clipPath: "inset(0 0 0 0)"
+                              }
+                            },
+                            "@media (prefers-reduced-motion: reduce)": {
+                              animation: "none",
+                              clipPath: "inset(0 0 0 0)"
+                            }
                           }}
                         />
                       ) : (

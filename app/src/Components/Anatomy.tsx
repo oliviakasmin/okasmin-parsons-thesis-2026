@@ -1,4 +1,7 @@
+import { useEffect, useRef } from "react";
 import Typography from "@mui/material/Typography";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import anatomyDrawing from "../../public/anatomy_screenshot.png";
 
 /**
@@ -17,9 +20,55 @@ import anatomyDrawing from "../../public/anatomy_screenshot.png";
   right-column contains 2 blocks of text - the text should all wrap appropriately and SHOULD NOT go off the side of the screen
  */
 
+gsap.registerPlugin(ScrollTrigger);
+
 export default function Anatomy() {
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const firstTextBlockRef = useRef<HTMLDivElement | null>(null);
+  const secondTextBlockRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (!sectionRef.current || !firstTextBlockRef.current || !secondTextBlockRef.current) return;
+
+    gsap.set([firstTextBlockRef.current, secondTextBlockRef.current], {
+      autoAlpha: 0,
+      y: 18
+    });
+
+    const firstTween = gsap.to(firstTextBlockRef.current, {
+      autoAlpha: 1,
+      y: 0,
+      duration: 0.9,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top 50%",
+        toggleActions: "play none none reverse"
+      }
+    });
+
+    const secondTween = gsap.to(secondTextBlockRef.current, {
+      autoAlpha: 1,
+      y: 0,
+      duration: 0.9,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top 25%",
+        toggleActions: "play none none reverse"
+      }
+    });
+
+    return () => {
+      firstTween.scrollTrigger?.kill();
+      secondTween.scrollTrigger?.kill();
+      firstTween.kill();
+      secondTween.kill();
+    };
+  }, []);
+
   return (
-    <section className="viewport-with-margins">
+    <section ref={sectionRef} className="viewport-with-margins">
       <div
         style={{
           display: "flex",
@@ -69,7 +118,10 @@ export default function Anatomy() {
               overflow: "hidden"
             }}
           >
-            <div style={{ width: "100%", maxWidth: "100%", marginBottom: "2rem" }}>
+            <div
+              ref={firstTextBlockRef}
+              style={{ width: "100%", maxWidth: "100%", marginBottom: "2rem" }}
+            >
               <Typography variant="h4" sx={{ mb: 1 }}>
                 ceramic <span style={{ fontStyle: "italic", fontSize: "0.75em" }}>(adj)</span>
               </Typography>
@@ -84,7 +136,7 @@ export default function Anatomy() {
                 “made from clay that has been shaped and then baked until hard”
               </Typography>
             </div>
-            <div style={{ width: "100%", maxWidth: "100%" }}>
+            <div ref={secondTextBlockRef} style={{ width: "100%", maxWidth: "100%" }}>
               <Typography variant="h4" sx={{ mb: 1 }}>
                 vessel <span style={{ fontStyle: "italic", fontSize: "0.75em" }}>(n)</span>
               </Typography>

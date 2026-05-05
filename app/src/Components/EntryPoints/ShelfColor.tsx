@@ -99,7 +99,21 @@ export default function ShelfColor() {
                             maxHeight: "100%",
                             objectFit: "contain",
                             objectPosition: "center bottom",
-                            display: "block"
+                            display: "block",
+                            opacity: 0,
+                            animation: "shelfColorFadeIn 1800ms ease-in-out forwards",
+                            "@keyframes shelfColorFadeIn": {
+                              from: {
+                                opacity: 0
+                              },
+                              to: {
+                                opacity: 1
+                              }
+                            },
+                            "@media (prefers-reduced-motion: reduce)": {
+                              animation: "none",
+                              opacity: 1
+                            }
                           }}
                         />
                       ) : (
