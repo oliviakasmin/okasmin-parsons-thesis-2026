@@ -50,7 +50,7 @@ export default function Intro() {
               {" "}
               ceramic vessels{" "}
             </Box>
-            for over 10,000 years.
+            for over 20,000 years.
           </Typography>
           <Typography variant="introHeading" component="h4">
             When we{" "}

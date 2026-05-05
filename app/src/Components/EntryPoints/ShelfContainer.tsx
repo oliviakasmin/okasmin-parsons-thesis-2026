@@ -14,7 +14,6 @@ const tabTextColor = {
 
 export default function ShelfContainer() {
   const { selectedShelfTab, setSelectedShelfTab } = useShelfTab();
-  const isShapeTab = selectedShelfTab === "shape";
 
   const content = useMemo(() => {
     if (selectedShelfTab === "shape") return <Shelf />;
@@ -29,11 +28,9 @@ export default function ShelfContainer() {
       sx={{
         height: "100vh",
         width: "100%",
-        position: isShapeTab ? "relative" : "static",
+        position: "relative",
         background: "#000",
-        overflow: isShapeTab ? "hidden" : "auto",
-        display: isShapeTab ? "block" : "flex",
-        flexDirection: isShapeTab ? "row" : "column"
+        overflow: "hidden"
       }}
     >
       <Box
@@ -45,9 +42,9 @@ export default function ShelfContainer() {
           pb: "6rem",
           display: "flex",
           alignItems: "flex-start",
-          position: isShapeTab ? "absolute" : "relative",
-          top: isShapeTab ? 0 : "auto",
-          left: isShapeTab ? 0 : "auto",
+          position: "absolute",
+          top: 0,
+          left: 0,
           zIndex: 2,
           pointerEvents: "auto"
         }}
@@ -105,32 +102,28 @@ export default function ShelfContainer() {
       <Box sx={{ display: "none" }} id={homeEntryDomId("shelf-color")} />
 
       <Box
-        sx={
-          isShapeTab
-            ? {
-                position: "absolute",
-                top: 0,
-                right: 0,
-                bottom: 0,
-                left: "min(32vw, 320px)",
-                minWidth: 0,
-                height: "100vh"
-              }
-            : {
-                position: "relative",
-                top: "auto",
-                left: "auto",
-                right: "auto",
-                bottom: "auto",
-                width: "100%",
-                minWidth: 0,
-                display: "flex",
-                justifyContent: "center",
-                flex: 1
-              }
-        }
+        sx={{
+          position: "absolute",
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: "min(32vw, 320px)",
+          minWidth: 0,
+          overflow: "auto",
+          background: "#000",
+          display: "flex",
+          flexDirection: "column"
+        }}
       >
-        {content}
+        <Box
+          sx={{
+            marginBlock: "auto",
+            width: "100%",
+            minHeight: "min-content"
+          }}
+        >
+          {content}
+        </Box>
       </Box>
     </Box>
   );

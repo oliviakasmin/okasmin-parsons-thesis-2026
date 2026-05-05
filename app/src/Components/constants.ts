@@ -12,6 +12,12 @@ export const SCENE_LEFT_PANEL_MAX_WIDTH_PX = 340;
 export const SCENE_LEFT_PANEL_COLLAPSED_VW = 8;
 export const SCENE_LEFT_PANEL_COLLAPSED_MIN_WIDTH_PX = 56;
 export const SCENE_LEFT_BASELINE_COLOR = "#444";
+/**
+ * Space reserved above timeline bands (layout height uses viewport − this) and padding on the axis.
+ * Must clear ~half the first tick row (`translateY(-50%)` + font size) so it is not covered by the
+ * sticky scene header or clipped by the shell.
+ */
+export const TIMELINE_AXIS_TOP_GUTTER_PX = 36;
 /** Left rail `width` transition (scene change collapse + manual expand/collapse). */
 export const SCENE_LEFT_PANEL_WIDTH_TRANSITION_MS = 600;
 

@@ -1,8 +1,19 @@
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Box, Typography } from "@mui/material";
-import { homeEntryDomId, SHELF_RENDER_IMAGE_SIZE_PX, type HomeEntryScrollId } from "../constants";
+import { homeEntryDomId, type HomeEntryScrollId } from "../constants";
 import useInlineSvg from "../../hooks/useInlineSvg";
+import type { ShelfSlot } from "./shelfGridStyles";
+import {
+  shelfArticleSx,
+  shelfEmptySlotSx,
+  shelfGridRowSx,
+  shelfGridStackSx,
+  shelfOverlayLabelSx,
+  shelfSlotInnerMediaSx,
+  shelfSlotSurfaceSx,
+  shelfTabMainSx
+} from "./shelfGridStyles";
 
 const shelfEntryScrollId: HomeEntryScrollId = "shelf";
 
@@ -19,34 +30,42 @@ const cluster9 = "cluster_9";
 const cluster10 = "cluster_10";
 const cluster11 = "cluster_11";
 
-// 10, 8, 6
-// 5, 7, 3
-// 4, 9, 11
-// 0, 1, 2
-
-const shelves = [
-  [cluster10, cluster8, cluster6],
-  [cluster5, cluster7, cluster3],
-  [cluster4, cluster9, cluster11],
-  [cluster0, cluster1, cluster2]
+/** Row-major shelf positions; use `undefined` for an intentional gap (one tile wide). Fewer than five entries in a row spread evenly across the row. */
+const SHELF_LAYOUT: ShelfSlot<string>[][] = [
+  [cluster10, cluster8, cluster6, cluster7],
+  [cluster3, cluster4, cluster5, cluster11],
+  [cluster9, cluster0, cluster1, cluster2]
 ];
 
 const clusterLabels: Record<string, string> = {
-  cluster_0: "Outliers",
-  cluster_1: "Weird Cluster",
-  cluster_2: "Weird Cluster",
-  cluster_3: "Core",
-  cluster_4: "Core",
-  cluster_5: "Core",
-  cluster_6: "Core",
-  cluster_7: "Core",
-  cluster_8: "Core"
+  cluster_0: "outliers",
+  cluster_1: "wide outliers",
+  cluster_2: "narrow outliers"
+  // cluster_3: "wider with tall shoulders",
+  // cluster_4: "bulbous body with longer neck",
+  // cluster_5: "Core",
+  // cluster_6: "squat",
+  // cluster_7: "Core",
+  // cluster_8: "round",
+  // cluster_9: "probably a pitcher",
+  // cluster_10: "narrow with tall shoulders",
+  // cluster_11: "medium belly with a neck"
 };
 
 type AnimatedSampledSvgProps = {
   src: string;
   alt: string;
 };
+
+function restartShelfPathDraw(paths: NodeListOf<SVGPathElement>) {
+  paths.forEach((path, index) => {
+    path.style.animation = "none";
+    // Force style flush so restarting animation only affects selected paths.
+    void path.getBoundingClientRect();
+    path.style.animation = `shelfPathDraw 1800ms ease forwards`;
+    path.style.animationDelay = `${index * 120}ms`;
+  });
+}
 
 function AnimatedSampledSvg({ src, alt }: AnimatedSampledSvgProps) {
   const { svgMarkup } = useInlineSvg(src);
@@ -103,10 +122,12 @@ function AnimatedSampledSvg({ src, alt }: AnimatedSampledSvgProps) {
 
 function Shelf() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [isShelfHalfVisible, setIsShelfHalfVisible] = useState(false);
+  const [shelfAnimationCycle, setShelfAnimationCycle] = useState(0);
   const shelfRef = useRef<HTMLElement | null>(null);
   const hasHandledInitialIntersectionRef = useRef(false);
-  const orderedClusterIds = useMemo(() => shelves.flat(), []);
+  const wasShelfHalfVisibleRef = useRef(false);
 
   useEffect(() => {
     if (!shelfRef.current) return;
@@ -118,14 +139,21 @@ function Shelf() {
         if (!hasHandledInitialIntersectionRef.current) {
           // Keep images hidden on mount/remount, then reveal on next frame if already in view.
           hasHandledInitialIntersectionRef.current = true;
+          wasShelfHalfVisibleRef.current = false;
           setIsShelfHalfVisible(false);
           if (isHalfVisible) {
             revealFrameId = window.requestAnimationFrame(() => {
+              setShelfAnimationCycle((cycle) => cycle + 1);
+              wasShelfHalfVisibleRef.current = true;
               setIsShelfHalfVisible(true);
             });
           }
           return;
         }
+        if (isHalfVisible && !wasShelfHalfVisibleRef.current) {
+          setShelfAnimationCycle((cycle) => cycle + 1);
+        }
+        wasShelfHalfVisibleRef.current = isHalfVisible;
         setIsShelfHalfVisible(isHalfVisible);
       },
       { threshold: [0, 0.5, 1] }
@@ -140,128 +168,72 @@ function Shelf() {
     };
   }, []);
 
+  useEffect(() => {
+    // Deterministic replay on Back without hide/show flash:
+    // ensure SVGs are mounted, then bump cycle so they remount and redraw.
+    wasShelfHalfVisibleRef.current = true;
+    setIsShelfHalfVisible(true);
+    setShelfAnimationCycle((cycle) => cycle + 1);
+  }, [location.key]);
+
   return (
     <Box
       component="main"
       ref={shelfRef}
       id={homeEntryDomId(shelfEntryScrollId)}
-      sx={{
-        height: "100vh",
-        background: "#000",
-        color: "#fff",
-        py: "1.5rem",
-        display: "flex",
-        flexDirection: "column",
-        overflowY: "auto"
-      }}
+      sx={shelfTabMainSx}
     >
-      <Box
-        component="section"
-        sx={{
-          flex: 1,
-          minHeight: 0,
-          width: `min(100%, ${SHELF_RENDER_IMAGE_SIZE_PX * 3}px)`,
-          mx: "auto",
-          display: "grid",
-          gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
-          gridTemplateRows: "repeat(4, auto)",
-          justifyContent: "center",
-          columnGap: 0,
-          rowGap: 0
-        }}
-      >
-        {orderedClusterIds.map((clusterId) => {
-          const stackedSvgSrc = `/cluster_SVG_stacked_outlines/${clusterId}_stack_sampled.svg`;
-          return (
-            <Box
-              component="article"
-              key={clusterId}
-              onMouseEnter={(event) => {
-                const paths = event.currentTarget.querySelectorAll<SVGPathElement>("svg path");
-                paths.forEach((path, index) => {
-                  path.style.animation = "none";
-                  // Force style flush so restarting animation only affects this hovered card.
-                  void path.getBoundingClientRect();
-                  path.style.animation = `shelfPathDraw 1800ms ease forwards`;
-                  path.style.animationDelay = `${index * 120}ms`;
-                });
-              }}
-              onClick={() =>
-                navigate(`/all/${clusterId}`, {
-                  state: { homeScrollTo: shelfEntryScrollId }
-                })
+      <Box component="section" sx={shelfGridStackSx}>
+        {SHELF_LAYOUT.map((row, rowIndex) => (
+          <Box key={`shape-row-${rowIndex}`} sx={shelfGridRowSx(row.length)}>
+            {row.map((clusterId, slotIndex) => {
+              if (clusterId === undefined) {
+                return (
+                  <Box key={`shape-gap-${rowIndex}-${slotIndex}`} aria-hidden sx={shelfEmptySlotSx}>
+                    <Box sx={shelfSlotSurfaceSx()} />
+                  </Box>
+                );
               }
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                position: "relative",
-                minHeight: `${SHELF_RENDER_IMAGE_SIZE_PX * 0.74}px`,
-                maxHeight: `${SHELF_RENDER_IMAGE_SIZE_PX * 0.92}px`,
-                cursor: "pointer",
-                "&:hover .shelf-cluster-label": {
-                  opacity: 1,
-                  visibility: "visible"
-                }
-              }}
-            >
-              <Box
-                sx={{
-                  marginTop: "auto",
-                  width: "100%",
-                  height: `min(${SHELF_RENDER_IMAGE_SIZE_PX * 0.86}px, calc((100vh - 240px) / 4))`,
-                  position: "relative",
-                  background: "#000",
-                  overflow: "hidden",
-                  paddingLeft: `${SHELF_RENDER_IMAGE_SIZE_PX * 0.25}px`,
-                  paddingRight: `${SHELF_RENDER_IMAGE_SIZE_PX * 0.25}px`,
-                  boxSizing: "border-box",
-                  borderBottom: "4px solid #fff"
-                }}
-              >
+
+              const stackedSvgSrc = `/cluster_SVG_stacked_outlines/${clusterId}_stack_sampled.svg`;
+              return (
                 <Box
-                  sx={{
-                    position: "absolute",
-                    left: "50%",
-                    bottom: "-3px",
-                    transform: "translateX(-50%)",
-                    width: `min(100%, ${SHELF_RENDER_IMAGE_SIZE_PX}px, calc((100vh - 180px) / 4))`,
-                    height: `min(100%, ${SHELF_RENDER_IMAGE_SIZE_PX}px, calc((100vh - 180px) / 4))`,
-                    maxWidth: `${SHELF_RENDER_IMAGE_SIZE_PX}px`,
-                    maxHeight: `${SHELF_RENDER_IMAGE_SIZE_PX}px`,
-                    display: "block"
+                  component="article"
+                  key={clusterId}
+                  onMouseEnter={(event) => {
+                    const paths = event.currentTarget.querySelectorAll<SVGPathElement>("svg path");
+                    restartShelfPathDraw(paths);
                   }}
+                  onClick={() =>
+                    navigate(`/all/${clusterId}`, {
+                      state: { homeScrollTo: shelfEntryScrollId }
+                    })
+                  }
+                  sx={shelfArticleSx("shelf-cluster-label")}
                 >
-                  {isShelfHalfVisible && (
-                    <AnimatedSampledSvg
-                      src={stackedSvgSrc}
-                      alt={`${clusterId}_stack_sampled.svg`}
-                    />
-                  )}
+                  <Box sx={shelfSlotSurfaceSx()}>
+                    <Box sx={shelfSlotInnerMediaSx()}>
+                      {isShelfHalfVisible && (
+                        <AnimatedSampledSvg
+                          key={`${clusterId}-${shelfAnimationCycle}`}
+                          src={stackedSvgSrc}
+                          alt={`${clusterId}_stack_sampled.svg`}
+                        />
+                      )}
+                    </Box>
+                  </Box>
+                  <Typography
+                    className="shelf-cluster-label"
+                    component="span"
+                    sx={shelfOverlayLabelSx}
+                  >
+                    {clusterLabels[clusterId] ?? clusterId}
+                  </Typography>
                 </Box>
-              </Box>
-              <Typography
-                className="shelf-cluster-label"
-                component="span"
-                sx={{
-                  position: "absolute",
-                  left: "50%",
-                  top: "100%",
-                  transform: "translateX(-50%)",
-                  mt: "0.08rem",
-                  fontSize: "0.62rem",
-                  letterSpacing: "0.03em",
-                  opacity: 0,
-                  visibility: "hidden",
-                  transition: "opacity 120ms ease",
-                  pointerEvents: "none",
-                  whiteSpace: "nowrap"
-                }}
-              >
-                {clusterLabels[clusterId] ?? clusterId}
-              </Typography>
-            </Box>
-          );
-        })}
+              );
+            })}
+          </Box>
+        ))}
       </Box>
     </Box>
   );

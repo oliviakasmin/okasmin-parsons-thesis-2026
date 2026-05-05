@@ -28,6 +28,7 @@ import {
   SCENE_LEFT_PANEL_WIDTH_TRANSITION_MS,
   SCENE_LEFT_PANEL_WIDTH_VW,
   SUBGROUP_RENDER_IMAGE_SIZE_PX,
+  TIMELINE_AXIS_TOP_GUTTER_PX,
   type HomeEntryScrollId
 } from "../constants";
 import MapView from "./Map";
@@ -42,6 +43,26 @@ type ContainerLocationState = {
   homeScrollTo?: HomeEntryScrollId;
   initialImageMode?: "solid" | "outline" | "color";
 };
+
+/**
+ * Pin the scene to the viewport inset (same as `body` margin in `styles.css`) and take it out of
+ * document flow so `#root` / `body` `min-height: 100vh` cannot create a second vertical scroll.
+ */
+const sceneShellBaseSx = {
+  position: "fixed",
+  top: "var(--page-margin)",
+  left: "var(--page-margin)",
+  right: "var(--page-margin)",
+  bottom: "var(--page-margin)",
+  boxSizing: "border-box",
+  overflow: "hidden",
+  background: "#000",
+  color: "#fff",
+  px: "0.75rem",
+  pb: "0.75rem",
+  width: "auto",
+  zIndex: 2
+} as const;
 
 const sceneHeadlineSx = {
   fontSize: "1.6rem",
@@ -248,6 +269,11 @@ function Container() {
     timelineBuckets
   ]);
 
+  const timelineSceneViewportInnerHeight = Math.max(
+    0,
+    sceneViewportSize.height - TIMELINE_AXIS_TOP_GUTTER_PX
+  );
+
   const timelineSceneLayout = useMemo(
     () =>
       buildSceneLayout({
@@ -255,10 +281,10 @@ function Container() {
         buckets: timelineBuckets,
         view: "timeline",
         sceneWidth: sceneViewportSize.width,
-        sceneHeight: sceneViewportSize.height,
+        sceneHeight: timelineSceneViewportInnerHeight,
         imageSizePx: SUBGROUP_RENDER_IMAGE_SIZE_PX
       }),
-    [sceneViewportSize.height, sceneViewportSize.width, selectedObjectIds, timelineBuckets]
+    [timelineSceneViewportInnerHeight, sceneViewportSize.width, selectedObjectIds, timelineBuckets]
   );
   const mapSceneLayout = useMemo(
     () =>
@@ -287,7 +313,10 @@ function Container() {
         ? mapSceneLayout
         : allSceneLayout;
   const allSceneHeight = Math.max(sceneViewportSize.height, allSceneLayout.sceneHeight);
-  const timelineSceneHeight = Math.max(sceneViewportSize.height, timelineSceneLayout.sceneHeight);
+  const timelineSceneHeight = Math.max(
+    timelineSceneViewportInnerHeight,
+    timelineSceneLayout.sceneHeight
+  );
   const mapSceneHeight = Math.max(sceneViewportSize.height, mapSceneLayout.sceneHeight);
   const contentSceneHeight =
     currentView === "timeline"
@@ -472,15 +501,33 @@ function Container() {
     syncTimelineAxisToSceneScroll();
   }, [contentSceneHeight, currentView, syncTimelineAxisToSceneScroll, timelineBuckets]);
 
+  useLayoutEffect(() => {
+    window.scrollTo({ top: 0, left: 0 });
+    sceneContentScrollRef.current?.scrollTo({ top: 0, left: 0 });
+    syncTimelineAxisToSceneScroll();
+  }, [clusterId, currentView, selectedEntry?.id, syncTimelineAxisToSceneScroll]);
+
+  useEffect(() => {
+    const html = document.documentElement;
+    const body = document.body;
+    const prevHtml = html.style.overflow;
+    const prevBody = body.style.overflow;
+    html.style.overflow = "hidden";
+    body.style.overflow = "hidden";
+    return () => {
+      html.style.overflow = prevHtml;
+      body.style.overflow = prevBody;
+    };
+  }, []);
+
   if (!selectedEntry) {
     return (
       <Box
         component="main"
         sx={{
-          minHeight: "100vh",
-          background: "#000",
-          color: "#fff",
-          p: "0.75rem"
+          ...sceneShellBaseSx,
+          display: "flex",
+          flexDirection: "column"
         }}
       >
         <BackButton />
@@ -493,66 +540,93 @@ function Container() {
     <Box
       component="main"
       sx={{
-        height: "100vh",
-        background: "#000",
-        color: "#fff",
-        p: "0.75rem",
+        ...sceneShellBaseSx,
         display: "flex",
-        flexDirection: "column"
+        flexDirection: "column",
+        minHeight: 0
       }}
     >
       <Box
         sx={{
-          display: "flex",
-          alignItems: "center",
-          flexWrap: "wrap",
-          rowGap: "0.5rem",
-          mb: "0.85rem",
+          flexShrink: 0,
+          position: "sticky",
+          top: 0,
+          zIndex: 12,
+          bgcolor: "#000",
+          pt: "0.75rem",
           width: "100%"
         }}
       >
-        <Box sx={{ flexShrink: 0 }}>
-          <BackButton />
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            flexWrap: "wrap",
+            rowGap: "0.5rem",
+            mb: "0.85rem",
+            width: "100%"
+          }}
+        >
+          <Box sx={{ flexShrink: 0 }}>
+            <BackButton />
+          </Box>
+          <Box sx={{ flexShrink: 0, marginLeft: "auto" }}>
+            <ImageToggleButton mode={mode} options={options} onChange={setMode} />
+          </Box>
         </Box>
-        <Box sx={{ flexShrink: 0, marginLeft: "auto" }}>
-          <ImageToggleButton mode={mode} options={options} onChange={setMode} />
-        </Box>
+
+        <Typography
+          component="div"
+          sx={{
+            ...sceneHeadlineSx,
+            width: "100%",
+            mt: "1.5rem",
+            mb: "2rem"
+          }}
+        >
+          {sceneHeadlineContent({
+            view: currentView,
+            objectCount: selectedObjectIds.length,
+            objectLabelPlural,
+            timelineSubject,
+            mapSubject,
+            spanYears,
+            countryCount: distinctCountryCount
+          })}
+        </Typography>
       </Box>
 
-      <Typography
-        component="div"
+      <Box
         sx={{
-          ...sceneHeadlineSx,
+          flex: 1,
+          minHeight: 0,
           width: "100%",
-          mt: "1.5rem",
-          mb: "2rem"
+          display: "flex",
+          gap: "0.7rem",
+          pt: currentView === "timeline" ? `${TIMELINE_AXIS_TOP_GUTTER_PX}px` : 0,
+          boxSizing: "border-box"
         }}
       >
-        {sceneHeadlineContent({
-          view: currentView,
-          objectCount: selectedObjectIds.length,
-          objectLabelPlural,
-          timelineSubject,
-          mapSubject,
-          spanYears,
-          countryCount: distinctCountryCount
-        })}
-      </Typography>
-
-      <Box sx={{ flex: 1, minHeight: 0, width: "100%", display: "flex", gap: "0.7rem" }}>
         <Box
           sx={{
             width: leftPanelWidthCss,
             minWidth: 0,
             position: "relative",
             overflow: "visible",
+            /** Keep left rail below sticky header layer. */
+            zIndex: 1,
             transition: `width ${SCENE_LEFT_PANEL_WIDTH_TRANSITION_MS}ms cubic-bezier(0.4, 0, 0.2, 1)`
           }}
         >
           {currentView === "timeline" ? (
             <Box
               ref={timelineAxisContentRef}
-              sx={{ position: "absolute", inset: 0, willChange: "transform" }}
+              sx={{
+                position: "absolute",
+                inset: 0,
+                overflow: "visible",
+                willChange: "transform"
+              }}
             >
               <TimelineAxis
                 buckets={timelineBuckets}
@@ -780,6 +854,8 @@ function Container() {
               inset: 0,
               overflowX: currentView === "timeline" ? "auto" : "hidden",
               overflowY: "auto",
+              overscrollBehavior: "contain",
+              WebkitOverflowScrolling: "touch",
               pointerEvents: currentView === "map" ? "none" : "auto",
               boxSizing: "border-box",
               pb: currentView === "timeline" ? "4rem" : 0
@@ -811,14 +887,12 @@ function Container() {
 
       <Box
         sx={{
-          position: "sticky",
-          bottom: 0,
+          flexShrink: 0,
           zIndex: 5,
           mt: "0.6rem",
           pt: "0.45rem",
           pb: "0.35rem",
-          background:
-            "linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.88) 22%, rgba(0, 0, 0, 0.96) 100%)"
+          bgcolor: "#000"
         }}
       >
         <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 0 }}>
