@@ -1,6 +1,8 @@
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState, type RefObject } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { objects } from "./title_intro_constants";
 import InlineOutlineSvg from "./Scenes/InlineOutlineSvg";
 import statsUrl from "/data/object_stats.json?url";
@@ -72,8 +74,10 @@ const intro2OutlineFrameSx = {
   aspectRatio: "1 / 1"
 };
 
+gsap.registerPlugin(ScrollTrigger);
+
 /** Full-width stroke along the bottom edge of the intro stats row (`position: absolute` inside `topRow`). */
-function Intro2BottomRuleSvg() {
+function Intro2BottomRuleSvg({ lineRef }: { lineRef: RefObject<SVGLineElement | null> }) {
   return (
     <svg
       width="100%"
@@ -94,6 +98,7 @@ function Intro2BottomRuleSvg() {
     >
       {/* #fff: page bg is #000; default MUI light `text.primary` is dark, so theme-based lines vanish. */}
       <line
+        ref={lineRef}
         x1="0"
         y1="1.5"
         x2="100"
@@ -110,6 +115,8 @@ export default function Intro2() {
   const [stats, setStats] = useState<IntroStats | null>(null);
   const [uniqueCountry, setUniqueCountry] = useState<IntroUniqueCountry | null>(null);
   const [leftOutlineId, rightOutlineId] = objects;
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const bottomRuleLineRef = useRef<SVGLineElement | null>(null);
 
   const leftDateYear = useMemo(() => {
     if (!stats) return NaN;
@@ -153,10 +160,36 @@ export default function Intro2() {
     };
   }, []);
 
+  useEffect(() => {
+    if (!stats || !uniqueCountry) return;
+    if (!sectionRef.current || !bottomRuleLineRef.current) return;
+
+    gsap.set(bottomRuleLineRef.current, {
+      scaleX: 0,
+      transformOrigin: "left center"
+    });
+
+    const tween = gsap.to(bottomRuleLineRef.current, {
+      scaleX: 1,
+      duration: 1.8,
+      ease: "power1.out",
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top 50%",
+        toggleActions: "restart none restart reset"
+      }
+    });
+
+    return () => {
+      tween.scrollTrigger?.kill();
+      tween.kill();
+    };
+  }, [stats, uniqueCountry]);
+
   if (!stats || !uniqueCountry) return null;
 
   return (
-    <Box component="section" sx={intro2SectionSx}>
+    <Box ref={sectionRef} component="section" sx={intro2SectionSx}>
       <Box sx={intro2GridSx}>
         <Box
           sx={{
@@ -202,23 +235,21 @@ export default function Intro2() {
                   <Typography variant="h3" sx={intro2StatNumberSx}>
                     {stats.uniqueObjectIdCount.fieldsCsv}{" "}
                   </Typography>
-                  <Typography variant="introHeading">
-                    vessels from the Metropolitan Museum of Art
-                  </Typography>
+                  <Typography variant="h4">vessels from the Metropolitan Museum of Art</Typography>
                 </Box>
 
                 <Box>
                   <Typography variant="h3" sx={intro2StatNumberSx}>
                     {uniqueCountry.stats.unique_countries_from_last_segment}
                   </Typography>
-                  <Typography variant="introHeading">countries</Typography>
+                  <Typography variant="h4">countries</Typography>
                 </Box>
 
                 <Box>
                   <Typography variant="h3" sx={intro2StatNumberSx}>
                     {stats.maximumDateSpan.spanYears}
                   </Typography>
-                  <Typography variant="introHeading">years</Typography>
+                  <Typography variant="h4">years</Typography>
                 </Box>
               </Box>
             </Box>
@@ -235,11 +266,11 @@ export default function Intro2() {
             </Box>
           </Box>
 
-          <Intro2BottomRuleSvg />
+          <Intro2BottomRuleSvg lineRef={bottomRuleLineRef} />
         </Box>
 
         <Typography
-          variant="introHeading"
+          variant="body1"
           component="p"
           sx={{ gridArea: "leftDate", textAlign: "center", mt: 2, mb: 0 }}
         >
@@ -247,7 +278,7 @@ export default function Intro2() {
         </Typography>
 
         <Typography
-          variant="introHeading"
+          variant="body1"
           component="p"
           sx={{ gridArea: "rightDate", textAlign: "center", mt: 2, mb: 0 }}
         >

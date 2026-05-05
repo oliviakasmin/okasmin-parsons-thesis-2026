@@ -39,7 +39,7 @@ export default function Intro() {
             gap: "3rem"
           }}
         >
-          <Typography variant="introHeading" component="h4">
+          <Typography variant="h4" component="h4">
             We've been making
             <Box
               component="span"
@@ -52,7 +52,7 @@ export default function Intro() {
             </Box>
             for over 20,000 years.
           </Typography>
-          <Typography variant="introHeading" component="h4">
+          <Typography variant="h4" component="h4">
             When we{" "}
             <Box
               component="span"
