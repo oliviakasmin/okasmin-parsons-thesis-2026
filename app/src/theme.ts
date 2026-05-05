@@ -4,13 +4,11 @@ import type { CSSProperties } from "react";
 declare module "@mui/material/styles" {
   interface TypographyVariants {
     backButton: CSSProperties;
-    introHeading: CSSProperties;
     rocaLight: CSSProperties;
   }
 
   interface TypographyVariantsOptions {
     backButton?: CSSProperties;
-    introHeading?: CSSProperties;
     rocaLight?: CSSProperties;
   }
 }
@@ -18,7 +16,6 @@ declare module "@mui/material/styles" {
 declare module "@mui/material/Typography" {
   interface TypographyPropsVariantOverrides {
     backButton: true;
-    introHeading: true;
     rocaLight: true;
   }
 }
@@ -46,6 +43,15 @@ const themeBase = createTheme({
     h3: {
       fontFamily: roca,
       fontWeight: 600
+    },
+    h4: {
+      fontFamily: neueHaasDisplay,
+      fontSize: "1.75rem"
+      // fontWeight: 600
+    },
+    h5: {
+      fontFamily: neueHaasDisplay
+      // fontWeight: 600
     },
     rocaLight: {
       fontFamily: roca,
@@ -94,16 +100,4 @@ const themeBase = createTheme({
 });
 
 /** Intro body: h4 sizing/styling with h3 line-height (and letter-spacing when set on h3). */
-const theme = createTheme(themeBase, {
-  typography: {
-    introHeading: {
-      ...themeBase.typography.h4,
-      lineHeight: themeBase.typography.h3.lineHeight,
-      ...(themeBase.typography.h3.letterSpacing != null && {
-        letterSpacing: themeBase.typography.h3.letterSpacing
-      })
-    }
-  }
-});
-
-export default theme;
+export default themeBase;

@@ -1,6 +1,8 @@
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState, type RefObject } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { objects } from "./title_intro_constants";
 import InlineOutlineSvg from "./Scenes/InlineOutlineSvg";
 import statsUrl from "/data/object_stats.json?url";
@@ -36,17 +38,21 @@ const intro2SectionSx = {
 
 const intro2GridSx = {
   display: "grid",
-  gridTemplateAreas: {
-    xs: `"left"\n"center"\n"right"`,
-    md: `"left center right"`
-  },
-  gridTemplateColumns: {
-    xs: "1fr",
-    md: "36% 28% 36%"
-  },
-  alignItems: { xs: "start", md: "center" } as const,
+  gridTemplateAreas: `"topRow topRow topRow"\n"leftDate . rightDate"`,
+  gridTemplateColumns: "36% 28% 36%",
+  alignItems: "stretch",
   columnGap: 0,
-  rowGap: { xs: "3rem", md: 0 },
+  rowGap: 0,
+  minWidth: 0
+};
+
+const intro2TopRowInnerGridSx = {
+  display: "grid",
+  gridTemplateAreas: `"leftImg center rightImg"`,
+  gridTemplateColumns: "36% 28% 36%",
+  alignItems: "end",
+  columnGap: 0,
+  width: "100%",
   minWidth: 0
 };
 
@@ -63,16 +69,54 @@ const intro2OutlineFrameSx = {
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  width: { xs: "92vw", md: "100%" },
+  width: "100%",
   maxWidth: "100%",
-  aspectRatio: "1 / 1",
-  mx: { xs: "auto" }
+  aspectRatio: "1 / 1"
 };
+
+gsap.registerPlugin(ScrollTrigger);
+
+/** Full-width stroke along the bottom edge of the intro stats row (`position: absolute` inside `topRow`). */
+function Intro2BottomRuleSvg({ lineRef }: { lineRef: RefObject<SVGLineElement | null> }) {
+  return (
+    <svg
+      width="100%"
+      height={3}
+      viewBox="0 0 100 3"
+      preserveAspectRatio="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden
+      style={{
+        position: "absolute",
+        left: 0,
+        right: 0,
+        bottom: 0,
+        zIndex: 1,
+        display: "block",
+        pointerEvents: "none"
+      }}
+    >
+      {/* #fff: page bg is #000; default MUI light `text.primary` is dark, so theme-based lines vanish. */}
+      <line
+        ref={lineRef}
+        x1="0"
+        y1="1.5"
+        x2="100"
+        y2="1.5"
+        stroke="#ffffff"
+        strokeWidth={1.5}
+        vectorEffect="nonScalingStroke"
+      />
+    </svg>
+  );
+}
 
 export default function Intro2() {
   const [stats, setStats] = useState<IntroStats | null>(null);
   const [uniqueCountry, setUniqueCountry] = useState<IntroUniqueCountry | null>(null);
   const [leftOutlineId, rightOutlineId] = objects;
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const bottomRuleLineRef = useRef<SVGLineElement | null>(null);
 
   const leftDateYear = useMemo(() => {
     if (!stats) return NaN;
@@ -116,82 +160,130 @@ export default function Intro2() {
     };
   }, []);
 
+  useEffect(() => {
+    if (!stats || !uniqueCountry) return;
+    if (!sectionRef.current || !bottomRuleLineRef.current) return;
+
+    gsap.set(bottomRuleLineRef.current, {
+      scaleX: 0,
+      transformOrigin: "left center"
+    });
+
+    const tween = gsap.to(bottomRuleLineRef.current, {
+      scaleX: 1,
+      duration: 1.8,
+      ease: "power1.out",
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top 50%",
+        toggleActions: "restart none restart reset"
+      }
+    });
+
+    return () => {
+      tween.scrollTrigger?.kill();
+      tween.kill();
+    };
+  }, [stats, uniqueCountry]);
+
   if (!stats || !uniqueCountry) return null;
 
   return (
-    <Box component="section" sx={intro2SectionSx}>
+    <Box ref={sectionRef} component="section" sx={intro2SectionSx}>
       <Box sx={intro2GridSx}>
-        <Box sx={{ ...intro2OutlineColumnSx, gridArea: "left" }}>
-          <Box sx={intro2OutlineFrameSx} aria-hidden>
-            <InlineOutlineSvg
-              className="inline-outline-svg"
-              src={`/SVG_outlines/${leftOutlineId}_outline.svg`}
-              alt=""
-              style={{ height: "100%", width: "100%", maxWidth: "100%" }}
-            />
-          </Box>
-          <Typography variant="introHeading" component="p" sx={{ textAlign: "center", mt: 0 }}>
-            {leftDateLabel}
-          </Typography>
-        </Box>
-
         <Box
           sx={{
-            gridArea: "center",
+            gridArea: "topRow",
+            position: "relative",
             minWidth: 0,
-            display: "flex",
-            justifyContent: "center"
+            width: "100%"
           }}
         >
-          <Box
-            id="intro2-body"
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              textAlign: "center",
-              gap: "3rem",
-              width: "100%"
-            }}
-          >
-            <Box>
-              <Typography variant="h3" sx={intro2StatNumberSx}>
-                {stats.uniqueObjectIdCount.fieldsCsv}{" "}
-              </Typography>
-              <Typography variant="introHeading">
-                vessels from the Metropolitan Museum of Art
-              </Typography>
+          <Box sx={intro2TopRowInnerGridSx}>
+            <Box sx={{ ...intro2OutlineColumnSx, gridArea: "leftImg" }}>
+              <Box sx={intro2OutlineFrameSx} aria-hidden>
+                <InlineOutlineSvg
+                  className="inline-outline-svg"
+                  src={`/SVG_outlines/${leftOutlineId}_outline.svg`}
+                  alt=""
+                  style={{ height: "100%", width: "100%", maxWidth: "100%" }}
+                />
+              </Box>
             </Box>
 
-            <Box>
-              <Typography variant="h3" sx={intro2StatNumberSx}>
-                {uniqueCountry.stats.unique_countries_from_last_segment}
-              </Typography>
-              <Typography variant="introHeading">countries</Typography>
+            <Box
+              sx={{
+                gridArea: "center",
+                minWidth: 0,
+                display: "flex",
+                justifyContent: "center"
+              }}
+            >
+              <Box
+                id="intro2-body"
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  textAlign: "center",
+                  gap: "3rem",
+                  width: "100%",
+                  pb: 2.5
+                }}
+              >
+                <Box>
+                  <Typography variant="h3" sx={intro2StatNumberSx}>
+                    {stats.uniqueObjectIdCount.fieldsCsv}{" "}
+                  </Typography>
+                  <Typography variant="h4">vessels from the Metropolitan Museum of Art</Typography>
+                </Box>
+
+                <Box>
+                  <Typography variant="h3" sx={intro2StatNumberSx}>
+                    {uniqueCountry.stats.unique_countries_from_last_segment}
+                  </Typography>
+                  <Typography variant="h4">countries</Typography>
+                </Box>
+
+                <Box>
+                  <Typography variant="h3" sx={intro2StatNumberSx}>
+                    {stats.maximumDateSpan.spanYears}
+                  </Typography>
+                  <Typography variant="h4">years</Typography>
+                </Box>
+              </Box>
             </Box>
 
-            <Box>
-              <Typography variant="h3" sx={intro2StatNumberSx}>
-                {stats.maximumDateSpan.spanYears}
-              </Typography>
-              <Typography variant="introHeading">years</Typography>
+            <Box sx={{ ...intro2OutlineColumnSx, gridArea: "rightImg" }}>
+              <Box sx={intro2OutlineFrameSx} aria-hidden>
+                <InlineOutlineSvg
+                  className="inline-outline-svg"
+                  src={`/SVG_outlines/${rightOutlineId}_outline.svg`}
+                  alt=""
+                  style={{ height: "100%", width: "100%", maxWidth: "100%" }}
+                />
+              </Box>
             </Box>
           </Box>
+
+          <Intro2BottomRuleSvg lineRef={bottomRuleLineRef} />
         </Box>
 
-        <Box sx={{ ...intro2OutlineColumnSx, gridArea: "right" }}>
-          <Box sx={intro2OutlineFrameSx} aria-hidden>
-            <InlineOutlineSvg
-              className="inline-outline-svg"
-              src={`/SVG_outlines/${rightOutlineId}_outline.svg`}
-              alt=""
-              style={{ height: "100%", width: "100%", maxWidth: "100%" }}
-            />
-          </Box>
-          <Typography variant="introHeading" component="p" sx={{ textAlign: "center", mt: 0 }}>
-            {rightDateLabel}
-          </Typography>
-        </Box>
+        <Typography
+          variant="body1"
+          component="p"
+          sx={{ gridArea: "leftDate", textAlign: "center", mt: 2, mb: 0 }}
+        >
+          {leftDateLabel}
+        </Typography>
+
+        <Typography
+          variant="body1"
+          component="p"
+          sx={{ gridArea: "rightDate", textAlign: "center", mt: 2, mb: 0 }}
+        >
+          {rightDateLabel}
+        </Typography>
       </Box>
     </Box>
   );

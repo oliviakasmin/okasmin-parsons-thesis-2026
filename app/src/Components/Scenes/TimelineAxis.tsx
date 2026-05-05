@@ -1,7 +1,7 @@
 import { Box, Chip, Typography } from "@mui/material";
 import type { TimelineBucket } from "../../hooks/useTimelineBuckets";
 import { formatYearForTick } from "../../utils/formatYearTick";
-import { SCENE_LEFT_BASELINE_COLOR } from "../constants";
+import { SCENE_LEFT_BASELINE_COLOR, TIMELINE_AXIS_TOP_GUTTER_PX } from "../constants";
 
 type TimelineAxisProps = {
   buckets: TimelineBucket[];
@@ -24,8 +24,12 @@ function TimelineAxis({ buckets, bucketSpanByKey, panelHeight }: TimelineAxisPro
       sx={{
         position: "relative",
         width: "100%",
-        height: `${Math.max(panelHeight, 1)}px`,
-        minHeight: `${Math.max(panelHeight, 1)}px`
+        boxSizing: "border-box",
+        /** Room above bands for the first tick row (`translateY(-50%)`) without clipping. */
+        paddingTop: `${TIMELINE_AXIS_TOP_GUTTER_PX}px`,
+        height: `${Math.max(panelHeight + TIMELINE_AXIS_TOP_GUTTER_PX, 1)}px`,
+        minHeight: `${Math.max(panelHeight + TIMELINE_AXIS_TOP_GUTTER_PX, 1)}px`,
+        overflow: "visible"
       }}
     >
       <Box
