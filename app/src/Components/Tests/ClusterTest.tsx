@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Box, Button, Typography } from "@mui/material";
 import finalClusterKeysCsv from "../../../../format_data/cluster_shape/final_clusters_keys.csv?raw";
-import finalClusterObjectIdsCsv from "../../../../format_data/cluster_shape/final_clusters_object_ids.csv?raw";
+import fieldsCsv from "../../../../format_data/generated/fields.csv?raw";
 import ImageToggleButton from "../ImageToggleButton";
 import useFormatClusters from "../../hooks/useFormatClusters";
 import useImageModules from "../../hooks/useImageModules";
@@ -32,7 +32,7 @@ function ClusterTest() {
   const navigate = useNavigate();
   const { mode, options, setMode } = useImageToggle();
   const { outlineImageByObjectId, maskImageByObjectId, noBgImageByObjectId } = useImageModules();
-  const { clusterRows } = useFormatClusters(finalClusterKeysCsv, finalClusterObjectIdsCsv);
+  const { clusterRows } = useFormatClusters(finalClusterKeysCsv, fieldsCsv);
 
   return (
     <Box

@@ -88,6 +88,7 @@ test_assets/
 !tsconfig.node.json
 !.prettierrc.json
 !format_data/date/timeline_buckets.json
+!format_data/color/new/manual_color_groups.json
 
 # ─────────────────────────────────────────────
 # Ignore ALL images by default

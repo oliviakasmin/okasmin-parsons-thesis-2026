@@ -38,7 +38,8 @@ export default function ShelfContainer() {
           width: "min(32vw, 320px)",
           minWidth: "220px",
           pl: "2rem",
-          pt: "25vh",
+          // Match the vertically centered shelf stack so the tabs align with the top row image line.
+          pt: "calc((100vh - (3 * (min(138.24px, calc((100vh - 240px) / 3)) + 4px) + 110.592px + 3rem)) / 2 + 1.5rem)",
           pb: "6rem",
           display: "flex",
           alignItems: "flex-start",
@@ -59,9 +60,6 @@ export default function ShelfContainer() {
             letterSpacing: "0.02em"
           }}
         >
-          <Box component="span" sx={{ display: "block" }}>
-            choose a
-          </Box>
           <Box component="span" sx={{ display: "block" }}>
             {(["shape", "use", "color"] as const).map((tab, index) => (
               <span key={tab}>
