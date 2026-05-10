@@ -403,11 +403,6 @@ function Container() {
     [maskImageByObjectId, noBgImageByObjectId]
   );
 
-  const getOutlineImageSrc = useCallback(
-    (objectId: string) => outlineImageByObjectId.get(objectId),
-    [outlineImageByObjectId]
-  );
-
   const imageAltSuffix = mode === "outline" ? "outline" : mode === "color" ? "no_bg" : "mask";
   const enableHoverSwap = mode !== "color";
 
@@ -966,7 +961,6 @@ function Container() {
           mapboxPlaceName={objectModalFieldsById.get(modalObjectId)?.mapboxPlaceName ?? ""}
           dominantColorsHex={objectModalFieldsById.get(modalObjectId)?.dominantColorsHex ?? []}
           getColorImageSrc={getColorImageSrc}
-          getOutlineImageSrc={getOutlineImageSrc}
         />
       ) : null}
     </Box>

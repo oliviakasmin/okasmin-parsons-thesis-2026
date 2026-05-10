@@ -43,8 +43,8 @@ const IMAGE_SUFFIX: Record<ImageMode, string> = {
 const LEGACY_SELECTED_OBJECT_IDS_STORAGE_KEY = "test2_selected_object_ids";
 const NEIGHBOR_COUNT = 10;
 
-/** Thumbnail click opens neighbor modal. Set back to `true` when you want modal UX again. */
-const TEST2_OPEN_MODAL_ON_IMAGE_CLICK = false;
+/** Thumbnail click opens closest-neighbors modal. */
+const TEST2_OPEN_MODAL_ON_IMAGE_CLICK = true;
 const FEATURE_WEIGHTS = {
   lr: 1.0,
   tb: 0.2,

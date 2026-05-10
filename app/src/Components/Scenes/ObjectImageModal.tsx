@@ -1,8 +1,14 @@
-import { useEffect, useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
-import { Box, Dialog, DialogContent, DialogTitle, IconButton, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  IconButton,
+  Typography
+} from "@mui/material";
 import { formatYearForTick } from "../../utils/formatYearTick";
-import InlineOutlineSvg from "./InlineOutlineSvg";
 
 /** Shared limits so the image area and <img> / SVG stay aligned. */
 const imageAreaMin = "min(46vh, 380px)";
@@ -29,8 +35,6 @@ type ObjectImageModalProps = {
   dominantColorsHex: string[];
   /** Color view: no-background image, or mask fallback (same as main grid color mode). */
   getColorImageSrc: (objectId: string) => string | undefined;
-  /** Outline SVG used on image hover when available. */
-  getOutlineImageSrc: (objectId: string) => string | undefined;
 };
 
 function displayOrDash(value: string) {
@@ -52,23 +56,15 @@ function ObjectImageModal({
   finalDate,
   mapboxPlaceName,
   dominantColorsHex,
-  getColorImageSrc,
-  getOutlineImageSrc
+  getColorImageSrc
 }: ObjectImageModalProps) {
-  const [isHovered, setIsHovered] = useState(false);
   const colorImageSrc = getColorImageSrc(objectId);
-  const outlineImageSrc = getOutlineImageSrc(objectId);
-  const hasOutlineHover = Boolean(colorImageSrc && outlineImageSrc);
-
-  useEffect(() => {
-    setIsHovered(false);
-  }, [open, objectId]);
 
   return (
     <Dialog
       open={open}
       onClose={onClose}
-      maxWidth="sm"
+      maxWidth="lg"
       fullWidth
       slotProps={{
         backdrop: {
@@ -87,36 +83,83 @@ function ObjectImageModal({
       <DialogTitle
         sx={{
           display: "flex",
-          alignItems: "center",
-          gap: 1,
+          flexDirection: "row",
+          alignItems: "flex-start",
+          gap: 2,
           pt: 2,
-          pb: 0,
+          pb: 3,
           px: 4,
-          pr: 2
+          boxSizing: "border-box"
         }}
       >
-        <Box sx={{ flex: 1, minWidth: 0 }}>
+        <Box
+          sx={{
+            flex: "1 1 0",
+            minWidth: 0,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "stretch",
+            pr: 1
+          }}
+        >
           <Typography
             component="h3"
             variant="h3"
             sx={{
-              pr: 0.5,
               lineHeight: 1.3,
               fontSize: "1.35rem",
-              wordBreak: "break-word"
+              wordBreak: "break-word",
+              overflowWrap: "anywhere"
             }}
           >
             {displayOrDash(title)}
           </Typography>
         </Box>
-        <IconButton
-          type="button"
-          onClick={onClose}
-          aria-label="Close"
-          sx={{ color: "#fff", flexShrink: 0 }}
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            flexShrink: 0,
+            flexWrap: "nowrap",
+            alignItems: "center",
+            gap: 1
+          }}
         >
-          <CloseIcon />
-        </IconButton>
+          <Button
+            type="button"
+            variant="outlined"
+            sx={{
+              flexShrink: 0,
+              borderColor: "#fff",
+              background: "#000",
+              color: "#fff",
+              px: "0.55rem",
+              py: "0.3rem",
+              minWidth: 0,
+              borderRadius: 0,
+              textTransform: "none",
+              margin: 0,
+              whiteSpace: "nowrap",
+              position: "relative",
+              "&:hover": {
+                borderColor: "#fff",
+                background: "#fff",
+                color: "#000",
+                zIndex: 1
+              }
+            }}
+          >
+            similar shapes
+          </Button>
+          <IconButton
+            type="button"
+            onClick={onClose}
+            aria-label="Close"
+            sx={{ color: "#fff", flexShrink: 0 }}
+          >
+            <CloseIcon />
+          </IconButton>
+        </Box>
       </DialogTitle>
       <DialogContent sx={{ pt: 1, pb: 2 }}>
         <Box
@@ -137,8 +180,6 @@ function ObjectImageModal({
             }}
           >
             <Box
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
               sx={{
                 position: "relative",
                 display: "flex",
@@ -149,40 +190,16 @@ function ObjectImageModal({
               }}
             >
               {colorImageSrc ? (
-                <>
-                  <img
-                    src={colorImageSrc}
-                    alt={`${objectId}_color.png`}
-                    style={{
-                      ...imageMaxStyle,
-                      objectFit: "contain",
-                      objectPosition: "center",
-                      display: "block",
-                      opacity: hasOutlineHover && isHovered ? 0 : 1,
-                      transition: "opacity 120ms ease-out"
-                    }}
-                  />
-                  {outlineImageSrc ? (
-                    <InlineOutlineSvg
-                      src={outlineImageSrc}
-                      alt={`${objectId}_outline.svg`}
-                      className="inline-outline-svg"
-                      style={{
-                        position: "absolute",
-                        left: 0,
-                        right: 0,
-                        top: 0,
-                        bottom: 0,
-                        margin: "auto",
-                        ...imageMaxStyle,
-                        display: "block",
-                        opacity: isHovered ? 1 : 0,
-                        transition: "opacity 120ms ease-out",
-                        pointerEvents: "none"
-                      }}
-                    />
-                  ) : null}
-                </>
+                <img
+                  src={colorImageSrc}
+                  alt={`${objectId}_color.png`}
+                  style={{
+                    ...imageMaxStyle,
+                    objectFit: "contain",
+                    objectPosition: "center",
+                    display: "block"
+                  }}
+                />
               ) : (
                 <Typography color="text.secondary" sx={{ color: "#888", fontSize: "1.05rem" }}>
                   No image for this object.
