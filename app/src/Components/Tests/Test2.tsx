@@ -126,7 +126,10 @@ function objectMatchesShelfColorGroupFilter(
   return row.objectIds.includes(objectId);
 }
 
-function derivePaletteKmeansClusterUi(map: Map<string, ObjectColorMeta>): { k: number; clusterIds: number[] } {
+function derivePaletteKmeansClusterUi(map: Map<string, ObjectColorMeta>): {
+  k: number;
+  clusterIds: number[];
+} {
   let k: number | null = null;
   let maxCluster = -1;
   for (const meta of map.values()) {
@@ -144,8 +147,12 @@ function derivePaletteKmeansClusterUi(map: Map<string, ObjectColorMeta>): { k: n
 }
 
 const manualRejectObjectIdSet = new Set(manualRejectObjectIds.map((objectId) => String(objectId)));
-const manualColorGroupIdSets = buildManualColorGroupIdSets(manualColorGroupsJson as ManualColorGroupsFile);
-const manualColorGroupNamesSorted = [...manualColorGroupIdSets.keys()].sort((a, b) => a.localeCompare(b));
+const manualColorGroupIdSets = buildManualColorGroupIdSets(
+  manualColorGroupsJson as ManualColorGroupsFile
+);
+const manualColorGroupNamesSorted = [...manualColorGroupIdSets.keys()].sort((a, b) =>
+  a.localeCompare(b)
+);
 const objectTitleById = new Map(
   Object.entries(
     objectsData as Record<
@@ -253,9 +260,7 @@ function parseBucketLabels(raw: string): string[] {
   try {
     const parsed = JSON.parse(raw);
     if (!Array.isArray(parsed)) return [];
-    return parsed
-      .map((value) => String(value ?? "").trim())
-      .filter((value) => value.length > 0);
+    return parsed.map((value) => String(value ?? "").trim()).filter((value) => value.length > 0);
   } catch {
     return [];
   }
@@ -269,7 +274,10 @@ function parseOptionalIntCell(raw: string | undefined): number | null {
   return Number.isFinite(n) ? Math.trunc(n) : null;
 }
 
-function formatPaletteKmeansLine(meta: ObjectColorMeta | undefined): { detail: string; dim: boolean } {
+function formatPaletteKmeansLine(meta: ObjectColorMeta | undefined): {
+  detail: string;
+  dim: boolean;
+} {
   const cluster = meta?.colorKmeansCluster;
   const k = meta?.colorKmeansK;
   if (cluster == null && k == null) return { detail: "—", dim: true };
@@ -306,11 +314,17 @@ function buildColorMetaByObjectId() {
     const kRaw = colorKmeansKCol == null ? undefined : row[colorKmeansKCol];
     map.set(objectId, {
       colorgramPaletteHex:
-        colorgramPaletteCol == null ? [] : parseHexPalette(String(row[colorgramPaletteCol] ?? "").trim()),
+        colorgramPaletteCol == null
+          ? []
+          : parseHexPalette(String(row[colorgramPaletteCol] ?? "").trim()),
       colorgramPaletteShare:
-        colorgramShareCol == null ? [] : parseNumberArray(String(row[colorgramShareCol] ?? "").trim()),
+        colorgramShareCol == null
+          ? []
+          : parseNumberArray(String(row[colorgramShareCol] ?? "").trim()),
       colorBucketLabels:
-        colorBucketLabelsCol == null ? [] : parseBucketLabels(String(row[colorBucketLabelsCol] ?? "").trim()),
+        colorBucketLabelsCol == null
+          ? []
+          : parseBucketLabels(String(row[colorBucketLabelsCol] ?? "").trim()),
       colorBucketPrimary: primaryRaw,
       colorKmeansCluster: parseOptionalIntCell(clusterRaw),
       colorKmeansK: parseOptionalIntCell(kRaw)
@@ -625,12 +639,15 @@ function Test2() {
   const [showOnlyBeforeYearZero, setShowOnlyBeforeYearZero] = useState(false);
   const [showOnlyWithPaletteData, setShowOnlyWithPaletteData] = useState(false);
   const [selectedColorBucketFilter, setSelectedColorBucketFilter] = useState<string | null>(null);
-  const [selectedKMeansClusterFilter, setSelectedKMeansClusterFilter] = useState<number | null>(null);
-  const [selectedManualGroupFilter, setSelectedManualGroupFilter] = useState<string | null>(null);
-  const [selectedShelfColorGroupKey, setSelectedShelfColorGroupKey] = useState<ColorGroupKey | null>(null);
-  const [selectedExcludeManualClusterFilter, setSelectedExcludeManualClusterFilter] = useState<number | null>(
+  const [selectedKMeansClusterFilter, setSelectedKMeansClusterFilter] = useState<number | null>(
     null
   );
+  const [selectedManualGroupFilter, setSelectedManualGroupFilter] = useState<string | null>(null);
+  const [selectedShelfColorGroupKey, setSelectedShelfColorGroupKey] =
+    useState<ColorGroupKey | null>(null);
+  const [selectedExcludeManualClusterFilter, setSelectedExcludeManualClusterFilter] = useState<
+    number | null
+  >(null);
   const [clickedObjectIds, setClickedObjectIds] = useState<string[]>([]);
 
   useEffect(() => {
@@ -667,35 +684,42 @@ function Test2() {
 
   const normalizedObjectIdSearch = objectIdSearch.trim();
   const displayedObjectIds = useMemo(() => {
-    const filtered = objectIds.filter((objectId) => {
-      if (normalizedObjectIdSearch && objectId !== normalizedObjectIdSearch) return false;
-      if (!showOnlyBeforeYearZero) return true;
-      const rawDate = objectFieldMetaById.get(objectId)?.date ?? "";
-      const numericDate = Number(rawDate);
-      const passesDateFilter = Number.isFinite(numericDate) && numericDate < 0;
-      if (!passesDateFilter) return false;
-      return true;
-    }).filter((objectId) => {
-      if (!showOnlyWithPaletteData) return true;
-      const colorMeta = objectColorMetaById.get(objectId);
-      return (colorMeta?.colorgramPaletteHex.length ?? 0) > 0;
-    }).filter((objectId) => {
-      const colorMeta = objectColorMetaById.get(objectId);
-      return objectMatchesColorBucketFilter(colorMeta, selectedColorBucketFilter);
-    }).filter((objectId) => {
-      const colorMeta = objectColorMetaById.get(objectId);
-      return objectMatchesKMeansClusterFilter(colorMeta, selectedKMeansClusterFilter);
-    }).filter((objectId) =>
-      objectMatchesManualGroupFilter(objectId, selectedManualGroupFilter, manualColorGroupIdSets)
-    ).filter((objectId) =>
-      objectMatchesShelfColorGroupFilter(objectId, selectedShelfColorGroupKey, groupRowByKey)
-    ).filter((objectId) =>
-      objectMatchesExcludeManualKMeansFilter(
-        objectId,
-        selectedExcludeManualClusterFilter,
-        excludeManualKmeansParsed.clusterByObjectId
+    const filtered = objectIds
+      .filter((objectId) => {
+        if (normalizedObjectIdSearch && objectId !== normalizedObjectIdSearch) return false;
+        if (!showOnlyBeforeYearZero) return true;
+        const rawDate = objectFieldMetaById.get(objectId)?.date ?? "";
+        const numericDate = Number(rawDate);
+        const passesDateFilter = Number.isFinite(numericDate) && numericDate < 0;
+        if (!passesDateFilter) return false;
+        return true;
+      })
+      .filter((objectId) => {
+        if (!showOnlyWithPaletteData) return true;
+        const colorMeta = objectColorMetaById.get(objectId);
+        return (colorMeta?.colorgramPaletteHex.length ?? 0) > 0;
+      })
+      .filter((objectId) => {
+        const colorMeta = objectColorMetaById.get(objectId);
+        return objectMatchesColorBucketFilter(colorMeta, selectedColorBucketFilter);
+      })
+      .filter((objectId) => {
+        const colorMeta = objectColorMetaById.get(objectId);
+        return objectMatchesKMeansClusterFilter(colorMeta, selectedKMeansClusterFilter);
+      })
+      .filter((objectId) =>
+        objectMatchesManualGroupFilter(objectId, selectedManualGroupFilter, manualColorGroupIdSets)
       )
-    );
+      .filter((objectId) =>
+        objectMatchesShelfColorGroupFilter(objectId, selectedShelfColorGroupKey, groupRowByKey)
+      )
+      .filter((objectId) =>
+        objectMatchesExcludeManualKMeansFilter(
+          objectId,
+          selectedExcludeManualClusterFilter,
+          excludeManualKmeansParsed.clusterByObjectId
+        )
+      );
     return sortDisplayedIdsByExcludeManualCentroidOrder(
       filtered,
       selectedExcludeManualClusterFilter,
@@ -847,7 +871,9 @@ function Test2() {
               colors.map((hex, index) => {
                 const share = weightedShares[index];
                 const widthPercent =
-                  weightedTotal > 0 ? (share / weightedTotal) * 100 : 100 / Math.max(1, colors.length);
+                  weightedTotal > 0
+                    ? (share / weightedTotal) * 100
+                    : 100 / Math.max(1, colors.length);
                 return (
                   <span
                     key={`${objectId}-colorgram-weighted-${hex}-${index}`}
@@ -1055,9 +1081,11 @@ function Test2() {
           background: "#0a0a0a"
         }}
       >
-        <p style={{ margin: "0 0 0.55rem 0", fontSize: "0.72rem", color: "#777", lineHeight: 1.35 }}>
-          Only one color filter at a time — choosing any option below clears the others (bucket, either KMeans run,
-          manual JSON, or app shelf color group).
+        <p
+          style={{ margin: "0 0 0.55rem 0", fontSize: "0.72rem", color: "#777", lineHeight: 1.35 }}
+        >
+          Only one color filter at a time — choosing any option below clears the others (bucket,
+          either KMeans run, manual JSON, or app shelf color group).
         </p>
         <div
           style={{
@@ -1325,10 +1353,13 @@ function Test2() {
                 }
               }}
               style={{
-                border: selectedExcludeManualClusterFilter === -1 ? "1px solid #fa8" : "1px solid #444",
+                border:
+                  selectedExcludeManualClusterFilter === -1 ? "1px solid #fa8" : "1px solid #444",
                 borderRadius: "6px",
                 background:
-                  selectedExcludeManualClusterFilter === -1 ? "rgba(255, 160, 120, 0.15)" : "#141414",
+                  selectedExcludeManualClusterFilter === -1
+                    ? "rgba(255, 160, 120, 0.15)"
+                    : "#141414",
                 color: "#e8e8e8",
                 padding: "0.28rem 0.5rem",
                 fontSize: "0.72rem",
