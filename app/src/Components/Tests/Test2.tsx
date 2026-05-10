@@ -6,19 +6,24 @@ import objectsData from "../../../../fetch_data/data/objects.json";
 import fieldsCsvRaw from "../../../../format_data/generated/fields.csv?raw";
 import excludeManualKmeansClustersCsvRaw from "../../../../format_data/generated/color/object_color_kmeans_clusters_exclude_manual.csv?raw";
 import excludeManualClusterUiOrderPayload from "../../../../format_data/generated/color/object_color_kmeans_exclude_manual_cluster_ui_order.json";
-import silhouetteFeaturesCsvRaw from "../../../../process_data/features/silhouette_features.csv?raw";
-import useColorGroups, { type ColorGroupKey, type ColorGroupRow } from "../../hooks/useColorGroups";
+import {
+  corpusYearMax,
+  corpusYearMin,
+  getAllShapeNeighborObjectIds,
+  getShapeNeighborsForObject
+} from "../../data/shapeNeighborsPayload";
+import useObjectModalMetadata from "../../hooks/useObjectModalMetadata";
+import {
+  formatPlaceVsAnchorSentence,
+  parseFinalDateYear
+} from "../../utils/neighborComparisonCaptions";
+import ChronologySpanGlyph from "../ChronologySpanGlyph";
 import InlineOutlineSvg from "../Scenes/InlineOutlineSvg";
 
 const S3_IMAGE_BASE_URL = "https://vessels-thesis.s3.amazonaws.com/real_images";
 
 type ImageMode = "mask" | "no_bg" | "outline";
 
-type NeighborHit = { objectId: string; distance: number };
-type NeighborIndex = {
-  orderedObjectIds: string[];
-  vectorByObjectId: Map<string, Float64Array>;
-};
 type ObjectFieldMeta = {
   date: string;
   location: string;
@@ -41,52 +46,8 @@ const IMAGE_SUFFIX: Record<ImageMode, string> = {
 };
 /** Legacy key; removed from persistence — cleared on mount so old sessions do not replay. */
 const LEGACY_SELECTED_OBJECT_IDS_STORAGE_KEY = "test2_selected_object_ids";
-const NEIGHBOR_COUNT = 10;
-
 /** Thumbnail click opens closest-neighbors modal. */
 const TEST2_OPEN_MODAL_ON_IMAGE_CLICK = true;
-const FEATURE_WEIGHTS = {
-  lr: 1.0,
-  tb: 0.2,
-  shape: 1.0,
-  inner: 0.8,
-  innerCount: 0.5
-} as const;
-
-/** Matches `COLOR_BUCKETS` in format_data/color/new/bucket_colors.py */
-const COLOR_BUCKET_OPTIONS = [
-  "blue and white",
-  "terracotta",
-  "tan stoneware",
-  "white / cream",
-  "black / dark",
-  "green / celadon",
-  "yellow / ochre",
-  "red / orange",
-  "brown / earth tone",
-  "gray / neutral",
-  "multicolor",
-  "mixed / other"
-] as const;
-
-function objectMatchesColorBucketFilter(
-  colorMeta: ObjectColorMeta | undefined,
-  filter: string | null
-): boolean {
-  if (filter == null || filter === "") return true;
-  const primary = (colorMeta?.colorBucketPrimary ?? "").trim();
-  const labels = colorMeta?.colorBucketLabels ?? [];
-  return filter === primary || labels.includes(filter);
-}
-
-function objectMatchesKMeansClusterFilter(
-  colorMeta: ObjectColorMeta | undefined,
-  filter: number | null
-): boolean {
-  if (filter === null) return true;
-  const cluster = colorMeta?.colorKmeansCluster;
-  return cluster === filter;
-}
 
 type ManualColorGroupsFile = Record<string, unknown>;
 
@@ -113,37 +74,6 @@ function objectMatchesManualGroupFilter(
   const set = setsByName.get(filter);
   if (set == null || set.size === 0) return false;
   return set.has(objectId);
-}
-
-function objectMatchesShelfColorGroupFilter(
-  objectId: string,
-  filter: ColorGroupKey | null,
-  groupRowByKey: Map<ColorGroupKey, ColorGroupRow>
-): boolean {
-  if (filter == null) return true;
-  const row = groupRowByKey.get(filter);
-  if (row == null || row.objectIds.length === 0) return false;
-  return row.objectIds.includes(objectId);
-}
-
-function derivePaletteKmeansClusterUi(map: Map<string, ObjectColorMeta>): {
-  k: number;
-  clusterIds: number[];
-} {
-  let k: number | null = null;
-  let maxCluster = -1;
-  for (const meta of map.values()) {
-    if (meta.colorKmeansK != null && meta.colorKmeansK > 0) {
-      k = meta.colorKmeansK;
-    }
-    const c = meta.colorKmeansCluster;
-    if (c != null && c >= 0) {
-      maxCluster = Math.max(maxCluster, c);
-    }
-  }
-  const kEff = k ?? (maxCluster >= 0 ? maxCluster + 1 : 0);
-  const clusterIds = kEff > 0 ? Array.from({ length: kEff }, (_, i) => i) : [];
-  return { k: kEff, clusterIds };
 }
 
 const manualRejectObjectIdSet = new Set(manualRejectObjectIds.map((objectId) => String(objectId)));
@@ -482,169 +412,13 @@ function scrollToBottom() {
   window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
 }
 
-function numericSuffix(name: string, prefix: string) {
-  if (!name.startsWith(prefix)) return Number.NaN;
-  const suffix = name.slice(prefix.length);
-  return /^\d+$/.test(suffix) ? Number(suffix) : Number.NaN;
-}
-
-function sortedProfileCols(headers: string[], prefix: string) {
-  return headers
-    .filter((col) => Number.isFinite(numericSuffix(col, prefix)))
-    .sort((a, b) => numericSuffix(a, prefix) - numericSuffix(b, prefix));
-}
-
-function median(values: number[]) {
-  if (values.length === 0) return 0;
-  const sorted = [...values].sort((a, b) => a - b);
-  const mid = Math.floor(sorted.length / 2);
-  return sorted.length % 2 ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2;
-}
-
-function buildNeighborIndex(allowedObjectIds: Set<string>): NeighborIndex {
-  const lines = silhouetteFeaturesCsvRaw.trim().split("\n");
-  if (lines.length < 2) {
-    return { orderedObjectIds: [], vectorByObjectId: new Map() };
-  }
-
-  const headers = lines[0].split(",");
-  const colIndexByName = new Map(headers.map((h, i) => [h, i]));
-  const objectIdColIdx = colIndexByName.get("object_id");
-  if (objectIdColIdx == null) {
-    return { orderedObjectIds: [], vectorByObjectId: new Map() };
-  }
-
-  const lrCols = [...sortedProfileCols(headers, "l"), ...sortedProfileCols(headers, "r")];
-  const tbCols = [...sortedProfileCols(headers, "t"), ...sortedProfileCols(headers, "b")];
-  const symmetryCols = headers.filter((col) =>
-    [
-      "lr_profile_abs_diff_mean",
-      "eccentricity",
-      "upper_vs_lower_width_ratio",
-      "centroid_x_norm",
-      "centroid_offset_x"
-    ].includes(col)
-  );
-  const contourCols = headers.filter(
-    (col) => col.startsWith("contour_") || col.startsWith("convexity_")
-  );
-  const huCols = headers.filter((col) => /^hu\d+$/.test(col));
-  const innerCountCols = headers.filter((col) => col === "inner_count");
-  const innerCols = headers.filter((col) => col.startsWith("inner") && col !== "inner_count");
-  const shapeCols = Array.from(new Set([...contourCols, ...huCols, ...symmetryCols]));
-
-  const featureCols = [...lrCols, ...tbCols, ...shapeCols, ...innerCols, ...innerCountCols];
-  const featureColIndexes = featureCols
-    .map((col) => colIndexByName.get(col))
-    .filter((idx): idx is number => idx != null);
-
-  const rows: { objectId: string; values: number[] }[] = [];
-  const valuesByCol: number[][] = featureColIndexes.map(() => []);
-
-  for (let rowIdx = 1; rowIdx < lines.length; rowIdx += 1) {
-    const rawCells = lines[rowIdx].split(",");
-    const objectId = String(rawCells[objectIdColIdx] ?? "").trim();
-    if (!objectId || !allowedObjectIds.has(objectId)) continue;
-    const values = featureColIndexes.map((colIdx, j) => {
-      const raw = String(rawCells[colIdx] ?? "")
-        .trim()
-        .toLowerCase();
-      const parsed = raw === "" || raw === "nan" ? Number.NaN : Number(raw);
-      if (Number.isFinite(parsed)) valuesByCol[j].push(parsed);
-      return parsed;
-    });
-    rows.push({ objectId, values });
-  }
-
-  if (rows.length === 0) return { orderedObjectIds: [], vectorByObjectId: new Map() };
-
-  const medians = valuesByCol.map((values) => median(values));
-  const imputed = rows.map((row) =>
-    row.values.map((value, idx) => (Number.isFinite(value) ? value : medians[idx]))
-  );
-
-  const means = featureColIndexes.map((_, colIdx) => {
-    let sum = 0;
-    for (let rowIdx = 0; rowIdx < imputed.length; rowIdx += 1) {
-      sum += imputed[rowIdx][colIdx];
-    }
-    return sum / Math.max(1, imputed.length);
-  });
-
-  const stds = featureColIndexes.map((_, colIdx) => {
-    let sumSq = 0;
-    for (let rowIdx = 0; rowIdx < imputed.length; rowIdx += 1) {
-      const centered = imputed[rowIdx][colIdx] - means[colIdx];
-      sumSq += centered * centered;
-    }
-    const variance = sumSq / Math.max(1, imputed.length);
-    return variance > 0 ? Math.sqrt(variance) : 1;
-  });
-
-  const weights = featureCols.map((col) => {
-    if (lrCols.includes(col)) return FEATURE_WEIGHTS.lr;
-    if (tbCols.includes(col)) return FEATURE_WEIGHTS.tb;
-    if (col === "inner_count") return FEATURE_WEIGHTS.innerCount;
-    if (innerCols.includes(col)) return FEATURE_WEIGHTS.inner;
-    return FEATURE_WEIGHTS.shape;
-  });
-
-  const vectorByObjectId = new Map<string, Float64Array>();
-  const orderedObjectIds: string[] = [];
-  for (let rowIdx = 0; rowIdx < rows.length; rowIdx += 1) {
-    const vector = new Float64Array(featureColIndexes.length);
-    for (let colIdx = 0; colIdx < featureColIndexes.length; colIdx += 1) {
-      const standardized = (imputed[rowIdx][colIdx] - means[colIdx]) / stds[colIdx];
-      vector[colIdx] = standardized * weights[colIdx];
-    }
-    const objectId = rows[rowIdx].objectId;
-    vectorByObjectId.set(objectId, vector);
-    orderedObjectIds.push(objectId);
-  }
-
-  return { orderedObjectIds, vectorByObjectId };
-}
-
-function computeClosestNeighbors(
-  selectedObjectId: string,
-  index: NeighborIndex,
-  maxNeighbors: number
-): NeighborHit[] {
-  const selectedVector = index.vectorByObjectId.get(selectedObjectId);
-  if (!selectedVector) return [];
-
-  const hits: NeighborHit[] = [];
-  for (let i = 0; i < index.orderedObjectIds.length; i += 1) {
-    const objectId = index.orderedObjectIds[i];
-    if (objectId === selectedObjectId) continue;
-    const vector = index.vectorByObjectId.get(objectId);
-    if (!vector) continue;
-    let sumSq = 0;
-    for (let j = 0; j < selectedVector.length; j += 1) {
-      const diff = selectedVector[j] - vector[j];
-      sumSq += diff * diff;
-    }
-    hits.push({ objectId, distance: Math.sqrt(sumSq) });
-  }
-
-  hits.sort((a, b) => a.distance - b.distance);
-  return hits.slice(0, maxNeighbors);
-}
-
 function Test2() {
   const navigate = useNavigate();
-  const { groupRows, groupRowByKey } = useColorGroups();
   const [imageMode, setImageMode] = useState<ImageMode>("no_bg");
   const [objectIdSearch, setObjectIdSearch] = useState("");
   const [showOnlyBeforeYearZero, setShowOnlyBeforeYearZero] = useState(false);
   const [showOnlyWithPaletteData, setShowOnlyWithPaletteData] = useState(false);
-  const [selectedColorBucketFilter, setSelectedColorBucketFilter] = useState<string | null>(null);
-  const [selectedKMeansClusterFilter, setSelectedKMeansClusterFilter] = useState<number | null>(
-    null
-  );
   const [selectedManualGroupFilter, setSelectedManualGroupFilter] = useState<string | null>(null);
-  const [selectedShelfColorGroupKey, setSelectedShelfColorGroupKey] =
-    useState<ColorGroupKey | null>(null);
   const [selectedExcludeManualClusterFilter, setSelectedExcludeManualClusterFilter] = useState<
     number | null
   >(null);
@@ -668,19 +442,15 @@ function Test2() {
       .sort((a, b) => Number(a) - Number(b));
   }, []);
 
-  const neighborIndex = useMemo(() => {
-    return buildNeighborIndex(new Set(baseObjectIds));
-  }, [baseObjectIds]);
+  const silhouetteNeighborIdSet = useMemo(() => new Set(getAllShapeNeighborObjectIds()), []);
 
   const objectIds = useMemo(() => {
-    return [...neighborIndex.orderedObjectIds].sort((a, b) => Number(a) - Number(b));
-  }, [neighborIndex]);
+    return baseObjectIds.filter((id) => silhouetteNeighborIdSet.has(id));
+  }, [baseObjectIds, silhouetteNeighborIdSet]);
+
   const objectFieldMetaById = useMemo(() => buildFieldsMetaByObjectId(), []);
+  const objectModalFieldsById = useObjectModalMetadata();
   const objectColorMetaById = useMemo(() => buildColorMetaByObjectId(), []);
-  const paletteKmeansUi = useMemo(
-    () => derivePaletteKmeansClusterUi(objectColorMetaById),
-    [objectColorMetaById]
-  );
 
   const normalizedObjectIdSearch = objectIdSearch.trim();
   const displayedObjectIds = useMemo(() => {
@@ -699,19 +469,8 @@ function Test2() {
         const colorMeta = objectColorMetaById.get(objectId);
         return (colorMeta?.colorgramPaletteHex.length ?? 0) > 0;
       })
-      .filter((objectId) => {
-        const colorMeta = objectColorMetaById.get(objectId);
-        return objectMatchesColorBucketFilter(colorMeta, selectedColorBucketFilter);
-      })
-      .filter((objectId) => {
-        const colorMeta = objectColorMetaById.get(objectId);
-        return objectMatchesKMeansClusterFilter(colorMeta, selectedKMeansClusterFilter);
-      })
       .filter((objectId) =>
         objectMatchesManualGroupFilter(objectId, selectedManualGroupFilter, manualColorGroupIdSets)
-      )
-      .filter((objectId) =>
-        objectMatchesShelfColorGroupFilter(objectId, selectedShelfColorGroupKey, groupRowByKey)
       )
       .filter((objectId) =>
         objectMatchesExcludeManualKMeansFilter(
@@ -726,16 +485,12 @@ function Test2() {
       excludeManualKmeansParsed.kFit
     );
   }, [
-    groupRowByKey,
     objectColorMetaById,
     objectFieldMetaById,
     objectIds,
     normalizedObjectIdSearch,
-    selectedColorBucketFilter,
     selectedExcludeManualClusterFilter,
-    selectedKMeansClusterFilter,
     selectedManualGroupFilter,
-    selectedShelfColorGroupKey,
     showOnlyBeforeYearZero,
     showOnlyWithPaletteData
   ]);
@@ -743,8 +498,8 @@ function Test2() {
   const hasNoSearchResult = normalizedObjectIdSearch.length > 0 && displayedObjectIds.length === 0;
   const closestNeighbors = useMemo(() => {
     if (!selectedObjectId) return [];
-    return computeClosestNeighbors(selectedObjectId, neighborIndex, NEIGHBOR_COUNT);
-  }, [neighborIndex, selectedObjectId]);
+    return getShapeNeighborsForObject(selectedObjectId)?.neighbors20 ?? [];
+  }, [selectedObjectId]);
 
   const modalCardCount = Math.max(1, closestNeighbors.length + (selectedObjectId ? 1 : 0));
   const modalTargetWidthPx = Math.min(1280, Math.max(520, modalCardCount * 210 + 48));
@@ -1084,92 +839,10 @@ function Test2() {
         <p
           style={{ margin: "0 0 0.55rem 0", fontSize: "0.72rem", color: "#777", lineHeight: 1.35 }}
         >
-          Only one color filter at a time — choosing any option below clears the others (bucket,
-          either KMeans run, manual JSON, or app shelf color group).
+          Only one color filter at a time — choosing manual JSON or exclude-manual KMeans clears the
+          other.
         </p>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "0.5rem",
-            flexWrap: "wrap",
-            marginBottom: "0.45rem"
-          }}
-        >
-          <span style={{ fontSize: "0.85rem", color: "#ccc", fontWeight: 600 }}>Color bucket</span>
-          <button
-            type="button"
-            onClick={() => setSelectedColorBucketFilter(null)}
-            disabled={selectedColorBucketFilter == null}
-            style={{
-              border: "1px solid #666",
-              borderRadius: "6px",
-              background: selectedColorBucketFilter == null ? "#1a1a1a" : "#222",
-              color: selectedColorBucketFilter == null ? "#666" : "#fff",
-              padding: "0.2rem 0.45rem",
-              fontSize: "0.75rem",
-              cursor: selectedColorBucketFilter == null ? "default" : "pointer"
-            }}
-          >
-            All buckets
-          </button>
-          <span style={{ fontSize: "0.75rem", color: "#888" }}>
-            {selectedColorBucketFilter == null
-              ? "showing every bucket"
-              : `match: ${selectedColorBucketFilter}`}
-          </span>
-        </div>
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            gap: "0.35rem",
-            alignItems: "center"
-          }}
-        >
-          {COLOR_BUCKET_OPTIONS.map((bucket) => {
-            const active = selectedColorBucketFilter === bucket;
-            return (
-              <button
-                key={bucket}
-                type="button"
-                aria-pressed={active}
-                onClick={() => {
-                  const next = selectedColorBucketFilter === bucket ? null : bucket;
-                  setSelectedColorBucketFilter(next);
-                  if (next != null) {
-                    setSelectedKMeansClusterFilter(null);
-                    setSelectedExcludeManualClusterFilter(null);
-                    setSelectedManualGroupFilter(null);
-                    setSelectedShelfColorGroupKey(null);
-                  }
-                }}
-                style={{
-                  border: active ? "1px solid #9cf" : "1px solid #444",
-                  borderRadius: "6px",
-                  background: active ? "rgba(120, 180, 255, 0.18)" : "#141414",
-                  color: "#e8e8e8",
-                  padding: "0.28rem 0.5rem",
-                  fontSize: "0.72rem",
-                  lineHeight: 1.25,
-                  cursor: "pointer",
-                  maxWidth: "100%",
-                  textAlign: "left"
-                }}
-              >
-                {bucket}
-              </button>
-            );
-          })}
-        </div>
-
-        <div
-          style={{
-            marginTop: "0.65rem",
-            paddingTop: "0.65rem",
-            borderTop: "1px solid #2a2a2a"
-          }}
-        >
+        <div>
           <div
             style={{
               display: "flex",
@@ -1180,31 +853,28 @@ function Test2() {
             }}
           >
             <span style={{ fontSize: "0.85rem", color: "#ccc", fontWeight: 600 }}>
-              Palette KMeans cluster
+              Manual color group
             </span>
             <button
               type="button"
-              onClick={() => setSelectedKMeansClusterFilter(null)}
-              disabled={selectedKMeansClusterFilter == null}
+              onClick={() => setSelectedManualGroupFilter(null)}
+              disabled={selectedManualGroupFilter == null}
               style={{
                 border: "1px solid #666",
                 borderRadius: "6px",
-                background: selectedKMeansClusterFilter == null ? "#1a1a1a" : "#222",
-                color: selectedKMeansClusterFilter == null ? "#666" : "#fff",
+                background: selectedManualGroupFilter == null ? "#1a1a1a" : "#222",
+                color: selectedManualGroupFilter == null ? "#666" : "#fff",
                 padding: "0.2rem 0.45rem",
                 fontSize: "0.75rem",
-                cursor: selectedKMeansClusterFilter == null ? "default" : "pointer"
+                cursor: selectedManualGroupFilter == null ? "default" : "pointer"
               }}
             >
-              All clusters
+              All manual groups
             </button>
             <span style={{ fontSize: "0.75rem", color: "#888" }}>
-              {paletteKmeansUi.k > 0 ? `k=${paletteKmeansUi.k} · ` : ""}
-              {selectedKMeansClusterFilter == null
-                ? "showing every cluster"
-                : selectedKMeansClusterFilter === -1
-                  ? "match: Unassigned"
-                  : `match: cluster ${selectedKMeansClusterFilter}`}
+              {selectedManualGroupFilter == null
+                ? "no manual filter"
+                : `match: ${selectedManualGroupFilter} (${manualColorGroupIdSets.get(selectedManualGroupFilter)?.size ?? 0} ids)`}
             </span>
           </div>
           <div
@@ -1215,65 +885,35 @@ function Test2() {
               alignItems: "center"
             }}
           >
-            <button
-              key="kmeans-unassigned"
-              type="button"
-              aria-pressed={selectedKMeansClusterFilter === -1}
-              onClick={() => {
-                const next = selectedKMeansClusterFilter === -1 ? null : -1;
-                setSelectedKMeansClusterFilter(next);
-                if (next != null) {
-                  setSelectedColorBucketFilter(null);
-                  setSelectedExcludeManualClusterFilter(null);
-                  setSelectedManualGroupFilter(null);
-                  setSelectedShelfColorGroupKey(null);
-                }
-              }}
-              style={{
-                border: selectedKMeansClusterFilter === -1 ? "1px solid #fa8" : "1px solid #444",
-                borderRadius: "6px",
-                background:
-                  selectedKMeansClusterFilter === -1 ? "rgba(255, 160, 120, 0.15)" : "#141414",
-                color: "#e8e8e8",
-                padding: "0.28rem 0.5rem",
-                fontSize: "0.72rem",
-                lineHeight: 1.25,
-                cursor: "pointer"
-              }}
-            >
-              Unassigned
-            </button>
-            {paletteKmeansUi.clusterIds.map((id) => {
-              const active = selectedKMeansClusterFilter === id;
+            {manualColorGroupNamesSorted.map((name) => {
+              const count = manualColorGroupIdSets.get(name)?.size ?? 0;
+              const active = selectedManualGroupFilter === name;
+              const label = `${name.replace(/_/g, " ")} (${count})`;
               return (
                 <button
-                  key={`kmeans-${id}`}
+                  key={`manual-group-${name}`}
                   type="button"
                   aria-pressed={active}
+                  title={name}
                   onClick={() => {
-                    const next = selectedKMeansClusterFilter === id ? null : id;
-                    setSelectedKMeansClusterFilter(next);
-                    if (next != null) {
-                      setSelectedColorBucketFilter(null);
-                      setSelectedExcludeManualClusterFilter(null);
-                      setSelectedManualGroupFilter(null);
-                      setSelectedShelfColorGroupKey(null);
-                    }
+                    const next = selectedManualGroupFilter === name ? null : name;
+                    setSelectedManualGroupFilter(next);
+                    if (next != null) setSelectedExcludeManualClusterFilter(null);
                   }}
                   style={{
-                    border: active ? "1px solid #9cf" : "1px solid #444",
+                    border: active ? "1px solid #c9f" : "1px solid #444",
                     borderRadius: "6px",
-                    background: active ? "rgba(120, 180, 255, 0.18)" : "#141414",
+                    background: active ? "rgba(200, 150, 255, 0.16)" : "#141414",
                     color: "#e8e8e8",
                     padding: "0.28rem 0.5rem",
                     fontSize: "0.72rem",
                     lineHeight: 1.25,
                     cursor: "pointer",
-                    minWidth: "2rem",
-                    textAlign: "center"
+                    maxWidth: "100%",
+                    textAlign: "left"
                   }}
                 >
-                  {id}
+                  {label}
                 </button>
               );
             })}
@@ -1345,12 +985,7 @@ function Test2() {
               onClick={() => {
                 const next = selectedExcludeManualClusterFilter === -1 ? null : -1;
                 setSelectedExcludeManualClusterFilter(next);
-                if (next != null) {
-                  setSelectedColorBucketFilter(null);
-                  setSelectedKMeansClusterFilter(null);
-                  setSelectedManualGroupFilter(null);
-                  setSelectedShelfColorGroupKey(null);
-                }
+                if (next != null) setSelectedManualGroupFilter(null);
               }}
               style={{
                 border:
@@ -1380,12 +1015,7 @@ function Test2() {
                   onClick={() => {
                     const next = selectedExcludeManualClusterFilter === id ? null : id;
                     setSelectedExcludeManualClusterFilter(next);
-                    if (next != null) {
-                      setSelectedColorBucketFilter(null);
-                      setSelectedKMeansClusterFilter(null);
-                      setSelectedManualGroupFilter(null);
-                      setSelectedShelfColorGroupKey(null);
-                    }
+                    if (next != null) setSelectedManualGroupFilter(null);
                   }}
                   style={{
                     border: active ? "1px solid #fd9" : "1px solid #444",
@@ -1401,187 +1031,6 @@ function Test2() {
                   }}
                 >
                   {id}
-                </button>
-              );
-            })}
-          </div>
-        </div>
-
-        <div
-          style={{
-            marginTop: "0.65rem",
-            paddingTop: "0.65rem",
-            borderTop: "1px solid #2a2a2a"
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "0.5rem",
-              flexWrap: "wrap",
-              marginBottom: "0.45rem"
-            }}
-          >
-            <span style={{ fontSize: "0.85rem", color: "#ccc", fontWeight: 600 }}>
-              Manual color group
-            </span>
-            <button
-              type="button"
-              onClick={() => setSelectedManualGroupFilter(null)}
-              disabled={selectedManualGroupFilter == null}
-              style={{
-                border: "1px solid #666",
-                borderRadius: "6px",
-                background: selectedManualGroupFilter == null ? "#1a1a1a" : "#222",
-                color: selectedManualGroupFilter == null ? "#666" : "#fff",
-                padding: "0.2rem 0.45rem",
-                fontSize: "0.75rem",
-                cursor: selectedManualGroupFilter == null ? "default" : "pointer"
-              }}
-            >
-              All manual groups
-            </button>
-            <span style={{ fontSize: "0.75rem", color: "#888" }}>
-              {selectedManualGroupFilter == null
-                ? "no manual filter"
-                : `match: ${selectedManualGroupFilter} (${manualColorGroupIdSets.get(selectedManualGroupFilter)?.size ?? 0} ids)`}
-            </span>
-          </div>
-          <div
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              gap: "0.35rem",
-              alignItems: "center"
-            }}
-          >
-            {manualColorGroupNamesSorted.map((name) => {
-              const count = manualColorGroupIdSets.get(name)?.size ?? 0;
-              const active = selectedManualGroupFilter === name;
-              const label = `${name.replace(/_/g, " ")} (${count})`;
-              return (
-                <button
-                  key={`manual-group-${name}`}
-                  type="button"
-                  aria-pressed={active}
-                  title={name}
-                  onClick={() => {
-                    const next = selectedManualGroupFilter === name ? null : name;
-                    setSelectedManualGroupFilter(next);
-                    if (next != null) {
-                      setSelectedColorBucketFilter(null);
-                      setSelectedKMeansClusterFilter(null);
-                      setSelectedExcludeManualClusterFilter(null);
-                      setSelectedShelfColorGroupKey(null);
-                    }
-                  }}
-                  style={{
-                    border: active ? "1px solid #c9f" : "1px solid #444",
-                    borderRadius: "6px",
-                    background: active ? "rgba(200, 150, 255, 0.16)" : "#141414",
-                    color: "#e8e8e8",
-                    padding: "0.28rem 0.5rem",
-                    fontSize: "0.72rem",
-                    lineHeight: 1.25,
-                    cursor: "pointer",
-                    maxWidth: "100%",
-                    textAlign: "left"
-                  }}
-                >
-                  {label}
-                </button>
-              );
-            })}
-          </div>
-        </div>
-
-        <div
-          style={{
-            marginTop: "0.65rem",
-            paddingTop: "0.65rem",
-            borderTop: "1px solid #2a2a2a"
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "0.5rem",
-              flexWrap: "wrap",
-              marginBottom: "0.45rem"
-            }}
-          >
-            <span style={{ fontSize: "0.85rem", color: "#ccc", fontWeight: 600 }}>
-              App shelf color group
-            </span>
-            <button
-              type="button"
-              onClick={() => setSelectedShelfColorGroupKey(null)}
-              disabled={selectedShelfColorGroupKey == null}
-              style={{
-                border: "1px solid #666",
-                borderRadius: "6px",
-                background: selectedShelfColorGroupKey == null ? "#1a1a1a" : "#222",
-                color: selectedShelfColorGroupKey == null ? "#666" : "#fff",
-                padding: "0.2rem 0.45rem",
-                fontSize: "0.75rem",
-                cursor: selectedShelfColorGroupKey == null ? "default" : "pointer"
-              }}
-            >
-              All shelf groups
-            </button>
-            <span style={{ fontSize: "0.75rem", color: "#888" }}>
-              {selectedShelfColorGroupKey == null
-                ? "same keys as home → color shelf"
-                : (() => {
-                    const row = groupRowByKey.get(selectedShelfColorGroupKey);
-                    const n = row?.objectIds.length ?? 0;
-                    return `match: ${row?.label ?? selectedShelfColorGroupKey} (${n})`;
-                  })()}
-            </span>
-          </div>
-          <div
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              gap: "0.35rem",
-              alignItems: "center"
-            }}
-          >
-            {groupRows.map((row: ColorGroupRow) => {
-              const active = selectedShelfColorGroupKey === row.groupKey;
-              const count = row.objectIds.length;
-              return (
-                <button
-                  key={`shelf-color-${row.groupKey}`}
-                  type="button"
-                  aria-pressed={active}
-                  title={row.groupKey}
-                  onClick={() => {
-                    const next = selectedShelfColorGroupKey === row.groupKey ? null : row.groupKey;
-                    setSelectedShelfColorGroupKey(next);
-                    if (next != null) {
-                      setSelectedColorBucketFilter(null);
-                      setSelectedKMeansClusterFilter(null);
-                      setSelectedExcludeManualClusterFilter(null);
-                      setSelectedManualGroupFilter(null);
-                    }
-                  }}
-                  style={{
-                    border: active ? "1px solid #9f9" : "1px solid #444",
-                    borderRadius: "6px",
-                    background: active ? "rgba(120, 220, 140, 0.14)" : "#141414",
-                    color: "#e8e8e8",
-                    padding: "0.28rem 0.5rem",
-                    fontSize: "0.72rem",
-                    lineHeight: 1.25,
-                    cursor: "pointer",
-                    maxWidth: "100%",
-                    textAlign: "left"
-                  }}
-                >
-                  {row.label} ({count})
                 </button>
               );
             })}
@@ -1780,7 +1229,7 @@ function Test2() {
           >
             <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", flexWrap: "wrap" }}>
               <h2 style={{ margin: 0, fontSize: "clamp(0.95rem, 2.8vw, 1rem)" }}>
-                Closest Neighbors (Top {NEIGHBOR_COUNT})
+                Closest Neighbors (Top 10)
               </h2>
               <span style={{ color: "#fff", fontSize: "0.85rem" }}>Modal view:</span>
               <button
@@ -1847,8 +1296,9 @@ function Test2() {
             </div>
 
             <p style={{ margin: "0.65rem 0 0", fontSize: "0.8rem", color: "#bbb" }}>
-              Computed live from weighted silhouette features (lr/tb/shape/inner), median-imputed
-              and standardized.
+              Precomputed neighbors (
+              <code style={{ fontSize: "0.78rem" }}>shape_neighbors_euclidean.json</code>) — same
+              weighted silhouette pipeline (median-imputed, standardized).
             </p>
 
             <div
@@ -1884,11 +1334,11 @@ function Test2() {
 
               {closestNeighbors.map((neighbor, index) => (
                 <figure
-                  key={`${selectedObjectId}-${neighbor.objectId}`}
+                  key={`${selectedObjectId}-${neighbor.neighborId}`}
                   style={{ margin: 0, width: "210px", maxWidth: "210px" }}
                 >
                   <div
-                    onClick={() => handleImageClick(neighbor.objectId)}
+                    onClick={() => handleImageClick(neighbor.neighborId)}
                     style={{
                       background: modalImageMode === "no_bg" ? "transparent" : "#000",
                       aspectRatio: "1 / 1",
@@ -1896,18 +1346,49 @@ function Test2() {
                       cursor: "pointer"
                     }}
                   >
-                    {renderModeImage(neighbor.objectId, modalImageMode)}
+                    {renderModeImage(neighbor.neighborId, modalImageMode)}
                   </div>
                   <figcaption style={{ marginTop: "0.5rem", color: "#fff", fontSize: "0.8rem" }}>
                     <div style={{ fontWeight: 700 }}>Neighbor #{index + 1}</div>
-                    <div>Object ID: {neighbor.objectId}</div>
-                    <div>Title: {getObjectTitle(neighbor.objectId)}</div>
-                    <div>Date: {objectFieldMetaById.get(neighbor.objectId)?.date ?? "Unknown"}</div>
+                    <div>Object ID: {neighbor.neighborId}</div>
+                    <div>Title: {getObjectTitle(neighbor.neighborId)}</div>
                     <div>
-                      Location: {objectFieldMetaById.get(neighbor.objectId)?.location ?? "Unknown"}
+                      Date: {objectFieldMetaById.get(neighbor.neighborId)?.date ?? "Unknown"}
                     </div>
-                    <div>Distance: {neighbor.distance.toFixed(4)}</div>
-                    {renderPaletteStrips(neighbor.objectId, 9)}
+                    <div>
+                      Location:{" "}
+                      {objectFieldMetaById.get(neighbor.neighborId)?.location ?? "Unknown"}
+                    </div>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexWrap: "wrap",
+                        alignItems: "center",
+                        gap: "0.35rem"
+                      }}
+                    >
+                      <span style={{ color: "#9a9a9a" }}>Chronology:</span>
+                      <ChronologySpanGlyph
+                        corpusMin={corpusYearMin}
+                        corpusMax={corpusYearMax}
+                        anchorYear={parseFinalDateYear(
+                          objectModalFieldsById.get(selectedObjectId ?? "")?.finalDate ?? ""
+                        )}
+                        neighborYear={parseFinalDateYear(
+                          objectModalFieldsById.get(neighbor.neighborId)?.finalDate ?? ""
+                        )}
+                        neighborFinalDate={
+                          objectModalFieldsById.get(neighbor.neighborId)?.finalDate ?? ""
+                        }
+                      />
+                    </div>
+                    <div>
+                      {formatPlaceVsAnchorSentence(
+                        objectModalFieldsById.get(selectedObjectId ?? ""),
+                        objectModalFieldsById.get(neighbor.neighborId)
+                      )}
+                    </div>
+                    {renderPaletteStrips(neighbor.neighborId, 9)}
                   </figcaption>
                 </figure>
               ))}

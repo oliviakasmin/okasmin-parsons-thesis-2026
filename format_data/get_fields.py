@@ -13,6 +13,7 @@ from .place.geocode_locations import CACHE_CSV_PATH
 ROOT = Path(__file__).resolve().parents[1]
 OBJECTS_JSON_PATH = ROOT / "fetch_data" / "data" / "objects.json"
 OUTPUT_CSV_PATH = Path(__file__).resolve().parent / "generated" / "fields.csv"
+OBJECT_ID_COLUMN = "objectID"
 COLOR_FIELDS_CSV_PATH = Path(__file__).resolve().parent / "generated" / "color" / "object_color_fields.csv"
 NEW_COLOR_FIELDS_CSV_PATH = Path(__file__).resolve().parent / "generated" / "color" / "object_color_fields_new.csv"
 COLOR_KMEANS_CLUSTERS_CSV_PATH = Path(__file__).resolve().parent / "generated" / "color" / "object_color_kmeans_clusters.csv"
@@ -82,6 +83,37 @@ def add_geocoded_location_fields(df: pd.DataFrame) -> pd.DataFrame:
     return out
 
 
+def _mask_nonempty_colorgram_palette(palette_series: pd.Series) -> pd.Series:
+    s = palette_series.astype(str).str.strip()
+    return s.notna() & (s != "") & (s != "nan") & (s != "[]")
+
+
+def sync_legacy_visual_palette_from_colorgram(df: pd.DataFrame) -> pd.DataFrame:
+    """Align legacy modal/top-color columns with the latest colorgram palette when present.
+
+    Frontend still reads ``dominant_colors_hex`` (e.g. object modal); Test2 reads
+    ``colorgram_palette_hex``. After merging sources, both point at the same snapshot where
+    colorgram data exists.
+    """
+    out = df.copy()
+    if "colorgram_palette_hex" not in out.columns:
+        return out
+    mask = _mask_nonempty_colorgram_palette(out["colorgram_palette_hex"])
+    if not bool(mask.any()):
+        return out
+    if "dominant_colors_hex" in out.columns:
+        out.loc[mask, "dominant_colors_hex"] = out.loc[mask, "colorgram_palette_hex"]
+    if "dominant_colors_share" in out.columns and "colorgram_palette_share" in out.columns:
+        out.loc[mask, "dominant_colors_share"] = out.loc[mask, "colorgram_palette_share"]
+    if "top_color_hex" in out.columns and "colorgram_dominant_hex" in out.columns:
+        sub = out.loc[mask]
+        cd = sub["colorgram_dominant_hex"].astype(str).str.strip()
+        ok = cd.notna() & (cd != "") & (cd != "nan")
+        idx = sub.index[ok]
+        out.loc[idx, "top_color_hex"] = out.loc[idx, "colorgram_dominant_hex"]
+    return out
+
+
 def add_color_fields(df: pd.DataFrame) -> pd.DataFrame:
     """Join generated per-object color fields by objectID."""
     out = df.copy()
@@ -126,14 +158,16 @@ def add_color_fields(df: pd.DataFrame) -> pd.DataFrame:
             out[col] = ""
         return out
 
+    # Legacy CSV first, then ``object_color_fields_new.csv``, so ``keep="last"`` prefers the
+    # newest pipeline row per object for overlapping columns (including ``colorgram_palette_hex``).
     color_df = pd.concat(color_frames, ignore_index=True, sort=False)
-    if "objectID" not in color_df.columns:
+    if OBJECT_ID_COLUMN not in color_df.columns:
         for col in color_cols:
             out[col] = ""
         return out
 
-    keep_cols = ["objectID"] + [c for c in color_cols if c in color_df.columns]
-    color_df = color_df[keep_cols].drop_duplicates(subset=["objectID"], keep="last")
+    keep_cols = [OBJECT_ID_COLUMN] + [c for c in color_cols if c in color_df.columns]
+    color_df = color_df[keep_cols].drop_duplicates(subset=[OBJECT_ID_COLUMN], keep="last")
 
     # New color snapshots (e.g. object_color_fields_new.csv) often omit color_group_* columns.
     # Concat + keep="last" then leaves NaN for groups on overlapping IDs. Re-attach groups from
@@ -149,14 +183,17 @@ def add_color_fields(df: pd.DataFrame) -> pd.DataFrame:
         if "objectID" in legacy_df.columns:
             lg_keep = ["objectID"] + [c for c in legacy_group_cols if c in legacy_df.columns]
             if len(lg_keep) > 1:
-                legacy_groups = legacy_df[lg_keep].drop_duplicates(subset=["objectID"], keep="last")
+                legacy_groups = legacy_df[lg_keep].drop_duplicates(
+                    subset=[OBJECT_ID_COLUMN], keep="last"
+                )
                 color_df = color_df.drop(
                     columns=[c for c in legacy_group_cols if c in color_df.columns],
                     errors="ignore",
                 )
-                color_df = color_df.merge(legacy_groups, on="objectID", how="left")
+                color_df = color_df.merge(legacy_groups, on=OBJECT_ID_COLUMN, how="left")
 
-    out = out.merge(color_df, on="objectID", how="left")
+    out = out.merge(color_df, on=OBJECT_ID_COLUMN, how="left")
+    out = sync_legacy_visual_palette_from_colorgram(out)
     return out
 
 
@@ -176,8 +213,8 @@ def add_color_kmeans_clusters(df: pd.DataFrame) -> pd.DataFrame:
         return out
 
     keep = ["objectID"] + [c for c in kmeans_cols if c in kdf.columns]
-    kdf = kdf[keep].drop_duplicates(subset=["objectID"], keep="last")
-    out = out.merge(kdf, on="objectID", how="left")
+    kdf = kdf[keep].drop_duplicates(subset=[OBJECT_ID_COLUMN], keep="last")
+    out = out.merge(kdf, on=OBJECT_ID_COLUMN, how="left")
     return out
 
 
@@ -209,9 +246,9 @@ def add_cluster_group_fields(df: pd.DataFrame) -> pd.DataFrame:
                 "cluster_type": "shape_cluster_type",
             }
         )
-        .drop_duplicates(subset=["objectID"], keep="last")
+        .drop_duplicates(subset=[OBJECT_ID_COLUMN], keep="last")
     )
-    out = out.merge(cluster_df, on="objectID", how="left")
+    out = out.merge(cluster_df, on=OBJECT_ID_COLUMN, how="left")
     return out
 
 
@@ -224,6 +261,9 @@ def build_fields(df: pd.DataFrame) -> pd.DataFrame:
     df = add_color_fields(df)
     df = add_color_kmeans_clusters(df)
     df = add_cluster_group_fields(df)
+
+    # One row per object; ``keep="last"`` matches color CSV precedence above.
+    df = df.drop_duplicates(subset=[OBJECT_ID_COLUMN], keep="last").reset_index(drop=True)
 
     out = df[
         [

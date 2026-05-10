@@ -1,7 +1,11 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Box, Button, Typography } from "@mui/material";
 import mapboxgl from "mapbox-gl";
-import { normalizeCountryCandidate, type ObjectGeo } from "../../hooks/useObjectGeo";
+import {
+  formatCountryDisplayLabel,
+  normalizeCountryCandidate,
+  type ObjectGeo
+} from "../../hooks/useObjectGeo";
 import "mapbox-gl/dist/mapbox-gl.css";
 
 type ProjectedPoint = {
@@ -213,7 +217,7 @@ function Map({
             return;
           }
           onCountryResolvedRef.current({
-            displayLabel: geo.displayLabel,
+            displayLabel: formatCountryDisplayLabel(normalizedCountry),
             normalizedCountry
           });
         } catch (error) {

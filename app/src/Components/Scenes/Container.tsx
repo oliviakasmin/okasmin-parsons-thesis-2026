@@ -7,7 +7,7 @@ import finalClusterKeysCsv from "../../../../format_data/cluster_shape/final_clu
 import fieldsCsv from "../../../../format_data/generated/fields.csv?raw";
 import BackButton from "../BackButton";
 import ImageToggleButton from "../ImageToggleButton";
-import useImageToggle from "../../hooks/useImageToggle";
+import useImageToggle, { type ImageToggleMode } from "../../hooks/useImageToggle";
 import useImageModules from "../../hooks/useImageModules";
 import useFormatClusters from "../../hooks/useFormatClusters";
 import useFunctionGroups, { isFunctionGroup } from "../../hooks/useFunctionGroups";
@@ -398,9 +398,14 @@ function Container() {
     [noBgImageByObjectId]
   );
 
-  const getColorImageSrc = useCallback(
-    (objectId: string) => noBgImageByObjectId.get(objectId) ?? maskImageByObjectId.get(objectId),
-    [maskImageByObjectId, noBgImageByObjectId]
+  const getTileImageSrc = useCallback(
+    (objectId: string, tileMode: ImageToggleMode) => {
+      if (tileMode === "outline") return outlineImageByObjectId.get(objectId);
+      if (tileMode === "color")
+        return noBgImageByObjectId.get(objectId) ?? maskImageByObjectId.get(objectId);
+      return maskImageByObjectId.get(objectId);
+    },
+    [maskImageByObjectId, noBgImageByObjectId, outlineImageByObjectId]
   );
 
   const imageAltSuffix = mode === "outline" ? "outline" : mode === "color" ? "no_bg" : "mask";
@@ -565,8 +570,74 @@ function Container() {
           <Box sx={{ flexShrink: 0 }}>
             <BackButton />
           </Box>
-          <Box sx={{ flexShrink: 0, marginLeft: "auto" }}>
-            <ImageToggleButton mode={mode} options={options} onChange={setMode} />
+          <Box
+            sx={{
+              flexShrink: 0,
+              marginLeft: "auto",
+              display: "flex",
+              alignItems: "center",
+              gap: 0
+            }}
+          >
+            <Button
+              type="button"
+              onClick={() => setSearchParams({ view: "all" }, { state: location.state })}
+              variant="outlined"
+              sx={{
+                borderColor: "#fff",
+                background: currentView === "all" ? "#fff" : "#000",
+                color: currentView === "all" ? "#000" : "#fff",
+                textTransform: "none",
+                minWidth: 0,
+                borderRadius: 0,
+                "&:hover": {
+                  borderColor: "#fff",
+                  background: currentView === "all" ? "#fff" : "#000"
+                }
+              }}
+            >
+              All
+            </Button>
+            <Button
+              type="button"
+              onClick={() => setSearchParams({ view: "timeline" }, { state: location.state })}
+              variant="outlined"
+              sx={{
+                borderColor: "#fff",
+                background: currentView === "timeline" ? "#fff" : "#000",
+                color: currentView === "timeline" ? "#000" : "#fff",
+                textTransform: "none",
+                minWidth: 0,
+                borderRadius: 0,
+                marginLeft: "-1px",
+                "&:hover": {
+                  borderColor: "#fff",
+                  background: currentView === "timeline" ? "#fff" : "#000"
+                }
+              }}
+            >
+              Timeline
+            </Button>
+            <Button
+              type="button"
+              onClick={() => setSearchParams({ view: "map" }, { state: location.state })}
+              variant="outlined"
+              sx={{
+                borderColor: "#fff",
+                background: currentView === "map" ? "#fff" : "#000",
+                color: currentView === "map" ? "#000" : "#fff",
+                textTransform: "none",
+                minWidth: 0,
+                borderRadius: 0,
+                marginLeft: "-1px",
+                "&:hover": {
+                  borderColor: "#fff",
+                  background: currentView === "map" ? "#fff" : "#000"
+                }
+              }}
+            >
+              Map
+            </Button>
           </Box>
         </Box>
 
@@ -891,63 +962,7 @@ function Container() {
         }}
       >
         <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 0 }}>
-          <Button
-            type="button"
-            onClick={() => setSearchParams({ view: "all" }, { state: location.state })}
-            variant="outlined"
-            sx={{
-              borderColor: "#fff",
-              background: currentView === "all" ? "#fff" : "#000",
-              color: currentView === "all" ? "#000" : "#fff",
-              textTransform: "none",
-              minWidth: 0,
-              borderRadius: 0,
-              "&:hover": {
-                borderColor: "#fff",
-                background: currentView === "all" ? "#fff" : "#000"
-              }
-            }}
-          >
-            All
-          </Button>
-          <Button
-            type="button"
-            onClick={() => setSearchParams({ view: "timeline" }, { state: location.state })}
-            variant="outlined"
-            sx={{
-              borderColor: "#fff",
-              background: currentView === "timeline" ? "#fff" : "#000",
-              color: currentView === "timeline" ? "#000" : "#fff",
-              textTransform: "none",
-              minWidth: 0,
-              borderRadius: 0,
-              "&:hover": {
-                borderColor: "#fff",
-                background: currentView === "timeline" ? "#fff" : "#000"
-              }
-            }}
-          >
-            Timeline
-          </Button>
-          <Button
-            type="button"
-            onClick={() => setSearchParams({ view: "map" }, { state: location.state })}
-            variant="outlined"
-            sx={{
-              borderColor: "#fff",
-              background: currentView === "map" ? "#fff" : "#000",
-              color: currentView === "map" ? "#000" : "#fff",
-              textTransform: "none",
-              minWidth: 0,
-              borderRadius: 0,
-              "&:hover": {
-                borderColor: "#fff",
-                background: currentView === "map" ? "#fff" : "#000"
-              }
-            }}
-          >
-            Map
-          </Button>
+          <ImageToggleButton mode={mode} options={options} onChange={setMode} />
         </Box>
       </Box>
 
@@ -958,9 +973,9 @@ function Container() {
           onClose={() => setModalObjectId(null)}
           title={objectModalFieldsById.get(modalObjectId)?.title ?? ""}
           finalDate={objectModalFieldsById.get(modalObjectId)?.finalDate ?? ""}
-          mapboxPlaceName={objectModalFieldsById.get(modalObjectId)?.mapboxPlaceName ?? ""}
-          dominantColorsHex={objectModalFieldsById.get(modalObjectId)?.dominantColorsHex ?? []}
-          getColorImageSrc={getColorImageSrc}
+          colorgramPaletteHex={objectModalFieldsById.get(modalObjectId)?.colorgramPaletteHex ?? []}
+          metadataByObjectId={objectModalFieldsById}
+          getTileImageSrc={getTileImageSrc}
         />
       ) : null}
     </Box>

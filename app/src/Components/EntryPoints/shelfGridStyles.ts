@@ -69,6 +69,11 @@ const shelfArticleBase = {
   cursor: "pointer"
 } as const;
 
+/** Article wrapper for tiles whose captions are always visible (no hover reveal). */
+export const shelfArticleTileSx: SxProps<Theme> = {
+  ...shelfArticleBase
+};
+
 /** Article wrapper for each shelf tile (shared dimensions + hover label reveal). */
 export function shelfArticleSx(labelClassName: string): SxProps<Theme> {
   return {

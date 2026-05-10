@@ -4,6 +4,8 @@ from pathlib import Path
 
 import pandas as pd
 
+from format_data.get_fields import sync_legacy_visual_palette_from_colorgram
+
 ROOT = Path(__file__).resolve().parents[3]
 FIELDS_CSV_PATH = ROOT / "format_data" / "generated" / "fields.csv"
 NEW_COLOR_CSV_PATH = ROOT / "format_data" / "generated" / "color" / "object_color_fields_new.csv"
@@ -37,7 +39,13 @@ def run() -> None:
     keep_cols = ["objectID"] + [col for col in add_cols if col in color_df.columns]
     color_df = color_df[keep_cols].drop_duplicates(subset=["objectID"], keep="last")
 
-    merged = fields_df.rename(columns={"objectId": "objectID"}).merge(color_df, on="objectID", how="left")
+    base = fields_df.rename(columns={"objectId": "objectID"})
+    # Avoid pandas ``*_x`` / ``*_y`` duplicate columns when fields.csv already includes palette cols.
+    replace_cols = [c for c in keep_cols if c != "objectID" and c in base.columns]
+    base = base.drop(columns=replace_cols, errors="ignore")
+    merged = base.merge(color_df[keep_cols], on="objectID", how="left")
+    merged = sync_legacy_visual_palette_from_colorgram(merged)
+    merged = merged.drop_duplicates(subset=["objectID"], keep="last").reset_index(drop=True)
     merged = merged.rename(columns={"objectID": "objectId"})
     merged.to_csv(FIELDS_CSV_PATH, index=False)
     print(f"Updated {FIELDS_CSV_PATH} with {len(color_df)} color rows from {NEW_COLOR_CSV_PATH}")

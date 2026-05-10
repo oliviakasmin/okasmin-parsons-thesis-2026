@@ -76,8 +76,7 @@ function buildTimelineBucketMetadataMap(jsonRaw: string) {
 
 function buildFinalDateByObjectIdMap(csvRaw: string) {
   type BucketInfo = {
-    beginDate: number;
-    endDate: number;
+    finalDate: number;
     key: string;
   };
   const lines = csvRaw.split(/\r?\n/).filter(Boolean);
@@ -85,21 +84,21 @@ function buildFinalDateByObjectIdMap(csvRaw: string) {
 
   const header = parseCsvLine(lines[0]);
   const objectIdIdx = header.indexOf("objectId");
-  const objectBeginDateIdx = header.indexOf("objectBeginDate");
-  const objectEndDateIdx = header.indexOf("objectEndDate");
+  const finalDateIdx = header.indexOf("final_date");
   const bucketKeyIdx = header.indexOf("final_date_bucket_key");
   const result = new Map<string, BucketInfo>();
+
+  if (objectIdIdx < 0 || finalDateIdx < 0 || bucketKeyIdx < 0) return result;
 
   for (const line of lines.slice(1)) {
     const cells = parseCsvLine(line);
     const objectId = cells[objectIdIdx]?.trim();
-    const beginDate = parseStrictYear(cells[objectBeginDateIdx] ?? "");
-    const endDate = parseStrictYear(cells[objectEndDateIdx] ?? "");
+    const finalDate = parseStrictYear(cells[finalDateIdx] ?? "");
     const key = (cells[bucketKeyIdx] ?? "").trim();
 
-    if (!objectId || beginDate === null || endDate === null || !key) continue;
+    if (!objectId || finalDate === null || !key) continue;
 
-    result.set(objectId, { beginDate, endDate, key });
+    result.set(objectId, { finalDate, key });
   }
 
   return result;
@@ -156,8 +155,8 @@ function useTimelineBuckets(objectIds: string[]): TimelineBucketsResult {
   return useMemo(() => {
     const bucketsByKey = new Map<string, TimelineBucket>();
     let excludedCount = 0;
-    let minBeginDate = Number.POSITIVE_INFINITY;
-    let maxEndDate = Number.NEGATIVE_INFINITY;
+    let minFinalDate = Number.POSITIVE_INFINITY;
+    let maxFinalDate = Number.NEGATIVE_INFINITY;
 
     for (const objectId of objectIds) {
       const bucketInfo = finalDateByObjectId.get(objectId);
@@ -166,8 +165,8 @@ function useTimelineBuckets(objectIds: string[]): TimelineBucketsResult {
         continue;
       }
 
-      minBeginDate = Math.min(minBeginDate, bucketInfo.beginDate);
-      maxEndDate = Math.max(maxEndDate, bucketInfo.endDate);
+      minFinalDate = Math.min(minFinalDate, bucketInfo.finalDate);
+      maxFinalDate = Math.max(maxFinalDate, bucketInfo.finalDate);
 
       const timelineBucketMetadata = timelineBucketMetadataByKey.get(bucketInfo.key);
       if (!timelineBucketMetadata) {
@@ -207,8 +206,8 @@ function useTimelineBuckets(objectIds: string[]): TimelineBucketsResult {
       });
 
     const spanYears =
-      Number.isFinite(minBeginDate) && Number.isFinite(maxEndDate)
-        ? Math.max(0, maxEndDate - minBeginDate)
+      Number.isFinite(minFinalDate) && Number.isFinite(maxFinalDate)
+        ? Math.max(0, maxFinalDate - minFinalDate)
         : 0;
 
     return { buckets, excludedCount, spanYears };

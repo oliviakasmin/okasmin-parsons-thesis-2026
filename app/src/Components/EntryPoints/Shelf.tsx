@@ -5,7 +5,7 @@ import { homeEntryDomId, type HomeEntryScrollId } from "../constants";
 import useInlineSvg from "../../hooks/useInlineSvg";
 import type { ShelfSlot } from "./shelfGridStyles";
 import {
-  shelfArticleSx,
+  shelfArticleTileSx,
   shelfEmptySlotSx,
   shelfGridRowSx,
   shelfGridStackSx,
@@ -14,8 +14,13 @@ import {
   shelfSlotSurfaceSx,
   shelfTabMainSx
 } from "./shelfGridStyles";
+import objectStatsJson from "../../../public/data/object_stats.json";
 
 const shelfEntryScrollId: HomeEntryScrollId = "shelf";
+
+const shapeClusterLabelsById = (
+  objectStatsJson as { byShapeClusterGroup?: Record<string, { label?: string }> }
+).byShapeClusterGroup;
 
 const cluster0 = "cluster_0";
 const cluster1 = "cluster_1";
@@ -36,21 +41,6 @@ const SHELF_LAYOUT: ShelfSlot<string>[][] = [
   [cluster3, cluster4, cluster5, cluster11],
   [cluster9, cluster0, cluster1, cluster2]
 ];
-
-const clusterLabels: Record<string, string> = {
-  cluster_0: "outliers",
-  cluster_1: "wide outliers",
-  cluster_2: "narrow outliers"
-  // cluster_3: "wider with tall shoulders",
-  // cluster_4: "bulbous body with longer neck",
-  // cluster_5: "Core",
-  // cluster_6: "squat",
-  // cluster_7: "Core",
-  // cluster_8: "round",
-  // cluster_9: "probably a pitcher",
-  // cluster_10: "narrow with tall shoulders",
-  // cluster_11: "medium belly with a neck"
-};
 
 type AnimatedSampledSvgProps = {
   src: string;
@@ -196,6 +186,7 @@ function Shelf() {
               }
 
               const stackedSvgSrc = `/cluster_SVG_stacked_outlines/${clusterId}_stack_sampled.svg`;
+              const clusterLabel = shapeClusterLabelsById?.[clusterId]?.label?.trim();
               return (
                 <Box
                   component="article"
@@ -209,7 +200,7 @@ function Shelf() {
                       state: { homeScrollTo: shelfEntryScrollId }
                     })
                   }
-                  sx={shelfArticleSx("shelf-cluster-label")}
+                  sx={shelfArticleTileSx}
                 >
                   <Box sx={shelfSlotSurfaceSx()}>
                     <Box sx={shelfSlotInnerMediaSx()}>
@@ -222,13 +213,18 @@ function Shelf() {
                       )}
                     </Box>
                   </Box>
-                  <Typography
-                    className="shelf-cluster-label"
-                    component="span"
-                    sx={{ ...shelfOverlayLabelSx, display: "none" }}
-                  >
-                    {clusterLabels[clusterId] ?? clusterId}
-                  </Typography>
+                  {clusterLabel ? (
+                    <Typography
+                      component="span"
+                      sx={{
+                        ...shelfOverlayLabelSx,
+                        opacity: 1,
+                        visibility: "visible"
+                      }}
+                    >
+                      {clusterLabel}
+                    </Typography>
+                  ) : null}
                 </Box>
               );
             })}

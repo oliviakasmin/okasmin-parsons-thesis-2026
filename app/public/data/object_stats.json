@@ -91,5 +91,350 @@
       "department": "Asian Art",
       "final_group": "jar"
     }
-  ]
+  ],
+  "byShapeClusterGroup": {
+    "cluster_0": {
+      "objectCount": 125,
+      "label": "outliers",
+      "maximumTimeSpan": {
+        "minFinalDate": -4250,
+        "maxFinalDate": 1949,
+        "spanYears": 6199
+      },
+      "earliest": [
+        {
+          "objectId": "547523",
+          "objectBeginDate": -4500,
+          "objectEndDate": -4000,
+          "final_date": -4250,
+          "department": "Egyptian Art",
+          "final_group": "vessel"
+        }
+      ],
+      "latest": [
+        {
+          "objectId": "52569",
+          "objectBeginDate": 1900,
+          "objectEndDate": 1999,
+          "final_date": 1949,
+          "department": "Asian Art",
+          "final_group": "vase"
+        }
+      ]
+    },
+    "cluster_1": {
+      "objectCount": 170,
+      "label": "wide outliers",
+      "maximumTimeSpan": {
+        "minFinalDate": -3500,
+        "maxFinalDate": 1898,
+        "spanYears": 5398
+      },
+      "earliest": [
+        {
+          "objectId": "547452",
+          "objectBeginDate": -3500,
+          "objectEndDate": -3500,
+          "final_date": -3500,
+          "department": "Egyptian Art",
+          "final_group": "vessel"
+        }
+      ],
+      "latest": [
+        {
+          "objectId": "716908",
+          "objectBeginDate": 1893,
+          "objectEndDate": 1903,
+          "final_date": 1898,
+          "department": "The American Wing",
+          "final_group": "vase"
+        }
+      ]
+    },
+    "cluster_10": {
+      "objectCount": 685,
+      "label": "largest group",
+      "maximumTimeSpan": {
+        "minFinalDate": -2875,
+        "maxFinalDate": 1930,
+        "spanYears": 4805
+      },
+      "earliest": [
+        {
+          "objectId": "547756",
+          "objectBeginDate": -3100,
+          "objectEndDate": -2649,
+          "final_date": -2875,
+          "department": "Egyptian Art",
+          "final_group": "jar"
+        }
+      ],
+      "latest": [
+        {
+          "objectId": "48842",
+          "objectBeginDate": 1920,
+          "objectEndDate": 1940,
+          "final_date": 1930,
+          "department": "Asian Art",
+          "final_group": "vase"
+        }
+      ]
+    },
+    "cluster_11": {
+      "objectCount": 487,
+      "label": "most countries",
+      "maximumTimeSpan": {
+        "minFinalDate": -2600,
+        "maxFinalDate": 1950,
+        "spanYears": 4550
+      },
+      "earliest": [
+        {
+          "objectId": "248502",
+          "objectBeginDate": -2900,
+          "objectEndDate": -2300,
+          "final_date": -2600,
+          "department": "Greek and Roman Art",
+          "final_group": "jug"
+        }
+      ],
+      "latest": [
+        {
+          "objectId": "63526",
+          "objectBeginDate": 1934,
+          "objectEndDate": 1966,
+          "final_date": 1950,
+          "department": "Asian Art",
+          "final_group": "bottle"
+        }
+      ]
+    },
+    "cluster_2": {
+      "objectCount": 122,
+      "label": "narrow outliers",
+      "maximumTimeSpan": {
+        "minFinalDate": -2300,
+        "maxFinalDate": 1908,
+        "spanYears": 4208
+      },
+      "earliest": [
+        {
+          "objectId": "37404",
+          "objectBeginDate": -3600,
+          "objectEndDate": -1000,
+          "final_date": -2300,
+          "department": "Asian Art",
+          "final_group": "vase"
+        }
+      ],
+      "latest": [
+        {
+          "objectId": "46695",
+          "objectBeginDate": 1900,
+          "objectEndDate": 1916,
+          "final_date": 1908,
+          "department": "Asian Art",
+          "final_group": "bottle"
+        }
+      ]
+    },
+    "cluster_3": {
+      "objectCount": 634,
+      "label": "longest timespan",
+      "maximumTimeSpan": {
+        "minFinalDate": -4250,
+        "maxFinalDate": 1922,
+        "spanYears": 6172
+      },
+      "earliest": [
+        {
+          "objectId": "552190",
+          "objectBeginDate": -4500,
+          "objectEndDate": -4000,
+          "final_date": -4250,
+          "department": "Egyptian Art",
+          "final_group": "jar"
+        }
+      ],
+      "latest": [
+        {
+          "objectId": "487245",
+          "objectBeginDate": 1922,
+          "objectEndDate": 1922,
+          "final_date": 1922,
+          "department": "Modern and Contemporary Art",
+          "final_group": "vase"
+        }
+      ]
+    },
+    "cluster_4": {
+      "objectCount": 528,
+      "maximumTimeSpan": {
+        "minFinalDate": -3515,
+        "maxFinalDate": 1949,
+        "spanYears": 5464
+      },
+      "earliest": [
+        {
+          "objectId": "246560",
+          "objectBeginDate": -7000,
+          "objectEndDate": -30,
+          "final_date": -3515,
+          "department": "Greek and Roman Art",
+          "final_group": "flask"
+        }
+      ],
+      "latest": [
+        {
+          "objectId": "57400",
+          "objectBeginDate": 1900,
+          "objectEndDate": 1999,
+          "final_date": 1949,
+          "department": "Asian Art",
+          "final_group": "bottle"
+        }
+      ]
+    },
+    "cluster_5": {
+      "objectCount": 413,
+      "maximumTimeSpan": {
+        "minFinalDate": -3000,
+        "maxFinalDate": 1912,
+        "spanYears": 4912
+      },
+      "earliest": [
+        {
+          "objectId": "65596",
+          "objectBeginDate": -3500,
+          "objectEndDate": -2500,
+          "final_date": -3000,
+          "department": "Asian Art",
+          "final_group": "jar"
+        }
+      ],
+      "latest": [
+        {
+          "objectId": "47270",
+          "objectBeginDate": 1912,
+          "objectEndDate": 1912,
+          "final_date": 1912,
+          "department": "Asian Art",
+          "final_group": "jug"
+        }
+      ]
+    },
+    "cluster_6": {
+      "objectCount": 232,
+      "maximumTimeSpan": {
+        "minFinalDate": -3405,
+        "maxFinalDate": 1882,
+        "spanYears": 5287
+      },
+      "earliest": [
+        {
+          "objectId": "558282",
+          "objectBeginDate": -3850,
+          "objectEndDate": -2960,
+          "final_date": -3405,
+          "department": "Egyptian Art",
+          "final_group": "jar"
+        }
+      ],
+      "latest": [
+        {
+          "objectId": "771009",
+          "objectBeginDate": 1882,
+          "objectEndDate": 1882,
+          "final_date": 1882,
+          "department": "European Sculpture and Decorative Arts",
+          "final_group": "jar"
+        }
+      ]
+    },
+    "cluster_7": {
+      "objectCount": 338,
+      "maximumTimeSpan": {
+        "minFinalDate": -3650,
+        "maxFinalDate": 1950,
+        "spanYears": 5600
+      },
+      "earliest": [
+        {
+          "objectId": "546758",
+          "objectBeginDate": -3650,
+          "objectEndDate": -3650,
+          "final_date": -3650,
+          "department": "Egyptian Art",
+          "final_group": "beaker"
+        }
+      ],
+      "latest": [
+        {
+          "objectId": "902207",
+          "objectBeginDate": 1940,
+          "objectEndDate": 1960,
+          "final_date": 1950,
+          "department": "Asian Art",
+          "final_group": "jar"
+        }
+      ]
+    },
+    "cluster_8": {
+      "objectCount": 317,
+      "maximumTimeSpan": {
+        "minFinalDate": -3500,
+        "maxFinalDate": 1916,
+        "spanYears": 5416
+      },
+      "earliest": [
+        {
+          "objectId": "37537",
+          "objectBeginDate": -3500,
+          "objectEndDate": -3500,
+          "final_date": -3500,
+          "department": "Asian Art",
+          "final_group": "jar"
+        }
+      ],
+      "latest": [
+        {
+          "objectId": "57356",
+          "objectBeginDate": 1900,
+          "objectEndDate": 1933,
+          "final_date": 1916,
+          "department": "Asian Art",
+          "final_group": "jar"
+        }
+      ]
+    },
+    "cluster_9": {
+      "objectCount": 133,
+      "label": "shortest timespan",
+      "maximumTimeSpan": {
+        "minFinalDate": -600,
+        "maxFinalDate": 1889,
+        "spanYears": 2489
+      },
+      "earliest": [
+        {
+          "objectId": "254422",
+          "objectBeginDate": -610,
+          "objectEndDate": -590,
+          "final_date": -600,
+          "department": "Greek and Roman Art",
+          "final_group": "amphora"
+        }
+      ],
+      "latest": [
+        {
+          "objectId": "198669",
+          "objectBeginDate": 1889,
+          "objectEndDate": 1889,
+          "final_date": 1889,
+          "department": "European Sculpture and Decorative Arts",
+          "final_group": "vase"
+        }
+      ]
+    }
+  }
 }
