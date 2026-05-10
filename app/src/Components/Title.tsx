@@ -101,21 +101,6 @@ export default function Title() {
         gap: "clamp(1rem, 3vw, 3rem)"
       }}
     >
-      <style>
-        {`
-          @font-face {
-            font-family: 'PPHattonMedium';
-            src: url('/Hatton_font/otf/PPHatton-Medium.otf') format('opentype');
-            font-display: swap;
-          }
-
-          @font-face {
-            font-family: 'PPHattonUltralightItalic';
-            src: url('/Hatton_font/otf/PPHatton-UltralightItalic.otf') format('opentype');
-            font-display: swap;
-          }
-        `}
-      </style>
       <Box
         sx={{
           flex: "0 1 32rem",
@@ -155,25 +140,25 @@ export default function Title() {
               gap: "0.4em"
             }}
           >
-            <span
-              style={{
-                fontFamily: "'PPHattonMedium', serif",
-                fontWeight: 500,
+            <Box
+              component="span"
+              sx={(theme) => ({
+                ...theme.typography.h1,
                 letterSpacing: "-0.01em"
-              }}
+              })}
             >
               Ceramics
-            </span>
-            <span
-              style={{
-                fontFamily: "'PPHattonUltralightItalic', serif",
-                fontWeight: 200,
+            </Box>
+            <Box
+              component="span"
+              sx={(theme) => ({
+                ...theme.typography.rocaLight,
                 letterSpacing: "0.005em",
                 lineHeight: 0.9
-              }}
+              })}
             >
               Undressed
-            </span>
+            </Box>
           </Typography>
         </Box>
         <Typography

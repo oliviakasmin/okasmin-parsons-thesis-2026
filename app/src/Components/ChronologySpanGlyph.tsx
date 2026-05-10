@@ -5,6 +5,22 @@ import { formatYearForTick } from "../utils/formatYearTick";
 
 const MIN_COORD_WIDTH = 112;
 
+const CHRONOLOGY_AXIS_HORIZONTAL_PADDING_PX = 4;
+
+function createChronologyDateXScale(corpusMin: number, corpusMax: number, svgCoordWidthPx: number) {
+  const span = corpusMax - corpusMin;
+  if (
+    !Number.isFinite(span) ||
+    span <= 0 ||
+    svgCoordWidthPx <= CHRONOLOGY_AXIS_HORIZONTAL_PADDING_PX * 2
+  ) {
+    return null;
+  }
+  const innerLeft = CHRONOLOGY_AXIS_HORIZONTAL_PADDING_PX;
+  const innerRight = svgCoordWidthPx - CHRONOLOGY_AXIS_HORIZONTAL_PADDING_PX;
+  return scaleLinear().domain([corpusMin, corpusMax]).range([innerLeft, innerRight]).clamp(true);
+}
+
 export type ChronologySpanGlyphProps = {
   corpusMin: number;
   corpusMax: number;
@@ -55,13 +71,16 @@ export const chronologyTooltipSlotProps = {
         bgcolor: "#2a2a2a",
         color: "#fff",
         border: "1px solid rgba(255,255,255,0.2)",
+        borderRadius: 0,
         fontSize: "0.8rem"
       }
     }
   }
 } as const;
 
-function buildAriaLabel(p: ChronologySpanGlyphProps): string {
+function buildAriaLabel(
+  p: Pick<ChronologySpanGlyphProps, "corpusMin" | "corpusMax" | "anchorYear" | "neighborYear">
+): string {
   const span = `${p.corpusMin.toLocaleString()}–${p.corpusMax.toLocaleString()}`;
   if (p.anchorYear != null && p.neighborYear != null) {
     const phrase = yearsEarlierLaterPhrase(p.anchorYear, p.neighborYear);
@@ -77,7 +96,7 @@ function neighborLabelPlacement(
   svgWidth: number,
   fontPx: number
 ): { x: number; textAnchor: "start" | "middle" | "end" } {
-  const pad = 4;
+  const pad = CHRONOLOGY_AXIS_HORIZONTAL_PADDING_PX;
   const estW = Math.max(text.length * fontPx * 0.62, fontPx * 3);
 
   if (tickX - estW / 2 < pad) {
@@ -124,8 +143,8 @@ export default function ChronologySpanGlyph({
 
   const coordW = fullWidth ? Math.max(measuredW ?? width, MIN_COORD_WIDTH) : width;
 
-  const innerLeft = 4;
-  const innerRight = coordW - 4;
+  const innerLeft = CHRONOLOGY_AXIS_HORIZONTAL_PADDING_PX;
+  const innerRight = coordW - CHRONOLOGY_AXIS_HORIZONTAL_PADDING_PX;
   /** Axis sits in upper band so there is room for the neighbor date label below. */
   const midY = 11;
   const labelY = 33;
@@ -140,11 +159,10 @@ export default function ChronologySpanGlyph({
 
   const neighborDateText = formatNeighborDateLabel(neighborFinalDate);
 
-  const xScale = useMemo(() => {
-    const span = corpusMax - corpusMin;
-    if (!Number.isFinite(span) || span <= 0) return null;
-    return scaleLinear().domain([corpusMin, corpusMax]).range([innerLeft, innerRight]).clamp(true);
-  }, [corpusMin, corpusMax, coordW]);
+  const xScale = useMemo(
+    () => createChronologyDateXScale(corpusMin, corpusMax, coordW),
+    [corpusMin, corpusMax, coordW]
+  );
 
   const neighborX = xScale != null && neighborYear != null ? xScale(neighborYear) : null;
   const anchorX = xScale != null && anchorYear != null ? xScale(anchorYear) : null;
@@ -160,9 +178,7 @@ export default function ChronologySpanGlyph({
       corpusMin,
       corpusMax,
       anchorYear,
-      neighborYear,
-      width: coordW,
-      height
+      neighborYear
     }),
     neighborDateText ? `Neighbor date label: ${neighborDateText}.` : ""
   ]

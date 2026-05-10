@@ -1,9 +1,9 @@
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Box, Typography } from "@mui/material";
 import { homeEntryDomId, type HomeEntryScrollId } from "../constants";
-import useInlineSvg from "../../hooks/useInlineSvg";
 import type { ShelfSlot } from "./shelfGridStyles";
+import { restartShelfPathDraw, ShelfStackedOutlineSvg } from "./ShelfStackedOutlineSvg";
 import {
   shelfArticleTileSx,
   shelfEmptySlotSx,
@@ -41,74 +41,6 @@ const SHELF_LAYOUT: ShelfSlot<string>[][] = [
   [cluster3, cluster4, cluster5, cluster11],
   [cluster9, cluster0, cluster1, cluster2]
 ];
-
-type AnimatedSampledSvgProps = {
-  src: string;
-  alt: string;
-};
-
-function restartShelfPathDraw(paths: NodeListOf<SVGPathElement>) {
-  paths.forEach((path, index) => {
-    path.style.animation = "none";
-    // Force style flush so restarting animation only affects selected paths.
-    void path.getBoundingClientRect();
-    path.style.animation = `shelfPathDraw 1800ms ease forwards`;
-    path.style.animationDelay = `${index * 120}ms`;
-  });
-}
-
-function AnimatedSampledSvg({ src, alt }: AnimatedSampledSvgProps) {
-  const { svgMarkup } = useInlineSvg(src);
-  const wrapperRef = useRef<HTMLDivElement | null>(null);
-
-  useLayoutEffect(() => {
-    if (!wrapperRef.current || !svgMarkup) return;
-
-    const paths = wrapperRef.current.querySelectorAll<SVGPathElement>("svg path");
-    paths.forEach((path, index) => {
-      const length = path.getTotalLength();
-      const computedStrokeWidth = Number.parseFloat(window.getComputedStyle(path).strokeWidth);
-      // Slightly thicken outlines while preserving each path's relative stroke width.
-      path.style.strokeWidth = Number.isFinite(computedStrokeWidth)
-        ? `${computedStrokeWidth * 1.75}px`
-        : "1.2px";
-      path.style.strokeDasharray = `${length}`;
-      path.style.strokeDashoffset = `${length}`;
-      path.style.animation = "none";
-      path.style.animation = `shelfPathDraw 1800ms ease forwards`;
-      path.style.animationDelay = `${index * 120}ms`;
-    });
-  }, [svgMarkup]);
-
-  if (!svgMarkup) {
-    return <Box aria-label={alt} sx={{ width: "100%", height: "100%", display: "block" }} />;
-  }
-
-  return (
-    <Box
-      ref={wrapperRef}
-      aria-label={alt}
-      role="img"
-      sx={{
-        // py: "0.25rem",
-        width: "100%",
-        height: "100%",
-        display: "block",
-        "& > svg": {
-          width: "100%",
-          height: "100%",
-          display: "block"
-        },
-        "@keyframes shelfPathDraw": {
-          to: {
-            strokeDashoffset: 0
-          }
-        }
-      }}
-      dangerouslySetInnerHTML={{ __html: svgMarkup }}
-    />
-  );
-}
 
 function Shelf() {
   const navigate = useNavigate();
@@ -197,7 +129,7 @@ function Shelf() {
                   }}
                   onClick={() =>
                     navigate(`/all/${clusterId}`, {
-                      state: { homeScrollTo: shelfEntryScrollId }
+                      state: { homeScrollTo: shelfEntryScrollId, fromShelf: true }
                     })
                   }
                   sx={shelfArticleTileSx}
@@ -205,7 +137,7 @@ function Shelf() {
                   <Box sx={shelfSlotSurfaceSx()}>
                     <Box sx={shelfSlotInnerMediaSx()}>
                       {isShelfHalfVisible && (
-                        <AnimatedSampledSvg
+                        <ShelfStackedOutlineSvg
                           key={`${clusterId}-${shelfAnimationCycle}`}
                           src={stackedSvgSrc}
                           alt={`${clusterId}_stack_sampled.svg`}

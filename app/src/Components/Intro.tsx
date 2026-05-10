@@ -104,15 +104,7 @@ export default function Intro() {
           </Typography>
           <Typography ref={secondLineRef} variant="h4" component="h4">
             When we{" "}
-            <Box
-              component="span"
-              sx={(theme) => ({
-                ...theme.typography.rocaLight,
-                fontStyle: "italic",
-                fontSize: theme.typography.h3.fontSize,
-                lineHeight: theme.typography.h3.lineHeight
-              })}
-            >
+            <Box component="span" sx={(theme) => ({ ...theme.typography.h3 })}>
               undress
             </Box>{" "}
             them a shared thread emerges.

@@ -20,7 +20,6 @@ declare module "@mui/material/Typography" {
   }
 }
 
-const ivyPrestoHeadline = '"ivypresto-headline", serif';
 const neueHaasDisplay = '"neue-haas-grotesk-display", sans-serif';
 const roca = '"roca", sans-serif';
 const handwritingAccent = '"adobe-handwriting-frank", sans-serif';
@@ -31,12 +30,12 @@ const themeBase = createTheme({
     fontFamily: neueHaasDisplay,
     // Title text
     h1: {
-      fontFamily: ivyPrestoHeadline,
+      fontFamily: roca,
       fontWeight: 600
     },
     // Subheader text
     h2: {
-      fontFamily: ivyPrestoHeadline,
+      fontFamily: roca,
       fontWeight: 400
     },
     // Chart header text

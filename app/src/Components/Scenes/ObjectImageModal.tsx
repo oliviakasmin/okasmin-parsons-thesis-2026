@@ -377,23 +377,21 @@ function SimilarShapesNeighborTile({
           {chronologyBlock}
         </Tooltip>
       )}
-      {neighborCountryChip ? (
-        <Box
-          sx={{
-            width: "100%",
-            maxWidth: NEIGHBOR_TILE_MAX_SIDE,
-            mx: "auto",
-            mt: 0.25,
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            boxSizing: "border-box",
-            flexShrink: 0
-          }}
-        >
-          {neighborCountryChip}
-        </Box>
-      ) : null}
+      <Box
+        sx={{
+          width: "100%",
+          maxWidth: NEIGHBOR_TILE_MAX_SIDE,
+          mx: "auto",
+          mt: 0.25,
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          boxSizing: "border-box",
+          flexShrink: 0
+        }}
+      >
+        {neighborCountryChip}
+      </Box>
     </Box>
   );
 }
@@ -443,16 +441,19 @@ function ObjectImageModal({
 
   const renderCountryChip = (tileMeta: ObjectModalFields | undefined, isAnchorTile: boolean) => {
     const cb = tileMeta ? canonicalCountryFromModalFields(tileMeta) : null;
-    if (!cb) return null;
     const label = countryChipLabelFromModalFields(tileMeta);
     const ca = anchorMeta ? canonicalCountryFromModalFields(anchorMeta) : null;
-    const filled = isAnchorTile || (ca != null && ca === cb);
+    const filled = isAnchorTile || (ca != null && cb != null && ca === cb);
+    const placeUnknown = cb == null;
     return (
       <Chip
         label={label}
         size="small"
         variant={filled ? "filled" : "outlined"}
-        sx={filled ? placeChipFilledSx : placeChipOutlinedSx}
+        sx={{
+          ...(filled ? placeChipFilledSx : placeChipOutlinedSx),
+          ...(placeUnknown ? { visibility: "hidden", pointerEvents: "none" } : {})
+        }}
       />
     );
   };

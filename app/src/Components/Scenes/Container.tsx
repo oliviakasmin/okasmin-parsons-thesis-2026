@@ -37,11 +37,14 @@ import ObjectImageModal from "./ObjectImageModal";
 import ObjectScene from "./ObjectScene";
 import TimelineAxis from "./TimelineAxis";
 import { useShelfTab } from "../shelfTabState";
+import { ShelfStackedOutlineSvg } from "../EntryPoints/ShelfStackedOutlineSvg";
 
 type SceneView = "all" | "timeline" | "map";
 type ContainerLocationState = {
   homeScrollTo?: HomeEntryScrollId;
   initialImageMode?: "solid" | "outline" | "color";
+  /** Shape-cluster scene entered from Shelf tiles (headline + stacked glyph). */
+  fromShelf?: boolean;
 };
 
 /**
@@ -222,6 +225,8 @@ function Container() {
     selectedFunctionGroup || selectedColorGroup ? objectLabelPlural : "these forms";
   const mapSubject =
     selectedFunctionGroup || selectedColorGroup ? objectLabelPlural : "these forms";
+
+  const showShelfShapeGlyph = Boolean(locationState?.fromShelf && selectedCluster && clusterId);
 
   const {
     buckets: timelineBuckets,
@@ -650,15 +655,60 @@ function Container() {
             mb: "2rem"
           }}
         >
-          {sceneHeadlineContent({
-            view: currentView,
-            objectCount: selectedObjectIds.length,
-            objectLabelPlural,
-            timelineSubject,
-            mapSubject,
-            spanYears,
-            countryCount: distinctCountryCount
-          })}
+          {showShelfShapeGlyph && clusterId ? (
+            <Box
+              sx={{
+                display: "flex",
+                flexWrap: "wrap",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "1rem",
+                width: "100%"
+              }}
+            >
+              <Box
+                sx={{
+                  width: "4.5rem",
+                  height: "4.5rem",
+                  flexShrink: 0
+                }}
+              >
+                <ShelfStackedOutlineSvg
+                  src={`/cluster_SVG_stacked_outlines/${clusterId}_stack_sampled.svg`}
+                  alt={`${clusterId} stacked outlines`}
+                  initialComplete
+                />
+              </Box>
+              <Box component="span">
+                {currentView === "all" ? (
+                  <>
+                    {sceneHeadlineEmphasis(selectedObjectIds.length.toLocaleString("en-US"))}{" "}
+                    vessels in this group
+                  </>
+                ) : (
+                  sceneHeadlineContent({
+                    view: currentView,
+                    objectCount: selectedObjectIds.length,
+                    objectLabelPlural,
+                    timelineSubject,
+                    mapSubject,
+                    spanYears,
+                    countryCount: distinctCountryCount
+                  })
+                )}
+              </Box>
+            </Box>
+          ) : (
+            sceneHeadlineContent({
+              view: currentView,
+              objectCount: selectedObjectIds.length,
+              objectLabelPlural,
+              timelineSubject,
+              mapSubject,
+              spanYears,
+              countryCount: distinctCountryCount
+            })
+          )}
         </Typography>
       </Box>
 
