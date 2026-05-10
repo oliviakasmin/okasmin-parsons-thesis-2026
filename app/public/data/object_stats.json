@@ -240,7 +240,7 @@
     },
     "cluster_3": {
       "objectCount": 634,
-      "label": "longest timespan",
+      "label": "longest time span",
       "maximumTimeSpan": {
         "minFinalDate": -4250,
         "maxFinalDate": 1922,
@@ -409,7 +409,7 @@
     },
     "cluster_9": {
       "objectCount": 133,
-      "label": "shortest timespan",
+      "label": "shortest time span",
       "maximumTimeSpan": {
         "minFinalDate": -600,
         "maxFinalDate": 1889,
