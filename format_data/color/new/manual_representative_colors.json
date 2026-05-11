@@ -1,10 +1,14 @@
 {
-  "terracotta": ["45529"],
-  "light_tan_stoneware": ["39496"],
-  "dark_and_black": ["72324"],
-  "white_cream": ["444478", "208398", "48148"],
-  "yellow_ochre": ["318607"],
-  "red": ["48544", "51002"],
-  "pink_and_purple": ["191583", "48480"],
-  "brown": ["44722", "62636"]
+  "hue_blue": [47305],
+  "hue_green": [46830],
+  "blue_and_white": [42505],
+  "yellow_and_ochre": [42243],
+  "red_and_pink": [210743],
+  "multicolor_glaze": [47319],
+  "white": [448260],
+  "red_orange_warm_stoneware": [240554],
+  "light_warm_browns": [37649],
+  "cooler_light_tans_browns": [37482],
+  "coolest_browns": [46011],
+  "dark_and_black": [39513]
 }

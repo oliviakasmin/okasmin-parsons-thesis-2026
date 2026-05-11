@@ -73,6 +73,25 @@ function buildManualColorGroupIdSets(data: ManualColorGroupsFile): Map<string, S
   return out;
 }
 
+function buildManualColorGroupIdLists(data: ManualColorGroupsFile): Map<string, string[]> {
+  const out = new Map<string, string[]>();
+  for (const [name, rawIds] of Object.entries(data)) {
+    if (!Array.isArray(rawIds)) continue;
+    const ids: string[] = [];
+    const seen = new Set<string>();
+    for (const id of rawIds) {
+      let value = "";
+      if (typeof id === "number" && Number.isFinite(id)) value = String(Math.trunc(id));
+      else if (typeof id === "string" && id.trim()) value = id.trim();
+      if (!value || seen.has(value)) continue;
+      seen.add(value);
+      ids.push(value);
+    }
+    out.set(name, ids);
+  }
+  return out;
+}
+
 function parsePythonIntList(raw: string, variableName: string): number[] {
   const escapedName = variableName.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   const match = raw.match(new RegExp(`${escapedName}\\s*(?::[^=]+)?=\\s*\\[([\\s\\S]*?)\\]`));
@@ -102,13 +121,21 @@ const sourceManualColorGroupIdSets = buildManualColorGroupIdSets(
 const generatedNewColorGroupIdSets = buildManualColorGroupIdSets(
   newColorGroupsJson as ManualColorGroupsFile
 );
+const sourceManualColorGroupIdLists = buildManualColorGroupIdLists(
+  manualColorGroupsJson as ManualColorGroupsFile
+);
+const generatedNewColorGroupIdLists = buildManualColorGroupIdLists(
+  newColorGroupsJson as ManualColorGroupsFile
+);
 const colorGroupFilterIdSets = new Map<string, Set<string>>();
+const colorGroupFilterIdLists = new Map<string, string[]>();
 
 const manualColorGroupOptions: ColorGroupFilterOption[] = [...sourceManualColorGroupIdSets.keys()]
   .sort((a, b) => a.localeCompare(b))
   .map((name) => {
     const id = `manual:${name}`;
     colorGroupFilterIdSets.set(id, sourceManualColorGroupIdSets.get(name) ?? new Set());
+    colorGroupFilterIdLists.set(id, sourceManualColorGroupIdLists.get(name) ?? []);
     return { id, name, label: colorGroupLabel(name) };
   });
 
@@ -121,6 +148,12 @@ colorGroupFilterIdSets.set(
     )
   )
 );
+colorGroupFilterIdLists.set(
+  bwPaletteFilterId,
+  parsePythonIntList(bwPalettesPyRaw, "COLORGRAM_GRAYSCALE_PALETTE_OBJECT_IDS").map((objectId) =>
+    String(objectId)
+  )
+);
 manualColorGroupOptions.push({
   id: bwPaletteFilterId,
   name: BW_PALETTE_MANUAL_GROUP_NAME,
@@ -131,6 +164,7 @@ const newColorGroupOptions: ColorGroupFilterOption[] = [...generatedNewColorGrou
   (name) => {
     const id = `new:${name}`;
     colorGroupFilterIdSets.set(id, generatedNewColorGroupIdSets.get(name) ?? new Set());
+    colorGroupFilterIdLists.set(id, generatedNewColorGroupIdLists.get(name) ?? []);
     return { id, name, label: colorGroupLabel(name) };
   }
 );
@@ -458,6 +492,24 @@ function sortDisplayedIdsByExcludeManualCentroidOrder(
   });
 }
 
+function sortDisplayedIdsByColorGroupOrder(ids: string[], groupFilter: string | null): string[] {
+  if (groupFilter == null) return [...ids].sort((a, b) => Number(a) - Number(b));
+  const orderedIds = colorGroupFilterIdLists.get(groupFilter);
+  if (orderedIds == null || orderedIds.length === 0) {
+    return [...ids].sort((a, b) => Number(a) - Number(b));
+  }
+  const rank = new Map<string, number>();
+  orderedIds.forEach((objectId, index) => rank.set(objectId, index));
+  return [...ids].sort((a, b) => {
+    const ra = rank.get(a);
+    const rb = rank.get(b);
+    if (ra != null && rb != null) return ra - rb;
+    if (ra != null) return -1;
+    if (rb != null) return 1;
+    return Number(a) - Number(b);
+  });
+}
+
 function scrollToTop() {
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
@@ -533,6 +585,9 @@ function Test2() {
           excludeManualKmeansParsed.clusterByObjectId
         )
       );
+    if (selectedManualGroupFilter != null) {
+      return sortDisplayedIdsByColorGroupOrder(filtered, selectedManualGroupFilter);
+    }
     return sortDisplayedIdsByExcludeManualCentroidOrder(
       filtered,
       selectedExcludeManualClusterFilter,
