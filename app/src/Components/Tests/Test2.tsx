@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import manualRejectObjectIds from "../../../../fetch_data/data/manual_reject_object_ids.json";
 import manualColorGroupsJson from "../../../../format_data/color/new/manual_color_groups.json";
+import newColorGroupsJson from "../../../../format_data/color/new/new_color_groups.json";
 import bwPalettesPyRaw from "../../../../format_data/color/new/b_w_palettes.py?raw";
 import objectsData from "../../../../fetch_data/data/objects.json";
 import fieldsCsvRaw from "../../../../format_data/generated/fields.csv?raw";
@@ -89,6 +90,11 @@ const manualRejectObjectIdSet = new Set(manualRejectObjectIds.map((objectId) => 
 const manualColorGroupIdSets = buildManualColorGroupIdSets(
   manualColorGroupsJson as ManualColorGroupsFile
 );
+for (const [name, objectIds] of buildManualColorGroupIdSets(
+  newColorGroupsJson as ManualColorGroupsFile
+)) {
+  manualColorGroupIdSets.set(name, objectIds);
+}
 manualColorGroupIdSets.set(
   BW_PALETTE_MANUAL_GROUP_NAME,
   new Set(

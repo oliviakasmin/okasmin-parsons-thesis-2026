@@ -8,7 +8,7 @@ from .date.get_date import get_date_field
 from .place.get_location_fields import get_location_field
 from .place.apply_geo_contract import apply_geo_contract_df
 from .place.geocode_locations import CACHE_CSV_PATH
-from .use_groups.get_use import classify_title, _load_mapping_module
+from .use_groups.get_use import resolve_use, _load_mapping_module
 
 ROOT = Path(__file__).resolve().parents[1]
 OBJECTS_JSON_PATH = ROOT / "fetch_data" / "data" / "objects.json"
@@ -42,7 +42,8 @@ def add_use_field(df: pd.DataFrame) -> pd.DataFrame:
     titles = (
         out["title"].fillna("").astype(str) if "title" in out.columns else pd.Series([""] * len(out))
     )
-    out["use"] = [classify_title(t, mod) for t in titles]
+    ids = out["objectID"] if "objectID" in out.columns else pd.Series([None] * len(out))
+    out["use"] = [resolve_use(oid, t, mod) for oid, t in zip(ids, titles)]
     return out
 
 
