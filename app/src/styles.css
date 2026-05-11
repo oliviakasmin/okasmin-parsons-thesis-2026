@@ -120,3 +120,10 @@ h6 {
   stroke-width: 6;
   vector-effect: non-scaling-stroke;
 }
+
+/* Shelf tile path draw: inline styles use animation name `shelfPathDraw` (global name required). */
+@keyframes shelfPathDraw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}

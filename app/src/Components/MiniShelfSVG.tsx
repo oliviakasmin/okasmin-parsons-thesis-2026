@@ -110,15 +110,18 @@ export default function MiniShelfSVG({
     });
 
     const totalWidth = Math.max(cursorX, 1);
-    const totalHeight = baselineY + strokeWidth;
+    /** 1px end radius → 2px-tall pill (`borderBottom*Radius: 1` on 2px CSS rules). */
+    const shelfRuleHalfHeight = 1;
+    const totalHeight = baselineY + shelfRuleHalfHeight;
 
     return {
       placed,
       baselineY,
       totalWidth,
-      totalHeight
+      totalHeight,
+      shelfRuleHalfHeight
     };
-  }, [outlines, size, strokeWidth]);
+  }, [outlines, size]);
 
   return (
     <svg
@@ -157,14 +160,14 @@ export default function MiniShelfSVG({
         </g>
       ))}
 
-      <line
-        x1={0}
-        y1={layout.baselineY}
-        x2={layout.totalWidth}
-        y2={layout.baselineY}
-        stroke={stroke}
-        strokeWidth={strokeWidth}
-        vectorEffect="non-scaling-stroke"
+      <rect
+        x={0}
+        y={layout.baselineY - layout.shelfRuleHalfHeight}
+        width={layout.totalWidth}
+        height={layout.shelfRuleHalfHeight * 2}
+        rx={layout.shelfRuleHalfHeight}
+        ry={layout.shelfRuleHalfHeight}
+        fill={stroke}
       />
     </svg>
   );

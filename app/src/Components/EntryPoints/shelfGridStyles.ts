@@ -50,7 +50,8 @@ export function shelfGridRowSx(columnCount: number): SxProps<Theme> {
     columnGap: `${SHELF_GRID_COLUMN_GAP_PX}px`,
     boxSizing: "border-box",
     /** Single continuous rule per row (not interrupted by column gaps). */
-    borderBottom: "4px solid #fff"
+    borderBottom: "2px solid #fff",
+    borderRadius: "1px"
   };
 }
 
@@ -68,6 +69,11 @@ const shelfArticleBase = {
   position: "relative",
   cursor: "pointer"
 } as const;
+
+/** Article wrapper for tiles whose captions are always visible (no hover reveal). */
+export const shelfArticleTileSx: SxProps<Theme> = {
+  ...shelfArticleBase
+};
 
 /** Article wrapper for each shelf tile (shared dimensions + hover label reveal). */
 export function shelfArticleSx(labelClassName: string): SxProps<Theme> {

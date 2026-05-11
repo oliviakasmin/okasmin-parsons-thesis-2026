@@ -1,13 +1,18 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Box, Button, Typography } from "@mui/material";
 import mapboxgl from "mapbox-gl";
-import { normalizeCountryCandidate, type ObjectGeo } from "../../hooks/useObjectGeo";
+import {
+  formatCountryDisplayLabel,
+  normalizeCountryCandidate,
+  type ObjectGeo
+} from "../../hooks/useObjectGeo";
 import "mapbox-gl/dist/mapbox-gl.css";
 
 type ProjectedPoint = {
   x: number;
   y: number;
   visible: boolean;
+  scale?: number;
 };
 
 type MapCountryResolvedPayload = {
@@ -26,7 +31,36 @@ type MapProps = {
 const MAPBOX_TOKEN = import.meta.env.VITE_MAPBOX_TOKEN as string | undefined;
 const DEFAULT_MAP_ZOOM = 1.25;
 const DEFAULT_MAP_CENTER: [number, number] = [0, 18];
-const MAX_MAP_ZOOM = DEFAULT_MAP_ZOOM + 2;
+const MAX_MAP_ZOOM = DEFAULT_MAP_ZOOM + 4;
+const MAP_IMAGE_ZOOM_SCALE_STEP = 0.45;
+const DUPLICATE_COORDINATE_JITTER_DEGREES = 0.75;
+
+function imageScaleForZoom(zoom: number) {
+  return 1 + Math.max(0, zoom - DEFAULT_MAP_ZOOM) * MAP_IMAGE_ZOOM_SCALE_STEP;
+}
+
+function noiseFromString(value: string, salt: number) {
+  let hash = 2166136261 ^ salt;
+  for (let index = 0; index < value.length; index += 1) {
+    hash ^= value.charCodeAt(index);
+    hash = Math.imul(hash, 16777619);
+  }
+  return (hash >>> 0) / 4294967295;
+}
+
+function coordinateKey(geo: ObjectGeo) {
+  return `${geo.lon},${geo.lat}`;
+}
+
+function jitterGeoForDuplicateCoordinate(objectId: string, geo: ObjectGeo, duplicateCount: number) {
+  if (duplicateCount <= 1) return geo;
+  const angle = noiseFromString(objectId, 23) * Math.PI * 2;
+  const radius = Math.sqrt(noiseFromString(objectId, 71)) * DUPLICATE_COORDINATE_JITTER_DEGREES;
+  return {
+    lon: geo.lon + Math.cos(angle) * radius,
+    lat: geo.lat + Math.abs(Math.sin(angle)) * radius
+  };
+}
 
 async function reverseGeocodeCountryName(
   lng: number,
@@ -66,6 +100,16 @@ function Map({
 
   const stableObjectIds = useMemo(() => [...objectIds], [objectIds]);
   const stableCountryNames = useMemo(() => [...countryNames], [countryNames]);
+  const duplicateCoordinateCountByKey = useMemo(() => {
+    const counts = new globalThis.Map<string, number>();
+    for (const objectId of stableObjectIds) {
+      const geo = geoByObjectId.get(objectId);
+      if (!geo) continue;
+      const key = coordinateKey(geo);
+      counts.set(key, (counts.get(key) ?? 0) + 1);
+    }
+    return counts;
+  }, [geoByObjectId, stableObjectIds]);
 
   useEffect(() => {
     if (isTokenMissing || !mapContainerRef.current || mapRef.current) return;
@@ -149,13 +193,19 @@ function Map({
 
     const projectAll = () => {
       const nextProjectionByObjectId = new globalThis.Map<string, ProjectedPoint>();
+      const imageScale = imageScaleForZoom(map.getZoom());
       for (const objectId of stableObjectIds) {
         const geo = geoByObjectId.get(objectId);
         if (!geo) {
-          nextProjectionByObjectId.set(objectId, { x: 0, y: 0, visible: false });
+          nextProjectionByObjectId.set(objectId, { x: 0, y: 0, visible: false, scale: imageScale });
           continue;
         }
-        const projected = map.project([geo.lon, geo.lat]);
+        const jitteredGeo = jitterGeoForDuplicateCoordinate(
+          objectId,
+          geo,
+          duplicateCoordinateCountByKey.get(coordinateKey(geo)) ?? 1
+        );
+        const projected = map.project([jitteredGeo.lon, jitteredGeo.lat]);
         const visible =
           Number.isFinite(projected.x) &&
           Number.isFinite(projected.y) &&
@@ -163,7 +213,12 @@ function Map({
           projected.y >= -64 &&
           projected.x <= map.getContainer().clientWidth + 64 &&
           projected.y <= map.getContainer().clientHeight + 64;
-        nextProjectionByObjectId.set(objectId, { x: projected.x, y: projected.y, visible });
+        nextProjectionByObjectId.set(objectId, {
+          x: projected.x,
+          y: projected.y,
+          visible,
+          scale: imageScale
+        });
       }
       onProjectionChange(nextProjectionByObjectId);
     };
@@ -213,7 +268,7 @@ function Map({
             return;
           }
           onCountryResolvedRef.current({
-            displayLabel: geo.displayLabel,
+            displayLabel: formatCountryDisplayLabel(normalizedCountry),
             normalizedCountry
           });
         } catch (error) {
@@ -249,19 +304,32 @@ function Map({
       map.remove();
       mapRef.current = null;
     };
-  }, [geoByObjectId, isTokenMissing, onProjectionChange, stableCountryNames, stableObjectIds]);
+  }, [
+    duplicateCoordinateCountByKey,
+    geoByObjectId,
+    isTokenMissing,
+    onProjectionChange,
+    stableCountryNames,
+    stableObjectIds
+  ]);
 
   useEffect(() => {
     if (!mapRef.current) return;
     const map = mapRef.current;
     const nextProjectionByObjectId = new globalThis.Map<string, ProjectedPoint>();
+    const imageScale = imageScaleForZoom(map.getZoom());
     for (const objectId of stableObjectIds) {
       const geo = geoByObjectId.get(objectId);
       if (!geo) {
-        nextProjectionByObjectId.set(objectId, { x: 0, y: 0, visible: false });
+        nextProjectionByObjectId.set(objectId, { x: 0, y: 0, visible: false, scale: imageScale });
         continue;
       }
-      const projected = map.project([geo.lon, geo.lat]);
+      const jitteredGeo = jitterGeoForDuplicateCoordinate(
+        objectId,
+        geo,
+        duplicateCoordinateCountByKey.get(coordinateKey(geo)) ?? 1
+      );
+      const projected = map.project([jitteredGeo.lon, jitteredGeo.lat]);
       const visible =
         Number.isFinite(projected.x) &&
         Number.isFinite(projected.y) &&
@@ -269,10 +337,15 @@ function Map({
         projected.y >= -64 &&
         projected.x <= map.getContainer().clientWidth + 64 &&
         projected.y <= map.getContainer().clientHeight + 64;
-      nextProjectionByObjectId.set(objectId, { x: projected.x, y: projected.y, visible });
+      nextProjectionByObjectId.set(objectId, {
+        x: projected.x,
+        y: projected.y,
+        visible,
+        scale: imageScale
+      });
     }
     onProjectionChange(nextProjectionByObjectId);
-  }, [geoByObjectId, onProjectionChange, stableObjectIds]);
+  }, [duplicateCoordinateCountByKey, geoByObjectId, onProjectionChange, stableObjectIds]);
 
   return (
     <Box sx={{ position: "absolute", inset: 0, background: "#000" }}>

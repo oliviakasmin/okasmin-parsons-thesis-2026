@@ -105,7 +105,8 @@ function CaseStudyCompareCell({ objectId, sliderX, layoutNonce }: CompareCellPro
     <Box
       ref={wrapRef}
       sx={{
-        borderBottom: "5px solid #fff",
+        borderBottom: "2px solid #fff",
+        borderRadius: "1px",
         width: "100%",
         position: "relative"
       }}
@@ -120,7 +121,6 @@ function CaseStudyCompareCell({ objectId, sliderX, layoutNonce }: CompareCellPro
           height: "auto",
           objectFit: "contain",
           position: "relative",
-          top: "3px",
           clipPath: clipColor
         }}
       />
@@ -129,7 +129,6 @@ function CaseStudyCompareCell({ objectId, sliderX, layoutNonce }: CompareCellPro
           position: "absolute",
           left: 0,
           right: 0,
-          top: "3px",
           bottom: 0,
           pointerEvents: "none",
           clipPath: clipOutline

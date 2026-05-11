@@ -1,23 +1,42 @@
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import manualRejectObjectIds from "../../../../fetch_data/data/manual_reject_object_ids.json";
+import manualColorGroupsJson from "../../../../format_data/color/new/manual_color_groups.json";
 import objectsData from "../../../../fetch_data/data/objects.json";
 import fieldsCsvRaw from "../../../../format_data/generated/fields.csv?raw";
-import silhouetteFeaturesCsvRaw from "../../../../process_data/features/silhouette_features.csv?raw";
+import excludeManualKmeansClustersCsvRaw from "../../../../format_data/generated/color/object_color_kmeans_clusters_exclude_manual.csv?raw";
+import excludeManualClusterUiOrderPayload from "../../../../format_data/generated/color/object_color_kmeans_exclude_manual_cluster_ui_order.json";
+import {
+  corpusYearMax,
+  corpusYearMin,
+  getAllShapeNeighborObjectIds,
+  getShapeNeighborsForObject
+} from "../../data/shapeNeighborsPayload";
+import useObjectModalMetadata from "../../hooks/useObjectModalMetadata";
+import {
+  formatPlaceVsAnchorSentence,
+  parseFinalDateYear
+} from "../../utils/neighborComparisonCaptions";
+import ChronologySpanGlyph from "../ChronologySpanGlyph";
 import InlineOutlineSvg from "../Scenes/InlineOutlineSvg";
 
 const S3_IMAGE_BASE_URL = "https://vessels-thesis.s3.amazonaws.com/real_images";
 
 type ImageMode = "mask" | "no_bg" | "outline";
 
-type NeighborHit = { objectId: string; distance: number };
-type NeighborIndex = {
-  orderedObjectIds: string[];
-  vectorByObjectId: Map<string, Float64Array>;
-};
 type ObjectFieldMeta = {
   date: string;
   location: string;
+};
+type ObjectColorMeta = {
+  colorgramPaletteHex: string[];
+  colorgramPaletteShare: number[];
+  colorBucketLabels: string[];
+  colorBucketPrimary: string;
+  /** Palette KMeans cluster id; -1 = not clustered (e.g. BW / empty palette); null = unknown/missing */
+  colorKmeansCluster: number | null;
+  /** k used when fitting KMeans (same for whole run) */
+  colorKmeansK: number | null;
 };
 
 const IMAGE_SUFFIX: Record<ImageMode, string> = {
@@ -25,17 +44,45 @@ const IMAGE_SUFFIX: Record<ImageMode, string> = {
   no_bg: "no_bg",
   outline: "outline"
 };
-const SELECTED_OBJECT_IDS_STORAGE_KEY = "test2_selected_object_ids";
-const NEIGHBOR_COUNT = 10;
-const FEATURE_WEIGHTS = {
-  lr: 1.0,
-  tb: 0.2,
-  shape: 1.0,
-  inner: 0.8,
-  innerCount: 0.5
-} as const;
+/** Legacy key; removed from persistence — cleared on mount so old sessions do not replay. */
+const LEGACY_SELECTED_OBJECT_IDS_STORAGE_KEY = "test2_selected_object_ids";
+/** Thumbnail click opens closest-neighbors modal. */
+const TEST2_OPEN_MODAL_ON_IMAGE_CLICK = true;
+
+type ManualColorGroupsFile = Record<string, unknown>;
+
+function buildManualColorGroupIdSets(data: ManualColorGroupsFile): Map<string, Set<string>> {
+  const out = new Map<string, Set<string>>();
+  for (const [name, rawIds] of Object.entries(data)) {
+    if (!Array.isArray(rawIds)) continue;
+    const set = new Set<string>();
+    for (const id of rawIds) {
+      if (typeof id === "number" && Number.isFinite(id)) set.add(String(Math.trunc(id)));
+      else if (typeof id === "string" && id.trim()) set.add(id.trim());
+    }
+    out.set(name, set);
+  }
+  return out;
+}
+
+function objectMatchesManualGroupFilter(
+  objectId: string,
+  filter: string | null,
+  setsByName: Map<string, Set<string>>
+): boolean {
+  if (filter == null || filter === "") return true;
+  const set = setsByName.get(filter);
+  if (set == null || set.size === 0) return false;
+  return set.has(objectId);
+}
 
 const manualRejectObjectIdSet = new Set(manualRejectObjectIds.map((objectId) => String(objectId)));
+const manualColorGroupIdSets = buildManualColorGroupIdSets(
+  manualColorGroupsJson as ManualColorGroupsFile
+);
+const manualColorGroupNamesSorted = [...manualColorGroupIdSets.keys()].sort((a, b) =>
+  a.localeCompare(b)
+);
 const objectTitleById = new Map(
   Object.entries(
     objectsData as Record<
@@ -54,19 +101,6 @@ function buildImageFilename(objectId: string, mode: ImageMode) {
 
 function buildS3ImageUrl(objectId: string, mode: ImageMode) {
   return `${S3_IMAGE_BASE_URL}/${buildImageFilename(objectId, mode)}`;
-}
-
-function loadSelectedObjectIdsFromStorage() {
-  try {
-    const raw = window.localStorage.getItem(SELECTED_OBJECT_IDS_STORAGE_KEY);
-    if (!raw) {
-      return [];
-    }
-    const parsed = JSON.parse(raw);
-    return Array.isArray(parsed) ? parsed.filter((value) => typeof value === "string") : [];
-  } catch {
-    return [];
-  }
 }
 
 function getObjectTitle(objectId: string) {
@@ -125,6 +159,251 @@ function buildFieldsMetaByObjectId() {
   return map;
 }
 
+function parseHexPalette(raw: string) {
+  if (!raw) return [];
+  try {
+    const parsed = JSON.parse(raw);
+    if (!Array.isArray(parsed)) return [];
+    return parsed
+      .map((value) => String(value ?? "").trim())
+      .filter((value) => /^#[0-9a-fA-F]{6}$/.test(value));
+  } catch {
+    return [];
+  }
+}
+
+function parseNumberArray(raw: string) {
+  if (!raw) return [];
+  try {
+    const parsed = JSON.parse(raw);
+    if (!Array.isArray(parsed)) return [];
+    return parsed
+      .map((value) => Number(value))
+      .filter((value) => Number.isFinite(value) && value >= 0);
+  } catch {
+    return [];
+  }
+}
+
+function parseBucketLabels(raw: string): string[] {
+  if (!raw) return [];
+  try {
+    const parsed = JSON.parse(raw);
+    if (!Array.isArray(parsed)) return [];
+    return parsed.map((value) => String(value ?? "").trim()).filter((value) => value.length > 0);
+  } catch {
+    return [];
+  }
+}
+
+function parseOptionalIntCell(raw: string | undefined): number | null {
+  if (raw == null) return null;
+  const s = String(raw).trim();
+  if (s === "" || s === "NaN") return null;
+  const n = Number(s);
+  return Number.isFinite(n) ? Math.trunc(n) : null;
+}
+
+function formatPaletteKmeansLine(meta: ObjectColorMeta | undefined): {
+  detail: string;
+  dim: boolean;
+} {
+  const cluster = meta?.colorKmeansCluster;
+  const k = meta?.colorKmeansK;
+  if (cluster == null && k == null) return { detail: "—", dim: true };
+  if (cluster === -1) {
+    const kPart = k != null ? ` · k=${k}` : "";
+    return { detail: `unassigned${kPart}`, dim: true };
+  }
+  const kPart = k != null ? ` (k=${k})` : "";
+  return { detail: `cluster ${cluster}${kPart}`, dim: false };
+}
+
+function buildColorMetaByObjectId() {
+  const lines = fieldsCsvRaw.trim().split("\n");
+  if (lines.length < 2) return new Map<string, ObjectColorMeta>();
+  const headers = parseCsvLine(lines[0]);
+  const idx = new Map(headers.map((h, i) => [h, i]));
+  const objectIdCol = idx.get("objectId");
+  if (objectIdCol == null) return new Map<string, ObjectColorMeta>();
+  const colorgramPaletteCol = idx.get("colorgram_palette_hex");
+  const colorgramShareCol = idx.get("colorgram_palette_share");
+  const colorBucketLabelsCol = idx.get("color_bucket_labels");
+  const colorBucketPrimaryCol = idx.get("color_bucket_primary");
+  const colorKmeansClusterCol = idx.get("color_kmeans_cluster");
+  const colorKmeansKCol = idx.get("color_kmeans_k");
+
+  const map = new Map<string, ObjectColorMeta>();
+  for (let rowIdx = 1; rowIdx < lines.length; rowIdx += 1) {
+    const row = parseCsvLine(lines[rowIdx]);
+    const objectId = String(row[objectIdCol] ?? "").trim();
+    if (!objectId) continue;
+    const primaryRaw =
+      colorBucketPrimaryCol == null ? "" : String(row[colorBucketPrimaryCol] ?? "").trim();
+    const clusterRaw = colorKmeansClusterCol == null ? undefined : row[colorKmeansClusterCol];
+    const kRaw = colorKmeansKCol == null ? undefined : row[colorKmeansKCol];
+    map.set(objectId, {
+      colorgramPaletteHex:
+        colorgramPaletteCol == null
+          ? []
+          : parseHexPalette(String(row[colorgramPaletteCol] ?? "").trim()),
+      colorgramPaletteShare:
+        colorgramShareCol == null
+          ? []
+          : parseNumberArray(String(row[colorgramShareCol] ?? "").trim()),
+      colorBucketLabels:
+        colorBucketLabelsCol == null
+          ? []
+          : parseBucketLabels(String(row[colorBucketLabelsCol] ?? "").trim()),
+      colorBucketPrimary: primaryRaw,
+      colorKmeansCluster: parseOptionalIntCell(clusterRaw),
+      colorKmeansK: parseOptionalIntCell(kRaw)
+    });
+  }
+  return map;
+}
+
+type ExcludeManualKmeansParsed = {
+  clusterByObjectId: Map<string, number>;
+  kFit: number;
+  clusterIds: number[];
+  featureVersionLabel: string;
+};
+
+function parseExcludeManualKmeansCsv(raw: string): ExcludeManualKmeansParsed {
+  const empty: ExcludeManualKmeansParsed = {
+    clusterByObjectId: new Map(),
+    kFit: 0,
+    clusterIds: [],
+    featureVersionLabel: ""
+  };
+  const lines = raw.trim().split("\n");
+  if (lines.length < 2) return empty;
+
+  const headers = parseCsvLine(lines[0]);
+  const idx = new Map(headers.map((h, i) => [h, i]));
+  const oidCol = idx.get("objectID") ?? idx.get("objectId");
+  const clusterCol = idx.get("color_kmeans_cluster");
+  const kCol = idx.get("color_kmeans_k");
+  const verCol = idx.get("color_kmeans_feature_version");
+  if (oidCol == null || clusterCol == null) return empty;
+
+  const clusterByObjectId = new Map<string, number>();
+  let maxKFromCol = 0;
+  let maxCluster = -1;
+  let featureVersionLabel = "";
+
+  for (let rowIdx = 1; rowIdx < lines.length; rowIdx += 1) {
+    const row = parseCsvLine(lines[rowIdx]);
+    const oid = String(row[oidCol] ?? "").trim();
+    if (!oid) continue;
+
+    const c = parseOptionalIntCell(row[clusterCol]);
+    if (c === null) continue;
+
+    clusterByObjectId.set(oid, c);
+    if (c >= 0) maxCluster = Math.max(maxCluster, c);
+
+    if (kCol != null) {
+      const kCell = parseOptionalIntCell(row[kCol]);
+      if (kCell != null && kCell > maxKFromCol) maxKFromCol = kCell;
+    }
+
+    if (verCol != null && featureVersionLabel === "") {
+      const v = String(row[verCol] ?? "").trim();
+      if (v) featureVersionLabel = v;
+    }
+  }
+
+  let kFit = maxKFromCol;
+  if (kFit <= 0 && maxCluster >= 0) kFit = maxCluster + 1;
+
+  const clusterIds = kFit > 0 ? Array.from({ length: kFit }, (_, i) => i) : [];
+
+  return {
+    clusterByObjectId,
+    kFit,
+    clusterIds,
+    featureVersionLabel
+  };
+}
+
+function objectMatchesExcludeManualKMeansFilter(
+  objectId: string,
+  filter: number | null,
+  clusterByObjectId: Map<string, number>
+): boolean {
+  if (filter === null) return true;
+  const c = clusterByObjectId.get(objectId);
+  if (c === undefined) return false;
+  return c === filter;
+}
+
+const excludeManualKmeansParsed = parseExcludeManualKmeansCsv(excludeManualKmeansClustersCsvRaw);
+
+/** Cluster pill order from build script: PC1 of scaled KMeans centroids (similar groups adjacent). */
+function resolveExcludeManualClusterUiOrder(kFit: number, clusterIds: number[]): number[] {
+  const payload = excludeManualClusterUiOrderPayload as {
+    clusterUiOrder?: unknown;
+    kFit?: unknown;
+  };
+  if (payload.kFit !== kFit || clusterIds.length !== kFit || kFit <= 0) {
+    return clusterIds;
+  }
+  const ord = payload.clusterUiOrder;
+  if (!Array.isArray(ord) || ord.length !== kFit) return clusterIds;
+  const nums: number[] = [];
+  for (const x of ord) {
+    const n = typeof x === "number" ? x : Number(x);
+    if (!Number.isInteger(n)) return clusterIds;
+    nums.push(n);
+  }
+  const expected = new Set(clusterIds);
+  if (nums.some((id) => !expected.has(id))) return clusterIds;
+  if (new Set(nums).size !== nums.length) return clusterIds;
+  return nums;
+}
+
+const excludeManualClusterIdsForUi = resolveExcludeManualClusterUiOrder(
+  excludeManualKmeansParsed.kFit,
+  excludeManualKmeansParsed.clusterIds
+);
+
+/** Grid order when a single exclude-manual cluster is selected: nearest to centroid first (see JSON build). */
+function sortDisplayedIdsByExcludeManualCentroidOrder(
+  ids: string[],
+  clusterFilter: number | null,
+  parsedKFit: number
+): string[] {
+  const payload = excludeManualClusterUiOrderPayload as {
+    byClusterMemberOrder?: Record<string, number[]>;
+    kFit?: unknown;
+  };
+  if (
+    clusterFilter == null ||
+    clusterFilter < 0 ||
+    parsedKFit <= 0 ||
+    payload.kFit !== parsedKFit ||
+    !payload.byClusterMemberOrder
+  ) {
+    return [...ids].sort((a, b) => Number(a) - Number(b));
+  }
+  const ranked = payload.byClusterMemberOrder[String(clusterFilter)];
+  if (!Array.isArray(ranked) || ranked.length === 0) {
+    return [...ids].sort((a, b) => Number(a) - Number(b));
+  }
+  const rank = new Map<string, number>();
+  ranked.forEach((oid, index) => rank.set(String(oid), index));
+  return [...ids].sort((a, b) => {
+    const ra = rank.get(a);
+    const rb = rank.get(b);
+    if (ra != null && rb != null) return ra - rb;
+    if (ra != null) return -1;
+    if (rb != null) return 1;
+    return Number(a) - Number(b);
+  });
+}
+
 function scrollToTop() {
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
@@ -133,163 +412,27 @@ function scrollToBottom() {
   window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
 }
 
-function numericSuffix(name: string, prefix: string) {
-  if (!name.startsWith(prefix)) return Number.NaN;
-  const suffix = name.slice(prefix.length);
-  return /^\d+$/.test(suffix) ? Number(suffix) : Number.NaN;
-}
-
-function sortedProfileCols(headers: string[], prefix: string) {
-  return headers
-    .filter((col) => Number.isFinite(numericSuffix(col, prefix)))
-    .sort((a, b) => numericSuffix(a, prefix) - numericSuffix(b, prefix));
-}
-
-function median(values: number[]) {
-  if (values.length === 0) return 0;
-  const sorted = [...values].sort((a, b) => a - b);
-  const mid = Math.floor(sorted.length / 2);
-  return sorted.length % 2 ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2;
-}
-
-function buildNeighborIndex(allowedObjectIds: Set<string>): NeighborIndex {
-  const lines = silhouetteFeaturesCsvRaw.trim().split("\n");
-  if (lines.length < 2) {
-    return { orderedObjectIds: [], vectorByObjectId: new Map() };
-  }
-
-  const headers = lines[0].split(",");
-  const colIndexByName = new Map(headers.map((h, i) => [h, i]));
-  const objectIdColIdx = colIndexByName.get("object_id");
-  if (objectIdColIdx == null) {
-    return { orderedObjectIds: [], vectorByObjectId: new Map() };
-  }
-
-  const lrCols = [...sortedProfileCols(headers, "l"), ...sortedProfileCols(headers, "r")];
-  const tbCols = [...sortedProfileCols(headers, "t"), ...sortedProfileCols(headers, "b")];
-  const symmetryCols = headers.filter((col) =>
-    [
-      "lr_profile_abs_diff_mean",
-      "eccentricity",
-      "upper_vs_lower_width_ratio",
-      "centroid_x_norm",
-      "centroid_offset_x"
-    ].includes(col)
-  );
-  const contourCols = headers.filter(
-    (col) => col.startsWith("contour_") || col.startsWith("convexity_")
-  );
-  const huCols = headers.filter((col) => /^hu\d+$/.test(col));
-  const innerCountCols = headers.filter((col) => col === "inner_count");
-  const innerCols = headers.filter((col) => col.startsWith("inner") && col !== "inner_count");
-  const shapeCols = Array.from(new Set([...contourCols, ...huCols, ...symmetryCols]));
-
-  const featureCols = [...lrCols, ...tbCols, ...shapeCols, ...innerCols, ...innerCountCols];
-  const featureColIndexes = featureCols
-    .map((col) => colIndexByName.get(col))
-    .filter((idx): idx is number => idx != null);
-
-  const rows: { objectId: string; values: number[] }[] = [];
-  const valuesByCol: number[][] = featureColIndexes.map(() => []);
-
-  for (let rowIdx = 1; rowIdx < lines.length; rowIdx += 1) {
-    const rawCells = lines[rowIdx].split(",");
-    const objectId = String(rawCells[objectIdColIdx] ?? "").trim();
-    if (!objectId || !allowedObjectIds.has(objectId)) continue;
-    const values = featureColIndexes.map((colIdx, j) => {
-      const raw = String(rawCells[colIdx] ?? "")
-        .trim()
-        .toLowerCase();
-      const parsed = raw === "" || raw === "nan" ? Number.NaN : Number(raw);
-      if (Number.isFinite(parsed)) valuesByCol[j].push(parsed);
-      return parsed;
-    });
-    rows.push({ objectId, values });
-  }
-
-  if (rows.length === 0) return { orderedObjectIds: [], vectorByObjectId: new Map() };
-
-  const medians = valuesByCol.map((values) => median(values));
-  const imputed = rows.map((row) =>
-    row.values.map((value, idx) => (Number.isFinite(value) ? value : medians[idx]))
-  );
-
-  const means = featureColIndexes.map((_, colIdx) => {
-    let sum = 0;
-    for (let rowIdx = 0; rowIdx < imputed.length; rowIdx += 1) {
-      sum += imputed[rowIdx][colIdx];
-    }
-    return sum / Math.max(1, imputed.length);
-  });
-
-  const stds = featureColIndexes.map((_, colIdx) => {
-    let sumSq = 0;
-    for (let rowIdx = 0; rowIdx < imputed.length; rowIdx += 1) {
-      const centered = imputed[rowIdx][colIdx] - means[colIdx];
-      sumSq += centered * centered;
-    }
-    const variance = sumSq / Math.max(1, imputed.length);
-    return variance > 0 ? Math.sqrt(variance) : 1;
-  });
-
-  const weights = featureCols.map((col) => {
-    if (lrCols.includes(col)) return FEATURE_WEIGHTS.lr;
-    if (tbCols.includes(col)) return FEATURE_WEIGHTS.tb;
-    if (col === "inner_count") return FEATURE_WEIGHTS.innerCount;
-    if (innerCols.includes(col)) return FEATURE_WEIGHTS.inner;
-    return FEATURE_WEIGHTS.shape;
-  });
-
-  const vectorByObjectId = new Map<string, Float64Array>();
-  const orderedObjectIds: string[] = [];
-  for (let rowIdx = 0; rowIdx < rows.length; rowIdx += 1) {
-    const vector = new Float64Array(featureColIndexes.length);
-    for (let colIdx = 0; colIdx < featureColIndexes.length; colIdx += 1) {
-      const standardized = (imputed[rowIdx][colIdx] - means[colIdx]) / stds[colIdx];
-      vector[colIdx] = standardized * weights[colIdx];
-    }
-    const objectId = rows[rowIdx].objectId;
-    vectorByObjectId.set(objectId, vector);
-    orderedObjectIds.push(objectId);
-  }
-
-  return { orderedObjectIds, vectorByObjectId };
-}
-
-function computeClosestNeighbors(
-  selectedObjectId: string,
-  index: NeighborIndex,
-  maxNeighbors: number
-): NeighborHit[] {
-  const selectedVector = index.vectorByObjectId.get(selectedObjectId);
-  if (!selectedVector) return [];
-
-  const hits: NeighborHit[] = [];
-  for (let i = 0; i < index.orderedObjectIds.length; i += 1) {
-    const objectId = index.orderedObjectIds[i];
-    if (objectId === selectedObjectId) continue;
-    const vector = index.vectorByObjectId.get(objectId);
-    if (!vector) continue;
-    let sumSq = 0;
-    for (let j = 0; j < selectedVector.length; j += 1) {
-      const diff = selectedVector[j] - vector[j];
-      sumSq += diff * diff;
-    }
-    hits.push({ objectId, distance: Math.sqrt(sumSq) });
-  }
-
-  hits.sort((a, b) => a.distance - b.distance);
-  return hits.slice(0, maxNeighbors);
-}
-
 function Test2() {
   const navigate = useNavigate();
-  const [imageMode, setImageMode] = useState<ImageMode>("mask");
+  const [imageMode, setImageMode] = useState<ImageMode>("no_bg");
   const [objectIdSearch, setObjectIdSearch] = useState("");
   const [showOnlyBeforeYearZero, setShowOnlyBeforeYearZero] = useState(false);
-  const [, setSelectedObjectIds] = useState<string[]>(() => loadSelectedObjectIdsFromStorage());
+  const [showOnlyWithPaletteData, setShowOnlyWithPaletteData] = useState(false);
+  const [selectedManualGroupFilter, setSelectedManualGroupFilter] = useState<string | null>(null);
+  const [selectedExcludeManualClusterFilter, setSelectedExcludeManualClusterFilter] = useState<
+    number | null
+  >(null);
+  const [clickedObjectIds, setClickedObjectIds] = useState<string[]>([]);
+
+  useEffect(() => {
+    try {
+      window.localStorage.removeItem(LEGACY_SELECTED_OBJECT_IDS_STORAGE_KEY);
+    } catch {
+      /* ignore */
+    }
+  }, []);
   const [selectedObjectId, setSelectedObjectId] = useState<string | null>(null);
-  const [modalImageMode, setModalImageMode] = useState<ImageMode>("mask");
+  const [modalImageMode, setModalImageMode] = useState<ImageMode>("no_bg");
   const [missingImageNames, setMissingImageNames] = useState<Record<string, true>>({});
   const loggedMissingImageNamesRef = useRef<Set<string>>(new Set());
 
@@ -299,31 +442,64 @@ function Test2() {
       .sort((a, b) => Number(a) - Number(b));
   }, []);
 
-  const neighborIndex = useMemo(() => {
-    return buildNeighborIndex(new Set(baseObjectIds));
-  }, [baseObjectIds]);
+  const silhouetteNeighborIdSet = useMemo(() => new Set(getAllShapeNeighborObjectIds()), []);
 
   const objectIds = useMemo(() => {
-    return [...neighborIndex.orderedObjectIds].sort((a, b) => Number(a) - Number(b));
-  }, [neighborIndex]);
+    return baseObjectIds.filter((id) => silhouetteNeighborIdSet.has(id));
+  }, [baseObjectIds, silhouetteNeighborIdSet]);
+
   const objectFieldMetaById = useMemo(() => buildFieldsMetaByObjectId(), []);
+  const objectModalFieldsById = useObjectModalMetadata();
+  const objectColorMetaById = useMemo(() => buildColorMetaByObjectId(), []);
 
   const normalizedObjectIdSearch = objectIdSearch.trim();
   const displayedObjectIds = useMemo(() => {
-    return objectIds.filter((objectId) => {
-      if (normalizedObjectIdSearch && objectId !== normalizedObjectIdSearch) return false;
-      if (!showOnlyBeforeYearZero) return true;
-      const rawDate = objectFieldMetaById.get(objectId)?.date ?? "";
-      const numericDate = Number(rawDate);
-      return Number.isFinite(numericDate) && numericDate < 0;
-    });
-  }, [objectFieldMetaById, objectIds, normalizedObjectIdSearch, showOnlyBeforeYearZero]);
+    const filtered = objectIds
+      .filter((objectId) => {
+        if (normalizedObjectIdSearch && objectId !== normalizedObjectIdSearch) return false;
+        if (!showOnlyBeforeYearZero) return true;
+        const rawDate = objectFieldMetaById.get(objectId)?.date ?? "";
+        const numericDate = Number(rawDate);
+        const passesDateFilter = Number.isFinite(numericDate) && numericDate < 0;
+        if (!passesDateFilter) return false;
+        return true;
+      })
+      .filter((objectId) => {
+        if (!showOnlyWithPaletteData) return true;
+        const colorMeta = objectColorMetaById.get(objectId);
+        return (colorMeta?.colorgramPaletteHex.length ?? 0) > 0;
+      })
+      .filter((objectId) =>
+        objectMatchesManualGroupFilter(objectId, selectedManualGroupFilter, manualColorGroupIdSets)
+      )
+      .filter((objectId) =>
+        objectMatchesExcludeManualKMeansFilter(
+          objectId,
+          selectedExcludeManualClusterFilter,
+          excludeManualKmeansParsed.clusterByObjectId
+        )
+      );
+    return sortDisplayedIdsByExcludeManualCentroidOrder(
+      filtered,
+      selectedExcludeManualClusterFilter,
+      excludeManualKmeansParsed.kFit
+    );
+  }, [
+    objectColorMetaById,
+    objectFieldMetaById,
+    objectIds,
+    normalizedObjectIdSearch,
+    selectedExcludeManualClusterFilter,
+    selectedManualGroupFilter,
+    showOnlyBeforeYearZero,
+    showOnlyWithPaletteData
+  ]);
 
   const hasNoSearchResult = normalizedObjectIdSearch.length > 0 && displayedObjectIds.length === 0;
   const closestNeighbors = useMemo(() => {
     if (!selectedObjectId) return [];
-    return computeClosestNeighbors(selectedObjectId, neighborIndex, NEIGHBOR_COUNT);
-  }, [neighborIndex, selectedObjectId]);
+    return getShapeNeighborsForObject(selectedObjectId)?.neighbors20 ?? [];
+  }, [selectedObjectId]);
 
   const modalCardCount = Math.max(1, closestNeighbors.length + (selectedObjectId ? 1 : 0));
   const modalTargetWidthPx = Math.min(1280, Math.max(520, modalCardCount * 210 + 48));
@@ -340,18 +516,19 @@ function Test2() {
   };
 
   const handleImageClick = (objectId: string) => {
-    setSelectedObjectIds((previousIds) => {
+    setClickedObjectIds((previousIds) => {
       if (previousIds.includes(objectId)) {
-        console.log("Selected object IDs:", previousIds);
+        console.log("Clicked object IDs (session):", previousIds);
         return previousIds;
       }
       const nextIds = [...previousIds, objectId];
-      window.localStorage.setItem(SELECTED_OBJECT_IDS_STORAGE_KEY, JSON.stringify(nextIds));
-      console.log("Selected object IDs:", nextIds);
+      console.log("Clicked object IDs (session):", nextIds);
       return nextIds;
     });
-    setModalImageMode("mask");
-    setSelectedObjectId(objectId);
+    if (TEST2_OPEN_MODAL_ON_IMAGE_CLICK) {
+      setModalImageMode("no_bg");
+      setSelectedObjectId(objectId);
+    }
   };
 
   const renderModeImage = (objectId: string, mode: ImageMode) => {
@@ -389,6 +566,127 @@ function Test2() {
           inset: 0
         }}
       />
+    );
+  };
+
+  const renderPaletteStrips = (objectId: string, swatchHeight = 8) => {
+    const colorMeta = objectColorMetaById.get(objectId);
+    const colors = colorMeta?.colorgramPaletteHex ?? [];
+    const shares = colorMeta?.colorgramPaletteShare ?? [];
+    const buckets = colorMeta?.colorBucketLabels ?? [];
+    const primary = (colorMeta?.colorBucketPrimary ?? "").trim();
+    const weightedShares = colors.map((_, index) => Math.max(0, shares[index] ?? 0));
+    const weightedTotal = weightedShares.reduce((sum, value) => sum + value, 0);
+    const km = formatPaletteKmeansLine(colorMeta);
+
+    return (
+      <div style={{ marginTop: "6px", display: "grid", gap: "4px" }}>
+        <div style={{ display: "grid", gap: "2px" }}>
+          <div style={{ fontSize: "10px", color: "#bbb", lineHeight: 1 }}>Colorgram</div>
+          <div
+            style={{
+              width: "100%",
+              height: `${swatchHeight}px`,
+              borderRadius: "3px",
+              overflow: "hidden",
+              border: "1px solid #333",
+              display: "flex",
+              background: "#111"
+            }}
+          >
+            {colors.length > 0 ? (
+              colors.map((hex, index) => (
+                <span
+                  key={`${objectId}-colorgram-${hex}-${index}`}
+                  title={`${hex} (${((shares[index] ?? 0) * 100).toFixed(1)}%)`}
+                  style={{ backgroundColor: hex, flex: 1, minWidth: 0 }}
+                />
+              ))
+            ) : (
+              <span style={{ flex: 1, background: "#111" }} />
+            )}
+          </div>
+        </div>
+        <div style={{ display: "grid", gap: "2px" }}>
+          <div style={{ fontSize: "10px", color: "#bbb", lineHeight: 1 }}>
+            Colorgram (proportional width)
+          </div>
+          <div
+            style={{
+              width: "100%",
+              height: `${swatchHeight}px`,
+              borderRadius: "3px",
+              overflow: "hidden",
+              border: "1px solid #333",
+              display: "flex",
+              background: "#111"
+            }}
+          >
+            {colors.length > 0 ? (
+              colors.map((hex, index) => {
+                const share = weightedShares[index];
+                const widthPercent =
+                  weightedTotal > 0
+                    ? (share / weightedTotal) * 100
+                    : 100 / Math.max(1, colors.length);
+                return (
+                  <span
+                    key={`${objectId}-colorgram-weighted-${hex}-${index}`}
+                    title={`${hex} (${(100 * (shares[index] ?? 0)).toFixed(1)}%)`}
+                    style={{ backgroundColor: hex, width: `${widthPercent}%`, minWidth: "1px" }}
+                  />
+                );
+              })
+            ) : (
+              <span style={{ flex: 1, background: "#111" }} />
+            )}
+          </div>
+        </div>
+        <div style={{ display: "grid", gap: "2px" }}>
+          <div style={{ fontSize: "10px", color: "#bbb", lineHeight: 1 }}>Color buckets</div>
+          {buckets.length > 0 ? (
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "4px" }}>
+              {buckets.map((label, bucketIndex) => {
+                const isPrimary = primary.length > 0 && label === primary;
+                return (
+                  <span
+                    key={`${objectId}-bucket-${bucketIndex}-${label}`}
+                    title={isPrimary ? "Primary bucket" : undefined}
+                    style={{
+                      fontSize: "10px",
+                      lineHeight: 1.35,
+                      padding: "3px 6px",
+                      borderRadius: "4px",
+                      border: isPrimary ? "1px solid #9cf" : "1px solid #444",
+                      background: isPrimary ? "rgba(120, 180, 255, 0.12)" : "#1a1a1a",
+                      color: "#e8e8e8",
+                      maxWidth: "100%",
+                      overflowWrap: "anywhere"
+                    }}
+                  >
+                    {label}
+                  </span>
+                );
+              })}
+            </div>
+          ) : (
+            <div style={{ fontSize: "10px", color: "#666" }}>—</div>
+          )}
+        </div>
+        <div style={{ display: "grid", gap: "2px" }}>
+          <div style={{ fontSize: "10px", color: "#bbb", lineHeight: 1 }}>Palette KMeans</div>
+          <div
+            style={{
+              fontSize: "10px",
+              lineHeight: 1.35,
+              color: km.dim ? "#666" : "#9cf",
+              fontWeight: km.dim ? 400 : 600
+            }}
+          >
+            {km.detail}
+          </div>
+        </div>
+      </div>
     );
   };
 
@@ -510,6 +808,234 @@ function Test2() {
           />
           final_date {"<"} 0
         </label>
+        <label
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "0.35rem",
+            fontSize: "0.9rem",
+            cursor: "pointer"
+          }}
+        >
+          <input
+            type="checkbox"
+            checked={showOnlyWithPaletteData}
+            onChange={(event) => setShowOnlyWithPaletteData(event.target.checked)}
+            aria-label="Filter to objects with palette data"
+          />
+          palette data only
+        </label>
+      </div>
+
+      <div
+        style={{
+          marginBottom: "1rem",
+          padding: "0.6rem 0.65rem",
+          border: "1px solid #333",
+          borderRadius: "8px",
+          background: "#0a0a0a"
+        }}
+      >
+        <p
+          style={{ margin: "0 0 0.55rem 0", fontSize: "0.72rem", color: "#777", lineHeight: 1.35 }}
+        >
+          Only one color filter at a time — choosing manual JSON or exclude-manual KMeans clears the
+          other.
+        </p>
+        <div>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "0.5rem",
+              flexWrap: "wrap",
+              marginBottom: "0.45rem"
+            }}
+          >
+            <span style={{ fontSize: "0.85rem", color: "#ccc", fontWeight: 600 }}>
+              Manual color group
+            </span>
+            <button
+              type="button"
+              onClick={() => setSelectedManualGroupFilter(null)}
+              disabled={selectedManualGroupFilter == null}
+              style={{
+                border: "1px solid #666",
+                borderRadius: "6px",
+                background: selectedManualGroupFilter == null ? "#1a1a1a" : "#222",
+                color: selectedManualGroupFilter == null ? "#666" : "#fff",
+                padding: "0.2rem 0.45rem",
+                fontSize: "0.75rem",
+                cursor: selectedManualGroupFilter == null ? "default" : "pointer"
+              }}
+            >
+              All manual groups
+            </button>
+            <span style={{ fontSize: "0.75rem", color: "#888" }}>
+              {selectedManualGroupFilter == null
+                ? "no manual filter"
+                : `match: ${selectedManualGroupFilter} (${manualColorGroupIdSets.get(selectedManualGroupFilter)?.size ?? 0} ids)`}
+            </span>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: "0.35rem",
+              alignItems: "center"
+            }}
+          >
+            {manualColorGroupNamesSorted.map((name) => {
+              const count = manualColorGroupIdSets.get(name)?.size ?? 0;
+              const active = selectedManualGroupFilter === name;
+              const label = `${name.replace(/_/g, " ")} (${count})`;
+              return (
+                <button
+                  key={`manual-group-${name}`}
+                  type="button"
+                  aria-pressed={active}
+                  title={name}
+                  onClick={() => {
+                    const next = selectedManualGroupFilter === name ? null : name;
+                    setSelectedManualGroupFilter(next);
+                    if (next != null) setSelectedExcludeManualClusterFilter(null);
+                  }}
+                  style={{
+                    border: active ? "1px solid #c9f" : "1px solid #444",
+                    borderRadius: "6px",
+                    background: active ? "rgba(200, 150, 255, 0.16)" : "#141414",
+                    color: "#e8e8e8",
+                    padding: "0.28rem 0.5rem",
+                    fontSize: "0.72rem",
+                    lineHeight: 1.25,
+                    cursor: "pointer",
+                    maxWidth: "100%",
+                    textAlign: "left"
+                  }}
+                >
+                  {label}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        <div
+          style={{
+            marginTop: "0.65rem",
+            paddingTop: "0.65rem",
+            borderTop: "1px solid #2a2a2a"
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "0.5rem",
+              flexWrap: "wrap",
+              marginBottom: "0.45rem"
+            }}
+          >
+            <span style={{ fontSize: "0.85rem", color: "#ccc", fontWeight: 600 }}>
+              KMeans · manual IDs excluded
+            </span>
+            <button
+              type="button"
+              onClick={() => setSelectedExcludeManualClusterFilter(null)}
+              disabled={selectedExcludeManualClusterFilter == null}
+              style={{
+                border: "1px solid #666",
+                borderRadius: "6px",
+                background: selectedExcludeManualClusterFilter == null ? "#1a1a1a" : "#222",
+                color: selectedExcludeManualClusterFilter == null ? "#666" : "#fff",
+                padding: "0.2rem 0.45rem",
+                fontSize: "0.75rem",
+                cursor: selectedExcludeManualClusterFilter == null ? "default" : "pointer"
+              }}
+            >
+              All clusters
+            </button>
+            <span
+              style={{ fontSize: "0.75rem", color: "#888" }}
+              title={excludeManualKmeansParsed.featureVersionLabel || undefined}
+            >
+              {excludeManualKmeansParsed.kFit > 0 ? `k=${excludeManualKmeansParsed.kFit} · ` : ""}
+              {excludeManualKmeansParsed.clusterIds.length === 0
+                ? "no exclude-manual CSV rows"
+                : selectedExcludeManualClusterFilter == null
+                  ? "pills + grid order from cluster_ui_order.json (re-run exclude-manual build)"
+                  : selectedExcludeManualClusterFilter === -1
+                    ? "match: Unassigned"
+                    : `match: cluster ${selectedExcludeManualClusterFilter} · grid nearest centroid first`}
+            </span>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: "0.35rem",
+              alignItems: "center"
+            }}
+          >
+            <button
+              key="exclude-manual-unassigned"
+              type="button"
+              aria-pressed={selectedExcludeManualClusterFilter === -1}
+              disabled={excludeManualKmeansParsed.clusterIds.length === 0}
+              onClick={() => {
+                const next = selectedExcludeManualClusterFilter === -1 ? null : -1;
+                setSelectedExcludeManualClusterFilter(next);
+                if (next != null) setSelectedManualGroupFilter(null);
+              }}
+              style={{
+                border:
+                  selectedExcludeManualClusterFilter === -1 ? "1px solid #fa8" : "1px solid #444",
+                borderRadius: "6px",
+                background:
+                  selectedExcludeManualClusterFilter === -1
+                    ? "rgba(255, 160, 120, 0.15)"
+                    : "#141414",
+                color: "#e8e8e8",
+                padding: "0.28rem 0.5rem",
+                fontSize: "0.72rem",
+                lineHeight: 1.25,
+                cursor: excludeManualKmeansParsed.clusterIds.length === 0 ? "default" : "pointer",
+                opacity: excludeManualKmeansParsed.clusterIds.length === 0 ? 0.45 : 1
+              }}
+            >
+              Unassigned
+            </button>
+            {excludeManualClusterIdsForUi.map((id) => {
+              const active = selectedExcludeManualClusterFilter === id;
+              return (
+                <button
+                  key={`exclude-manual-kmeans-${id}`}
+                  type="button"
+                  aria-pressed={active}
+                  onClick={() => {
+                    const next = selectedExcludeManualClusterFilter === id ? null : id;
+                    setSelectedExcludeManualClusterFilter(next);
+                    if (next != null) setSelectedManualGroupFilter(null);
+                  }}
+                  style={{
+                    border: active ? "1px solid #fd9" : "1px solid #444",
+                    borderRadius: "6px",
+                    background: active ? "rgba(255, 210, 120, 0.18)" : "#141414",
+                    color: "#e8e8e8",
+                    padding: "0.28rem 0.5rem",
+                    fontSize: "0.72rem",
+                    lineHeight: 1.25,
+                    cursor: "pointer",
+                    minWidth: "2rem",
+                    textAlign: "center"
+                  }}
+                >
+                  {id}
+                </button>
+              );
+            })}
+          </div>
+        </div>
       </div>
 
       {hasNoSearchResult ? (
@@ -525,11 +1051,31 @@ function Test2() {
           zIndex: 20,
           display: "flex",
           justifyContent: "flex-end",
+          alignItems: "center",
           gap: "0.4rem",
           marginBottom: "0.75rem",
           pointerEvents: "none"
         }}
       >
+        <span
+          title={
+            clickedObjectIds.length === 0
+              ? "Unique thumbnails clicked this load (not persisted)."
+              : clickedObjectIds.join(", ")
+          }
+          style={{
+            fontSize: "0.72rem",
+            color: "#888",
+            pointerEvents: "auto",
+            marginRight: "0.15rem",
+            maxWidth: "min(280px, 42vw)",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            whiteSpace: "nowrap"
+          }}
+        >
+          {clickedObjectIds.length} clicked · session only
+        </span>
         <button
           type="button"
           onClick={scrollToTop}
@@ -647,6 +1193,7 @@ function Test2() {
                 ID: {objectId}
                 <br />
                 Title: {getObjectTitle(objectId)}
+                {renderPaletteStrips(objectId, 7)}
               </figcaption>
             </figure>
           );
@@ -682,7 +1229,7 @@ function Test2() {
           >
             <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", flexWrap: "wrap" }}>
               <h2 style={{ margin: 0, fontSize: "clamp(0.95rem, 2.8vw, 1rem)" }}>
-                Closest Neighbors (Top {NEIGHBOR_COUNT})
+                Closest Neighbors (Top 10)
               </h2>
               <span style={{ color: "#fff", fontSize: "0.85rem" }}>Modal view:</span>
               <button
@@ -749,8 +1296,9 @@ function Test2() {
             </div>
 
             <p style={{ margin: "0.65rem 0 0", fontSize: "0.8rem", color: "#bbb" }}>
-              Computed live from weighted silhouette features (lr/tb/shape/inner), median-imputed
-              and standardized.
+              Precomputed neighbors (
+              <code style={{ fontSize: "0.78rem" }}>shape_neighbors_euclidean.json</code>) — same
+              weighted silhouette pipeline (median-imputed, standardized).
             </p>
 
             <div
@@ -780,16 +1328,17 @@ function Test2() {
                   <div>
                     Location: {objectFieldMetaById.get(selectedObjectId)?.location ?? "Unknown"}
                   </div>
+                  {renderPaletteStrips(selectedObjectId, 9)}
                 </figcaption>
               </figure>
 
               {closestNeighbors.map((neighbor, index) => (
                 <figure
-                  key={`${selectedObjectId}-${neighbor.objectId}`}
+                  key={`${selectedObjectId}-${neighbor.neighborId}`}
                   style={{ margin: 0, width: "210px", maxWidth: "210px" }}
                 >
                   <div
-                    onClick={() => handleImageClick(neighbor.objectId)}
+                    onClick={() => handleImageClick(neighbor.neighborId)}
                     style={{
                       background: modalImageMode === "no_bg" ? "transparent" : "#000",
                       aspectRatio: "1 / 1",
@@ -797,17 +1346,49 @@ function Test2() {
                       cursor: "pointer"
                     }}
                   >
-                    {renderModeImage(neighbor.objectId, modalImageMode)}
+                    {renderModeImage(neighbor.neighborId, modalImageMode)}
                   </div>
                   <figcaption style={{ marginTop: "0.5rem", color: "#fff", fontSize: "0.8rem" }}>
                     <div style={{ fontWeight: 700 }}>Neighbor #{index + 1}</div>
-                    <div>Object ID: {neighbor.objectId}</div>
-                    <div>Title: {getObjectTitle(neighbor.objectId)}</div>
-                    <div>Date: {objectFieldMetaById.get(neighbor.objectId)?.date ?? "Unknown"}</div>
+                    <div>Object ID: {neighbor.neighborId}</div>
+                    <div>Title: {getObjectTitle(neighbor.neighborId)}</div>
                     <div>
-                      Location: {objectFieldMetaById.get(neighbor.objectId)?.location ?? "Unknown"}
+                      Date: {objectFieldMetaById.get(neighbor.neighborId)?.date ?? "Unknown"}
                     </div>
-                    <div>Distance: {neighbor.distance.toFixed(4)}</div>
+                    <div>
+                      Location:{" "}
+                      {objectFieldMetaById.get(neighbor.neighborId)?.location ?? "Unknown"}
+                    </div>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexWrap: "wrap",
+                        alignItems: "center",
+                        gap: "0.35rem"
+                      }}
+                    >
+                      <span style={{ color: "#9a9a9a" }}>Chronology:</span>
+                      <ChronologySpanGlyph
+                        corpusMin={corpusYearMin}
+                        corpusMax={corpusYearMax}
+                        anchorYear={parseFinalDateYear(
+                          objectModalFieldsById.get(selectedObjectId ?? "")?.finalDate ?? ""
+                        )}
+                        neighborYear={parseFinalDateYear(
+                          objectModalFieldsById.get(neighbor.neighborId)?.finalDate ?? ""
+                        )}
+                        neighborFinalDate={
+                          objectModalFieldsById.get(neighbor.neighborId)?.finalDate ?? ""
+                        }
+                      />
+                    </div>
+                    <div>
+                      {formatPlaceVsAnchorSentence(
+                        objectModalFieldsById.get(selectedObjectId ?? ""),
+                        objectModalFieldsById.get(neighbor.neighborId)
+                      )}
+                    </div>
+                    {renderPaletteStrips(neighbor.neighborId, 9)}
                   </figcaption>
                 </figure>
               ))}

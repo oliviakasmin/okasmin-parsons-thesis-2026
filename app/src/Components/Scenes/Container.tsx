@@ -7,10 +7,10 @@ import finalClusterKeysCsv from "../../../../format_data/cluster_shape/final_clu
 import finalClusterObjectIdsCsv from "../../../../format_data/cluster_shape/final_clusters_object_ids.csv?raw";
 import BackButton from "../BackButton";
 import ImageToggleButton from "../ImageToggleButton";
-import useImageToggle from "../../hooks/useImageToggle";
+import useImageToggle, { type ImageToggleMode } from "../../hooks/useImageToggle";
 import useImageModules from "../../hooks/useImageModules";
 import useFormatClusters from "../../hooks/useFormatClusters";
-import useFunctionGroups, { isFunctionGroup } from "../../hooks/useFunctionGroups";
+import useUseGroups, { isUseGroup, USE_GROUP_LABEL } from "../../hooks/useUseGroups";
 import useColorGroups, { isColorGroupKey } from "../../hooks/useColorGroups";
 import useTimelineBuckets from "../../hooks/useTimelineBuckets";
 import useObjectGeo, {
@@ -20,6 +20,7 @@ import useObjectGeo, {
 import useObjectModalMetadata from "../../hooks/useObjectModalMetadata";
 import { buildSceneLayout } from "../../hooks/useViewLayouts";
 import {
+  ALL_SCENE_GRID_GAP_X_PX,
   ALL_SCENE_RENDER_IMAGE_SIZE_PX,
   SCENE_LEFT_PANEL_COLLAPSED_MIN_WIDTH_PX,
   SCENE_LEFT_PANEL_COLLAPSED_VW,
@@ -37,11 +38,14 @@ import ObjectImageModal from "./ObjectImageModal";
 import ObjectScene from "./ObjectScene";
 import TimelineAxis from "./TimelineAxis";
 import { useShelfTab } from "../shelfTabState";
+import { ShelfStackedOutlineSvg } from "../EntryPoints/ShelfStackedOutlineSvg";
 
 type SceneView = "all" | "timeline" | "map";
 type ContainerLocationState = {
   homeScrollTo?: HomeEntryScrollId;
   initialImageMode?: "solid" | "outline" | "color";
+  /** Shape-cluster scene entered from Shelf tiles (headline + stacked glyph). */
+  fromShelf?: boolean;
 };
 
 /**
@@ -86,6 +90,18 @@ function sceneHeadlineEmphasis(children: ReactNode) {
   );
 }
 
+function sceneHeadlineH3(children: ReactNode) {
+  return (
+    <Typography
+      component="span"
+      variant="h3"
+      sx={{ ...sceneHeadlineEmphasisSx, display: "inline" }}
+    >
+      {children}
+    </Typography>
+  );
+}
+
 function formatCountryLabel(countryKey: string) {
   return countryKey
     .split(" ")
@@ -102,9 +118,9 @@ function defaultStackOpacity(clusterSize: number) {
 function sceneHeadlineContent(args: {
   view: SceneView;
   objectCount: number;
-  objectLabelPlural: string;
-  timelineSubject: string;
-  mapSubject: string;
+  objectLabelPlural: ReactNode;
+  timelineSubject: ReactNode;
+  mapSubject: ReactNode;
   spanYears: number;
   countryCount: number;
 }): ReactNode {
@@ -172,16 +188,16 @@ function Container() {
   isLeftPanelExpandedRef.current = isLeftPanelExpanded;
   const { outlineImageByObjectId, maskImageByObjectId, noBgImageByObjectId } = useImageModules();
   const { clusterRows } = useFormatClusters(finalClusterKeysCsv, finalClusterObjectIdsCsv);
-  const { groupRowById } = useFunctionGroups();
+  const { groupRowById: useGroupRowById } = useUseGroups();
   const { groupRowByKey } = useColorGroups();
   const { setSelectedShelfTab } = useShelfTab();
   const selectedCluster = useMemo(
     () => clusterRows.find((row) => row.cluster === clusterId),
     [clusterId, clusterRows]
   );
-  const selectedFunctionGroup = useMemo(
-    () => (clusterId && isFunctionGroup(clusterId) ? groupRowById.get(clusterId) : undefined),
-    [clusterId, groupRowById]
+  const selectedUseGroup = useMemo(
+    () => (clusterId && isUseGroup(clusterId) ? useGroupRowById.get(clusterId) : undefined),
+    [clusterId, useGroupRowById]
   );
   const selectedColorGroup = useMemo(
     () => (clusterId && isColorGroupKey(clusterId) ? groupRowByKey.get(clusterId) : undefined),
@@ -195,11 +211,11 @@ function Container() {
             typeLabel: selectedCluster.clusterType,
             objectIds: selectedCluster.allObjectIds
           }
-        : selectedFunctionGroup
+        : selectedUseGroup
           ? {
-              id: selectedFunctionGroup.group,
-              typeLabel: "function group",
-              objectIds: selectedFunctionGroup.objectIds
+              id: selectedUseGroup.group,
+              typeLabel: "use group",
+              objectIds: selectedUseGroup.objectIds
             }
           : selectedColorGroup
             ? {
@@ -208,20 +224,21 @@ function Container() {
                 objectIds: selectedColorGroup.objectIds
               }
             : null,
-    [selectedCluster, selectedColorGroup, selectedFunctionGroup]
+    [selectedCluster, selectedColorGroup, selectedUseGroup]
   );
   const selectedObjectIds = useMemo(() => selectedEntry?.objectIds ?? [], [selectedEntry]);
-  const objectLabelPlural = selectedFunctionGroup
-    ? selectedFunctionGroup.group === "amphora"
-      ? "amphorae"
-      : `${selectedFunctionGroup.group}s`
-    : selectedColorGroup
-      ? `${selectedColorGroup.label} vessels`
-      : "vessels";
+  const objectLabelPlural = selectedUseGroup ? (
+    <>{sceneHeadlineH3(USE_GROUP_LABEL[selectedUseGroup.group])} vessels</>
+  ) : selectedColorGroup ? (
+    <>{sceneHeadlineH3(selectedColorGroup.label)} vessels</>
+  ) : (
+    "vessels"
+  );
   const timelineSubject =
-    selectedFunctionGroup || selectedColorGroup ? objectLabelPlural : "these forms";
-  const mapSubject =
-    selectedFunctionGroup || selectedColorGroup ? objectLabelPlural : "these forms";
+    selectedUseGroup || selectedColorGroup ? objectLabelPlural : "these forms";
+  const mapSubject = selectedUseGroup || selectedColorGroup ? objectLabelPlural : "these forms";
+
+  const showShelfShapeGlyph = Boolean(locationState?.fromShelf && selectedCluster && clusterId);
 
   const {
     buckets: timelineBuckets,
@@ -249,7 +266,7 @@ function Container() {
       sceneViewportSize.width > 0
     ) {
       const cellWidth = Math.floor(sceneViewportSize.width / allGridBaselineColumns);
-      imageSizePx = Math.max(24, cellWidth - 4);
+      imageSizePx = Math.max(24, cellWidth - ALL_SCENE_GRID_GAP_X_PX);
     }
     return buildSceneLayout({
       objectIds: selectedObjectIds,
@@ -359,7 +376,12 @@ function Container() {
   useLayoutEffect(() => {
     if (isLeftPanelExpanded || sceneViewportSize.width <= 0) return;
     setAllGridBaselineColumns(
-      Math.max(1, Math.floor(sceneViewportSize.width / (ALL_SCENE_RENDER_IMAGE_SIZE_PX + 4)))
+      Math.max(
+        1,
+        Math.floor(
+          sceneViewportSize.width / (ALL_SCENE_RENDER_IMAGE_SIZE_PX + ALL_SCENE_GRID_GAP_X_PX)
+        )
+      )
     );
   }, [isLeftPanelExpanded, sceneViewportSize.width]);
 
@@ -398,14 +420,14 @@ function Container() {
     [noBgImageByObjectId]
   );
 
-  const getColorImageSrc = useCallback(
-    (objectId: string) => noBgImageByObjectId.get(objectId) ?? maskImageByObjectId.get(objectId),
-    [maskImageByObjectId, noBgImageByObjectId]
-  );
-
-  const getOutlineImageSrc = useCallback(
-    (objectId: string) => outlineImageByObjectId.get(objectId),
-    [outlineImageByObjectId]
+  const getTileImageSrc = useCallback(
+    (objectId: string, tileMode: ImageToggleMode) => {
+      if (tileMode === "outline") return outlineImageByObjectId.get(objectId);
+      if (tileMode === "color")
+        return noBgImageByObjectId.get(objectId) ?? maskImageByObjectId.get(objectId);
+      return maskImageByObjectId.get(objectId);
+    },
+    [maskImageByObjectId, noBgImageByObjectId, outlineImageByObjectId]
   );
 
   const imageAltSuffix = mode === "outline" ? "outline" : mode === "color" ? "no_bg" : "mask";
@@ -485,7 +507,7 @@ function Container() {
     console.log(`${selectedEntry.id}\n${selectedEntry.typeLabel}`);
   }, [selectedEntry]);
   useEffect(() => {
-    if (selectedFunctionGroup) {
+    if (selectedUseGroup) {
       setSelectedShelfTab("use");
       return;
     }
@@ -496,7 +518,7 @@ function Container() {
     if (selectedCluster) {
       setSelectedShelfTab("shape");
     }
-  }, [selectedCluster, selectedColorGroup, selectedFunctionGroup, setSelectedShelfTab]);
+  }, [selectedCluster, selectedColorGroup, selectedUseGroup, setSelectedShelfTab]);
   useEffect(() => {
     syncTimelineAxisToSceneScroll();
   }, [contentSceneHeight, currentView, syncTimelineAxisToSceneScroll, timelineBuckets]);
@@ -570,8 +592,74 @@ function Container() {
           <Box sx={{ flexShrink: 0 }}>
             <BackButton />
           </Box>
-          <Box sx={{ flexShrink: 0, marginLeft: "auto" }}>
-            <ImageToggleButton mode={mode} options={options} onChange={setMode} />
+          <Box
+            sx={{
+              flexShrink: 0,
+              marginLeft: "auto",
+              display: "flex",
+              alignItems: "center",
+              gap: 0
+            }}
+          >
+            <Button
+              type="button"
+              onClick={() => setSearchParams({ view: "all" }, { state: location.state })}
+              variant="outlined"
+              sx={{
+                borderColor: "#fff",
+                background: currentView === "all" ? "#fff" : "#000",
+                color: currentView === "all" ? "#000" : "#fff",
+                textTransform: "none",
+                minWidth: 0,
+                borderRadius: 0,
+                "&:hover": {
+                  borderColor: "#fff",
+                  background: currentView === "all" ? "#fff" : "#000"
+                }
+              }}
+            >
+              All
+            </Button>
+            <Button
+              type="button"
+              onClick={() => setSearchParams({ view: "timeline" }, { state: location.state })}
+              variant="outlined"
+              sx={{
+                borderColor: "#fff",
+                background: currentView === "timeline" ? "#fff" : "#000",
+                color: currentView === "timeline" ? "#000" : "#fff",
+                textTransform: "none",
+                minWidth: 0,
+                borderRadius: 0,
+                marginLeft: "-1px",
+                "&:hover": {
+                  borderColor: "#fff",
+                  background: currentView === "timeline" ? "#fff" : "#000"
+                }
+              }}
+            >
+              Timeline
+            </Button>
+            <Button
+              type="button"
+              onClick={() => setSearchParams({ view: "map" }, { state: location.state })}
+              variant="outlined"
+              sx={{
+                borderColor: "#fff",
+                background: currentView === "map" ? "#fff" : "#000",
+                color: currentView === "map" ? "#000" : "#fff",
+                textTransform: "none",
+                minWidth: 0,
+                borderRadius: 0,
+                marginLeft: "-1px",
+                "&:hover": {
+                  borderColor: "#fff",
+                  background: currentView === "map" ? "#fff" : "#000"
+                }
+              }}
+            >
+              Map
+            </Button>
           </Box>
         </Box>
 
@@ -584,15 +672,60 @@ function Container() {
             mb: "2rem"
           }}
         >
-          {sceneHeadlineContent({
-            view: currentView,
-            objectCount: selectedObjectIds.length,
-            objectLabelPlural,
-            timelineSubject,
-            mapSubject,
-            spanYears,
-            countryCount: distinctCountryCount
-          })}
+          {showShelfShapeGlyph && clusterId ? (
+            <Box
+              sx={{
+                display: "flex",
+                flexWrap: "wrap",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "1rem",
+                width: "100%"
+              }}
+            >
+              <Box
+                sx={{
+                  width: "4.5rem",
+                  height: "4.5rem",
+                  flexShrink: 0
+                }}
+              >
+                <ShelfStackedOutlineSvg
+                  src={`/cluster_SVG_stacked_outlines/${clusterId}_stack_sampled.svg`}
+                  alt={`${clusterId} stacked outlines`}
+                  initialComplete
+                />
+              </Box>
+              <Box component="span">
+                {currentView === "all" ? (
+                  <>
+                    {sceneHeadlineEmphasis(selectedObjectIds.length.toLocaleString("en-US"))}{" "}
+                    vessels in this group
+                  </>
+                ) : (
+                  sceneHeadlineContent({
+                    view: currentView,
+                    objectCount: selectedObjectIds.length,
+                    objectLabelPlural,
+                    timelineSubject,
+                    mapSubject,
+                    spanYears,
+                    countryCount: distinctCountryCount
+                  })
+                )}
+              </Box>
+            </Box>
+          ) : (
+            sceneHeadlineContent({
+              view: currentView,
+              objectCount: selectedObjectIds.length,
+              objectLabelPlural,
+              timelineSubject,
+              mapSubject,
+              spanYears,
+              countryCount: distinctCountryCount
+            })
+          )}
         </Typography>
       </Box>
 
@@ -896,63 +1029,7 @@ function Container() {
         }}
       >
         <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 0 }}>
-          <Button
-            type="button"
-            onClick={() => setSearchParams({ view: "all" }, { state: location.state })}
-            variant="outlined"
-            sx={{
-              borderColor: "#fff",
-              background: currentView === "all" ? "#fff" : "#000",
-              color: currentView === "all" ? "#000" : "#fff",
-              textTransform: "none",
-              minWidth: 0,
-              borderRadius: 0,
-              "&:hover": {
-                borderColor: "#fff",
-                background: currentView === "all" ? "#fff" : "#000"
-              }
-            }}
-          >
-            All
-          </Button>
-          <Button
-            type="button"
-            onClick={() => setSearchParams({ view: "timeline" }, { state: location.state })}
-            variant="outlined"
-            sx={{
-              borderColor: "#fff",
-              background: currentView === "timeline" ? "#fff" : "#000",
-              color: currentView === "timeline" ? "#000" : "#fff",
-              textTransform: "none",
-              minWidth: 0,
-              borderRadius: 0,
-              "&:hover": {
-                borderColor: "#fff",
-                background: currentView === "timeline" ? "#fff" : "#000"
-              }
-            }}
-          >
-            Timeline
-          </Button>
-          <Button
-            type="button"
-            onClick={() => setSearchParams({ view: "map" }, { state: location.state })}
-            variant="outlined"
-            sx={{
-              borderColor: "#fff",
-              background: currentView === "map" ? "#fff" : "#000",
-              color: currentView === "map" ? "#000" : "#fff",
-              textTransform: "none",
-              minWidth: 0,
-              borderRadius: 0,
-              "&:hover": {
-                borderColor: "#fff",
-                background: currentView === "map" ? "#fff" : "#000"
-              }
-            }}
-          >
-            Map
-          </Button>
+          <ImageToggleButton mode={mode} options={options} onChange={setMode} />
         </Box>
       </Box>
 
@@ -963,10 +1040,9 @@ function Container() {
           onClose={() => setModalObjectId(null)}
           title={objectModalFieldsById.get(modalObjectId)?.title ?? ""}
           finalDate={objectModalFieldsById.get(modalObjectId)?.finalDate ?? ""}
-          mapboxPlaceName={objectModalFieldsById.get(modalObjectId)?.mapboxPlaceName ?? ""}
-          dominantColorsHex={objectModalFieldsById.get(modalObjectId)?.dominantColorsHex ?? []}
-          getColorImageSrc={getColorImageSrc}
-          getOutlineImageSrc={getOutlineImageSrc}
+          colorgramPaletteHex={objectModalFieldsById.get(modalObjectId)?.colorgramPaletteHex ?? []}
+          metadataByObjectId={objectModalFieldsById}
+          getTileImageSrc={getTileImageSrc}
         />
       ) : null}
     </Box>

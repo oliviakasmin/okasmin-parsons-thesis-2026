@@ -2,11 +2,11 @@ import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import useImageModules from "../../hooks/useImageModules";
-import useFunctionGroups, { type FunctionGroup } from "../../hooks/useFunctionGroups";
+import useUseGroups, { type UseGroup, USE_GROUP_LABEL } from "../../hooks/useUseGroups";
 import { homeEntryDomId, type HomeEntryScrollId } from "../constants";
 import type { ShelfSlot } from "./shelfGridStyles";
 import {
-  shelfArticleSx,
+  shelfArticleTileSx,
   shelfEmptySlotSx,
   shelfGridRowSx,
   shelfGridStackSx,
@@ -19,16 +19,16 @@ import {
 const shelfUseEntryScrollId: HomeEntryScrollId = "shelf-use";
 
 /** Row-major positions; `undefined` = one-tile gap; rows with fewer than five slots spread across the row. */
-const SHELF_USE_LAYOUT: ShelfSlot<FunctionGroup>[][] = [
-  ["amphora", "pitcher", "jug", "flask"],
-  ["beaker", "jar", "pot"],
-  ["vase", "vessel", "bottle"]
+const SHELF_USE_LAYOUT: ShelfSlot<UseGroup>[][] = [
+  ["pouring", "flask_and_bottle", undefined],
+  ["storage", "vase", "ritual"],
+  ["animal_shaped", "other", undefined]
 ];
 
-export default function ShelfFunction() {
+export default function ShelfUse() {
   const navigate = useNavigate();
   const { maskImageByObjectId } = useImageModules();
-  const { groupRowById } = useFunctionGroups();
+  const { groupRowById } = useUseGroups();
 
   return (
     <Box component="main" id={homeEntryDomId(shelfUseEntryScrollId)} sx={shelfTabMainSx}>
@@ -80,7 +80,7 @@ export default function ShelfFunction() {
                       }
                     })
                   }
-                  sx={shelfArticleSx("shelf-use-label")}
+                  sx={shelfArticleTileSx}
                 >
                   <Box sx={shelfSlotSurfaceSx()}>
                     <Box sx={shelfSlotInnerMediaSx()}>
@@ -99,8 +99,8 @@ export default function ShelfFunction() {
                             objectPosition: "center bottom",
                             display: "block",
                             clipPath: "inset(100% 0 0 0)",
-                            animation: "shelfFunctionDrawUp 900ms ease-out forwards",
-                            "@keyframes shelfFunctionDrawUp": {
+                            animation: "shelfUseDrawUp 900ms ease-out forwards",
+                            "@keyframes shelfUseDrawUp": {
                               from: {
                                 clipPath: "inset(100% 0 0 0)"
                               },
@@ -119,8 +119,15 @@ export default function ShelfFunction() {
                       )}
                     </Box>
                   </Box>
-                  <Typography className="shelf-use-label" component="span" sx={shelfOverlayLabelSx}>
-                    {groupRow.group}
+                  <Typography
+                    component="span"
+                    sx={{
+                      ...shelfOverlayLabelSx,
+                      opacity: 1,
+                      visibility: "visible"
+                    }}
+                  >
+                    {USE_GROUP_LABEL[groupRow.group]}
                   </Typography>
                 </Box>
               );

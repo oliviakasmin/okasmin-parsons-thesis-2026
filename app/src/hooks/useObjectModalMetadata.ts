@@ -1,12 +1,19 @@
 import { useMemo } from "react";
 import fieldsCsv from "../../../format_data/generated/fields.csv?raw";
+import { normalizeGeoPlaceLabelText } from "./useObjectGeo";
 
 export type ObjectModalFields = {
   title: string;
   finalDate: string;
   mapboxPlaceName: string;
+  geoNormalizedBestGuessLocation: string;
+  geoMatchStatus: string;
+  objectBeginDate: string;
+  objectEndDate: string;
   /** Parsed from `dominant_colors_hex` JSON in fields.csv; empty if missing or invalid. */
   dominantColorsHex: string[];
+  /** Parsed from `colorgram_palette_hex` JSON in fields.csv; empty if missing or invalid. */
+  colorgramPaletteHex: string[];
 };
 
 const HEX_COLOR = /^#([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6}|[0-9A-Fa-f]{8})$/;
@@ -71,7 +78,12 @@ function buildObjectModalFieldsById(csvRaw: string): Map<string, ObjectModalFiel
   const titleIdx = header.indexOf("title");
   const finalDateIdx = header.indexOf("final_date");
   const mapboxPlaceNameIdx = header.indexOf("mapbox_place_name");
+  const geoNormalizedIdx = header.indexOf("geo_normalized_best_guess_location");
+  const geoMatchStatusIdx = header.indexOf("geo_mapbox_match_status");
+  const objectBeginDateIdx = header.indexOf("objectBeginDate");
+  const objectEndDateIdx = header.indexOf("objectEndDate");
   const dominantColorsHexIdx = header.indexOf("dominant_colors_hex");
+  const colorgramPaletteHexIdx = header.indexOf("colorgram_palette_hex");
   if (objectIdIdx < 0) return result;
 
   for (const line of lines.slice(1)) {
@@ -79,11 +91,19 @@ function buildObjectModalFieldsById(csvRaw: string): Map<string, ObjectModalFiel
     const objectId = cells[objectIdIdx]?.trim();
     if (!objectId) continue;
     const dominantRaw = dominantColorsHexIdx >= 0 ? (cells[dominantColorsHexIdx] ?? "") : "";
+    const colorgramRaw = colorgramPaletteHexIdx >= 0 ? (cells[colorgramPaletteHexIdx] ?? "") : "";
     result.set(objectId, {
       title: (cells[titleIdx] ?? "").trim(),
       finalDate: (cells[finalDateIdx] ?? "").trim(),
-      mapboxPlaceName: (cells[mapboxPlaceNameIdx] ?? "").trim(),
-      dominantColorsHex: parseDominantColorsHex(dominantRaw)
+      mapboxPlaceName: normalizeGeoPlaceLabelText((cells[mapboxPlaceNameIdx] ?? "").trim()),
+      geoNormalizedBestGuessLocation: normalizeGeoPlaceLabelText(
+        geoNormalizedIdx >= 0 ? (cells[geoNormalizedIdx] ?? "").trim() : ""
+      ),
+      geoMatchStatus: geoMatchStatusIdx >= 0 ? (cells[geoMatchStatusIdx] ?? "").trim() : "",
+      objectBeginDate: objectBeginDateIdx >= 0 ? (cells[objectBeginDateIdx] ?? "").trim() : "",
+      objectEndDate: objectEndDateIdx >= 0 ? (cells[objectEndDateIdx] ?? "").trim() : "",
+      dominantColorsHex: parseDominantColorsHex(dominantRaw),
+      colorgramPaletteHex: parseDominantColorsHex(colorgramRaw)
     });
   }
 

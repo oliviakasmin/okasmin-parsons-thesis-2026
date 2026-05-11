@@ -8,7 +8,7 @@ type ObjectGeo = {
 
 type ObjectCountryNameById = Map<string, string>;
 const COUNTRY_LABEL_ALIASES: Record<string, string[]> = {
-  "people's republic of china": ["china"],
+  china: ["people's republic of china", "people\u2019s republic of china"],
   "republic of korea": ["south korea", "korea"],
   "democratic people's republic of korea": ["north korea"],
   "united states of america": ["united states", "usa"],
@@ -72,8 +72,29 @@ function parseStrictNumber(value: string) {
   return Number.isFinite(numeric) ? numeric : null;
 }
 
+/** Mapbox / CSV place strings: shorten country name for UI. */
+const PEOPLE_REPUBLIC_CHINA_RE = /people['\u2019]s republic of china/gi;
+
+export function normalizeGeoPlaceLabelText(label: string): string {
+  return label.replace(PEOPLE_REPUBLIC_CHINA_RE, "China");
+}
+
+/** Title-case for UI from normalized country keys (e.g. `china` → `China`). */
+export function formatCountryDisplayLabel(normalizedCountryKey: string): string {
+  const trimmed = normalizedCountryKey.trim();
+  if (!trimmed) return "";
+  return trimmed
+    .split(" ")
+    .filter(Boolean)
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+}
+
 function normalizeCountryCandidate(value: string) {
-  let trimmed = value.trim().toLowerCase();
+  let trimmed = value
+    .trim()
+    .toLowerCase()
+    .replace(/\u2019/g, "'");
   if (!trimmed) return "";
   // "Mesoamerica, Mexico" -> "mexico"
   const parts = trimmed
@@ -93,6 +114,7 @@ function normalizeCountryCandidate(value: string) {
   if (trimmed === "türkiye") return "turkey";
   if (trimmed === "britain") return "united kingdom";
   if (trimmed === "korea") return "south korea";
+  if (trimmed === "people's republic of china") return "china";
   return trimmed;
 }
 
@@ -210,7 +232,7 @@ function buildObjectPlaceLabelById(csvRaw: string): Map<string, string> {
     const label = placeName || normalizedLocation;
     if (!label) continue;
 
-    result.set(objectId, label);
+    result.set(objectId, normalizeGeoPlaceLabelText(label));
   }
 
   return result;
