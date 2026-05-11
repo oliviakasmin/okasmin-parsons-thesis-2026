@@ -47,7 +47,7 @@ const IMAGE_SUFFIX: Record<ImageMode, string> = {
 /** Legacy key; removed from persistence — cleared on mount so old sessions do not replay. */
 const LEGACY_SELECTED_OBJECT_IDS_STORAGE_KEY = "test2_selected_object_ids";
 /** Thumbnail click opens closest-neighbors modal. */
-const TEST2_OPEN_MODAL_ON_IMAGE_CLICK = true;
+const TEST2_OPEN_MODAL_ON_IMAGE_CLICK = false;
 
 type ManualColorGroupsFile = Record<string, unknown>;
 
