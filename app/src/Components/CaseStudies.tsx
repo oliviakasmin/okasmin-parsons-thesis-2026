@@ -11,11 +11,23 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { keyframes } from "@mui/material/styles";
 import InlineOutlineSvg from "./Scenes/InlineOutlineSvg";
+import { objectModalCaptionValueSx } from "./Scenes/ObjectImageModal";
 import { useObjectPlaceLabels } from "../hooks/useObjectGeo";
 import { useObjectDateRanges } from "../hooks/useTimelineBuckets";
 import { formatYearForTick } from "../utils/formatYearTick";
 
 const S3_IMAGE_BASE_URL = "https://vessels-thesis.s3.amazonaws.com/real_images";
+
+const amazon_vase = "/amazon_vase_no_bg.png";
+const amazon_vase_outline = "/amazon_vase_outline.svg";
+
+const AMAZON_VASE_OBJECT_ID = "amazon_vase";
+
+const amazon_vase_label_info = {
+  date: "2026 CE",
+  place: "available on Amazon",
+  yearsAgo: "today"
+};
 
 /** Filled copy of 57400 for the compare-slider handle only (`57400_outline.svg` stays stroke-only for the rest of the app). */
 const SLIDER_HANDLE_ICON_SRC = "/SVG_outlines/57400_outline_handle.svg";
@@ -36,16 +48,10 @@ const sliderHandleIconWobble = keyframes`
 `;
 
 // const group = [240291, 317989, 53774];
-const group = [240436, 49359, 47427];
+const group = [240436, 49359, 47427, AMAZON_VASE_OBJECT_ID];
 // const group = [308625, 37479, 448395];
 // const group = [254268, 478721, 46425];
 // const group = [253173, 448981, 444898];
-
-const metaTextSx = {
-  textAlign: "center",
-  overflowWrap: "break-word",
-  wordBreak: "break-word"
-} as const;
 
 function formatObjectDateRangeLabel(beginDate: number, endDate: number) {
   const a = formatYearForTick(beginDate);
@@ -68,7 +74,7 @@ const compareGridSx = {
   gridTemplateColumns: {
     xs: "minmax(0, 1fr)",
     sm: "repeat(2, minmax(0, 1fr))",
-    md: "repeat(3, minmax(0, 1fr))"
+    md: "repeat(4, minmax(0, 1fr))"
   }
 } as const;
 
@@ -76,9 +82,18 @@ type CompareCellProps = {
   objectId: string;
   sliderX: number;
   layoutNonce: number;
+  /** When set (e.g. Amazon case study), use local public assets instead of S3 + SVG_outlines. */
+  imageSrc?: string;
+  outlineSrc?: string;
 };
 
-function CaseStudyCompareCell({ objectId, sliderX, layoutNonce }: CompareCellProps) {
+function CaseStudyCompareCell({
+  objectId,
+  sliderX,
+  layoutNonce,
+  imageSrc,
+  outlineSrc
+}: CompareCellProps) {
   const wrapRef = useRef<HTMLDivElement>(null);
   const [{ left, width }, setGeom] = useState({ left: 0, width: 0 });
 
@@ -101,6 +116,9 @@ function CaseStudyCompareCell({ objectId, sliderX, layoutNonce }: CompareCellPro
   const clipColor = width > 0 ? `inset(0 ${width - localX}px 0 0)` : undefined;
   const clipOutline = width > 0 ? `inset(0 0 0 ${localX}px)` : undefined;
 
+  const photoSrc = imageSrc ?? `${S3_IMAGE_BASE_URL}/${objectId}_no_bg.png`;
+  const outlineSvgSrc = outlineSrc ?? `/SVG_outlines/${objectId}_outline.svg`;
+
   return (
     <Box
       ref={wrapRef}
@@ -113,7 +131,7 @@ function CaseStudyCompareCell({ objectId, sliderX, layoutNonce }: CompareCellPro
     >
       <Box
         component="img"
-        src={`${S3_IMAGE_BASE_URL}/${objectId}_no_bg.png`}
+        src={photoSrc}
         alt={`Case study object ${objectId}`}
         sx={{
           display: "block",
@@ -135,7 +153,7 @@ function CaseStudyCompareCell({ objectId, sliderX, layoutNonce }: CompareCellPro
         }}
       >
         <InlineOutlineSvg
-          src={`/SVG_outlines/${objectId}_outline.svg`}
+          src={outlineSvgSrc}
           alt=""
           className="inline-outline-svg"
           style={{ width: "100%", height: "100%", display: "block" }}
@@ -175,7 +193,7 @@ export default function CaseStudies() {
     setSliderX((prev) => {
       if (!sliderInitializedRef.current) {
         sliderInitializedRef.current = true;
-        return r.left + r.width / 3;
+        return r.left + r.width / 4;
       }
       return Math.min(Math.max(prev, r.left), r.right);
     });
@@ -257,15 +275,22 @@ export default function CaseStudies() {
             }}
           >
             {objectIds.map((objectId) => {
+              const isAmazonVase = objectId === AMAZON_VASE_OBJECT_ID;
               const range = dateRangeByObjectId.get(objectId);
-              const dateLabel =
-                range !== undefined
+              const dateLabel = isAmazonVase
+                ? amazon_vase_label_info.date
+                : range !== undefined
                   ? formatObjectDateRangeLabel(range.beginDate, range.endDate)
                   : "";
-              const locationLabel = placeLabelByObjectId.get(objectId) ?? "";
+              const locationLabel = isAmazonVase
+                ? amazon_vase_label_info.place
+                : (placeLabelByObjectId.get(objectId) ?? "");
               const yearsAgo = getYearsAgo(range?.beginDate ?? 0);
-              const yearsAgoLabel =
-                yearsAgo > 0 ? `${yearsAgo} years ago` : `${Math.abs(yearsAgo)} years from now`;
+              const yearsAgoLabel = isAmazonVase
+                ? amazon_vase_label_info.yearsAgo
+                : yearsAgo > 0
+                  ? `${yearsAgo} years ago`
+                  : `${Math.abs(yearsAgo)} years from now`;
 
               return (
                 <Box
@@ -284,13 +309,38 @@ export default function CaseStudies() {
                     objectId={objectId}
                     sliderX={sliderX}
                     layoutNonce={layoutNonce}
+                    imageSrc={isAmazonVase ? amazon_vase : undefined}
+                    outlineSrc={isAmazonVase ? amazon_vase_outline : undefined}
                   />
-                  <Typography variant="body1" sx={metaTextSx}>
-                    {dateLabel + ", " + locationLabel || "—"}
-                  </Typography>
-                  <Typography variant="body1" sx={metaTextSx}>
-                    {"~ " + yearsAgoLabel || "—"}
-                  </Typography>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      width: "100%",
+                      minWidth: 0,
+                      textAlign: "center"
+                    }}
+                  >
+                    <Typography sx={objectModalCaptionValueSx}>{dateLabel || "—"}</Typography>
+                    <Typography
+                      sx={{
+                        ...objectModalCaptionValueSx,
+                        wordBreak: "break-word",
+                        overflowWrap: "anywhere"
+                      }}
+                    >
+                      {locationLabel.trim() ? locationLabel : "—"}
+                    </Typography>
+                    <Typography
+                      sx={{
+                        ...objectModalCaptionValueSx,
+                        wordBreak: "break-word",
+                        overflowWrap: "anywhere"
+                      }}
+                    >
+                      {`~ ${yearsAgoLabel}`}
+                    </Typography>
+                  </Box>
                 </Box>
               );
             })}
