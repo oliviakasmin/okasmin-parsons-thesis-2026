@@ -1,18 +1,20 @@
 import { useMemo } from "react";
-import fieldsCsv from "../../../format_data/generated/fields.csv?raw";
-import colorGroupLabelsCsv from "../../../format_data/generated/color/object_color_group_labels.csv?raw";
+import newColorGroupsJson from "../../../format_data/color/new/new_color_groups.json";
+import manualRepresentativeColorsJson from "../../../format_data/color/new/manual_representative_colors.json";
 
 export type ColorGroupKey =
-  | "multicolor"
-  | "yellow"
-  | "brown_tan"
-  | "orange"
-  | "red"
-  | "blue"
-  | "green"
-  | "purple"
-  | "gray"
-  | "white";
+  | "hue_blue"
+  | "hue_green"
+  | "blue_and_white"
+  | "yellow_and_ochre"
+  | "red_and_pink"
+  | "multicolor_glaze"
+  | "white"
+  | "red_orange_warm_stoneware"
+  | "light_warm_browns"
+  | "cooler_light_tans_browns"
+  | "coolest_browns"
+  | "dark_and_black";
 
 export type ColorGroupRow = {
   groupId: number;
@@ -23,130 +25,83 @@ export type ColorGroupRow = {
 };
 
 export const COLOR_GROUPS_IN_RAINBOW_ORDER: ColorGroupKey[] = [
-  "red",
-  "orange",
-  "brown_tan",
-  "yellow",
-  "green",
-  "blue",
-  "purple",
-  "gray",
+  "hue_blue",
+  "hue_green",
+  "blue_and_white",
+  "yellow_and_ochre",
+  "red_and_pink",
+  "multicolor_glaze",
   "white",
-  "multicolor"
+  "red_orange_warm_stoneware",
+  "light_warm_browns",
+  "cooler_light_tans_browns",
+  "coolest_browns",
+  "dark_and_black"
 ];
 
 const COLOR_GROUP_SET = new Set<string>(COLOR_GROUPS_IN_RAINBOW_ORDER);
 
-// Curated representative object IDs for ShelfColor images.
-const COLOR_GROUP_REPRESENTATIVE_OVERRIDES: Partial<Record<ColorGroupKey, string>> = {
-  multicolor: "748327",
-  yellow: "47370",
-  brown_tan: "446842",
-  orange: "309388",
-  red: "46529",
-  blue: "46025",
-  green: "46830",
-  purple: "48480",
-  gray: "47490",
-  white: "206328"
+const COLOR_GROUP_LABELS: Record<ColorGroupKey, string> = {
+  hue_blue: "blue",
+  hue_green: "green",
+  blue_and_white: "blue and white",
+  yellow_and_ochre: "yellow",
+  red_and_pink: "red",
+  multicolor_glaze: "multicolor",
+  white: "white",
+  red_orange_warm_stoneware: "terracotta",
+  light_warm_browns: "light warm brown",
+  cooler_light_tans_browns: "cooler tan",
+  coolest_browns: "muddier brown",
+  dark_and_black: "dark"
 };
 
 export function isColorGroupKey(value: string): value is ColorGroupKey {
   return COLOR_GROUP_SET.has(value);
 }
 
-function parseCsvLine(line: string) {
-  const values: string[] = [];
-  let current = "";
-  let insideQuotes = false;
-
-  for (let index = 0; index < line.length; index += 1) {
-    const character = line[index];
-    const nextCharacter = line[index + 1];
-
-    if (character === '"') {
-      if (insideQuotes && nextCharacter === '"') {
-        current += '"';
-        index += 1;
-      } else {
-        insideQuotes = !insideQuotes;
-      }
-      continue;
+function normalizeObjectIds(rawIds: unknown): string[] {
+  if (!Array.isArray(rawIds)) return [];
+  const ids: string[] = [];
+  const seen = new Set<string>();
+  for (const rawId of rawIds) {
+    let objectId = "";
+    if (typeof rawId === "number" && Number.isFinite(rawId)) {
+      objectId = String(Math.trunc(rawId));
+    } else if (typeof rawId === "string" && rawId.trim()) {
+      objectId = rawId.trim();
     }
-
-    if (character === "," && !insideQuotes) {
-      values.push(current);
-      current = "";
-      continue;
-    }
-
-    current += character;
+    if (!objectId || seen.has(objectId)) continue;
+    seen.add(objectId);
+    ids.push(objectId);
   }
-
-  values.push(current);
-  return values;
+  return ids;
 }
 
-function buildColorGroupRows(fieldsRaw: string, labelsRaw: string): ColorGroupRow[] {
-  const labelLines = labelsRaw.split(/\r?\n/).filter(Boolean);
-  const fieldsLines = fieldsRaw.split(/\r?\n/).filter(Boolean);
+function buildColorGroupRows(): ColorGroupRow[] {
+  const colorGroups = newColorGroupsJson as Record<string, unknown>;
+  const representativeGroups = manualRepresentativeColorsJson as Record<string, unknown>;
 
-  const labelsByKey = new Map<
-    ColorGroupKey,
-    {
-      groupId: number;
-      label: string;
-    }
-  >();
-  if (labelLines.length) {
-    const labelHeader = parseCsvLine(labelLines[0]);
-    const groupIdIdx = labelHeader.indexOf("color_group_id");
-    const groupKeyIdx = labelHeader.indexOf("color_group_key");
-    const groupLabelIdx = labelHeader.indexOf("color_group_label");
-    for (const line of labelLines.slice(1)) {
-      const cells = parseCsvLine(line);
-      const rawKey = cells[groupKeyIdx]?.trim();
-      if (!rawKey || !isColorGroupKey(rawKey)) continue;
-      labelsByKey.set(rawKey, {
-        groupId: Number(cells[groupIdIdx] ?? 0),
-        label: cells[groupLabelIdx]?.trim() || rawKey
-      });
-    }
-  }
+  return COLOR_GROUPS_IN_RAINBOW_ORDER.map((groupKey, index) => {
+    const objectIds = normalizeObjectIds(colorGroups[groupKey]);
+    const representativeObjectIds = normalizeObjectIds(representativeGroups[groupKey]);
+    const representativeObjectId =
+      representativeObjectIds.find((objectId) => objectIds.includes(objectId)) ??
+      objectIds[0] ??
+      null;
 
-  const objectIdsByGroup = new Map<ColorGroupKey, string[]>();
-  if (fieldsLines.length) {
-    const header = parseCsvLine(fieldsLines[0]);
-    const objectIdIdx = header.indexOf("objectId");
-    const groupKeyIdx = header.indexOf("color_group_key");
-    if (objectIdIdx >= 0 && groupKeyIdx >= 0) {
-      for (const line of fieldsLines.slice(1)) {
-        const cells = parseCsvLine(line);
-        const objectId = cells[objectIdIdx]?.trim();
-        const rawKey = cells[groupKeyIdx]?.trim();
-        if (!objectId || !rawKey || !isColorGroupKey(rawKey)) continue;
-        const existing = objectIdsByGroup.get(rawKey) ?? [];
-        existing.push(objectId);
-        objectIdsByGroup.set(rawKey, existing);
-      }
-    }
-  }
-
-  return COLOR_GROUPS_IN_RAINBOW_ORDER.map((groupKey) => {
-    const labelEntry = labelsByKey.get(groupKey);
-    const objectIds = objectIdsByGroup.get(groupKey) ?? [];
     return {
-      groupId: labelEntry?.groupId ?? 0,
+      groupId: index,
       groupKey,
-      label: labelEntry?.label ?? groupKey,
+      label: COLOR_GROUP_LABELS[groupKey],
       objectIds,
-      representativeObjectId: COLOR_GROUP_REPRESENTATIVE_OVERRIDES[groupKey] ?? objectIds[0] ?? null
+      representativeObjectId
     };
   });
 }
 
 function useColorGroups() {
-  const groupRows = useMemo(() => buildColorGroupRows(fieldsCsv, colorGroupLabelsCsv), []);
+  const groupRows = useMemo(() => buildColorGroupRows(), []);
   const groupRowByKey = useMemo(
     () => new Map(groupRows.map((row) => [row.groupKey, row])),
     [groupRows]
