@@ -50,7 +50,8 @@ export function shelfGridRowSx(columnCount: number): SxProps<Theme> {
     columnGap: `${SHELF_GRID_COLUMN_GAP_PX}px`,
     boxSizing: "border-box",
     /** Single continuous rule per row (not interrupted by column gaps). */
-    borderBottom: "2px solid #fff"
+    borderBottom: "2px solid #fff",
+    borderRadius: "1px"
   };
 }
 

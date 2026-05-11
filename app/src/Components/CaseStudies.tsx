@@ -106,6 +106,7 @@ function CaseStudyCompareCell({ objectId, sliderX, layoutNonce }: CompareCellPro
       ref={wrapRef}
       sx={{
         borderBottom: "2px solid #fff",
+        borderRadius: "1px",
         width: "100%",
         position: "relative"
       }}
