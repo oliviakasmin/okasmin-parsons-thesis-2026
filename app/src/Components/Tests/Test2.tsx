@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import manualRejectObjectIds from "../../../../fetch_data/data/manual_reject_object_ids.json";
 import manualColorGroupsJson from "../../../../format_data/color/new/manual_color_groups.json";
+import bwPalettesPyRaw from "../../../../format_data/color/new/b_w_palettes.py?raw";
 import objectsData from "../../../../fetch_data/data/objects.json";
 import fieldsCsvRaw from "../../../../format_data/generated/fields.csv?raw";
 import excludeManualKmeansClustersCsvRaw from "../../../../format_data/generated/color/object_color_kmeans_clusters_exclude_manual.csv?raw";
@@ -48,6 +49,7 @@ const IMAGE_SUFFIX: Record<ImageMode, string> = {
 const LEGACY_SELECTED_OBJECT_IDS_STORAGE_KEY = "test2_selected_object_ids";
 /** Thumbnail click opens closest-neighbors modal. */
 const TEST2_OPEN_MODAL_ON_IMAGE_CLICK = false;
+const BW_PALETTE_MANUAL_GROUP_NAME = "black_white_grayscale";
 
 type ManualColorGroupsFile = Record<string, unknown>;
 
@@ -65,6 +67,13 @@ function buildManualColorGroupIdSets(data: ManualColorGroupsFile): Map<string, S
   return out;
 }
 
+function parsePythonIntList(raw: string, variableName: string): number[] {
+  const escapedName = variableName.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const match = raw.match(new RegExp(`${escapedName}\\s*(?::[^=]+)?=\\s*\\[([\\s\\S]*?)\\]`));
+  if (!match) return [];
+  return [...match[1].matchAll(/\b\d+\b/g)].map((value) => Number(value[0]));
+}
+
 function objectMatchesManualGroupFilter(
   objectId: string,
   filter: string | null,
@@ -79,6 +88,14 @@ function objectMatchesManualGroupFilter(
 const manualRejectObjectIdSet = new Set(manualRejectObjectIds.map((objectId) => String(objectId)));
 const manualColorGroupIdSets = buildManualColorGroupIdSets(
   manualColorGroupsJson as ManualColorGroupsFile
+);
+manualColorGroupIdSets.set(
+  BW_PALETTE_MANUAL_GROUP_NAME,
+  new Set(
+    parsePythonIntList(bwPalettesPyRaw, "COLORGRAM_GRAYSCALE_PALETTE_OBJECT_IDS").map((objectId) =>
+      String(objectId)
+    )
+  )
 );
 const manualColorGroupNamesSorted = [...manualColorGroupIdSets.keys()].sort((a, b) =>
   a.localeCompare(b)
