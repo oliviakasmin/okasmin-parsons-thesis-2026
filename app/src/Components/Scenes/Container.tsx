@@ -4,7 +4,7 @@ import { useLocation, useParams, useSearchParams } from "react-router-dom";
 import { Box, Button, IconButton, Typography } from "@mui/material";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import finalClusterKeysCsv from "../../../../format_data/cluster_shape/final_clusters_keys.csv?raw";
-import fieldsCsv from "../../../../format_data/generated/fields.csv?raw";
+import finalClusterObjectIdsCsv from "../../../../format_data/cluster_shape/final_clusters_object_ids.csv?raw";
 import BackButton from "../BackButton";
 import ImageToggleButton from "../ImageToggleButton";
 import useImageToggle, { type ImageToggleMode } from "../../hooks/useImageToggle";
@@ -90,6 +90,18 @@ function sceneHeadlineEmphasis(children: ReactNode) {
   );
 }
 
+function sceneHeadlineH3(children: ReactNode) {
+  return (
+    <Typography
+      component="span"
+      variant="h3"
+      sx={{ ...sceneHeadlineEmphasisSx, display: "inline" }}
+    >
+      {children}
+    </Typography>
+  );
+}
+
 function formatCountryLabel(countryKey: string) {
   return countryKey
     .split(" ")
@@ -106,9 +118,9 @@ function defaultStackOpacity(clusterSize: number) {
 function sceneHeadlineContent(args: {
   view: SceneView;
   objectCount: number;
-  objectLabelPlural: string;
-  timelineSubject: string;
-  mapSubject: string;
+  objectLabelPlural: ReactNode;
+  timelineSubject: ReactNode;
+  mapSubject: ReactNode;
   spanYears: number;
   countryCount: number;
 }): ReactNode {
@@ -175,7 +187,7 @@ function Container() {
   const isLeftPanelExpandedRef = useRef(isLeftPanelExpanded);
   isLeftPanelExpandedRef.current = isLeftPanelExpanded;
   const { outlineImageByObjectId, maskImageByObjectId, noBgImageByObjectId } = useImageModules();
-  const { clusterRows } = useFormatClusters(finalClusterKeysCsv, fieldsCsv);
+  const { clusterRows } = useFormatClusters(finalClusterKeysCsv, finalClusterObjectIdsCsv);
   const { groupRowById: useGroupRowById } = useUseGroups();
   const { groupRowByKey } = useColorGroups();
   const { setSelectedShelfTab } = useShelfTab();
@@ -215,11 +227,13 @@ function Container() {
     [selectedCluster, selectedColorGroup, selectedUseGroup]
   );
   const selectedObjectIds = useMemo(() => selectedEntry?.objectIds ?? [], [selectedEntry]);
-  const objectLabelPlural = selectedUseGroup
-    ? `${USE_GROUP_LABEL[selectedUseGroup.group]} vessels`
-    : selectedColorGroup
-      ? `${selectedColorGroup.label} vessels`
-      : "vessels";
+  const objectLabelPlural = selectedUseGroup ? (
+    <>{sceneHeadlineH3(USE_GROUP_LABEL[selectedUseGroup.group])} vessels</>
+  ) : selectedColorGroup ? (
+    <>{sceneHeadlineH3(selectedColorGroup.label)} vessels</>
+  ) : (
+    "vessels"
+  );
   const timelineSubject =
     selectedUseGroup || selectedColorGroup ? objectLabelPlural : "these forms";
   const mapSubject = selectedUseGroup || selectedColorGroup ? objectLabelPlural : "these forms";

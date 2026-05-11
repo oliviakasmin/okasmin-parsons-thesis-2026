@@ -29,13 +29,13 @@ export const USE_GROUPS_IN_DISPLAY_ORDER: UseGroup[] = [
 ];
 
 export const USE_GROUP_LABEL: Record<UseGroup, string> = {
-  animal_shaped: "Animal-shaped",
-  ritual: "Ritual",
-  pouring: "Pouring",
-  flask_and_bottle: "Flask & bottle",
-  storage: "Storage",
-  vase: "Vase",
-  other: "Other"
+  animal_shaped: "animal-shaped",
+  ritual: "ritual",
+  pouring: "pouring",
+  flask_and_bottle: "flask & bottle",
+  storage: "storage",
+  vase: "vase",
+  other: "other"
 };
 
 // Optional hero images per use bucket (objectId strings).

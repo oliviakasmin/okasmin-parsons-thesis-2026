@@ -40,17 +40,23 @@ function parseCsvLine(line: string) {
   return values;
 }
 
-function buildClusters(keysCsv: string, fieldsCsv: string, validObjectIds: Set<string>) {
+/**
+ * Build per-cluster object lists from `final_clusters_object_ids.csv`, which is exported with rows
+ * sorted by ascending distance to that cluster's centroid (see `export_final_cluster_csvs` in
+ * `format_data/cluster_shape/cluster_utils.py`). Row order is preserved after filtering.
+ */
+function buildClusters(keysCsv: string, clusterObjectIdsCsv: string, validObjectIds: Set<string>) {
   const objectIdsByCluster = new Map<string, string[]>();
-  const fieldLines = fieldsCsv.split(/\r?\n/).filter(Boolean);
-  if (fieldLines.length === 0) return [];
-  const fieldHeader = parseCsvLine(fieldLines[0]);
-  const objectIdIdx = fieldHeader.indexOf("objectId");
-  const clusterIdx = fieldHeader.indexOf("shape_cluster_group");
+  const objectLines = clusterObjectIdsCsv.split(/\r?\n/).filter(Boolean);
+  if (objectLines.length < 2) return [];
+
+  const objectHeader = parseCsvLine(objectLines[0]);
+  const objectIdIdx = objectHeader.indexOf("object_id");
+  const clusterIdx = objectHeader.indexOf("cluster");
 
   if (objectIdIdx === -1 || clusterIdx === -1) return [];
 
-  for (const line of fieldLines.slice(1)) {
+  for (const line of objectLines.slice(1)) {
     const cells = parseCsvLine(line);
     const objectId = cells[objectIdIdx];
     const cluster = cells[clusterIdx];
@@ -98,11 +104,11 @@ function buildClusters(keysCsv: string, fieldsCsv: string, validObjectIds: Set<s
   return rows;
 }
 
-function useFormatClusters(keysCsv: string, fieldsCsv: string) {
+function useFormatClusters(keysCsv: string, clusterObjectIdsCsv: string) {
   const validObjectIds = useValidObjectIds();
   const clusterRows = useMemo(
-    () => buildClusters(keysCsv, fieldsCsv, validObjectIds),
-    [keysCsv, fieldsCsv, validObjectIds]
+    () => buildClusters(keysCsv, clusterObjectIdsCsv, validObjectIds),
+    [keysCsv, clusterObjectIdsCsv, validObjectIds]
   );
   const clusterRowById = useMemo(
     () => new Map(clusterRows.map((row) => [row.cluster, row])),

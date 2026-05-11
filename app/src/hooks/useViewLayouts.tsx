@@ -79,7 +79,7 @@ type BuildSceneLayoutParams = {
   sceneWidth: number;
   sceneHeight: number;
   imageSizePx: number;
-  mapProjectionByObjectId?: Map<string, { x: number; y: number; visible: boolean }>;
+  mapProjectionByObjectId?: Map<string, { x: number; y: number; visible: boolean; scale?: number }>;
 };
 
 const MAP_LABEL_CLEARANCE_PX = 10;
@@ -174,7 +174,7 @@ function buildMapLayout(
   sceneWidth: number,
   sceneHeight: number,
   imageSizePx: number,
-  mapProjectionByObjectId: Map<string, { x: number; y: number; visible: boolean }>
+  mapProjectionByObjectId: Map<string, { x: number; y: number; visible: boolean; scale?: number }>
 ): Pick<SceneLayout, "objectLayoutById" | "sceneHeight" | "bucketSpanByKey"> {
   const objectLayoutById = new Map<string, ObjectLayout>();
   const bucketSpanByKey = new Map<string, number>();
@@ -184,12 +184,13 @@ function buildMapLayout(
     const visible = projected?.visible === true;
     const centerX = projected?.x ?? sceneWidth / 2;
     const bottomY = (projected?.y ?? sceneHeight / 2) - MAP_LABEL_CLEARANCE_PX;
+    const scaledImageSizePx = imageSizePx * ensurePositive(projected?.scale ?? 1, 1);
 
     objectLayoutById.set(objectId, {
-      x: centerX - imageSizePx / 2,
-      y: bottomY - imageSizePx,
-      width: imageSizePx,
-      height: imageSizePx,
+      x: centerX - scaledImageSizePx / 2,
+      y: bottomY - scaledImageSizePx,
+      width: scaledImageSizePx,
+      height: scaledImageSizePx,
       visible
     });
   });
