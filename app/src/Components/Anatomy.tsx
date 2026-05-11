@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import anatomyDrawing from "../../public/anatomy_screenshot.png";
+import anatomyDrawing from "../../public/anatomy.svg";
 import handsPottery from "../../public/hands_pottery.jpg";
 
 /**
