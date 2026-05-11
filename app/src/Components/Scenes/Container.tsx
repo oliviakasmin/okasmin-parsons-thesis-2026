@@ -35,7 +35,7 @@ import {
 } from "../constants";
 import MapView from "./Map";
 import InlineOutlineSvg from "./InlineOutlineSvg";
-import ObjectImageModal, { objectModalCaptionValueSx } from "./ObjectImageModal";
+import ObjectImageModal from "./ObjectImageModal";
 import ObjectScene from "./ObjectScene";
 import TimelineAxis from "./TimelineAxis";
 import { useShelfTab } from "../shelfTabState";
@@ -255,19 +255,14 @@ function Container() {
     [countryByObjectId]
   );
   const objectModalFieldsById = useObjectModalMetadata();
-  const useGroupSortedTitleRows = useMemo(() => {
+  /** Same order as ``use_group_object_order.json`` / silhouette distance to representative. */
+  const useGroupOrderedTitleRows = useMemo(() => {
     if (!selectedUseGroup) return [];
-    const titleToObjectId = new Map<string, string>();
-    for (const objectId of selectedObjectIds) {
+    return selectedObjectIds.map((objectId) => {
       const raw = objectModalFieldsById.get(objectId)?.title?.trim() ?? "";
-      const displayTitle = raw || `Object ${objectId}`;
-      const existing = titleToObjectId.get(displayTitle);
-      if (existing === undefined) titleToObjectId.set(displayTitle, objectId);
-      else if (objectId.localeCompare(existing) < 0) titleToObjectId.set(displayTitle, objectId);
-    }
-    return [...titleToObjectId.entries()]
-      .map(([title, objectId]) => ({ title, objectId }))
-      .sort((a, b) => a.title.localeCompare(b.title, undefined, { sensitivity: "base" }));
+      const title = raw || `Object ${objectId}`;
+      return { title, objectId };
+    });
   }, [selectedUseGroup, selectedObjectIds, objectModalFieldsById]);
   const [mapProjectionByObjectId, setMapProjectionByObjectId] = useState<
     Map<string, { x: number; y: number; visible: boolean }>
@@ -903,15 +898,15 @@ function Container() {
                         gap: 1
                       }}
                     >
-                      {useGroupSortedTitleRows.map(({ title, objectId }) => (
+                      {useGroupOrderedTitleRows.map(({ title, objectId }) => (
                         <Box component="li" key={objectId} sx={{ minWidth: 0 }}>
                           <Typography
+                            variant="labels"
                             component="button"
                             type="button"
                             onClick={() => setModalObjectId(objectId)}
                             aria-label={`Open details for ${title}`}
                             sx={{
-                              ...objectModalCaptionValueSx,
                               wordBreak: "break-word",
                               overflowWrap: "anywhere",
                               display: "block",

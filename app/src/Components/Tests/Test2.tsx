@@ -1,13 +1,9 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import manualRejectObjectIds from "../../../../fetch_data/data/manual_reject_object_ids.json";
-import manualColorGroupsJson from "../../../../format_data/color/new/manual_color_groups.json";
 import newColorGroupsJson from "../../../../format_data/color/new/new_color_groups.json";
-import bwPalettesPyRaw from "../../../../format_data/color/new/b_w_palettes.py?raw";
 import objectsData from "../../../../fetch_data/data/objects.json";
 import fieldsCsvRaw from "../../../../format_data/generated/fields.csv?raw";
-import excludeManualKmeansClustersCsvRaw from "../../../../format_data/generated/color/object_color_kmeans_clusters_exclude_manual.csv?raw";
-import excludeManualClusterUiOrderPayload from "../../../../format_data/generated/color/object_color_kmeans_exclude_manual_cluster_ui_order.json";
 import {
   corpusYearMax,
   corpusYearMin,
@@ -15,6 +11,12 @@ import {
   getShapeNeighborsForObject
 } from "../../data/shapeNeighborsPayload";
 import useObjectModalMetadata from "../../hooks/useObjectModalMetadata";
+import useUseGroups, {
+  USE_GROUP_LABEL,
+  USE_GROUPS_IN_DISPLAY_ORDER,
+  type UseGroup,
+  type UseGroupRow
+} from "../../hooks/useUseGroups";
 import {
   formatPlaceVsAnchorSentence,
   parseFinalDateYear
@@ -50,7 +52,6 @@ const IMAGE_SUFFIX: Record<ImageMode, string> = {
 const LEGACY_SELECTED_OBJECT_IDS_STORAGE_KEY = "test2_selected_object_ids";
 /** Thumbnail click opens closest-neighbors modal. */
 const TEST2_OPEN_MODAL_ON_IMAGE_CLICK = false;
-const BW_PALETTE_MANUAL_GROUP_NAME = "black_white_grayscale";
 
 type ManualColorGroupsFile = Record<string, unknown>;
 type ColorGroupFilterOption = {
@@ -92,13 +93,6 @@ function buildManualColorGroupIdLists(data: ManualColorGroupsFile): Map<string, 
   return out;
 }
 
-function parsePythonIntList(raw: string, variableName: string): number[] {
-  const escapedName = variableName.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  const match = raw.match(new RegExp(`${escapedName}\\s*(?::[^=]+)?=\\s*\\[([\\s\\S]*?)\\]`));
-  if (!match) return [];
-  return [...match[1].matchAll(/\b\d+\b/g)].map((value) => Number(value[0]));
-}
-
 function objectMatchesManualGroupFilter(
   objectId: string,
   filter: string | null,
@@ -115,50 +109,14 @@ function colorGroupLabel(name: string) {
 }
 
 const manualRejectObjectIdSet = new Set(manualRejectObjectIds.map((objectId) => String(objectId)));
-const sourceManualColorGroupIdSets = buildManualColorGroupIdSets(
-  manualColorGroupsJson as ManualColorGroupsFile
-);
 const generatedNewColorGroupIdSets = buildManualColorGroupIdSets(
   newColorGroupsJson as ManualColorGroupsFile
-);
-const sourceManualColorGroupIdLists = buildManualColorGroupIdLists(
-  manualColorGroupsJson as ManualColorGroupsFile
 );
 const generatedNewColorGroupIdLists = buildManualColorGroupIdLists(
   newColorGroupsJson as ManualColorGroupsFile
 );
 const colorGroupFilterIdSets = new Map<string, Set<string>>();
 const colorGroupFilterIdLists = new Map<string, string[]>();
-
-const manualColorGroupOptions: ColorGroupFilterOption[] = [...sourceManualColorGroupIdSets.keys()]
-  .sort((a, b) => a.localeCompare(b))
-  .map((name) => {
-    const id = `manual:${name}`;
-    colorGroupFilterIdSets.set(id, sourceManualColorGroupIdSets.get(name) ?? new Set());
-    colorGroupFilterIdLists.set(id, sourceManualColorGroupIdLists.get(name) ?? []);
-    return { id, name, label: colorGroupLabel(name) };
-  });
-
-const bwPaletteFilterId = `special:${BW_PALETTE_MANUAL_GROUP_NAME}`;
-colorGroupFilterIdSets.set(
-  bwPaletteFilterId,
-  new Set(
-    parsePythonIntList(bwPalettesPyRaw, "COLORGRAM_GRAYSCALE_PALETTE_OBJECT_IDS").map((objectId) =>
-      String(objectId)
-    )
-  )
-);
-colorGroupFilterIdLists.set(
-  bwPaletteFilterId,
-  parsePythonIntList(bwPalettesPyRaw, "COLORGRAM_GRAYSCALE_PALETTE_OBJECT_IDS").map((objectId) =>
-    String(objectId)
-  )
-);
-manualColorGroupOptions.push({
-  id: bwPaletteFilterId,
-  name: BW_PALETTE_MANUAL_GROUP_NAME,
-  label: colorGroupLabel(BW_PALETTE_MANUAL_GROUP_NAME)
-});
 
 const newColorGroupOptions: ColorGroupFilterOption[] = [...generatedNewColorGroupIdSets.keys()].map(
   (name) => {
@@ -169,7 +127,7 @@ const newColorGroupOptions: ColorGroupFilterOption[] = [...generatedNewColorGrou
   }
 );
 const colorGroupFilterOptionById = new Map(
-  [...manualColorGroupOptions, ...newColorGroupOptions].map((option) => [option.id, option])
+  newColorGroupOptions.map((option) => [option.id, option])
 );
 const objectTitleById = new Map(
   Object.entries(
@@ -351,137 +309,14 @@ function buildColorMetaByObjectId() {
   return map;
 }
 
-type ExcludeManualKmeansParsed = {
-  clusterByObjectId: Map<string, number>;
-  kFit: number;
-  clusterIds: number[];
-  featureVersionLabel: string;
-};
-
-function parseExcludeManualKmeansCsv(raw: string): ExcludeManualKmeansParsed {
-  const empty: ExcludeManualKmeansParsed = {
-    clusterByObjectId: new Map(),
-    kFit: 0,
-    clusterIds: [],
-    featureVersionLabel: ""
-  };
-  const lines = raw.trim().split("\n");
-  if (lines.length < 2) return empty;
-
-  const headers = parseCsvLine(lines[0]);
-  const idx = new Map(headers.map((h, i) => [h, i]));
-  const oidCol = idx.get("objectID") ?? idx.get("objectId");
-  const clusterCol = idx.get("color_kmeans_cluster");
-  const kCol = idx.get("color_kmeans_k");
-  const verCol = idx.get("color_kmeans_feature_version");
-  if (oidCol == null || clusterCol == null) return empty;
-
-  const clusterByObjectId = new Map<string, number>();
-  let maxKFromCol = 0;
-  let maxCluster = -1;
-  let featureVersionLabel = "";
-
-  for (let rowIdx = 1; rowIdx < lines.length; rowIdx += 1) {
-    const row = parseCsvLine(lines[rowIdx]);
-    const oid = String(row[oidCol] ?? "").trim();
-    if (!oid) continue;
-
-    const c = parseOptionalIntCell(row[clusterCol]);
-    if (c === null) continue;
-
-    clusterByObjectId.set(oid, c);
-    if (c >= 0) maxCluster = Math.max(maxCluster, c);
-
-    if (kCol != null) {
-      const kCell = parseOptionalIntCell(row[kCol]);
-      if (kCell != null && kCell > maxKFromCol) maxKFromCol = kCell;
-    }
-
-    if (verCol != null && featureVersionLabel === "") {
-      const v = String(row[verCol] ?? "").trim();
-      if (v) featureVersionLabel = v;
-    }
-  }
-
-  let kFit = maxKFromCol;
-  if (kFit <= 0 && maxCluster >= 0) kFit = maxCluster + 1;
-
-  const clusterIds = kFit > 0 ? Array.from({ length: kFit }, (_, i) => i) : [];
-
-  return {
-    clusterByObjectId,
-    kFit,
-    clusterIds,
-    featureVersionLabel
-  };
-}
-
-function objectMatchesExcludeManualKMeansFilter(
-  objectId: string,
-  filter: number | null,
-  clusterByObjectId: Map<string, number>
-): boolean {
-  if (filter === null) return true;
-  const c = clusterByObjectId.get(objectId);
-  if (c === undefined) return false;
-  return c === filter;
-}
-
-const excludeManualKmeansParsed = parseExcludeManualKmeansCsv(excludeManualKmeansClustersCsvRaw);
-
-/** Cluster pill order from build script: PC1 of scaled KMeans centroids (similar groups adjacent). */
-function resolveExcludeManualClusterUiOrder(kFit: number, clusterIds: number[]): number[] {
-  const payload = excludeManualClusterUiOrderPayload as {
-    clusterUiOrder?: unknown;
-    kFit?: unknown;
-  };
-  if (payload.kFit !== kFit || clusterIds.length !== kFit || kFit <= 0) {
-    return clusterIds;
-  }
-  const ord = payload.clusterUiOrder;
-  if (!Array.isArray(ord) || ord.length !== kFit) return clusterIds;
-  const nums: number[] = [];
-  for (const x of ord) {
-    const n = typeof x === "number" ? x : Number(x);
-    if (!Number.isInteger(n)) return clusterIds;
-    nums.push(n);
-  }
-  const expected = new Set(clusterIds);
-  if (nums.some((id) => !expected.has(id))) return clusterIds;
-  if (new Set(nums).size !== nums.length) return clusterIds;
-  return nums;
-}
-
-const excludeManualClusterIdsForUi = resolveExcludeManualClusterUiOrder(
-  excludeManualKmeansParsed.kFit,
-  excludeManualKmeansParsed.clusterIds
-);
-
-/** Grid order when a single exclude-manual cluster is selected: nearest to centroid first (see JSON build). */
-function sortDisplayedIdsByExcludeManualCentroidOrder(
-  ids: string[],
-  clusterFilter: number | null,
-  parsedKFit: number
-): string[] {
-  const payload = excludeManualClusterUiOrderPayload as {
-    byClusterMemberOrder?: Record<string, number[]>;
-    kFit?: unknown;
-  };
-  if (
-    clusterFilter == null ||
-    clusterFilter < 0 ||
-    parsedKFit <= 0 ||
-    payload.kFit !== parsedKFit ||
-    !payload.byClusterMemberOrder
-  ) {
-    return [...ids].sort((a, b) => Number(a) - Number(b));
-  }
-  const ranked = payload.byClusterMemberOrder[String(clusterFilter)];
-  if (!Array.isArray(ranked) || ranked.length === 0) {
+function sortDisplayedIdsByColorGroupOrder(ids: string[], groupFilter: string | null): string[] {
+  if (groupFilter == null) return [...ids].sort((a, b) => Number(a) - Number(b));
+  const orderedIds = colorGroupFilterIdLists.get(groupFilter);
+  if (orderedIds == null || orderedIds.length === 0) {
     return [...ids].sort((a, b) => Number(a) - Number(b));
   }
   const rank = new Map<string, number>();
-  ranked.forEach((oid, index) => rank.set(String(oid), index));
+  orderedIds.forEach((objectId, index) => rank.set(objectId, index));
   return [...ids].sort((a, b) => {
     const ra = rank.get(a);
     const rb = rank.get(b);
@@ -492,12 +327,14 @@ function sortDisplayedIdsByExcludeManualCentroidOrder(
   });
 }
 
-function sortDisplayedIdsByColorGroupOrder(ids: string[], groupFilter: string | null): string[] {
-  if (groupFilter == null) return [...ids].sort((a, b) => Number(a) - Number(b));
-  const orderedIds = colorGroupFilterIdLists.get(groupFilter);
-  if (orderedIds == null || orderedIds.length === 0) {
-    return [...ids].sort((a, b) => Number(a) - Number(b));
-  }
+/** Same order as ``useUseGroups`` / ``use_group_object_order.json`` (silhouette distance to rep). */
+function sortDisplayedIdsByUseGroupOrder(
+  ids: string[],
+  group: UseGroup,
+  groupRowById: Map<UseGroup, UseGroupRow>
+): string[] {
+  const orderedIds = groupRowById.get(group)?.objectIds ?? [];
+  if (orderedIds.length === 0) return [...ids].sort((a, b) => Number(a) - Number(b));
   const rank = new Map<string, number>();
   orderedIds.forEach((objectId, index) => rank.set(objectId, index));
   return [...ids].sort((a, b) => {
@@ -525,9 +362,7 @@ function Test2() {
   const [showOnlyBeforeYearZero, setShowOnlyBeforeYearZero] = useState(false);
   const [showOnlyWithPaletteData, setShowOnlyWithPaletteData] = useState(false);
   const [selectedManualGroupFilter, setSelectedManualGroupFilter] = useState<string | null>(null);
-  const [selectedExcludeManualClusterFilter, setSelectedExcludeManualClusterFilter] = useState<
-    number | null
-  >(null);
+  const [selectedUseGroup, setSelectedUseGroup] = useState<UseGroup | null>(null);
   const [clickedObjectIds, setClickedObjectIds] = useState<string[]>([]);
 
   useEffect(() => {
@@ -554,6 +389,31 @@ function Test2() {
     return baseObjectIds.filter((id) => silhouetteNeighborIdSet.has(id));
   }, [baseObjectIds, silhouetteNeighborIdSet]);
 
+  const { groupRowById } = useUseGroups();
+  const objectIdUniverseSet = useMemo(() => new Set(objectIds), [objectIds]);
+  const useGroupObjectCountInView = useMemo(() => {
+    const counts = new Map<UseGroup, number>();
+    for (const group of USE_GROUPS_IN_DISPLAY_ORDER) {
+      const row = groupRowById.get(group);
+      let n = 0;
+      for (const id of row?.objectIds ?? []) {
+        if (objectIdUniverseSet.has(id)) n += 1;
+      }
+      counts.set(group, n);
+    }
+    return counts;
+  }, [groupRowById, objectIdUniverseSet]);
+
+  const selectedUseGroupIdSet = useMemo(() => {
+    if (selectedUseGroup == null) return null;
+    const row = groupRowById.get(selectedUseGroup);
+    const set = new Set<string>();
+    for (const id of row?.objectIds ?? []) {
+      if (objectIdUniverseSet.has(id)) set.add(id);
+    }
+    return set;
+  }, [selectedUseGroup, groupRowById, objectIdUniverseSet]);
+
   const objectFieldMetaById = useMemo(() => buildFieldsMetaByObjectId(), []);
   const objectModalFieldsById = useObjectModalMetadata();
   const objectColorMetaById = useMemo(() => buildColorMetaByObjectId(), []);
@@ -578,28 +438,26 @@ function Test2() {
       .filter((objectId) =>
         objectMatchesManualGroupFilter(objectId, selectedManualGroupFilter, colorGroupFilterIdSets)
       )
-      .filter((objectId) =>
-        objectMatchesExcludeManualKMeansFilter(
-          objectId,
-          selectedExcludeManualClusterFilter,
-          excludeManualKmeansParsed.clusterByObjectId
-        )
-      );
+      .filter((objectId) => {
+        if (selectedUseGroupIdSet == null) return true;
+        return selectedUseGroupIdSet.has(objectId);
+      });
     if (selectedManualGroupFilter != null) {
       return sortDisplayedIdsByColorGroupOrder(filtered, selectedManualGroupFilter);
     }
-    return sortDisplayedIdsByExcludeManualCentroidOrder(
-      filtered,
-      selectedExcludeManualClusterFilter,
-      excludeManualKmeansParsed.kFit
-    );
+    if (selectedUseGroup != null) {
+      return sortDisplayedIdsByUseGroupOrder(filtered, selectedUseGroup, groupRowById);
+    }
+    return [...filtered].sort((a, b) => Number(a) - Number(b));
   }, [
+    groupRowById,
     objectColorMetaById,
     objectFieldMetaById,
     objectIds,
     normalizedObjectIdSearch,
-    selectedExcludeManualClusterFilter,
     selectedManualGroupFilter,
+    selectedUseGroup,
+    selectedUseGroupIdSet,
     showOnlyBeforeYearZero,
     showOnlyWithPaletteData
   ]);
@@ -948,8 +806,8 @@ function Test2() {
         <p
           style={{ margin: "0 0 0.55rem 0", fontSize: "0.72rem", color: "#777", lineHeight: 1.35 }}
         >
-          Only one color filter at a time — choosing a color group or exclude-manual KMeans clears
-          the other.
+          Use group and new regrouped color group filters can both apply. Counts are objects in this
+          view (silhouette neighbors) that match each bucket.
         </p>
         <div
           style={{
@@ -1013,89 +871,11 @@ function Test2() {
                   onClick={() => {
                     const next = selectedManualGroupFilter === option.id ? null : option.id;
                     setSelectedManualGroupFilter(next);
-                    if (next != null) setSelectedExcludeManualClusterFilter(null);
                   }}
                   style={{
                     border: active ? "1px solid #9df" : "1px solid #444",
                     borderRadius: "6px",
                     background: active ? "rgba(120, 200, 255, 0.16)" : "#141414",
-                    color: "#e8e8e8",
-                    padding: "0.28rem 0.5rem",
-                    fontSize: "0.72rem",
-                    lineHeight: 1.25,
-                    cursor: "pointer",
-                    maxWidth: "100%",
-                    textAlign: "left"
-                  }}
-                >
-                  {label}
-                </button>
-              );
-            })}
-          </div>
-        </div>
-        <div>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "0.5rem",
-              flexWrap: "wrap",
-              marginBottom: "0.45rem"
-            }}
-          >
-            <span style={{ fontSize: "0.85rem", color: "#ccc", fontWeight: 600 }}>
-              Manual color group
-            </span>
-            <button
-              type="button"
-              onClick={() => setSelectedManualGroupFilter(null)}
-              disabled={selectedManualGroupFilter == null}
-              style={{
-                border: "1px solid #666",
-                borderRadius: "6px",
-                background: selectedManualGroupFilter == null ? "#1a1a1a" : "#222",
-                color: selectedManualGroupFilter == null ? "#666" : "#fff",
-                padding: "0.2rem 0.45rem",
-                fontSize: "0.75rem",
-                cursor: selectedManualGroupFilter == null ? "default" : "pointer"
-              }}
-            >
-              All manual groups
-            </button>
-            <span style={{ fontSize: "0.75rem", color: "#888" }}>
-              {selectedManualGroupFilter == null
-                ? "no manual filter"
-                : `match: ${colorGroupFilterOptionById.get(selectedManualGroupFilter)?.label ?? selectedManualGroupFilter} (${colorGroupFilterIdSets.get(selectedManualGroupFilter)?.size ?? 0} ids)`}
-            </span>
-          </div>
-          <div
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              gap: "0.35rem",
-              alignItems: "center"
-            }}
-          >
-            {manualColorGroupOptions.map((option) => {
-              const count = colorGroupFilterIdSets.get(option.id)?.size ?? 0;
-              const active = selectedManualGroupFilter === option.id;
-              const label = `${option.label} (${count})`;
-              return (
-                <button
-                  key={`manual-group-${option.id}`}
-                  type="button"
-                  aria-pressed={active}
-                  title={option.name}
-                  onClick={() => {
-                    const next = selectedManualGroupFilter === option.id ? null : option.id;
-                    setSelectedManualGroupFilter(next);
-                    if (next != null) setSelectedExcludeManualClusterFilter(null);
-                  }}
-                  style={{
-                    border: active ? "1px solid #c9f" : "1px solid #444",
-                    borderRadius: "6px",
-                    background: active ? "rgba(200, 150, 255, 0.16)" : "#141414",
                     color: "#e8e8e8",
                     padding: "0.28rem 0.5rem",
                     fontSize: "0.72rem",
@@ -1128,37 +908,27 @@ function Test2() {
               marginBottom: "0.45rem"
             }}
           >
-            <span style={{ fontSize: "0.85rem", color: "#ccc", fontWeight: 600 }}>
-              KMeans · manual IDs excluded
-            </span>
+            <span style={{ fontSize: "0.85rem", color: "#ccc", fontWeight: 600 }}>Use group</span>
             <button
               type="button"
-              onClick={() => setSelectedExcludeManualClusterFilter(null)}
-              disabled={selectedExcludeManualClusterFilter == null}
+              onClick={() => setSelectedUseGroup(null)}
+              disabled={selectedUseGroup == null}
               style={{
                 border: "1px solid #666",
                 borderRadius: "6px",
-                background: selectedExcludeManualClusterFilter == null ? "#1a1a1a" : "#222",
-                color: selectedExcludeManualClusterFilter == null ? "#666" : "#fff",
+                background: selectedUseGroup == null ? "#1a1a1a" : "#222",
+                color: selectedUseGroup == null ? "#666" : "#fff",
                 padding: "0.2rem 0.45rem",
                 fontSize: "0.75rem",
-                cursor: selectedExcludeManualClusterFilter == null ? "default" : "pointer"
+                cursor: selectedUseGroup == null ? "default" : "pointer"
               }}
             >
-              All clusters
+              All uses
             </button>
-            <span
-              style={{ fontSize: "0.75rem", color: "#888" }}
-              title={excludeManualKmeansParsed.featureVersionLabel || undefined}
-            >
-              {excludeManualKmeansParsed.kFit > 0 ? `k=${excludeManualKmeansParsed.kFit} · ` : ""}
-              {excludeManualKmeansParsed.clusterIds.length === 0
-                ? "no exclude-manual CSV rows"
-                : selectedExcludeManualClusterFilter == null
-                  ? "pills + grid order from cluster_ui_order.json (re-run exclude-manual build)"
-                  : selectedExcludeManualClusterFilter === -1
-                    ? "match: Unassigned"
-                    : `match: cluster ${selectedExcludeManualClusterFilter} · grid nearest centroid first`}
+            <span style={{ fontSize: "0.75rem", color: "#888" }}>
+              {selectedUseGroup == null
+                ? "no use filter"
+                : `match: ${USE_GROUP_LABEL[selectedUseGroup]} (${selectedUseGroupIdSet?.size ?? 0} in view)`}
             </span>
           </div>
           <div
@@ -1169,60 +939,33 @@ function Test2() {
               alignItems: "center"
             }}
           >
-            <button
-              key="exclude-manual-unassigned"
-              type="button"
-              aria-pressed={selectedExcludeManualClusterFilter === -1}
-              disabled={excludeManualKmeansParsed.clusterIds.length === 0}
-              onClick={() => {
-                const next = selectedExcludeManualClusterFilter === -1 ? null : -1;
-                setSelectedExcludeManualClusterFilter(next);
-                if (next != null) setSelectedManualGroupFilter(null);
-              }}
-              style={{
-                border:
-                  selectedExcludeManualClusterFilter === -1 ? "1px solid #fa8" : "1px solid #444",
-                borderRadius: "6px",
-                background:
-                  selectedExcludeManualClusterFilter === -1
-                    ? "rgba(255, 160, 120, 0.15)"
-                    : "#141414",
-                color: "#e8e8e8",
-                padding: "0.28rem 0.5rem",
-                fontSize: "0.72rem",
-                lineHeight: 1.25,
-                cursor: excludeManualKmeansParsed.clusterIds.length === 0 ? "default" : "pointer",
-                opacity: excludeManualKmeansParsed.clusterIds.length === 0 ? 0.45 : 1
-              }}
-            >
-              Unassigned
-            </button>
-            {excludeManualClusterIdsForUi.map((id) => {
-              const active = selectedExcludeManualClusterFilter === id;
+            {USE_GROUPS_IN_DISPLAY_ORDER.map((group) => {
+              const count = useGroupObjectCountInView.get(group) ?? 0;
+              const active = selectedUseGroup === group;
+              const label = `${USE_GROUP_LABEL[group]} (${count})`;
               return (
                 <button
-                  key={`exclude-manual-kmeans-${id}`}
+                  key={`use-group-${group}`}
                   type="button"
                   aria-pressed={active}
+                  title={group}
                   onClick={() => {
-                    const next = selectedExcludeManualClusterFilter === id ? null : id;
-                    setSelectedExcludeManualClusterFilter(next);
-                    if (next != null) setSelectedManualGroupFilter(null);
+                    setSelectedUseGroup(active ? null : group);
                   }}
                   style={{
-                    border: active ? "1px solid #fd9" : "1px solid #444",
+                    border: active ? "1px solid #8f8" : "1px solid #444",
                     borderRadius: "6px",
-                    background: active ? "rgba(255, 210, 120, 0.18)" : "#141414",
+                    background: active ? "rgba(140, 220, 160, 0.14)" : "#141414",
                     color: "#e8e8e8",
                     padding: "0.28rem 0.5rem",
                     fontSize: "0.72rem",
                     lineHeight: 1.25,
                     cursor: "pointer",
-                    minWidth: "2rem",
-                    textAlign: "center"
+                    maxWidth: "100%",
+                    textAlign: "left"
                   }}
                 >
-                  {id}
+                  {label}
                 </button>
               );
             })}

@@ -74,7 +74,7 @@ objectID,title,use
 37404,Vase with Incised and Impressed Designs,vase
 37407,Stem Vase with Incised and Painted Design,vase
 37425,Vessel with Flaring Foot,other
-37431,Jar with Zoomorphic Handle and Spout,pouring
+37431,Jar with Zoomorphic Handle and Spout,animal_shaped
 37432,Footed Urn,storage
 37433,Footed Urn,storage
 37434,Bottle,flask_and_bottle
@@ -223,7 +223,7 @@ objectID,title,use
 42337,Vase with equestrian figure in landscape,vase
 42338,Vase with Phoenix and Peonies,vase
 42341,Vase with Magnolias,vase
-42350,Chicken-Headed Ewer,pouring
+42350,Chicken-Headed Ewer,animal_shaped
 42353,Bottle,flask_and_bottle
 42354,Vase with landscape scenes,vase
 42355,Vase,vase
@@ -377,12 +377,12 @@ objectID,title,use
 45845,Jar with floral sprays,storage
 45847,Jar with animals and flowers,storage
 45848,Covered jar with flowers,storage
-45849,Jar with dragon-shaped handles,storage
+45849,Jar with dragon-shaped handles,animal_shaped
 45853,Vase with cover,storage
 45856,Jar,storage
 45857,Wine container (hu),pouring
 45861,Vase with cover,storage
-45862,Amphora with dragon-shaped handles,storage
+45862,Amphora with dragon-shaped handles,animal_shaped
 45863,Covered jar with phoenix,storage
 45864,Covered Jar,storage
 45868,Jar,storage
@@ -416,7 +416,7 @@ objectID,title,use
 45929,Vase,vase
 45930,Gourd-shaped vase,vase
 45932,Vase,vase
-45934,Hexagonal vase with lion-head handles,vase
+45934,Hexagonal vase with lion-head handles,animal_shaped
 45937,Vase with characters fortune (fu) and longevity (shou),vase
 45938,Vase,vase
 45939,Vase,vase
@@ -549,7 +549,7 @@ objectID,title,use
 46223,Jar with geometric pattern,storage
 46233,Covered jar with floral pattern,storage
 46235,Jar with floral pattern,storage
-46249,Covered jar with animal masks,storage
+46249,Covered jar with animal masks,animal_shaped
 46250,Covered jar with floral patterns,storage
 46268,Pot,other
 46269,Water pot in the shape of a bird,animal_shaped
@@ -634,7 +634,7 @@ objectID,title,use
 46590,Bottle vase,flask_and_bottle
 46614,Vase,vase
 46619,Bottle,flask_and_bottle
-46620,Washer in the shape of a butterfly,other
+46620,Washer in the shape of a butterfly,animal_shaped
 46623,Bottle vase,flask_and_bottle
 46624,Vase with ladies and boys,vase
 46627,Vase with Butterflies,vase
@@ -701,7 +701,7 @@ objectID,title,use
 46816,Vase,vase
 46817,Jar,storage
 46818,Jar,storage
-46827,Hexagonal vase with lion-head handles,vase
+46827,Hexagonal vase with lion-head handles,animal_shaped
 46830,Vase in the shape of archaic wine container (gu),pouring
 46831,Bottle,flask_and_bottle
 46836,Bottle,flask_and_bottle
@@ -826,7 +826,7 @@ objectID,title,use
 47257,Hanging Vase,vase
 47258,Sake Bottle (Tokkuri) in the Shape of an Eggplant,pouring
 47259,Jar and Cover,storage
-47260,Vase in form of a Carp,vase
+47260,Vase in form of a Carp,animal_shaped
 47270,Jug,pouring
 47280,Vase,vase
 47281,Vase,vase
@@ -856,7 +856,7 @@ objectID,title,use
 47336,Vase with collage of archaistic motifs,vase
 47347,Vase with poem on marbled ground,vase
 47350,Vase,vase
-47353,Vase with Lion-Shaped Handles and Cranes amid Clouds,vase
+47353,Vase with Lion-Shaped Handles and Cranes amid Clouds,animal_shaped
 47364,Bottle,flask_and_bottle
 47367,Square Vase,vase
 47370,Vase,vase
@@ -877,7 +877,7 @@ objectID,title,use
 47404,Covered Jar,storage
 47407,Vase,vase
 47409,Flask vase,flask_and_bottle
-47412,Vase with animal masks,vase
+47412,Vase with animal masks,animal_shaped
 47414,Jar with cover,storage
 47420,Wine Bottle,pouring
 47427,Vase,vase
@@ -984,7 +984,7 @@ objectID,title,use
 47758,Jar,storage
 47759,Jar,storage
 47762,Hexagonal ewer with lion and cub,pouring
-47770,Rectangular vase with animal masks,vase
+47770,Rectangular vase with animal masks,animal_shaped
 47780,Vase in the form of an archaic bell,vase
 47783,Vase,vase
 47784,Vase,vase
@@ -1171,7 +1171,7 @@ objectID,title,use
 48546,Vase,vase
 48550,Jar,storage
 48551,Vase,vase
-48552,Jar with lion-head ornaments,storage
+48552,Jar with lion-head ornaments,animal_shaped
 48558,Vase with phoenixes amid flowers,vase
 48559,Gourd-shaped vase with gourds on vines and bats,vase
 48560,Bottle,flask_and_bottle
@@ -1208,7 +1208,7 @@ objectID,title,use
 48612,Square vase with scenes of four seasons,vase
 48613,Vase,vase
 48616,Bottle with Lion,flask_and_bottle
-48620,Vase with elephant head handles and floral decoration,vase
+48620,Vase with elephant head handles and floral decoration,animal_shaped
 48621,Vase with cranes and peaches,vase
 48625,Vase,vase
 48626,Vase with butterflies amid melon vines,vase
@@ -1245,7 +1245,7 @@ objectID,title,use
 48666,Bottle,flask_and_bottle
 48669,Vase,vase
 48676,Square vase with flowers of four seasons,vase
-48677,Vase with lion-head handles,vase
+48677,Vase with lion-head handles,animal_shaped
 48679,Jar with scholars and crane,storage
 48682,Vase,vase
 48686,Vase,vase
@@ -1377,7 +1377,7 @@ objectID,title,use
 49425,Octagonal Sake Bottle with Landscape Design,pouring
 49426,Hexagonal Sake Ewer with Landscape Design,pouring
 49533,Jar (Labakou Hu),storage
-49553,Amphora with dragon-shaped handles,storage
+49553,Amphora with dragon-shaped handles,animal_shaped
 49559,Covered jar,storage
 49825,Covered Jar,storage
 49833,Covered Jar,storage
@@ -1395,7 +1395,7 @@ objectID,title,use
 49899,Jar (Guan),storage
 49900,Jar,storage
 49903,Jar,storage
-49905,Amphora with dragon-shaped handles,storage
+49905,Amphora with dragon-shaped handles,animal_shaped
 49909,Ewer with loop handles,pouring
 49914,Vase,vase
 49915,Covered Jar,storage
@@ -1546,7 +1546,7 @@ objectID,title,use
 51017,Vase,vase
 51018,Vase,vase
 51019,Vase,vase
-51020,Vase with Elephant Heads and Cloud Designs,vase
+51020,Vase with Elephant Heads and Cloud Designs,animal_shaped
 51021,Vase,vase
 51023,Gallipot,storage
 51024,Jar,storage
@@ -2215,7 +2215,7 @@ objectID,title,use
 197225,Pharmacy jar with subjects from The Campaigns of Julius Caesar,storage
 197232,Pilgrim bottle,flask_and_bottle
 197233,Pilgrim bottle,flask_and_bottle
-197485,Jug,pouring
+197485,Jug,animal_shaped
 197515,Water bottle,flask_and_bottle
 197532,Cream jug,pouring
 197552,Puzzle jug,pouring
@@ -2470,7 +2470,7 @@ objectID,title,use
 205919,Vase,vase
 205922,Vase,vase
 205936,Vase,vase
-205973,Ewer with cover in the shape of a rabbit,pouring
+205973,Ewer with cover in the shape of a rabbit,animal_shaped
 205979,Small milk pot with cover,pouring
 206024,Four-sided bottle,flask_and_bottle
 206025,Bottle,flask_and_bottle
@@ -2484,7 +2484,7 @@ objectID,title,use
 206392,Vase,vase
 206393,Vase,vase
 206433,Flower vase (cuvette à tombeau),vase
-206454,Elephant-head vase (vase à tête d'éléphant),vase
+206454,Elephant-head vase (vase à tête d'éléphant),animal_shaped
 206522,Potpourri vase (pot-pourri à jour),vase
 206629,Vase,vase
 206654,Pitcher,pouring
@@ -2495,7 +2495,7 @@ objectID,title,use
 207123,Scent bottle,flask_and_bottle
 207124,Scent bottle,flask_and_bottle
 207145,Potpourri Vase with Girl and Dog,vase
-207383,Elephant-head vase (vase à tête d'éléphant),vase
+207383,Elephant-head vase (vase à tête d'éléphant),animal_shaped
 207399,Jar,storage
 207404,Ewer,pouring
 207469,Jug,pouring
@@ -2626,8 +2626,8 @@ objectID,title,use
 240351,Terracotta pithoid jar,storage
 240394,Amphora,storage
 240403,Askos in the form of an animal,animal_shaped
-240423,Terracotta zoomorphic askos (vessel),pouring
-240428,Terracotta duck-shaped askos (flask with spout and handle over the back),pouring
+240423,Terracotta zoomorphic askos (vessel),animal_shaped
+240428,Terracotta duck-shaped askos (flask with spout and handle over the back),animal_shaped
 240432,Askos in the form of an animal,animal_shaped
 240436,Jug,pouring
 240442,Juglet,pouring
@@ -2751,7 +2751,7 @@ objectID,title,use
 251803,Lekythos,storage
 251933,Terracotta Nolan neck-amphora (jar),storage
 252496,Terracotta amphora (jar),storage
-252556,Terracotta vase in the shape of a monkey,vase
+252556,Terracotta vase in the shape of a monkey,animal_shaped
 252589,Terracotta ring askos (flask with a spout and handle over the top),pouring
 252592,Terracotta situla (bucket),pouring
 252634,Terracotta lydion (perfume jar),storage
@@ -2764,7 +2764,7 @@ objectID,title,use
 254183,Terracotta Nolan neck-amphora (jar),storage
 254186,Terracotta lekythos (oil flask),flask_and_bottle
 254189,Terracotta vase in the form of a bird,animal_shaped
-254198,Terracotta alabastron (perfume vase) in the shape of a hare,storage
+254198,Terracotta alabastron (perfume vase) in the shape of a hare,animal_shaped
 254199,Terracotta neck-amphora (jar),storage
 254200,Terracotta rhyton (vase for libations or drinking),ritual
 254202,Terracotta lekythos (oil flask),flask_and_bottle
@@ -2839,10 +2839,10 @@ objectID,title,use
 307622,Double Spout and Bridge Bottle,pouring
 307863,Double-End Snake Bottle,flask_and_bottle
 307864,Bridge and Spout Bottle,pouring
-307865,Bridge and Spout Bottle with Bird Head,pouring
+307865,Bridge and Spout Bottle with Bird Head,animal_shaped
 307866,Bridge and Spout Bottle with Bird,pouring
 307868,Bridge and Spout Bottle with Falcoln,pouring
-307869,Stirrup Spout Bottle with Owl Head,pouring
+307869,Stirrup Spout Bottle with Owl Head,animal_shaped
 307870,Stirrup Spout Bottle with Seated Figure,pouring
 307871,Stirrup-spout bottle with peanut figure,pouring
 307873,Stirrup Spout Bottle with Wrinkled Face,pouring
@@ -2862,10 +2862,10 @@ objectID,title,use
 308349,Storage jar,storage
 308350,Storage jar,storage
 308352,Whistling bottle with single spout,pouring
-308354,Monkey-shaped spout-and-bridge bottle,pouring
+308354,Monkey-shaped spout-and-bridge bottle,animal_shaped
 308355,"Double Spout Bottle, Felines",pouring
 308359,Double-Spout Bottle: Felines,pouring
-308362,Bird-Head Vessel,other
+308362,Bird-Head Vessel,animal_shaped
 308363,Spout-and-bridge bottle with feline face,pouring
 308379,Double spout and bridge bottle,pouring
 308380,Collared jar with birds,storage
@@ -2879,7 +2879,7 @@ objectID,title,use
 308404,"Bottle, Fighting Figures",flask_and_bottle
 308405,"Bottle, Starfish",flask_and_bottle
 308406,Stirrup spout bottle in cap shape,pouring
-308408,Bottle with fox head,flask_and_bottle
+308408,Bottle with fox head,animal_shaped
 308409,Stirrup-spout bottle with deer,pouring
 308410,Stirrup-spout bottle with bird warrior,pouring
 308411,Warrior Bottle,flask_and_bottle
@@ -2887,7 +2887,7 @@ objectID,title,use
 308413,Stirrup spout bottle with dignitary figure,pouring
 308414,Spout-and-bridge bottle with funerary procession,ritual
 308415,Architectural Vessel,other
-308417,Stirrup spout bottle with figure with llama headdress,pouring
+308417,Stirrup spout bottle with figure with llama headdress,animal_shaped
 308420,Jar,storage
 308423,Bottle,flask_and_bottle
 308424,Bottle,flask_and_bottle
@@ -2899,7 +2899,7 @@ objectID,title,use
 308441,Bridge and Double Spout Bottle with Guilloche,pouring
 308446,Black Slip Bottle,flask_and_bottle
 308447,"Double Spout and Bridge Bottle with ""S"" Designs",pouring
-308448,Feline Effigy Bottle,flask_and_bottle
+308448,Feline Effigy Bottle,animal_shaped
 308450,Melon Shaped Bottle,flask_and_bottle
 308451,Melon Shaped Bottle,flask_and_bottle
 308452,Fox Effigy Bottle,animal_shaped
@@ -2932,7 +2932,7 @@ objectID,title,use
 308519,Stirrup Spout Bottle in Cactus Form,pouring
 308520,Stirrup Spout Bottle with Stacked Containers,pouring
 308523,Stirrup-spout bottle with feline,pouring
-308524,Double Chambered Whistling Jar with Parrot,storage
+308524,Double Chambered Whistling Jar with Parrot,animal_shaped
 308525,Stirrup Spout Bottle with Owl,pouring
 308526,Stirrup Spout Bottle with Bird and Snake,pouring
 308527,Portrait Head Bottle,flask_and_bottle
@@ -3134,11 +3134,11 @@ objectID,title,use
 309717,Head jar,storage
 309728,"Bottle, Drum",flask_and_bottle
 309730,"Bottle, Fish",flask_and_bottle
-309731,Bridge and Spout Bottle in Bird Form,pouring
+309731,Bridge and Spout Bottle in Bird Form,animal_shaped
 309735,Jar with Lug Handles,storage
 309741,"Jar, Whiskered Face",storage
-309746,Bridge and Spout Bottle in Bird Form,pouring
-309747,Bridge and Spout Bottle in Animal Form,pouring
+309746,Bridge and Spout Bottle in Bird Form,animal_shaped
+309747,Bridge and Spout Bottle in Animal Form,animal_shaped
 309751,Bottle with Figures,flask_and_bottle
 309752,Bottle with mythic figure,flask_and_bottle
 309753,Stirrup Spout Bottle with Fish,animal_shaped
@@ -3150,15 +3150,15 @@ objectID,title,use
 310193,"Bottle, Geometric Designs",flask_and_bottle
 310194,Stirrup Spout Bottle with Animals,pouring
 310195,"Bottle, Head",flask_and_bottle
-310196,"Jar, Anthropomorphic Fox",storage
+310196,"Jar, Anthropomorphic Fox",animal_shaped
 310197,Figure Jar,storage
 310198,"Bottle, Sleeping Figure",flask_and_bottle
 310199,Figure Bottle,flask_and_bottle
 310201,"Bottle, Seated Figure",flask_and_bottle
 310202,"Bottle, Seated Figure",flask_and_bottle
 310203,"Bottle, Seated Figure",flask_and_bottle
-310205,"Bottle, Anthropomorphic Crab",flask_and_bottle
-310206,"Bottle, Anthropomorphic Crab",flask_and_bottle
+310205,"Bottle, Anthropomorphic Crab",animal_shaped
+310206,"Bottle, Anthropomorphic Crab",animal_shaped
 310207,"Bottle, Deity Figure",ritual
 310208,"Bottle, Feline Face",flask_and_bottle
 310209,Figure Bottle,flask_and_bottle
@@ -3201,7 +3201,7 @@ objectID,title,use
 310556,Bottle,flask_and_bottle
 310568,Bottle with deity,ritual
 310589,Effigy vessel,other
-310594,Herder with llama,other
+310594,Herder with llama,animal_shaped
 310601,Vessel with ritual scene,ritual
 310602,Face Jar,storage
 310603,Painted Animal Vessel,animal_shaped
@@ -3212,7 +3212,7 @@ objectID,title,use
 310662,Feline-shaped stirrup-spout bottle,animal_shaped
 310673,Jar,storage
 310675,Jug,pouring
-310704,Bridge and Spout Vessel with Duck Head,pouring
+310704,Bridge and Spout Vessel with Duck Head,animal_shaped
 310716,Bottle,flask_and_bottle
 312157,Bottle,flask_and_bottle
 312158,Bottle,flask_and_bottle
@@ -3263,7 +3263,7 @@ objectID,title,use
 314197,Ceramic Whistling Vessel,other
 314217,Vessel with mythological scene,other
 314364,Stirrup-spout Bottle,pouring
-314365,Vulture vessel,other
+314365,Vulture vessel,animal_shaped
 314523,Cylindrical Vessel,other
 314524,Cylindrical Vessel,other
 314626,Single Spout Bottle,pouring
@@ -3290,7 +3290,7 @@ objectID,title,use
 314697,Stirrup Spout Bottle with Deer,pouring
 314698,Bridge and Spout Bottle with Seated Prisoner,pouring
 314699,Figure Bottle,flask_and_bottle
-314859,Vessel: Zoomorphic,other
+314859,Vessel: Zoomorphic,animal_shaped
 314954,Paccha (ritual vessel),ritual
 314955,Paccha (ritual vessel),ritual
 315038,Vessel,other
@@ -3307,7 +3307,7 @@ objectID,title,use
 316001,Double-chambered bottle,flask_and_bottle
 316175,Stirrup-spout bottle with mouse,pouring
 316176,Bottle in the shape of a monkey,animal_shaped
-316177,Bottle in the shape of a dog,flask_and_bottle
+316177,Bottle in the shape of a dog,animal_shaped
 316270,Corn stalk-shaped vessel,other
 316710,Bottle with ritual scene,ritual
 316711,Vessel with Seated Lord,other
@@ -3324,7 +3324,7 @@ objectID,title,use
 317619,Turkey Vessel,animal_shaped
 317749,Stirrup Spout Bottle,pouring
 317786,Double-spout bottle with flying figure,pouring
-317793,Bottle in the shape of a feline,flask_and_bottle
+317793,Bottle in the shape of a feline,animal_shaped
 317831,Jar,storage
 317890,Spouted Vessel,pouring
 317989,Long-necked vessel,other
@@ -3433,7 +3433,7 @@ objectID,title,use
 446976,Bottle,flask_and_bottle
 446997,Bottle,flask_and_bottle
 447070,Ewer with Sailing-Ship Design,pouring
-447072,Rooster-Headed Ewer,pouring
+447072,Rooster-Headed Ewer,animal_shaped
 447080,Ewer,pouring
 447120,Vase,vase
 447130,Ewer,pouring
@@ -3689,7 +3689,7 @@ objectID,title,use
 451881,Ewer,pouring
 451946,Bottle,flask_and_bottle
 451986,Bottle,flask_and_bottle
-451993,Elephant-Shaped Kendi,pouring
+451993,Elephant-Shaped Kendi,animal_shaped
 452011,Jar,storage
 452025,Ewer,pouring
 452034,Bottle,flask_and_bottle
@@ -3765,7 +3765,7 @@ objectID,title,use
 460278,Apothecary jar (albarello),storage
 460279,Maiolica: Apothecary jar (albarello),storage
 460280,Maiolica: Apothecary jug (brocca),pouring
-460652,"Phoenix-head ewer, Tang sancai ware",pouring
+460652,"Phoenix-head ewer, Tang sancai ware",animal_shaped
 460659,"Jar, Jun ware",storage
 460660,"Two-eared jar, Jun ware",storage
 460664,"Pyriform vase, possibly an imitation of Song Guan ware",vase
@@ -3990,7 +3990,7 @@ objectID,title,use
 558198,White cross-lined ware beaker with geometric and floral design,other
 558204,Black-topped red ware beaker,other
 558282,Marl ware jar with lug handles,storage
-569685,Vessel in the shape of a horse,other
+569685,Vessel in the shape of a horse,animal_shaped
 572220,Canopic Jar with an Image Representing the Hieroglyph for Face,ritual
 576327,Pot,other
 623471,Baluster-shaped vase,vase
@@ -4092,7 +4092,7 @@ objectID,title,use
 770973,Ewer with quatrefoil motifs,pouring
 770974,Vase with rope and wheat decoration,vase
 770975,Triple cylindrical body vase with ivy motif,vase
-770977,"Vase with owl heads and ""cloisonné"" decoration",vase
+770977,"Vase with owl heads and ""cloisonné"" decoration",animal_shaped
 770979,Vase with gold fern decoration,vase
 770986,Miniature moon flask with fretwork center,flask_and_bottle
 770987,Moon flask with fretwork center,flask_and_bottle
@@ -4162,8 +4162,8 @@ objectID,title,use
 853841,Covered jar,storage
 853980,Ewer with makara spout,pouring
 853981,Ewer with makara spout with lotus-form cover,pouring
-856856,Ceremonial vessel with animal heads,ritual
-857709,Terracotta askos in the shape of a quadruped,pouring
+856856,Ceremonial vessel with animal heads,animal_shaped
+857709,Terracotta askos in the shape of a quadruped,animal_shaped
 857949,“Magic Fountain” ewer,pouring
 871715,Vase with iris,vase
 871864,Vase with leaves and seed pods,vase

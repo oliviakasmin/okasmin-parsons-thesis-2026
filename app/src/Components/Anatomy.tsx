@@ -347,7 +347,10 @@ export default function Anatomy() {
               style={{ width: "100%", maxWidth: "100%", marginBottom: "2rem" }}
             >
               <Typography variant="h4" sx={{ mb: 1 }}>
-                ceramic <span style={{ fontStyle: "italic", fontSize: "0.75em" }}>(adj)</span>
+                ceramic{" "}
+                <Typography component="span" variant="labels" sx={{ fontStyle: "italic" }}>
+                  (adj)
+                </Typography>
               </Typography>
               <Typography
                 variant="h5"
@@ -362,7 +365,10 @@ export default function Anatomy() {
             </div>
             <div ref={secondTextBlockRef} style={{ width: "100%", maxWidth: "100%" }}>
               <Typography variant="h4" sx={{ mb: 1 }}>
-                vessel <span style={{ fontStyle: "italic", fontSize: "0.75em" }}>(n)</span>
+                vessel{" "}
+                <Typography component="span" variant="labels" sx={{ fontStyle: "italic" }}>
+                  (n)
+                </Typography>
               </Typography>
               <Typography
                 variant="h5"

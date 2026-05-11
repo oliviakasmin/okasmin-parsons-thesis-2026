@@ -6,12 +6,14 @@ declare module "@mui/material/styles" {
     backButton: CSSProperties;
     rocaLight: CSSProperties;
     h3Small: CSSProperties;
+    labels: CSSProperties;
   }
 
   interface TypographyVariantsOptions {
     backButton?: CSSProperties;
     rocaLight?: CSSProperties;
     h3Small?: CSSProperties;
+    labels?: CSSProperties;
   }
 }
 
@@ -20,6 +22,7 @@ declare module "@mui/material/Typography" {
     backButton: true;
     rocaLight: true;
     h3Small: true;
+    labels: true;
   }
 }
 
@@ -73,6 +76,13 @@ const themeBase = createTheme({
       fontWeight: 600,
       fontSize: "1.25rem",
       lineHeight: 1.1
+    },
+    // Caption labels (date / place / years-ago) used by CaseStudies and ObjectImageModal.
+    labels: {
+      fontFamily: neueHaasDisplay,
+      color: "#bdbdbd",
+      fontSize: "1.1rem",
+      lineHeight: 1.45
     },
     // Normal text (body1 is default for paragraphs and factual labels).
     body1: {

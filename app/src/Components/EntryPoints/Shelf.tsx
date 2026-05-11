@@ -147,6 +147,7 @@ function Shelf() {
                   </Box>
                   {clusterLabel ? (
                     <Typography
+                      variant="labels"
                       component="span"
                       sx={{
                         ...shelfOverlayLabelSx,

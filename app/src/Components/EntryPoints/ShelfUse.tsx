@@ -1,8 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import representativeJson from "../../../../format_data/use_groups/representative.json";
 import useImageModules from "../../hooks/useImageModules";
-import useUseGroups, { type UseGroup, USE_GROUP_LABEL } from "../../hooks/useUseGroups";
+import useUseGroups, {
+  type UseGroup,
+  USE_GROUP_LABEL,
+  representativeObjectIdsForGroup
+} from "../../hooks/useUseGroups";
 import { homeEntryDomId, type HomeEntryScrollId } from "../constants";
 import type { ShelfSlot } from "./shelfGridStyles";
 import {
@@ -20,9 +25,9 @@ const shelfUseEntryScrollId: HomeEntryScrollId = "shelf-use";
 
 /** Row-major positions; `undefined` = one-tile gap; rows with fewer than five slots spread across the row. */
 const SHELF_USE_LAYOUT: ShelfSlot<UseGroup>[][] = [
-  ["pouring", "flask_and_bottle", undefined],
-  ["storage", "vase", "ritual"],
-  ["animal_shaped", "other", undefined]
+  ["flask_and_bottle", "vase"],
+  ["pouring", "storage"],
+  ["ritual", "animal_shaped", "other"]
 ];
 
 export default function ShelfUse() {
@@ -57,11 +62,12 @@ export default function ShelfUse() {
                 );
               }
 
+              const repCandidates = representativeObjectIdsForGroup(
+                representativeJson,
+                groupRow.group
+              );
               const representativeObjectId =
-                (groupRow.representativeObjectId &&
-                maskImageByObjectId.has(groupRow.representativeObjectId)
-                  ? groupRow.representativeObjectId
-                  : null) ??
+                repCandidates.find((objectId) => maskImageByObjectId.has(objectId)) ??
                 groupRow.objectIds.find((objectId) => maskImageByObjectId.has(objectId)) ??
                 null;
               const imageSrc = representativeObjectId
@@ -120,6 +126,7 @@ export default function ShelfUse() {
                     </Box>
                   </Box>
                   <Typography
+                    variant="labels"
                     component="span"
                     sx={{
                       ...shelfOverlayLabelSx,

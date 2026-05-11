@@ -122,8 +122,6 @@ export const shelfOverlayLabelSx: SxProps<Theme> = {
   top: "100%",
   transform: "translateX(-50%)",
   mt: "0.5rem",
-  fontSize: "0.85rem",
-  letterSpacing: "0.03em",
   opacity: 0,
   visibility: "hidden",
   transition: "opacity 120ms ease",

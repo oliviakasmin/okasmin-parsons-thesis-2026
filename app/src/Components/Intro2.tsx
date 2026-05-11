@@ -272,7 +272,7 @@ export default function Intro2() {
         </Box>
 
         <Typography
-          variant="body1"
+          variant="labels"
           component="p"
           sx={{ gridArea: "leftDate", textAlign: "center", mt: 2, mb: 0 }}
         >
@@ -280,7 +280,7 @@ export default function Intro2() {
         </Typography>
 
         <Typography
-          variant="body1"
+          variant="labels"
           component="p"
           sx={{ gridArea: "rightDate", textAlign: "center", mt: 2, mb: 0 }}
         >

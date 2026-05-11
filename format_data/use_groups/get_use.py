@@ -22,6 +22,8 @@ FALLBACK_USE = "other"
 # Per-objectID use labels (Met titles alone are ambiguous). Keys are numeric strings.
 OBJECT_USE_OVERRIDES: dict[str, str] = {
     "197485": "animal_shaped",
+    "310594": "animal_shaped",
+    "314365": "animal_shaped",
 }
 
 

@@ -162,17 +162,18 @@ export default function Title() {
           </Typography>
         </Box>
         <Typography
-          variant="h5"
-          component="h5"
+          variant="labels"
+          component="p"
           sx={{
             m: 0,
             pl: "1rem",
+            fontSize: "1.25rem",
             position: "absolute",
             left: 0,
             bottom: "10%"
           }}
         >
-          by Olivia Kasmin
+          Olivia Kasmin
         </Typography>
       </Box>
 
