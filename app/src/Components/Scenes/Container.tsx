@@ -3,6 +3,7 @@ import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } fr
 import { useLocation, useParams, useSearchParams } from "react-router-dom";
 import { Box, Button, IconButton, Typography } from "@mui/material";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import finalClusterKeysCsv from "../../../../format_data/cluster_shape/final_clusters_keys.csv?raw";
 import finalClusterObjectIdsCsv from "../../../../format_data/cluster_shape/final_clusters_object_ids.csv?raw";
 import BackButton from "../BackButton";
@@ -34,7 +35,7 @@ import {
 } from "../constants";
 import MapView from "./Map";
 import InlineOutlineSvg from "./InlineOutlineSvg";
-import ObjectImageModal from "./ObjectImageModal";
+import ObjectImageModal, { objectModalCaptionValueSx } from "./ObjectImageModal";
 import ObjectScene from "./ObjectScene";
 import TimelineAxis from "./TimelineAxis";
 import { useShelfTab } from "../shelfTabState";
@@ -84,14 +85,6 @@ const sceneHeadlineEmphasisSx = {
 
 function sceneHeadlineEmphasis(children: ReactNode) {
   return (
-    <Box component="span" sx={sceneHeadlineEmphasisSx}>
-      {children}
-    </Box>
-  );
-}
-
-function sceneHeadlineH3(children: ReactNode) {
-  return (
     <Typography
       component="span"
       variant="h3"
@@ -100,6 +93,10 @@ function sceneHeadlineH3(children: ReactNode) {
       {children}
     </Typography>
   );
+}
+
+function sceneHeadlineH3(children: ReactNode) {
+  return sceneHeadlineEmphasis(children);
 }
 
 function formatCountryLabel(countryKey: string) {
@@ -113,6 +110,11 @@ function formatCountryLabel(countryKey: string) {
 function defaultStackOpacity(clusterSize: number) {
   return Math.min(1, Math.max(0.08, 1 / Math.max(18, clusterSize)));
 }
+
+/** Colorgram swatch tile in the color-group left rail (matches modal tile border; fixed px for rail). */
+const COLOR_RAIL_SWATCH_PX = 14;
+/** Space between swatches in a strip (modal) — same value as horizontal gap between strips in the grid. */
+const COLOR_RAIL_SWATCH_GAP_PX = 3;
 
 /** Copy for the scene headline (timeline / map / all). Layout lives in Container. */
 function sceneHeadlineContent(args: {
@@ -153,7 +155,7 @@ function sceneHeadlineContent(args: {
   }
   return (
     <>
-      {objectCount.toLocaleString("en-US")} {objectLabelPlural}
+      {objectLabelPlural} ({objectCount.toLocaleString("en-US")})
     </>
   );
 }
@@ -253,6 +255,20 @@ function Container() {
     [countryByObjectId]
   );
   const objectModalFieldsById = useObjectModalMetadata();
+  const useGroupSortedTitleRows = useMemo(() => {
+    if (!selectedUseGroup) return [];
+    const titleToObjectId = new Map<string, string>();
+    for (const objectId of selectedObjectIds) {
+      const raw = objectModalFieldsById.get(objectId)?.title?.trim() ?? "";
+      const displayTitle = raw || `Object ${objectId}`;
+      const existing = titleToObjectId.get(displayTitle);
+      if (existing === undefined) titleToObjectId.set(displayTitle, objectId);
+      else if (objectId.localeCompare(existing) < 0) titleToObjectId.set(displayTitle, objectId);
+    }
+    return [...titleToObjectId.entries()]
+      .map(([title, objectId]) => ({ title, objectId }))
+      .sort((a, b) => a.title.localeCompare(b.title, undefined, { sensitivity: "base" }));
+  }, [selectedUseGroup, selectedObjectIds, objectModalFieldsById]);
   const [mapProjectionByObjectId, setMapProjectionByObjectId] = useState<
     Map<string, { x: number; y: number; visible: boolean }>
   >(new globalThis.Map());
@@ -698,10 +714,7 @@ function Container() {
               </Box>
               <Box component="span">
                 {currentView === "all" ? (
-                  <>
-                    {sceneHeadlineEmphasis(selectedObjectIds.length.toLocaleString("en-US"))}{" "}
-                    vessels in this group
-                  </>
+                  <>vessels in this group ({selectedObjectIds.length.toLocaleString("en-US")})</>
                 ) : (
                   sceneHeadlineContent({
                     view: currentView,
@@ -785,14 +798,14 @@ function Container() {
                 >
                   <Typography
                     component="h3"
-                    variant="h3"
+                    variant="h3Small"
                     sx={{
                       mb: "0.65rem",
                       color: mapCountryPanel ? "#fff" : "#777",
                       flexShrink: 0
                     }}
                   >
-                    {mapCountryPanel?.label ?? "Select a country"}
+                    {mapCountryPanel?.label ?? "select a vessel on the map"}
                   </Typography>
                   {mapCountryPanel && mapCountryPanel.objectIds.length === 0 ? (
                     <Typography sx={{ fontSize: "0.78rem", color: "#888", lineHeight: 1.35 }}>
@@ -857,14 +870,193 @@ function Container() {
                     </Box>
                   )}
                 </Box>
+              ) : isLeftPanelExpanded && currentView === "all" && selectedUseGroup ? (
+                <Box
+                  sx={{
+                    position: "absolute",
+                    inset: 0,
+                    display: "flex",
+                    flexDirection: "column",
+                    minHeight: 0,
+                    pt: "0.35rem",
+                    pr: "0.65rem",
+                    pl: "0.25rem",
+                    pointerEvents: "auto"
+                  }}
+                >
+                  <Typography
+                    component="h3"
+                    variant="h3Small"
+                    sx={{ mb: "0.65rem", flexShrink: 0, color: "#fff" }}
+                  >
+                    titles
+                  </Typography>
+                  <Box sx={{ flex: 1, minHeight: 0, overflowY: "auto", overflowX: "hidden" }}>
+                    <Box
+                      component="ul"
+                      sx={{
+                        m: 0,
+                        p: 0,
+                        listStyle: "none",
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: 1
+                      }}
+                    >
+                      {useGroupSortedTitleRows.map(({ title, objectId }) => (
+                        <Box component="li" key={objectId} sx={{ minWidth: 0 }}>
+                          <Typography
+                            component="button"
+                            type="button"
+                            onClick={() => setModalObjectId(objectId)}
+                            aria-label={`Open details for ${title}`}
+                            sx={{
+                              ...objectModalCaptionValueSx,
+                              wordBreak: "break-word",
+                              overflowWrap: "anywhere",
+                              display: "block",
+                              width: "100%",
+                              textAlign: "left",
+                              m: 0,
+                              p: 0,
+                              border: 0,
+                              background: "transparent",
+                              cursor: "pointer",
+                              textDecoration: "none",
+                              "&:hover": {
+                                color: "#fff",
+                                textDecoration: "none"
+                              }
+                            }}
+                          >
+                            {title}
+                          </Typography>
+                        </Box>
+                      ))}
+                    </Box>
+                  </Box>
+                </Box>
+              ) : isLeftPanelExpanded && currentView === "all" && selectedColorGroup ? (
+                <Box
+                  sx={{
+                    position: "absolute",
+                    inset: 0,
+                    display: "flex",
+                    flexDirection: "column",
+                    minHeight: 0,
+                    pt: "0.35rem",
+                    pr: "0.65rem",
+                    pl: "0.25rem",
+                    pointerEvents: "auto"
+                  }}
+                >
+                  <Box sx={{ flex: 1, minHeight: 0, overflowY: "auto", overflowX: "hidden" }}>
+                    <Box
+                      component="ul"
+                      sx={{
+                        m: 0,
+                        p: 0,
+                        listStyle: "none",
+                        display: "grid",
+                        gridTemplateColumns: `repeat(auto-fill, ${COLOR_RAIL_SWATCH_PX}px)`,
+                        columnGap: `${COLOR_RAIL_SWATCH_GAP_PX}px`,
+                        rowGap: 0,
+                        alignItems: "start",
+                        justifyItems: "start",
+                        justifyContent: "start",
+                        pb: "0.5rem"
+                      }}
+                    >
+                      {selectedObjectIds.map((objectId) => {
+                        const palette =
+                          objectModalFieldsById.get(objectId)?.colorgramPaletteHex ?? [];
+                        return (
+                          <Box
+                            component="li"
+                            key={objectId}
+                            role="button"
+                            tabIndex={0}
+                            onClick={() => setModalObjectId(objectId)}
+                            onKeyDown={(event: KeyboardEvent<HTMLLIElement>) => {
+                              if (event.key === "Enter" || event.key === " ") {
+                                event.preventDefault();
+                                setModalObjectId(objectId);
+                              }
+                            }}
+                            aria-label={`Open details for object ${objectId}`}
+                            sx={{
+                              minWidth: 0,
+                              width: COLOR_RAIL_SWATCH_PX,
+                              display: "flex",
+                              flexDirection: "column",
+                              alignItems: "stretch",
+                              justifyContent: "flex-start",
+                              py: 0,
+                              px: 0,
+                              boxSizing: "border-box",
+                              cursor: "pointer",
+                              borderRadius: 0,
+                              border: "1px solid transparent",
+                              "&:hover": {
+                                bgcolor: "rgba(255,255,255,0.06)",
+                                borderColor: "rgba(255,255,255,0.08)"
+                              }
+                            }}
+                          >
+                            <Box
+                              aria-hidden
+                              sx={{
+                                display: "flex",
+                                flexDirection: "column",
+                                gap: `${COLOR_RAIL_SWATCH_GAP_PX}px`,
+                                flexShrink: 0,
+                                alignItems: "stretch",
+                                width: "100%"
+                              }}
+                            >
+                              {palette.length > 0 ? (
+                                palette.map((hex, index) => (
+                                  <Box
+                                    key={`${objectId}-colorgram-${index}`}
+                                    sx={{
+                                      width: COLOR_RAIL_SWATCH_PX,
+                                      height: COLOR_RAIL_SWATCH_PX,
+                                      flexShrink: 0,
+                                      bgcolor: hex,
+                                      boxSizing: "border-box",
+                                      border: "1px solid rgba(255,255,255,0.12)"
+                                    }}
+                                  />
+                                ))
+                              ) : (
+                                <Box
+                                  sx={{
+                                    width: COLOR_RAIL_SWATCH_PX,
+                                    height: COLOR_RAIL_SWATCH_PX,
+                                    flexShrink: 0,
+                                    boxSizing: "border-box",
+                                    border: "1px solid rgba(255,255,255,0.12)",
+                                    bgcolor: "rgba(255,255,255,0.04)"
+                                  }}
+                                />
+                              )}
+                            </Box>
+                          </Box>
+                        );
+                      })}
+                    </Box>
+                  </Box>
+                </Box>
               ) : isLeftPanelExpanded ? (
                 <Box
                   sx={{
                     position: "absolute",
                     inset: 0,
                     display: "flex",
+                    flexDirection: "column",
                     alignItems: "center",
                     justifyContent: "center",
+                    gap: "0.75rem",
                     pr: "0.65rem",
                     pointerEvents: "none"
                   }}
@@ -873,7 +1065,8 @@ function Container() {
                     sx={{
                       position: "relative",
                       width: "100%",
-                      height: "100%"
+                      flex: "1 1 0",
+                      minHeight: 0
                     }}
                   >
                     {selectedObjectIds.map((objectId) => {
@@ -899,6 +1092,22 @@ function Container() {
                       );
                     })}
                   </Box>
+                  {currentView === "all" && showShelfShapeGlyph ? (
+                    <Typography
+                      component="p"
+                      variant="h3Small"
+                      sx={{
+                        m: 0,
+                        flexShrink: 0,
+                        textAlign: "center",
+                        color: "#bdbdbd",
+                        lineHeight: 1.25,
+                        maxWidth: "100%"
+                      }}
+                    >
+                      all shapes in this group
+                    </Typography>
+                  ) : null}
                 </Box>
               ) : null}
               <Box
@@ -936,34 +1145,27 @@ function Container() {
                 <ChevronLeftIcon fontSize="small" />
               </IconButton>
             ) : (
-              <Button
-                type="button"
-                variant="text"
-                disableRipple
+              <IconButton
                 aria-label="Expand left panel"
                 onClick={() => setIsLeftPanelExpanded(true)}
                 sx={{
-                  textTransform: "none",
                   position: "absolute",
                   right: 0,
                   top: "50%",
-                  transform: "translateY(-50%) rotate(90deg)",
-                  transformOrigin: "center center",
-                  zIndex: 1,
-                  minWidth: 0,
-                  minHeight: 0,
+                  transform: "translate(50%, -50%)",
+                  zIndex: 2,
+                  width: 24,
+                  height: 24,
                   p: 0,
-                  m: 0,
                   color: "#aaa",
-                  whiteSpace: "nowrap",
-                  borderRadius: 0,
-                  "&:hover": { color: "#fff", bgcolor: "rgba(255,255,255,0.06)" }
+                  borderRadius: "999px",
+                  bgcolor: "#000",
+                  border: "1px solid #444",
+                  "&:hover": { color: "#fff", bgcolor: "#111" }
                 }}
               >
-                <Typography component="span" variant="backButton" sx={{ color: "inherit" }}>
-                  expand
-                </Typography>
-              </Button>
+                <ChevronRightIcon fontSize="small" />
+              </IconButton>
             ))}
         </Box>
         <Box

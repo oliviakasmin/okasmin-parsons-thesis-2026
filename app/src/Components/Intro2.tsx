@@ -53,7 +53,9 @@ const intro2TopRowInnerGridSx = {
   alignItems: "end",
   columnGap: 0,
   width: "100%",
-  minWidth: 0
+  minWidth: 0,
+  /** Breathing room above the full-width white rule (`Intro2BottomRuleSvg`). */
+  paddingBottom: "0.25rem"
 };
 
 const intro2OutlineColumnSx = {

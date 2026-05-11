@@ -20,9 +20,9 @@ const shelfColorEntryScrollId: HomeEntryScrollId = "shelf-color";
 
 /** Row-major positions; `undefined` = one-tile gap; rows with fewer than five slots spread across the row. */
 const SHELF_COLOR_LAYOUT: ShelfSlot<ColorGroupKey>[][] = [
-  ["red", "orange", "brown_tan"],
-  ["yellow", "green", "blue", "purple"],
-  ["gray", "white", "multicolor"]
+  ["hue_blue", "hue_green", "blue_and_white", "yellow_and_ochre"],
+  ["red_and_pink", "multicolor_glaze", "white", "red_orange_warm_stoneware"],
+  ["light_warm_browns", "cooler_light_tans_browns", "coolest_browns", "dark_and_black"]
 ];
 
 export default function ShelfColor() {

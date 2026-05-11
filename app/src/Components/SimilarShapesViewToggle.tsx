@@ -11,6 +11,11 @@ type SimilarShapesViewToggleProps = {
 
 const OPTIONS: SimilarShapesView[] = ["selected", "similar"];
 
+const OPTION_LABEL: Record<SimilarShapesView, string> = {
+  selected: "selected",
+  similar: "similar shapes"
+};
+
 export default function SimilarShapesViewToggle({
   view,
   onChange,
@@ -52,7 +57,7 @@ export default function SimilarShapesViewToggle({
               }
             }}
           >
-            {option}
+            {OPTION_LABEL[option]}
           </Button>
         );
       })}

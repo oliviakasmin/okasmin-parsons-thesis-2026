@@ -67,8 +67,20 @@ const modalObjectTitleInHeaderSx = {
   minWidth: 0
 } as const;
 
-const captionValueSx = { color: "#bdbdbd", fontSize: "1.05rem", lineHeight: 1.45 } as const;
-const captionLabelSx = { color: "#9a9a9a", mr: 1.25, fontSize: "1rem" } as const;
+/** Selected-object Date / Place lines in the modal body — reused where list copy should match. */
+export const objectModalCaptionValueSx = {
+  color: "#bdbdbd",
+  fontSize: "1.05rem",
+  lineHeight: 1.45
+} as const;
+export const objectModalCaptionLabelSx = {
+  color: "#9a9a9a",
+  mr: 1.25,
+  fontSize: "1rem"
+} as const;
+
+const captionValueSx = objectModalCaptionValueSx;
+const captionLabelSx = objectModalCaptionLabelSx;
 
 const placeChipRadius = "6px";
 

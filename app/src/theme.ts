@@ -5,11 +5,13 @@ declare module "@mui/material/styles" {
   interface TypographyVariants {
     backButton: CSSProperties;
     rocaLight: CSSProperties;
+    h3Small: CSSProperties;
   }
 
   interface TypographyVariantsOptions {
     backButton?: CSSProperties;
     rocaLight?: CSSProperties;
+    h3Small?: CSSProperties;
   }
 }
 
@@ -17,6 +19,7 @@ declare module "@mui/material/Typography" {
   interface TypographyPropsVariantOverrides {
     backButton: true;
     rocaLight: true;
+    h3Small: true;
   }
 }
 
@@ -42,6 +45,14 @@ const themeBase = createTheme({
     h3: {
       fontFamily: roca,
       fontWeight: 600
+    },
+    /** Roca / h3 weight, stepped down from default `h3` size for secondary titles. */
+    h3Small: {
+      fontFamily: roca,
+      fontWeight: 600,
+      fontSize: "1.75rem"
+      // lineHeight: 1.2,
+      // letterSpacing: "0em"
     },
     h4: {
       fontFamily: neueHaasDisplay,

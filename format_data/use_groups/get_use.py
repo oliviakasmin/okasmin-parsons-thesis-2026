@@ -19,6 +19,26 @@ _animal_tokens_for_form_of_cache: frozenset[str] | None = None
 # Label when no mapping keyword matches.
 FALLBACK_USE = "other"
 
+# Per-objectID use labels (Met titles alone are ambiguous). Keys are numeric strings.
+OBJECT_USE_OVERRIDES: dict[str, str] = {
+    "197485": "animal_shaped",
+}
+
+
+def _object_id_override_key(raw: object) -> str | None:
+    if raw is None:
+        return None
+    if isinstance(raw, str) and not raw.strip():
+        return None
+    try:
+        f = float(raw)
+        if f != f:  # NaN
+            return None
+        return str(int(f))
+    except (TypeError, ValueError):
+        s = str(raw).strip()
+        return s or None
+
 # Category priority: same top-to-bottom order as assignments in use_mapping.py.
 # First matching category wins (e.g. ANIMAL_SHAPED before VASE when both match).
 USE_GROUP_ORDER = [
@@ -163,6 +183,13 @@ def classify_title(title: str, mod) -> str:
     return FALLBACK_USE
 
 
+def resolve_use(object_id: object, title: str, mod) -> str:
+    key = _object_id_override_key(object_id)
+    if key is not None and key in OBJECT_USE_OVERRIDES:
+        return OBJECT_USE_OVERRIDES[key]
+    return classify_title(title, mod)
+
+
 def main() -> None:
     mod = _load_mapping_module()
 
@@ -178,7 +205,7 @@ def main() -> None:
 
     for row in rows:
         title = row.get("title") or ""
-        row["use"] = classify_title(title, mod)
+        row["use"] = resolve_use(row.get("objectID"), title, mod)
 
     with TITLE_COLS_PATH.open("w", encoding="utf-8", newline="") as out:
         w = csv.DictWriter(out, fieldnames=fieldnames, extrasaction="ignore")
