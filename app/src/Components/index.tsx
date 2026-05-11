@@ -11,6 +11,6 @@ export { default as TimelineAxis } from "./Scenes/TimelineAxis";
 export { default as Map } from "./Scenes/Map";
 export { default as LeftOutlineStackPanel } from "./Scenes/LeftOutlineStackPanel";
 export { default as Title } from "./Title";
-export { default as ShelfFunction } from "./EntryPoints/ShelfFunction";
+export { default as ShelfUse } from "./EntryPoints/ShelfUse";
 export { default as ShelfColor } from "./EntryPoints/ShelfColor";
 export { default as ShelfContainer } from "./EntryPoints/ShelfContainer";

@@ -10,7 +10,7 @@ import ImageToggleButton from "../ImageToggleButton";
 import useImageToggle, { type ImageToggleMode } from "../../hooks/useImageToggle";
 import useImageModules from "../../hooks/useImageModules";
 import useFormatClusters from "../../hooks/useFormatClusters";
-import useFunctionGroups, { isFunctionGroup } from "../../hooks/useFunctionGroups";
+import useUseGroups, { isUseGroup, USE_GROUP_LABEL } from "../../hooks/useUseGroups";
 import useColorGroups, { isColorGroupKey } from "../../hooks/useColorGroups";
 import useTimelineBuckets from "../../hooks/useTimelineBuckets";
 import useObjectGeo, {
@@ -20,6 +20,7 @@ import useObjectGeo, {
 import useObjectModalMetadata from "../../hooks/useObjectModalMetadata";
 import { buildSceneLayout } from "../../hooks/useViewLayouts";
 import {
+  ALL_SCENE_GRID_GAP_X_PX,
   ALL_SCENE_RENDER_IMAGE_SIZE_PX,
   SCENE_LEFT_PANEL_COLLAPSED_MIN_WIDTH_PX,
   SCENE_LEFT_PANEL_COLLAPSED_VW,
@@ -175,16 +176,16 @@ function Container() {
   isLeftPanelExpandedRef.current = isLeftPanelExpanded;
   const { outlineImageByObjectId, maskImageByObjectId, noBgImageByObjectId } = useImageModules();
   const { clusterRows } = useFormatClusters(finalClusterKeysCsv, fieldsCsv);
-  const { groupRowById } = useFunctionGroups();
+  const { groupRowById: useGroupRowById } = useUseGroups();
   const { groupRowByKey } = useColorGroups();
   const { setSelectedShelfTab } = useShelfTab();
   const selectedCluster = useMemo(
     () => clusterRows.find((row) => row.cluster === clusterId),
     [clusterId, clusterRows]
   );
-  const selectedFunctionGroup = useMemo(
-    () => (clusterId && isFunctionGroup(clusterId) ? groupRowById.get(clusterId) : undefined),
-    [clusterId, groupRowById]
+  const selectedUseGroup = useMemo(
+    () => (clusterId && isUseGroup(clusterId) ? useGroupRowById.get(clusterId) : undefined),
+    [clusterId, useGroupRowById]
   );
   const selectedColorGroup = useMemo(
     () => (clusterId && isColorGroupKey(clusterId) ? groupRowByKey.get(clusterId) : undefined),
@@ -198,11 +199,11 @@ function Container() {
             typeLabel: selectedCluster.clusterType,
             objectIds: selectedCluster.allObjectIds
           }
-        : selectedFunctionGroup
+        : selectedUseGroup
           ? {
-              id: selectedFunctionGroup.group,
-              typeLabel: "function group",
-              objectIds: selectedFunctionGroup.objectIds
+              id: selectedUseGroup.group,
+              typeLabel: "use group",
+              objectIds: selectedUseGroup.objectIds
             }
           : selectedColorGroup
             ? {
@@ -211,20 +212,17 @@ function Container() {
                 objectIds: selectedColorGroup.objectIds
               }
             : null,
-    [selectedCluster, selectedColorGroup, selectedFunctionGroup]
+    [selectedCluster, selectedColorGroup, selectedUseGroup]
   );
   const selectedObjectIds = useMemo(() => selectedEntry?.objectIds ?? [], [selectedEntry]);
-  const objectLabelPlural = selectedFunctionGroup
-    ? selectedFunctionGroup.group === "amphora"
-      ? "amphorae"
-      : `${selectedFunctionGroup.group}s`
+  const objectLabelPlural = selectedUseGroup
+    ? `${USE_GROUP_LABEL[selectedUseGroup.group]} vessels`
     : selectedColorGroup
       ? `${selectedColorGroup.label} vessels`
       : "vessels";
   const timelineSubject =
-    selectedFunctionGroup || selectedColorGroup ? objectLabelPlural : "these forms";
-  const mapSubject =
-    selectedFunctionGroup || selectedColorGroup ? objectLabelPlural : "these forms";
+    selectedUseGroup || selectedColorGroup ? objectLabelPlural : "these forms";
+  const mapSubject = selectedUseGroup || selectedColorGroup ? objectLabelPlural : "these forms";
 
   const showShelfShapeGlyph = Boolean(locationState?.fromShelf && selectedCluster && clusterId);
 
@@ -254,7 +252,7 @@ function Container() {
       sceneViewportSize.width > 0
     ) {
       const cellWidth = Math.floor(sceneViewportSize.width / allGridBaselineColumns);
-      imageSizePx = Math.max(24, cellWidth - 4);
+      imageSizePx = Math.max(24, cellWidth - ALL_SCENE_GRID_GAP_X_PX);
     }
     return buildSceneLayout({
       objectIds: selectedObjectIds,
@@ -364,7 +362,12 @@ function Container() {
   useLayoutEffect(() => {
     if (isLeftPanelExpanded || sceneViewportSize.width <= 0) return;
     setAllGridBaselineColumns(
-      Math.max(1, Math.floor(sceneViewportSize.width / (ALL_SCENE_RENDER_IMAGE_SIZE_PX + 4)))
+      Math.max(
+        1,
+        Math.floor(
+          sceneViewportSize.width / (ALL_SCENE_RENDER_IMAGE_SIZE_PX + ALL_SCENE_GRID_GAP_X_PX)
+        )
+      )
     );
   }, [isLeftPanelExpanded, sceneViewportSize.width]);
 
@@ -490,7 +493,7 @@ function Container() {
     console.log(`${selectedEntry.id}\n${selectedEntry.typeLabel}`);
   }, [selectedEntry]);
   useEffect(() => {
-    if (selectedFunctionGroup) {
+    if (selectedUseGroup) {
       setSelectedShelfTab("use");
       return;
     }
@@ -501,7 +504,7 @@ function Container() {
     if (selectedCluster) {
       setSelectedShelfTab("shape");
     }
-  }, [selectedCluster, selectedColorGroup, selectedFunctionGroup, setSelectedShelfTab]);
+  }, [selectedCluster, selectedColorGroup, selectedUseGroup, setSelectedShelfTab]);
   useEffect(() => {
     syncTimelineAxisToSceneScroll();
   }, [contentSceneHeight, currentView, syncTimelineAxisToSceneScroll, timelineBuckets]);

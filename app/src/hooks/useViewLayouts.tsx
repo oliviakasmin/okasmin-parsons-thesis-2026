@@ -1,3 +1,5 @@
+import { ALL_SCENE_GRID_GAP_X_PX, ALL_SCENE_GRID_GAP_Y_PX } from "../Components/constants";
+
 type RectMap = Map<string, DOMRect>;
 
 type RectCoverage = {
@@ -93,9 +95,9 @@ function buildAllLayout(
 ): Pick<SceneLayout, "objectLayoutById" | "sceneHeight" | "bucketSpanByKey"> {
   const objectLayoutById = new Map<string, ObjectLayout>();
   const bucketSpanByKey = new Map<string, number>();
-  const cellWidth = imageSizePx + 4;
+  const cellWidth = imageSizePx + ALL_SCENE_GRID_GAP_X_PX;
   const columns = Math.max(1, Math.floor(sceneWidth / cellWidth));
-  const rowGap = 2;
+  const rowGap = ALL_SCENE_GRID_GAP_Y_PX;
 
   objectIds.forEach((objectId, index) => {
     const row = Math.floor(index / columns);

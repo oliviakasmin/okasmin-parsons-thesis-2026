@@ -34,7 +34,7 @@ objectID,title,use
 7740,Spill Vase,vase
 7742,Spill Vase,vase
 8048,Syrup Jug,pouring
-8681,Toddy Jug,wine_alcohol_water
+8681,Toddy Jug,pouring
 9179,Urn,storage
 9180,Urn,storage
 9199,Flower Pot,other
@@ -53,7 +53,7 @@ objectID,title,use
 9506,Vase,vase
 9582,Covered Vase,storage
 9584,Covered Vase,storage
-9752,Water Bottle,wine_alcohol_water
+9752,Water Bottle,flask_and_bottle
 13455,Ewer,pouring
 14371,Pitcher,pouring
 14828,Covered potpourri vase,storage
@@ -79,7 +79,7 @@ objectID,title,use
 37433,Footed Urn,storage
 37434,Bottle,flask_and_bottle
 37435,Bottle,flask_and_bottle
-37436,Covered Lime Pot in the Form of a Rabbit,storage
+37436,Covered Lime Pot in the Form of a Rabbit,animal_shaped
 37438,Vase with Cover,storage
 37439,Covered Cylinderical Jar,storage
 37442,Covered Jar,storage
@@ -104,7 +104,7 @@ objectID,title,use
 37543,Bottle,flask_and_bottle
 37555,Ewer,pouring
 37557,Bottle with Birds and Peony Scroll,flask_and_bottle
-37558,Ewer in the Form of a Phoenix,pouring
+37558,Ewer in the Form of a Phoenix,animal_shaped
 37563,Large Incised Jar,storage
 37649,Pedestalled Vessel,other
 37657,Jar,storage
@@ -126,14 +126,14 @@ objectID,title,use
 39528,Jar with Handles,storage
 39531,Bottle with abstract flowers and leaves,flask_and_bottle
 39559,Vase,vase
-39576,Water Jar,wine_alcohol_water
-39589,Gourd-shaped ewer decorated with waterfowl and reeds,wine_alcohol_water
+39576,Water Jar,storage
+39589,Gourd-shaped ewer decorated with waterfowl and reeds,pouring
 39590,Maebyeong (plum bottle) decorated with cranes and clouds,flask_and_bottle
 39609,Ewer with Lotus Petal Collar,pouring
 39631,Jar in the shape of bronze container (hu),storage
 39666,Jar with dragon,storage
 39885,Jar with grapevine decoration,storage
-40074,Water Jar in the Shape of a Well Bucket,wine_alcohol_water
+40074,Water Jar in the Shape of a Well Bucket,storage
 40082,Jar (Guan),storage
 40083,Jug (Hu),pouring
 40084,Vase with Buddhist figures,vase
@@ -143,7 +143,7 @@ objectID,title,use
 40959,Wall Vase,vase
 40960,Wall Vase,vase
 41076,Snuff Bottle,flask_and_bottle
-41749,Water Jar for the Tea Ceremony with Seven Sages of the Bamboo Grove Design,wine_alcohol_water
+41749,Water Jar for the Tea Ceremony with Seven Sages of the Bamboo Grove Design,storage
 41753,Long-Necked Bottle with Design of Chinese Children Playing Outdoors,flask_and_bottle
 42011,Bottle with cloud scrolls,flask_and_bottle
 42190,Vase in Meiping Shape with Phoenix,vase
@@ -173,7 +173,7 @@ objectID,title,use
 42223,Vase with Plum Blossoms and Birds,vase
 42224,Vase with alternating landscape and floral scenes,vase
 42226,Vase in Meiping Shape,vase
-42227,Water Jar,wine_alcohol_water
+42227,Water Jar,storage
 42228,Vase in Meiping Shape,vase
 42229,Vase,vase
 42232,Vase,vase
@@ -184,7 +184,7 @@ objectID,title,use
 42242,Vase in Meiping Shape,vase
 42243,"Vase with Cranes, Clouds, and Waves",vase
 42246,Vase,vase
-42247,Water Jar with Swirling Clouds,wine_alcohol_water
+42247,Water Jar with Swirling Clouds,storage
 42248,Vase in Meiping Shape,vase
 42249,Vase,vase
 42250,Vase with Flowers,vase
@@ -219,7 +219,7 @@ objectID,title,use
 42326,Vase,vase
 42331,Jar (Guan),storage
 42333,Covered jar (Guan),storage
-42336,Wine bottle with decoration of landscape and poem,wine_alcohol_water
+42336,Wine bottle with decoration of landscape and poem,pouring
 42337,Vase with equestrian figure in landscape,vase
 42338,Vase with Phoenix and Peonies,vase
 42341,Vase with Magnolias,vase
@@ -248,13 +248,13 @@ objectID,title,use
 42403,Vase in Shape of Archaic Bronze Vessel with Flowers and Birds,vase
 42406,Covered Ewer,pouring
 42409,Vase with Women Enjoying Scholarly Pursuits,vase
-42413,Water Jar,wine_alcohol_water
+42413,Water Jar,storage
 42414,Vase,vase
 42415,Vase,vase
-42416,Water jar with clouds,wine_alcohol_water
+42416,Water jar with clouds,storage
 42417,Jar,storage
-42421,Water Jar,wine_alcohol_water
-42422,Water Jar,wine_alcohol_water
+42421,Water Jar,storage
+42422,Water Jar,storage
 42424,Vase,vase
 42425,Vase,vase
 42426,Vase with Relief Decoration,vase
@@ -306,7 +306,7 @@ objectID,title,use
 44428,Jar with Two Loop Handles (Hu),storage
 44429,Jar (Guan),storage
 44431,Molded Flask,flask_and_bottle
-44439,Wine Bottle,wine_alcohol_water
+44439,Wine Bottle,pouring
 44441,Jar,storage
 44447,Vase,vase
 44448,Square Flask,flask_and_bottle
@@ -330,7 +330,7 @@ objectID,title,use
 44730,Jar (Guan),storage
 44733,Funerary Urn (Hunping),ritual
 44737,Bottle decorated with peonies,flask_and_bottle
-44738,Large wine jar,wine_alcohol_water
+44738,Large wine jar,pouring
 44739,Covered Jar in the Shape of a Star Fruit,storage
 44740,Vase,vase
 44741,Jar,storage
@@ -353,17 +353,17 @@ objectID,title,use
 45205,Large Storage Jar (Ōtsubo),storage
 45365,Storage Jar (Tsubo,storage
 45432,Moon jar,storage
-45482,Ninsei-style Sake Bottle with Floral Patterning,wine_alcohol_water
-45484,"Sake Bottle (Tokkuri) with “Three Friends of Winter” (Pine, Bamboo, and Plum)",wine_alcohol_water
-45527,Sake Bottle with Nanban (Southern Barbarian) Design,wine_alcohol_water
+45482,Ninsei-style Sake Bottle with Floral Patterning,pouring
+45484,"Sake Bottle (Tokkuri) with “Three Friends of Winter” (Pine, Bamboo, and Plum)",pouring
+45527,Sake Bottle with Nanban (Southern Barbarian) Design,pouring
 45529,Deep Vessel with Decorative Handles,other
 45550,Jar,storage
-45552,Water Jar with Chinese Scholars,wine_alcohol_water
-45553,Freshwater Jar (Mizusashi) with the “Seven Sages of the Bamboo Grove”,wine_alcohol_water
-45554,Water Jar with Design of the Seven Sages in the Bamboo Grove,wine_alcohol_water
-45555,Water Jar (Mizusashi) with the Seven Sages of the Bamboo Grove,wine_alcohol_water
-45556,Water Jar with Lin Hejing (Lin Bu) and His Pet Crane,wine_alcohol_water
-45732,Wine Bottle with Three Friends of Winter,wine_alcohol_water
+45552,Water Jar with Chinese Scholars,storage
+45553,Freshwater Jar (Mizusashi) with the “Seven Sages of the Bamboo Grove”,storage
+45554,Water Jar with Design of the Seven Sages in the Bamboo Grove,storage
+45555,Water Jar (Mizusashi) with the Seven Sages of the Bamboo Grove,storage
+45556,Water Jar with Lin Hejing (Lin Bu) and His Pet Crane,storage
+45732,Wine Bottle with Three Friends of Winter,pouring
 45828,Vase with cover,storage
 45829,"Vase with pheasants, rocks, and flowers",vase
 45830,Vase with birds and flowers,vase
@@ -380,7 +380,7 @@ objectID,title,use
 45849,Jar with dragon-shaped handles,storage
 45853,Vase with cover,storage
 45856,Jar,storage
-45857,Wine container (hu),wine_alcohol_water
+45857,Wine container (hu),pouring
 45861,Vase with cover,storage
 45862,Amphora with dragon-shaped handles,storage
 45863,Covered jar with phoenix,storage
@@ -389,7 +389,7 @@ objectID,title,use
 45871,Vase with lid,storage
 45872,Covered jar with birds and flowers,storage
 45873,Jar with flowers,storage
-45879,Water pot,wine_alcohol_water
+45879,Water pot,other
 45880,Vase,vase
 45882,Jar,storage
 45883,Vase with birds and flowers,vase
@@ -401,13 +401,13 @@ objectID,title,use
 45895,Jar with Cover,storage
 45896,Covered Jar,storage
 45900,Vase with birds and flowers,vase
-45904,Wine bottle,wine_alcohol_water
+45904,Wine bottle,pouring
 45907,Vase,vase
 45908,Vase with dragon and phoenix,vase
 45909,Vase with ladies and boys,vase
 45912,Meiping vase with floral scrolls,vase
 45913,Meiping vase,vase
-45914,Water pot with three boys,wine_alcohol_water
+45914,Water pot with three boys,other
 45915,Vase,vase
 45917,Vase,vase
 45918,Jar with cover,storage
@@ -423,18 +423,18 @@ objectID,title,use
 45959,Vase,vase
 45962,Jar,storage
 45964,Jar,storage
-45965,Vase with entwined dragon,wine_alcohol_water
+45965,Vase with entwined dragon,pouring
 45967,Large Pear-Shaped Jar,storage
 45970,Covered jar with plum blossoms,storage
 45972,Vase,vase
-45974,Water Pot,wine_alcohol_water
+45974,Water Pot,other
 45977,Jar with cover,storage
 45979,Bottle,flask_and_bottle
 45984,Vase with handles,vase
 45985,Jar,storage
 45986,Vase,vase
 45987,Bottle,flask_and_bottle
-45989,Water Pot,wine_alcohol_water
+45989,Water Pot,other
 45990,Openwork vase with plants,vase
 45992,Vase,vase
 45994,Jar,storage
@@ -442,7 +442,7 @@ objectID,title,use
 45998,Bottle,flask_and_bottle
 45999,Large Vase,vase
 46000,Vase,vase
-46001,Water Pot,wine_alcohol_water
+46001,Water Pot,other
 46003,Vase with dragon,vase
 46004,Vase with flowers,vase
 46008,Covered jar with birds and flowers,storage
@@ -583,7 +583,7 @@ objectID,title,use
 46521,Vase with dragon,vase
 46522,Vase with floral scrolls,vase
 46523,Vase,vase
-46525,Water pot,wine_alcohol_water
+46525,Water pot,other
 46527,Meiping vase,vase
 46528,Pilgrim bottle vase,flask_and_bottle
 46529,Meiping vase,vase
@@ -644,7 +644,7 @@ objectID,title,use
 46634,Vase,vase
 46635,Vase,vase
 46636,Vase,vase
-46637,Sake Bottle (Tokkuri),wine_alcohol_water
+46637,Sake Bottle (Tokkuri),pouring
 46638,Jar,storage
 46639,Vase with butterflies and flowers,vase
 46640,Vase with phoenix,vase
@@ -702,7 +702,7 @@ objectID,title,use
 46817,Jar,storage
 46818,Jar,storage
 46827,Hexagonal vase with lion-head handles,vase
-46830,Vase in the shape of archaic wine container (gu),wine_alcohol_water
+46830,Vase in the shape of archaic wine container (gu),pouring
 46831,Bottle,flask_and_bottle
 46836,Bottle,flask_and_bottle
 46840,Vase,vase
@@ -777,7 +777,7 @@ objectID,title,use
 47060,Bottle,flask_and_bottle
 47061,Vase with flowers,vase
 47062,Jar with figures in a garden,storage
-47064,Wine Bottle,wine_alcohol_water
+47064,Wine Bottle,pouring
 47065,Bottle with One Handle,flask_and_bottle
 47066,Jar,storage
 47072,Jar,storage
@@ -796,13 +796,13 @@ objectID,title,use
 47118,Jar with Cover,storage
 47119,Jar and cover,storage
 47122,Miniature Jar with Cover,storage
-47132,Water Jar (Mizusashi) in the Shape of a Bamboo Basket,wine_alcohol_water
+47132,Water Jar (Mizusashi) in the Shape of a Bamboo Basket,storage
 47137,Jar,storage
-47149,Water Bottle,wine_alcohol_water
+47149,Water Bottle,flask_and_bottle
 47157,Bottle,flask_and_bottle
 47158,Flower Vase,vase
 47167,Vase,vase
-47169,Freshwater Jar with Kirin (Mythical Chimera),wine_alcohol_water
+47169,Freshwater Jar with Kirin (Mythical Chimera),storage
 47171,Jar with Cover,storage
 47173,Bottle,flask_and_bottle
 47174,Miniature Jar with Cover,storage
@@ -824,7 +824,7 @@ objectID,title,use
 47254,Miniature Vase,vase
 47256,Bottle,flask_and_bottle
 47257,Hanging Vase,vase
-47258,Sake Bottle (Tokkuri) in the Shape of an Eggplant,wine_alcohol_water
+47258,Sake Bottle (Tokkuri) in the Shape of an Eggplant,pouring
 47259,Jar and Cover,storage
 47260,Vase in form of a Carp,vase
 47270,Jug,pouring
@@ -864,13 +864,13 @@ objectID,title,use
 47375,Bottle,flask_and_bottle
 47380,Ring Bottle,flask_and_bottle
 47382,Tea Jar,storage
-47384,Sake Bottle (Tokkuri),wine_alcohol_water
+47384,Sake Bottle (Tokkuri),pouring
 47385,Vase,vase
 47388,Bottle,flask_and_bottle
 47389,Vase,vase
 47391,Jar,storage
 47394,Bottle,flask_and_bottle
-47395,Wine bottle,wine_alcohol_water
+47395,Wine bottle,pouring
 47398,Vase with figures,vase
 47401,Meiping vase with floral scrolls,vase
 47402,Meiping vase with plum blossoms and bamboo,vase
@@ -879,7 +879,7 @@ objectID,title,use
 47409,Flask vase,flask_and_bottle
 47412,Vase with animal masks,vase
 47414,Jar with cover,storage
-47420,Wine Bottle,wine_alcohol_water
+47420,Wine Bottle,pouring
 47427,Vase,vase
 47429,Vase with scholars in a garden,vase
 47432,Vase,vase
@@ -892,15 +892,15 @@ objectID,title,use
 47441,Vase,vase
 47443,Vase,vase
 47447,Jar,storage
-47448,Wine Bottle,wine_alcohol_water
+47448,Wine Bottle,pouring
 47449,Bottle,flask_and_bottle
 47453,Bottle,flask_and_bottle
 47455,Vase,vase
 47470,Bottle,flask_and_bottle
-47472,Wine Bottle,wine_alcohol_water
-47473,Wine Bottle,wine_alcohol_water
+47472,Wine Bottle,pouring
+47473,Wine Bottle,pouring
 47481,Vase,vase
-47482,Water Bottle,wine_alcohol_water
+47482,Water Bottle,flask_and_bottle
 47483,Vase,vase
 47490,Vase with flowers,vase
 47495,Bottle vase with floral scrolls,flask_and_bottle
@@ -917,7 +917,7 @@ objectID,title,use
 47540,Square Bottle,flask_and_bottle
 47556,Vase,vase
 47558,Bottle,flask_and_bottle
-47565,Wine Bottle,wine_alcohol_water
+47565,Wine Bottle,pouring
 47566,Vase,vase
 47568,Vase,vase
 47573,Bottle vase with floral scrolls,flask_and_bottle
@@ -932,7 +932,7 @@ objectID,title,use
 47600,Vase with dragons,vase
 47603,Small Vase,vase
 47609,Jar with theatrical scene,storage
-47615,Wine Bottle,wine_alcohol_water
+47615,Wine Bottle,pouring
 47616,Covered Bottle,flask_and_bottle
 47619,Vase,vase
 47620,Vase with landscape,vase
@@ -943,7 +943,7 @@ objectID,title,use
 47625,Hanging Vase,vase
 47626,Vase in the form of an archaic bronze vessel,vase
 47633,Vase,vase
-47634,Wine Bottle,wine_alcohol_water
+47634,Wine Bottle,pouring
 47635,Bottle,flask_and_bottle
 47637,Jar or Fire-holder,storage
 47638,Bottle,flask_and_bottle
@@ -959,7 +959,7 @@ objectID,title,use
 47659,Vase with floral scrolls,vase
 47660,Covered jar with plum blossoms,storage
 47665,Hanging Vase,vase
-47676,Water Jar,wine_alcohol_water
+47676,Water Jar,storage
 47677,Bottle,flask_and_bottle
 47678,Jar,storage
 47679,Jar,storage
@@ -989,9 +989,9 @@ objectID,title,use
 47783,Vase,vase
 47784,Vase,vase
 47785,Vase,vase
-47786,Wine Bottle,wine_alcohol_water
+47786,Wine Bottle,pouring
 47787,Jar,storage
-47788,Water Jar,wine_alcohol_water
+47788,Water Jar,storage
 47792,Vase with figures in a garden,vase
 47803,Jar,storage
 47804,Bottle vase,flask_and_bottle
@@ -1000,15 +1000,15 @@ objectID,title,use
 47807,Bottle,flask_and_bottle
 47808,Vase,vase
 47809,Bottle,flask_and_bottle
-47810,Wine Bottle,wine_alcohol_water
-47811,Wine bottle,wine_alcohol_water
+47810,Wine Bottle,pouring
+47811,Wine bottle,pouring
 47813,Jar,storage
-47820,Water Jar,wine_alcohol_water
+47820,Water Jar,storage
 47821,Jar,storage
 47822,Hanging Vase,vase
 47828,Trefoil vase,storage
 47845,Jar,storage
-47846,Sencha Water Pitcher (Suichū),wine_alcohol_water
+47846,Sencha Water Pitcher (Suichū),pouring
 47850,Bottle,flask_and_bottle
 47853,Flower Vase,vase
 47854,Vase,vase
@@ -1025,12 +1025,12 @@ objectID,title,use
 47892,Jar,storage
 47896,Jar with Female Rider,storage
 47897,Jar with Female Rider,storage
-47908,Wine pot,wine_alcohol_water
+47908,Wine pot,pouring
 47911,Vase with flowers,vase
 47914,Vase with figures in a landscape,vase
 47915,Square Vase,vase
 47920,Ewer with a lion-formed handle,pouring
-47921,Wine Bottle,wine_alcohol_water
+47921,Wine Bottle,pouring
 47922,Vase,vase
 47923,Flower Vase,vase
 47927,Bottle vase,flask_and_bottle
@@ -1046,7 +1046,7 @@ objectID,title,use
 47947,Vase,vase
 47948,Vase,vase
 47949,Jar,storage
-47950,Wine Bottle,wine_alcohol_water
+47950,Wine Bottle,pouring
 47951,Oil Bottle,flask_and_bottle
 47953,Vase,vase
 47958,Jar,storage
@@ -1074,7 +1074,7 @@ objectID,title,use
 48086,Bottle,flask_and_bottle
 48088,Bottle,flask_and_bottle
 48096,Vase,vase
-48099,Water pot and cover,wine_alcohol_water
+48099,Water pot and cover,storage
 48124,Miniature vase,vase
 48126,Jar with dragon,storage
 48128,Covered ewer with floral patterns,pouring
@@ -1094,7 +1094,7 @@ objectID,title,use
 48216,Jar decorated with auspicious characters amid plants,storage
 48222,Bottle with floral scrolls,flask_and_bottle
 48223,"Covered jar with ""Hundred Antique"" pattern",storage
-48224,Bottle for a water pipe (huqqa),wine_alcohol_water
+48224,Bottle for a water pipe (huqqa),flask_and_bottle
 48228,Vase with boy riding an ox,vase
 48244,Vase,vase
 48246,Vase in the form of a Neolithic ritual object cong,ritual
@@ -1138,12 +1138,12 @@ objectID,title,use
 48343,Double gourd vase,vase
 48346,Miniature vase,vase
 48351,Vase,vase
-48357,Water pot,wine_alcohol_water
+48357,Water pot,other
 48359,Double gourd vase with ruyi form handles,vase
 48369,Meiping vase,vase
 48387,Vase with flowers,vase
 48390,Meiping vase,vase
-48391,Water pot,wine_alcohol_water
+48391,Water pot,other
 48395,Meiping vase with floral patterns,vase
 48411,Jar with two lugs,storage
 48424,Jar with flowers,storage
@@ -1158,7 +1158,7 @@ objectID,title,use
 48480,Vase,vase
 48481,Jar,storage
 48482,Vase,vase
-48483,Wine Jug,wine_alcohol_water
+48483,Wine Jug,pouring
 48489,Bottle,flask_and_bottle
 48504,Pilgrim bottle with dragons,flask_and_bottle
 48506,Vase,vase
@@ -1265,7 +1265,7 @@ objectID,title,use
 48704,Vase,vase
 48706,Long neck bottle with lions,flask_and_bottle
 48711,Vase with Scene from the Dragon Boat Festival,vase
-48712,Wine container (hu),wine_alcohol_water
+48712,Wine container (hu),pouring
 48713,Vase with floral scrolls,vase
 48714,Vase,vase
 48716,Bottle vase with floral scrolls,flask_and_bottle
@@ -1314,13 +1314,13 @@ objectID,title,use
 48840,Vase,vase
 48841,Vase with archaistic decoration,vase
 48842,Vase with millefleurs decoration,vase
-48844,Bottle with an entwined dragon,wine_alcohol_water
+48844,Bottle with an entwined dragon,pouring
 48846,Bottle,flask_and_bottle
 48850,Jar with Lid,storage
 48852,Bottle,flask_and_bottle
 48854,Hexagonal vase,vase
 48855,Vase,vase
-48857,Wine bottle,wine_alcohol_water
+48857,Wine bottle,pouring
 48859,Vase with floral patterns,vase
 49135,Jar (Guan),storage
 49136,Jar,storage
@@ -1350,7 +1350,7 @@ objectID,title,use
 49272,Jar,storage
 49273,Storage jar,storage
 49274,Storage jar,storage
-49280,Sake Bottle (Tokkuri) with Decoration of Three-Leaf Arrowhead,wine_alcohol_water
+49280,Sake Bottle (Tokkuri) with Decoration of Three-Leaf Arrowhead,pouring
 49293,"Apothecary Bottle with Initial ""M"" in Laurel Wreath",flask_and_bottle
 49295,Apothecary bottle,flask_and_bottle
 49296,Apothecary bottle,flask_and_bottle
@@ -1361,7 +1361,7 @@ objectID,title,use
 49316,Octagonal Jar with Decoration of Flowering Cherry and Chrysanthemum,storage
 49318,Ewer with Strap Handle and Floral Decoration,pouring
 49319,Large Baluster Jar with Phoenix and Figure of Hawk on Lid,storage
-49323,Sake Bottle in the Shape of a Gourd,wine_alcohol_water
+49323,Sake Bottle in the Shape of a Gourd,pouring
 49335,Kundika (Long-Necked Bottle),flask_and_bottle
 49344,Vase with Flowers and Birds,vase
 49346,Vase,vase
@@ -1374,8 +1374,8 @@ objectID,title,use
 49363,Flask,flask_and_bottle
 49364,Covered jar with landscape scenes,storage
 49366,Vase,vase
-49425,Octagonal Sake Bottle with Landscape Design,wine_alcohol_water
-49426,Hexagonal Sake Ewer with Landscape Design,wine_alcohol_water
+49425,Octagonal Sake Bottle with Landscape Design,pouring
+49426,Hexagonal Sake Ewer with Landscape Design,pouring
 49533,Jar (Labakou Hu),storage
 49553,Amphora with dragon-shaped handles,storage
 49559,Covered jar,storage
@@ -1410,8 +1410,8 @@ objectID,title,use
 50043,Vase,vase
 50143,Covered jar with baskets of flowers,storage
 50165,Jar,storage
-50186,Freshwater Jar (Mizusashi) with Pines,wine_alcohol_water
-50187,Large Wine Bottle,wine_alcohol_water
+50186,Freshwater Jar (Mizusashi) with Pines,storage
+50187,Large Wine Bottle,pouring
 50192,"Bottle with Rock, Flowers, and Birds",flask_and_bottle
 50211,Bottle in meiping shape with “tortoiseshell” glaze,flask_and_bottle
 50213,Urn or Jar,storage
@@ -1428,21 +1428,21 @@ objectID,title,use
 50315,Long-Necked Bottle,flask_and_bottle
 50316,Four-Legged Jar (Yonsoku-tsubo),storage
 50317,Storage jar,storage
-50328,Sake Bottle (Tokkuri) with Flowers and Grasses,wine_alcohol_water
-50329,Sake Bottle (Tokkuri) with Chinese Character Meaning “Treasure”,wine_alcohol_water
+50328,Sake Bottle (Tokkuri) with Flowers and Grasses,pouring
+50329,Sake Bottle (Tokkuri) with Chinese Character Meaning “Treasure”,pouring
 50331,Jar (Tsubo) with Four Loop Handles and Flower Medallions,storage
 50332,Jar (Tsubo) with Landscape and Figures,storage
-50333,Freshwater Jar (Mizusashi) with Plants and Auspicious Motifs,wine_alcohol_water
-50334,Freshwater Jar (Mizusashi) with Pine (front) and Plum with Bamboo (reverse),wine_alcohol_water
-50335,Tall Freshwater Jar (Hoso-mizusashi) with Striped Design,wine_alcohol_water
+50333,Freshwater Jar (Mizusashi) with Plants and Auspicious Motifs,storage
+50334,Freshwater Jar (Mizusashi) with Pine (front) and Plum with Bamboo (reverse),storage
+50335,Tall Freshwater Jar (Hoso-mizusashi) with Striped Design,storage
 50338,Bottle,flask_and_bottle
 50349,Vase in Shape of Archaic Chinese bronze,vase
 50350,Bottle with  Pine Tree,flask_and_bottle
-50354,Wine Ewer with Lotuses,wine_alcohol_water
-50355,Wine Ewer with Lid,wine_alcohol_water
-50356,Wine Ewer with Chrysanthemums and Lotus Flowers,wine_alcohol_water
+50354,Wine Ewer with Lotuses,pouring
+50355,Wine Ewer with Lid,pouring
+50356,Wine Ewer with Chrysanthemums and Lotus Flowers,pouring
 50357,Bottle decorated with chrysanthemums and lotus petals,flask_and_bottle
-50359,Wine Ewer with Lid,wine_alcohol_water
+50359,Wine Ewer with Lid,pouring
 50362,Squared Jar with Cover (Fanghu),storage
 50463,Bottle,flask_and_bottle
 50473,Vase with Floral and Landscape Decor,vase
@@ -1612,19 +1612,19 @@ objectID,title,use
 52040,Vase,vase
 52041,Vase with deer and pine tree,vase
 52043,Vase,vase
-52044,Writer's Water Bottle,wine_alcohol_water
+52044,Writer's Water Bottle,flask_and_bottle
 52046,Vase,vase
 52047,Vase,vase
 52049,Vase,vase
-52050,Writer's Water Bottle,wine_alcohol_water
+52050,Writer's Water Bottle,flask_and_bottle
 52052,Vase,vase
 52053,Vase,vase
-52054,Water Jar,wine_alcohol_water
+52054,Water Jar,storage
 52055,Vase,vase
 52056,Vase with Coiling Dragon,storage
 52057,Vase,vase
-52058,Writer's Water Bottle,wine_alcohol_water
-52059,Writer's Water Bottle,wine_alcohol_water
+52058,Writer's Water Bottle,flask_and_bottle
+52059,Writer's Water Bottle,flask_and_bottle
 52060,Vase,vase
 52061,Vase,vase
 52063,Vase with flower and rock,vase
@@ -1652,29 +1652,29 @@ objectID,title,use
 52259,Oil bottle,flask_and_bottle
 52260,Jar with Chrysanthemums and Rocks,storage
 52261,Jar,storage
-52298,Wine bottle,wine_alcohol_water
-52300,Sake Bottle (Tokkuri) with Auspicious Patterns,wine_alcohol_water
-52304,Wine bottle,wine_alcohol_water
-52305,Wine bottle,wine_alcohol_water
+52298,Wine bottle,pouring
+52300,Sake Bottle (Tokkuri) with Auspicious Patterns,pouring
+52304,Wine bottle,pouring
+52305,Wine bottle,pouring
 52377,Jar,storage
-52383,Water jar,wine_alcohol_water
+52383,Water jar,storage
 52390,Vase,vase
 52391,Vase,vase
-52397,Wine Bottle,wine_alcohol_water
+52397,Wine Bottle,pouring
 52398,Bottle with Cover,flask_and_bottle
 52399,Cake Jar,storage
 52400,Bottle,flask_and_bottle
 52401,Square Bottle,flask_and_bottle
 52436,Vase,vase
-52442,Freshwater Jar (Mizusashi) with Bamboo,wine_alcohol_water
-52461,Water Bottle in the Form of a Mouse,wine_alcohol_water
-52470,"Water Jar with Dragon, Mount Fuji, Kirin, Cockerels, and Auspicious Motifs",wine_alcohol_water
-52479,Wine bottle,wine_alcohol_water
+52442,Freshwater Jar (Mizusashi) with Bamboo,storage
+52461,Water Bottle in the Form of a Mouse,animal_shaped
+52470,"Water Jar with Dragon, Mount Fuji, Kirin, Cockerels, and Auspicious Motifs",storage
+52479,Wine bottle,pouring
 52491,Jar with cover,storage
-52492,Water Jar with Poetry Gathering at the Orchid Pavilion,wine_alcohol_water
+52492,Water Jar with Poetry Gathering at the Orchid Pavilion,storage
 52506,Jar,storage
-52513,Water Jar,wine_alcohol_water
-52514,Water Jar (Mizusashi) with Pine Trees,wine_alcohol_water
+52513,Water Jar,storage
+52514,Water Jar (Mizusashi) with Pine Trees,storage
 52517,Vase,vase
 52518,Vase,vase
 52524,Jar,storage
@@ -1702,7 +1702,7 @@ objectID,title,use
 52685,Covered Jar,storage
 52709,Jar,storage
 52711,Vase,vase
-52712,Wine Vessel with Daoist Immortals,wine_alcohol_water
+52712,Wine Vessel with Daoist Immortals,pouring
 52719,Jar,storage
 52720,Vase,vase
 52732,Jar,storage
@@ -1722,7 +1722,7 @@ objectID,title,use
 52801,Vase,vase
 52802,Vase,vase
 52803,Tea jar,storage
-52804,Wine Bottle with Landscape Scenes,wine_alcohol_water
+52804,Wine Bottle with Landscape Scenes,pouring
 52806,Vase,vase
 52807,Ewer with Equestrian Figure,pouring
 52808,Vase,vase
@@ -1748,7 +1748,7 @@ objectID,title,use
 52941,Vase,vase
 52942,Bottle,flask_and_bottle
 52943,Bottle,flask_and_bottle
-52945,Sake Bottle (Tokkuri) with Bird on a Rock under Willow Tree,wine_alcohol_water
+52945,Sake Bottle (Tokkuri) with Bird on a Rock under Willow Tree,pouring
 52960,Vase,vase
 52971,Bottle,flask_and_bottle
 52972,Vase,vase
@@ -1763,7 +1763,7 @@ objectID,title,use
 53203,Jar (Tsubo) with Chrysanthemums,storage
 53419,Hexagonal Jar (Rokkaku-tsubo) with Paulownia and Geometric Design,storage
 53468,Bottle,flask_and_bottle
-53613,Freshwater Jar (Mizusashi),wine_alcohol_water
+53613,Freshwater Jar (Mizusashi),storage
 53618,Vase with Depiction of Bugaku Dancer,vase
 53627,Jar,storage
 53628,Storage jar,storage
@@ -1790,7 +1790,7 @@ objectID,title,use
 53961,Jar with women at leisure,storage
 53964,Storage Jar,storage
 54084,Jar,storage
-56164,Freshwater Jar (Mizusashi),wine_alcohol_water
+56164,Freshwater Jar (Mizusashi),storage
 56587,Jar,storage
 57355,Maebyeong,other
 57356,Jar,storage
@@ -1819,7 +1819,7 @@ objectID,title,use
 57441,Vase,vase
 57488,Vase,vase
 57489,Vase,vase
-57492,Wine Ewer,wine_alcohol_water
+57492,Wine Ewer,pouring
 57502,Bottle,flask_and_bottle
 57515,Vase,vase
 57517,Jar with lid,storage
@@ -1827,7 +1827,7 @@ objectID,title,use
 57522,Jar with small loop handles,storage
 61634,Vase with abstract decoration,vase
 62527,Bottle,flask_and_bottle
-62528,Gourd-Shaped Sake Bottle (Tokkuri) with Carved Floral Design and Jewel,wine_alcohol_water
+62528,Gourd-Shaped Sake Bottle (Tokkuri) with Carved Floral Design and Jewel,pouring
 62529,Bottle,flask_and_bottle
 62530,Vase,vase
 62533,Gourd-Shaped Bottle,flask_and_bottle
@@ -1845,7 +1845,7 @@ objectID,title,use
 62557,Tea Jar,storage
 62558,Tea Jar,storage
 62559,Small Gourd-Shaped Bottle,flask_and_bottle
-62563,Sake Bottle (Tokkuri) in the Shape of an Eggplant,wine_alcohol_water
+62563,Sake Bottle (Tokkuri) in the Shape of an Eggplant,pouring
 62571,Bottle,flask_and_bottle
 62573,Vase,vase
 62587,Tea Jar,storage
@@ -1867,7 +1867,7 @@ objectID,title,use
 62616,Tea Jar,storage
 62626,Jar,storage
 62627,Bottle,flask_and_bottle
-62630,Wine Bottle,wine_alcohol_water
+62630,Wine Bottle,pouring
 62633,Tea Jar,storage
 62634,Tea Jar,storage
 62635,Tea Jar,storage
@@ -1877,13 +1877,13 @@ objectID,title,use
 62642,Vase,vase
 62656,Tea Jar,storage
 62658,Tea Jar,storage
-62666,Gourd-Shaped Sake Bottle,wine_alcohol_water
+62666,Gourd-Shaped Sake Bottle,pouring
 62668,Bottle,flask_and_bottle
 62677,Bottle,flask_and_bottle
 62681,Jar,storage
 62684,Bottle,flask_and_bottle
 62686,Square Bottle,flask_and_bottle
-62690,Water Pot,wine_alcohol_water
+62690,Water Pot,other
 62692,Tea Jar,storage
 62694,Jar with Ivory Lid,storage
 62697,Bottle,flask_and_bottle
@@ -1897,12 +1897,12 @@ objectID,title,use
 62710,Tea Jar,storage
 62711,Tea Jar,storage
 62712,Tea Jar,storage
-62713,Water Jar,wine_alcohol_water
+62713,Water Jar,storage
 62714,Tea Jar,storage
 62715,Tea Jar,storage
 62717,Tea Jar,storage
 62721,Covered Jar,storage
-62722,Water Jar with Plum Tree,wine_alcohol_water
+62722,Water Jar with Plum Tree,storage
 62724,Bottle,flask_and_bottle
 62754,Tea Jar,storage
 62757,Tea Jar,storage
@@ -1921,25 +1921,25 @@ objectID,title,use
 62792,Long-Necked Bottle,flask_and_bottle
 62863,Vase,vase
 62867,Vase,vase
-62871,Wine Bottle,wine_alcohol_water
+62871,Wine Bottle,pouring
 62877,Jug,pouring
-62905,Water jar,wine_alcohol_water
+62905,Water jar,storage
 62909,Jug,pouring
-62910,Hexagonal Wine Bottle,wine_alcohol_water
+62910,Hexagonal Wine Bottle,pouring
 62916,Vase in form of a Funamushi,vase
 62917,Vase,vase
-62922,Wine Bottle with Landscape and Waterfall,wine_alcohol_water
+62922,Wine Bottle with Landscape and Waterfall,pouring
 62937,Vase with lid,storage
-62942,Wine bottle,wine_alcohol_water
-62943,Sake bottle,wine_alcohol_water
-62995,Wine bottle,wine_alcohol_water
+62942,Wine bottle,pouring
+62943,Sake bottle,pouring
+62995,Wine bottle,pouring
 62998,Tea jar,storage
 63007,Vase in the Shape of a Bundle of Bamboo,vase
-63020,Wine bottle,wine_alcohol_water
-63035,"Sake Bottle with Design of Leaves, Vines, and Waves",wine_alcohol_water
-63047,Water Jar (Mizusashi) with Geometric Patterns,wine_alcohol_water
-63048,"Water Bottle in form of Hotei's Bag, Fan and Jewels",wine_alcohol_water
-63049,Wine bottle,wine_alcohol_water
+63020,Wine bottle,pouring
+63035,"Sake Bottle with Design of Leaves, Vines, and Waves",pouring
+63047,Water Jar (Mizusashi) with Geometric Patterns,storage
+63048,"Water Bottle in form of Hotei's Bag, Fan and Jewels",flask_and_bottle
+63049,Wine bottle,pouring
 63054,Jar with Scrolling Peony Design,storage
 63057,Vase,vase
 63061,Covered Jar,storage
@@ -1963,7 +1963,7 @@ objectID,title,use
 63100,Tea jar with cover,storage
 63101,Tea jar,storage
 63102,Tea jar with cover,storage
-63103,Water pot,wine_alcohol_water
+63103,Water pot,other
 63108,Bottle,flask_and_bottle
 63109,Jar,storage
 63119,Tea jar,storage
@@ -1988,19 +1988,19 @@ objectID,title,use
 63141,Tea jar,storage
 63142,Tea jar,storage
 63189,Small Covered Jar with Design of Cherry Blossoms and Lambrequin Border,storage
-63313,Water jar,wine_alcohol_water
+63313,Water jar,storage
 63328,Circular Small Covered Jar with Millefleur Design,storage
 63329,Miniature Covered Jar,storage
-63526,Sake bottle,wine_alcohol_water
-63531,Water jar,wine_alcohol_water
+63526,Sake bottle,pouring
+63531,Water jar,storage
 63539,Four-Legged Jar with Lid,storage
 63545,Wide-Mouthed Jar (Kame),storage
-63548,Sake Bottle (Tokkuri),wine_alcohol_water
+63548,Sake Bottle (Tokkuri),pouring
 63550,Bottle,flask_and_bottle
 63565,Jar (Tsubo) with Stylized Net Design,storage
 63695,Bottle,flask_and_bottle
 63941,Flower vase,vase
-63942,Water jar,wine_alcohol_water
+63942,Water jar,storage
 64119,Pilgrim’s flask with Central Asian dancers,flask_and_bottle
 64921,Jar with floral decorations and musicians,storage
 65596,Jar with Four Lugs (Guan),storage
@@ -2014,7 +2014,7 @@ objectID,title,use
 73366,Bottle,flask_and_bottle
 73635,Ewer with writhing dragon,pouring
 73676,Quadrangular vase in the shape of a Neolithic cong,vase
-73810,Ewer in the Form of an Elephant,pouring
+73810,Ewer in the Form of an Elephant,animal_shaped
 74243,Bottle,flask_and_bottle
 75831,Jar with Winged Animals over Waves,storage
 75915,Storage Jar,storage
@@ -2055,11 +2055,11 @@ objectID,title,use
 188556,Four-handled vase,vase
 188563,Jug,pouring
 188633,Milk pot,pouring
-188645,Milk or hot water jug (?),wine_alcohol_water
+188645,Milk or hot water jug (?),pouring
 188753,Vase,vase
 188765,Vase,vase
 188777,Vase with cover (vase parent),storage
-188900,Ewer in the form of a dragon,pouring
+188900,Ewer in the form of a dragon,animal_shaped
 188908,Vase,vase
 188972,Ewer,pouring
 188974,Vase,vase
@@ -2127,7 +2127,7 @@ objectID,title,use
 194243,Ewer,pouring
 194251,Jug,pouring
 194256,Jug,pouring
-194261,Hot water jug,wine_alcohol_water
+194261,Hot water jug,pouring
 194262,Ewer,pouring
 194279,Ewer,pouring
 194287,Jug (chevrette),pouring
@@ -2142,8 +2142,8 @@ objectID,title,use
 194304,Pilgrim bottle,flask_and_bottle
 194307,Ewer,pouring
 194380,Jug with cover,pouring
-194383,Water jug,wine_alcohol_water
-194390,Water jug,wine_alcohol_water
+194383,Water jug,pouring
+194390,Water jug,pouring
 194391,Vase,vase
 194392,Vase with cover,storage
 194395,Ewer,pouring
@@ -2177,12 +2177,12 @@ objectID,title,use
 194967,Vase,vase
 195013,Urn,storage
 195021,Albarello,storage
-195041,Rosewater jug,wine_alcohol_water
+195041,Rosewater jug,pouring
 195127,Jug,pouring
 195208,Bottle cooler (seau à bouteille),flask_and_bottle
 195209,Bottle cooler (seau à bouteille),flask_and_bottle
 195217,Toilet jar with cover,storage
-195272,Rosewater jug,wine_alcohol_water
+195272,Rosewater jug,pouring
 195273,Ewer,pouring
 195302,Milk jug (pot à lait à pieds),pouring
 195307,Jug,pouring
@@ -2202,7 +2202,7 @@ objectID,title,use
 196361,Bottle with stopper,flask_and_bottle
 196544,Ewer,pouring
 196553,Vase with cover,storage
-196567,Wine bottle,wine_alcohol_water
+196567,Wine bottle,pouring
 196568,Puzzle jug,pouring
 196601,Jar with cover,storage
 196741,Albarello,storage
@@ -2216,7 +2216,7 @@ objectID,title,use
 197232,Pilgrim bottle,flask_and_bottle
 197233,Pilgrim bottle,flask_and_bottle
 197485,Jug,pouring
-197515,Water bottle,wine_alcohol_water
+197515,Water bottle,flask_and_bottle
 197532,Cream jug,pouring
 197552,Puzzle jug,pouring
 197558,Vase,vase
@@ -2229,7 +2229,7 @@ objectID,title,use
 197613,Cream jug,pouring
 197614,Cream jug,pouring
 197616,Cream jug,pouring
-197819,Jug in the form of a bear hugging a small dog,pouring
+197819,Jug in the form of a bear hugging a small dog,animal_shaped
 197824,Jug,pouring
 197829,Bottle,flask_and_bottle
 197993,Jug,pouring
@@ -2371,7 +2371,7 @@ objectID,title,use
 202205,Flower vase (cuvette à fleurs courteille),vase
 202215,Vase with cover (vase urne antique),storage
 202218,Vase with cover (probably vase à bâtons rompus),storage
-202243,Water jar,wine_alcohol_water
+202243,Water jar,storage
 202473,Vase with cover,storage
 202581,Jug with Portuguese arms,pouring
 202967,Jar with cover,storage
@@ -2474,12 +2474,12 @@ objectID,title,use
 205979,Small milk pot with cover,pouring
 206024,Four-sided bottle,flask_and_bottle
 206025,Bottle,flask_and_bottle
-206073,Scent bottle in the form of a swan,flask_and_bottle
+206073,Scent bottle in the form of a swan,animal_shaped
 206107,Flower vase (cuvette Mahon),vase
 206142,Lady seated amongst a grapevine,other
-206318,Wine jar (Orcio da vino),wine_alcohol_water
-206319,Wine jar (Orcio da vino),wine_alcohol_water
-206328,Water bottle or flask,wine_alcohol_water
+206318,Wine jar (Orcio da vino),pouring
+206319,Wine jar (Orcio da vino),pouring
+206328,Water bottle or flask,flask_and_bottle
 206385,Ewer,pouring
 206392,Vase,vase
 206393,Vase,vase
@@ -2508,7 +2508,7 @@ objectID,title,use
 207777,Pitcher,pouring
 207779,Moon flask,flask_and_bottle
 207815,Urn (cachepot),storage
-207847,Cider jug,wine_alcohol_water
+207847,Cider jug,pouring
 207850,Vase,vase
 207983,Bottle,flask_and_bottle
 207990,Jug,pouring
@@ -2520,7 +2520,7 @@ objectID,title,use
 208036,Vase,vase
 208040,Vase,vase
 208083,Pharmacy jar,storage
-208120,Water jar with spout (vase à bec),wine_alcohol_water
+208120,Water jar with spout (vase à bec),pouring
 208121,Pomade pot with cover,storage
 208122,Pomade pot,storage
 208140,Vase,vase
@@ -2590,7 +2590,7 @@ objectID,title,use
 239997,Juglet,pouring
 240000,Jug,pouring
 240009,"Vase, miniature",vase
-240015,Terracotta krater,wine_alcohol_water
+240015,Terracotta krater,other
 240016,Terracotta jug,pouring
 240048,Jug,pouring
 240063,Strainer,other
@@ -2614,7 +2614,7 @@ objectID,title,use
 240277,Amphora,storage
 240287,Jug,pouring
 240291,"Jug, barrel-shaped",pouring
-240298,"Krater, miniature",wine_alcohol_water
+240298,"Krater, miniature",other
 240307,Amphoriskos,storage
 240312,Oinochoe,pouring
 240328,Jug,pouring
@@ -2637,7 +2637,7 @@ objectID,title,use
 240486,Terracotta lentoid flask,flask_and_bottle
 240489,Flask,flask_and_bottle
 240539,Jug,pouring
-240554,Terracotta chariot krater,wine_alcohol_water
+240554,Terracotta chariot krater,other
 240566,Amphora,storage
 240600,Amphora,storage
 240634,Terracotta jug,pouring
@@ -2665,13 +2665,13 @@ objectID,title,use
 244829,Terracotta oinochoe: olpe (jug),pouring
 244838,Terracotta Nicosthenic neck-amphora (jar),storage
 244857,Terracotta alabastron (perfume vase),storage
-244860,Hydria,wine_alcohol_water
+244860,Hydria,other
 244862,Pelike,storage
-245556,Terracotta Hadra hydria (water jar),wine_alcohol_water
-245557,Terracotta Hadra hydria (water jar),wine_alcohol_water
-245571,Terracotta Hadra hydria (water jar),wine_alcohol_water
-245573,Terracotta Hadra hydria (water jar),wine_alcohol_water
-245574,Terracotta Hadra hydria (water jar),wine_alcohol_water
+245556,Terracotta Hadra hydria (water jar),storage
+245557,Terracotta Hadra hydria (water jar),storage
+245571,Terracotta Hadra hydria (water jar),storage
+245573,Terracotta Hadra hydria (water jar),storage
+245574,Terracotta Hadra hydria (water jar),storage
 245598,Terracotta stamnos,storage
 245612,Terracotta neck-amphora (jar),storage
 246116,Terracotta pointed aryballos (oil flask),flask_and_bottle
@@ -2682,7 +2682,7 @@ objectID,title,use
 246169,Vase with lid,storage
 246189,Vase,vase
 246223,Oinochoe,pouring
-246239,Terracotta volute-krater (container for mixing wine and water),wine_alcohol_water
+246239,Terracotta volute-krater (container for mixing wine and water),pouring
 246241,Terracotta neck-amphora (jar) with lid,storage
 246560,Squat lekythos,storage
 246571,Squat lekythos,storage
@@ -2693,7 +2693,7 @@ objectID,title,use
 247191,Terracotta neck-amphora (storage jar),storage
 247192,Terracotta alabastron (perfume vase),storage
 247198,Terracotta vase in the form of a fish,animal_shaped
-247207,Terracotta vase in the form of a siren,vase
+247207,Terracotta vase in the form of a siren,animal_shaped
 247212,Terracotta oinochoe (jug),pouring
 247216,Terracotta neck-amphora (jar),storage
 247223,Terracotta neck-amphora (jar) of Panathenaic shape,storage
@@ -2704,16 +2704,16 @@ objectID,title,use
 247308,Terracotta pelike (jar),storage
 247315,Terracotta amphora (jar),storage
 247324,Lekythos,storage
-247348,Terracotta hydria: kalpis (water jar),wine_alcohol_water
+247348,Terracotta hydria: kalpis (water jar),storage
 247352,Terracotta oinochoe (jug),pouring
 247364,"Oinochoe, chous",pouring
 247410,Terracotta funnel-jar,storage
-247414,Terracotta loutrophoros (ceremonial vase for water),wine_alcohol_water
+247414,Terracotta loutrophoros (ceremonial vase for water),ritual
 247582,Terracotta lekythos (oil flask),flask_and_bottle
 247584,Terracotta lekythos (oil flask),flask_and_bottle
 247635,Terracotta side-spouted jug,pouring
 247949,Terracotta Nolan neck-amphora (jar),storage
-247952,Terracotta neck-pelike (wine jar),wine_alcohol_water
+247952,Terracotta neck-pelike (wine jar),pouring
 248096,Terracotta oinochoe: chous (jug),pouring
 248182,Terracotta lekythos (oil flask),flask_and_bottle
 248300,Terracotta stamnos (jar),storage
@@ -2738,12 +2738,12 @@ objectID,title,use
 251100,Terracotta amphora (jar),storage
 251104,Terracotta oinochoe: chous (jug),pouring
 251128,Oinochoe,pouring
-251134,Terracotta hydria: kalpis (water jar),wine_alcohol_water
+251134,Terracotta hydria: kalpis (water jar),storage
 251260,Terracotta aryballos (oil flask),flask_and_bottle
 251269,Small terracotta amphora (jar),storage
-251271,"Hydria, miniature",wine_alcohol_water
-251345,Terracotta hydria (water jar),wine_alcohol_water
-251401,Terracotta vase in the form of a lobster claw,vase
+251271,"Hydria, miniature",other
+251345,Terracotta hydria (water jar),storage
+251401,Terracotta vase in the form of a lobster claw,animal_shaped
 251402,Terracotta neck-amphora (jar),storage
 251487,Terracotta lekythos (oil flask),flask_and_bottle
 251508,Terracotta amphoriskos (flask),flask_and_bottle
@@ -2768,7 +2768,7 @@ objectID,title,use
 254199,Terracotta neck-amphora (jar),storage
 254200,Terracotta rhyton (vase for libations or drinking),ritual
 254202,Terracotta lekythos (oil flask),flask_and_bottle
-254227,Column-krater,wine_alcohol_water
+254227,Column-krater,other
 254246,Terracotta aryballos in the form of a helmeted head,storage
 254247,Terracotta alabastron (perfume vase),storage
 254268,Terracotta lekythos (oil flask),flask_and_bottle
@@ -2790,21 +2790,21 @@ objectID,title,use
 254551,Terracotta neck-amphora (jar),storage
 254559,Lekythos,storage
 254561,Terracotta amphora (jar),storage
-254616,Terracotta hydria: kalpis (water jar),wine_alcohol_water
+254616,Terracotta hydria: kalpis (water jar),storage
 254629,Terracotta oinochoe (jug),pouring
 254633,Oinochoe,pouring
 254634,Terracotta amphora (jug),pouring
 254778,Terracotta vase,vase
 254880,Terracotta neck-amphora (jar),storage
 254881,Terracotta  neck-amphora (jar),storage
-254915,Terracotta hydria: kalpis (water jar),wine_alcohol_water
+254915,Terracotta hydria: kalpis (water jar),storage
 254923,Terracotta situla (bucket),pouring
 254932,Terracotta nestoris (two-handled jar),storage
 254957,Terracotta squat lekythos (oil flask),flask_and_bottle
 254983,Terracotta amphora (jar),storage
 255062,"Terracotta vase with strainer, spout, and three handles",pouring
-255156,Terracotta pelike (wine jar),wine_alcohol_water
-255193,Terracotta hydria: kalpis (water jar),wine_alcohol_water
+255156,Terracotta pelike (wine jar),pouring
+255193,Terracotta hydria: kalpis (water jar),storage
 255244,Oinochoe,pouring
 255274,Terracotta alabastron (perfume vase),storage
 255289,Terracotta vase in the form of a pig,animal_shaped
@@ -2820,9 +2820,9 @@ objectID,title,use
 255706,Lekythos,storage
 255719,Terracotta oinochoe (jug),pouring
 255796,Terracotta guttus (flask with handle and verticle spout),pouring
-255894,Terracotta hydria (water jar),wine_alcohol_water
+255894,Terracotta hydria (water jar),storage
 256203,Terracotta beak-spouted jug,pouring
-256207,Terracotta loutrophoros (ceremonial vase for water),wine_alcohol_water
+256207,Terracotta loutrophoros (ceremonial vase for water),ritual
 256549,Terracotta jar,storage
 256602,Terracotta neck-amphora with twisted handles (jar),storage
 256616,Terracotta neck-amphora (jar),storage
@@ -2979,7 +2979,7 @@ objectID,title,use
 308586,Bottle with Incised Designs,flask_and_bottle
 308588,Single Spout Painted Bottle,pouring
 308590,Double Spout and Bridge Bottle with Snake,pouring
-308591,Single Spout Jar in the Form of a Feline,pouring
+308591,Single Spout Jar in the Form of a Feline,animal_shaped
 308592,Single Spout Painted Jar,pouring
 308600,Double Spout and Bridge Bottle with Bird Head,animal_shaped
 308602,Single Spout Bottle with Resin Paint,pouring
@@ -3302,7 +3302,7 @@ objectID,title,use
 315678,Stirrup-spout bottle with decapitation scene,pouring
 315682,Stirrup Spout Bottle with Fanged Deity,ritual
 315688,Stirrup Spout Bottle with Llama Head,animal_shaped
-315999,Spout and Bridge Vessel,pouring
+315999,Spout and Bridge Vessel,animal_shaped
 316000,Spouted Bottle,pouring
 316001,Double-chambered bottle,flask_and_bottle
 316175,Stirrup-spout bottle with mouse,pouring
@@ -3328,9 +3328,9 @@ objectID,title,use
 317831,Jar,storage
 317890,Spouted Vessel,pouring
 317989,Long-necked vessel,other
-317991,Globular vessel with twine impressions,wine_alcohol_water
+317991,Globular vessel with twine impressions,pouring
 318291,"Jar, Geometric Pattern",storage
-318293,Water Jar,wine_alcohol_water
+318293,Water Jar,storage
 318345,Censer with seated king,ritual
 318466,Jar,storage
 318470,Bird Jar,storage
@@ -3492,7 +3492,7 @@ objectID,title,use
 448671,Pierced Jug with Harpies and Sphinxes,pouring
 448686,Jar,storage
 448694,Jar with Four Lug Handles,storage
-448695,Large Storage Jar for Cool Water With Flower Motifs,wine_alcohol_water
+448695,Large Storage Jar for Cool Water With Flower Motifs,storage
 448696,Pilgrim Flask,flask_and_bottle
 448700,Jar,storage
 448726,Ewer,pouring
@@ -3712,7 +3712,7 @@ objectID,title,use
 453452,Ewer,pouring
 453454,White Ewer with Blue Streaks,pouring
 453457,Ewer with Floral Design,pouring
-453577,"Large Storage Jar for Cool Water With a Bejeweled Lion, Hare, and Deer",wine_alcohol_water
+453577,"Large Storage Jar for Cool Water With a Bejeweled Lion, Hare, and Deer",storage
 453623,Storage Jar,storage
 453896,Jar,storage
 453996,Pear-Shaped Jar,storage
@@ -3770,7 +3770,7 @@ objectID,title,use
 460660,"Two-eared jar, Jun ware",storage
 460664,"Pyriform vase, possibly an imitation of Song Guan ware",vase
 460665,Small ewer,pouring
-460666,"Wine jar (Guan), Cizhou ware",wine_alcohol_water
+460666,"Wine jar (Guan), Cizhou ware",pouring
 460673,Small vase,vase
 460675,Small vase,vase
 460676,Small bottle-shaped vase,flask_and_bottle
@@ -3778,7 +3778,7 @@ objectID,title,use
 460678,Small covered vase,storage
 460679,Small vase,vase
 460681,Covered ewer,pouring
-460689,Water pot,wine_alcohol_water
+460689,Water pot,other
 460715,Ewer,pouring
 460716,Ewer,pouring
 460717,Club-shaped vase,vase
@@ -3796,7 +3796,7 @@ objectID,title,use
 461497,Small vase,vase
 461500,Small vase,vase
 461501,Small vase,vase
-461502,Water pot,wine_alcohol_water
+461502,Water pot,other
 461503,Small bottle-vase,flask_and_bottle
 463085,Pharmacy Jar,storage
 463086,Pharmacy Jar,storage
@@ -3855,7 +3855,7 @@ objectID,title,use
 468271,Vessel,other
 468381,Jug,pouring
 468382,Jug,pouring
-468390,"Pot, Watering",wine_alcohol_water
+468390,"Pot, Watering",pouring
 468391,Jug,pouring
 468393,Jug,pouring
 468394,Jug,pouring
@@ -3937,7 +3937,7 @@ objectID,title,use
 477741,Jug with Handle,pouring
 477748,Vase,vase
 477749,Vase,vase
-477815,Aquamanile in the Form of a Ram,pouring
+477815,Aquamanile in the Form of a Ram,animal_shaped
 478433,Jug,pouring
 478436,Jug,pouring
 478437,Vase,vase
@@ -3996,11 +3996,11 @@ objectID,title,use
 623471,Baluster-shaped vase,vase
 623500,Covered jar with large finial,storage
 625629,Vase,vase
-629700,Freshwater jar,wine_alcohol_water
+629700,Freshwater jar,storage
 643549,Jug with Applied decoration,pouring
 644110,Vase with scenes of storm at sea,vase
 644111,Vase with scenes of storm on land,vase
-647271,Wine bottle with lotuses and admonition,wine_alcohol_water
+647271,Wine bottle with lotuses and admonition,pouring
 651241,Jug with twisted handle,pouring
 651287,Jug with Horseshoes,pouring
 651289,Green Glazed Jug,pouring
@@ -4009,15 +4009,15 @@ objectID,title,use
 658718,Tall vase,vase
 658719,Jug,pouring
 662967,Vessel with mythological scene,other
-666591,Sake bottle (Tokkuri),wine_alcohol_water
-666592,Gourd-Shaped Sake Bottle (Tokkuri),wine_alcohol_water
-667252,Wine ewer with stopper (Tokkuri),wine_alcohol_water
+666591,Sake bottle (Tokkuri),pouring
+666592,Gourd-Shaped Sake Bottle (Tokkuri),pouring
+667252,Wine ewer with stopper (Tokkuri),pouring
 667254,Flower vase,vase
-667256,"Sake bottle with pine, bamboo and plum",wine_alcohol_water
-667257,Sake bottle with flower medallions,wine_alcohol_water
-667258,Sake bottle with chrysanthemums,wine_alcohol_water
-667259,Sake bottle,wine_alcohol_water
-667264,Sake bottle with pine and plum,wine_alcohol_water
+667256,"Sake bottle with pine, bamboo and plum",pouring
+667257,Sake bottle with flower medallions,pouring
+667258,Sake bottle with chrysanthemums,pouring
+667259,Sake bottle,pouring
+667264,Sake bottle with pine and plum,pouring
 668677,Barrel-Shaped Jug with a Fox and a Rooster,pouring
 670804,Vase,vase
 670806,Bottle vase,flask_and_bottle
@@ -4028,12 +4028,12 @@ objectID,title,use
 670812,Jug,pouring
 670813,Jug,pouring
 670815,Lobed bottle vase,flask_and_bottle
-670987,Freshwater jar (Mizusashi),wine_alcohol_water
-670989,Sake Bottle (Tokkuri),wine_alcohol_water
+670987,Freshwater jar (Mizusashi),storage
+670989,Sake Bottle (Tokkuri),pouring
 670990,Large Storage Jar (Ōtsubo),storage
 670991,Widemouthed jar (kame) with wave pattern,storage
 670992,Widemouthed Oil Jar (Kame) with Wave Pattern,storage
-670994,Pail‑shaped freshwater jar (Onioke mizusashi),wine_alcohol_water
+670994,Pail‑shaped freshwater jar (Onioke mizusashi),storage
 670995,Shigaraki Tea Jar (Chatsubo),storage
 671535,Jug,pouring
 671536,Face jug,pouring
@@ -4049,11 +4049,11 @@ objectID,title,use
 715459,Ewer with Filter,pouring
 716908,Vase,vase
 747034,Vase,vase
-748293,Water jar (Mizusashi) with autumn grasses,wine_alcohol_water
-748303,Water pitcher (Mizutsugi),wine_alcohol_water
-748327,Wall vase in the form of a peacock,vase
-752044,Nanban Freshwater Jar (Mizusashi) with Large Handles,wine_alcohol_water
-761272,Vessel with water bird and hieroglyphic text,wine_alcohol_water
+748293,Water jar (Mizusashi) with autumn grasses,storage
+748303,Water pitcher (Mizutsugi),pouring
+748327,Wall vase in the form of a peacock,animal_shaped
+752044,Nanban Freshwater Jar (Mizusashi) with Large Handles,storage
+761272,Vessel with water bird and hieroglyphic text,other
 762252,Jug,pouring
 762253,Barrel shaped jug,pouring
 765030,Jug with Finely-Dressed Woman,pouring
@@ -4063,7 +4063,7 @@ objectID,title,use
 770916,Hexagonal vase with cloisonné decoration,vase
 770917,Moon flask,flask_and_bottle
 770920,Bottle with stopper,flask_and_bottle
-770921,Vase in the form of a camel,vase
+770921,Vase in the form of a camel,animal_shaped
 770922,Moon flask with Japanese woman,flask_and_bottle
 770923,Octagonal vase with gold birds,vase
 770925,Vase,vase
@@ -4144,8 +4144,8 @@ objectID,title,use
 823195,Vase with handles,vase
 828443,Double Gourd Vessel,other
 828462,Four handled storage jar with rope-pattern design,storage
-828493,"Freshwater Jar (Mizusashi), Named “Hotei”",wine_alcohol_water
-833900,Water Jar (Olla),wine_alcohol_water
+828493,"Freshwater Jar (Mizusashi), Named “Hotei”",storage
+833900,Water Jar (Olla),storage
 833901,Pitcher,pouring
 833902,Polychrome Vessel,other
 833904,Vessel (Olla),other
@@ -4176,10 +4176,10 @@ objectID,title,use
 891616,Jug with Assyrian-inspired decoration,pouring
 891620,Jug with Assyrian-inspired decoration,pouring
 892635,Jar decorated with dragons,storage
-894321,Freshwater Jar (Mizusashi) in the Shape of a Seed Jar (Tane-tsubo),wine_alcohol_water
+894321,Freshwater Jar (Mizusashi) in the Shape of a Seed Jar (Tane-tsubo),storage
 902207,Jar with Thistle,storage
 910524,Openwork jar with peonies,storage
 910531,Terracotta stirrup jar,storage
-910532,Red-figure calyx-krater,wine_alcohol_water
+910532,Red-figure calyx-krater,other
 912990,Polychrome terracotta head vase,vase
 918706,Beaker with “Posteleӱn Verkooping” (porcelain selling),other

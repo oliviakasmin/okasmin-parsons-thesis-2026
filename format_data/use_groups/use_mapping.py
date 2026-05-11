@@ -3,6 +3,8 @@ ANIMAL_SHAPED = [
     "bird-shaped",
     "feline-shaped",
 
+    "felin shape",
+
     # explicit animal-form vessels
     "animal vessel",
     "fish vessel",
@@ -41,20 +43,12 @@ ANIMAL_SHAPED = [
     "stirrup spout bottle with cat",
     "stirrup spout bottle with llama",
     "double spout bottle, bird",
-]
 
+    "in the form of a peacock",
 
-
-WINE_ALCOHOL_WATER = [
-    "wine",
-    "sake",
-    "toddy",
-    "cider",
-    "krater",
-    "volute-krater",
-    "water",
-    "hydria",
-    "mizusashi",
+    "spout and bridge vessel",
+    "bird form",
+    "double chambered whistling jar with parrot"
 ]
 
 RITUAL = [
@@ -88,6 +82,9 @@ POURING = [
     "milk pot",
     "creamer",
     "spout",
+    "wine",
+    "sake",
+    "cider",
 ]
 
 FLASK_AND_BOTTLE = [

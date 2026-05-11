@@ -5,10 +5,10 @@ from pathlib import Path
 import json
 import pandas as pd
 from .date.get_date import get_date_field
-from .function_groups.get_object_function_group import map_function_group
 from .place.get_location_fields import get_location_field
 from .place.apply_geo_contract import apply_geo_contract_df
 from .place.geocode_locations import CACHE_CSV_PATH
+from .use_groups.get_use import classify_title, _load_mapping_module
 
 ROOT = Path(__file__).resolve().parents[1]
 OBJECTS_JSON_PATH = ROOT / "fetch_data" / "data" / "objects.json"
@@ -35,18 +35,14 @@ def add_geo_llm_fields(df: pd.DataFrame) -> pd.DataFrame:
     return apply_geo_contract_df(df)
 
 
-def add_function_group_field(df: pd.DataFrame) -> pd.DataFrame:
-    """Derive final_group from objectName/title (same rules as object_function_groups.csv)."""
+def add_use_field(df: pd.DataFrame) -> pd.DataFrame:
+    """Derive use from title (same rules as format_data/use_groups/get_use.py)."""
     out = df.copy()
-    names = (
-        out["objectName"].fillna("").astype(str)
-        if "objectName" in out.columns
-        else pd.Series([""] * len(out))
-    )
+    mod = _load_mapping_module()
     titles = (
         out["title"].fillna("").astype(str) if "title" in out.columns else pd.Series([""] * len(out))
     )
-    out["final_group"] = [map_function_group(o, t) for o, t in zip(names, titles)]
+    out["use"] = [classify_title(t, mod) for t in titles]
     return out
 
 
@@ -257,7 +253,7 @@ def build_fields(df: pd.DataFrame) -> pd.DataFrame:
     df = get_location_field(df)
     df = add_geo_llm_fields(df)
     df = add_geocoded_location_fields(df)
-    df = add_function_group_field(df)
+    df = add_use_field(df)
     df = add_color_fields(df)
     df = add_color_kmeans_clusters(df)
     df = add_cluster_group_fields(df)
@@ -270,7 +266,7 @@ def build_fields(df: pd.DataFrame) -> pd.DataFrame:
             "objectID",
             "department",
             "title",
-            "final_group",
+            "use",
             "shape_cluster_group",
             "shape_cluster_type",
             "objectBeginDate",

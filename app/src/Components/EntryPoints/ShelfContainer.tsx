@@ -4,7 +4,7 @@ import Typography from "@mui/material/Typography";
 import { homeEntryDomId } from "../constants";
 import { useShelfTab } from "../shelfTabState";
 import Shelf from "./Shelf";
-import ShelfFunction from "./ShelfFunction";
+import ShelfUse from "./ShelfUse";
 import ShelfColor from "./ShelfColor";
 
 const tabTextColor = {
@@ -17,7 +17,7 @@ export default function ShelfContainer() {
 
   const content = useMemo(() => {
     if (selectedShelfTab === "shape") return <Shelf />;
-    if (selectedShelfTab === "use") return <ShelfFunction />;
+    if (selectedShelfTab === "use") return <ShelfUse />;
     return <ShelfColor />;
   }, [selectedShelfTab]);
 
