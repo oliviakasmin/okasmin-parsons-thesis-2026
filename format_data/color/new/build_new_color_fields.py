@@ -18,6 +18,8 @@ GENERATED_COLOR_DIR = ROOT / "format_data" / "generated" / "color"
 OUTPUT_CSV_PATH = GENERATED_COLOR_DIR / "object_color_fields_new.csv"
 RUN_STATS_PATH = GENERATED_COLOR_DIR / "object_color_new_run_stats.json"
 BW_CACHE_PATH = GENERATED_COLOR_DIR / "color_bw_cache.csv"
+MANUAL_BW_GROUPS_PATH = ROOT / "format_data" / "color" / "new" / "new_color_groups.json"
+MANUAL_BW_GROUP_NAME = "b_w_images_to_filter"
 OUTPUT_COLUMNS = [
     "objectID",
     "color_eligible",
@@ -99,6 +101,29 @@ def _load_bw_cache(path: Path) -> dict[str, dict]:
     return out
 
 
+def _load_manual_bw_original_ids(path: Path) -> set[int]:
+    if not path.exists():
+        return set()
+    raw = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(raw, dict):
+        return set()
+    values = raw.get(MANUAL_BW_GROUP_NAME)
+    if not isinstance(values, list):
+        return set()
+
+    out: set[int] = set()
+    for value in values:
+        if isinstance(value, bool):
+            continue
+        if isinstance(value, int):
+            out.add(int(value))
+        elif isinstance(value, float) and value.is_integer():
+            out.add(int(value))
+        elif isinstance(value, str) and value.strip().isdigit():
+            out.add(int(value.strip()))
+    return out
+
+
 def _save_bw_cache(path: Path, cache: dict[str, dict]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     fieldnames = ["image_url", "is_grayscale", "grayscale_ratio", "sampled_pixels", "error", "checked_at"]
@@ -177,6 +202,7 @@ def run_pipeline(
         end_index=end_index,
     )
     bw_cache = _load_bw_cache(path=BW_CACHE_PATH)
+    manual_bw_original_ids = _load_manual_bw_original_ids(path=MANUAL_BW_GROUPS_PATH)
     existing_rows = _load_existing_rows(path=OUTPUT_CSV_PATH)
     processed_count = 0
 
@@ -184,7 +210,7 @@ def run_pipeline(
     selected_total = len(objects)
     for selected_idx, obj in enumerate(objects, start=1):
         object_id = obj["objectID"]
-        if skip_existing and object_id in existing_rows:
+        if skip_existing and object_id in existing_rows and object_id not in manual_bw_original_ids:
             if progress_every > 0 and (selected_idx % progress_every == 0 or selected_idx == selected_total):
                 print(
                     "[progress] "
@@ -218,6 +244,12 @@ def run_pipeline(
 
         if not image_url:
             row["color_analysis_status"] = "missing_primary_image"
+            rows.append(row)
+            continue
+
+        if object_id in manual_bw_original_ids:
+            row["color_analysis_status"] = "bw_original"
+            row["bw_grayscale_ratio"] = "1.00000000"
             rows.append(row)
             continue
 

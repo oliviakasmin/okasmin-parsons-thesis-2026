@@ -53,6 +53,11 @@ const TEST2_OPEN_MODAL_ON_IMAGE_CLICK = false;
 const BW_PALETTE_MANUAL_GROUP_NAME = "black_white_grayscale";
 
 type ManualColorGroupsFile = Record<string, unknown>;
+type ColorGroupFilterOption = {
+  id: string;
+  name: string;
+  label: string;
+};
 
 function buildManualColorGroupIdSets(data: ManualColorGroupsFile): Map<string, Set<string>> {
   const out = new Map<string, Set<string>>();
@@ -78,33 +83,59 @@ function parsePythonIntList(raw: string, variableName: string): number[] {
 function objectMatchesManualGroupFilter(
   objectId: string,
   filter: string | null,
-  setsByName: Map<string, Set<string>>
+  setsById: Map<string, Set<string>>
 ): boolean {
   if (filter == null || filter === "") return true;
-  const set = setsByName.get(filter);
+  const set = setsById.get(filter);
   if (set == null || set.size === 0) return false;
   return set.has(objectId);
 }
 
+function colorGroupLabel(name: string) {
+  return name.replace(/_/g, " ");
+}
+
 const manualRejectObjectIdSet = new Set(manualRejectObjectIds.map((objectId) => String(objectId)));
-const manualColorGroupIdSets = buildManualColorGroupIdSets(
+const sourceManualColorGroupIdSets = buildManualColorGroupIdSets(
   manualColorGroupsJson as ManualColorGroupsFile
 );
-for (const [name, objectIds] of buildManualColorGroupIdSets(
+const generatedNewColorGroupIdSets = buildManualColorGroupIdSets(
   newColorGroupsJson as ManualColorGroupsFile
-)) {
-  manualColorGroupIdSets.set(name, objectIds);
-}
-manualColorGroupIdSets.set(
-  BW_PALETTE_MANUAL_GROUP_NAME,
+);
+const colorGroupFilterIdSets = new Map<string, Set<string>>();
+
+const manualColorGroupOptions: ColorGroupFilterOption[] = [...sourceManualColorGroupIdSets.keys()]
+  .sort((a, b) => a.localeCompare(b))
+  .map((name) => {
+    const id = `manual:${name}`;
+    colorGroupFilterIdSets.set(id, sourceManualColorGroupIdSets.get(name) ?? new Set());
+    return { id, name, label: colorGroupLabel(name) };
+  });
+
+const bwPaletteFilterId = `special:${BW_PALETTE_MANUAL_GROUP_NAME}`;
+colorGroupFilterIdSets.set(
+  bwPaletteFilterId,
   new Set(
     parsePythonIntList(bwPalettesPyRaw, "COLORGRAM_GRAYSCALE_PALETTE_OBJECT_IDS").map((objectId) =>
       String(objectId)
     )
   )
 );
-const manualColorGroupNamesSorted = [...manualColorGroupIdSets.keys()].sort((a, b) =>
-  a.localeCompare(b)
+manualColorGroupOptions.push({
+  id: bwPaletteFilterId,
+  name: BW_PALETTE_MANUAL_GROUP_NAME,
+  label: colorGroupLabel(BW_PALETTE_MANUAL_GROUP_NAME)
+});
+
+const newColorGroupOptions: ColorGroupFilterOption[] = [...generatedNewColorGroupIdSets.keys()].map(
+  (name) => {
+    const id = `new:${name}`;
+    colorGroupFilterIdSets.set(id, generatedNewColorGroupIdSets.get(name) ?? new Set());
+    return { id, name, label: colorGroupLabel(name) };
+  }
+);
+const colorGroupFilterOptionById = new Map(
+  [...manualColorGroupOptions, ...newColorGroupOptions].map((option) => [option.id, option])
 );
 const objectTitleById = new Map(
   Object.entries(
@@ -493,7 +524,7 @@ function Test2() {
         return (colorMeta?.colorgramPaletteHex.length ?? 0) > 0;
       })
       .filter((objectId) =>
-        objectMatchesManualGroupFilter(objectId, selectedManualGroupFilter, manualColorGroupIdSets)
+        objectMatchesManualGroupFilter(objectId, selectedManualGroupFilter, colorGroupFilterIdSets)
       )
       .filter((objectId) =>
         objectMatchesExcludeManualKMeansFilter(
@@ -862,9 +893,92 @@ function Test2() {
         <p
           style={{ margin: "0 0 0.55rem 0", fontSize: "0.72rem", color: "#777", lineHeight: 1.35 }}
         >
-          Only one color filter at a time — choosing manual JSON or exclude-manual KMeans clears the
-          other.
+          Only one color filter at a time — choosing a color group or exclude-manual KMeans clears
+          the other.
         </p>
+        <div
+          style={{
+            marginBottom: "0.65rem",
+            paddingBottom: "0.65rem",
+            borderBottom: "1px solid #2a2a2a"
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "0.5rem",
+              flexWrap: "wrap",
+              marginBottom: "0.45rem"
+            }}
+          >
+            <span style={{ fontSize: "0.85rem", color: "#ccc", fontWeight: 600 }}>
+              New regrouped color groups
+            </span>
+            <button
+              type="button"
+              onClick={() => setSelectedManualGroupFilter(null)}
+              disabled={selectedManualGroupFilter == null}
+              style={{
+                border: "1px solid #666",
+                borderRadius: "6px",
+                background: selectedManualGroupFilter == null ? "#1a1a1a" : "#222",
+                color: selectedManualGroupFilter == null ? "#666" : "#fff",
+                padding: "0.2rem 0.45rem",
+                fontSize: "0.75rem",
+                cursor: selectedManualGroupFilter == null ? "default" : "pointer"
+              }}
+            >
+              All color groups
+            </button>
+            <span style={{ fontSize: "0.75rem", color: "#888" }}>
+              {selectedManualGroupFilter == null
+                ? "no color filter"
+                : `match: ${colorGroupFilterOptionById.get(selectedManualGroupFilter)?.label ?? selectedManualGroupFilter} (${colorGroupFilterIdSets.get(selectedManualGroupFilter)?.size ?? 0} ids)`}
+            </span>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: "0.35rem",
+              alignItems: "center"
+            }}
+          >
+            {newColorGroupOptions.map((option) => {
+              const count = colorGroupFilterIdSets.get(option.id)?.size ?? 0;
+              const active = selectedManualGroupFilter === option.id;
+              const label = `${option.label} (${count})`;
+              return (
+                <button
+                  key={`new-color-group-${option.id}`}
+                  type="button"
+                  aria-pressed={active}
+                  title={option.name}
+                  onClick={() => {
+                    const next = selectedManualGroupFilter === option.id ? null : option.id;
+                    setSelectedManualGroupFilter(next);
+                    if (next != null) setSelectedExcludeManualClusterFilter(null);
+                  }}
+                  style={{
+                    border: active ? "1px solid #9df" : "1px solid #444",
+                    borderRadius: "6px",
+                    background: active ? "rgba(120, 200, 255, 0.16)" : "#141414",
+                    color: "#e8e8e8",
+                    padding: "0.28rem 0.5rem",
+                    fontSize: "0.72rem",
+                    lineHeight: 1.25,
+                    cursor: "pointer",
+                    maxWidth: "100%",
+                    textAlign: "left"
+                  }}
+                >
+                  {label}
+                </button>
+              );
+            })}
+          </div>
+        </div>
         <div>
           <div
             style={{
@@ -897,7 +1011,7 @@ function Test2() {
             <span style={{ fontSize: "0.75rem", color: "#888" }}>
               {selectedManualGroupFilter == null
                 ? "no manual filter"
-                : `match: ${selectedManualGroupFilter} (${manualColorGroupIdSets.get(selectedManualGroupFilter)?.size ?? 0} ids)`}
+                : `match: ${colorGroupFilterOptionById.get(selectedManualGroupFilter)?.label ?? selectedManualGroupFilter} (${colorGroupFilterIdSets.get(selectedManualGroupFilter)?.size ?? 0} ids)`}
             </span>
           </div>
           <div
@@ -908,18 +1022,18 @@ function Test2() {
               alignItems: "center"
             }}
           >
-            {manualColorGroupNamesSorted.map((name) => {
-              const count = manualColorGroupIdSets.get(name)?.size ?? 0;
-              const active = selectedManualGroupFilter === name;
-              const label = `${name.replace(/_/g, " ")} (${count})`;
+            {manualColorGroupOptions.map((option) => {
+              const count = colorGroupFilterIdSets.get(option.id)?.size ?? 0;
+              const active = selectedManualGroupFilter === option.id;
+              const label = `${option.label} (${count})`;
               return (
                 <button
-                  key={`manual-group-${name}`}
+                  key={`manual-group-${option.id}`}
                   type="button"
                   aria-pressed={active}
-                  title={name}
+                  title={option.name}
                   onClick={() => {
-                    const next = selectedManualGroupFilter === name ? null : name;
+                    const next = selectedManualGroupFilter === option.id ? null : option.id;
                     setSelectedManualGroupFilter(next);
                     if (next != null) setSelectedExcludeManualClusterFilter(null);
                   }}
