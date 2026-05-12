@@ -105,7 +105,6 @@ test_assets/
 *.webp
 *.tif
 *.tiff
-*.gif
 *.bmp
 *.svg
 
