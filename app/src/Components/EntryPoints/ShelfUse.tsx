@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import representativeJson from "../../../../format_data/use_groups/representative.json";
@@ -8,7 +7,8 @@ import useUseGroups, {
   USE_GROUP_LABEL,
   representativeObjectIdsForGroup
 } from "../../hooks/useUseGroups";
-import { homeEntryDomId, type HomeEntryScrollId } from "../constants";
+import { ROUTE_SHELF_USE_ROOT_ID } from "../constants";
+import { useClusterScene } from "../ClusterSceneContext";
 import type { ShelfSlot } from "./shelfGridStyles";
 import {
   shelfArticleTileSx,
@@ -21,8 +21,6 @@ import {
   shelfTabMainSx
 } from "./shelfGridStyles";
 
-const shelfUseEntryScrollId: HomeEntryScrollId = "shelf-use";
-
 /** Row-major positions; `undefined` = one-tile gap; rows with fewer than five slots spread across the row. */
 const SHELF_USE_LAYOUT: ShelfSlot<UseGroup>[][] = [
   [undefined, "flask_and_bottle", "vase"],
@@ -31,12 +29,12 @@ const SHELF_USE_LAYOUT: ShelfSlot<UseGroup>[][] = [
 ];
 
 export default function ShelfUse() {
-  const navigate = useNavigate();
+  const { openCluster } = useClusterScene();
   const { maskImageByObjectId } = useImageModules();
   const { groupRowById } = useUseGroups();
 
   return (
-    <Box component="main" id={homeEntryDomId(shelfUseEntryScrollId)} sx={shelfTabMainSx}>
+    <Box component="main" id={ROUTE_SHELF_USE_ROOT_ID} sx={shelfTabMainSx}>
       <Box component="section" sx={shelfGridStackSx}>
         {SHELF_USE_LAYOUT.map((row, rowIndex) => (
           <Box key={`use-row-${rowIndex}`} sx={shelfGridRowSx(row.length)}>
@@ -79,11 +77,10 @@ export default function ShelfUse() {
                   component="article"
                   key={groupRow.group}
                   onClick={() =>
-                    navigate(`/all/${groupRow.group}`, {
-                      state: {
-                        homeScrollTo: shelfUseEntryScrollId,
-                        initialImageMode: "solid"
-                      }
+                    openCluster({
+                      clusterId: groupRow.group,
+                      initialImageMode: "solid",
+                      returnShelfTab: "use"
                     })
                   }
                   sx={shelfArticleTileSx}

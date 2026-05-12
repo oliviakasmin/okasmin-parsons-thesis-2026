@@ -1,6 +1,6 @@
 import type { KeyboardEvent, ReactNode } from "react";
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
-import { useLocation, useParams, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { Box, Button, IconButton, Typography } from "@mui/material";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
@@ -30,8 +30,7 @@ import {
   SCENE_LEFT_PANEL_WIDTH_TRANSITION_MS,
   SCENE_LEFT_PANEL_WIDTH_VW,
   SUBGROUP_RENDER_IMAGE_SIZE_PX,
-  TIMELINE_AXIS_TOP_GUTTER_PX,
-  type HomeEntryScrollId
+  TIMELINE_AXIS_TOP_GUTTER_PX
 } from "../constants";
 import MapView from "./Map";
 import InlineOutlineSvg from "./InlineOutlineSvg";
@@ -42,10 +41,11 @@ import { useShelfTab } from "../shelfTabState";
 import { ShelfStackedOutlineSvg } from "../EntryPoints/ShelfStackedOutlineSvg";
 
 type SceneView = "all" | "timeline" | "map";
-type ContainerLocationState = {
-  homeScrollTo?: HomeEntryScrollId;
+
+export type ContainerProps = {
+  clusterId: string;
   initialImageMode?: "solid" | "outline" | "color";
-  /** Shape-cluster scene entered from Shelf tiles (headline + stacked glyph). */
+  /** Shape-cluster scene entered from shape shelf tiles (headline + stacked glyph). */
   fromShelf?: boolean;
 };
 
@@ -160,17 +160,14 @@ function sceneHeadlineContent(args: {
   );
 }
 
-function Container() {
-  const { clusterId } = useParams();
-  const location = useLocation();
-  const locationState = (location.state as ContainerLocationState | null) ?? null;
+function Container({ clusterId, initialImageMode, fromShelf = false }: ContainerProps) {
   const [searchParams, setSearchParams] = useSearchParams();
   const searchView = searchParams.get("view");
   const currentView: SceneView =
     searchView === "timeline" || searchView === "map" ? searchView : "all";
   const { mode, options, setMode } = useImageToggle({
     colorOption: true,
-    initialMode: locationState?.initialImageMode ?? "outline"
+    initialMode: initialImageMode ?? "outline"
   });
   const sceneViewportRef = useRef<HTMLDivElement | null>(null);
   const timelineAxisContentRef = useRef<HTMLDivElement | null>(null);
@@ -240,7 +237,7 @@ function Container() {
     selectedUseGroup || selectedColorGroup ? objectLabelPlural : "these forms";
   const mapSubject = selectedUseGroup || selectedColorGroup ? objectLabelPlural : "these forms";
 
-  const showShelfShapeGlyph = Boolean(locationState?.fromShelf && selectedCluster && clusterId);
+  const showShelfShapeGlyph = Boolean(fromShelf && selectedCluster && clusterId);
 
   const {
     buckets: timelineBuckets,
@@ -535,7 +532,6 @@ function Container() {
   }, [contentSceneHeight, currentView, syncTimelineAxisToSceneScroll, timelineBuckets]);
 
   useLayoutEffect(() => {
-    window.scrollTo({ top: 0, left: 0 });
     sceneContentScrollRef.current?.scrollTo({ top: 0, left: 0 });
     syncTimelineAxisToSceneScroll();
   }, [clusterId, currentView, selectedEntry?.id, syncTimelineAxisToSceneScroll]);
@@ -614,7 +610,7 @@ function Container() {
           >
             <Button
               type="button"
-              onClick={() => setSearchParams({ view: "all" }, { state: location.state })}
+              onClick={() => setSearchParams({ view: "all" })}
               variant="outlined"
               sx={{
                 borderColor: "#fff",
@@ -633,7 +629,7 @@ function Container() {
             </Button>
             <Button
               type="button"
-              onClick={() => setSearchParams({ view: "timeline" }, { state: location.state })}
+              onClick={() => setSearchParams({ view: "timeline" })}
               variant="outlined"
               sx={{
                 borderColor: "#fff",
@@ -653,7 +649,7 @@ function Container() {
             </Button>
             <Button
               type="button"
-              onClick={() => setSearchParams({ view: "map" }, { state: location.state })}
+              onClick={() => setSearchParams({ view: "map" })}
               variant="outlined"
               sx={{
                 borderColor: "#fff",

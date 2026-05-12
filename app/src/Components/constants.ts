@@ -29,9 +29,14 @@ export const ALL_SCENE_GRID_GAP_X_PX = 12;
 /** Vertical space between rows in the All scene grid. */
 export const ALL_SCENE_GRID_GAP_Y_PX = 12;
 
-/** Passed in router `state.homeScrollTo` when returning to `/` so Home can scroll to the matching section. */
-export type HomeEntryScrollId = "shelf" | "shelf-use" | "shelf-color" | "case-studies";
+/** Main home: `ShelfContainer` outer section — scroll target when closing the cluster overlay. */
+export const MAIN_SHELF_CONTAINER_ANCHOR_ID = "main-shelf-container-anchor";
 
-export function homeEntryDomId(entry: HomeEntryScrollId): string {
-  return `home-entry-${entry}`;
-}
+/** Standalone `/shelf` route root (shape grid). Must not duplicate `MAIN_SHELF_CONTAINER_ANCHOR_ID`. */
+export const ROUTE_SHELF_SHAPE_ROOT_ID = "route-shelf-shape-root";
+
+/** Standalone `/shelf-use` route root. */
+export const ROUTE_SHELF_USE_ROOT_ID = "route-shelf-use-root";
+
+/** Standalone `/shelf-color` route root. */
+export const ROUTE_SHELF_COLOR_ROOT_ID = "route-shelf-color-root";

@@ -1,7 +1,7 @@
 import { useLayoutEffect, useMemo, useRef, useState } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import { homeEntryDomId } from "../constants";
+import { MAIN_SHELF_CONTAINER_ANCHOR_ID } from "../constants";
 import { useShelfTab } from "../shelfTabState";
 import shelfArrowLongestTimeSpan from "../../../public/arrows/longest_time_span.svg";
 import shelfArrowMostCountries from "../../../public/arrows/most_countries.svg";
@@ -160,7 +160,7 @@ export default function ShelfContainer() {
     <Box
       component="section"
       ref={outerSectionRef}
-      id={homeEntryDomId("shelf")}
+      id={MAIN_SHELF_CONTAINER_ANCHOR_ID}
       sx={{
         height: "100vh",
         width: "100%",
@@ -231,9 +231,6 @@ export default function ShelfContainer() {
           </Box>
         </Typography>
       </Box>
-
-      <Box sx={{ display: "none" }} id={homeEntryDomId("shelf-use")} />
-      <Box sx={{ display: "none" }} id={homeEntryDomId("shelf-color")} />
 
       <Box
         ref={scrollPaneRef}
