@@ -1,4 +1,9 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { gsap } from "gsap";
+import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(DrawSVGPlugin, ScrollTrigger);
 
 type ParsedOutline = {
   objectId: number;
@@ -32,6 +37,39 @@ function parseViewBox(svgEl: SVGSVGElement): {
   const width = Number(svgEl.getAttribute("width") ?? 0);
   const height = Number(svgEl.getAttribute("height") ?? 0);
   return { minX: 0, minY: 0, width, height };
+}
+
+/**
+ * Find the fraction (0–1) along the path that is geometrically closest to the
+ * bottom-center of the path's bounding box. Used as the "origin" for a
+ * draw-from-bottom-center animation, since the SVG outlines don't all start
+ * their `M` command at the same point on the silhouette.
+ */
+function getBottomCenterFraction(path: SVGPathElement): number {
+  const total = path.getTotalLength();
+  if (!total) return 0.5;
+
+  const bbox = path.getBBox();
+  const targetX = bbox.x + bbox.width / 2;
+  const targetY = bbox.y + bbox.height;
+
+  const samples = 200;
+  let bestFrac = 0.5;
+  let bestDist = Infinity;
+
+  for (let i = 0; i <= samples; i++) {
+    const frac = i / samples;
+    const pt = path.getPointAtLength(frac * total);
+    const dx = pt.x - targetX;
+    const dy = pt.y - targetY;
+    const dist = dx * dx + dy * dy;
+    if (dist < bestDist) {
+      bestDist = dist;
+      bestFrac = frac;
+    }
+  }
+
+  return bestFrac;
 }
 
 async function loadOutline(objectId: number): Promise<ParsedOutline | null> {
@@ -73,6 +111,7 @@ export default function MiniShelfSVG({
   className
 }: MiniShelfSVGProps) {
   const [outlines, setOutlines] = useState<ParsedOutline[]>([]);
+  const svgRef = useRef<SVGSVGElement | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -89,6 +128,43 @@ export default function MiniShelfSVG({
       cancelled = true;
     };
   }, [objectIds]);
+
+  useEffect(() => {
+    const svg = svgRef.current;
+    if (!svg || outlines.length === 0) return;
+
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: svg,
+          start: "top 90%",
+          toggleActions: "play none none reverse"
+        }
+      });
+
+      outlines.forEach((outline, index) => {
+        const paths = svg.querySelectorAll<SVGPathElement>(`#outline-${outline.objectId} path`);
+        if (paths.length === 0) return;
+
+        paths.forEach((path) => {
+          const pct = getBottomCenterFraction(path) * 100;
+          gsap.set(path, { drawSVG: `${pct}% ${pct}%` });
+        });
+
+        tl.to(
+          paths,
+          {
+            drawSVG: "0% 100%",
+            duration: 3,
+            ease: "none"
+          },
+          index * 1.2
+        );
+      });
+    }, svg);
+
+    return () => ctx.revert();
+  }, [outlines]);
 
   const layout = useMemo(() => {
     const baselineY = size;
@@ -125,6 +201,7 @@ export default function MiniShelfSVG({
 
   return (
     <svg
+      ref={svgRef}
       className={className}
       style={{
         display: "block",
