@@ -24,6 +24,7 @@ OBJECT_USE_OVERRIDES: dict[str, str] = {
     "197485": "animal_shaped",
     "310594": "animal_shaped",
     "314365": "animal_shaped",
+    "317749": "animal_shaped",
 }
 
 

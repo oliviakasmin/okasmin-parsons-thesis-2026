@@ -25,7 +25,7 @@ const shelfUseEntryScrollId: HomeEntryScrollId = "shelf-use";
 
 /** Row-major positions; `undefined` = one-tile gap; rows with fewer than five slots spread across the row. */
 const SHELF_USE_LAYOUT: ShelfSlot<UseGroup>[][] = [
-  ["flask_and_bottle", "vase"],
+  [undefined, "flask_and_bottle", "vase"],
   ["pouring", "storage"],
   ["ritual", "animal_shaped", "other"]
 ];
