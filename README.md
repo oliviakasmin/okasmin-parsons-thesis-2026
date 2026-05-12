@@ -1,5 +1,7 @@
 # Ceramics Undressed
 
+![Preview](preview.gif)
+
 ##### The practice of pottery shows us how connected we really are.
 
 Olivia Kasmin, 2026
