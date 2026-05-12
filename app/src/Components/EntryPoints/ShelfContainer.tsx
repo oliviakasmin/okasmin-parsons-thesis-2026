@@ -17,10 +17,10 @@ const tabTextColor = {
 };
 
 /** Whole-arrow fade-in after shelf tile `shelfPathDraw` has mostly run (ms). */
-const SHELF_ARROW_FADE_DELAY_MS = 2000;
+const SHELF_ARROW_FADE_DELAY_MS = 1200;
 const SHELF_ARROW_FADE_DURATION_MS = 1200;
 /** Extra delay before each subsequent arrow starts (first uses `SHELF_ARROW_FADE_DELAY_MS` only). */
-const SHELF_ARROW_FADE_STAGGER_MS = 400;
+const SHELF_ARROW_FADE_STAGGER_MS = 800;
 
 const SHELF_SHAPE_ARROW_GAP_PX = 12;
 
