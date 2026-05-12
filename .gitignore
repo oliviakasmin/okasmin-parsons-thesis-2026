@@ -110,6 +110,8 @@ test_assets/
 
 # Keep some images
 !preview.png
+!additional_images/
+!additional_images/**
 
 # ─────────────────────────────────────────────
 # Re-allow ALL app public assets
