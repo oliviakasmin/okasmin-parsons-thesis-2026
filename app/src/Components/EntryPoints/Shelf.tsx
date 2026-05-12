@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { Box } from "@mui/material";
 import { ROUTE_SHELF_SHAPE_ROOT_ID } from "../constants";
 import { useClusterScene } from "../ClusterSceneContext";
-import type { ShelfSlot } from "./shelfGridStyles";
 import { restartShelfPathDraw, ShelfStackedOutlineSvg } from "./ShelfStackedOutlineSvg";
+import type { ShelfSlot } from "./shelfGridStyles";
 import {
   shelfArticleTileSx,
   shelfEmptySlotSx,
@@ -13,6 +13,13 @@ import {
   shelfSlotSurfaceSx,
   shelfTabMainSx
 } from "./shelfGridStyles";
+
+export type ShelfProps = {
+  /** Fires whenever stacked-outline tiles (re)start their draw cycle — e.g. scroll-into-view or Back from cluster. */
+  onOutlineAnimationCycle?: () => void;
+  /** Same threshold as outline tiles: ~half of the shape shelf is in view (for hiding overlay arrows when scrolled away). */
+  onShapeShelfHalfVisibleChange?: (halfVisible: boolean) => void;
+};
 
 const cluster0 = "cluster_0";
 const cluster1 = "cluster_1";
@@ -34,7 +41,7 @@ const SHELF_LAYOUT: ShelfSlot<string>[][] = [
   [cluster11, cluster1, cluster2, cluster0]
 ];
 
-function Shelf() {
+function Shelf({ onOutlineAnimationCycle, onShapeShelfHalfVisibleChange }: ShelfProps) {
   const { openCluster, clusterOverlayCloseGeneration } = useClusterScene();
   const [isShelfHalfVisible, setIsShelfHalfVisible] = useState(false);
   const [shelfAnimationCycle, setShelfAnimationCycle] = useState(0);
@@ -88,6 +95,15 @@ function Shelf() {
     setIsShelfHalfVisible(true);
     setShelfAnimationCycle((cycle) => cycle + 1);
   }, [clusterOverlayCloseGeneration]);
+
+  useEffect(() => {
+    if (shelfAnimationCycle === 0) return;
+    onOutlineAnimationCycle?.();
+  }, [shelfAnimationCycle, onOutlineAnimationCycle]);
+
+  useEffect(() => {
+    onShapeShelfHalfVisibleChange?.(isShelfHalfVisible);
+  }, [isShelfHalfVisible, onShapeShelfHalfVisibleChange]);
 
   return (
     <Box component="main" ref={shelfRef} id={ROUTE_SHELF_SHAPE_ROOT_ID} sx={shelfTabMainSx}>

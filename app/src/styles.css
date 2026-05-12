@@ -127,3 +127,13 @@ h6 {
     stroke-dashoffset: 0;
   }
 }
+
+/* Shelf shape-tab arrow `<img>`: whole graphic fades in (see `ShelfContainer.tsx`). */
+@keyframes shelfArrowFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

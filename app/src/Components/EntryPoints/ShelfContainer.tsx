@@ -1,4 +1,4 @@
-import { useLayoutEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { MAIN_SHELF_CONTAINER_ANCHOR_ID } from "../constants";
@@ -16,7 +16,12 @@ const tabTextColor = {
   inactive: "#585858"
 };
 
-/** Default gap between an arrow graphic and the shape shelf row it annotates (not tied to tile column gap). */
+/** Whole-arrow fade-in after shelf tile `shelfPathDraw` has mostly run (ms). */
+const SHELF_ARROW_FADE_DELAY_MS = 2000;
+const SHELF_ARROW_FADE_DURATION_MS = 1200;
+/** Extra delay before each subsequent arrow starts (first uses `SHELF_ARROW_FADE_DELAY_MS` only). */
+const SHELF_ARROW_FADE_STAGGER_MS = 400;
+
 const SHELF_SHAPE_ARROW_GAP_PX = 12;
 
 type ShelfShapeArrowSpec =
@@ -113,14 +118,40 @@ export default function ShelfContainer() {
   const scrollPaneRef = useRef<HTMLDivElement | null>(null);
   const [shapeArrowLayouts, setShapeArrowLayouts] =
     useState<Record<string, ShelfShapeArrowLayout>>(INITIAL_HIDDEN_LAYOUTS);
+  const [arrowLabelFadeNonce, setArrowLabelFadeNonce] = useState(0);
+  const [shapeShelfHalfVisible, setShapeShelfHalfVisible] = useState(false);
 
-  const content = useMemo(() => {
-    if (selectedShelfTab === "shape") return <Shelf />;
-    if (selectedShelfTab === "use") return <ShelfUse />;
-    return <ShelfColor />;
-  }, [selectedShelfTab]);
+  const bumpArrowFadeCycle = useCallback(() => {
+    setArrowLabelFadeNonce((n) => n + 1);
+  }, []);
 
   const showShapeArrows = selectedShelfTab === "shape";
+
+  useEffect(() => {
+    if (!shapeShelfHalfVisible) {
+      setArrowLabelFadeNonce(0);
+    }
+  }, [shapeShelfHalfVisible]);
+
+  useEffect(() => {
+    if (selectedShelfTab !== "shape") {
+      setShapeShelfHalfVisible(false);
+      setArrowLabelFadeNonce(0);
+    }
+  }, [selectedShelfTab]);
+
+  const content = useMemo(() => {
+    if (selectedShelfTab === "shape") {
+      return (
+        <Shelf
+          onOutlineAnimationCycle={bumpArrowFadeCycle}
+          onShapeShelfHalfVisibleChange={setShapeShelfHalfVisible}
+        />
+      );
+    }
+    if (selectedShelfTab === "use") return <ShelfUse />;
+    return <ShelfColor />;
+  }, [selectedShelfTab, bumpArrowFadeCycle]);
 
   useLayoutEffect(() => {
     if (!showShapeArrows) {
@@ -258,13 +289,16 @@ export default function ShelfContainer() {
         </Box>
       </Box>
 
-      {showShapeArrows
-        ? SHELF_SHAPE_ARROWS.map((spec) => {
+      {showShapeArrows && shapeShelfHalfVisible
+        ? SHELF_SHAPE_ARROWS.map((spec, arrowIndex) => {
             const layout = shapeArrowLayouts[spec.key];
             if (!layout?.visible) return null;
+            const arrowFadeStarted = arrowLabelFadeNonce > 0;
+            const fadeStartDelayMs =
+              SHELF_ARROW_FADE_DELAY_MS + arrowIndex * SHELF_ARROW_FADE_STAGGER_MS;
             return (
               <Box
-                key={spec.key}
+                key={`${spec.key}-${arrowLabelFadeNonce}`}
                 alt={spec.alt ?? ""}
                 aria-hidden
                 component="img"
@@ -279,7 +313,21 @@ export default function ShelfContainer() {
                   height: "auto",
                   display: "block",
                   pointerEvents: "none",
-                  zIndex: 3
+                  zIndex: 3,
+                  ...(arrowFadeStarted
+                    ? {
+                        opacity: 0,
+                        animation: `shelfArrowFadeIn ${SHELF_ARROW_FADE_DURATION_MS}ms ease forwards`,
+                        animationDelay: `${fadeStartDelayMs}ms`
+                      }
+                    : {
+                        opacity: 0,
+                        animation: "none"
+                      }),
+                  "@media (prefers-reduced-motion: reduce)": {
+                    opacity: arrowFadeStarted ? 1 : 0,
+                    animation: "none"
+                  }
                 }}
               />
             );
