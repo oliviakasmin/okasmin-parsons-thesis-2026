@@ -1,6 +1,5 @@
 import type { KeyboardEvent, ReactNode } from "react";
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
-import { useSearchParams } from "react-router-dom";
 import { Box, Button, IconButton, Typography } from "@mui/material";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
@@ -39,8 +38,7 @@ import ObjectScene from "./ObjectScene";
 import TimelineAxis from "./TimelineAxis";
 import { useShelfTab } from "../shelfTabState";
 import { ShelfStackedOutlineSvg } from "../EntryPoints/ShelfStackedOutlineSvg";
-
-type SceneView = "all" | "timeline" | "map";
+import { useClusterScene, type ClusterSceneView } from "../ClusterSceneContext";
 
 export type ContainerProps = {
   clusterId: string;
@@ -118,7 +116,7 @@ const COLOR_RAIL_SWATCH_GAP_PX = 3;
 
 /** Copy for the scene headline (timeline / map / all). Layout lives in Container. */
 function sceneHeadlineContent(args: {
-  view: SceneView;
+  view: ClusterSceneView;
   objectCount: number;
   objectLabelPlural: ReactNode;
   timelineSubject: ReactNode;
@@ -161,10 +159,7 @@ function sceneHeadlineContent(args: {
 }
 
 function Container({ clusterId, initialImageMode, fromShelf = false }: ContainerProps) {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const searchView = searchParams.get("view");
-  const currentView: SceneView =
-    searchView === "timeline" || searchView === "map" ? searchView : "all";
+  const { sceneView: currentView, setSceneView } = useClusterScene();
   const { mode, options, setMode } = useImageToggle({
     colorOption: true,
     initialMode: initialImageMode ?? "outline"
@@ -610,7 +605,7 @@ function Container({ clusterId, initialImageMode, fromShelf = false }: Container
           >
             <Button
               type="button"
-              onClick={() => setSearchParams({ view: "all" })}
+              onClick={() => setSceneView("all")}
               variant="outlined"
               sx={{
                 borderColor: "#fff",
@@ -629,7 +624,7 @@ function Container({ clusterId, initialImageMode, fromShelf = false }: Container
             </Button>
             <Button
               type="button"
-              onClick={() => setSearchParams({ view: "timeline" })}
+              onClick={() => setSceneView("timeline")}
               variant="outlined"
               sx={{
                 borderColor: "#fff",
@@ -649,7 +644,7 @@ function Container({ clusterId, initialImageMode, fromShelf = false }: Container
             </Button>
             <Button
               type="button"
-              onClick={() => setSearchParams({ view: "map" })}
+              onClick={() => setSceneView("map")}
               variant="outlined"
               sx={{
                 borderColor: "#fff",

@@ -4,6 +4,9 @@ import { useShelfTab, type ShelfTab } from "./shelfTabState";
 
 export type ClusterOverlayImageMode = "solid" | "outline" | "color";
 
+/** All / Timeline / Map inside the cluster overlay (`Container`). */
+export type ClusterSceneView = "all" | "timeline" | "map";
+
 type OpenClusterArgs = {
   clusterId: string;
   initialImageMode?: ClusterOverlayImageMode;
@@ -19,6 +22,8 @@ type ClusterSceneContextValue = {
   overlayFromShelf: boolean;
   /** Increments each time the cluster overlay closes (for replaying shelf entrance animations). */
   clusterOverlayCloseGeneration: number;
+  sceneView: ClusterSceneView;
+  setSceneView: (view: ClusterSceneView) => void;
   openCluster: (args: OpenClusterArgs) => void;
   closeCluster: () => void;
 };
@@ -33,6 +38,7 @@ export function ClusterSceneProvider({ children }: { children: ReactNode }) {
   const [overlayFromShelf, setOverlayFromShelf] = useState(false);
   const [returnShelfTab, setReturnShelfTab] = useState<ShelfTab>("shape");
   const [clusterOverlayCloseGeneration, setClusterOverlayCloseGeneration] = useState(0);
+  const [sceneView, setSceneView] = useState<ClusterSceneView>("all");
   const { setSelectedShelfTab } = useShelfTab();
 
   const scrollToShelfSection = useCallback(() => {
@@ -46,10 +52,12 @@ export function ClusterSceneProvider({ children }: { children: ReactNode }) {
     setOverlayInitialImageMode(args.initialImageMode);
     setReturnShelfTab(args.returnShelfTab ?? "shape");
     setOverlayFromShelf(Boolean(args.fromShelf));
+    setSceneView("all");
     setActiveClusterId(args.clusterId);
   }, []);
 
   const closeCluster = useCallback(() => {
+    setSceneView("all");
     setActiveClusterId(null);
     setOverlayInitialImageMode(undefined);
     setOverlayFromShelf(false);
@@ -66,6 +74,8 @@ export function ClusterSceneProvider({ children }: { children: ReactNode }) {
       overlayInitialImageMode,
       overlayFromShelf,
       clusterOverlayCloseGeneration,
+      sceneView,
+      setSceneView,
       openCluster,
       closeCluster
     }),
@@ -75,7 +85,8 @@ export function ClusterSceneProvider({ children }: { children: ReactNode }) {
       closeCluster,
       openCluster,
       overlayFromShelf,
-      overlayInitialImageMode
+      overlayInitialImageMode,
+      sceneView
     ]
   );
 
