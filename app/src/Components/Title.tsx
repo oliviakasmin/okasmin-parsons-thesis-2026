@@ -186,12 +186,14 @@ export default function Title() {
           minWidth: 0,
           display: "flex",
           justifyContent: "flex-end",
-          alignItems: "center"
+          alignItems: "center",
+          py: "2rem",
+          pr: "2rem"
         }}
       >
         <Box
           sx={{
-            width: "min(100%, calc(100vh - (var(--page-margin) * 2)))",
+            width: "min(100%, calc(100vh - (var(--page-margin) * 2) - 4rem))",
             aspectRatio: "1 / 1"
           }}
         >
