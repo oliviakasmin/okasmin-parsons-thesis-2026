@@ -144,6 +144,8 @@ export default function Title() {
               component="span"
               sx={(theme) => ({
                 ...theme.typography.h1,
+                fontSize: "inherit",
+                lineHeight: "inherit",
                 letterSpacing: "-0.01em"
               })}
             >
@@ -153,8 +155,9 @@ export default function Title() {
               component="span"
               sx={(theme) => ({
                 ...theme.typography.rocaLight,
-                letterSpacing: "0.005em",
-                lineHeight: 0.9
+                fontSize: "inherit",
+                lineHeight: "inherit",
+                letterSpacing: "0.005em"
               })}
             >
               Undressed
@@ -162,17 +165,18 @@ export default function Title() {
           </Typography>
         </Box>
         <Typography
-          variant="h5"
-          component="h5"
+          variant="labels"
+          component="p"
           sx={{
             m: 0,
             pl: "1rem",
+            fontSize: "1.25rem",
             position: "absolute",
             left: 0,
             bottom: "10%"
           }}
         >
-          by Olivia Kasmin
+          Olivia Kasmin
         </Typography>
       </Box>
 
@@ -181,15 +185,15 @@ export default function Title() {
           flex: "1 0 0",
           minWidth: 0,
           display: "flex",
-          justifyContent: "flex-start",
-          alignItems: "center"
+          justifyContent: "flex-end",
+          alignItems: "center",
+          py: "2rem",
+          pr: "2rem"
         }}
       >
         <Box
           sx={{
-            width: "min(100%, calc(100vw - (var(--page-margin) * 2)))",
-            maxWidth: "min(85vw, 85vh)",
-            maxHeight: "min(85vw, 85vh)",
+            width: "min(100%, calc(100vh - (var(--page-margin) * 2) - 4rem))",
             aspectRatio: "1 / 1"
           }}
         >

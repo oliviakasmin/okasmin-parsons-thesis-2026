@@ -67,19 +67,13 @@ const modalObjectTitleInHeaderSx = {
   minWidth: 0
 } as const;
 
-/** Selected-object Date / Place lines in the modal body — reused where list copy should match. */
-export const objectModalCaptionValueSx = {
-  color: "#bdbdbd",
-  fontSize: "1.05rem",
-  lineHeight: 1.45
-} as const;
+/** Smaller "Date" / "Place" prefix shown before the value (handled via the ``labels`` typography variant). */
 export const objectModalCaptionLabelSx = {
   color: "#9a9a9a",
   mr: 1.25,
   fontSize: "1rem"
 } as const;
 
-const captionValueSx = objectModalCaptionValueSx;
 const captionLabelSx = objectModalCaptionLabelSx;
 
 const placeChipRadius = "6px";
@@ -303,6 +297,7 @@ function SimilarShapesNeighborTile({
       <ChronologySpanGlyph
         fullWidth
         showInteractiveTooltip={false}
+        neighborTickDotted
         corpusMin={corpusMin}
         corpusMax={corpusMax}
         anchorYear={anchorYear}
@@ -556,7 +551,6 @@ function ObjectImageModal({
   const neighborTitleTypographySx = (isAnchor: boolean) =>
     isAnchor
       ? ({
-          ...captionValueSx,
           fontWeight: 700,
           width: "100%",
           textAlign: "left",
@@ -580,7 +574,11 @@ function ObjectImageModal({
     const meta = metadataByObjectId.get(tileObjectId);
     const t = meta?.title ?? "";
     return (
-      <Typography lang="en" sx={neighborTitleTypographySx(isAnchor)}>
+      <Typography
+        lang="en"
+        variant={isAnchor ? "labels" : undefined}
+        sx={neighborTitleTypographySx(isAnchor)}
+      >
         {isAnchor ? "Selected" : displayOrDash(t)}
       </Typography>
     );
@@ -673,15 +671,15 @@ function ObjectImageModal({
                 {renderTileImage(objectId, { constrainSelectedLayout: true })}
               </Box>
               <Box sx={{ display: "flex", flexDirection: "column", gap: 1, flexShrink: 0 }}>
-                <Typography sx={captionValueSx}>
+                <Typography variant="labels">
                   <Box component="span" sx={captionLabelSx}>
                     Date
                   </Box>
                   {formatFinalDateForDisplay(finalDate)}
                 </Typography>
                 <Typography
+                  variant="labels"
                   sx={{
-                    ...captionValueSx,
                     wordBreak: "break-word",
                     overflowWrap: "anywhere"
                   }}

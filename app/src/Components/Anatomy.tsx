@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import anatomyDrawing from "../../public/anatomy_screenshot.png";
+import anatomyDrawing from "../../public/anatomy.svg";
 import handsPottery from "../../public/hands_pottery.jpg";
 
 /**
@@ -168,7 +168,7 @@ export default function Anatomy() {
           // minHeight: "100vh",
         }}
       >
-        <Typography variant="h3" sx={{ my: 3 }}>
+        <Typography variant="h3" sx={{ mx: 0, my: 3, pl: "0.75rem" }}>
           Anatomy of a vessel
         </Typography>
         <div
@@ -176,16 +176,20 @@ export default function Anatomy() {
             display: "flex",
             flexWrap: "wrap",
             flex: 1,
-            width: "100%",
+            width: "90%",
             marginTop: "10vh",
-            alignItems: "center"
+            marginLeft: "auto",
+            marginRight: "auto",
+            alignItems: "center",
+            columnGap: "1.25rem",
+            rowGap: "2rem"
           }}
         >
           <div
             style={{
-              flex: "1 1 50%",
-              maxWidth: "50%",
+              flex: "1 1 280px",
               minWidth: 0,
+              maxWidth: "100%",
               display: "flex",
               flexDirection: "column"
               // justifyContent: "center"
@@ -332,9 +336,9 @@ export default function Anatomy() {
           </div>
           <div
             style={{
-              flex: "1 1 50%",
-              maxWidth: "50%",
+              flex: "1 1 280px",
               minWidth: 0,
+              maxWidth: "100%",
               display: "flex",
               flexDirection: "column",
               // justifyContent: "center",
@@ -347,7 +351,10 @@ export default function Anatomy() {
               style={{ width: "100%", maxWidth: "100%", marginBottom: "2rem" }}
             >
               <Typography variant="h4" sx={{ mb: 1 }}>
-                ceramic <span style={{ fontStyle: "italic", fontSize: "0.75em" }}>(adj)</span>
+                ceramic{" "}
+                <Typography component="span" variant="labels" sx={{ fontStyle: "italic" }}>
+                  (adj)
+                </Typography>
               </Typography>
               <Typography
                 variant="h5"
@@ -362,7 +369,10 @@ export default function Anatomy() {
             </div>
             <div ref={secondTextBlockRef} style={{ width: "100%", maxWidth: "100%" }}>
               <Typography variant="h4" sx={{ mb: 1 }}>
-                vessel <span style={{ fontStyle: "italic", fontSize: "0.75em" }}>(n)</span>
+                vessel{" "}
+                <Typography component="span" variant="labels" sx={{ fontStyle: "italic" }}>
+                  (n)
+                </Typography>
               </Typography>
               <Typography
                 variant="h5"

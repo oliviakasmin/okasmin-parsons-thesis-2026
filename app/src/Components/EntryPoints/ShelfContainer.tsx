@@ -1,8 +1,12 @@
-import { useMemo } from "react";
+import { useLayoutEffect, useMemo, useRef, useState } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { homeEntryDomId } from "../constants";
 import { useShelfTab } from "../shelfTabState";
+import shelfArrowLongestTimeSpan from "../../../public/arrows/longest_time_span.svg";
+import shelfArrowMostCountries from "../../../public/arrows/most_countries.svg";
+import shelfArrowBiggestGroup from "../../../public/arrows/biggest_group.svg";
+import shelfArrowOutliers from "../../../public/arrows/outliers.svg";
 import Shelf from "./Shelf";
 import ShelfUse from "./ShelfUse";
 import ShelfColor from "./ShelfColor";
@@ -12,8 +16,103 @@ const tabTextColor = {
   inactive: "#585858"
 };
 
+/** Default gap between an arrow graphic and the shape shelf row it annotates (not tied to tile column gap). */
+const SHELF_SHAPE_ARROW_GAP_PX = 12;
+
+type ShelfShapeArrowSpec =
+  | { key: string; src: string; side: "left"; rowIndex: number; gapPx?: number; alt?: string }
+  | {
+      key: string;
+      src: string;
+      side: "above" | "below";
+      rowIndex: number;
+      xFraction: number;
+      gapPx?: number;
+      alt?: string;
+    };
+
+const SHELF_SHAPE_ARROWS: ShelfShapeArrowSpec[] = [
+  { key: "longest_time_span", src: shelfArrowLongestTimeSpan, side: "left", rowIndex: 1 },
+  { key: "most_countries", src: shelfArrowMostCountries, side: "left", rowIndex: 2 },
+  {
+    key: "biggest_group",
+    src: shelfArrowBiggestGroup,
+    side: "above",
+    rowIndex: 0,
+    xFraction: 0.75,
+    gapPx: 32
+  },
+  { key: "outliers", src: shelfArrowOutliers, side: "below", rowIndex: 2, xFraction: 0.75 }
+];
+
+type ShelfShapeArrowLayout = {
+  topPx: number;
+  leftPx: number;
+  transform: string;
+  visible: boolean;
+};
+
+const HIDDEN_ARROW_LAYOUT: ShelfShapeArrowLayout = {
+  topPx: 0,
+  leftPx: 0,
+  transform: "translate(0, 0)",
+  visible: false
+};
+
+function measureShelfShapeArrowLayouts(
+  outerSection: HTMLElement,
+  scrollPane: HTMLElement
+): Record<string, ShelfShapeArrowLayout> {
+  const result: Record<string, ShelfShapeArrowLayout> = {};
+  for (const spec of SHELF_SHAPE_ARROWS) result[spec.key] = HIDDEN_ARROW_LAYOUT;
+
+  const main = scrollPane.querySelector("main");
+  const section = main?.querySelector(":scope > section");
+  if (!section) return result;
+
+  const outerRect = outerSection.getBoundingClientRect();
+  for (const spec of SHELF_SHAPE_ARROWS) {
+    const row = section.children[spec.rowIndex];
+    if (!(row instanceof HTMLElement)) continue;
+    const rowRect = row.getBoundingClientRect();
+
+    const gapPx = spec.gapPx ?? SHELF_SHAPE_ARROW_GAP_PX;
+    if (spec.side === "left") {
+      result[spec.key] = {
+        topPx: rowRect.top - outerRect.top + rowRect.height / 2,
+        leftPx: rowRect.left - outerRect.left - gapPx,
+        transform: "translate(-100%, -50%)",
+        visible: true
+      };
+    } else if (spec.side === "above") {
+      result[spec.key] = {
+        topPx: rowRect.top - outerRect.top - gapPx,
+        leftPx: rowRect.left - outerRect.left + rowRect.width * spec.xFraction,
+        transform: "translate(-50%, -100%)",
+        visible: true
+      };
+    } else {
+      result[spec.key] = {
+        topPx: rowRect.bottom - outerRect.top + gapPx,
+        leftPx: rowRect.left - outerRect.left + rowRect.width * spec.xFraction,
+        transform: "translate(-50%, 0)",
+        visible: true
+      };
+    }
+  }
+  return result;
+}
+
+const INITIAL_HIDDEN_LAYOUTS: Record<string, ShelfShapeArrowLayout> = Object.fromEntries(
+  SHELF_SHAPE_ARROWS.map((spec) => [spec.key, HIDDEN_ARROW_LAYOUT])
+);
+
 export default function ShelfContainer() {
   const { selectedShelfTab, setSelectedShelfTab } = useShelfTab();
+  const outerSectionRef = useRef<HTMLElement | null>(null);
+  const scrollPaneRef = useRef<HTMLDivElement | null>(null);
+  const [shapeArrowLayouts, setShapeArrowLayouts] =
+    useState<Record<string, ShelfShapeArrowLayout>>(INITIAL_HIDDEN_LAYOUTS);
 
   const content = useMemo(() => {
     if (selectedShelfTab === "shape") return <Shelf />;
@@ -21,16 +120,53 @@ export default function ShelfContainer() {
     return <ShelfColor />;
   }, [selectedShelfTab]);
 
+  const showShapeArrows = selectedShelfTab === "shape";
+
+  useLayoutEffect(() => {
+    if (!showShapeArrows) {
+      setShapeArrowLayouts(INITIAL_HIDDEN_LAYOUTS);
+      return;
+    }
+
+    const outerSection = outerSectionRef.current;
+    const scrollPane = scrollPaneRef.current;
+    if (!outerSection || !scrollPane) return;
+
+    const apply = () => {
+      setShapeArrowLayouts(measureShelfShapeArrowLayouts(outerSection, scrollPane));
+    };
+
+    apply();
+    const raf = window.requestAnimationFrame(() => apply());
+
+    const ro = new ResizeObserver(() => {
+      window.requestAnimationFrame(apply);
+    });
+    ro.observe(outerSection);
+    ro.observe(scrollPane);
+
+    const main = scrollPane.querySelector("main");
+    if (main instanceof HTMLElement) ro.observe(main);
+    const section = main?.querySelector(":scope > section");
+    if (section instanceof HTMLElement) ro.observe(section);
+
+    return () => {
+      window.cancelAnimationFrame(raf);
+      ro.disconnect();
+    };
+  }, [showShapeArrows]);
+
   return (
     <Box
       component="section"
+      ref={outerSectionRef}
       id={homeEntryDomId("shelf")}
       sx={{
         height: "100vh",
         width: "100%",
         position: "relative",
         background: "#000",
-        overflow: "hidden"
+        overflow: "visible"
       }}
     >
       <Box
@@ -100,6 +236,7 @@ export default function ShelfContainer() {
       <Box sx={{ display: "none" }} id={homeEntryDomId("shelf-color")} />
 
       <Box
+        ref={scrollPaneRef}
         sx={{
           position: "absolute",
           top: 0,
@@ -123,6 +260,34 @@ export default function ShelfContainer() {
           {content}
         </Box>
       </Box>
+
+      {showShapeArrows
+        ? SHELF_SHAPE_ARROWS.map((spec) => {
+            const layout = shapeArrowLayouts[spec.key];
+            if (!layout?.visible) return null;
+            return (
+              <Box
+                key={spec.key}
+                alt={spec.alt ?? ""}
+                aria-hidden
+                component="img"
+                draggable={false}
+                src={spec.src}
+                sx={{
+                  position: "absolute",
+                  top: layout.topPx,
+                  left: layout.leftPx,
+                  transform: layout.transform,
+                  width: "auto",
+                  height: "auto",
+                  display: "block",
+                  pointerEvents: "none",
+                  zIndex: 3
+                }}
+              />
+            );
+          })
+        : null}
     </Box>
   );
 }

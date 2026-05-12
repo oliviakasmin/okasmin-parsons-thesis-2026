@@ -1,5 +1,7 @@
 import { useMemo } from "react";
 import fieldsCsv from "../../../format_data/generated/fields.csv?raw";
+import representativeJson from "../../../format_data/use_groups/representative.json";
+import useGroupObjectOrderJson from "../../../format_data/use_groups/use_group_object_order.json";
 
 /** Values produced by ``format_data/use_groups/get_use.py`` → ``fields.csv`` column ``use``. */
 export type UseGroup =
@@ -38,18 +40,62 @@ export const USE_GROUP_LABEL: Record<UseGroup, string> = {
   other: "other"
 };
 
-// Optional hero images per use bucket (objectId strings).
-const USE_GROUP_REPRESENTATIVE_OVERRIDES: Partial<Record<UseGroup, string>> = {
-  pouring: "204352",
-  flask_and_bottle: "47810",
-  storage: "853841",
-  vase: "46425",
-  ritual: "308556",
-  animal_shaped: "39496",
-  other: "44862"
-};
-
 const USE_GROUP_SET = new Set<string>(USE_GROUPS_IN_DISPLAY_ORDER);
+
+function normalizeRepresentativeEntry(item: unknown): string | null {
+  if (typeof item === "number" && Number.isFinite(item)) return String(Math.trunc(item));
+  if (typeof item === "string" && item.trim()) {
+    const n = Number(item.trim());
+    if (Number.isFinite(n)) return String(Math.trunc(n));
+  }
+  return null;
+}
+
+/** Ordered object IDs from ``representative.json`` for a use group (shelf hero / anchor order). */
+export function representativeObjectIdsForGroup(payload: unknown, group: UseGroup): string[] {
+  if (payload == null || typeof payload !== "object") return [];
+  const raw = (payload as Record<string, unknown>)[group];
+  if (Array.isArray(raw)) {
+    const out: string[] = [];
+    for (const item of raw) {
+      const id = normalizeRepresentativeEntry(item);
+      if (id) out.push(id);
+    }
+    return out;
+  }
+  const single = normalizeRepresentativeEntry(raw);
+  return single ? [single] : [];
+}
+
+function parseFirstRepresentativeObjectId(payload: unknown, group: UseGroup): string | null {
+  const ids = representativeObjectIdsForGroup(payload, group);
+  return ids[0] ?? null;
+}
+
+/** Match ``sort_use_groups_by_silhouette.py`` output: silhouette distance to representative. */
+function sortObjectIdsBySilhouetteOrder(
+  objectIds: string[],
+  group: UseGroup,
+  orderByGroup: Record<string, string[]>
+): string[] {
+  const ordered = orderByGroup[group];
+  if (ordered == null || ordered.length === 0) {
+    return [...objectIds].sort((a, b) => Number(a) - Number(b));
+  }
+  const memberSet = new Set(objectIds);
+  const rank = new Map<string, number>();
+  ordered.forEach((id, index) => {
+    if (memberSet.has(id)) rank.set(id, index);
+  });
+  return [...objectIds].sort((a, b) => {
+    const ra = rank.get(a);
+    const rb = rank.get(b);
+    if (ra != null && rb != null) return ra - rb;
+    if (ra != null) return -1;
+    if (rb != null) return 1;
+    return Number(a) - Number(b);
+  });
+}
 
 export function isUseGroup(value: string): value is UseGroup {
   return USE_GROUP_SET.has(value);
@@ -94,11 +140,13 @@ function buildUseGroupRows(csv: string): UseGroupRow[] {
   const header = parseCsvLine(lines[0]);
   const objectIdIdx = header.indexOf("objectId");
   const useIdx = header.indexOf("use");
+  const orderByGroup = useGroupObjectOrderJson as Record<string, string[]>;
+
   if (objectIdIdx < 0 || useIdx < 0) {
     return USE_GROUPS_IN_DISPLAY_ORDER.map((group) => ({
       group,
       objectIds: [],
-      representativeObjectId: USE_GROUP_REPRESENTATIVE_OVERRIDES[group] ?? null
+      representativeObjectId: parseFirstRepresentativeObjectId(representativeJson, group)
     }));
   }
 
@@ -115,11 +163,13 @@ function buildUseGroupRows(csv: string): UseGroupRow[] {
   }
 
   return USE_GROUPS_IN_DISPLAY_ORDER.map((group) => {
-    const objectIds = objectIdsByGroup.get(group) ?? [];
+    const rawIds = objectIdsByGroup.get(group) ?? [];
+    const objectIds = sortObjectIdsBySilhouetteOrder(rawIds, group, orderByGroup);
     return {
       group,
       objectIds,
-      representativeObjectId: USE_GROUP_REPRESENTATIVE_OVERRIDES[group] ?? objectIds[0] ?? null
+      representativeObjectId:
+        parseFirstRepresentativeObjectId(representativeJson, group) ?? objectIds[0] ?? null
     };
   });
 }

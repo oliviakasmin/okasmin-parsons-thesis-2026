@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { gsap } from "gsap";
+import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { allObjectIds } from "./title_intro_constants";
 import MiniShelfSVG from "./MiniShelfSVG";
@@ -13,7 +14,7 @@ const bottomRowIds = allObjectIds.slice(splitAt);
 const TopShelfSVG = <MiniShelfSVG objectIds={topRowIds} />;
 const BottomShelfSVG = <MiniShelfSVG objectIds={bottomRowIds} />;
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(DrawSVGPlugin, ScrollTrigger);
 
 export default function Intro() {
   const sectionRef = useRef<HTMLElement | null>(null);

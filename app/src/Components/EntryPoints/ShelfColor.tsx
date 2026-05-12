@@ -122,6 +122,7 @@ export default function ShelfColor() {
                     </Box>
                   </Box>
                   <Typography
+                    variant="labels"
                     className="shelf-color-label"
                     component="span"
                     sx={shelfOverlayLabelSx}

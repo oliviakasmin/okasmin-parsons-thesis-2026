@@ -11,7 +11,6 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { keyframes } from "@mui/material/styles";
 import InlineOutlineSvg from "./Scenes/InlineOutlineSvg";
-import { objectModalCaptionValueSx } from "./Scenes/ObjectImageModal";
 import { useObjectPlaceLabels } from "../hooks/useObjectGeo";
 import { useObjectDateRanges } from "../hooks/useTimelineBuckets";
 import { formatYearForTick } from "../utils/formatYearTick";
@@ -260,7 +259,7 @@ export default function CaseStudies() {
           gap: "3rem"
         }}
       >
-        <Typography variant="h3">
+        <Typography variant="h3" sx={{ m: 0, pl: "0.75rem" }}>
           Same silhouette, thousands of years, different cultures.
         </Typography>
 
@@ -321,10 +320,10 @@ export default function CaseStudies() {
                       textAlign: "center"
                     }}
                   >
-                    <Typography sx={objectModalCaptionValueSx}>{dateLabel || "—"}</Typography>
+                    <Typography variant="labels">{dateLabel || "—"}</Typography>
                     <Typography
+                      variant="labels"
                       sx={{
-                        ...objectModalCaptionValueSx,
                         wordBreak: "break-word",
                         overflowWrap: "anywhere"
                       }}
@@ -332,8 +331,8 @@ export default function CaseStudies() {
                       {locationLabel.trim() ? locationLabel : "—"}
                     </Typography>
                     <Typography
+                      variant="labels"
                       sx={{
-                        ...objectModalCaptionValueSx,
                         wordBreak: "break-word",
                         overflowWrap: "anywhere"
                       }}

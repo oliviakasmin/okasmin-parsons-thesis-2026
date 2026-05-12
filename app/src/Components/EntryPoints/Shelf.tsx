@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import { homeEntryDomId, type HomeEntryScrollId } from "../constants";
 import type { ShelfSlot } from "./shelfGridStyles";
 import { restartShelfPathDraw, ShelfStackedOutlineSvg } from "./ShelfStackedOutlineSvg";
@@ -9,18 +9,12 @@ import {
   shelfEmptySlotSx,
   shelfGridRowSx,
   shelfGridStackSx,
-  shelfOverlayLabelSx,
   shelfSlotInnerMediaSx,
   shelfSlotSurfaceSx,
   shelfTabMainSx
 } from "./shelfGridStyles";
-import objectStatsJson from "../../../public/data/object_stats.json";
 
 const shelfEntryScrollId: HomeEntryScrollId = "shelf";
-
-const shapeClusterLabelsById = (
-  objectStatsJson as { byShapeClusterGroup?: Record<string, { label?: string }> }
-).byShapeClusterGroup;
 
 const cluster0 = "cluster_0";
 const cluster1 = "cluster_1";
@@ -37,9 +31,9 @@ const cluster11 = "cluster_11";
 
 /** Row-major shelf positions; use `undefined` for an intentional gap (one tile wide). Fewer than five entries in a row spread evenly across the row. */
 const SHELF_LAYOUT: ShelfSlot<string>[][] = [
-  [cluster10, cluster8, cluster6, cluster7],
-  [cluster3, cluster4, cluster5, cluster11],
-  [cluster9, cluster0, cluster1, cluster2]
+  [cluster8, cluster6, cluster7, cluster10],
+  [cluster3, cluster4, cluster5, cluster9],
+  [cluster11, cluster1, cluster2, cluster0]
 ];
 
 function Shelf() {
@@ -118,7 +112,6 @@ function Shelf() {
               }
 
               const stackedSvgSrc = `/cluster_SVG_stacked_outlines/${clusterId}_stack_sampled.svg`;
-              const clusterLabel = shapeClusterLabelsById?.[clusterId]?.label?.trim();
               return (
                 <Box
                   component="article"
@@ -145,18 +138,6 @@ function Shelf() {
                       )}
                     </Box>
                   </Box>
-                  {clusterLabel ? (
-                    <Typography
-                      component="span"
-                      sx={{
-                        ...shelfOverlayLabelSx,
-                        opacity: 1,
-                        visibility: "visible"
-                      }}
-                    >
-                      {clusterLabel}
-                    </Typography>
-                  ) : null}
                 </Box>
               );
             })}

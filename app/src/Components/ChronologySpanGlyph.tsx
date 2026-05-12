@@ -35,6 +35,8 @@ export type ChronologySpanGlyphProps = {
   fullWidth?: boolean;
   /** When false, no nested Tooltip (parent supplies hover surface). */
   showInteractiveTooltip?: boolean;
+  /** Grey neighbor-year tick: dotted when true (e.g. similar-shape modal tiles). */
+  neighborTickDotted?: boolean;
 };
 
 function formatNeighborDateLabel(raw: string | undefined): string {
@@ -117,7 +119,8 @@ export default function ChronologySpanGlyph({
   width = MIN_COORD_WIDTH,
   height = 44,
   fullWidth = false,
-  showInteractiveTooltip = true
+  showInteractiveTooltip = true,
+  neighborTickDotted = false
 }: ChronologySpanGlyphProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [measuredW, setMeasuredW] = useState<number | null>(null);
@@ -151,7 +154,14 @@ export default function ChronologySpanGlyph({
   const labelFontPx = 12;
   /** Vertical date ticks extend symmetrically across the horizontal axis. */
   const dateTickHalf = 5;
+  /** Dotted neighbor tick extends further above/below the axis than the default tick. */
+  const neighborTickDottedHalf = 8;
   const neighborTickStroke = 2;
+  /** Dotted neighbor tick stroke (solid neighbor tick stays `#9e9e9e`). */
+  const neighborTickDottedColor = "#ffffff";
+  /** Dotted neighbor tick: thicker stroke and wider gap between round-cap dots. */
+  const neighborTickDottedStroke = 2.85;
+  const neighborTickDottedGapPx = 3.85;
   /** Selected (anchor) tick — 2× neighbor stroke weight for emphasis. */
   const anchorTickStroke = 4;
   const endCapHalf = 2.5;
@@ -234,19 +244,20 @@ export default function ChronologySpanGlyph({
         <line
           x1={neighborX}
           x2={neighborX}
-          y1={midY - dateTickHalf}
-          y2={midY + dateTickHalf}
-          stroke="#9e9e9e"
-          strokeWidth={neighborTickStroke}
-          strokeLinecap="square"
+          y1={midY - (neighborTickDotted ? neighborTickDottedHalf : dateTickHalf)}
+          y2={midY + (neighborTickDotted ? neighborTickDottedHalf : dateTickHalf)}
+          stroke={neighborTickDotted ? neighborTickDottedColor : "#9e9e9e"}
+          strokeWidth={neighborTickDotted ? neighborTickDottedStroke : neighborTickStroke}
+          strokeLinecap={neighborTickDotted ? "round" : "square"}
+          strokeDasharray={neighborTickDotted ? `0 ${neighborTickDottedGapPx}` : undefined}
         />
       ) : null}
       {anchorX != null ? (
         <line
           x1={anchorX}
           x2={anchorX}
-          y1={midY - dateTickHalf}
-          y2={midY + dateTickHalf}
+          y1={midY - (neighborTickDotted ? neighborTickDottedHalf : dateTickHalf)}
+          y2={midY + (neighborTickDotted ? neighborTickDottedHalf : dateTickHalf)}
           stroke="#ffffff"
           strokeWidth={anchorTickStroke}
           strokeLinecap="square"
