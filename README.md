@@ -1,8 +1,7 @@
 ![Title (animated)](additional_images/title.gif)
 
-##### The practice of pottery shows us how connected we really are.
+#### Olivia Kasmin, 2026
 
-Olivia Kasmin, 2026
 Parsons, The New School
 
 ---
@@ -21,13 +20,9 @@ The technology of working clay into vessels to serve basic needs like cooking, d
 
 By highlighting vessels whose forms resemble one another, I aim to emphasize that we resemble one another as well. It is not my intention to minimize the historical and artistic complexity of ceramics (or people), but rather to encourage an understanding of our connectedness, our similarity to other cultures, and our humanity through this common technology and canvas of expression and utility.
 
-![Preview](preview.gif)
-
 ---
 
 ### Additional Images
-
-![Intro](additional_images/intro.png)
 
 ![Intro — data](additional_images/intro_data.png)
 
@@ -36,9 +31,5 @@ By highlighting vessels whose forms resemble one another, I aim to emphasize tha
 ![Timeline](additional_images/timeline.png)
 
 ![Pouring](additional_images/pouring.png)
-
-![Storage](additional_images/storage.png)
-
-![Color shelf](additional_images/color_shelf.png)
 
 ![Case studies](additional_images/case_studies.png)
