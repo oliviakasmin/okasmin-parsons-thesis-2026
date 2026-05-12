@@ -1,9 +1,9 @@
-import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import useImageModules from "../../hooks/useImageModules";
 import useColorGroups, { type ColorGroupKey } from "../../hooks/useColorGroups";
-import { homeEntryDomId, type HomeEntryScrollId } from "../constants";
+import { ROUTE_SHELF_COLOR_ROOT_ID } from "../constants";
+import { useClusterScene } from "../ClusterSceneContext";
 import type { ShelfSlot } from "./shelfGridStyles";
 import {
   shelfArticleSx,
@@ -16,8 +16,6 @@ import {
   shelfTabMainSx
 } from "./shelfGridStyles";
 
-const shelfColorEntryScrollId: HomeEntryScrollId = "shelf-color";
-
 /** Row-major positions; `undefined` = one-tile gap; rows with fewer than five slots spread across the row. */
 const SHELF_COLOR_LAYOUT: ShelfSlot<ColorGroupKey>[][] = [
   ["hue_blue", "hue_green", "blue_and_white", "yellow_and_ochre"],
@@ -26,12 +24,12 @@ const SHELF_COLOR_LAYOUT: ShelfSlot<ColorGroupKey>[][] = [
 ];
 
 export default function ShelfColor() {
-  const navigate = useNavigate();
+  const { openCluster } = useClusterScene();
   const { maskImageByObjectId, noBgImageByObjectId } = useImageModules();
   const { groupRowByKey } = useColorGroups();
 
   return (
-    <Box component="main" id={homeEntryDomId(shelfColorEntryScrollId)} sx={shelfTabMainSx}>
+    <Box component="main" id={ROUTE_SHELF_COLOR_ROOT_ID} sx={shelfTabMainSx}>
       <Box component="section" sx={shelfGridStackSx}>
         {SHELF_COLOR_LAYOUT.map((row, rowIndex) => (
           <Box key={`color-row-${rowIndex}`} sx={shelfGridRowSx(row.length)}>
@@ -78,8 +76,10 @@ export default function ShelfColor() {
                   component="article"
                   key={groupRow.groupKey}
                   onClick={() =>
-                    navigate(`/all/${groupRow.groupKey}`, {
-                      state: { homeScrollTo: shelfColorEntryScrollId, initialImageMode: "color" }
+                    openCluster({
+                      clusterId: groupRow.groupKey,
+                      initialImageMode: "color",
+                      returnShelfTab: "color"
                     })
                   }
                   sx={shelfArticleSx("shelf-color-label")}

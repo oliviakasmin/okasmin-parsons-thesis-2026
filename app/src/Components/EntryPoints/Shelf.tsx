@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
 import { Box } from "@mui/material";
-import { homeEntryDomId, type HomeEntryScrollId } from "../constants";
+import { ROUTE_SHELF_SHAPE_ROOT_ID } from "../constants";
+import { useClusterScene } from "../ClusterSceneContext";
 import type { ShelfSlot } from "./shelfGridStyles";
 import { restartShelfPathDraw, ShelfStackedOutlineSvg } from "./ShelfStackedOutlineSvg";
 import {
@@ -13,8 +13,6 @@ import {
   shelfSlotSurfaceSx,
   shelfTabMainSx
 } from "./shelfGridStyles";
-
-const shelfEntryScrollId: HomeEntryScrollId = "shelf";
 
 const cluster0 = "cluster_0";
 const cluster1 = "cluster_1";
@@ -37,8 +35,7 @@ const SHELF_LAYOUT: ShelfSlot<string>[][] = [
 ];
 
 function Shelf() {
-  const navigate = useNavigate();
-  const location = useLocation();
+  const { openCluster, clusterOverlayCloseGeneration } = useClusterScene();
   const [isShelfHalfVisible, setIsShelfHalfVisible] = useState(false);
   const [shelfAnimationCycle, setShelfAnimationCycle] = useState(0);
   const shelfRef = useRef<HTMLElement | null>(null);
@@ -85,20 +82,15 @@ function Shelf() {
   }, []);
 
   useEffect(() => {
-    // Deterministic replay on Back without hide/show flash:
-    // ensure SVGs are mounted, then bump cycle so they remount and redraw.
+    if (clusterOverlayCloseGeneration === 0) return;
+    // Replay draw animation after Back from cluster overlay (same idea as former `location.key`).
     wasShelfHalfVisibleRef.current = true;
     setIsShelfHalfVisible(true);
     setShelfAnimationCycle((cycle) => cycle + 1);
-  }, [location.key]);
+  }, [clusterOverlayCloseGeneration]);
 
   return (
-    <Box
-      component="main"
-      ref={shelfRef}
-      id={homeEntryDomId(shelfEntryScrollId)}
-      sx={shelfTabMainSx}
-    >
+    <Box component="main" ref={shelfRef} id={ROUTE_SHELF_SHAPE_ROOT_ID} sx={shelfTabMainSx}>
       <Box component="section" sx={shelfGridStackSx}>
         {SHELF_LAYOUT.map((row, rowIndex) => (
           <Box key={`shape-row-${rowIndex}`} sx={shelfGridRowSx(row.length)}>
@@ -121,8 +113,10 @@ function Shelf() {
                     restartShelfPathDraw(paths);
                   }}
                   onClick={() =>
-                    navigate(`/all/${clusterId}`, {
-                      state: { homeScrollTo: shelfEntryScrollId, fromShelf: true }
+                    openCluster({
+                      clusterId,
+                      returnShelfTab: "shape",
+                      fromShelf: true
                     })
                   }
                   sx={shelfArticleTileSx}

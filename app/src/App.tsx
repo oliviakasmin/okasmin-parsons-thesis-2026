@@ -1,75 +1,54 @@
-import { useEffect } from "react";
-import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
-import { homeEntryDomId, type HomeEntryScrollId } from "./Components/constants";
+import { Box } from "@mui/material";
+import { Route, Routes } from "react-router-dom";
+import { ClusterSceneProvider, useClusterScene } from "./Components/ClusterSceneContext";
 import Test from "./Components/Tests/Test";
 import Test2 from "./Components/Tests/Test2";
 import ClusterTest from "./Components/Tests/ClusterTest";
-import {
-  Container,
-  Anatomy,
-  Intro,
-  Intro2,
-  CaseStudies,
-  Shelf,
-  Title,
-  ShelfUse,
-  ShelfColor,
-  ShelfContainer
-} from "./Components";
+import { CaseStudies, Container, Shelf, Title, ShelfUse, ShelfColor } from "./Components";
 import { ShelfTabProvider } from "./Components/ShelfTabContext";
+import MainHomeShell from "./MainHomeShell";
 
-function Home() {
-  const location = useLocation();
-  const navigate = useNavigate();
-  const locationState = (location.state as { homeScrollTo?: HomeEntryScrollId } | null) ?? null;
-
-  useEffect(() => {
-    if (location.pathname !== "/") return;
-    const stateEntry = locationState?.homeScrollTo;
-    const hashTargetId = location.hash.startsWith("#") ? location.hash.slice(1) : "";
-    const targetId = hashTargetId || (stateEntry ? homeEntryDomId(stateEntry) : "");
-    if (!targetId) return;
-
-    const el = document.getElementById(targetId);
-    if (!el) return;
-    el.scrollIntoView({ behavior: "auto", block: "start" });
-
-    // Consume one-time home scroll state but preserve hash targeting in URL.
-    if (stateEntry) {
-      navigate(`${location.pathname}${location.hash}`, { replace: true, state: null });
-    }
-  }, [location.pathname, location.hash, locationState, navigate]);
-
+function ClusterOverlay() {
+  const { activeClusterId, overlayInitialImageMode, overlayFromShelf } = useClusterScene();
+  if (!activeClusterId) return null;
   return (
-    <main>
-      <div style={{ display: "grid", gap: "4rem" }}>
-        <Title />
-        <Intro />
-        <Anatomy />
-        <Intro2 />
-
-        <ShelfContainer />
-        <CaseStudies />
-      </div>
-    </main>
+    <Box
+      sx={{
+        position: "fixed",
+        inset: 0,
+        zIndex: 1300,
+        background: "#000",
+        overflow: "auto"
+      }}
+    >
+      <Container
+        clusterId={activeClusterId}
+        initialImageMode={overlayInitialImageMode}
+        fromShelf={overlayFromShelf}
+      />
+    </Box>
   );
 }
 
 function App() {
   return (
     <ShelfTabProvider>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/test" element={<Test />} />
-        <Route path="/test2" element={<Test2 />} />
-        <Route path="/cluster-test" element={<ClusterTest />} />
-        <Route path="/shelf" element={<Shelf />} />
-        <Route path="/title" element={<Title />} />
-        <Route path="/shelf-use" element={<ShelfUse />} />
-        <Route path="/shelf-color" element={<ShelfColor />} />
-        <Route path="/case-studies" element={<CaseStudies />} />
-        <Route path="/all/:clusterId" element={<Container />} />
-      </Routes>
+      <ClusterSceneProvider>
+        <>
+          <Routes>
+            <Route path="/" element={<MainHomeShell />} />
+            <Route path="/test" element={<Test />} />
+            <Route path="/test2" element={<Test2 />} />
+            <Route path="/cluster-test" element={<ClusterTest />} />
+            <Route path="/shelf" element={<Shelf />} />
+            <Route path="/title" element={<Title />} />
+            <Route path="/shelf-use" element={<ShelfUse />} />
+            <Route path="/shelf-color" element={<ShelfColor />} />
+            <Route path="/case-studies" element={<CaseStudies />} />
+          </Routes>
+          <ClusterOverlay />
+        </>
+      </ClusterSceneProvider>
     </ShelfTabProvider>
   );
 }
