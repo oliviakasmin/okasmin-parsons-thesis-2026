@@ -259,7 +259,7 @@ export default function CaseStudies() {
           gap: "3rem"
         }}
       >
-        <Typography variant="h3">
+        <Typography variant="h3" sx={{ m: 0, pl: "0.75rem" }}>
           Same silhouette, thousands of years, different cultures.
         </Typography>
 

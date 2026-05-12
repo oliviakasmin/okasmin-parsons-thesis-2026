@@ -124,7 +124,6 @@
     },
     "cluster_1": {
       "objectCount": 170,
-      "label": "wide outliers",
       "maximumTimeSpan": {
         "minFinalDate": -3500,
         "maxFinalDate": 1898,
@@ -153,7 +152,7 @@
     },
     "cluster_10": {
       "objectCount": 685,
-      "label": "largest group",
+      "label": "biggest group",
       "maximumTimeSpan": {
         "minFinalDate": -2875,
         "maxFinalDate": 1930,
@@ -211,7 +210,6 @@
     },
     "cluster_2": {
       "objectCount": 122,
-      "label": "narrow outliers",
       "maximumTimeSpan": {
         "minFinalDate": -2300,
         "maxFinalDate": 1908,
@@ -409,7 +407,6 @@
     },
     "cluster_9": {
       "objectCount": 133,
-      "label": "shortest time span",
       "maximumTimeSpan": {
         "minFinalDate": -600,
         "maxFinalDate": 1889,
